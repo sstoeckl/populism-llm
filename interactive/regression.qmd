@@ -1,0 +1,162 @@
+---
+title: "Interactive regressions"
+subtitle: "Filter the sample, choose aggregation weights, watch the coefficient move"
+format:
+  html:
+    page-layout: full
+filters:
+  - webr
+webr:
+  packages: ['arrow', 'dplyr', 'fixest', 'ggplot2', 'tidyr', 'broom']
+  show-startup-message: false
+  show-header-message: false
+---
+
+::: {.callout-note}
+**Loading R in your browser.** First-time load takes 5–15 s; subsequent
+sessions are instant. All computation runs **client-side** — your filter
+choices never leave your machine, and the server holds no state.
+:::
+
+## Choose the analytic configuration
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-6}
+**Sample**
+```{ojs}
+//| echo: false
+viewof country_pick = Inputs.select(
+  ["(all)","Austria","Germany","Spain","Italy","France",
+   "Netherlands","Belgium","Poland","Czech Republic","Greece",
+   "Hungary","Sweden","Denmark","Finland","Norway","United Kingdom",
+   "Ireland","Portugal","Switzerland","Bulgaria","Romania","Slovakia",
+   "Slovenia","Croatia","Estonia","Latvia","Lithuania"],
+  {value: "(all)", multiple: true, label: "Country (Ctrl-click for multi)"})
+
+viewof year_range = Inputs.range([1945, 2025], {value: 2010, step: 1, label: "Year ≥"})
+```
+:::
+
+::: {.g-col-12 .g-col-md-6}
+**Score construction**
+```{ojs}
+//| echo: false
+viewof model_pick = Inputs.checkbox(
+  ["sonnet","gpt41mini","gemini"],
+  {value: ["sonnet","gpt41mini","gemini"], label: "Include models"})
+
+viewof within_agg = Inputs.select(
+  ["confidence_weighted","plain_mean","median"],
+  {value: "confidence_weighted", label: "Within-manifesto"})
+
+viewof between_agg = Inputs.select(
+  ["mean","median","leave_worst_out"],
+  {value: "mean", label: "Between-model"})
+
+viewof outcome_dim = Inputs.select(
+  ["liberalism_overall","lib_political","lib_social","lib_economic","lib_financial_market"],
+  {value: "liberalism_overall", label: "Outcome"})
+```
+:::
+
+:::
+
+```{ojs}
+//| echo: false
+ojs_define({
+  ojs_countries: country_pick,
+  ojs_year_min: year_range,
+  ojs_models: model_pick,
+  ojs_within: within_agg,
+  ojs_between: between_agg,
+  ojs_outcome: outcome_dim
+})
+```
+
+## Result
+
+```{webr-r}
+#| context: setup
+#| label: load-data
+# Pre-load aggregated scores and metadata into the WebR session.
+# Files are served as static resources from the same site.
+library(arrow); library(dplyr); library(tidyr); library(fixest); library(ggplot2)
+
+manifestos <- arrow::read_parquet("../data/manifestos_meta.parquet")
+agg_long   <- arrow::read_parquet("../data/cross_llm_long.parquet")
+# agg_long columns: doc_id, model, dim, score, n_chunks, mean_confidence
+TRUE
+```
+
+```{webr-r}
+#| label: run-regression
+# Reactive inputs from OJS:
+#   ojs_countries (vector of country names; "(all)" means no filter)
+#   ojs_year_min  (single int)
+#   ojs_models    (vector of model ids)
+#   ojs_within    (within-manifesto aggregation choice — already applied upstream)
+#   ojs_between   (between-model aggregation choice)
+#   ojs_outcome   (dim id)
+
+# Filter sample
+sub_meta <- manifestos
+if (!"(all)" %in% ojs_countries && length(ojs_countries) > 0) {
+  sub_meta <- sub_meta |> filter(countryname %in% ojs_countries)
+}
+sub_meta <- sub_meta |> filter(year >= ojs_year_min)
+
+# Apply between-model aggregation across the chosen models
+combine_models <- function(x, method) {
+  if (length(x) == 0 || all(is.na(x))) return(NA_real_)
+  x <- x[is.finite(x)]
+  switch(method,
+    mean             = mean(x),
+    median           = median(x),
+    leave_worst_out  = if (length(x) <= 2) mean(x) else mean(sort(x)[-which.max(abs(x - mean(x)))]),
+    mean(x)
+  )
+}
+
+target_dims <- c(ojs_outcome, "populism_overall")
+df <- agg_long |>
+  filter(model %in% ojs_models, dim %in% target_dims,
+         doc_id %in% sub_meta$doc_id) |>
+  group_by(doc_id, dim) |>
+  summarise(score = combine_models(score, ojs_between), .groups = "drop") |>
+  pivot_wider(names_from = dim, values_from = score) |>
+  inner_join(sub_meta |> select(doc_id, countryname, year, partyabbrev), by = "doc_id")
+
+if (nrow(df) < 10) {
+  cat("Not enough observations after filtering (n =", nrow(df), "). Loosen the filter.\n")
+} else {
+  fml <- as.formula(paste0(ojs_outcome, " ~ populism_overall | countryname + year"))
+  fit <- feols(fml, data = df, cluster = ~countryname)
+  cat("n =", nobs(fit), "  models =", paste(ojs_models, collapse=", "), "\n\n")
+  print(summary(fit))
+}
+```
+
+```{webr-r}
+#| label: coef-plot
+#| fig-width: 7
+#| fig-height: 4
+if (exists("fit")) {
+  cf <- broom::tidy(fit, conf.int = TRUE)
+  ggplot(cf, aes(x = estimate, y = term)) +
+    geom_vline(xintercept = 0, linetype = "dashed", colour = "grey60") +
+    geom_pointrange(aes(xmin = conf.low, xmax = conf.high), size = 0.8) +
+    labs(x = "Coefficient (95 % CI)", y = NULL,
+         title = paste0(ojs_outcome, " ~ populism_overall | country + year")) +
+    theme_minimal(base_size = 12)
+}
+```
+
+## Specification curve preview
+
+Below is the distribution of `populism_overall` coefficients across the
+~9,072 defensible analytic specifications described in
+[methodology](../methodology.qmd). Currently a precomputed static image —
+will become live-filterable in v1.1.
+
+![Spec curve placeholder — generated after final corpus run](../assets/spec_curve_placeholder.png)

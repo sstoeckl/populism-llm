@@ -1,0 +1,105 @@
+---
+title: "Populism-LLM"
+subtitle: "Cross-Validated LLM Annotations of European Party Manifestos"
+format:
+  html:
+    toc: false
+    page-layout: full
+---
+
+```{r setup, include=FALSE}
+source("_data.R")
+manifestos <- load_manifestos()
+models <- available_models()
+```
+
+::: {.hero}
+# A cross-validated populism corpus for political-economic research
+
+Three independent large language models — Anthropic Claude Sonnet 4.6, OpenAI
+GPT-4.1-mini, and Google Gemini Flash — score every CMP party manifesto from
+`r min(manifestos$year, na.rm=TRUE)` to `r max(manifestos$year, na.rm=TRUE)`
+on twelve dimensions of populism and liberalism. Each score comes with a
+verbatim quote, contextual snippet, and machine-readable evidence status.
+
+::: {.hero-stats}
+::: {.hero-stat}
+[`r format(nrow(manifestos), big.mark=",")`]{.num}
+[manifestos]{.lbl}
+:::
+::: {.hero-stat}
+[`r length(unique(manifestos$countryname))`]{.num}
+[countries]{.lbl}
+:::
+::: {.hero-stat}
+[`r length(models)`]{.num}
+[LLM families]{.lbl}
+:::
+::: {.hero-stat}
+[12]{.num}
+[scored dimensions]{.lbl}
+:::
+:::
+:::
+
+## What you get
+
+::: {.grid}
+
+::: {.g-col-12 .g-col-md-6}
+### 📂 Browse 3,327 manifestos
+[Open browser →](browse.qmd)
+Country, party, year filters. Click a manifesto to see every score from every
+model, with the verbatim evidence each model relied on.
+:::
+
+::: {.g-col-12 .g-col-md-6}
+### 🔀 Cross-model agreement
+[Open agreement view →](cross-model.qmd)
+Where do the three LLMs agree? Where do they diverge? Per-dimension Pearson
+and Spearman correlations, full disagreement-flagged outlier list.
+:::
+
+::: {.g-col-12 .g-col-md-6}
+### 📈 Interactive regressions
+[Open regression tool →](interactive/regression.qmd)
+Filter by country, year, choose which models to include, pick within-manifesto
+and between-model aggregation weights — run the panel regression in your
+browser. Powered by WebR.
+:::
+
+::: {.g-col-12 .g-col-md-6}
+### ⬇️ Download
+[Get the data →](download.qmd)
+Bulk parquet via Hugging Face. DOI-citable mirror via Dataverse. Code on
+GitHub with Zenodo archive.
+:::
+
+:::
+
+## Methodology in one paragraph
+
+Each manifesto is split into ≤20,000-token chunks. Each chunk is scored by all
+three LLMs using an identical strict JSON schema. Models must back every
+non-null score with a 3–8-word verbatim quote and a surrounding context
+snippet. Evidence spans are revalidated post-hoc against the input text with a
+6-tier fuzzy matcher plus an LLM-as-judge backstop. Final scores are
+confidence-weighted means across chunks, computed independently per model;
+the cross-model aggregate is a configurable choice (default: simple mean of
+the three families). All choices can be inspected and changed in the
+[interactive regression module](interactive/regression.qmd) and visualised as
+a *specification curve*.
+
+→ Full pipeline: [methodology](methodology.qmd).
+
+## Citation
+
+```bibtex
+@article{stoeckl2026populism,
+  author  = {Stoeckl, Sebastian},
+  title   = {Populism and Liberalism in European Party Manifestos:
+             A Cross-Validated LLM Approach},
+  year    = {2026},
+  note    = {Working paper; dataset DOI: tba}
+}
+```

@@ -1,0 +1,127 @@
+---
+title: "`r params$party` (`r params$country`, `r params$year`)"
+subtitle: "manifesto_id `r params$doc_id`"
+format:
+  html:
+    page-layout: full
+    toc: true
+    toc-depth: 2
+params:
+  doc_id: ""
+  party: ""
+  country: ""
+  year: ""
+  partyname: ""
+  language: ""
+  parfam: ""
+---
+
+```{r setup, include=FALSE}
+source("../_data.R")
+library(htmltools); library(knitr); library(ggplot2)
+DOC <- params$doc_id
+# Per-model aggregated scores for this doc
+models <- available_models()
+score_rows <- map_dfr(names(models), function(mid) {
+  a <- load_model_agg(mid)
+  if (is.null(a)) return(NULL)
+  r <- a[a$doc_id == DOC, ]
+  if (nrow(r) == 0) return(NULL)
+  r |> select(any_of(V4_DIMS)) |> mutate(model = mid, .before = 1)
+})
+
+# Evidence (verbatim quotes) for every model × dim
+ev <- load_evidence(DOC)
+```
+
+::: {.manifesto-meta}
+[**Country**]{.item} `r params$country` ·
+[**Party**]{.item} `r params$party` (`r params$partyname`) ·
+[**Year**]{.item} `r params$year` ·
+[**Language**]{.item} `r params$language` ·
+[**parfam**]{.item} `r params$parfam`
+:::
+
+::: {.callout-note appearance="simple"}
+**Get full text:** This site shows derived annotations and short verbatim
+quotes only. The full manifesto text is © Manifesto Project / WZB — obtain
+it via [manifesto-project.wzb.eu](https://manifesto-project.wzb.eu/) using
+the `manifesto_id` above.
+:::
+
+## Headline scores
+
+```{r headline, echo=FALSE, results='asis'}
+if (nrow(score_rows) == 0) {
+  cat("*No data available for this manifesto yet.*\n")
+} else {
+  headline_dims <- c("populism_overall","pop_anti_elitism","pop_people_centrism","pop_manichean",
+                     "pop_ideology_overall",
+                     "liberalism_overall","lib_political","lib_social","lib_economic","lib_financial_market")
+  htmlcells <- list()
+  for (d in headline_dims) {
+    if (!d %in% names(score_rows)) next
+    cells <- c(htmltools::htmlEscape(DIM_LABELS[d]))
+    for (mid in names(models)) {
+      v <- score_rows[score_rows$model == mid, d, drop = TRUE]
+      v <- if (length(v) == 0) NA else v
+      cells <- c(cells, score_badge_html(v))
+    }
+    htmlcells[[length(htmlcells)+1]] <- paste0("<tr><td>", cells[1], "</td>",
+      paste(paste0("<td style='text-align:center'>", cells[-1], "</td>"), collapse=""), "</tr>")
+  }
+  headcells <- paste0("<th>Dimension</th>",
+                      paste(paste0("<th style='text-align:center'>", map_chr(models, "short"), "</th>"), collapse=""))
+  cat('<table class="compact">\n<thead><tr>', headcells, '</tr></thead>\n<tbody>\n',
+      paste(htmlcells, collapse = "\n"), '\n</tbody></table>\n', sep = "")
+}
+```
+
+## Evidence per dimension
+
+```{r evidence, echo=FALSE, results='asis'}
+if (nrow(ev) == 0) {
+  cat("*No verbatim evidence available for this manifesto yet.*\n")
+} else {
+  ev <- ev |> arrange(dim_name, model)
+  for (d in unique(ev$dim_name)) {
+    cat(sprintf("\n### %s\n\n", DIM_LABELS[d] %||% d))
+    sub <- ev |> filter(dim_name == d)
+    for (i in seq_len(nrow(sub))) {
+      r <- sub[i, ]
+      hi <- highlight_quote_in_context(r$quote, r$context)
+      cat(sprintf(
+        '<div class="evidence-block %s"><span class="source-tag">%s · score %.1f · %s · chunk %s</span><div class="quote">"%s"</div><span class="context">%s</span></div>\n\n',
+        r$model, models[[r$model]]$short %||% r$model,
+        r$score, r$status %||% "?",
+        r$chunk_id %||% "?",
+        htmltools::htmlEscape(r$quote), hi))
+    }
+  }
+}
+```
+
+## Scores at a glance
+
+```{r plot, echo=FALSE, fig.height=6, fig.width=10}
+if (nrow(score_rows) > 0) {
+  long <- score_rows |>
+    pivot_longer(any_of(V4_DIMS), names_to = "dim", values_to = "score") |>
+    filter(is.finite(score)) |>
+    mutate(dim_lbl = factor(DIM_LABELS[dim], levels = rev(DIM_LABELS[V4_DIMS])),
+           model_lbl = factor(model, levels = names(models),
+                              labels = map_chr(models, "short")),
+           group = DIM_GROUP[dim])
+  ggplot(long, aes(x = score, y = dim_lbl, colour = model_lbl, shape = model_lbl)) +
+    geom_point(size = 3.5, alpha = 0.85) +
+    facet_grid(group ~ ., scales = "free_y", space = "free_y") +
+    scale_colour_brewer(palette = "Dark2", name = "Model") +
+    scale_shape_manual(values = c(16, 17, 15), name = "Model") +
+    scale_x_continuous(limits = c(0, 10), breaks = 0:10) +
+    labs(x = "Score (0–10)", y = NULL) +
+    theme_minimal(base_size = 11) +
+    theme(strip.text.y = element_text(angle = 0, face = "bold"),
+          legend.position = "bottom",
+          panel.grid.major.y = element_line(colour = "grey90"))
+}
+```

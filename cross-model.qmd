@@ -1,0 +1,96 @@
+---
+title: "Cross-model agreement"
+subtitle: "Where the three LLMs converge and where they diverge"
+format:
+  html:
+    page-layout: full
+---
+
+```{r setup, include=FALSE}
+source("_data.R")
+library(ggplot2); library(scales); library(tidyr)
+models <- available_models()
+m_aggs <- map(names(models), load_model_agg) |> setNames(names(models))
+# Stack models, doc_id × dim × model in long form
+long <- bind_rows(map(names(m_aggs), function(mid) {
+  a <- m_aggs[[mid]]; if (is.null(a)) return(NULL)
+  a |> pivot_longer(cols = any_of(V4_DIMS), names_to = "dim", values_to = "score") |>
+    mutate(model = mid)
+}))
+# Wide per (doc × dim) — one col per model
+wide <- long |>
+  pivot_wider(id_cols = c(doc_id, dim), names_from = model, values_from = score)
+```
+
+## Per-dimension pairwise correlations
+
+```{r cor-grid, echo=FALSE}
+library(knitr)
+model_pairs <- combn(names(models), 2, simplify = FALSE)
+cor_tbl <- map_dfr(V4_DIMS, function(d) {
+  sub <- wide |> filter(dim == d)
+  map_dfr(model_pairs, function(p) {
+    if (!all(p %in% names(sub))) return(tibble())
+    x <- sub[[p[1]]]; y <- sub[[p[2]]]
+    keep <- is.finite(x) & is.finite(y)
+    if (sum(keep) < 30) return(tibble())
+    tibble(
+      dim = d,
+      label = DIM_LABELS[d],
+      pair = paste(p, collapse = " ↔ "),
+      n = sum(keep),
+      pearson = round(cor(x[keep], y[keep], method = "pearson"), 3),
+      spearman = round(cor(x[keep], y[keep], method = "spearman"), 3),
+      mean_abs_gap = round(mean(abs(x[keep] - y[keep])), 2)
+    )
+  })
+})
+cor_tbl |>
+  select(Dimension = label, Pair = pair, n, Pearson = pearson, Spearman = spearman, `Mean |gap|` = mean_abs_gap) |>
+  kable()
+```
+
+## Disagreement-flagged outliers
+
+Manifestos where the three models disagree by more than 3 points on
+`populism_overall`:
+
+```{r outliers, echo=FALSE}
+manifestos <- load_manifestos()
+mat <- wide |> filter(dim == "populism_overall")
+score_cols <- intersect(names(models), names(mat))
+mat$rng <- apply(mat[score_cols], 1, function(x) {
+  x <- x[is.finite(x)]; if (length(x) < 2) NA else diff(range(x))
+})
+out <- mat |> filter(rng > 3) |>
+  left_join(manifestos |> select(doc_id, countryname, partyabbrev, year, language), by = "doc_id") |>
+  arrange(desc(rng))
+
+if (nrow(out) == 0) {
+  cat("*No high-divergence cases detected — the three models broadly agree.*\n")
+} else {
+  out |> mutate(across(all_of(score_cols), ~ round(.x, 1))) |>
+    select(doc_id, Country = countryname, Party = partyabbrev, Year = year, Lang = language,
+           any_of(score_cols), Range = rng) |>
+    head(40) |> kable()
+}
+```
+
+## Score distribution by model
+
+```{r dist, echo=FALSE, fig.height=8}
+library(ggplot2)
+plot_dims <- c("populism_overall","pop_anti_elitism","pop_people_centrism","pop_manichean",
+               "liberalism_overall","lib_political","lib_economic","lib_financial_market")
+long |> filter(dim %in% plot_dims, is.finite(score)) |>
+  mutate(dim_lbl = factor(DIM_LABELS[dim], levels = DIM_LABELS[plot_dims]),
+         model_lbl = factor(model, levels = names(models),
+                            labels = map_chr(models, "short"))) |>
+  ggplot(aes(x = score, fill = model_lbl)) +
+  geom_histogram(binwidth = 1, position = "identity", alpha = 0.5, colour = "white") +
+  facet_wrap(~dim_lbl, ncol = 2, scales = "free_y") +
+  scale_fill_brewer(palette = "Set2", name = "Model") +
+  labs(x = "Score (0–10)", y = "Manifestos") +
+  theme_minimal(base_size = 11) +
+  theme(legend.position = "bottom", strip.text = element_text(face = "bold"))
+```

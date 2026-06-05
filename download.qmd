@@ -1,0 +1,61 @@
+---
+title: "Download"
+subtitle: "Bulk data, code, DOI"
+---
+
+## Data
+
+| Resource | Format | DOI / Link |
+|---|---|---|
+| Annotations (all 3 models, all 3,327 manifestos) | Parquet | [huggingface.co/datasets/sstoeckl/populism-llm-v1](https://huggingface.co/datasets/sstoeckl/populism-llm-v1) |
+| Replication archive (versioned, citable) | Tar | Dataverse — DOI tba |
+| Code | Git repo | [github.com/sstoeckl/3175_populism_llm](https://github.com/sstoeckl/3175_populism_llm) |
+| Code archive | Tar | Zenodo — DOI tba |
+
+## Load in R
+
+```r
+library(arrow)
+df <- read_parquet(
+  "https://huggingface.co/datasets/sstoeckl/populism-llm-v1/resolve/main/data/aggregated.parquet"
+)
+```
+
+## Load in Python
+
+```python
+from datasets import load_dataset
+ds = load_dataset("sstoeckl/populism-llm-v1", "aggregated")
+df = ds["train"].to_pandas()
+```
+
+## License
+
+| Component | License |
+|---|---|
+| Annotations (scores, statuses, metrics) | CC-BY 4.0 |
+| Verbatim quotes (≤ 50 words) | Fair-use for scientific commentary; cite manifesto_id |
+| Code | MIT |
+| Original manifesto texts | © Manifesto Project / WZB — obtain via [manifesto-project.wzb.eu](https://manifesto-project.wzb.eu/) |
+
+## Citation
+
+```bibtex
+@article{stoeckl2026populism,
+  author  = {Stoeckl, Sebastian},
+  title   = {Populism and Liberalism in European Party Manifestos:
+             A Cross-Validated LLM Approach},
+  year    = {2026},
+  journal = {Working Paper},
+  note    = {Dataset DOI: tba}
+}
+
+@misc{stoeckl2026populismdb,
+  author    = {Stoeckl, Sebastian},
+  title     = {Populism-LLM v1: A Cross-Validated LLM Annotation of
+               European Party Manifestos},
+  year      = {2026},
+  publisher = {Hugging Face Datasets},
+  url       = {https://huggingface.co/datasets/sstoeckl/populism-llm-v1}
+}
+```

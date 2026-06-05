@@ -1,0 +1,127 @@
+---
+title: "Methodology"
+subtitle: "Pipeline, prompts, validation, reproducibility"
+---
+
+## Overview
+
+```{mermaid}
+flowchart LR
+    A[CMP corpus<br/>3,327 manifestos] --> B[Token-chunking<br/>20k tokens, 2k overlap]
+    B --> C1[Sonnet 4.6]
+    B --> C2[GPT-4.1-mini]
+    B --> C3[Gemini Flash]
+    C1 --> D[Per-chunk JSON<br/>strict schema]
+    C2 --> D
+    C3 --> D
+    D --> E[Span validation<br/>regex + LLM-judge]
+    E --> F[Confidence-weighted<br/>per-manifesto aggregation]
+    F --> G[Cross-model aggregation<br/>configurable weighting]
+    G --> H[Panel regressions<br/>with non-standard errors]
+```
+
+## The corpus
+
+We score every party manifesto in the Manifesto Project Database (CMP / WZB)
+that has a machine-readable full text and falls within our analysis window
+(`r 1945`–`r 2025`). The text is loaded via the `manifestoR` package using
+the WZB API. We do not redistribute the manifesto texts themselves
+(see [download page](download.qmd) for licensing).
+
+| Selection | Count |
+|---|---:|
+| Manifestos with full text | 3,327 |
+| Countries | 50+ |
+| Languages | EN, DE, ES, FR, IT, PL, CZ, EL, NL, … |
+
+## Scoring schema
+
+Each manifesto chunk is sent to each LLM under an **identical strict JSON
+schema** that requires, per scored dimension:
+
+```json
+{
+  "score": <integer 0–10 or null>,
+  "evidence_status": "verified" | "mixed" | "no_evidence",
+  "span": {
+    "quote":   "<3–8 word verbatim quote from the chunk>",
+    "context": "<surrounding ~3 sentences>"
+  }
+}
+```
+
+Twelve dimensions are scored:
+
+```{r dim-table, echo=FALSE}
+source("_data.R")
+library(knitr)
+data.frame(
+  Group = DIM_GROUP[V4_DIMS],
+  Code = V4_DIMS,
+  Label = DIM_LABELS[V4_DIMS]
+) |> kable()
+```
+
+## Key technical decisions
+
+| Decision | Choice | Rationale |
+|---|---|---|
+| **Chunking** | 20k-token chunks, 2k overlap, 18k full-text cap | Fits all three models' context with margin |
+| **Reproducibility knobs** | `temperature=0`, `top_p=1`, pinned model snapshots | Deterministic where the APIs allow |
+| **NA propagation** | `score=null` for `no_evidence` rather than `score=0` | "Topic absent" ≠ "topic present at zero intensity" |
+| **Anti-hallucination** | Per-dimension verbatim quote required; status enum forces explicit reasoning | Eliminates "make up a score" failure mode |
+| **Span validation** | Post-hoc 6-tier fuzzy match + LLM-as-judge backstop | Catches paraphrased / fabricated quotes that the schema can't enforce |
+| **Within-manifesto aggregation** | Confidence-weighted mean across chunks (default; configurable) | Down-weights low-confidence chunk scores |
+| **Between-model aggregation** | Simple mean (default; configurable) | No model is privileged a priori; specification curve reports robustness |
+
+## Cross-model calibration
+
+A 50-manifesto matched-pair pilot against Claude Sonnet 4.6 (the most-trusted
+baseline because of its 285-manifesto reference run) measured:
+
+| Model | mean |gap| vs Sonnet | mean ρ vs Sonnet |
+|---|---:|---:|
+| GPT-4.1-mini | 0.73 | 0.73 |
+| Gemini Flash (latest) | 0.32 | 0.81 |
+| Gemini 2.5 Flash + thinking | 1.91 | 0.72 |
+
+`gemini-2.5-flash` with explicit thinking budget produced systematically
+**inflated populism scores** — possibly because more reasoning leads the
+model to over-attribute populist rhetoric. We use `gemini-flash-latest`
+in the final corpus.
+
+## Reproducibility guarantees
+
+- Code: [github.com/sstoeckl/3175_populism_llm](https://github.com/sstoeckl/3175_populism_llm)
+- All prompts version-pinned in `R/3c_Populism_v4_safe.R`
+- Model snapshots pinned: `claude-sonnet-4-6`, `gpt-4.1-mini-2025-04-14`,
+  `gemini-flash-latest` (see `R/16` / `R/15b` / `R/18`)
+- Raw chunk-level outputs preserved in parquet, span-validation logs versioned
+
+## Non-standard errors
+
+Following Menkveld et al. (2024), we report the distribution of regression
+coefficients across the full grid of defensible analytic choices:
+
+| Fork | Options |
+|---|---|
+| Model selection | Sonnet alone, GPT-4.1-mini alone, Gemini alone, all pairs, all three |
+| Within-manifesto aggregation | confidence-weighted mean (default), plain mean, median |
+| Between-model aggregation | mean (default), median, leave-worst-out |
+| Outcome normalisation | raw 0–10, z-scored within country, z-scored within year |
+| Sample | full (1945–), post-2000, post-2010, drop low-agreement |
+| Fixed effects | country + year, + party, country × year |
+| SE cluster | country, country × year, party |
+
+Coefficients across ~9,000 specifications are visualised in the
+[interactive regression tool](interactive/regression.qmd) and as a
+specification curve in the paper appendix.
+
+## References
+
+```{r refs, echo=FALSE, results='asis'}
+cat("- Menkveld, A. J., et al. (2024). Nonstandard Errors. *Journal of Finance*.
+- Simonsohn, U., Simmons, J. P., & Nelson, L. D. (2020). Specification curve analysis. *Nature Human Behaviour*.
+- Steegen, S., Tuerlinckx, F., Gelman, A., & Vanpaemel, W. (2016). Increasing transparency through a multiverse analysis. *Perspectives on Psychological Science*.
+- Lehmann, P., et al. (2024). The Manifesto Project Dataset. *WZB*.\n")
+```
