@@ -1,0 +1,2340 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>CU (Netherlands, 2021) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/22526_202103_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">CU (Netherlands, 2021)</h1>
+<p class="subtitle lead">manifesto_id 22526_202103</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Netherlands · <span class="item"><strong>Party</strong></span> CU (Christian Union) · <span class="item"><strong>Year</strong></span> 2021 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 50</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.4</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.4</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.6</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.8</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.8</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.5</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“het beschermen van de publieke zaak, in plaats van altijd maar de markt”
+</div>
+<span class="context">sprinkhaankapitalisme van private equity en hedgefondsen. Voor <mark>het beschermen van de publieke zaak, in plaats van altijd maar de markt</mark>. De ChristenUnie</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Marktwerking als mechanisme om kosten te beperken”
+</div>
+<span class="context">Tegelijkertijd is het de vraag hoe we dat in de toekomst zo kunnen houden. <mark>Marktwerking als mechanisme om kosten te beperken</mark> voldoet niet.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“vrije markt automatisch tot goede uitkomsten”
+</div>
+<span class="context">arbeidskrachten. Het idee dat de <mark>vrije markt automatisch tot goede uitkomsten</mark> voor ons allemaal zal leiden en daarom zo min mogelijk</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · mixed · chunk 4</span>
+<div class="quote">
+“toegang tot kapitaal voor het mkb te verbeteren”
+</div>
+<span class="context">kleine innovatieregelingen, zoals de Innovatie Prestatie Contracten (IPC’s) en vouchers. Om de <mark>toegang tot kapitaal voor het mkb te verbeteren</mark>, investeren we in het mkb-innovatiekrediet en</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“beprijzen van CO2 een belangrijke oplossing”
+</div>
+<span class="context">duurzaam versterken. Waar dat mogelijk en effectief is, vormt het <mark>beprijzen van CO2 een belangrijke oplossing</mark>, bij voorkeur in internationaal verband</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“interne markt heeft een grote welvaartsstijging”
+</div>
+<span class="context">De Europese Unie zorgt al decennialang voor vrede in ons continent. De <mark>interne markt heeft een grote welvaartsstijging</mark> opgeleverd. We zijn gewend</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“rechtvaardig, begrijpelijk, groen en vriendelijk stelsel voor gezinnen”
+</div>
+<span class="context">We willen een grote wijziging van het belastingstelsel. We willen een <mark>rechtvaardig, begrijpelijk, groen en vriendelijk stelsel voor gezinnen</mark> én alleenstaanden, waarbij werken loont. Zonder toeslagen en in plaats daarvan een eenvoudige basiskorting, die per maand wordt uitgekeerd.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“marktwerking als mechanisme om kosten te beperken voldoet niet”
+</div>
+<span class="context">Marktwerking als mechanisme om kosten te beperken voldoet niet. We willen publiek geborgde keuzes om de toekomst van de zorg zeker te stellen, voor alle werkers in de zorg, maar ook voor iedereen die zorg nodig heeft. Met meer samenleving en minder marktwerking in de zorg.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“markt, concurrentie, belastingstelsel”
+</div>
+<span class="context">We willen een economie die werkt voor mensen in plaats van andersom. … Het economisch receptenboek van beleidsmakers is uitgewerkt. … We kiezen voor een sterke publieke sector, een duurzame economie en een rechtvaardig belastingstelsel.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Wij willen een (belasting)beleid dat aantrekkelijk is voor innovatieve (familie)bedrijven met een focus op de lange termijn.”
+</div>
+<span class="context"><mark>Wij willen een (belasting)beleid dat aantrekkelijk is voor innovatieve (familie)bedrijven met een focus op de lange termijn.</mark> Bevorder innovatie in het mkb. De regelgeving moet simpeler gemaakt, en meer toegespitst worden op baanbrekende innovaties in het mkb.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“Europese structuurfondsen en onderzoeksprogramma’s moeten zoveel mogelijk als investeringsbudget worden gezien”
+</div>
+<span class="context"><mark>Europese structuurfondsen en onderzoeksprogramma’s moeten zoveel mogelijk als investeringsbudget worden gezien</mark>. Ze financieren grensoverschrijdende investeringen of investeringen met een duidelijke Europese meerwaarde, zoals transportcorridors, onderzoek en energienetwerken.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“economisch en academische samenwerking tussen Nederland en Israël”
+</div>
+<span class="context">Economische en academische samenwerking. We bevorderen <mark>economisch en academische samenwerking tussen Nederland en Israël</mark>. Dienstbaar in Europa De Europese Unie zorgt al decennialang voor vrede in ons continent.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“Geen privatisering van overheidstaken”
+</div>
+<span class="context">De ChristenUnie is tegen verdere privatisering en verzelfstandiging van overheidstaken. De vitale infrastructuur, bijvoorbeeld voor drinkwater en techniek, is van publiek belang.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“Marktwerking als mechanisme om kosten te beperken voldoet niet”
+</div>
+<span class="context"><mark>Marktwerking als mechanisme om kosten te beperken voldoet niet</mark>. We willen publiek geborgde keuzes om de toekomst van de zorg zeker te stellen</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 3</span>
+<div class="quote">
+“privatisering van publieke dienstverlening”
+</div>
+<span class="context">lastenverlichting voor private sectoren, stimulering van arbeidsaanbod, flexibilisering van de arbeidsmarkt, <mark>privatisering van publieke dienstverlening</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 4</span>
+<div class="quote">
+“open economie met veel import en nog meer export”
+</div>
+<span class="context">Onze <mark>open economie met veel import en nog meer export</mark>, is nauw verbonden met onze buurlanden en met de rest van de wereld.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 5</span>
+<div class="quote">
+“CO2-heffing voor de industrie”
+</div>
+<span class="context">Er komt een <mark>CO2-heffing voor de industrie</mark>. Die heffing geldt tot het moment dat de door de Europese Commissie voorgestelde doelstelling van 55% reductie van broeikasgasemissies door de Europese lidstaten is omarmd.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · mixed · chunk 6</span>
+<div class="quote">
+“eerlijke handelsverdragen: inclusieve handelsverdragen”
+</div>
+<span class="context">het belangrijk dat de EU zich blijft inzetten voor <mark>eerlijke handelsverdragen: inclusieve handelsverdragen</mark> die leiden tot duurzame groei, ook in ontwikkelingslanden.</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Banken en financiële markten ten dienste van de samenleving”
+</div>
+<span class="context">multinationale bedrijven <mark>Banken en financiële markten ten dienste van de samenleving</mark> 3.4Strijd tegen</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“fiscally sponsoring van hypotheekschulden geleidelijk af”
+</div>
+<span class="context">schokbestendiger te maken. We willen bijvoorbeeld de arbeidsmarkt hervormen. We maken het fiscaal minder aantrekkelijk om bedrijven vol te stoppen met schulden en bouwen de fiscale sponsoring van hypotheekschulden geleidelijk af. Investeren in de publieke zaak.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“internationale belasting op financiële transacties”
+</div>
+<span class="context">schade kan worden aangericht in de reële economie. Omdat financiële markten zich weinig van landsgrenzen aantrekken, is een <mark>internationale belasting op financiële transacties</mark> nodig - de Tobintaks - die financiële speculatie</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“Geïntegreerde kapitaalmarkten en de euro”
+</div>
+<span class="context">zonder koerswisselrisico’s, heel prettig. <mark>Geïntegreerde kapitaalmarkten en de euro</mark> als wereldwijde sleutelmunt, van strategische waarde.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Banken en financiële markten ten dienste van de samenleving”
+</div>
+<span class="context">Hoofdstuk 3 Een economie waarin mensen kunnen bloeien 3.3Bloeiende bedrijven die maatschappelijk bijdragen Het belang van het mkb en familiebedrijven Vernieuwend industrie- en innovatiebeleid Maatschappelijke verantwoord inkopen en ondernemen, ook door de overheid Eerlijk bijdragen door multinationale bedrijven <mark>Banken en financiële markten ten dienste van de samenleving</mark> 3.4Strijd tegen armoede en schulden</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“belastingontwijking wordt aangepakt”
+</div>
+<span class="context">Belastingontwijking wordt aangepakt via minimumtarieven, Europese afspraken over belastinggrondslagen (inclusief een financial services tax en een generieke anti-misbruikbepaling in de deelnemingsvrijstelling) en een assertief mededingingsbeleid.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“De buffers van banken moeten verder omhoog. Naarmate een bank meer risico’s loopt, zal de solvabiliteitsnorm hoger moeten zijn.”
+</div>
+<span class="context">De Volksbank wordt coöperatie. De Volksbank, die nu nog in overheidshanden is, wordt zodra dat kan teruggeven aan het Nederlandse volk, als coöperatieve bank. Daarmee wordt een nieuwe standaard gezet voor dienstbaar, maatschappelijk betrokken en service-gericht bankieren. Betrouwbare banken, betere solvabiliteit. <mark>De buffers van banken moeten verder omhoog. Naarmate een bank meer risico’s loopt, zal de solvabiliteitsnorm hoger moeten zijn.</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“kapitaalmarkten, met green bonds”
+</div>
+<span class="context">Het resolutiemechanisme helpt daarnaast te voorkomen dat banken, als het mis gaat, moeten worden gered met belastinggeld. Het is nu zaak de bankenunie af te ronden en werk te maken van de kapitaalmarktunie, die overheden bijvoorbeeld kan helpen om geld op te halen voor de transitie naar een duurzame economie, met green bonds.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Banken en financiële markten ten dienste van de samenleving”
+</div>
+<span class="context">Eerlijk bijdragen door multinationale bedrijven <mark>Banken en financiële markten ten dienste van de samenleving</mark> 3.4Strijd tegen armoede en schulden</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“weerbaar financieel systeem tegen witwassen”
+</div>
+<span class="context">de douane, Koninklijke Mareschaussee en politie op peil om in havens en andere knooppunten drugstransporten te onderscheppen; een <mark>weerbaar financieel systeem tegen witwassen</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“financial services tax”
+</div>
+<span class="context">Europese afspraken over belastinggrondslagen (inclusief een <mark>financial services tax</mark> en een generieke anti-misbruikbepaling</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“Belasting op financiële transacties”
+</div>
+<span class="context"><mark>Belasting op financiële transacties</mark>. Met transacties op financiële markten wordt buitensporig veel winst gemaakt, terwijl daar bijzonder weinig belasting over wordt betaald.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“Geïntegreerde kapitaalmarkten”
+</div>
+<span class="context">Exporteren naar Spanje en importeren uit Frankrijk zonder koerswisselrisico’s, heel prettig. <mark>Geïntegreerde kapitaalmarkten</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · mixed · chunk 6</span>
+<div class="quote">
+“bankenunie af te ronden en werk te maken van de kapitaalmarktunie”
+</div>
+<span class="context">Het is nu zaak de <mark>bankenunie af te ronden en werk te maken van de kapitaalmarktunie</mark>, die overheden bijvoorbeeld kan helpen om geld op te halen voor de transitie naar een duurzame economie</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“de basiswaarden van de democratische rechtsstaat”
+</div>
+<span class="context">ons gezamenlijke leven in Nederland: <mark>de basiswaarden van de democratische rechtsstaat</mark> en de instituties</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“bescherming van grondrechten, bewustwording”
+</div>
+<span class="context">wetgeving rond digitale technieken, de <mark>bescherming van grondrechten, bewustwording</mark> en het borgen van het publieke</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“grondbeginselen van de democratische rechtsstaat”
+</div>
+<span class="context">nieuwe burgerschapsopdracht voor het onderwijs waarborgt dat scholen leerlingen de <mark>grondbeginselen van de democratische rechtsstaat</mark> bijbrengen. Bij het toezicht op deze opdracht</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“meer directe zeggenschap voor burgers”
+</div>
+<span class="context">voldoende middelen heeft om de goede keuzes te maken. Maar ook om <mark>meer directe zeggenschap voor burgers</mark> over hun eigen omgeving. Marktpartijen dragen</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“bescherming van mensenrechten is voorwaarde voor”
+</div>
+<span class="context">mensenrechten zijn belangrijk. Want de <mark>bescherming van mensenrechten is voorwaarde voor</mark> een goed functionerende democratische rechtsstaat.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“onafhankelijke rechtspraak en de persvrijheid”
+</div>
+<span class="context">naleving van Europese afspraken, zowel wat betreft de <mark>onafhankelijke rechtspraak en de persvrijheid</mark> als wat betreft de begrotingsdiscipline</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“sterke democratische rechtsstaat en in een betrokken samenleving”
+</div>
+<span class="context">We leven in een <mark>sterke democratische rechtsstaat en in een betrokken samenleving</mark>. Toch voelt onze manier van samenleven soms kwetsbaar. We kunnen het ook kwijtraken. We lijken steeds vaker tegenover elkaar te staan. Er lopen diepe scheidslijnen door onze samenleving, die we maar moeilijk kunnen overbruggen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“democratie, rechten, verkiezingen, rechtbanken, media”
+</div>
+<span class="context">De ChristenUnie wil dat de regering zich tot het uiterste inspant om internationale gerechtigheid te bevorderen, ook waar het gaat om terroristen met de Nederlandse nationaliteit. In het belang van de gerechtigheid en de veiligheid moeten de capaciteit en beveiliging van gevangenissen en rechtbanken op orde zijn. De laatste tijd zijn er steeds meer zorgelijke signalen over radicalisering in onze Nederlandse samenleving. De toename van rechts-extremisme en antisemitisme vragen om een weerbare samenleving en om de juiste expertise bij AIVD en politie.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“democratische rechtsstaat”
+</div>
+<span class="context">De nieuwe burgerschapsopdracht voor het onderwijs waarborgt dat scholen leerlingen de grondbeginselen van de <mark>democratische rechtsstaat</mark> bijbrengen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“De overheid moet het roer in handen nemen om de grote transities op het gebied van klimaatverandering, grondstoffen en natuur vorm te geven.”
+</div>
+<span class="context"><mark>De overheid moet het roer in handen nemen om de grote transities op het gebied van klimaatverandering, grondstoffen en natuur vorm te geven.</mark> Op die manier willen we samen werken aan een mooi Nederland, waar we graag wonen en werken, met meer ruimte voor natuur.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 5</span>
+<div class="quote">
+“bescherming van de internationale rechtsorde en multilaterale fora zoals de EU, de Raad van Europa, de OVSE en VN”
+</div>
+<span class="context">Nederland moet zich blijven inzetten voor het versterken, verbeteren en beschermen van de internationale rechtsorde en multilaterale fora zoals de EU, de Raad van Europa, de OVSE en VN. In ons buitenlandbeleid blijven we het naleven van mensenrechten, onder meer vastgelegd in de Universele Verklaring voor de Rechten van de Mens, benadrukken en straffeloosheid bestrijden – ook in deze internationale instellingen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“bevorderen, waaronder godsdienstvrijheid voor christenen”
+</div>
+<span class="context">De Palestijnse Autoriteit dient de democratische waarden en mensenrechten te <mark>bevorderen, waaronder godsdienstvrijheid voor christenen</mark>. Ook dient zij corruptie en terrorisme te bestrijden. Verzoening en samenwerking van onderop.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“investeren in onze democratie en rechtsstaat”
+</div>
+<span class="context">De ChristenUnie wil daarom met nieuwe politieke keuzes <mark>investeren in onze democratie en rechtsstaat</mark>. Door de waarden waarop onze samenleving is gebouwd te blijven benoemen</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“predikers die zich tegen de rechtsstaat keren”
+</div>
+<span class="context">Voor <mark>predikers die zich tegen de rechtsstaat keren</mark> of oproepen tot geweld is in ons land geen plaats.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“grondbeginselen van de democratische rechtsstaat”
+</div>
+<span class="context">waarborgt dat scholen leerlingen de <mark>grondbeginselen van de democratische rechtsstaat</mark> bijbrengen. Bij het toezicht</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“democratie en maatschappij”
+</div>
+<span class="context">De enorme marktmacht waarmee grote Big Tech spelers uit de VS en China als monopolisten en poortwachters het Europese speelveld betreden bedreigt onze economie, <mark>democratie en maatschappij</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“democratische legitimatie van Europese besluitvorming moet beter”
+</div>
+<span class="context">De <mark>democratische legitimatie van Europese besluitvorming moet beter</mark>. Dit is voorwaarde voor voldoende draagvlak voor de Europese Unie.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“democratische legitimatie van Europese besluitvorming”
+</div>
+<span class="context">De <mark>democratische legitimatie van Europese besluitvorming</mark> moet beter. Dit is voorwaarde voor voldoende draagvlak voor de Europese Unie.</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“niet gediscrimineerd worden om wie je bent”
+</div>
+<span class="context">recht op leven vast in de Grondwet. Handicap en geaardheid in artikel 1. Je mag in ons land <mark>niet gediscrimineerd worden om wie je bent</mark>. Artikel 1</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“rechten van mensen met een beperking”
+</div>
+<span class="context">ons land heeft veel stappen gezet om het VN-verdrag over de <mark>rechten van mensen met een beperking</mark> te implementeren</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“rechten van mensen met een beperking”
+</div>
+<span class="context">stappen gezet om het VN-verdrag over de <mark>rechten van mensen met een beperking</mark> te implementeren, maar we zijn nog niet klaar</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Geen discriminatie op de woningmarkt”
+</div>
+<span class="context">levensloopbestendig zijn. Ruim baan voor wooncoöperaties. We geven maximaal ruimte aan oplossingen van onderop om de woningnood te lenigen en gemeenschappen te versterken. Denk aan wooncoöperaties, groepswonen en particulier opdrachtgeverschap, maar ook aan slimme woonvormen voor kleine huishoudens en ontwikkelaars die ‘koop-later’-woningen bouwen. Kwalitatief hoogwaardig en toekomstvast bouwen. We gaan niet blind bouwen voor de toevallige vraag van vandaag, we bouwen ook met oog voor de toekomst. Dat betekent kwalitatief hoogwaardig en klimaatneutraal bouwen, zodat nieuwe buurten en wijken niet al over één generatie verpauperd zijn. De overheid helpt dit te borgen. <mark>Geen discriminatie op de woningmarkt</mark>. Bij het vinden van een huis mogen achternaam</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“mensenrechten en godsdienstvrijheid ernstig worden”
+</div>
+<span class="context">handelsmissies en investeringen faciliteert in landen waar <mark>mensenrechten en godsdienstvrijheid ernstig worden</mark> geschonden.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“etnische of religieuze minderheden”
+</div>
+<span class="context">voor mensen met een beperking, vrouwen, jongeren en <mark>etnische of religieuze minderheden</mark>. Het is belangrijk dat gemeenschappen weerbaar</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“coalitie tegen racisme, met vertegenwoordigers uit verschillende gemeenschappen”
+</div>
+<span class="context">Er komt een <mark>coalitie tegen racisme, met vertegenwoordigers uit verschillende gemeenschappen</mark>, maatschappelijke organisaties en politieke partijen. Dat moet leiden tot een breed gedragen krachtige aanpak om racisme tegen te gaan op de arbeidsmarkt, rond wonen, onderwijs, zorg, sport of het optreden van de overheid.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“bescherming van minderjarige slachtoffers”
+</div>
+<span class="context">Bescherming van minderjarige slachtoffers. Minderjarigen zijn de grootste, maar meest onzichtbare groep slachtoffers van mensenhandel. Zij worden beter beschermd. Klanten die seks kopen van minderjarigen maken zich strafbaar aan een zedendelict. Er komt voldoende capaciteit voor opsporing en daadwerkelijke berechting. De wettelijke instrumenten om minderjarigen tegen seksueel misbruik te beschermen, worden verruimd.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“rechten van mensen met een beperking”
+</div>
+<span class="context">Ons land heeft veel stappen gezet om het VN-verdrag over de <mark>rechten van mensen met een beperking</mark> te implementeren, maar we zijn nog niet klaar.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“Het is onacceptabel dat dit nog niet het geval is. We willen dat overheid en sociale partners deze loonkloof structureel slechten”
+</div>
+<span class="context">tussen mannen en vrouwen komt ook tot uiting in een gelijkwaardige beloning. <mark>Het is onacceptabel dat dit nog niet het geval is. We willen dat overheid en sociale partners deze loonkloof structureel slechten</mark>, te beginnen met transparantie bij hun eigen organisaties.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 5</span>
+<div class="quote">
+“mensenrechten en godsdienstvrijheid ernstig worden geschonden”
+</div>
+<span class="context">Wij willen een stoplichtsysteem, zodat de mensenrechtensituatie altijd wordt betrokken bij missies of handelsdeals. Bijvoorbeeld door een ontmoeting met lokale ngo’s tijdens een missie, een mensenrechtenparagraaf in de overeenkomst, het afschalen van de regeringsvertegenwoordiging of het heroverwegen van afspraken.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“bevorderen, waaronder godsdienstvrijheid voor christenen”
+</div>
+<span class="context">De Palestijnse Autoriteit dient de democratische waarden en mensenrechten te <mark>bevorderen, waaronder godsdienstvrijheid voor christenen</mark>. Ook dient zij corruptie en terrorisme te bestrijden. Verzoening en samenwerking van onderop.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Handicap en geaardheid in artikel 1”
+</div>
+<span class="context"><mark>Handicap en geaardheid in artikel 1</mark>. Je mag in ons land niet gediscrimineerd worden om wie je bent. Artikel 1 wordt daarom uitgebreid, zodat ook expliciet wordt benoemd dat je mensen niet mag discrimineren vanwege hun beperking of seksuele geaardheid.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 2</span>
+<div class="quote">
+“Discriminatie en racisme in sport”
+</div>
+<span class="context"><mark>Discriminatie en racisme in sport</mark>. Slechts recent is de strijd geopend tegen racisme en discriminatie in de sportwereld. We zetten de strijd voort</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“VN-verdrag over de rechten van mensen”
+</div>
+<span class="context">ons land heeft veel stappen gezet om het <mark>VN-verdrag over de rechten van mensen</mark> met een beperking te implementeren</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“zwangerschapsdiscriminatie vaak plaats”
+</div>
+<span class="context">Helaas vindt <mark>zwangerschapsdiscriminatie vaak plaats</mark>, niet alleen bij sollicitatie maar ook bij promotie en contractverlening. Er komt handhaving op deze discriminatie.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“bescherming van de rechten van de bevolking van Papoea”
+</div>
+<span class="context">Dat geldt ook voor de <mark>bescherming van de rechten van de bevolking van Papoea</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“etnische of religieuze minderheden”
+</div>
+<span class="context">Ontwikkelingssamenwerking moet bijdragen aan meer gelijke kansen en perspectief, vooral voor mensen met een beperking, vrouwen, jongeren en <mark>etnische of religieuze minderheden</mark>.</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“de basiswaarden van de democratische rechtsstaat”
+</div>
+<span class="context">ons gezamenlijke leven in Nederland: <mark>de basiswaarden van de democratische rechtsstaat</mark> en de instituties</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“bescherming van grondrechten, bewustwording”
+</div>
+<span class="context">wetgeving rond digitale technieken, de <mark>bescherming van grondrechten, bewustwording</mark> en het borgen van het publieke</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“grondbeginselen van de democratische rechtsstaat”
+</div>
+<span class="context">nieuwe burgerschapsopdracht voor het onderwijs waarborgt dat scholen leerlingen de <mark>grondbeginselen van de democratische rechtsstaat</mark> bijbrengen. Bij het toezicht op deze opdracht</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“toegang tot kapitaal voor het mkb te verbeteren”
+</div>
+<span class="context">kleine innovatieregelingen, zoals de Innovatie Prestatie Contracten (IPC’s) en vouchers. Om de <mark>toegang tot kapitaal voor het mkb te verbeteren</mark>, investeren we in het mkb-innovatiekrediet en</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“bescherming van mensenrechten is voorwaarde voor”
+</div>
+<span class="context">mensenrechten zijn belangrijk. Want de <mark>bescherming van mensenrechten is voorwaarde voor</mark> een goed functionerende democratische rechtsstaat.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“onafhankelijke rechtspraak en de persvrijheid”
+</div>
+<span class="context">naleving van Europese afspraken, zowel wat betreft de <mark>onafhankelijke rechtspraak en de persvrijheid</mark> als wat betreft de begrotingsdiscipline</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“sterke democratische rechtsstaat en in een betrokken samenleving”
+</div>
+<span class="context">We leven in een <mark>sterke democratische rechtsstaat en in een betrokken samenleving</mark>. Toch voelt onze manier van samenleven soms kwetsbaar. We kunnen het ook kwijtraken. We lijken steeds vaker tegenover elkaar te staan. Er lopen diepe scheidslijnen door onze samenleving, die we maar moeilijk kunnen overbruggen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“marktwerking als mechanisme om kosten te beperken voldoet niet”
+</div>
+<span class="context">Marktwerking als mechanisme om kosten te beperken voldoet niet. We willen publiek geborgde keuzes om de toekomst van de zorg zeker te stellen, voor alle werkers in de zorg, maar ook voor iedereen die zorg nodig heeft. Met meer samenleving en minder marktwerking in de zorg.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“sterke publieke sector, een duurzame economie”
+</div>
+<span class="context">We kiezen voor een <mark>sterke publieke sector, een duurzame economie</mark> en een rechtvaardig belastingstelsel.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Wij willen een (belasting)beleid dat aantrekkelijk is voor innovatieve (familie)bedrijven met een focus op de lange termijn.”
+</div>
+<span class="context"><mark>Wij willen een (belasting)beleid dat aantrekkelijk is voor innovatieve (familie)bedrijven met een focus op de lange termijn.</mark> Bevorder innovatie in het mkb. De regelgeving moet simpeler gemaakt, en meer toegespitst worden op baanbrekende innovaties in het mkb.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 5</span>
+<div class="quote">
+“bescherming van de internationale rechtsorde en multilaterale fora zoals de EU, de Raad van Europa, de OVSE en VN”
+</div>
+<span class="context">Nederland moet zich blijven inzetten voor het versterken, verbeteren en beschermen van de internationale rechtsorde en multilaterale fora zoals de EU, de Raad van Europa, de OVSE en VN. In ons buitenlandbeleid blijven we het naleven van mensenrechten, onder meer vastgelegd in de Universele Verklaring voor de Rechten van de Mens, benadrukken en straffeloosheid bestrijden – ook in deze internationale instellingen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“bevorderen, waaronder godsdienstvrijheid voor christenen”
+</div>
+<span class="context">De Palestijnse Autoriteit dient de democratische waarden en mensenrechten te <mark>bevorderen, waaronder godsdienstvrijheid voor christenen</mark>. Ook dient zij corruptie en terrorisme te bestrijden. Verzoening en samenwerking van onderop.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“vrijheid van godsdienst, vereniging, onderwijs en meningsuiting”
+</div>
+<span class="context">De <mark>vrijheid van godsdienst, vereniging, onderwijs en meningsuiting</mark> zijn belangrijke pijlers van de manier waarop we samenleven en mogen niet worden aangetast.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 2</span>
+<div class="quote">
+“meer samenleving en minder marktwerking in de zorg”
+</div>
+<span class="context">We willen publiek geborgde keuzes om de toekomst van de zorg zeker te stellen, voor alle werkers in de zorg… Met <mark>meer samenleving en minder marktwerking in de zorg</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“rechtvaardig belastingstelsel”
+</div>
+<span class="context">We kiezen voor een sterke publieke sector, een duurzame economie en een <mark>rechtvaardig belastingstelsel</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · mixed · chunk 4</span>
+<div class="quote">
+“open economie met veel import en nog meer export”
+</div>
+<span class="context">Onze <mark>open economie met veel import en nog meer export</mark>, is nauw verbonden met onze buurlanden en met de rest van de wereld.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“democratische legitimatie van Europese besluitvorming moet beter”
+</div>
+<span class="context">De <mark>democratische legitimatie van Europese besluitvorming moet beter</mark>. Dit is voorwaarde voor voldoende draagvlak voor de Europese Unie.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“democratische legitimatie van Europese besluitvorming”
+</div>
+<span class="context">De <mark>democratische legitimatie van Europese besluitvorming</mark> moet beter. Dit is voorwaarde voor voldoende draagvlak voor de Europese Unie.</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“het complotdenken van de profeten van het populisme”
+</div>
+<span class="context">gevoeliger wordt voor polarisatie en voor <mark>het complotdenken van de profeten van het populisme</mark>. We lijden aan</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“een gunstig belastingklimaat met dividend-cadeautjes”
+</div>
+<span class="context">maximale groei. Dat betekent dat het roer om moet. Het economisch receptenboek van beleidsmakers is uitgewerkt. Het bevat al enkele decennia dezelfde ingrediënten: loonmatiging, begrotingsdiscipline, lastenverlichting voor private sectoren, stimulering van arbeidsaanbod, flexibilisering van de arbeidsmarkt, privatisering van publieke dienstverlening en vrij verkeer voor goederen, diensten, investeringen én arbeidskrachten. Het idee dat de vrije markt automatisch tot goede uitkomsten voor ons allemaal zal leiden en daarom zo min mogelijk moet worden gehinderd door regelgeving, is echter achterhaald. Maximale winst mag niet de heilige graal van de economie zijn, <mark>een gunstig belastingklimaat met dividend-cadeautjes</mark> mag niet de trigger zijn om bedrijven vast te houden</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“De lobby van met name grote bedrijven”
+</div>
+<span class="context">belasting op kapitaal in Nederland is internationaal gezien laag en daalt bovendien. Die trend willen we keren. <mark>De lobby van met name grote bedrijven</mark> laat regeringen schijnbaar machteloos staan, terwijl</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“politiek leiderschap. Geloofsvervolging neemt helaas”
+</div>
+<span class="context">en wachten op <mark>politiek leiderschap. Geloofsvervolging neemt helaas</mark> nog steeds toe in de</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“neoliberaal project dat vooral grote bedrijven”
+</div>
+<span class="context">kritisch op de Europese Unie op onderdelen waar het een <mark>neoliberaal project dat vooral grote bedrijven</mark> en de hogere middenklassen ten goede komt.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“tegen het verharden van omgangsvormen en het gif van wantrouwen”
+</div>
+<span class="context">We willen dat liefde, genade en zachtmoedigheid een belangrijke plaats houden in onze samenleving. Samen kunnen we opstaan <mark>tegen het verharden van omgangsvormen en het gif van wantrouwen</mark> en onwaarheid. Om een nieuwe weg te vinden in ons samenleven en om de groeiende kloven te overbruggen, willen we dat de politiek afrekent met de gedachte dat we een verzameling losstaande individuen zijn – of armoediger nog: consumenten.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“tegen prostitutie en kiest voor beleid dat zo min mogelijk slachtoffers maakt”
+</div>
+<span class="context">De ChristenUnie wil dat deze moderne slavernij stopt. De legalisatie van de prostitutie in Nederland heeft ertoe geleid dat een grote groep vrouwen gevangen zit in een legaal maar failliet systeem. Een seksindustrie, waar steeds opnieuw vrouwen - vaak afkomstig uit de armste landen - uit pure armoede in verzeild raken. Prostitutie is ongelijkwaardig, er is meestal sprake van machtsongelijkheid, economische ongelijkheid en genderongelijkheid. Daarom is de ChristenUnie <mark>tegen prostitutie en kiest voor beleid dat zo min mogelijk slachtoffers maakt</mark>. Want het grove onrecht dat kwetsbare mensen wordt aangedaan willen we bestrijden.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“sprinkhaankapitalisme”
+</div>
+<span class="context">De markt als coördinatiemechanisme heeft onze samenleving veel gebracht: meer ondernemerschap, innovatie en werkgelegenheid, maar het is te veel en te vaak ontaard in <mark>sprinkhaankapitalisme</mark>. De overheid is deze ontwikkeling misschien niet begonnen, maar heeft dit met wetgeving en beleid rond belastingen, arbeid, financiële markten, bankwezen en faillissementen wel mogelijk gemaakt.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 4</span>
+<div class="quote">
+“Grote bedrijven zijn belangrijk, maar het fiscaal spijbelen door met name private equity, hedgefondsen en grenzeloze platforms moet stoppen.”
+</div>
+<span class="context">Deze handelwijze voedt en versterkt het cynisme en wantrouwen onder veel burgers. <mark>Grote bedrijven zijn belangrijk, maar het fiscaal spijbelen door met name private equity, hedgefondsen en grenzeloze platforms moet stoppen.</mark> Dat vraagt zowel nationaal als internationaal grote inzet.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“sprinkhaankapitalisme van private equity en hedgefondsen”
+</div>
+<span class="context">Voor de bloei van werknemers, in plaats van het <mark>sprinkhaankapitalisme van private equity en hedgefondsen</mark>. Voor het beschermen van de publieke zaak, in plaats van altijd maar de markt.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“dominante individualistische mens- en maatschappijbeeld”
+</div>
+<span class="context">De ChristenUnie is kritisch op het <mark>dominante individualistische mens- en maatschappijbeeld</mark>, dat ongemerkt zoveel invloed heeft op politieke besluiten.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“topbestuurders en beleggers”
+</div>
+<span class="context">een steeds groter deel van de winst gaat naar <mark>topbestuurders en beleggers</mark>. Je ziet dit terug in de cijfers</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 4</span>
+<div class="quote">
+“fiscaal spijbelen door met name private equity”
+</div>
+<span class="context">Grote bedrijven zijn belangrijk, maar het <mark>fiscaal spijbelen door met name private equity</mark>, hedgefondsen en grenzeloze platforms moet stoppen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · mixed · chunk 5</span>
+<div class="quote">
+“een neoliberaal project blijkt dat vooral grote bedrijven”
+</div>
+<span class="context">Ook zijn we kritisch op de Europese Unie op onderdelen waar het <mark>een neoliberaal project blijkt dat vooral grote bedrijven</mark> en de hogere middenklassen ten goede komt.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · mixed · chunk 6</span>
+<div class="quote">
+“neoliberaal project dat vooral grote bedrijven”
+</div>
+<span class="context">Ook zijn we kritisch op de Europese Unie op onderdelen waar het een neoliberaal project blijkt dat vooral grote bedrijven en de hogere middenklassen ten goede komt.</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“ruimte om van elkaar te verschillen, maar ook een gezamenlijk gedragen verantwoordelijkheid”
+</div>
+<span class="context">We verlangen naar een samenleving waarin we aandacht hebben voor elkaar en voor Gods schepping. We staan voor een overheid die een bondgenoot van burgers is en kiest voor wat écht telt. We zien Nederland als een land van gedeelde waarden. Met <mark>ruimte om van elkaar te verschillen, maar ook een gezamenlijk gedragen verantwoordelijkheid</mark> voor onze democratie en rechtsstaat.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“We kiezen voor een brede welvaartsindicator”
+</div>
+<span class="context">Meet succes af aan brede welwaart. BBP-groei als heilige graal ontneemt het zicht op wat echt telt voor mensen. <mark>We kiezen voor een brede welvaartsindicator</mark>, zoals de door het CBS ontwikkelde Monitor Brede Welvaart, die niet alleen rekening houdt met economische impact, maar ook met ecologische en sociaal- maatschappelijke impact: hier en nu én daar en later.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Solidariteit komt van twee kanten.”
+</div>
+<span class="context">Geen subsidie naar topsalarissen. De Wet normering topinkomens helpt het Rijk om de salarissen in de (semi)publieke sector te reguleren. Wij pleiten ervoor deze wet zo aan te passen dat gemeenten en provincies hier voortaan beter op kunnen sturen bij de inkoop van zorg en het toekennen van subsidies. <mark>Solidariteit komt van twee kanten.</mark> Wie misbruik maakt van voorzieningen, fraudeert of niet wil werken als dat wel kan, wordt uitgesloten van uitkeringsrechten.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“kiezen voor wat echt telt”
+</div>
+<span class="context">Dit is hét moment om te <mark>kiezen voor wat echt telt</mark>.’ Gert-Jan Segers Inleiding Kiezen voor wat écht telt</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“overheid meer op de veerkracht van de samenleving vertrouwt”
+</div>
+<span class="context">We willen dat de <mark>overheid meer op de veerkracht van de samenleving vertrouwt</mark> en die beter benut.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“Rijnlandse model nieuw leven”
+</div>
+<span class="context">ook wat dit betreft is het hoog tijd om het <mark>Rijnlandse model nieuw leven</mark> in te blazen, ten behoeve van een economie</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · mixed · chunk 4</span>
+<div class="quote">
+“Solidariteit komt van twee kanten”
+</div>
+<span class="context"><mark>Solidariteit komt van twee kanten</mark>. Wie misbruik maakt van voorzieningen, fraudeert of niet wil werken als dat wel kan, wordt uitgesloten van uitkeringsrechten.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“transparantie en democratische legitimatie van de Europese Unie”
+</div>
+<span class="context">De <mark>transparantie en democratische legitimatie van de Europese Unie</mark> moeten beter.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“transparantie en democratische legitimatie van de Europese Unie”
+</div>
+<span class="context">De <mark>transparantie en democratische legitimatie van de Europese Unie</mark> moeten beter.</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“het sprinkhaankapitalisme van private equity en hedgefondsen”
+</div>
+<span class="context">groene toekomst van onze planeet, in plaats van economische groei ten koste van alles. Voor de bloei van werknemers, in plaats van <mark>het sprinkhaankapitalisme van private equity en hedgefondsen</mark>. Voor het beschermen</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“een steeds groter deel van de winst gaat naar topbestuurders en beleggers”
+</div>
+<span class="context">tot onrechtvaardige en onwenselijke uitkomsten geleid. Een steeds kleiner deel van de welvaart komt terecht op de loonstrookjes van werkende mensen, <mark>een steeds groter deel van de winst gaat naar topbestuurders en beleggers</mark>. Je ziet dit terug in de cijfers</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“fiscaal spijbelen door met name private equity”
+</div>
+<span class="context">Grote bedrijven zijn belangrijk, maar het <mark>fiscaal spijbelen door met name private equity</mark>, hedgefondsen en grenzeloze platforms moet stoppen.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“neoliberaal project dat vooral grote bedrijven”
+</div>
+<span class="context">kritisch op de Europese Unie op onderdelen waar het een <mark>neoliberaal project dat vooral grote bedrijven</mark> en de hogere middenklassen ten goede komt.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“uitbuiting van arbeidsmigranten tegen zo laag”
+</div>
+<span class="context">Als de interne markt leidt tot <mark>uitbuiting van arbeidsmigranten tegen zo laag</mark> mogelijke kosten is dat niet in lijn met sociale gerechtigheid.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“rechtvaardiger migratiebeleid, dat gastvrijer en menswaardiger is”
+</div>
+<span class="context">De ChristenUnie wil een <mark>rechtvaardiger migratiebeleid, dat gastvrijer en menswaardiger is</mark> voor vluchtelingen en meer grip geeft op arbeidsmigratie. We moeten niet opnieuw – zoals in de vorige eeuw gebeurde - de fout maken migratie te versmallen tot een rekensom over onze behoefte op de arbeidsmarkt.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Prostitutie is ongelijkwaardig, er is meestal sprake van machtsongelijkheid, economische ongelijkheid en genderongelijkheid”
+</div>
+<span class="context">De legalisatie van de prostitutie in Nederland heeft ertoe geleid dat een grote groep vrouwen gevangen zit in een legaal maar failliet systeem. Een seksindustrie, waar steeds opnieuw vrouwen - vaak afkomstig uit de armste landen - uit pure armoede in verzeild raken. <mark>Prostitutie is ongelijkwaardig, er is meestal sprake van machtsongelijkheid, economische ongelijkheid en genderongelijkheid</mark>. Daarom is de ChristenUnie tegen prostitutie en kiest voor beleid dat zo min mogelijk slachtoffers maakt.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“loonmatiging, begrotingsdiscipline, lastenverlichting”
+</div>
+<span class="context">Het economisch receptenboek van beleidsmakers is uitgewerkt. Het bevat al enkele decennia dezelfde ingrediënten: <mark>loonmatiging, begrotingsdiscipline, lastenverlichting</mark> voor private sectoren, stimulering van arbeidsaanbod, flexibilisering van de arbeidsmarkt, privatisering van publieke dienstverlening en vrij verkeer voor goederen, diensten, investeringen én arbeidskrachten.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Wij zijn groot voorstander van een harde aanpak van belastingontduiking en belastingontwijking.”
+</div>
+<span class="context">De overheid heeft de taak om bedrijven, banken en financiële markten met wet- en regelgeving en andere (fiscale) instrumenten te blijven herinneren aan hun maatschappelijke doelstellingen en te bevorderen dat ze zich daarvoor inzetten. <mark>Wij zijn groot voorstander van een harde aanpak van belastingontduiking en belastingontwijking.</mark> Nederland moet internationaal van de achterhoede naar de voorhoede als het gaat om de aanpak hiervan.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“sprinkhaankapitalisme van private equity en hedgefondsen”
+</div>
+<span class="context">Voor de bloei van werknemers, in plaats van het <mark>sprinkhaankapitalisme van private equity en hedgefondsen</mark>. Voor het beschermen van de publieke zaak</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“sterkste schouders de zwaarste lasten dragen”
+</div>
+<span class="context">We hechten eraan dat de <mark>sterkste schouders de zwaarste lasten dragen</mark>. Gemeenten moeten financieel in staat worden gesteld om hulp en ondersteuning te bieden</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“hogere belasting op vermogen”
+</div>
+<span class="context">Tegenover de miljarden lagere lasten op arbeidsinkomen staan miljarden hogere lasten op vormen van vermogen</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“loonkloof structureel slechten”
+</div>
+<span class="context">We willen dat overheid en sociale partners deze <mark>loonkloof structureel slechten</mark>, te beginnen met transparantie bij hun eigen organisaties.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“eerlijkere verdeling van winst in de hele agrarische keten”
+</div>
+<span class="context">de kosten die daarvoor worden gemaakt, in de prijs van producten worden verdisconteerd en dat de winst eerlijker over de hele keten wordt verdeeld.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“uitbuiting van arbeidsmigranten tegen zo laag mogelijke kosten”
+</div>
+<span class="context">Als de interne markt leidt tot <mark>uitbuiting van arbeidsmigranten tegen zo laag mogelijke kosten</mark> is dat niet in lijn met sociale gerechtigheid.</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“het sprinkhaankapitalisme van private equity en hedgefondsen”
+</div>
+<span class="context">groene toekomst van onze planeet, in plaats van economische groei ten koste van alles. Voor de bloei van werknemers, in plaats van <mark>het sprinkhaankapitalisme van private equity en hedgefondsen</mark>. Voor het beschermen</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“een steeds groter deel van de winst gaat naar topbestuurders en beleggers”
+</div>
+<span class="context">tot onrechtvaardige en onwenselijke uitkomsten geleid. Een steeds kleiner deel van de welvaart komt terecht op de loonstrookjes van werkende mensen, <mark>een steeds groter deel van de winst gaat naar topbestuurders en beleggers</mark>. Je ziet dit terug in de cijfers</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“fiscaal spijbelen door met name private equity”
+</div>
+<span class="context">Grote bedrijven zijn belangrijk, maar het <mark>fiscaal spijbelen door met name private equity</mark>, hedgefondsen en grenzeloze platforms moet stoppen.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“neoliberaal project dat vooral grote bedrijven”
+</div>
+<span class="context">kritisch op de Europese Unie op onderdelen waar het een <mark>neoliberaal project dat vooral grote bedrijven</mark> en de hogere middenklassen ten goede komt.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“uitbuiting van arbeidsmigranten tegen zo laag”
+</div>
+<span class="context">Als de interne markt leidt tot <mark>uitbuiting van arbeidsmigranten tegen zo laag</mark> mogelijke kosten is dat niet in lijn met sociale gerechtigheid.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“rechtvaardiger migratiebeleid, dat gastvrijer en menswaardiger is”
+</div>
+<span class="context">De ChristenUnie wil een <mark>rechtvaardiger migratiebeleid, dat gastvrijer en menswaardiger is</mark> voor vluchtelingen en meer grip geeft op arbeidsmigratie. We moeten niet opnieuw – zoals in de vorige eeuw gebeurde - de fout maken migratie te versmallen tot een rekensom over onze behoefte op de arbeidsmarkt.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“tegen prostitutie en kiest voor beleid dat zo min mogelijk slachtoffers maakt”
+</div>
+<span class="context">De ChristenUnie wil dat deze moderne slavernij stopt. De legalisatie van de prostitutie in Nederland heeft ertoe geleid dat een grote groep vrouwen gevangen zit in een legaal maar failliet systeem. Een seksindustrie, waar steeds opnieuw vrouwen - vaak afkomstig uit de armste landen - uit pure armoede in verzeild raken. Prostitutie is ongelijkwaardig, er is meestal sprake van machtsongelijkheid, economische ongelijkheid en genderongelijkheid. Daarom is de ChristenUnie <mark>tegen prostitutie en kiest voor beleid dat zo min mogelijk slachtoffers maakt</mark>. Want het grove onrecht dat kwetsbare mensen wordt aangedaan willen we bestrijden.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“sprinkhaankapitalisme”
+</div>
+<span class="context">De markt als coördinatiemechanisme heeft onze samenleving veel gebracht: meer ondernemerschap, innovatie en werkgelegenheid, maar het is te veel en te vaak ontaard in <mark>sprinkhaankapitalisme</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 4</span>
+<div class="quote">
+“Grote bedrijven zijn belangrijk, maar het fiscaal spijbelen door met name private equity, hedgefondsen en grenzeloze platforms moet stoppen.”
+</div>
+<span class="context">Deze handelwijze voedt en versterkt het cynisme en wantrouwen onder veel burgers. <mark>Grote bedrijven zijn belangrijk, maar het fiscaal spijbelen door met name private equity, hedgefondsen en grenzeloze platforms moet stoppen.</mark> Dat vraagt zowel nationaal als internationaal grote inzet.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“complotdenken van de profeten van het populisme”
+</div>
+<span class="context">onze samenleving gevoeliger wordt voor polarisatie en voor het <mark>complotdenken van de profeten van het populisme</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“individualisme predikt het tegenovergestelde van wat we willen”
+</div>
+<span class="context">Het <mark>individualisme predikt het tegenovergestelde van wat we willen</mark>. Het zet eigen belang, geld en regels voorop.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“arbeidsinkomensquote daalde”
+</div>
+<span class="context">de winsten van grote bedrijven stegen, de <mark>arbeidsinkomensquote daalde</mark>. Het is tijd om die verhoudingen te veranderen</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 4</span>
+<div class="quote">
+“fiscaal spijbelen door met name private equity”
+</div>
+<span class="context">Grote bedrijven zijn belangrijk, maar het <mark>fiscaal spijbelen door met name private equity</mark>, hedgefondsen en grenzeloze platforms moet stoppen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“een neoliberaal project blijkt dat vooral grote bedrijven”
+</div>
+<span class="context">Ook zijn we kritisch op de Europese Unie op onderdelen waar het <mark>een neoliberaal project blijkt dat vooral grote bedrijven</mark> en de hogere middenklassen ten goede komt.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · mixed · chunk 6</span>
+<div class="quote">
+“neoliberaal project dat vooral grote bedrijven”
+</div>
+<span class="context">Ook zijn we kritisch op de Europese Unie op onderdelen waar het een neoliberaal project blijkt dat vooral grote bedrijven en de hogere middenklassen ten goede komt.</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“meer grip op arbeidsmigratie”
+</div>
+<span class="context">Rechtvaardige gastvrijheid19 Recht doen aan vluchtelingen19 Meer grip op arbeidsmigratie22 Van nieuwkomers</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“meer nationale zeggenschap over Europese besluiten”
+</div>
+<span class="context">We willen meer samenwerking in Europa rond migratie, klimaat, belastingontwijking, en buitenlands beleid. We willen een Europa dat zich aan gemaakte afspraken houdt, maar ook <mark>meer nationale zeggenschap over Europese besluiten</mark>. We komen op voor vrede en recht in de wereld.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“Invoering ‘Nordic model’. Zonder klanten zou mensenhandel niet bestaan, daarom wordt het kopen van seks strafbaar voor de klant”
+</div>
+<span class="context">Daarom is de ChristenUnie tegen prostitutie en kiest voor beleid dat zo min mogelijk slachtoffers maakt. Want het grove onrecht dat kwetsbare mensen wordt aangedaan willen we bestrijden. Door goede hulp te bieden, door goede opsporing en berechting van allen die zich schuldig maken aan dwang, uitbuiting of het sponsoren ervan, en stoppen met het legalisatiebeleid. <mark>Invoering ‘Nordic model’. Zonder klanten zou mensenhandel niet bestaan, daarom wordt het kopen van seks strafbaar voor de klant</mark>, niet voor de prostituee.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“We willen dat de Europese Unie strenger optreedt tegen oneerlijke concurrentie en staatssteun en zich inzet voor de bescherming van onze maakindustrie tegen dumping.”
+</div>
+<span class="context">Gelijk speelveld voor de Nederlandse industrie en detailhandel. Alle Europese regelingen op het gebied van milieu, veiligheid, staatssteun en arbeid ed.&nbsp;verdienen bescherming omdat het uitdrukkingen zijn van onze gedeelde waarden. <mark>We willen dat de Europese Unie strenger optreedt tegen oneerlijke concurrentie en staatssteun en zich inzet voor de bescherming van onze maakindustrie tegen dumping.</mark> En tegelijkertijd dat de EU zich inspant om dumping door EU-lidstaten zelf, bijvoorbeeld in West- Afrika, te voorkomen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“meer grip op arbeidsmigratie”
+</div>
+<span class="context">We willen een rechtvaardiger migratiebeleid, dat gastvrijer en menswaardiger is voor vluchtelingen en meer grip geeft op arbeidsmigratie.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“jihadisten pleegden hun daden niet alleen in Europa”
+</div>
+<span class="context">Jihadisten pleegden hun daden niet alleen in Europa, maar trokken vanuit Westerse samenlevingen ook naar IS-gebieden om daar gruweldaden te plegen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“Zondag = rustdag”
+</div>
+<span class="context"><mark>Zondag = rustdag</mark>. De zondag is de dag voor kerkgang, familie en ontspanning; wat ons betreft dus geen reguliere werkdag.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 5</span>
+<div class="quote">
+“Geen lidmaatschap Turkije”
+</div>
+<span class="context"><mark>Geen lidmaatschap Turkije</mark>. De toetredingsonderhandelingen met Turkije worden gestaakt.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“toetredingsonderhandelingen met Turkije worden gestaakt”
+</div>
+<span class="context">Geen lidmaatschap Turkije. De <mark>toetredingsonderhandelingen met Turkije worden gestaakt</mark>.</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“het gif van wantrouwen en onwaarheid”
+</div>
+<span class="context">opstaan tegen het verharden van omgangsvormen en <mark>het gif van wantrouwen en onwaarheid</mark>. Om een nieuwe</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“de polarisatie toeneemt. Dat moet niet alleen bij woorden blijven”
+</div>
+<span class="context">Er is terecht veel waardering uitgesproken voor de inzet van agenten in een tijd waarin <mark>de polarisatie toeneemt. Dat moet niet alleen bij woorden blijven</mark>, maar ook tot uiting komen in het salarisgebouw van de mensen in blauw.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“tegen prostitutie en kiest voor beleid dat zo min mogelijk slachtoffers maakt”
+</div>
+<span class="context">De ChristenUnie wil dat deze moderne slavernij stopt. De legalisatie van de prostitutie in Nederland heeft ertoe geleid dat een grote groep vrouwen gevangen zit in een legaal maar failliet systeem. Een seksindustrie, waar steeds opnieuw vrouwen - vaak afkomstig uit de armste landen - uit pure armoede in verzeild raken. Prostitutie is ongelijkwaardig, er is meestal sprake van machtsongelijkheid, economische ongelijkheid en genderongelijkheid. Daarom is de ChristenUnie <mark>tegen prostitutie en kiest voor beleid dat zo min mogelijk slachtoffers maakt</mark>. Want het grove onrecht dat kwetsbare mensen wordt aangedaan willen we bestrijden.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“sprinkhaankapitalisme”
+</div>
+<span class="context">De markt als coördinatiemechanisme heeft onze samenleving veel gebracht: meer ondernemerschap, innovatie en werkgelegenheid, maar het is te veel en te vaak ontaard in <mark>sprinkhaankapitalisme</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · mixed · chunk 4</span>
+<div class="quote">
+“Deze handelwijze voedt en versterkt het cynisme en wantrouwen onder veel burgers.”
+</div>
+<span class="context"><mark>Deze handelwijze voedt en versterkt het cynisme en wantrouwen onder veel burgers.</mark> Grote bedrijven zijn belangrijk, maar het fiscaal spijbelen door met name private equity, hedgefondsen en grenzeloze platforms moet stoppen. Dat vraagt zowel nationaal als internationaal grote inzet.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“het gif van wantrouwen en onwaarheid”
+</div>
+<span class="context">Samen kunnen we opstaan tegen het verharden van omgangsvormen en <mark>het gif van wantrouwen en onwaarheid</mark>. Om een nieuwe weg te vinden in ons samenleven</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“grove onrecht dat kwetsbare mensen wordt aangedaan”
+</div>
+<span class="context">Want het <mark>grove onrecht dat kwetsbare mensen wordt aangedaan</mark> willen we bestrijden. Door goede hulp te bieden, door goede opsporing</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“sprinkhaankapitalisme”
+</div>
+<span class="context">maar het is te veel en te vaak ontaard in <mark>sprinkhaankapitalisme</mark>. De overheid is deze ontwikkeling misschien niet begonnen</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · mixed · chunk 4</span>
+<div class="quote">
+“cynisme en wantrouwen onder veel burgers”
+</div>
+<span class="context">Deze handelwijze voedt en versterkt het <mark>cynisme en wantrouwen onder veel burgers</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“uitbuiting van arbeidsmigranten tegen zo laag mogelijke kosten”
+</div>
+<span class="context">Als de interne markt leidt tot <mark>uitbuiting van arbeidsmigranten tegen zo laag mogelijke kosten</mark> is dat niet in lijn met sociale gerechtigheid.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“belonen van slechte begrotingsdiscipline”
+</div>
+<span class="context">Solidair zijn en gul geven is iets anders dan het <mark>belonen van slechte begrotingsdiscipline</mark>.</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“een overheid die bondgenoot is van families”
+</div>
+<span class="context">Binnenhof, maar bij gemeenschappen van betrokken mensen. Wij willen daarom <mark>een overheid die bondgenoot is van families</mark>, gezinnen, straten</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“een economie die werkt voor mensen”
+</div>
+<span class="context">Hoofdstuk 3Een economie waarin mensen kunnen bloeien We willen <mark>een economie die werkt voor mensen</mark> in plaats van andersom. Een economie waarin mensen</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“teruggeven aan het Nederlandse volk”
+</div>
+<span class="context">De Volksbank, die nu nog in overheidshanden is, wordt zodra dat kan <mark>teruggeven aan het Nederlandse volk</mark>, als coöperatieve bank. Daarmee wordt een</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“voor veel burgers een ver-van-mijn-bed-show”
+</div>
+<span class="context">Kritisch zijn wij ten slotte ook omdat de EU <mark>voor veel burgers een ver-van-mijn-bed-show</mark> blijft. De transparantie en democratische legitimatie</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Nederland is ons gezamenlijke huis waar we samen voor moeten zorgen”
+</div>
+<span class="context">Onze samenleving houdt de keuze in dat we elke dag met aandacht en respect voor elkaar leven. En zoeken naar gedeelde waarden. <mark>Nederland is ons gezamenlijke huis waar we samen voor moeten zorgen</mark>. De ChristenUnie wil daarom met nieuwe politieke keuzes investeren in onze democratie en rechtsstaat.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Wij willen een andere visie op de samenleving en op de mens”
+</div>
+<span class="context">De ChristenUnie is kritisch op het dominante individualistische mens- en maatschappijbeeld, dat ongemerkt zoveel invloed heeft op politieke besluiten. Het individualisme predikt het tegenovergestelde van wat we willen. Het zet eigen belang, geld en regels voorop. Dat komt onze samenleving niet ten goede. Gelukkig is Nederland nog altijd rijk aan sociaal kapitaal, in gezinnen, kerken, verenigingen, buurten, dorpen en steden. De afgelopen jaren zijn door het hele land nieuwe maatschappelijke initiatieven ontstaan. Mensen richten bijvoorbeeld een coöperatie op om zorg, welzijnswerk, onderwijs of jongerenwerk voor hun dorp te behouden. We willen dat de overheid meer op de veerkracht van de samenleving vertrouwt en die beter benut. <mark>Wij willen een andere visie op de samenleving en op de mens</mark>: de mens die niet alleen als individu op zichzelf staat, maar als onderdeel van de gemeenschap.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“économie die werkt voor mensen”
+</div>
+<span class="context">We willen een economie die werkt voor mensen in plaats van andersom. Een economie waarin mensen een goed leven kunnen leiden, met aandacht voor gezin en relaties.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Solidariteit komt van twee kanten.”
+</div>
+<span class="context">Geen subsidie naar topsalarissen. De Wet normering topinkomens helpt het Rijk om de salarissen in de (semi)publieke sector te reguleren. Wij pleiten ervoor deze wet zo aan te passen dat gemeenten en provincies hier voortaan beter op kunnen sturen bij de inkoop van zorg en het toekennen van subsidies. <mark>Solidariteit komt van twee kanten.</mark> Wie misbruik maakt van voorzieningen, fraudeert of niet wil werken als dat wel kan, wordt uitgesloten van uitkeringsrechten.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“We zijn burgers van een democratische rechtsstaat”
+</div>
+<span class="context">de gedachte dat we een verzameling losstaande individuen zijn – of armoediger nog: consumenten. <mark>We zijn burgers van een democratische rechtsstaat</mark>. Een land van gedeelde waarden.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“mensen die verantwoordelijkheid nemen voor elkaar”
+</div>
+<span class="context">staan we aan de kant van al die mensen die vrijwilligerswerk doen, af en toe hun straat vegen… Mensen die verantwoordelijkheid nemen voor elkaar</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“economie die werkt voor mensen”
+</div>
+<span class="context">We willen een <mark>economie die werkt voor mensen</mark> in plaats van andersom. Een economie waarin mensen een goed leven kunnen leiden</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 4</span>
+<div class="quote">
+“teruggeven aan het Nederlandse volk”
+</div>
+<span class="context">De Volksbank, die nu nog in overheidshanden is, wordt zodanig dat kan <mark>teruggeven aan het Nederlandse volk</mark>, als coöperatieve bank.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Mensen worden meegenomen in het eerlijke verhaal”
+</div>
+<span class="context"><mark>Mensen worden meegenomen in het eerlijke verhaal</mark> dat over klimaat verteld moet worden, en ondersteund bij de concrete maatregelen die ze zelf kunnen nemen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“democratische recht van een volk”
+</div>
+<span class="context">Het is natuurlijk het goed recht van een volk om bijvoorbeeld zijn eigen pensioenleeftijd te bepalen, maar dit democratische recht verhoudt zich slecht met een economische en monetaire unie</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“het complotdenken van de profeten van het populisme”
+</div>
+<span class="context">gevoeliger wordt voor polarisatie en voor <mark>het complotdenken van de profeten van het populisme</mark>. We lijden aan</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“een economie die werkt voor mensen”
+</div>
+<span class="context">Hoofdstuk 3Een economie waarin mensen kunnen bloeien We willen <mark>een economie die werkt voor mensen</mark> in plaats van andersom. Een economie waarin mensen</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“teruggeven aan het Nederlandse volk”
+</div>
+<span class="context">De Volksbank, die nu nog in overheidshanden is, wordt zodra dat kan <mark>teruggeven aan het Nederlandse volk</mark>, als coöperatieve bank. Daarmee wordt een</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 5</span>
+<div class="quote">
+“politiek leiderschap. Geloofsvervolging neemt helaas”
+</div>
+<span class="context">en wachten op <mark>politiek leiderschap. Geloofsvervolging neemt helaas</mark> nog steeds toe in de</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“neoliberaal project dat vooral grote bedrijven”
+</div>
+<span class="context">kritisch op de Europese Unie op onderdelen waar het een <mark>neoliberaal project dat vooral grote bedrijven</mark> en de hogere middenklassen ten goede komt.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“tegen het verharden van omgangsvormen en het gif van wantrouwen”
+</div>
+<span class="context">We willen dat liefde, genade en zachtmoedigheid een belangrijke plaats houden in onze samenleving. Samen kunnen we opstaan <mark>tegen het verharden van omgangsvormen en het gif van wantrouwen</mark> en onwaarheid. Om een nieuwe weg te vinden in ons samenleven en om de groeiende kloven te overbruggen, willen we dat de politiek afrekent met de gedachte dat we een verzameling losstaande individuen zijn – of armoediger nog: consumenten.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“tegen prostitutie en kiest voor beleid dat zo min mogelijk slachtoffers maakt”
+</div>
+<span class="context">De ChristenUnie wil dat deze moderne slavernij stopt. De legalisatie van de prostitutie in Nederland heeft ertoe geleid dat een grote groep vrouwen gevangen zit in een legaal maar failliet systeem. Een seksindustrie, waar steeds opnieuw vrouwen - vaak afkomstig uit de armste landen - uit pure armoede in verzeild raken. Prostitutie is ongelijkwaardig, er is meestal sprake van machtsongelijkheid, economische ongelijkheid en genderongelijkheid. Daarom is de ChristenUnie <mark>tegen prostitutie en kiest voor beleid dat zo min mogelijk slachtoffers maakt</mark>. Want het grove onrecht dat kwetsbare mensen wordt aangedaan willen we bestrijden.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“sprinkhaankapitalisme”
+</div>
+<span class="context">De markt als coördinatiemechanisme heeft onze samenleving veel gebracht: meer ondernemerschap, innovatie en werkgelegenheid, maar het is te veel en te vaak ontaard in <mark>sprinkhaankapitalisme</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 4</span>
+<div class="quote">
+“Grote bedrijven zijn belangrijk, maar het fiscaal spijbelen door met name private equity, hedgefondsen en grenzeloze platforms moet stoppen.”
+</div>
+<span class="context">Deze handelwijze voedt en versterkt het cynisme en wantrouwen onder veel burgers. <mark>Grote bedrijven zijn belangrijk, maar het fiscaal spijbelen door met name private equity, hedgefondsen en grenzeloze platforms moet stoppen.</mark> Dat vraagt zowel nationaal als internationaal grote inzet.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“profeten van het populisme”
+</div>
+<span class="context">onze samenleving gevoeliger wordt voor polarisatie en voor het complotdenken van de <mark>profeten van het populisme</mark>. We lijden aan morele heimwee</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“kritisch op het dominante individualistische mens- en maatschappijbeeld”
+</div>
+<span class="context">De ChristenUnie is <mark>kritisch op het dominante individualistische mens- en maatschappijbeeld</mark>, dat ongemerkt zoveel invloed heeft op politieke besluiten.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“vrijemarktkapitalisme voor een deel is losgeslagen”
+</div>
+<span class="context">Onze conclusie is dat het <mark>vrijemarktkapitalisme voor een deel is losgeslagen</mark> van zijn ankers.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · mixed · chunk 4</span>
+<div class="quote">
+“fiscaal spijbelen door met name private equity”
+</div>
+<span class="context">Grote bedrijven zijn belangrijk, maar het <mark>fiscaal spijbelen door met name private equity</mark>, hedgefondsen en grenzeloze platforms moet stoppen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“een neoliberaal project blijkt dat vooral grote bedrijven”
+</div>
+<span class="context">Ook zijn we kritisch op de Europese Unie op onderdelen waar het <mark>een neoliberaal project blijkt dat vooral grote bedrijven</mark> en de hogere middenklassen ten goede komt.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · mixed · chunk 6</span>
+<div class="quote">
+“neoliberaal project dat vooral grote bedrijven”
+</div>
+<span class="context">Ook zijn we kritisch op de Europese Unie op onderdelen waar het een neoliberaal project blijkt dat vooral grote bedrijven en de hogere middenklassen ten goede komt.</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="22526_202103_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

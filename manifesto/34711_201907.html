@@ -1,0 +1,2788 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>EL (Greece, 2019) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/34711_201907_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">EL (Greece, 2019)</h1>
+<p class="subtitle lead">manifesto_id 34711_201907</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Greece · <span class="item"><strong>Party</strong></span> EL (Greek Solution) · <span class="item"><strong>Year</strong></span> 2019 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 70</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.5</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.4</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.6</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.9</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.9</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.5</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.8</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.4</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.7</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“κοινωφελείς, οι στρατηγικές και οι μονοπωλιακές κερδοφόρες επιχειρήσεις πρέπει να ανήκουν στο δημόσιο”
+</div>
+<span class="context">Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ πιστεύει πως οι <mark>κοινωφελείς, οι στρατηγικές και οι μονοπωλιακές κερδοφόρες επιχειρήσεις πρέπει να ανήκουν στο δημόσιο</mark>, λειτουργώντας με ιδιωτικοοικονομικά κριτήρια</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“ελεύθερα διαπραγματεύσιμες τιμές”
+</div>
+<span class="context">προσφέρουν τα προϊόντα τους σε ενδιαφερόμενους αγοραστές με <mark>ελεύθερα διαπραγματεύσιμες τιμές</mark>, ενώ η διαπραγμάτευση</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“ρύθμιση της κερδοσκοπίας εκ μέρους των εμπόρων”
+</div>
+<span class="context">ώστε να ρυθμιστεί η κερδοσκοπία εκ μέρους των εμπόρων λιανικής και να βελτιωθεί η ικανότητα</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“ανάπτυξη βιώσιμων επιχειρήσεων και η ενίσχυση”
+</div>
+<span class="context">είναι η αειφόρος <mark>ανάπτυξη βιώσιμων επιχειρήσεων και η ενίσχυση</mark> τηςανταγωνιστικότητας των επιχειρησιακών</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“μείωση της γραφειοκρατίας και παροχή κινήτρων”
+</div>
+<span class="context">Φορολογικές διευκολύνσεις, <mark>μείωση της γραφειοκρατίας και παροχή κινήτρων</mark> για την ενθάρρυνση</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“αδειοδότηση μικρών και μεσαίων επιχειρήσεων”
+</div>
+<span class="context">απλοποιήσει όλους τους όρους δόμησης και την διαδικασία έκδοσης των οικοδομικών αδειών, καθώς και όλη την κείμενη νομοθεσία για την <mark>αδειοδότηση μικρών και μεσαίων επιχειρήσεων</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“εξασφάλισης της ελεύθερης επιχειρηματικότητας για όλους”
+</div>
+<span class="context">κατανομή του εθνικού εισοδήματος μέσω της δίκαιης φορολογίας και <mark>εξασφάλισης της ελεύθερης επιχειρηματικότητας για όλους</mark>. β. Οι μισθοί κάθε είδους</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“εάν η Ελλάδα είχε ιδιωτικά Πανεπιστήμια”
+</div>
+<span class="context">Από την άλλη πλευρά, <mark>εάν η Ελλάδα είχε ιδιωτικά Πανεπιστήμια</mark> δεν θα εξοικονομούσε μόνο το συνάλλαγμα που φεύγει στο εξωτερικό, αλλά θα εισέπραττε επί πλέον από τους ξένους φοιτητές</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“υιοθέτηση ενός δίκαιου και ανταγωνιστικού με τις γύρω χώρες φορολογικού συστήματος”
+</div>
+<span class="context">ΒΑΣΙΚΕΣ ΕΝΕΡΓΕΙΕΣ Υιοθέτηση ενός δίκαιου και ανταγωνιστικού με τις γύρω χώρες φορολογικού συστήματος, παράλληλα με την ενίσχυση του ελεγκτικού μηχανισμού και τη δρομολόγηση ενός πλαισίου, φιλικού προς τις επιχειρήσεις.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Αύξηση της παραγωγικότητας της ελληνικής γεωργίας”
+</div>
+<span class="context">Για να ενισχυθεί η Ανταγωνιστικότητα της Ελληνικής Γεωργίας προτείνουμε τις ακόλουθες ΛΥΣΕΙΣ: <mark>Αύξηση της παραγωγικότητας της ελληνικής γεωργίας</mark>. Αύξηση της αποδοτικότητας της ελληνικής γεωργίας.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“σωστή χρήση των ευρωπαϊκών προγραμμάτων για παραγωγή ιδιοπαραγόμενων ζωοτροφών”
+</div>
+<span class="context">Ενίσχυση και παροχή κινήτρων στους επαγγελματίες κτηνοτρόφους με τη <mark>σωστή χρήση των ευρωπαϊκών προγραμμάτων για παραγωγή ιδιοπαραγόμενων ζωοτροφών</mark>. Έτσι, οι κτηνοτρόφοι θα είναι αυτάρκεις και δεν θα εξαρτώνται από εισαγόμενες ζωοτροφές.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“«Η φορολογία που έχει εφαρμοστεί από όλες τις ελληνικές κυβερνήσεις μέχρι και σήμερα δείχνει πως το κράτος δεν αντιμετωπίζει την επιχείρηση ως έναν από τους βασικότερους μοχλούς ανάπτυξης της οικονομίας!»”
+</div>
+<span class="context">…Η φορολογία που έχει εφαρμοστεί από όλες τις ελληνικές κυβερνήσεις μέχρι και σήμερα δείχνει πως το κράτος δεν αντιμετωπίζει την επιχείρηση ως έναν από τους βασικότερους μοχλούς ανάπτυξης της οικονομίας! Αντιθέτως, εδώ και δεκαετίες το Κράτος, με την πολιτική που ακολουθεί, δείχνει πως «μισεί» την ιδιωτική πρωτοβουλία…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ θα πριμοδοτεί τις επιχειρήσεις που επενδύουν στην πράσινη ενέργεια με ειδικό φορολογικό και ασφαλιστικό καθεστώς”
+</div>
+<span class="context">…<mark>Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ θα πριμοδοτεί τις επιχειρήσεις που επενδύουν στην πράσινη ενέργεια με ειδικό φορολογικό και ασφαλιστικό καθεστώς</mark>, προκειμένου να κινητοποιήσει και να προσελκύσει νέους επενδυτές με απλές διαδικασίες αδειοδοτήσεων…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“ελεύθερη επιχειρηματικότητα για όλους”
+</div>
+<span class="context">Το κράτος θα μετατραπεί σε όργανο στα χέρια της κοινωνίας για την εξυπηρέτηση του κοινωνικού συμφέροντος… και εξασφάλισης της ελεύθερης επιχειρηματικότητας για όλους.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“Η ιδιωτική εκπαίδευση στα Πανεπιστήμια είναι ένα βασικό θέμα για την Ελλάδα”
+</div>
+<span class="context"><mark>Η ιδιωτική εκπαίδευση στα Πανεπιστήμια είναι ένα βασικό θέμα για την Ελλάδα</mark>, η οποία πρέπει να παράγει πλούτο από όλους τους κλάδους της οικονομίας της για να αναπτυχθεί - σημειώνοντας πως στη Μ. Βρετανία σπούδαζαν το 2016/17 περί τους 10.000 Έλληνες.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“φορολογικοί συντελεστές θα πρέπει να είναι ανταγωνιστικοί”
+</div>
+<span class="context">Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ πιστεύει πως οι <mark>φορολογικοί συντελεστές θα πρέπει να είναι ανταγωνιστικοί</mark> με τις γειτονικές χώρες για να προσελκύονται επιχειρήσεις</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“ελεύθερα διαπραγματεύσιμες τιμές”
+</div>
+<span class="context">οι παραγωγοί προσφέρουν τα προϊόντα τους σε ενδιαφερόμενους αγοραστές με <mark>ελεύθερα διαπραγματεύσιμες τιμές</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 3</span>
+<div class="quote">
+“αύξηση των φορολογικών συντελεστών στο εισαγόμενο”
+</div>
+<span class="context">Μείωση των αυξημένων φορολογικών συντελεστών στο 5% για το εγχώριο κρέας και <mark>αύξηση των φορολογικών συντελεστών στο εισαγόμενο</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“απλού, σταθερού και ελκυστικού φορολογικού συστήματος”
+</div>
+<span class="context">Εισαγωγή ενός <mark>απλού, σταθερού και ελκυστικού φορολογικού συστήματος</mark>, που θα παραμείνει αμετάβλητο στις βασικές του ρυθμίσεις για τουλάχιστον 10 χρόνια, ώστε να ενισχυθούν οι επενδύσεις στον τουρισμό.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“μείωση της γραφειοκρατίας και παροχή κινήτρων”
+</div>
+<span class="context">Φορολογικές διευκολύνσεις, <mark>μείωση της γραφειοκρατίας και παροχή κινήτρων</mark> για την ενθάρρυνση νέων επενδύσεων στον αγροτουρισμό</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“κίνητρα χαμηλού κόστους παραγωγής και με φοροαπαλλαγές”
+</div>
+<span class="context">με ειδικά <mark>κίνητρα χαμηλού κόστους παραγωγής και με φοροαπαλλαγές</mark> για να παραμείνουν στην χώρα και να λειτουργούν δίνοντας θέσεις εργασίας</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“εξασφάλισης της ελεύθερης επιχειρηματικότητας για όλους”
+</div>
+<span class="context">την κοινωνική δικαιοσύνη, την δίκαιη κατανομή του εθνικού εισοδήματος μέσω της δίκαιης φορολογίας και <mark>εξασφάλισης της ελεύθερης επιχειρηματικότητας για όλους</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“ανταγωνισμός με τα δημόσια Πανεπιστήμια”
+</div>
+<span class="context">θα υπήρχε <mark>ανταγωνισμός με τα δημόσια Πανεπιστήμια</mark>, ο οποίος θα λειτουργούσε θετικά ως προς την καλυτέρευση της ποιότητας</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“επίλυση του προβλήματος των κόκκινων δανείων πρώτης κατοικίας”
+</div>
+<span class="context">Επίλυση του προβλήματος των κόκκινων δανείων πρώτης κατοικίας (περί τα 12 δις €), μέσω ενός κρατικού οργανισμού</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“η τράπεζα δεν επενδύει στα χρηματιστήρια”
+</div>
+<span class="context">μικρομεσαίες επιχειρήσεις και τα νοικοκυριά. Φυσικά, <mark>η τράπεζα δεν επενδύει στα χρηματιστήρια</mark>, ούτε πουθενά αλλού</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“πρόγραμμα συμβολαιακής Γεωργίας &amp; Κτηνοτροφίας των τραπεζών”
+</div>
+<span class="context">η ύπαρξη του <mark>πρόγραμμα συμβολαιακής Γεωργίας &amp; Κτηνοτροφίας των τραπεζών</mark>, στηριζόμενη και ελεγχόμενη από το κράτος</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“συμβολαιακής Γεωργίας &amp; Κτηνοτροφίας των τραπεζών”
+</div>
+<span class="context">η ύπαρξη του προγράμματος <mark>συμβολαιακής Γεωργίας &amp; Κτηνοτροφίας των τραπεζών</mark>, στηριζόμενη</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“υποχρεωτική συμμετοχή των τραπεζών στη χρηματοδότηση”
+</div>
+<span class="context">να θεσπιστεί η <mark>υποχρεωτική συμμετοχή των τραπεζών στη χρηματοδότηση</mark> της ελληνικής ναυτιλίας</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“ΕΣΥ στο χρηματιστήριο”
+</div>
+<span class="context">παρακολουθεί την εύρυθμη λειτουργία του ΕΣΥ και θα εντάσσει το <mark>ΕΣΥ στο χρηματιστήριο</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“δημιουργία μίας κρατικής εταιρείας διαχείρισης τους που θα τα εξαγοράσει από τις τράπεζες”
+</div>
+<span class="context">Ριζική επίλυση του προβλήματος των κόκκινων δανείων πρώτης κατοικίας (περί τα 12 δις €), με τη <mark>δημιουργία μίας κρατικής εταιρείας διαχείρισης τους που θα τα εξαγοράσει από τις τράπεζες</mark> στην τιμή που θα διαμορφωθεί μετά την αφαίρεση των προβλέψεων τους (κάτω από το 48% της αξίας τους).</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ πιστεύει πως πρέπει να δοθεί κύρος στο επάγγελμα του αγρότη”
+</div>
+<span class="context">Πρωταρχική μέριμνα της ΕΛΛΗΝΙΚΗΣ ΛΥΣΗΣ είναι η στήριξη, η ενίσχυση και η ανάπτυξη του παραμελημένου τομέα της Πρωτογενούς Παραγωγής. <mark>Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ πιστεύει πως πρέπει να δοθεί κύρος στο επάγγελμα του αγρότη</mark>,</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 3</span>
+<div class="quote">
+“Το Συμβολαιακό Πρόγραμμα καλύπτει όλη την παραγωγική, εφοδιαστική και μεταποιητική αλυσίδα”
+</div>
+<span class="context"><mark>Το Συμβολαιακό Πρόγραμμα καλύπτει όλη την παραγωγική, εφοδιαστική και μεταποιητική αλυσίδα</mark> του αγροτικού και κτηνοτροφικού προϊόντος υποστηρίζοντας συντεταγμένα την επωφελή συνεργασία παραγωγών και επιχειρήσεων εμπορίας, μεταποίησης και διάθεσης της αγροτικής παραγωγής.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“Θα ελέγχει τη συνολική οικονομική δραστηριότητα του ΕΣΥ (σύμφωνα με το νομικό πλαίσιο της Ελλάδος και της ΕΕ)”
+</div>
+<span class="context">…Κεντρικό Ελεγκτικό Συμβούλιο. Θα συγκροτείται από Ανεξάρτητα Στελέχη και Τεχνοκράτες ειδικευμένους στον Κλάδο Υγείας, ύστερα από διαγωνισμό. <mark>Θα ελέγχει τη συνολική οικονομική δραστηριότητα του ΕΣΥ (σύμφωνα με το νομικό πλαίσιο της Ελλάδος και της ΕΕ)</mark> και θα παρεμβαίνει αποτρέποντας κάθε παρέκκλιση…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“ίδρυση μίας κρατικής επενδυτικής τράπεζας”
+</div>
+<span class="context">παράλληλα με την <mark>ίδρυση μίας κρατικής επενδυτικής τράπεζας</mark> του τύπου της ΕΤΒΑ του παρελθόντος ή της γερμανικής ΚfW</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“η τράπεζα δεν επενδύει στα χρηματιστήρια”
+</div>
+<span class="context">Φυσικά, <mark>η τράπεζα δεν επενδύει στα χρηματιστήρια</mark>, ούτε πουθενά αλλού - αφού ο σκοπός της είναι αποκλειστικά και μόνο η δανειοδότηση της πραγματικής οικονομίας</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“πρόγραμμα συμβολαιακής Γεωργίας &amp; Κτηνοτροφίας των τραπεζών”
+</div>
+<span class="context">η ύπαρξη του προγράμματος συμβολαιακής Γεωργίας &amp; Κτηνοτροφίας των τραπεζών, στηριζόμενη και ελεγχόμενη από το κράτος</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Οι Τράπεζες λειτουργούν ως συντονιστές και χρηματοδότες”
+</div>
+<span class="context">Το Συμβολαιακό Πρόγραμμα καλύπτει όλη την παραγωγική, εφοδιαστική και μεταποιητική αλυσίδα… <mark>Οι Τράπεζες λειτουργούν ως συντονιστές και χρηματοδότες</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 5</span>
+<div class="quote">
+“θα απαγορευθούν όλα τα παράγωγα προϊόντα”
+</div>
+<span class="context">Όσον αφορά το χρηματιστήριο, <mark>θα απαγορευθούν όλα τα παράγωγα προϊόντα</mark>, ενώ οι τράπεζες θα χωριστούν σε εμπορικές και επενδυτικές</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“θα εντάσσει το ΕΣΥ στο χρηματιστήριο”
+</div>
+<span class="context">θα καθορίζει τη συνολική πολιτική του ΕΣΥ, θα καταρτίζει τον ετήσιο προϋπολογισμό, θα παρακολουθεί την εύρυθμη λειτουργία του ΕΣΥ και <mark>θα εντάσσει το ΕΣΥ στο χρηματιστήριο</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 7</span>
+<div class="quote">
+“προσέλκυση ξένων κεφαλαίων”
+</div>
+<span class="context">προγράμματα υποστήριξης της καινοτομίας, με <mark>προσέλκυση ξένων κεφαλαίων</mark>, τη συμμετοχή του κράτους, ξένων επενδυτών και των τραπεζών.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 8</span>
+<div class="quote">
+“Λήψη οικονομικών μέτρων περιορισμού μεταφοράς συναλλάγματος”
+</div>
+<span class="context">Αποσυμφόρηση των νησιών του Ανατολικού Αιγαίου από τους παράνομους μετανάστες. <mark>Λήψη οικονομικών μέτρων περιορισμού μεταφοράς συναλλάγματος</mark> και έλεγχος της προέλευσης των χρημάτων</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“σταδιακή υιοθέτηση της άμεσης δημοκρατίας κατά το ελβετικό πρότυπο”
+</div>
+<span class="context">με στόχο τη <mark>σταδιακή υιοθέτηση της άμεσης δημοκρατίας κατά το ελβετικό πρότυπο</mark> που εφάρμοσε στη χώρα</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“ανάκτηση της εμπιστοσύνης των Πολιτών προς την Πολιτεία”
+</div>
+<span class="context">μέλημα είναι η <mark>ανάκτηση της εμπιστοσύνης των Πολιτών προς την Πολιτεία</mark>, προς το κράτος, η οποία</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“εκτελεστική αυθαιρεσία, όπου η εκάστοτε”
+</div>
+<span class="context">Κατέχουμε τα πρωτεία στην <mark>εκτελεστική αυθαιρεσία, όπου η εκάστοτε</mark> εκλεγμένη κυβέρνηση, να ερμηνεύει ή να περιφρονεί και να καταργεί κατά το δοκούν τους νόμους</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“διεξάγονται δημοψηφίσματα επί παντός θέματος”
+</div>
+<span class="context">αρμοδιότητες που είχε σύμφωνα με το Σύνταγμα του 1975. (7) ΔΗΜΟΨΗΦΙΣΜΑΤΑ Πέραν των άλλων, θα <mark>διεξάγονται δημοψηφίσματα επί παντός θέματος</mark>, όταν το ζητήσουν 100.000</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“Θα θεσμοθετηθεί Συνταγματικό Δικαστήριο”
+</div>
+<span class="context">στ. Θα υπάρξει απλοποίηση και κωδικοποίηση της πολυδαίδαλης νομοθεσίας, την οποία κανείς δεν γνωρίζει. ζ. <mark>Θα θεσμοθετηθεί Συνταγματικό Δικαστήριο</mark>. Κάθε διάταξη νόμου, που θα κηρύσσεται αντισυνταγματική</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“να κάνουν τους Έλληνες να νιώθουν ασφάλεια και ότι όλοι είναι ΙΣΟΙ απέναντι στο ΝΟΜΟ”
+</div>
+<span class="context">Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ προτείνει τα συγκεκριμένα μέτρα που θα αναβαθμίσουν το θεσμό αυτό και θα κάνουν τους Έλληνες να νιώθουν ασφάλεια και ότι όλοι είναι ΙΣΟΙ απέναντι στο ΝΟΜΟ, δίχως ΚΑΜΙΑ Εξαίρεση!!</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“ανάκτηση της εμπιστοσύνης των Πολιτών προς την Πολιτεία”
+</div>
+<span class="context">Πρώτο μας μέλημα είναι η <mark>ανάκτηση της εμπιστοσύνης των Πολιτών προς την Πολιτεία</mark>, προς το κράτος, η οποία θα φέρει πίσω αποταμιεύσεις άνω των 100 δις €,</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Ειδική Διαδικασία Πρόσβασης των νεοσύστατων Κτηνοτροφικών ΑΕ στο Λιανικό Εμπόριο”
+</div>
+<span class="context">Για την αντιμετώπιση αυτού του «νοσηρού» φαινομένου, δημιουργούμε άμεσα <mark>Ειδική Διαδικασία Πρόσβασης των νεοσύστατων Κτηνοτροφικών ΑΕ στο Λιανικό Εμπόριο</mark>. Αυτό επιτυγχάνεται με την Ίδρυση σε πρώτη Φάση στις πόλεις: Αθήνα, Θεσσαλονίκη, Πάτρα, Ηράκλειο, Λάρισα, Ιωάννινα, Αγρίνιο, Σέρρες και Αλεξανδρούπολη, Ειδικών Κέντρων Αγοράς Γαλακτοκομικών Προϊόντων, σε σημεία των πόλεων που θα είναι εύκολη η πρόσβαση των πολιτών.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“«Το Κεντρικό ΔΣ θα καθορίζει τη συνολική πολιτική του ΕΣΥ, θα καταρτίζει τον ετήσιο προϋπολογισμό, θα παρακολουθεί την εύρυθμη λειτουργία του ΕΣΥ και θα εντάσσει το ΕΣΥ στο χρηματιστήριο.»”
+</div>
+<span class="context">…Το Κεντρικό ΔΣ θα καθορίζει τη συνολική πολιτική του ΕΣΥ, θα καταρτίζει τον ετήσιο προϋπολογισμό, θα παρακολουθεί την εύρυθμη λειτουργία του ΕΣΥ και θα εντάσσει το ΕΣΥ στο χρηματιστήριο. (β) Κεντρικό Ελεγκτικό Συμβούλιο. Θα συγκροτείται από Ανεξάρτητα Στελέχη και Τεχνοκράτες ειδικευμένους στον Κλάδο Υγείας…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ επιδιώκει την εξυγίανση στο σύνολο της Δημόσιας Διοίκησης”
+</div>
+<span class="context">…<mark>Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ επιδιώκει την εξυγίανση στο σύνολο της Δημόσιας Διοίκησης</mark>, ώστε αυτή να καταστεί πιο ευέλικτη, λειτουργική, αποδοτική και αποτελεσματική…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“δημοκρατία, δικαιώματα, εκλογές, δικαστήρια, Βουλή”
+</div>
+<span class="context">Η εμπεριστατωμένη διδαχή της ελληνικής ιστορίας, της ελληνικής γλώσσας και των ατομικών και πολιτικών δικαιωμάτων θα είναι υποχρεωτική στη μέση και πρωτοβάθμια παιδεία για την δημιουργία άρτια καταρτισμένων Ελλήνων πολιτών.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“Η εκπαίδευση προβάλλεται ως καταναλωτικό αγαθό που συναλλάσσεται ανταλλακτικά”
+</div>
+<span class="context"><mark>Η εκπαίδευση προβάλλεται ως καταναλωτικό αγαθό που συναλλάσσεται ανταλλακτικά</mark>, με συγκεκριμένο αντίτιμο για συγκεκριμένο χρόνο. Η ώρα ανά μαθητή έχει γίνει αντικείμενο αγοραπωλησίας, δηλαδή συναλλάσσεται ως εμπόρευμα και υπόκειται σε διαχείριση.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“υιοθέτηση της άμεσης δημοκρατίας κατά το ελβετικό πρότυπο”
+</div>
+<span class="context">Την ολική αναδιάρθρωση του Κοινοβουλευτικού Συστήματος, με στόχο τη σταδιακή <mark>υιοθέτηση της άμεσης δημοκρατίας κατά το ελβετικό πρότυπο</mark> που εφάρμοσε στη χώρα ο εξαίρετος Ι. Καποδίστριας.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“Ουσιαστική εκπροσώπηση του Ιδιωτικού τομέα στη διαδικασία λήψης αποφάσεων”
+</div>
+<span class="context"><mark>Ουσιαστική εκπροσώπηση του Ιδιωτικού τομέα στη διαδικασία λήψης αποφάσεων</mark> (νομοθετικών και ρυθμιστικών) που αφορούν στον Αγροτικό Τομέα</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“Την αρμοδιότητα του ελέγχου θα την έχει μόνο το Κοινοβούλιο”
+</div>
+<span class="context">Την αρμοδιότητα του ελέγχου του γραφείου θα την έχει μόνο το Κοινοβούλιο, 2 φορές κάθε έτος</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“αυστηρά κριτήρια, μετά από διαδικασία αυστηρού διαγωνισμού”
+</div>
+<span class="context">Διορισμός Δημοσίων Υπαλλήλων με <mark>αυστηρά κριτήρια, μετά από διαδικασία αυστηρού διαγωνισμού</mark> πρόσληψης και ελέγχου της ύπαρξης και εγκυρότητας όλων των απαραίτητων δικαιολογητικών</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 7</span>
+<div class="quote">
+“δυναμική δημοκρατία έναντι της στατικής”
+</div>
+<span class="context">Η «Ελληνική Λύση» προτείνει την εγκαθίδρυση δυναμικής δημοκρατίας έναντι της στατικής που ισχύει σήμερα.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“Θα θεσμοθετηθεί Συνταγματικό Δικαστήριο”
+</div>
+<span class="context">ζ. <mark>Θα θεσμοθετηθεί Συνταγματικό Δικαστήριο</mark>. Κάθε διάταξη νόμου, που θα κηρύσσεται αντισυνταγματική</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“διαφυλάξουμε τη γλώσσα, τον πολιτισμό και τη θρησκεία μας”
+</div>
+<span class="context">να πάρουμε πίσω την πατρίδα μας και να <mark>διαφυλάξουμε τη γλώσσα, τον πολιτισμό και τη θρησκεία μας</mark>!</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“Περίθαλψη των παράτυπων μεταναστών”
+</div>
+<span class="context">6. <mark>Περίθαλψη των παράτυπων μεταναστών</mark>, που δεν διαθέτουν νόμιμα έγγραφα και έχουν εισβάλει παράνομα στην Ελλάδα, μόνο εάν καταβάλουν προκαταβολικά</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 8</span>
+<div class="quote">
+“αντιμετωπίζονται ως μειονότητα”
+</div>
+<span class="context">Επέστρεψαν στην Ελλάδα ασθένειες που έχουν πλέον εξαφανιστεί από τις Δυτικές Κοινωνίες, όπως η Ελονοσία και ο Τύφος! Οι Έλληνες Πολίτες μέσα στην Ελλάδα φιμώνονται και <mark>αντιμετωπίζονται ως μειονότητα</mark>!</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“να υπερασπιστεί τα δικαιώματα των Ελλήνων πολιτών με αναπηρίες”
+</div>
+<span class="context">Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ είναι εδώ για <mark>να υπερασπιστεί τα δικαιώματα των Ελλήνων πολιτών με αναπηρίες</mark> και ειδικές ικανότητες, που τόσα χρόνια ήταν παραγκωνισμένοι από τις κυβερνήσεις και βρίσκονταν στο περιθώριο του κοινωνικού βίου.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“Κοινωνική Ένταξη, στη Μείωση της Φτώχειας και στην ουσιαστική Οικονομική Ανάπτυξη των Αγροτικών περιοχών”
+</div>
+<span class="context">Δίνουμε ιδιαίτερη έμφαση στην <mark>Κοινωνική Ένταξη, στη Μείωση της Φτώχειας και στην ουσιαστική Οικονομική Ανάπτυξη των Αγροτικών περιοχών</mark>, με έμφαση στους ακόλουθους τομείς:</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Φορολογικές ελαφρύνσεις σε όσους γεωργούς απασχολούν Έλληνες, ως εργατικό προσωπικό”
+</div>
+<span class="context"><mark>Φορολογικές ελαφρύνσεις σε όσους γεωργούς απασχολούν Έλληνες, ως εργατικό προσωπικό</mark> στις καλλιέργειές τους.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“Η προώθηση της συνεχούς βελτίωσης των περιβαλλοντικών επιδόσεων όλων των οργανισμών-επιχειρήσεων”
+</div>
+<span class="context">…<mark>Η προώθηση της συνεχούς βελτίωσης των περιβαλλοντικών επιδόσεων όλων των οργανισμών-επιχειρήσεων</mark> που εδρεύουν στην χώρα. Η φορολογική ελάφρυνση σε σχέση με άλλες επιχειρήσεις που έχουν υιοθετήσει συστήματα αποτελεσματικής και καινοτόμου περιβαλλοντικής διαχείρισης…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“τα ανθρώπινα και ατομικά δικαιώματα του πολίτη”
+</div>
+<span class="context">Οι Αρχές «Ασφάλεια και Ελευθερία» αποτελούν μέρος των ανθρωπίνων και ατομικών δικαιωμάτων του πολίτη και είναι σημαντικές για την ΕΛΛΗΝΙΚΗ ΛΥΣΗ - ενώ βασικό κριτήριο είναι τα σαφή όρια που δεν περιορίζουν τα δικαιώματα και τις υποχρεώσεις όλων των πολιτών.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ είναι εδώ για να υπερασπιστεί τα δικαιώματα των Ελλήνων πολιτών με αναπηρίες”
+</div>
+<span class="context">Το ελληνικό Κράτος ανέκαθεν ήταν ανάλγητο και αδιάφορο απέναντι στις ανάγκες των Ατόμων με Αναπηρία (ΑμεΑ). <mark>Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ είναι εδώ για να υπερασπιστεί τα δικαιώματα των Ελλήνων πολιτών με αναπηρίες</mark> και ειδικές ικανότητες, που τόσα χρόνια ήταν παραγκωνισμένοι από τις κυβερνήσεις.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“να υπερασπιστεί τα δικαιώματα των Ελλήνων πολιτών με αναπηρίες”
+</div>
+<span class="context">Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ είναι εδώ για <mark>να υπερασπιστεί τα δικαιώματα των Ελλήνων πολιτών με αναπηρίες</mark> και ειδικές ικανότητες, που τόσα χρόνια ήταν παραγκωνισμένοι</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“Δωρεάν περίθαλψη μόνο για τους νόμιμους μετανάστες”
+</div>
+<span class="context"><mark>Δωρεάν περίθαλψη μόνο για τους νόμιμους μετανάστες</mark> που αποδεδειγμένα διαθέτουν τα απαραίτητα νόμιμα έγγραφα, πράσινη κάρτα, είναι συνεπείς στις φορολογικές τους υποχρεώσεις</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“ατομικών και πολιτικών δικαιωμάτων”
+</div>
+<span class="context">εμπεριστατωμένη διδαχή της ελληνικής ιστορίας, της ελληνικής γλώσσας και των <mark>ατομικών και πολιτικών δικαιωμάτων</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 8</span>
+<div class="quote">
+“επιδιώκει την ισότιμη μεταχείρισή τους”
+</div>
+<span class="context">τα αντιμετωπίζει με τη δέουσα προσοχή και σεβασμό και <mark>επιδιώκει την ισότιμη μεταχείρισή τους</mark> διεκδικώντας τα ίδια δικαιώματα</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“κοινωφελείς, οι στρατηγικές και οι μονοπωλιακές κερδοφόρες επιχειρήσεις πρέπει να ανήκουν στο δημόσιο”
+</div>
+<span class="context">Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ πιστεύει πως οι <mark>κοινωφελείς, οι στρατηγικές και οι μονοπωλιακές κερδοφόρες επιχειρήσεις πρέπει να ανήκουν στο δημόσιο</mark>, λειτουργώντας με ιδιωτικοοικονομικά κριτήρια</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“ελεύθερα διαπραγματεύσιμες τιμές”
+</div>
+<span class="context">προσφέρουν τα προϊόντα τους σε ενδιαφερόμενους αγοραστές με <mark>ελεύθερα διαπραγματεύσιμες τιμές</mark>, ενώ η διαπραγμάτευση</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“πρόγραμμα συμβολαιακής Γεωργίας &amp; Κτηνοτροφίας των τραπεζών”
+</div>
+<span class="context">η ύπαρξη του <mark>πρόγραμμα συμβολαιακής Γεωργίας &amp; Κτηνοτροφίας των τραπεζών</mark>, στηριζόμενη και ελεγχόμενη από το κράτος</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“ανάπτυξη βιώσιμων επιχειρήσεων και η ενίσχυση”
+</div>
+<span class="context">είναι η αειφόρος <mark>ανάπτυξη βιώσιμων επιχειρήσεων και η ενίσχυση</mark> τηςανταγωνιστικότητας των επιχειρησιακών</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“μείωση της γραφειοκρατίας και παροχή κινήτρων”
+</div>
+<span class="context">Φορολογικές διευκολύνσεις, <mark>μείωση της γραφειοκρατίας και παροχή κινήτρων</mark> για την ενθάρρυνση</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“αδειοδότηση μικρών και μεσαίων επιχειρήσεων”
+</div>
+<span class="context">απλοποιήσει όλους τους όρους δόμησης και την διαδικασία έκδοσης των οικοδομικών αδειών, καθώς και όλη την κείμενη νομοθεσία για την <mark>αδειοδότηση μικρών και μεσαίων επιχειρήσεων</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“εξασφάλισης της ελεύθερης επιχειρηματικότητας για όλους”
+</div>
+<span class="context">κατανομή του εθνικού εισοδήματος μέσω της δίκαιης φορολογίας και <mark>εξασφάλισης της ελεύθερης επιχειρηματικότητας για όλους</mark>. β. Οι μισθοί κάθε είδους</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“εάν η Ελλάδα είχε ιδιωτικά Πανεπιστήμια”
+</div>
+<span class="context">Από την άλλη πλευρά, <mark>εάν η Ελλάδα είχε ιδιωτικά Πανεπιστήμια</mark> δεν θα εξοικονομούσε μόνο το συνάλλαγμα που φεύγει στο εξωτερικό, αλλά θα εισέπραττε επί πλέον από τους ξένους φοιτητές</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“υιοθέτηση ενός δίκαιου και ανταγωνιστικού με τις γύρω χώρες φορολογικού συστήματος”
+</div>
+<span class="context">ΒΑΣΙΚΕΣ ΕΝΕΡΓΕΙΕΣ Υιοθέτηση ενός δίκαιου και ανταγωνιστικού με τις γύρω χώρες φορολογικού συστήματος, παράλληλα με την ενίσχυση του ελεγκτικού μηχανισμού και τη δρομολόγηση ενός πλαισίου, φιλικού προς τις επιχειρήσεις.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“ανάκτηση της εμπιστοσύνης των Πολιτών προς την Πολιτεία”
+</div>
+<span class="context">Πρώτο μας μέλημα είναι η <mark>ανάκτηση της εμπιστοσύνης των Πολιτών προς την Πολιτεία</mark>, προς το κράτος, η οποία θα φέρει πίσω αποταμιεύσεις άνω των 100 δις €,</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“σωστή χρήση των ευρωπαϊκών προγραμμάτων για παραγωγή ιδιοπαραγόμενων ζωοτροφών”
+</div>
+<span class="context">Ενίσχυση και παροχή κινήτρων στους επαγγελματίες κτηνοτρόφους με τη <mark>σωστή χρήση των ευρωπαϊκών προγραμμάτων για παραγωγή ιδιοπαραγόμενων ζωοτροφών</mark>. Έτσι, οι κτηνοτρόφοι θα είναι αυτάρκεις και δεν θα εξαρτώνται από εισαγόμενες ζωοτροφές.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“«Η φορολογία που έχει εφαρμοστεί από όλες τις ελληνικές κυβερνήσεις μέχρι και σήμερα δείχνει πως το κράτος δεν αντιμετωπίζει την επιχείρηση ως έναν από τους βασικότερους μοχλούς ανάπτυξης της οικονομίας!»”
+</div>
+<span class="context">…Η φορολογία που έχει εφαρμοστεί από όλες τις ελληνικές κυβερνήσεις μέχρι και σήμερα δείχνει πως το κράτος δεν αντιμετωπίζει την επιχείρηση ως έναν από τους βασικότερους μοχλούς ανάπτυξης της οικονομίας! Αντιθέτως, εδώ και δεκαετίες το Κράτος, με την πολιτική που ακολουθεί, δείχνει πως «μισεί» την ιδιωτική πρωτοβουλία…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ επιδιώκει την εξυγίανση στο σύνολο της Δημόσιας Διοίκησης”
+</div>
+<span class="context">…<mark>Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ επιδιώκει την εξυγίανση στο σύνολο της Δημόσιας Διοίκησης</mark>, ώστε αυτή να καταστεί πιο ευέλικτη, λειτουργική, αποδοτική και αποτελεσματική…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“ελεύθερη επιχειρηματικότητα για όλους”
+</div>
+<span class="context">Το κράτος θα μετατραπεί σε όργανο στα χέρια της κοινωνίας για την εξυπηρέτηση του κοινωνικού συμφέροντος… και εξασφάλισης της ελεύθερης επιχειρηματικότητας για όλους.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“Η ιδιωτική εκπαίδευση στα Πανεπιστήμια είναι ένα βασικό θέμα για την Ελλάδα”
+</div>
+<span class="context"><mark>Η ιδιωτική εκπαίδευση στα Πανεπιστήμια είναι ένα βασικό θέμα για την Ελλάδα</mark>, η οποία πρέπει να παράγει πλούτο από όλους τους κλάδους της οικονομίας της για να αναπτυχθεί - σημειώνοντας πως στη Μ. Βρετανία σπούδαζαν το 2016/17 περί τους 10.000 Έλληνες.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“φιλικό προς τις επιχειρήσεις, ξένες και ελληνικές”
+</div>
+<span class="context">Την Ανάπτυξη, με έμφαση στις επενδύσεις και στην επιχειρηματικότητα, μέσα σε ένα κράτος που δεν θα είναι γραφειοκρατικά δομημένο… <mark>φιλικό προς τις επιχειρήσεις, ξένες και ελληνικές</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“κίνητρα εισόδου στις νέες επιχειρήσεις”
+</div>
+<span class="context">Αλλαγή του ρυθμιστικού πλαισίου στη βιομηχανία τροφίμων. Με αυτόν τον τρόπο δημιουργούμε <mark>κίνητρα εισόδου στις νέες επιχειρήσεις</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · mixed · chunk 3</span>
+<div class="quote">
+“αύξηση των φορολογικών συντελεστών στο εισαγόμενο”
+</div>
+<span class="context">Μείωση των αυξημένων φορολογικών συντελεστών στο 5% για το εγχώριο κρέας και <mark>αύξηση των φορολογικών συντελεστών στο εισαγόμενο</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“απλού, σταθερού και ελκυστικού φορολογικού συστήματος”
+</div>
+<span class="context">Εισαγωγή ενός <mark>απλού, σταθερού και ελκυστικού φορολογικού συστήματος</mark>, που θα παραμείνει αμετάβλητο στις βασικές του ρυθμίσεις για τουλάχιστον 10 χρόνια, ώστε να ενισχυθούν οι επενδύσεις στον τουρισμό.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“μείωση της γραφειοκρατίας και παροχή κινήτρων”
+</div>
+<span class="context">Φορολογικές διευκολύνσεις, <mark>μείωση της γραφειοκρατίας και παροχή κινήτρων</mark> για την ενθάρρυνση νέων επενδύσεων στον αγροτουρισμό</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“κίνητρα χαμηλού κόστους παραγωγής και με φοροαπαλλαγές”
+</div>
+<span class="context">με ειδικά <mark>κίνητρα χαμηλού κόστους παραγωγής και με φοροαπαλλαγές</mark> για να παραμείνουν στην χώρα και να λειτουργούν δίνοντας θέσεις εργασίας</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 7</span>
+<div class="quote">
+“ελεύθερης επιχειρηματικότητας για όλους”
+</div>
+<span class="context">δίκαιη κατανομή του εθνικού εισοδήματος μέσω της δίκαιης φορολογίας και εξασφάλισης της <mark>ελεύθερης επιχειρηματικότητας για όλους</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 8</span>
+<div class="quote">
+“Θα θεσμοθετηθεί Συνταγματικό Δικαστήριο”
+</div>
+<span class="context">ζ. <mark>Θα θεσμοθετηθεί Συνταγματικό Δικαστήριο</mark>. Κάθε διάταξη νόμου, που θα κηρύσσεται αντισυνταγματική</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“απαλλαγμένοι από την οικογενειοκρατία, τα «τζάκια» και τη διαφθορά”
+</div>
+<span class="context">Στην ΕΛΛΗΝΙΚΗ ΛΥΣΗ είμαστε <mark>απαλλαγμένοι από την οικογενειοκρατία, τα «τζάκια» και τη διαφθορά</mark>. Ακριβώς για αυτό το λόγο</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“απαλλαγμένοι από κομματικά και μικροπολιτικά συμφέροντα”
+</div>
+<span class="context">ανακούφιση των πολιτών. ΕΙΜΑΣΤΕ <mark>απαλλαγμένοι από κομματικά και μικροπολιτικά συμφέροντα</mark>. ΚΑΛΟΥΜΕ όλες τις Ελληνίδες</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“δυστυχώς οι κυβερνώντες από τη Μεταπολίτευση”
+</div>
+<span class="context">βότανα αλλά και σε super foods είναι τόσο μεγάλη, που <mark>δυστυχώς οι κυβερνώντες από τη Μεταπολίτευση</mark> και μετά, είτε αγνοούν, είτε εσκεμμένα</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“ληστρική φοροεπιδρομή του Κράτους”
+</div>
+<span class="context">γλιτώσουν οι επιχειρηματίες από την <mark>ληστρική φοροεπιδρομή του Κράτους</mark>! Η Αναπτυξιακή</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“συμφέροντα της οικονομικής”ελίτ”“
+</div>
+<span class="context">εξυπηρετεί τόσο μικροκομματικά συμφέροντα και διάφορες επαγγελματικές συντεχνίες, όσο και μεγάλα οικονομικά <mark>συμφέροντα της οικονομικής “ελίτ”</mark> και ημετέρων της</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“αντιμετώπιση της διαφθοράς και της διαπλοκής”
+</div>
+<span class="context">κόστους Η αξιοκρατική επιλογή των υπαλλήλων που στελεχώνουν τις δημόσιες υπηρεσίες Η <mark>αντιμετώπιση της διαφθοράς και της διαπλοκής</mark> στη Δημόσια Διοίκηση Οι προτάσεις</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“Όλες οι κυβερνήσεις ενδιαφέρονται μόνο για την ευημερία”
+</div>
+<span class="context">Έλληνες Πολίτες μέσα στην Ελλάδα φιμώνονται και αντιμετωπίζονται ως μειονότητα! <mark>Όλες οι κυβερνήσεις ενδιαφέρονται μόνο για την ευημερία</mark> των παράνομων μεταναστών.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“απαλλαγμένοι από την οικογενειοκρατία, τα «τζάκια» και τη διαφθορά”
+</div>
+<span class="context">Στην ΕΛΛΗΝΙΚΗ ΛΥΣΗ είμαστε <mark>απαλλαγμένοι από την οικογενειοκρατία, τα «τζάκια» και τη διαφθορά</mark>. Ακριβώς για αυτό το λόγο, είμαστε αποφασισμένοι να καταβάλουμε κάθε δυνατή προσπάθεια για να διορθώσουμε τα «κακώς κείμενα» της πολιτικής, της οικονομίας και του δημόσιου βίου, που τόσα χρόνια εμποδίζουν την ουσιαστική ανάπτυξη της Ελλάδας.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“ΕΙΜΑΣΤΕ απαλλαγμένοι από κομματικά και μικροπολιτικά συμφέροντα”
+</div>
+<span class="context"><mark>ΕΙΜΑΣΤΕ απαλλαγμένοι από κομματικά και μικροπολιτικά συμφέροντα</mark>. ΚΑΛΟΥΜΕ όλες τις Ελληνίδες και όλους τους Έλληνες να ενωθούν μαζί μας για την ΑΝΑΣΤΑΣΗ της ΕΛΛΑΔΑΣ.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“η ύπουλη πολιτική της Γερμανίας που διατηρεί τους μισθούς κάτω από την παραγωγικότητα”
+</div>
+<span class="context">Για να κατανοήσει κανείς πόσο μας επηρεάζει έμμεσα <mark>η ύπουλη πολιτική της Γερμανίας που διατηρεί τους μισθούς κάτω από την παραγωγικότητα</mark> των εργαζομένων της, οφείλει να γνωρίζει πως η πρώτη εξαγωγική αγορά μας στα ψάρια, η Ιταλία, επειδή υποφέρει η βιομηχανία της από το γερμανικό ανταγωνισμό, έχει χαμηλότερα εισοδήματα, οπότε εισάγει λιγότερα ψάρια από την Ελλάδα.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“η εκάστοτε εκλεγμένη κυβέρνηση, να ερμηνεύει ή να περιφρονεί και να καταργεί κατά το δοκούν τους νόμους”
+</div>
+<span class="context">…κατέχουμε τα πρωτεία στην εκτελεστική αυθαιρεσία, όπου <mark>η εκάστοτε εκλεγμένη κυβέρνηση, να ερμηνεύει ή να περιφρονεί και να καταργεί κατά το δοκούν τους νόμους</mark> που έχουν εκδοθεί από προηγούμενες κυβερνήσεις, με σκοπό να εξυπηρετεί τόσο μικροκομματικά συμφέροντα και διάφορες επαγγελματικές συντεχνίες…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“το κράτος θα πάψει να είναι δυνάστης της κοινωνίας και μέσο εξυπηρέτησης της κομματικής πελατείας”
+</div>
+<span class="context">(5) ΚΟΙΝΩΝΙΚΟΠΟΙΗΣΗ ΤΟΥ ΚΡΑΤΟΥΣ α. Το κράτος θα πάψει να είναι δυνάστης της κοινωνίας και μέσο εξυπηρέτησης της κομματικής πελατείας και θα μετατραπεί σε όργανο στα χέρια της κοινωνίας για την εξυπηρέτηση του κοινωνικού συμφέροντος, δηλαδή θα διασφαλίζει την ελευθερία, την κοινωνική ασφάλεια, την κοινωνική ειρήνη, την οικονομική ανάπτυξη, την κοινωνική δικαιοσύνη, την δίκαιη κατανομή του εθνικού εισοδήματος μέσω της δίκαιης φορολογίας και εξασφάλισης της ελεύθερης επιχειρηματικότητας για όλους.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“Η Ελλάδα δεν έχει ανάγκη από επαγγελματίες βουλευτές, αλλά από πατριώτες”
+</div>
+<span class="context">Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ πιστεύει πως οι Βουλευτές έχουν ύψιστη ευθύνη απέναντι στην πατρίδα και τους Πολίτες! Ο κάθε βουλευτής ασκεί λειτούργημα και όχι επάγγελμα! <mark>Η Ελλάδα δεν έχει ανάγκη από επαγγελματίες βουλευτές, αλλά από πατριώτες</mark>, που θα βάζουν το εθνικό συμφέρον πάνω από το ατομικό!</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“απαλλαγμένοι από την οικογενειοκρατία, τα «τζάκια» και τη διαφθορά”
+</div>
+<span class="context">Στην ΕΛΛΗΝΙΚΗ ΛΥΣΗ είμαστε <mark>απαλλαγμένοι από την οικογενειοκρατία, τα «τζάκια» και τη διαφθορά</mark>. Ακριβώς για αυτό το λόγο, είμαστε αποφασισμένοι να καταβάλουμε κάθε δυνατή προσπάθεια</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“εγκληματική αδιαφορία για τον Πρωτογενή Τομέα”
+</div>
+<span class="context">όλες οι Ελληνικές Κυβερνήσεις, από την μεταπολίτευση και μετά, επέδειξαν <mark>εγκληματική αδιαφορία για τον Πρωτογενή Τομέα</mark> της Ελλάδας</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 3</span>
+<div class="quote">
+“κυβερνώντες από τη Μεταπολίτευση και μετά”
+</div>
+<span class="context">δυστυχώς οι <mark>κυβερνώντες από τη Μεταπολίτευση και μετά</mark>, είτε αγνοούν, είτε εσκεμμένα δεν έχουν προωθήσει δράσεις</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · mixed · chunk 4</span>
+<div class="quote">
+“Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ ΕΙΝΑΙ ΤΟ ΜΟΝΑΔΙΚΟ ΚΟΜΜΑ”
+</div>
+<span class="context">ΜΕ ΓΝΩΜΟΝΑ ΤΟ ΕΘΝΙΚΟ ΣΥΜΦΕΡΟΝ ΚΑΙ ΤΗΝ ΕΠΑΝΕΚΚΙΝΗΣΗ ΤΗΣ ΟΙΚΟΝΟΜΙΑΣ ΕΠΙΔΙΩΚΟΥΜΕ ΝΑ ΚΑΤΑΣΤΕΙ ΞΑΝΑ Η ΕΛΛΑΔΑ ΑΥΤΑΡΚΗΣ ΚΑΙ ΙΣΧΥΡΗ!</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“αερολογίες, μη ρεαλιστικές λύσεις και προεκλογικές υποσχέσεις”
+</div>
+<span class="context">πρόκειται απλά για <mark>αερολογίες, μη ρεαλιστικές λύσεις και προεκλογικές υποσχέσεις</mark> που είναι αδύνατον να εφαρμοστούν</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“μεγάλα οικονομικά συμφέροντα της οικονομικής”ελίτ”“
+</div>
+<span class="context">να εξυπηρετεί τόσο μικροκομματικά συμφέροντα και διάφορες επαγγελματικές συντεχνίες, όσο και <mark>μεγάλα οικονομικά συμφέροντα της οικονομικής “ελίτ”</mark> και ημετέρων της, με προφανή βλάβη για το κοινωνικό και εθνικό συμφέρον</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“πελατειακών σχέσεων”
+</div>
+<span class="context">υποψηφίων και αντικειμενικών κριτηρίων, αλλά βάσει <mark>πελατειακών σχέσεων</mark>. Η συμπεριφορά των Δημόσιων Υπηρεσιών</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“Μνημονιακές Κυβερνήσεις”
+</div>
+<span class="context">εντός μιας δριμύτατης οικονομικής κρίσης που έφεραν οι <mark>Μνημονιακές Κυβερνήσεις</mark>, να αντιμετωπίσει την αποδιάρθρωση</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Στην ΕΛΛΗΝΙΚΗ ΛΥΣΗ διαθέτουμε και τα δύο, καλώντας όλες τις Ελληνίδες και τους Έλληνες να μας ακολουθήσουν”
+</div>
+<span class="context">Το μόνο που χρειάζεται είναι ένας στρατηγικός σχεδιασμός που θα στοχεύει στο εθνικό συμφέρον και ισχυρή πολιτική βούληση. <mark>Στην ΕΛΛΗΝΙΚΗ ΛΥΣΗ διαθέτουμε και τα δύο, καλώντας όλες τις Ελληνίδες και τους Έλληνες να μας ακολουθήσουν</mark>!</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“στρατηγικός σχεδιασμός που θα στοχεύει στο εθνικό συμφέρον και ισχυρή πολιτική βούληση”
+</div>
+<span class="context">Το μόνο που χρειάζεται είναι ένας <mark>στρατηγικός σχεδιασμός που θα στοχεύει στο εθνικό συμφέρον και ισχυρή πολιτική βούληση</mark>. Στην ΕΛΛΗΝΙΚΗ ΛΥΣΗ διαθέτουμε και τα δύο, καλώντας όλες τις Ελληνίδες και τους Έλληνες να μας ακολουθήσουν!</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“η στήριξη των αγροτών είναι υποχρέωση, γιατί έτσι στηρίζονται η εθνική οικονομία και η ελληνική περιφέρεια”
+</div>
+<span class="context">Για την ΕΛΛΗΝΙΚΗ ΛΥΣΗ, <mark>η στήριξη των αγροτών είναι υποχρέωση, γιατί έτσι στηρίζονται η εθνική οικονομία και η ελληνική περιφέρεια</mark>, εφόσον οι αγρότες αποτελούν βασικούς συντελεστές βιωσιμότητας της υπαίθρου.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ επιδιώκει την εξυγίανση στο σύνολο της Δημόσιας Διοίκησης”
+</div>
+<span class="context">…<mark>Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ επιδιώκει την εξυγίανση στο σύνολο της Δημόσιας Διοίκησης</mark>, ώστε αυτή να καταστεί πιο ευέλικτη, λειτουργική, αποδοτική και αποτελεσματική…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“η «Ελληνική Λύση» προτείνει την εγκαθίδρυση δυναμικής δημοκρατίας”
+</div>
+<span class="context">Η «Ελληνική Λύση» προτείνει την εγκαθίδρυση δυναμικής δημοκρατίας έναντι της στατικής που ισχύει σήμερα. Είναι η δυνατότητα που εξασφαλίζει την πρόοδο απέναντι στη συντήρηση.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 8</span>
+<div class="quote">
+“Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ πιστεύει πως οι Βουλευτές έχουν ύψιστη ευθύνη απέναντι στην πατρίδα”
+</div>
+<span class="context"><mark>Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ πιστεύει πως οι Βουλευτές έχουν ύψιστη ευθύνη απέναντι στην πατρίδα</mark> και τους Πολίτες! Ο κάθε βουλευτής ασκεί λειτούργημα και όχι επάγγελμα! Η Ελλάδα δεν έχει ανάγκη από επαγγελματίες βουλευτές, αλλά από πατριώτες, που θα βάζουν το εθνικό συμφέρον πάνω από το ατομικό!</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“ΠΥΞΙΔΑ ΜΑΣ ΤΟ ΕΘΝΙΚΟ ΣΥΜΦΕΡΟΝ”
+</div>
+<span class="context">ΕΙΜΑΣΤΕ ΔΙΑΦΟΡΕΤΙΚΟΙ ΑΠΟ ΤΟΥΣ ΑΛΛΟΥΣ ΚΑΙ ΤΟ ΑΠΟΔΕΙΚΝΥΟΥΜΕ ΕΜΠΡΑΚΤΩΣ ΜΕ ΤΟ ΠΡΟΓΡΑΜΜΑ ΔΙΑΚΥΒΕΡΝΗΣΗΣ ΜΑΣ <mark>ΠΥΞΙΔΑ ΜΑΣ ΤΟ ΕΘΝΙΚΟ ΣΥΜΦΕΡΟΝ</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“ΕΙΜΑΣΤΕ απαλλαγμένοι από κομματικά και μικροπολιτικά συμφέροντα”
+</div>
+<span class="context"><mark>ΕΙΜΑΣΤΕ απαλλαγμένοι από κομματικά και μικροπολιτικά συμφέροντα</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“η στήριξη των αγροτών είναι υποχρέωση”
+</div>
+<span class="context">Για την ΕΛΛΗΝΙΚΗ ΛΥΣΗ, <mark>η στήριξη των αγροτών είναι υποχρέωση</mark>, γιατί έτσι στηρίζονται η εθνική οικονομία</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · mixed · chunk 4</span>
+<div class="quote">
+“ΚΑΛΕΙ ΟΛΕΣ ΤΙΣ ΕΛΛΗΝΙΔΕΣ ΚΑΙ ΤΟΥΣ ΕΛΛΗΝΕΣ ΝΑ ΜΑΣ ΑΚΟΛΟΥΘΗΣΟΥΝ”
+</div>
+<span class="context">Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ <mark>ΚΑΛΕΙ ΟΛΕΣ ΤΙΣ ΕΛΛΗΝΙΔΕΣ ΚΑΙ ΤΟΥΣ ΕΛΛΗΝΕΣ ΝΑ ΜΑΣ ΑΚΟΛΟΥΘΗΣΟΥΝ</mark>, ΝΑ ΣΤΗΡΙΞΟΥΝ ΤΟ ΟΡΑΜΑ ΜΑΣ</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Εθνικό Συμφέρον και την ευημερία των Ελλήνων”
+</div>
+<span class="context">έρευνας που έχει στο επίκεντρο το <mark>Εθνικό Συμφέρον και την ευημερία των Ελλήνων</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“άμεσες και ρεαλιστικές προτάσεις - λύσεις”
+</div>
+<span class="context">η ΕΛΛΗΝΙΚΗ ΛΥΣΗ είναι εδώ για να προτείνει <mark>άμεσες και ρεαλιστικές προτάσεις - λύσεις</mark> για την αναδιοργάνωση και την αποτελεσματική λειτουργία του ΕΣΥ</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 7</span>
+<div class="quote">
+“Εθνικό συμφέρον”
+</div>
+<span class="context">Πυρήνας της εξωτερικής πολιτικής για την ΕΛΛΗΝΙΚΗ ΛΥΣΗ είναι το <mark>Εθνικό συμφέρον</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 8</span>
+<div class="quote">
+“ΠΥΞΙΔΑ ΜΑΣ ΤΟ ΕΘΝΙΚΟ ΣΥΜΦΕΡΟΝ”
+</div>
+<span class="context">ΕΙΜΑΣΤΕ ΔΙΑΦΟΡΕΤΙΚΟΙ ΑΠΟ ΤΟΥΣ ΑΛΛΟΥΣ ΚΑΙ ΤΟ ΑΠΟΔΕΙΚΝΥΟΥΜΕ ΕΜΠΡΑΚΤΩΣ ΜΕ ΤΟ ΠΡΟΓΡΑΜΜΑ ΔΙΑΚΥΒΕΡΝΗΣΗΣ ΜΑΣ <mark>ΠΥΞΙΔΑ ΜΑΣ ΤΟ ΕΘΝΙΚΟ ΣΥΜΦΕΡΟΝ</mark></span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“καταστροφικές πολιτικές των τελευταίων δεκαετιών την οδήγησαν στον βάλτο”
+</div>
+<span class="context">ΟΛΟΙ ΜΑΖΙ ΜΠΟΡΟΥΜΕ ΝΑ ΒΓΑΛΟΥΜΕ ΤΗΝ ΕΛΛΑΔΑ ΑΠΟ ΤΟΝ ΒΑΛΤΟ ΠΟΥ ΤΗΝ ΕΡΙΞΑΝ ΟΙ ΚΑΤΑΣΤΡΟΦΙΚΕΣ ΠΟΛΙΤΙΚΕΣ ΤΩΝ ΤΕΛΕΥΤΑΙΩΝ ΔΕΚΑΕΤΙΩΝ Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ ΕΧΕΙ ΤΗ ΛΥΣΗ ΓΙΑ ΝΑ ΒΓΑΛΕΙ ΤΗΝ ΕΛΛΑΔΑ ΑΠΟ ΤΟ ΤΕΛΜΑ ΤΩΝ ΜΝΗΜΟΝΙΩΝ ΤΗΣ ΥΠΑΝΑΠΤΥΞΗΣ ΚΑΙ ΤΗΣ ΟΠΙΣΘΟΔΡΟΜΗΣΗΣ.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“απαλλαγμένοι από κομματικά και μικροπολιτικά συμφέροντα”
+</div>
+<span class="context">ΕΙΜΑΣΤΕ <mark>απαλλαγμένοι από κομματικά και μικροπολιτικά συμφέροντα</mark>. ΚΑΛΟΥΜΕ όλες τις Ελληνίδες και όλους τους Έλληνες να ενωθούν μαζί μας για την ΑΝΑΣΤΑΣΗ της ΕΛΛΑΔΑΣ.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“φορολογικές ελαφρύνσεις σε όσους γεωργούς απασχολούν Έλληνες”
+</div>
+<span class="context">Φορολογικές ελαφρύνσεις σε όσους γεωργούς απασχολούν Έλληνες, ως εργατικό προσωπικό στις καλλιέργειές τους.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ πιστεύει πως η συνταγή της επίλυσης τους είναι μία και μοναδική: η παραγωγή πλούτου στην πατρίδα μας”
+</div>
+<span class="context">…Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ, γνωρίζοντας όλα αυτά τα προβλήματα, πιστεύει πως η συνταγή της επίλυσης τους είναι μία και μοναδική: η παραγωγή πλούτου στην πατρίδα μας, η οποία θα προκαλέσει την επιστροφή των νέων, θα αυξήσει τις γεννήσεις…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 7</span>
+<div class="quote">
+“δίκαιη κατανομή του εθνικού εισοδήματος μέσω της δίκαιης φορολογίας”
+</div>
+<span class="context">(5) ΚΟΙΝΩΝΙΚΟΠΟΙΗΣΗ ΤΟΥ ΚΡΑΤΟΥΣ α. Το κράτος θα πάψει να είναι δυνάστης της κοινωνίας και μέσο εξυπηρέτησης της κομματικής πελατείας και θα μετατραπεί σε όργανο στα χέρια της κοινωνίας για την εξυπηρέτηση του κοινωνικού συμφέροντος, δηλαδή θα διασφαλίζει την ελευθερία, την κοινωνική ασφάλεια, την κοινωνική ειρήνη, την οικονομική ανάπτυξη, την κοινωνική δικαιοσύνη, την <mark>δίκαιη κατανομή του εθνικού εισοδήματος μέσω της δίκαιης φορολογίας</mark> και εξασφάλισης της ελεύθερης επιχειρηματικότητας για όλους.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 8</span>
+<div class="quote">
+“Η παράνομη μετανάστευση ανέκαθεν αποτελούσε ένα «αγκάθι» για κάθε Ελληνική Κυβέρνηση.”
+</div>
+<span class="context">Το μεταναστευτικό ζήτημα είναι ένα από τα πολλά μελανά σημεία της Κυβέρνησης ΣΥΡΙΖΑ - ΑΝΕΛ, το οποίο είναι ικανό να δυναμιτίσει τα θεμέλια όχι μόνο της Ελληνικής Κοινωνίας, αλλά ολόκληρου του Ελληνικού Κράτους και του Ελληνισμού ως σύνολο! <mark>Η παράνομη μετανάστευση ανέκαθεν αποτελούσε ένα «αγκάθι» για κάθε Ελληνική Κυβέρνηση.</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Αύξηση κατά 100 € και στη συνέχεια ετήσια αναπροσαρμογή”
+</div>
+<span class="context">Κατώτατος μισθός: <mark>Αύξηση κατά 100 € και στη συνέχεια ετήσια αναπροσαρμογή</mark>, ελαφρά χαμηλότερη από την παραγωγικότητα των εργαζομένων</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“ενίσχυση του τζίρου και της ρευστότητας των μικρομεσαίων”
+</div>
+<span class="context">ο σκοπός της είναι αποκλειστικά και μόνο η δανειοδότηση της πραγματικής οικονομίας, προφανώς δε η <mark>ενίσχυση του τζίρου και της ρευστότητας των μικρομεσαίων</mark> επιχειρήσεων</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“σπάζοντας έτσι τα καρτέλ των πολυκαταστημάτων”
+</div>
+<span class="context">να διαθέτουν τα εμπορεύματά τους ΑΠΕΥΘΕΙΑΣ στους πολίτες «σπάζοντας» έτσι τα καρτέλ των πολυκαταστημάτων και τα μονοπώλια</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · mixed · chunk 4</span>
+<div class="quote">
+“κρατική ενίσχυση για την κατασκευή νέων”
+</div>
+<span class="context">Μέριμνα και <mark>κρατική ενίσχυση για την κατασκευή νέων</mark> σύγχρονων παραγωγικών μονάδων μεταποίησης αλιευτικών προϊόντων.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“Δίκαιη Κατανομή του ΑΕΠ”
+</div>
+<span class="context">υγιούς ανταγωνισμού με σεβασμό στα εργασιακά δικαιώματα, την Αύξηση και την <mark>Δίκαιη Κατανομή του ΑΕΠ</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“Δωρεάν περίθαλψη και νοσηλεία για όλους”
+</div>
+<span class="context"><mark>Δωρεάν περίθαλψη και νοσηλεία για όλους</mark> τους Έλληνες Πολίτες, ανεξαρτήτως εάν ανήκουν σε κάποιο ασφαλιστικό ταμείο ή όχι.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 7</span>
+<div class="quote">
+“δίκαιη κατανομή του εθνικού εισοδήματος”
+</div>
+<span class="context">την κοινωνική δικαιοσύνη, την <mark>δίκαιη κατανομή του εθνικού εισοδήματος</mark> μέσω της δίκαιης φορολογίας</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 8</span>
+<div class="quote">
+“ανταγωνισμός με τα δημόσια Πανεπιστήμια”
+</div>
+<span class="context">θα υπήρχε <mark>ανταγωνισμός με τα δημόσια Πανεπιστήμια</mark>, ο οποίος θα λειτουργούσε θετικά ως προς την καλυτέρευση</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“αντιμετώπιση της παράνομης μετανάστευσης και την επαναπροώθηση”
+</div>
+<span class="context">Τη λήψη μέτρων για την <mark>αντιμετώπιση της παράνομης μετανάστευσης και την επαναπροώθηση</mark> των παρανόμων μεταναστών στις χώρες</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“στόχο που θα στοχεύει στο εθνικό συμφέρον”
+</div>
+<span class="context">χρειάζεται είναι ένας στρατηγικός σχεδιασμός που θα στοχεύει στο εθνικό συμφέρον και ισχυρή πολιτική βούληση.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Φορολογικές ελαφρύνσεις σε όσους κτηνοτρόφους απασχολούν Έλληνες”
+</div>
+<span class="context">προτιμούν τα εγχώρια προϊόντα. <mark>Φορολογικές ελαφρύνσεις σε όσους κτηνοτρόφους απασχολούν Έλληνες</mark> στις κτηνοτροφικές τους μονάδες. Επαναφορά</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“απασχολούν στις μονάδες τους Έλληνες”
+</div>
+<span class="context">Φοροελαφρύνσεις σε όσους επιχειρηματίες <mark>απασχολούν στις μονάδες τους Έλληνες</mark>, ως εργαζόμενους.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“πρόσημο προς την ομόθρησκη Ρωσία”
+</div>
+<span class="context">δυνατούς τομείς ανάπτυξης του τουρισμού με <mark>πρόσημο προς την ομόθρησκη Ρωσία</mark>, όπου οι πολίτες</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“Προτεραιότητα των Ελλήνων Πολιτών”
+</div>
+<span class="context">5. <mark>Προτεραιότητα των Ελλήνων Πολιτών</mark> στις ΜΕΘ και στις νοσοκομείακές κλίνες.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 7</span>
+<div class="quote">
+“αποτροπή εισόδου και το χειρισμό παράνομων μεταναστών”
+</div>
+<span class="context">συνοροφυλακής σε ειδική διεύθυνση της ΕΛ.ΑΣ., με μοναδικό σκοπό την <mark>αποτροπή εισόδου και το χειρισμό παράνομων μεταναστών</mark>, με ειδική εκπαίδευση και εξοπλισμό</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 8</span>
+<div class="quote">
+“να διαφυλάξουμε τη γλώσσα, τον πολιτισμό και τη θρησκεία μας”
+</div>
+<span class="context">Οι προτάσεις της ΕΛΛΗΝΙΚΗΣ ΛΥΣΗΣ έχουν στο επίκεντρο το εθνικό συμφέρον και την ασφάλεια της Ελλάδας και των Ελλήνων! Οι Έλληνες πρέπει να πάρουμε πίσω την πατρίδα μας και <mark>να διαφυλάξουμε τη γλώσσα, τον πολιτισμό και τη θρησκεία μας</mark>!</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“απαλλαγμένοι από την οικογενειοκρατία, τα «τζάκια» και τη διαφθορά”
+</div>
+<span class="context">Στην ΕΛΛΗΝΙΚΗ ΛΥΣΗ είμαστε <mark>απαλλαγμένοι από την οικογενειοκρατία, τα «τζάκια» και τη διαφθορά</mark>. Ακριβώς για αυτό το λόγο, είμαστε αποφασισμένοι να καταβάλουμε κάθε δυνατή προσπάθεια για να διορθώσουμε τα «κακώς κείμενα» της πολιτικής, της οικονομίας και του δημόσιου βίου, που τόσα χρόνια εμποδίζουν την ουσιαστική ανάπτυξη της Ελλάδας.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“στρατηγικός σχεδιασμός που θα στοχεύει στο εθνικό συμφέρον”
+</div>
+<span class="context">Το μόνο που χρειάζεται είναι ένας <mark>στρατηγικός σχεδιασμός που θα στοχεύει στο εθνικό συμφέρον</mark> και ισχυρή πολιτική βούληση. Στην ΕΛΛΗΝΙΚΗ ΛΥΣΗ διαθέτουμε και τα δύο, καλώντας όλες τις Ελληνίδες και τους Έλληνες να μας ακολουθήσουν!</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“η στήριξη των αγροτών είναι υποχρέωση, γιατί έτσι στηρίζονται η εθνική οικονομία και η ελληνική περιφέρεια”
+</div>
+<span class="context">Για την ΕΛΛΗΝΙΚΗ ΛΥΣΗ, <mark>η στήριξη των αγροτών είναι υποχρέωση, γιατί έτσι στηρίζονται η εθνική οικονομία και η ελληνική περιφέρεια</mark>, εφόσον οι αγρότες αποτελούν βασικούς συντελεστές βιωσιμότητας της υπαίθρου.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ πιστεύει πως κανένας Έλληνας δεν πρέπει να στερείται το αγαθό της Υγείας”
+</div>
+<span class="context">…<mark>Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ πιστεύει πως κανένας Έλληνας δεν πρέπει να στερείται το αγαθό της Υγείας</mark>! ΠΡΟΓΡΑΜΜΑΤΙΚΕΣ ΘΕΣΕΙΣ ΤΗΣ «ΕΛΛΗΝΙΚΗΣ ΛΥΣΗΣ» ΓΙΑ ΤΟ ΔΗΜΟΓΡΑΦΙΚΟ ΚΑΙ ΤΟ ΑΣΦΑΛΙΣΤΙΚΟ…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“η «Ελληνική Λύση» προτείνει την εγκαθίδρυση δυναμικής δημοκρατίας”
+</div>
+<span class="context">Η «Ελληνική Λύση» προτείνει την εγκαθίδρυση δυναμικής δημοκρατίας έναντι της στατικής που ισχύει σήμερα. Είναι η δυνατότητα που εξασφαλίζει την πρόοδο απέναντι στη συντήρηση.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“Η Ελλάδα δεν έχει ανάγκη από επαγγελματίες βουλευτές, αλλά από πατριώτες”
+</div>
+<span class="context">Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ πιστεύει πως οι Βουλευτές έχουν ύψιστη ευθύνη απέναντι στην πατρίδα και τους Πολίτες! Ο κάθε βουλευτής ασκεί λειτούργημα και όχι επάγγελμα! <mark>Η Ελλάδα δεν έχει ανάγκη από επαγγελματίες βουλευτές, αλλά από πατριώτες</mark>, που θα βάζουν το εθνικό συμφέρον πάνω από το ατομικό!</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“να πάρουμε πίσω την πατρίδα μας”
+</div>
+<span class="context">Οι Έλληνες πρέπει <mark>να πάρουμε πίσω την πατρίδα μας</mark> και να διαφυλάξουμε τη γλώσσα, τον πολιτισμό και τη θρησκεία μας!</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“στρατηγικός σχεδιασμός που θα στοχεύει στο εθνικό συμφέρον”
+</div>
+<span class="context">Το μόνο που χρειάζεται είναι ένας <mark>στρατηγικός σχεδιασμός που θα στοχεύει στο εθνικό συμφέρον</mark> και ισχυρή πολιτική βούληση</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“Φορολογικές ελαφρύνσεις σε όσους κτηνοτρόφους απασχολούν Έλληνες”
+</div>
+<span class="context"><mark>Φορολογικές ελαφρύνσεις σε όσους κτηνοτρόφους απασχολούν Έλληνες</mark> στις κτηνοτροφικές τους μονάδες.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“Φοροελαφρύνσεις σε όσους επιχειρηματίες απασχολούν στις μονάδες τους Έλληνες”
+</div>
+<span class="context"><mark>Φοροελαφρύνσεις σε όσους επιχειρηματίες απασχολούν στις μονάδες τους Έλληνες</mark>, ως εργαζόμενους.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“ομόθρησκη Ρωσία”
+</div>
+<span class="context">έχει προτάσεις σ’ όλους τους δυνατούς τομείς ανάπτυξης του τουρισμού με πρόσημο προς την <mark>ομόθρησκη Ρωσία</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“Προτεραιότητα των Ελλήνων Πολιτών στις ΜΕΘ”
+</div>
+<span class="context"><mark>Προτεραιότητα των Ελλήνων Πολιτών στις ΜΕΘ</mark> και στις νοσοκομειακές κλίνες.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“κατάργηση κυρίαρχων εθνικών κρατών”
+</div>
+<span class="context">η παγκοσμιοποίηση, η οποία επί της ουσίας στοχεύει την <mark>κατάργηση κυρίαρχων εθνικών κρατών</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“παράνομη μετανάστευση”
+</div>
+<span class="context">Η <mark>παράνομη μετανάστευση</mark> ανέκαθεν αποτελούσε ένα «αγκάθι» για κάθε Ελληνική Κυβέρνηση</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“αντιμετώπιση της παράνομης μετανάστευσης και την επαναπροώθηση”
+</div>
+<span class="context">Τη λήψη μέτρων για την <mark>αντιμετώπιση της παράνομης μετανάστευσης και την επαναπροώθηση</mark> των παρανόμων μεταναστών στις χώρες</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“στόχο που θα στοχεύει στο εθνικό συμφέρον”
+</div>
+<span class="context">χρειάζεται είναι ένας στρατηγικός σχεδιασμός που θα στοχεύει στο εθνικό συμφέρον και ισχυρή πολιτική βούληση.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Φορολογικές ελαφρύνσεις σε όσους κτηνοτρόφους απασχολούν Έλληνες”
+</div>
+<span class="context">προτιμούν τα εγχώρια προϊόντα. <mark>Φορολογικές ελαφρύνσεις σε όσους κτηνοτρόφους απασχολούν Έλληνες</mark> στις κτηνοτροφικές τους μονάδες. Επαναφορά</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“απασχολούν στις μονάδες τους Έλληνες”
+</div>
+<span class="context">Φοροελαφρύνσεις σε όσους επιχειρηματίες <mark>απασχολούν στις μονάδες τους Έλληνες</mark>, ως εργαζόμενους.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“πρόσημο προς την ομόθρησκη Ρωσία”
+</div>
+<span class="context">δυνατούς τομείς ανάπτυξης του τουρισμού με <mark>πρόσημο προς την ομόθρησκη Ρωσία</mark>, όπου οι πολίτες</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“Προτεραιότητα των Ελλήνων Πολιτών”
+</div>
+<span class="context">5. <mark>Προτεραιότητα των Ελλήνων Πολιτών</mark> στις ΜΕΘ και στις νοσοκομείακές κλίνες.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 7</span>
+<div class="quote">
+“αποτροπή εισόδου και το χειρισμό παράνομων μεταναστών”
+</div>
+<span class="context">συνοροφυλακής σε ειδική διεύθυνση της ΕΛ.ΑΣ., με μοναδικό σκοπό την <mark>αποτροπή εισόδου και το χειρισμό παράνομων μεταναστών</mark>, με ειδική εκπαίδευση και εξοπλισμό</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 8</span>
+<div class="quote">
+“να διαφυλάξουμε τη γλώσσα, τον πολιτισμό και τη θρησκεία μας”
+</div>
+<span class="context">Οι προτάσεις της ΕΛΛΗΝΙΚΗΣ ΛΥΣΗΣ έχουν στο επίκεντρο το εθνικό συμφέρον και την ασφάλεια της Ελλάδας και των Ελλήνων! Οι Έλληνες πρέπει να πάρουμε πίσω την πατρίδα μας και <mark>να διαφυλάξουμε τη γλώσσα, τον πολιτισμό και τη θρησκεία μας</mark>!</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Οι Έλληνες πρέπει να πάρουμε πίσω την πατρίδα μας και να διαφυλάξουμε τη γλώσσα, τον πολιτισμό και τη θρησκεία μας”
+</div>
+<span class="context">Οι προτάσεις της ΕΛΛΗΝΙΚΗΣ ΛΥΣΗΣ για την αντιμετώπιση της παράνομης μετανάστευσης έχουν στο επίκεντρο το εθνικό συμφέρον και την ασφάλεια της Ελλάδας και των Ελλήνων! <mark>Οι Έλληνες πρέπει να πάρουμε πίσω την πατρίδα μας και να διαφυλάξουμε τη γλώσσα, τον πολιτισμό και τη θρησκεία μας</mark>!</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“στρατηγικός σχεδιασμός που θα στοχεύει στο εθνικό συμφέρον”
+</div>
+<span class="context">Το μόνο που χρειάζεται είναι ένας <mark>στρατηγικός σχεδιασμός που θα στοχεύει στο εθνικό συμφέρον</mark> και ισχυρή πολιτική βούληση. Στην ΕΛΛΗΝΙΚΗ ΛΥΣΗ διαθέτουμε και τα δύο, καλώντας όλες τις Ελληνίδες και τους Έλληνες να μας ακολουθήσουν!</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“μείωση των αυξημένων φορολογικών συντελεστών στο 5% για το εγχώριο κρέας και αύξηση των φορολογικών συντελεστών στο εισαγόμενο”
+</div>
+<span class="context">Μείωση των αυξημένων φορολογικών συντελεστών στο 5% για το εγχώριο κρέας και αύξηση των φορολογικών συντελεστών στο εισαγόμενο όπου τυχόν επιτρέπεται από την ΕΕ, ώστε οι Έλληνες καταναλωτές να προτιμούν τα εγχώρια προϊόντα.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“Προτεραιότητα των Ελλήνων Πολιτών στις ΜΕΘ και στις νοσοκομειακές κλίνες”
+</div>
+<span class="context">…4. Δωρεάν περίθαλψη μόνο για τους νόμιμους μετανάστες που αποδεδειγμένα διαθέτουν τα απαραίτητα νόμιμα έγγραφα… 5. <mark>Προτεραιότητα των Ελλήνων Πολιτών στις ΜΕΘ και στις νοσοκομειακές κλίνες</mark>… 6. Περίθαλψη των παράτυπων μεταναστών… μόνο εάν καταβάλουν προκαταβολικά το συνολικό ποσό…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“Ελληνοκεντρική εξωτερική πολιτική, με ευελιξία, χωρίς δογματισμούς”
+</div>
+<span class="context">Η πολυμερής διπλωματία αποτελεί την πλέον σύγχρονη και ραγδαία αναπτυσσόμενη τάση στην εξωτερική πολιτική… Η Ελληνική Λύση επιθυμεί <mark>Ελληνοκεντρική εξωτερική πολιτική, με ευελιξία, χωρίς δογματισμούς</mark> στις Γεωπολιτικές και Στρατηγικές συμμαχίες.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 8</span>
+<div class="quote">
+“Η αλλοίωση της γλώσσας, της Θρησκείας, των Παραδόσεων, των Αξιών μας”
+</div>
+<span class="context"><mark>Η αλλοίωση της γλώσσας, της Θρησκείας, των Παραδόσεων, των Αξιών μας</mark> και γενικά του Ελληνισμού, είναι ζήτημα χρόνου. Όσο παραμένει στην εξουσία αυτή η επικίνδυνη συγκυβέρνηση, ο χρόνος αυτός πλησιάζει όλο και πιο σύντομα!</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Οι Έλληνες Πολίτες τείνουν να γίνουν μειονότητα”
+</div>
+<span class="context">Τα τελευταία χρόνια, οι Έλληνες Πολίτες τείνουν να γίνουν μειονότητα μέσα στην Ελλάδα! Οι προτάσεις της ΕΛΛΗΝΙΚΗΣ ΛΥΣΗΣ για την αντιμετώπιση της παράνομης μετανάστευσης</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Ελλάδα αυτάρκη, ισχυρή, ανεξάρτητη”
+</div>
+<span class="context">να δημιουργήσουμε μια <mark>Ελλάδα αυτάρκη, ισχυρή, ανεξάρτητη</mark> και οικονομικά εύρωστη</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“Φορολογικές ελαφρύνσεις σε όσους κτηνοτρόφους απασχολούν Έλληνες”
+</div>
+<span class="context"><mark>Φορολογικές ελαφρύνσεις σε όσους κτηνοτρόφους απασχολούν Έλληνες</mark> στις κτηνοτροφικές τους μονάδες.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“Φοροελαφρύνσεις σε όσους επιχειρηματίες απασχολούν”
+</div>
+<span class="context"><mark>Φοροελαφρύνσεις σε όσους επιχειρηματίες απασχολούν</mark> στις μονάδες τους Έλληνες, ως εργαζόμενους.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“ομόθρησκη Ρωσία”
+</div>
+<span class="context">έχει προτάσεις σ’ όλους τους δυνατούς τομείς ανάπτυξης του τουρισμού με πρόσημο προς την <mark>ομόθρησκη Ρωσία</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“Προτεραιότητα των Ελλήνων Πολιτών στις ΜΕΘ”
+</div>
+<span class="context"><mark>Προτεραιότητα των Ελλήνων Πολιτών στις ΜΕΘ</mark> και στις νοσοκομειακές κλίνες.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“χιλιάδων μεταναστών, των σύγχρονων εγκληματιών”
+</div>
+<span class="context">εσωτερική ασπίδα ασφαλείας των Ελλήνων Πολιτών έναντι των <mark>χιλιάδων μεταναστών, των σύγχρονων εγκληματιών</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“αλλοίωση της γλώσσας, της Θρησκείας, των Παραδόσεων”
+</div>
+<span class="context">Η <mark>αλλοίωση της γλώσσας, της Θρησκείας, των Παραδόσεων</mark>, των Αξιών μας και γενικά του Ελληνισμού, είναι ζήτημα χρόνου</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“καταστροφικές πολιτικές των τελευταίων δεκαετιών την οδήγησαν στον βάλτο”
+</div>
+<span class="context">Όμως, οι <mark>καταστροφικές πολιτικές των τελευταίων δεκαετιών την οδήγησαν στον βάλτο</mark> του δανεισμού, της υπερχρέωσης</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“επέδειξαν εγκληματική αδιαφορία για τον Πρωτογενή”
+</div>
+<span class="context">μετά, <mark>επέδειξαν εγκληματική αδιαφορία για τον Πρωτογενή</mark> Τομέα της Ελλάδας, φτάνοντας στο</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“«σπάζοντας» έτσι τα καρτέλ των πολυκαταστημάτων”
+</div>
+<span class="context">θα μπορούν να διαθέτουν τα εμπορεύματά τους ΑΠΕΥΘΕΙΑΣ στους πολίτες <mark>«σπάζοντας» έτσι τα καρτέλ των πολυκαταστημάτων</mark> και τα μονοπώλια μερικών super markets</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“Κράτος… δείχνει πως «μισεί» την ιδιωτική πρωτοβουλία”
+</div>
+<span class="context">δεκαετίες το Κράτος, με την πολιτική που ακολουθεί, δείχνει πως «μισεί» την ιδιωτική πρωτοβουλία, τις επιχειρήσεις</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“εξοντωτική πολιτική των μνημονίων”
+</div>
+<span class="context">Εκτός αυτού είναι φανερό το πρόβλημα του ασφαλιστικού, επίσης λόγω του υψηλού δείκτη εξάρτησης, οπότε η επίλυση του, όσο δεν καλυτερεύει ο δείκτης αυτός, είναι κάτι περισσότερο από ουτοπική. Επί πλέον επιβάλλεται στην Ελλάδα η <mark>εξοντωτική πολιτική των μνημονίων</mark>, η οποία δεν επιτρέπει ελπίδες</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“λαοί απροστάτευτοι και στην ουσία και εκτεθειμένοι”
+</div>
+<span class="context">ελέγχει τις αντιπροσωπευτικές κυβερνήσεις και μέσω αυτού του ελέγχου να μένουν οι <mark>λαοί απροστάτευτοι και στην ουσία και εκτεθειμένοι</mark>, δεν έχουν νόημα. Η «Ελληνική</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“αυτή η επικίνδυνη συγκυβέρνηση”
+</div>
+<span class="context">της γλώσσας, της Θρησκείας, των Παραδόσεων, των Αξιών μας και γενικά του Ελληνισμού, είναι ζήτημα χρόνου. Όσο παραμένει στην εξουσία <mark>αυτή η επικίνδυνη συγκυβέρνηση</mark>, ο χρόνος αυτός πλησιάζει όλο και πιο σύντομα!</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“καταστροφικές πολιτικές των τελευταίων δεκαετιών την οδήγησαν στον βάλτο”
+</div>
+<span class="context">ΟΛΟΙ ΜΑΖΙ ΜΠΟΡΟΥΜΕ ΝΑ ΒΓΑΛΟΥΜΕ ΤΗΝ ΕΛΛΑΔΑ ΑΠΟ ΤΟΝ ΒΑΛΤΟ ΠΟΥ ΤΗΝ ΕΡΙΞΑΝ ΟΙ ΚΑΤΑΣΤΡΟΦΙΚΕΣ ΠΟΛΙΤΙΚΕΣ ΤΩΝ ΤΕΛΕΥΤΑΙΩΝ ΔΕΚΑΕΤΙΩΝ Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ ΕΧΕΙ ΤΗ ΛΥΣΗ ΓΙΑ ΝΑ ΒΓΑΛΕΙ ΤΗΝ ΕΛΛΑΔΑ ΑΠΟ ΤΟ ΤΕΛΜΑ ΤΩΝ ΜΝΗΜΟΝΙΩΝ ΤΗΣ ΥΠΑΝΑΠΤΥΞΗΣ ΚΑΙ ΤΗΣ ΟΠΙΣΘΟΔΡΟΜΗΣΗΣ.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“να δημιουργήσουμε μια Ελλάδα αυτάρκη, ισχυρή, ανεξάρτητη και οικονομικά εύρωστη”
+</div>
+<span class="context">ΚΑΛΟΥΜΕ όλες τις Ελληνίδες και όλους τους Έλληνες να ενωθούν μαζί μας για την ΑΝΑΣΤΑΣΗ της ΕΛΛΑΔΑΣ. Ελάτε μαζί μας, <mark>να δημιουργήσουμε μια Ελλάδα αυτάρκη, ισχυρή, ανεξάρτητη και οικονομικά εύρωστη</mark> Οι Έλληνες ΜΠΟΡΟΥΜΕ και ΠΡΕΠΕΙ να πάρουμε ξανά τη χώρα στα χέρια μας!</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“η ύπουλη πολιτική της Γερμανίας που διατηρεί τους μισθούς κάτω από την παραγωγικότητα”
+</div>
+<span class="context">Για να κατανοήσει κανείς πόσο μας επηρεάζει έμμεσα <mark>η ύπουλη πολιτική της Γερμανίας που διατηρεί τους μισθούς κάτω από την παραγωγικότητα</mark> των εργαζομένων της, οφείλει να γνωρίζει πως η πρώτη εξαγωγική αγορά μας στα ψάρια, η Ιταλία, επειδή υποφέρει η βιομηχανία της από το γερμανικό ανταγωνισμό, έχει χαμηλότερα εισοδήματα, οπότε εισάγει λιγότερα ψάρια από την Ελλάδα.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ πιστεύει πως κανένας Έλληνας δεν πρέπει να στερείται το αγαθό της Υγείας”
+</div>
+<span class="context">…<mark>Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ πιστεύει πως κανένας Έλληνας δεν πρέπει να στερείται το αγαθό της Υγείας</mark>! ΠΡΟΓΡΑΜΜΑΤΙΚΕΣ ΘΕΣΕΙΣ ΤΗΣ «ΕΛΛΗΝΙΚΗΣ ΛΥΣΗΣ» ΓΙΑ ΤΟ ΔΗΜΟΓΡΑΦΙΚΟ ΚΑΙ ΤΟ ΑΣΦΑΛΙΣΤΙΚΟ…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 7</span>
+<div class="quote">
+“το πολιτικό σύστημα, οδήγησε τη χώρα και το λαό στη χρεοκοπία”
+</div>
+<span class="context">Το πολιτικό σύστημα της μεταπολίτευσης, το οποίο ισχύει από το 1974 μέχρι σήμερα, ονομάζεται «Τρίτη Ελληνική Δημοκρατία». Αυτό το πολιτικό σύστημα προπαγανδίζεται από τους παράγοντες του συστήματος ως η καλύτερη δημοκρατία που γνώρισε η Ελλάδα. Όμως, όπως όλοι γνωρίζουμε, αυτό <mark>το πολιτικό σύστημα, οδήγησε τη χώρα και το λαό στη χρεοκοπία</mark>, ή έστω, αν μη τι άλλο, δεν στάθηκε ικανό να την αποτρέψει.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“Η Ελλάδα στο μεταναστευτικό ζήτημα είναι μόνη της!”
+</div>
+<span class="context">Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ καλεί όλους τους Έλληνες να την ακολουθήσουν προτού να είναι πολύ αργά για την πατρίδα μας! <mark>Η Ελλάδα στο μεταναστευτικό ζήτημα είναι μόνη της!</mark> Δεν έχει τη στήριξη κανενός, ούτε φυσικά των Ευρωπαίων Εταίρων!</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“το ΡSΙ αποτελεί ένα πολύ μεγάλο έγκλημα”
+</div>
+<span class="context">Ότι <mark>το ΡSΙ αποτελεί ένα πολύ μεγάλο έγκλημα</mark>, αφού μέσω αυτού υποθηκεύθηκε ολόκληρη η χώρα, έχασε τη δυνατότητα της ενδεχόμενης επιστροφής</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“κανένα από τα μνημονιακά κόμματα”
+</div>
+<span class="context">Πρόκειται για λύσεις που <mark>κανένα από τα μνημονιακά κόμματα</mark> δεν είχε την πολιτική βούληση, την τόλμη και την αποφασιστικότητα να προτείνει</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“ύπουλη πολιτική της Γερμανίας”
+</div>
+<span class="context">να κατανοήσει κανείς πόσο μας επηρεάζει έμμεσα η <mark>ύπουλη πολιτική της Γερμανίας</mark> που διατηρεί τους μισθούς κάτω</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · mixed · chunk 4</span>
+<div class="quote">
+“ΜΟΝΑΔΙΚΟ ΚΟΜΜΑ ΠΟΥ ΜΠΟΡΕΙ ΝΑ ΠΡΟΣΦΕΡΕΙ ΡΕΑΛΙΣΤΙΚΕΣ”
+</div>
+<span class="context">Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ ΕΙΝΑΙ ΤΟ <mark>ΜΟΝΑΔΙΚΟ ΚΟΜΜΑ ΠΟΥ ΜΠΟΡΕΙ ΝΑ ΠΡΟΣΦΕΡΕΙ ΡΕΑΛΙΣΤΙΚΕΣ</mark> ΚΑΙ ΑΜΕΣΑ ΥΛΟΠΟΙΗΣΙΜΕΣ ΛΥΣΕΙΣ ΓΙΑ ΤΗΝ ΕΛΛΑΔΑ!</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“«εχθρική» πολιτική όλων των ελληνικών κυβερνήσεων”
+</div>
+<span class="context">δοκιμάζεται από: την εσωτερική οικονομική κρίση, την <mark>«εχθρική» πολιτική όλων των ελληνικών κυβερνήσεων</mark>, από τη μεταπολίτευση</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“τα οικονομικά συμφέροντα της οικονομικής ελίτ”
+</div>
+<span class="context">σκόπιμα <mark>τα οικονομικά συμφέροντα της οικονομικής ελίτ</mark> της χώρας κρατάει σε ομηρία την εκάστοτε εξαρτημένη ελληνική κυβέρνηση</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“οδήγησε τη χώρα και το λαό στη χρεοκοπία”
+</div>
+<span class="context">αυτό το πολιτικό σύστημα, <mark>οδήγησε τη χώρα και το λαό στη χρεοκοπία</mark>, ή έστω, αν μη τι άλλο</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“επικίνδυνη συγκυβέρνηση”
+</div>
+<span class="context">Όσο παραμένει στην εξουσία αυτή η <mark>επικίνδυνη συγκυβέρνηση</mark>, ο χρόνος αυτός πλησιάζει όλο και πιο σύντομα</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“αποκατάσταση της εμπιστοσύνης των Πολιτών προς την Πολιτεία”
+</div>
+<span class="context">Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ έχει ως πρώτη προτεραιότητα της την <mark>αποκατάσταση της εμπιστοσύνης των Πολιτών προς την Πολιτεία</mark>. Μεταξύ άλλων</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“να πάρουμε ξανά τη χώρα στα χέρια μας”
+</div>
+<span class="context">εύρωστη Οι Έλληνες ΜΠΟΡΟΥΜΕ και ΠΡΕΠΕΙ <mark>να πάρουμε ξανά τη χώρα στα χέρια μας</mark>! Το μόνο που χρειάζεται είναι</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“να γίνει κατανοητό στον Έλληνη Πολίτη”
+</div>
+<span class="context">Αναλυτικά, προκειμένου <mark>να γίνει κατανοητό στον Έλληνη Πολίτη</mark>, πώς και γιατί, μπορεί με την καλλιέργεια</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“ΚΑΛΕΙ ΟΛΕΣ ΤΙΣ ΕΛΛΗΝΙΔΕΣ ΚΑΙ ΤΟΥΣ ΕΛΛΗΝΕΣ”
+</div>
+<span class="context">Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ <mark>ΚΑΛΕΙ ΟΛΕΣ ΤΙΣ ΕΛΛΗΝΙΔΕΣ ΚΑΙ ΤΟΥΣ ΕΛΛΗΝΕΣ</mark> ΝΑ ΜΑΣ ΑΚΟΛΟΥΘΗΣΟΥΝ</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“ευημερία των Ελλήνων”
+</div>
+<span class="context">επίκεντρο το Εθνικό Συμφέρον και την <mark>ευημερία των Ελλήνων</mark>! Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“να μην στερείται κανένας Έλληνας”
+</div>
+<span class="context">αποτελεσματική λειτουργία του ΕΣΥ, ώστε <mark>να μην στερείται κανένας Έλληνας</mark> το αγαθό της Υγείας!</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“συμμετοχή του Ελληνικού Λαού στη διαμόρφωσή”
+</div>
+<span class="context">να είναι αποκλειστική αρμοδιότητα του πολιτικού προσωπικού και προτείνει τη <mark>συμμετοχή του Ελληνικού Λαού στη διαμόρφωσή</mark> του. Η παγκοσμιοποίηση, η οποία</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“Οι Έλληνες πρέπει να αντισταθούν και να αντιδράσουν”
+</div>
+<span class="context">Όσο παραμένει στην εξουσία αυτή η επικίνδυνη συγκυβέρνηση, ο χρόνος αυτός πλησιάζει όλο και πιο σύντομα! <mark>Οι Έλληνες πρέπει να αντισταθούν και να αντιδράσουν</mark> για να κερδίσουν πίσω την Πατρίδα τους!</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Οι Έλληνες ΜΠΟΡΟΥΜΕ και ΠΡΕΠΕΙ να πάρουμε ξανά τη χώρα στα χέρια μας”
+</div>
+<span class="context">Ελάτε μαζί μας, να δημιουργήσουμε μια Ελλάδα αυτάρκη, ισχυρή, ανεξάρτητη και οικονομικά εύρωστη <mark>Οι Έλληνες ΜΠΟΡΟΥΜΕ και ΠΡΕΠΕΙ να πάρουμε ξανά τη χώρα στα χέρια μας</mark>! Το μόνο που χρειάζεται είναι ένας στρατηγικός σχεδιασμός που θα στοχεύει στο εθνικό συμφέρον και ισχυρή πολιτική βούληση.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“ΚΑΛΟΥΜΕ όλες τις Ελληνίδες και όλους τους Έλληνες να ενωθούν μαζί μας”
+</div>
+<span class="context">ΕΙΜΑΣΤΕ απαλλαγμένοι από κομματικά και μικροπολιτικά συμφέροντα. <mark>ΚΑΛΟΥΜΕ όλες τις Ελληνίδες και όλους τους Έλληνες να ενωθούν μαζί μας</mark> για την ΑΝΑΣΤΑΣΗ της ΕΛΛΑΔΑΣ.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“οι αγρότες είναι σκληρά εργαζόμενοι και μάλιστα υπό αντίξοες συνθήκες”
+</div>
+<span class="context">Άλλωστε δεν πρέπει να ξεχνάμε πως <mark>οι αγρότες είναι σκληρά εργαζόμενοι και μάλιστα υπό αντίξοες συνθήκες</mark> και το εισόδημά τους εξαρτάται μονίμως από τις καιρικές συνθήκες.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“να διευκολύνει την καθημερινότητα των Ελλήνων”
+</div>
+<span class="context">…στη βελτίωση της καθημερινότητας των Ελλήνων, στη μείωση της ανεργίας, στην εκμετάλλευση του επιστημονικού δυναμικού που διαθέτει η χώρα και τελικά, στην παροχή φθηνής ενέργειας για όλους τους Έλληνες…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“οι εξουσίες ασκούνται (και θα ασκούνται) από το λαό”
+</div>
+<span class="context">(1) ΜΟΡΦΗ ΠΟΛΙΤΕΥΜΑΤΟΣ α. Το χρεοκοπημένο πρωθυπουργοκεντρικό υπερσυγκεντρωτικό πολίτευμα που έχουμε τώρα θα αλλάξει και αρμόδιος για να το κάνει αυτό είναι το ανώτατο κυρίαρχο όργανο του Κράτους, δηλαδή ο ίδιος ο λαός. β. Θα οριστεί ότι <mark>οι εξουσίες ασκούνται (και θα ασκούνται) από το λαό</mark> και όχι απλά ότι υπάρχουν υπέρ αυτού, όπως είναι τώρα.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“Ο κάθε βουλευτής ασκεί λειτούργημα και όχι επάγγελμα!”
+</div>
+<span class="context">Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ πιστεύει πως οι Βουλευτές έχουν ύψιστη ευθύνη απέναντι στην πατρίδα και τους Πολίτες! <mark>Ο κάθε βουλευτής ασκεί λειτούργημα και όχι επάγγελμα!</mark> Η Ελλάδα δεν έχει ανάγκη από επαγγελματίες βουλευτές, αλλά από πατριώτες, που θα βάζουν το εθνικό συμφέρον πάνω από το ατομικό!</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“ΟΛΟΙ ΜΑΖΙ ΜΠΟΡΟΥΜΕ ΝΑ ΒΓΑΛΟΥΜΕ ΤΗΝ ΕΛΛΑΔΑ”
+</div>
+<span class="context"><mark>ΟΛΟΙ ΜΑΖΙ ΜΠΟΡΟΥΜΕ ΝΑ ΒΓΑΛΟΥΜΕ ΤΗΝ ΕΛΛΑΔΑ</mark> ΑΠΟ ΤΟΝ ΒΑΛΤΟ ΠΟΥ ΤΗΝ ΕΡΙΞΑΝ ΟΙ ΚΑΤΑΣΤΡΟΦΙΚΕΣ ΠΟΛΙΤΙΚΕΣ ΤΩΝ ΤΕΛΕΥΤΑΙΩΝ ΔΕΚΑΕΤΙΩΝ</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“ΚΑΛΟΥΜΕ όλες τις Ελληνίδες και όλους τους Έλληνες”
+</div>
+<span class="context"><mark>ΚΑΛΟΥΜΕ όλες τις Ελληνίδες και όλους τους Έλληνες</mark> να ενωθούν μαζί μας για την ΑΝΑΣΤΑΣΗ της ΕΛΛΑΔΑΣ</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“η στήριξη των κτηνοτρόφων είναι υποχρέωση”
+</div>
+<span class="context">Για την ΕΛΛΗΝΙΚΗ ΛΥΣΗ, <mark>η στήριξη των κτηνοτρόφων είναι υποχρέωση</mark>, γιατί έτσι στηρίζονται η εθνική οικονομία</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“ΚΑΛΕΙ ΟΛΕΣ ΤΙΣ ΕΛΛΗΝΙΔΕΣ ΚΑΙ ΤΟΥΣ ΕΛΛΗΝΕΣ”
+</div>
+<span class="context">Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ <mark>ΚΑΛΕΙ ΟΛΕΣ ΤΙΣ ΕΛΛΗΝΙΔΕΣ ΚΑΙ ΤΟΥΣ ΕΛΛΗΝΕΣ</mark> ΝΑ ΜΑΣ ΑΚΟΛΟΥΘΗΣΟΥΝ, ΝΑ ΣΤΗΡΙΞΟΥΝ ΤΟ ΟΡΑΜΑ ΜΑΣ</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“ευημερία των Ελλήνων”
+</div>
+<span class="context">έρευνας που έχει στο επίκεντρο το Εθνικό Συμφέρον και την <mark>ευημερία των Ελλήνων</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“κανένας Έλληνας δεν πρέπει να στερείται”
+</div>
+<span class="context">Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ πιστεύει πως <mark>κανένας Έλληνας δεν πρέπει να στερείται</mark> το αγαθό της Υγείας!</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“ο ίδιος ο λαός”
+</div>
+<span class="context">αρμόδιος για να το κάνει αυτό είναι το ανώτατο κυρίαρχο όργανο του Κράτους, δηλαδή <mark>ο ίδιος ο λαός</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“Οι Έλληνες πρέπει να πάρουμε πίσω την πατρίδα μας”
+</div>
+<span class="context"><mark>Οι Έλληνες πρέπει να πάρουμε πίσω την πατρίδα μας</mark> και να διαφυλάξουμε τη γλώσσα, τον πολιτισμό και τη θρησκεία μας</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“απαλλαγμένοι από την οικογενειοκρατία, τα «τζάκια» και τη διαφθορά”
+</div>
+<span class="context">Στην ΕΛΛΗΝΙΚΗ ΛΥΣΗ είμαστε <mark>απαλλαγμένοι από την οικογενειοκρατία, τα «τζάκια» και τη διαφθορά</mark>. Ακριβώς για αυτό το λόγο</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“να πάρουμε ξανά τη χώρα στα χέρια μας”
+</div>
+<span class="context">εύρωστη Οι Έλληνες ΜΠΟΡΟΥΜΕ και ΠΡΕΠΕΙ <mark>να πάρουμε ξανά τη χώρα στα χέρια μας</mark>! Το μόνο που χρειάζεται είναι</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“«σπάζοντας» έτσι τα καρτέλ των πολυκαταστημάτων”
+</div>
+<span class="context">θα μπορούν να διαθέτουν τα εμπορεύματά τους ΑΠΕΥΘΕΙΑΣ στους πολίτες <mark>«σπάζοντας» έτσι τα καρτέλ των πολυκαταστημάτων</mark> και τα μονοπώλια μερικών super markets</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“ΚΑΛΕΙ ΟΛΕΣ ΤΙΣ ΕΛΛΗΝΙΔΕΣ ΚΑΙ ΤΟΥΣ ΕΛΛΗΝΕΣ”
+</div>
+<span class="context">Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ <mark>ΚΑΛΕΙ ΟΛΕΣ ΤΙΣ ΕΛΛΗΝΙΔΕΣ ΚΑΙ ΤΟΥΣ ΕΛΛΗΝΕΣ</mark> ΝΑ ΜΑΣ ΑΚΟΛΟΥΘΗΣΟΥΝ</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“ληστρική φοροεπιδρομή του Κράτους”
+</div>
+<span class="context">γλιτώσουν οι επιχειρηματίες από την <mark>ληστρική φοροεπιδρομή του Κράτους</mark>! Η Αναπτυξιακή</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“συμφέροντα της οικονομικής”ελίτ”“
+</div>
+<span class="context">εξυπηρετεί τόσο μικροκομματικά συμφέροντα και διάφορες επαγγελματικές συντεχνίες, όσο και μεγάλα οικονομικά <mark>συμφέροντα της οικονομικής “ελίτ”</mark> και ημετέρων της</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“συμμετοχή του Ελληνικού Λαού στη διαμόρφωσή”
+</div>
+<span class="context">να είναι αποκλειστική αρμοδιότητα του πολιτικού προσωπικού και προτείνει τη <mark>συμμετοχή του Ελληνικού Λαού στη διαμόρφωσή</mark> του. Η παγκοσμιοποίηση, η οποία</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“Οι Έλληνες πρέπει να αντισταθούν και να αντιδράσουν”
+</div>
+<span class="context">Όσο παραμένει στην εξουσία αυτή η επικίνδυνη συγκυβέρνηση, ο χρόνος αυτός πλησιάζει όλο και πιο σύντομα! <mark>Οι Έλληνες πρέπει να αντισταθούν και να αντιδράσουν</mark> για να κερδίσουν πίσω την Πατρίδα τους!</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“απαλλαγμένοι από την οικογενειοκρατία, τα «τζάκια» και τη διαφθορά”
+</div>
+<span class="context">Στην ΕΛΛΗΝΙΚΗ ΛΥΣΗ είμαστε <mark>απαλλαγμένοι από την οικογενειοκρατία, τα «τζάκια» και τη διαφθορά</mark>. Ακριβώς για αυτό το λόγο, είμαστε αποφασισμένοι να καταβάλουμε κάθε δυνατή προσπάθεια για να διορθώσουμε τα «κακώς κείμενα» της πολιτικής, της οικονομίας και του δημόσιου βίου, που τόσα χρόνια εμποδίζουν την ουσιαστική ανάπτυξη της Ελλάδας.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“ΕΙΜΑΣΤΕ απαλλαγμένοι από κομματικά και μικροπολιτικά συμφέροντα”
+</div>
+<span class="context"><mark>ΕΙΜΑΣΤΕ απαλλαγμένοι από κομματικά και μικροπολιτικά συμφέροντα</mark>. ΚΑΛΟΥΜΕ όλες τις Ελληνίδες και όλους τους Έλληνες να ενωθούν μαζί μας για την ΑΝΑΣΤΑΣΗ της ΕΛΛΑΔΑΣ.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“η ύπουλη πολιτική της Γερμανίας που διατηρεί τους μισθούς κάτω από την παραγωγικότητα”
+</div>
+<span class="context">Για να κατανοήσει κανείς πόσο μας επηρεάζει έμμεσα <mark>η ύπουλη πολιτική της Γερμανίας που διατηρεί τους μισθούς κάτω από την παραγωγικότητα</mark> των εργαζομένων της, οφείλει να γνωρίζει πως η πρώτη εξαγωγική αγορά μας στα ψάρια, η Ιταλία, επειδή υποφέρει η βιομηχανία της από το γερμανικό ανταγωνισμό, έχει χαμηλότερα εισοδήματα, οπότε εισάγει λιγότερα ψάρια από την Ελλάδα.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ πιστεύει πως κανένας Έλληνας δεν πρέπει να στερείται το αγαθό της Υγείας”
+</div>
+<span class="context">…<mark>Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ πιστεύει πως κανένας Έλληνας δεν πρέπει να στερείται το αγαθό της Υγείας</mark>! ΠΡΟΓΡΑΜΜΑΤΙΚΕΣ ΘΕΣΕΙΣ ΤΗΣ «ΕΛΛΗΝΙΚΗΣ ΛΥΣΗΣ» ΓΙΑ ΤΟ ΔΗΜΟΓΡΑΦΙΚΟ ΚΑΙ ΤΟ ΑΣΦΑΛΙΣΤΙΚΟ…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“το κράτος θα πάψει να είναι δυνάστης της κοινωνίας και μέσο εξυπηρέτησης της κομματικής πελατείας”
+</div>
+<span class="context">(5) ΚΟΙΝΩΝΙΚΟΠΟΙΗΣΗ ΤΟΥ ΚΡΑΤΟΥΣ α. Το κράτος θα πάψει να είναι δυνάστης της κοινωνίας και μέσο εξυπηρέτησης της κομματικής πελατείας και θα μετατραπεί σε όργανο στα χέρια της κοινωνίας για την εξυπηρέτηση του κοινωνικού συμφέροντος, δηλαδή θα διασφαλίζει την ελευθερία, την κοινωνική ασφάλεια, την κοινωνική ειρήνη, την οικονομική ανάπτυξη, την κοινωνική δικαιοσύνη, την δίκαιη κατανομή του εθνικού εισοδήματος μέσω της δίκαιης φορολογίας και εξασφάλισης της ελεύθερης επιχειρηματικότητας για όλους.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“Η Ελλάδα δεν έχει ανάγκη από επαγγελματίες βουλευτές, αλλά από πατριώτες”
+</div>
+<span class="context">Η ΕΛΛΗΝΙΚΗ ΛΥΣΗ πιστεύει πως οι Βουλευτές έχουν ύψιστη ευθύνη απέναντι στην πατρίδα και τους Πολίτες! Ο κάθε βουλευτής ασκεί λειτούργημα και όχι επάγγελμα! <mark>Η Ελλάδα δεν έχει ανάγκη από επαγγελματίες βουλευτές, αλλά από πατριώτες</mark>, που θα βάζουν το εθνικό συμφέρον πάνω από το ατομικό!</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“κανένα από τα μνημονιακά κόμματα δεν είχε την πολιτική βούληση”
+</div>
+<span class="context">Πρόκειται για λύσεις που <mark>κανένα από τα μνημονιακά κόμματα δεν είχε την πολιτική βούληση</mark>, την τόλμη και την αποφασιστικότητα να προτείνει.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“Οι Έλληνες ΜΠΟΡΟΥΜΕ και ΠΡΕΠΕΙ να πάρουμε”
+</div>
+<span class="context"><mark>Οι Έλληνες ΜΠΟΡΟΥΜΕ και ΠΡΕΠΕΙ να πάρουμε</mark> ξανά τη χώρα στα χέρια μας!</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · mixed · chunk 3</span>
+<div class="quote">
+“κυβερνώντες από τη Μεταπολίτευση και μετά”
+</div>
+<span class="context">δυστυχώς οι <mark>κυβερνώντες από τη Μεταπολίτευση και μετά</mark>, είτε αγνοούν, είτε εσκεμμένα δεν έχουν προωθήσει δράσεις</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · mixed · chunk 4</span>
+<div class="quote">
+“ΜΕ ΓΝΩΜΟΝΑ ΤΟ ΕΘΝΙΚΟ ΣΥΜΦΕΡΟΝ”
+</div>
+<span class="context"><mark>ΜΕ ΓΝΩΜΟΝΑ ΤΟ ΕΘΝΙΚΟ ΣΥΜΦΕΡΟΝ</mark> ΚΑΙ ΤΗΝ ΕΠΑΝΕΚΚΙΝΗΣΗ ΤΗΣ ΟΙΚΟΝΟΜΙΑΣ ΕΠΙΔΙΩΚΟΥΜΕ ΝΑ ΚΑΤΑΣΤΕΙ ΞΑΝΑ Η ΕΛΛΑΔΑ ΑΥΤΑΡΚΗΣ ΚΑΙ ΙΣΧΥΡΗ!</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“αερολογίες, μη ρεαλιστικές λύσεις και προεκλογικές υποσχέσεις”
+</div>
+<span class="context">πρόκειται απλά για <mark>αερολογίες, μη ρεαλιστικές λύσεις και προεκλογικές υποσχέσεις</mark> που είναι αδύνατον να εφαρμοστούν</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“μεγάλα οικονομικά συμφέροντα της οικονομικής”ελίτ”“
+</div>
+<span class="context">να εξυπηρετεί τόσο μικροκομματικά συμφέροντα και διάφορες επαγγελματικές συντεχνίες, όσο και <mark>μεγάλα οικονομικά συμφέροντα της οικονομικής “ελίτ”</mark> και ημετέρων της</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“λαοί απροστάτευτοι και στην ουσία και εκτεθειμένοι”
+</div>
+<span class="context">μένουν οι <mark>λαοί απροστάτευτοι και στην ουσία και εκτεθειμένοι</mark>, δεν έχουν νόημα.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“Οι Έλληνες πρέπει να αντισταθούν”
+</div>
+<span class="context"><mark>Οι Έλληνες πρέπει να αντισταθούν</mark> και να αντιδράσουν για να κερδίσουν πίσω την Πατρίδα τους</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="34711_201907_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,2991 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ALP (Australia, 2016) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/63320_201607_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">ALP (Australia, 2016)</h1>
+<p class="subtitle lead">manifesto_id 63320_201607</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Australia · <span class="item"><strong>Party</strong></span> ALP (Australian Labor Party) · <span class="item"><strong>Year</strong></span> 2016 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 30</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.4</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.7</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.9</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.8</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.9</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.1</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.4</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.6</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“tax cut for multinational companies”
+</div>
+<span class="context">and not proceeding with the <mark>tax cut for multinational companies</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“mobilise private sector finance through a range”
+</div>
+<span class="context">Under a Shorten Labor Government, Infrastructure Australia will be given a new Financing Mandate that will <mark>mobilise private sector finance through a range</mark> of instruments including loans, loan guarantees and equity investments.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“promote competition in small business lending”
+</div>
+<span class="context">easier for potential new small business owners to access to finance and <mark>promote competition in small business lending</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“deter and punish anti-competitive and anti-consumer conduct”
+</div>
+<span class="context">Giving the Consumer Watchdog More Teeth This policy suite is designed to <mark>deter and punish anti-competitive and anti-consumer conduct</mark> by increasing penalties, using some of</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“negotiate high-quality international trade agreements”
+</div>
+<span class="context">A Shorten Labor Government will <mark>negotiate high-quality international trade agreements</mark> that open up new</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“reward small businesses that are creating jobs”
+</div>
+<span class="context">BACKING SMALL BUSINESS TO CREATE LOCAL JOBS A Shorten Labor Government will <mark>reward small businesses that are creating jobs</mark> and getting Australian jobseekers back</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“reward small businesses that are creating jobs”
+</div>
+<span class="context">A Shorten Labor Government will <mark>reward small businesses that are creating jobs</mark> and getting Australian</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“seek high quality international trade agreements to improve market access”
+</div>
+<span class="context">That’s why a Shorten Labor Government will continue to <mark>seek high quality international trade agreements to improve market access</mark> for Australian exporters. But governments</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 9</span>
+<div class="quote">
+“keeping red tape in check”
+</div>
+<span class="context">strikes the right balance between maintaining the strength of the screening system and <mark>keeping red tape in check</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Labor wants every child to have the same chance of succeeding at school, and in life, as any other child in the country”
+</div>
+<span class="context">No matter what their background, no matter where they live - city, suburb or in the regions – no matter what type of school they go to – Government, Catholic or Independent, <mark>Labor wants every child to have the same chance of succeeding at school, and in life, as any other child in the country</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Labor will create a Regional Innovation Fund”
+</div>
+<span class="context"><mark>Labor will create a Regional Innovation Fund</mark>, which will kickstart a range of initiatives to expand the role of Australia’s regions in contribution to the national innovation effort. It will, for example, invest in an expansion of the network of hubs and accelerators across the country, focussing on regional and rural sites.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“supporting innovation and startups”
+</div>
+<span class="context">Labor will drive jobs and innovation through tax relief and support for startups. Helping small business – Labor will deliver tax cuts to small businesses while putting them on a more even playing field when it comes to competing in the marketplace.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Labor will strengthen the budget over the medium term through a fairer tax system and reducing tax concessions like negative gearing and capital gains”
+</div>
+<span class="context">That is why an elected Shorten Labor Government will strengthen the budget over the medium term through a fairer tax system and reducing tax concessions like negative gearing and capital gains. Our responsible savings and structural reforms will steadily and permanently improve the budget bottom line, making room for critical investments in Medicare, education and infrastructure.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“Labor will negotiate high-quality international trade agreements that open up new export markets”
+</div>
+<span class="context">A Shorten Labor Government will negotiate high-quality international trade agreements that open up new export markets by reducing tariffs, quotas and “behind the border” barriers to trade.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“Labor will build the infrastructure that Western Australia needs to create jobs and drive growth”
+</div>
+<span class="context">Labor has developed more than 100 positive policies to achieve just that. Labor’s plan will build the infrastructure that Western Australia needs to create jobs and drive growth.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“Labor will invest in the job-creating infrastructure that will create jobs”
+</div>
+<span class="context">Labor is investing in the infrastructure that will create jobs and drive the Central Coast’s economy for the next generation.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“co-investing in early stage and high potential companies”
+</div>
+<span class="context">…Backing in great ideas through <mark>co-investing in early stage and high potential companies</mark> through the $500 million Smart Investment Fund. Bringing together the superannuation, venture capital and startup sectors in an Innovation Investment Partnership to identify barriers holding back investment in Australian-based venture capital funds and early-stage enterprises.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 9</span>
+<div class="quote">
+“Labor will support more producers and manufacturers to deliver product innovation”
+</div>
+<span class="context">value-added dairy products and marbled wagyu in which the fat is relatively healthy. There is an opportunity for our fibre producers to do likewise by developing innovative, high quality materials for specialist applications like defence and industry. That is why <mark>Labor will support more producers and manufacturers to deliver product innovation</mark> through our Food, Fibre and Advanced Materials Modernisation Grants program. This competitive merit-based grants program will match investments by producers and manufacturers in projects to improve the efficiency of their operations and increase investment in innovation and new technologies, including energy efficient capital equipment and low emissions technologies. These grants are a direct response to industry concerns about the difficulty in accessing finance to invest in capital improvements to production and manufacturing facilities that lower costs and improve the competitiveness of Australian industries.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“failure in the market and we have seen the proliferation”
+</div>
+<span class="context">Over the last year it has become clear that there has been a <mark>failure in the market and we have seen the proliferation</mark> of opportunistic and sub-standard training providers costing the taxpayers and students millions of dollars.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · mixed · chunk 2</span>
+<div class="quote">
+“demand driven system similar to a marketplace”
+</div>
+<span class="context">With the <mark>demand driven system similar to a marketplace</mark> for students and course offerings, government should ensure that students are well-informed consumers.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“tax cuts to small businesses”
+</div>
+<span class="context">Helping small business – Labor will deliver <mark>tax cuts to small businesses</mark> while putting them on a more even playing field when it comes to competing in the marketplace.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“tax cuts to small businesses”
+</div>
+<span class="context">Helping small business – Labor will deliver <mark>tax cuts to small businesses</mark> while putting them on a more even playing field when it comes to competing in the marketplace</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 5</span>
+<div class="quote">
+“reducing tariffs, quotas and”behind the border” barriers”
+</div>
+<span class="context">open up new export markets by <mark>reducing tariffs, quotas and “behind the border” barriers</mark> to trade. We will do so while maintaining Australia’s right to adopt sound public policies</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“tax cut to big business”
+</div>
+<span class="context">Liberals’ plan for another round of harsh and unfair cuts – all so Malcolm Turnbull can give a <mark>tax cut to big business</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 7</span>
+<div class="quote">
+“tax cut to big business”
+</div>
+<span class="context">Liberals’ plan for another round of harsh and unfair cuts – all so Malcolm Turnbull can give a <mark>tax cut to big business</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 8</span>
+<div class="quote">
+“barriers holding back investment”
+</div>
+<span class="context">Innovation Investment Partnership to identify <mark>barriers holding back investment</mark> in Australian-based venture capital funds and early-stage enterprises.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 9</span>
+<div class="quote">
+“competitive merit-based grants program”
+</div>
+<span class="context">This <mark>competitive merit-based grants program</mark> will match investments by producers and manufacturers in projects to improve the efficiency of their operations</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“mobilise private sector finance through a range”
+</div>
+<span class="context">Under a Shorten Labor Government, Infrastructure Australia will be given a new Financing Mandate that will <mark>mobilise private sector finance through a range</mark> of instruments including loans, loan guarantees and equity investments.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Comprehensive Credit Reporting is about sharing positive”
+</div>
+<span class="context">using personal housing as collateral, is becoming more and more difficult for young people with a new idea. This is why Labor wants to make it easier for potential new small business owners to access to finance and promote competition in small business lending. We already know how important information is when making investment decisions. <mark>Comprehensive Credit Reporting is about sharing positive</mark> client information to allow financial lenders to make better decisions.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“Royal Commission into misconduct in the banking and financial services industry”
+</div>
+<span class="context">Enough is enough. That is why a Shorten Labor Government will hold a <mark>Royal Commission into misconduct in the banking and financial services industry</mark>. This is an important</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“Advocate for leniency by lending institutions”
+</div>
+<span class="context">until March 2017. <mark>Advocate for leniency by lending institutions</mark> with respect to business</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“leniency by lending institutions with respect to business”
+</div>
+<span class="context">affected sites across the country, establishing baseline readings to allow for ongoing monitoring of contaminant exposure. At Williamtown, a Shorten Labor Government will: Improve community consultation by establishing a local community liaison officer at RAAF Base Williamtown, ensuring the community has a single point of contact — if you want to speak to Defence, you’ll know who to contact. Fund a study to analyse the impact of perfluorinated chemical contamination on the Williamtown community. Provide a grant to the NSW Government to connect affected properties within the Williamtown investigation area to town water, as identified by the NSW EPA. Extend income support for affected commercial fishers until March 2017. Advocate for <mark>leniency by lending institutions with respect to business</mark> and home loan repayments</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“venture capital and startup sectors in an Innovation Investment Partnership”
+</div>
+<span class="context">Bringing together the superannuation, <mark>venture capital and startup sectors in an Innovation Investment Partnership</mark> to identify barriers holding back investment</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 9</span>
+<div class="quote">
+“difficulty in accessing finance to invest”
+</div>
+<span class="context">direct response to industry concerns about the <mark>difficulty in accessing finance to invest</mark> in capital improvements to production</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“helping small business access finance”
+</div>
+<span class="context">Labor will work with the banks and finance industry to develop StartUp Finance, a partial guarantee scheme which will improve access to finance for Australian micro-businesses.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“A Shorten Labor Government will hold a Royal Commission into misconduct in the banking and financial services industry”
+</div>
+<span class="context">That is why a Shorten Labor Government will hold a Royal Commission into misconduct in the banking and financial services industry. This is an important decision that was not taken lightly – it has been made after careful consideration over an extended period of time.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“Labor will legislate for an independent evaluation of Australia’s aid program”
+</div>
+<span class="context">Legislate for an independent evaluation of Australia’s aid program, as well as the measurement and reporting of effectiveness. Over the next four years, Labor will provide around $800 million more for overseas aid than the Liberals.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“Improving access to finance for startups and micro-businesses”
+</div>
+<span class="context">…<mark>Improving access to finance for startups and micro-businesses</mark> through a partial guarantee scheme, Startup Finance. Getting startups to help solve government problems through Challenge Platforms and support startups to compete in government tenders.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“loans, loan guarantees and equity investments”
+</div>
+<span class="context">Infrastructure Australia will have a $10 billion financing facility to deploy a combination of guarantees, loans or equity to get new projects started.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“promote competition in small business lending”
+</div>
+<span class="context">Comprehensive Credit Reporting is about sharing positive client information to allow financial lenders to make better decisions… will promote competition for small business financing in the banking sector.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“Royal Commission into misconduct in the banking”
+</div>
+<span class="context">a Shorten Labor Government will hold a <mark>Royal Commission into misconduct in the banking</mark> and financial services industry</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“limit negative gearing to new property”
+</div>
+<span class="context">From 1 July 2017, Labor will <mark>limit negative gearing to new property</mark>. This is a significant policy that will provide an incentive for new construction.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“credit card and not your Medicare Card”
+</div>
+<span class="context">where it is your <mark>credit card and not your Medicare Card</mark> that determines the quality of your health care.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 7</span>
+<div class="quote">
+“access to finance for startups”
+</div>
+<span class="context">Improving <mark>access to finance for startups</mark> and micro-businesses through a partial guarantee scheme, Startup Finance</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 8</span>
+<div class="quote">
+“Improving access to finance for startups”
+</div>
+<span class="context"><mark>Improving access to finance for startups</mark> and micro-businesses through a partial guarantee scheme, Startup Finance.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 9</span>
+<div class="quote">
+“difficulty in accessing finance to invest”
+</div>
+<span class="context">These grants are a direct response to industry concerns about the <mark>difficulty in accessing finance to invest</mark> in capital improvements to production and manufacturing facilities</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“rights protected”
+</div>
+<span class="context">participate in the community and have their <mark>rights protected</mark>. We believe Australians</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“independent authority at the centre of monetary”
+</div>
+<span class="context">Just as the Reserve Bank of Australia is the <mark>independent authority at the centre of monetary</mark> policy, Infrastructure</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“fundamental democratic rights to representation”
+</div>
+<span class="context">Workers have <mark>fundamental democratic rights to representation</mark> in the workplace, to freedom of association</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“expand the mandate of the independent Parliamentary Budget Office”
+</div>
+<span class="context">Charter of Budget Honesty requirements and debased budget documents for their own political gain. That is why Labor will strengthen Australia’s budget framework and move towards international best practice by expanding the mandate of the independent Parliamentary Budget Office to ensure greater confidence</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“upholding the democratic rights and freedoms”
+</div>
+<span class="context">ensure our nation’s security while <mark>upholding the democratic rights and freedoms</mark> that Australians have for</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“legislate for transparency and accountability”
+</div>
+<span class="context">overseas aid. And we will <mark>legislate for transparency and accountability</mark> to improve aid effectiveness. Thanks to decisions</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“legally entitled to cooperatively negotiate”
+</div>
+<span class="context">ADF personnel are not <mark>legally entitled to cooperatively negotiate</mark> their pay, conditions and terms</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 9</span>
+<div class="quote">
+“creating a transparent register of its own”
+</div>
+<span class="context">Abbott-Turnbull Government broke an election promise to match this by <mark>creating a transparent register of its own</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Labor will ensure that access to health care is determined by your Medicare card, and not your credit card”
+</div>
+<span class="context">A Shorten Labor Government will ensure that access to health care is determined by your Medicare card, and not your credit card, and will reverse the Turnbull Government’s GP Tax by stealth. Nobody wants to head down the same path as America when it comes to our health system.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Labor will legislate the Student Funding Guarantee”
+</div>
+<span class="context">Labor will continue the demand driven system and ensure that access to university remains a matter of hard work and good marks, not your bank balance. A Shorten Labor Government will introduce a new Student Funding Guarantee to provide certainty to universities and remove the need for higher fees. <mark>Labor will legislate the Student Funding Guarantee</mark>, and index the funding to ensure the value of the contribution isn’t eroded over time.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“strengthen the budget through a fairer tax system”
+</div>
+<span class="context">Labor’s fiscal plan is responsible and fair. Labor will not smash the family budget to fix the Liberal Government’s mess. Labor’s approach to fiscal policy has been guided by two objectives: funding important investments in the near term, and implementing the structural improvements required to strengthen the budget over the medium term.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Labor will strengthen Australia’s budget framework and move towards international best practice by expanding the mandate of the independent Parliamentary Budget Office”
+</div>
+<span class="context">That is why <mark>Labor will strengthen Australia’s budget framework and move towards international best practice by expanding the mandate of the independent Parliamentary Budget Office</mark> to ensure greater confidence and independence in economic and fiscal decision-making.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“Prime Minister to deliver an annual Family Violence Statement to Parliament”
+</div>
+<span class="context">A Shorten Labor Government will give the issue of family violence national prominence, with the <mark>Prime Minister to deliver an annual Family Violence Statement to Parliament</mark>. This is part of Labor’s latest measures aimed at ending the scourge of family violence in our community.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“Labor will protect Medicare and ensure our world class universal health care system”
+</div>
+<span class="context">By contrast, Labor has a positive plan to protect Medicare and ensure our world class universal health care system continues to deliver good health outcomes for the Central Coast into the future.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“Labor will reverse the Government’s freeze on the Medicare Benefits Schedule”
+</div>
+<span class="context"><mark>Labor will reverse the Government’s freeze on the Medicare Benefits Schedule</mark>. This means an average family in Victoria with two children will be more than $400 better off.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“A healthcare system underpinned by Medicare”
+</div>
+<span class="context">…Labor’s team has remained united, with a single-minded commitment to deliver those policies that put people first. <mark>A healthcare system underpinned by Medicare</mark>. An education system that gives every child in every school more individual attention – Public, Catholic or Independent.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 9</span>
+<div class="quote">
+“Labor will restore consistency in screening thresholds”
+</div>
+<span class="context">will undermine, rather than build, the public support that is essential to making foreign investment work. That is why <mark>Labor will restore consistency in screening thresholds</mark> by bringing all agricultural land application thresholds into line with those in our trade agreements with Thailand and Singapore. This $50 million threshold strikes the right balance between maintaining the strength of the screening system and keeping red tape in check. We will also review the current regime’s discriminatory treatment of investments in non-sensitive sectors by investors from Singapore, Thailand and non-FTA trading partners and the treatment of agricultural land. Furthermore, a Shorten Labor Government will make the foreign land investment register public so that every Australian can see who is buying agricultural land, and where. Labor started work on this register when last in office, but this has not been delivered because the Abbott-Turnbull Government broke an election promise to match this by creating a transparent register of its own. Trade, exports and foreign investment represent huge opportunities to grow jobs and make Australia’s regions more prosperous. Labor will put the right rules and structures in place to ensure regional Australians benefit, while protecting our environment and resources in the process.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“transparency and accountability for this funding”
+</div>
+<span class="context">Of course, we will expect <mark>transparency and accountability for this funding</mark> – with clear links to improved teaching and learning.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“independent Higher Education Productivity and Performance Commission”
+</div>
+<span class="context">Labor will establish an <mark>independent Higher Education Productivity and Performance Commission</mark> to drive these labour market outcomes.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“greater transparency and independence in our national budgeting”
+</div>
+<span class="context">it is time for Australia to put in place new rules to ensure <mark>greater transparency and independence in our national budgeting</mark>. Labor will give the independent Parliamentary Budget Office an enhanced role</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“expanding the mandate of the independent Parliamentary Budget Office”
+</div>
+<span class="context">Labor will strengthen Australia’s budget framework and move towards international best practice by <mark>expanding the mandate of the independent Parliamentary Budget Office</mark> to ensure greater confidence and independence</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“democratic rights and freedoms all Australians cherish”
+</div>
+<span class="context">striking the right balance between national security considerations and the fundamental <mark>democratic rights and freedoms all Australians cherish</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“independent oversight of facilities”
+</div>
+<span class="context">Labor will restore the faith of Australians in our onshore and offshore processing networks by providing <mark>independent oversight of facilities</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“independent oversight of facilities”
+</div>
+<span class="context">Labor will restore the faith of Australians in our onshore and offshore processing networks by providing <mark>independent oversight of facilities</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“working in a meaningful partnership with Indigenous”
+</div>
+<span class="context">unlike the Liberals – Labor is committed to <mark>working in a meaningful partnership with Indigenous</mark> Australians to close the gap</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 9</span>
+<div class="quote">
+“more transparency and accountability”
+</div>
+<span class="context">Review the Exporter Supply Chain Assurance System. Provide <mark>more transparency and accountability</mark>. Ban animal testing for cosmetics</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“LGBTI students face verbal abuse”
+</div>
+<span class="context">far too many LGBTI Australians: Eighty per cent of <mark>LGBTI students face verbal abuse</mark> and bullying</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“boosting the representation of women in STEM”
+</div>
+<span class="context">priority. Labor will consult with the Chief Scientist, and work with universities and State Governments to develop selection criteria around access to the scheme, the eligible courses and use of the grants. This policy will seek to encourage universities to work with schools and TAFEs to target students in their last two years of their schooling or TAFE, with an emphasis in boosting the number of STEM students from underrepresented groups such as women, Indigenous, regional and lower SES backgrounds.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“wasteful $160 million plebiscite on marriage equality”
+</div>
+<span class="context">Labor has been clear that we will not proceed with Malcolm Turnbull’s <mark>wasteful $160 million plebiscite on marriage equality</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“legislate for marriage equality within the first 100 days”
+</div>
+<span class="context">POSITIVE POLICY Marriage Equality Labor will <mark>legislate for marriage equality within the first 100 days</mark> of the next parliament. At its heart, marriage equality</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 5</span>
+<div class="quote">
+“LGBTI Discrimination Commissioner to the Australian Human Rights Commission”
+</div>
+<span class="context">appoint a full-time <mark>LGBTI Discrimination Commissioner to the Australian Human Rights Commission</mark> (AHRC), to ensure</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“treat people fleeing from persecution with humanity”
+</div>
+<span class="context">mean we can offshore or outsource our responsibility to <mark>treat people fleeing from persecution with humanity</mark>. Vulnerable people should never be subject</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“compassionate approach to asylum seekers”
+</div>
+<span class="context">Labor believes in a <mark>compassionate approach to asylum seekers</mark> which enables refugees to progress</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“close the gap on Indigenous disadvantage”
+</div>
+<span class="context">A Shorten Labor Government will reset relationships with Aboriginal and Torres Strait Islander Australians in a renewed push to <mark>close the gap on Indigenous disadvantage</mark>. It was Labor</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Every Australian student deserves to be treated with respect and dignity at school – so they can learn free from bullying and discrimination”
+</div>
+<span class="context">Safe Schools: Supporting LGBTI Students <mark>Every Australian student deserves to be treated with respect and dignity at school – so they can learn free from bullying and discrimination</mark>. Unfortunately, school is still a very difficult place for far too many LGBTI Australians: Eighty per cent of LGBTI students face verbal abuse and bullying at school.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“boosting the representation of women in STEM degrees is a serious priority”
+</div>
+<span class="context">Students will continue to accrue their HECS-HELP debt as normal, so a failure to graduate will see them retain that liability. The policy will also reflect Labor’s equity objectives, with the selection criteria to target increasing enrolments in underrepresented groups like women. With women representing only 20 per cent of engineering and related technologies enrolments, and 14 per cent of information technology enrolments, <mark>boosting the representation of women in STEM degrees is a serious priority</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“protecting and strengthening Medicare”
+</div>
+<span class="context">Labor’s economic plan will boost growth now through nation-building infrastructure, make our nation smarter and more productive through investing in education and drive greater participation through <mark>protecting and strengthening Medicare</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“Labor will appoint a full-time Disability Discrimination Commissioner to the Australian Human Rights Commission”
+</div>
+<span class="context">A Shorten Labor Government will appoint a full-time Disability Discrimination Commissioner to the Australian Human Rights Commission. Discrimination against people with disability is still far too common in Australia.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 5</span>
+<div class="quote">
+“Labor will appoint a full-time LGBTI Discrimination Commissioner”
+</div>
+<span class="context">That is why a Shorten Labor Government will appoint a full-time LGBTI Discrimination Commissioner to the Australian Human Rights Commission (AHRC), to ensure the rights of lesbian, gay, bisexual, transgender and intersex Australians are protected, and they are free to live their lives without discrimination.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“Social justice and environmental protection play a central role in economic growth and development”
+</div>
+<span class="context"><mark>Social justice and environmental protection play a central role in economic growth and development</mark>. It is now well acknowledged that inequality hampers growth.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“Labor will protect Medicare, keep medicine more affordable and invest in hospitals”
+</div>
+<span class="context">Labor’s plan includes protecting Medicare, keeping medicine more affordable and investing in hospitals.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“Working Women’s Centres provide specialist advice and advocacy”
+</div>
+<span class="context">…<mark>Working Women’s Centres provide specialist advice and advocacy</mark>, produce educational materials, deliver community education sessions and provide advice to government on a range of female workforce issues. The Liberals’ cuts threaten the free, specialist employment advice service for vulnerable women provided by these facilities.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 9</span>
+<div class="quote">
+“Labor will step up where the Abbott-Turnbull Government has failed by re-establishing national leadership on animal welfare in Australia”
+</div>
+<span class="context">Minister for Agriculture Barnaby Joyce has also washed his hands of delivering the animal welfare strategy, instead shifting responsibility for this to an external industry body. This has left a vacuum of leadership and direction when it comes to protecting and improving animal welfare in this country. <mark>Labor will step up where the Abbott-Turnbull Government has failed by re-establishing national leadership on animal welfare in Australia</mark>. A Shorten Labor Government will: Establish an independent Inspector-General of Animal Welfare. Re-build State and Territory cooperation on animal welfare matters, including by establishing an independent Office of Animal Welfare. Renew the Australian Animal Welfare Strategy. Review the Exporter Supply Chain Assurance System. Provide more transparency and accountability. Ban animal testing for cosmetics within Australia and the importation or sale of new products tested on animals overseas.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“LGBTI students face verbal abuse and bullying”
+</div>
+<span class="context">Eighty per cent of <mark>LGBTI students face verbal abuse and bullying</mark> at school. Only one in five LGBTI students attend a school where they feel supported.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“women representing only 20 per cent of engineering”
+</div>
+<span class="context">With <mark>women representing only 20 per cent of engineering</mark> and related technologies enrolments, and 14 per cent of information technology enrolments, boosting the representation of women in STEM degrees is a serious priority.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“harm done to gay and lesbian Australians”
+</div>
+<span class="context">the <mark>harm done to gay and lesbian Australians</mark> and their families through a divisive and hurtful public campaign against marriage equality would cost our community dearly.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“removing discrimination from our laws”
+</div>
+<span class="context">At its heart, marriage equality is about <mark>removing discrimination from our laws</mark>. It is a recognition that love between two people of the same gender</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 5</span>
+<div class="quote">
+“rights of LGBTI Australians are protected”
+</div>
+<span class="context">to ensure the rights of lesbian, gay, bisexual, transgender and intersex Australians are protected, and they are free to live their lives without discrimination.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“efforts toward improving gender equality”
+</div>
+<span class="context">share with the world the remarkable Australian expertise in areas like…<mark>efforts toward improving gender equality</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“improving gender equality”
+</div>
+<span class="context">share with the world the remarkable Australian expertise in areas like anti-corruption and good governance; disability inclusive aid; treating preventable blindness; WASH; and of course, efforts toward <mark>improving gender equality</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“Indigenous students, students with disability”
+</div>
+<span class="context">Labor’s investment is targeted to improve the results of those students who need it most, including students with disability, Indigenous students, students in regional and rural areas, and students from low socio-economic backgrounds</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 9</span>
+<div class="quote">
+“discriminatory treatment of investments in non-sensitive sectors”
+</div>
+<span class="context">We will also review the current regime’s <mark>discriminatory treatment of investments in non-sensitive sectors</mark> by investors from Singapore, Thailand and non-FTA trading partners</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“rights protected”
+</div>
+<span class="context">participate in the community and have their <mark>rights protected</mark>. We believe Australians</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“mobilise private sector finance through a range”
+</div>
+<span class="context">Under a Shorten Labor Government, Infrastructure Australia will be given a new Financing Mandate that will <mark>mobilise private sector finance through a range</mark> of instruments including loans, loan guarantees and equity investments.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“promote competition in small business lending”
+</div>
+<span class="context">easier for potential new small business owners to access to finance and <mark>promote competition in small business lending</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“deter and punish anti-competitive and anti-consumer conduct”
+</div>
+<span class="context">Giving the Consumer Watchdog More Teeth This policy suite is designed to <mark>deter and punish anti-competitive and anti-consumer conduct</mark> by increasing penalties, using some of</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“upholding the democratic rights and freedoms”
+</div>
+<span class="context">ensure our nation’s security while <mark>upholding the democratic rights and freedoms</mark> that Australians have for</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“legislate for transparency and accountability”
+</div>
+<span class="context">overseas aid. And we will <mark>legislate for transparency and accountability</mark> to improve aid effectiveness. Thanks to decisions</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“reward small businesses that are creating jobs”
+</div>
+<span class="context">A Shorten Labor Government will <mark>reward small businesses that are creating jobs</mark> and getting Australian</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“seek high quality international trade agreements to improve market access”
+</div>
+<span class="context">That’s why a Shorten Labor Government will continue to <mark>seek high quality international trade agreements to improve market access</mark> for Australian exporters. But governments</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 9</span>
+<div class="quote">
+“keeping red tape in check”
+</div>
+<span class="context">strikes the right balance between maintaining the strength of the screening system and <mark>keeping red tape in check</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Labor will ensure that access to health care is determined by your Medicare card, and not your credit card”
+</div>
+<span class="context">A Shorten Labor Government will ensure that access to health care is determined by your Medicare card, and not your credit card, and will reverse the Turnbull Government’s GP Tax by stealth. Nobody wants to head down the same path as America when it comes to our health system.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Labor will legislate the Student Funding Guarantee”
+</div>
+<span class="context">Labor will continue the demand driven system and ensure that access to university remains a matter of hard work and good marks, not your bank balance. A Shorten Labor Government will introduce a new Student Funding Guarantee to provide certainty to universities and remove the need for higher fees. <mark>Labor will legislate the Student Funding Guarantee</mark>, and index the funding to ensure the value of the contribution isn’t eroded over time.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“strengthen the budget through a fairer tax system”
+</div>
+<span class="context">Labor’s fiscal plan is responsible and fair. Labor will not smash the family budget to fix the Liberal Government’s mess. Labor’s approach to fiscal policy has been guided by two objectives: funding important investments in the near term, and implementing the structural improvements required to strengthen the budget over the medium term.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Labor will strengthen Australia’s budget framework and move towards international best practice by expanding the mandate of the independent Parliamentary Budget Office”
+</div>
+<span class="context">That is why <mark>Labor will strengthen Australia’s budget framework and move towards international best practice by expanding the mandate of the independent Parliamentary Budget Office</mark> to ensure greater confidence and independence in economic and fiscal decision-making.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“Labor will negotiate high-quality international trade agreements that open up new export markets”
+</div>
+<span class="context">A Shorten Labor Government will negotiate high-quality international trade agreements that open up new export markets by reducing tariffs, quotas and “behind the border” barriers to trade.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“Labor will protect Medicare and ensure our world class universal health care system”
+</div>
+<span class="context">By contrast, Labor has a positive plan to protect Medicare and ensure our world class universal health care system continues to deliver good health outcomes for the Central Coast into the future.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“Labor will protect Medicare, keep medicine more affordable and invest in hospitals”
+</div>
+<span class="context">Labor’s plan includes protecting Medicare, keeping medicine more affordable and investing in hospitals.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“A healthcare system underpinned by Medicare”
+</div>
+<span class="context">…Labor’s team has remained united, with a single-minded commitment to deliver those policies that put people first. <mark>A healthcare system underpinned by Medicare</mark>. An education system that gives every child in every school more individual attention – Public, Catholic or Independent.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 9</span>
+<div class="quote">
+“Labor will support more producers and manufacturers to deliver product innovation”
+</div>
+<span class="context">value-added dairy products and marbled wagyu in which the fat is relatively healthy. There is an opportunity for our fibre producers to do likewise by developing innovative, high quality materials for specialist applications like defence and industry. That is why <mark>Labor will support more producers and manufacturers to deliver product innovation</mark> through our Food, Fibre and Advanced Materials Modernisation Grants program. This competitive merit-based grants program will match investments by producers and manufacturers in projects to improve the efficiency of their operations and increase investment in innovation and new technologies, including energy efficient capital equipment and low emissions technologies. These grants are a direct response to industry concerns about the difficulty in accessing finance to invest in capital improvements to production and manufacturing facilities that lower costs and improve the competitiveness of Australian industries.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“LGBTI students face verbal abuse and bullying”
+</div>
+<span class="context">Eighty per cent of <mark>LGBTI students face verbal abuse and bullying</mark> at school. Only one in five LGBTI students attend a school where they feel supported. LGBTI young Australians are six times more likely to die from suicide</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“demand driven system similar to a marketplace”
+</div>
+<span class="context">With the <mark>demand driven system similar to a marketplace</mark> for students and course offerings, government should ensure that students are well-informed consumers.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“financial markets should be able to trust”
+</div>
+<span class="context">The Australian people and <mark>financial markets should be able to trust</mark> the integrity of the way budgets are put together.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“removing discrimination from our laws”
+</div>
+<span class="context">At its heart, marriage equality is about <mark>removing discrimination from our laws</mark>. It is a recognition that love between two people of the same gender</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“rights of LGBTI Australians are protected”
+</div>
+<span class="context">to ensure the rights of lesbian, gay, bisexual, transgender and intersex Australians are protected, and they are free to live their lives without discrimination.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“transparency and accountability to improve aid”
+</div>
+<span class="context">And we will legislate for <mark>transparency and accountability to improve aid</mark> effectiveness.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 7</span>
+<div class="quote">
+“compassionate, humane and safe approach”
+</div>
+<span class="context">Labor will ensure Australia has a <mark>compassionate, humane and safe approach</mark> to irregular migration throughout our region</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“Student Funding Guarantee, removing the need”
+</div>
+<span class="context">Labor will deliver a <mark>Student Funding Guarantee, removing the need</mark> for higher fees. With Labor, students will be able to study at universities…based on good marks and hard work, not their bank balance.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 9</span>
+<div class="quote">
+“competitive merit-based grants program”
+</div>
+<span class="context">This <mark>competitive merit-based grants program</mark> will match investments by producers and manufacturers in projects to improve the efficiency of their operations</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“ripping off vulnerable people”
+</div>
+<span class="context">damaged by shonks and sharks <mark>ripping off vulnerable people</mark>. People’s livelihoods</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“dodgy private providers who have been ripping”
+</div>
+<span class="context">by cleaning out the <mark>dodgy private providers who have been ripping</mark> Australians off for too long.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“soft on multinationals but hard on schools”
+</div>
+<span class="context">The problem with Mr Turnbull is he’s <mark>soft on multinationals but hard on schools</mark> and hospitals.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“protecting vested interests, undermines Australia’s fiscal sustainability”
+</div>
+<span class="context">refusal to reform areas like negative gearing and capital gains, for the purpose of <mark>protecting vested interests, undermines Australia’s fiscal sustainability</mark> and leaves our economy</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“the Liberals have treated the community and not-for-profit sector with contempt”
+</div>
+<span class="context">But for three years, <mark>the Liberals have treated the community and not-for-profit sector with contempt</mark>. First the Liberals ripped</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“Malcolm Turnbull can give a tax cut to big business”
+</div>
+<span class="context">another round of harsh and unfair cuts – all so <mark>Malcolm Turnbull can give a tax cut to big business</mark>. My commitment to Western Australia</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 7</span>
+<div class="quote">
+“Malcolm Turnbull can give a tax cut to big business”
+</div>
+<span class="context">unfair cuts – all so <mark>Malcolm Turnbull can give a tax cut to big business</mark>.My commitment to Western Australia</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 8</span>
+<div class="quote">
+“Malcolm Turnbull can give a $50 billion tax cut to big business”
+</div>
+<span class="context">or the Liberals’ plan for another round of harsh and unfair cuts – all so that <mark>Malcolm Turnbull can give a $50 billion tax cut to big business</mark>. This election, my commitment</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 9</span>
+<div class="quote">
+“Abbott-Turnbull Government broke an election promise”
+</div>
+<span class="context">this has not been delivered because the <mark>Abbott-Turnbull Government broke an election promise</mark> to match this by creating a transparent register</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“big multinationals get to play by different rules”
+</div>
+<span class="context">It is not fair that Australians work hard and pay tax while <mark>big multinationals get to play by different rules</mark>. The Australian Tax Office has revealed one in four big multinationals pay no tax at all in Australia – not one cent.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Malcolm Turnbull’s only economic plan is to deliver a $50 billion tax giveaway to big business”
+</div>
+<span class="context">by the Australian community. <mark>Malcolm Turnbull’s only economic plan is to deliver a $50 billion tax giveaway to big business</mark>. Australia can not afford this reckless policy which undermines our fiscal sustainability.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“The Liberals have turned the issue of Australia’s submarine build into a political football”
+</div>
+<span class="context">Since then, the Liberals have turned the issue of Australia’s submarine build into a political football and refused to guarantee they will deliver on that promise. And while a preferred bidder – DCNS – has been announced, contracts are not yet signed.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 7</span>
+<div class="quote">
+“Malcolm Turnbull can give a tax cut to big business”
+</div>
+<span class="context">On July 2, Victorians will have a choice between Labor’s positive plan and the Liberals’ next round of harsh and unfair cuts – all so that Malcolm Turnbull can give a $50 billion tax cut to big business.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 8</span>
+<div class="quote">
+“Malcolm Turnbull’s second-rate copper version”
+</div>
+<span class="context">…will get <mark>Malcolm Turnbull’s second-rate copper version</mark>, including homes and business in Elizabeth, Woodville, Adelaide CBD and Noarlunga. DRIVING INNOVATION Labor has a comprehensive plan to drive innovation in our cities and our regions. This includes: Backing in great ideas through co-investing in early stage and high potential companies through the $500 million Smart Investment Fund.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“shonks and sharks ripping off vulnerable people”
+</div>
+<span class="context">our public TAFE system is recognised. Our national skills and training sector used to be the envy of the world – since the election of the Liberal Government it has been significantly damaged by <mark>shonks and sharks ripping off vulnerable people</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“the Liberals goaded the car industry into closing”
+</div>
+<span class="context">These regions face the prospect of high unemployment and social dislocation after <mark>the Liberals goaded the car industry into closing</mark> down and leaving Australia.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“big multinationals pay no tax at all”
+</div>
+<span class="context">The Australian Tax Office has revealed one in four <mark>big multinationals pay no tax at all</mark> in Australia – not one cent. It is not fair that Australian businesses are paying more tax</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“$50 billion tax giveaway to big business”
+</div>
+<span class="context">Malcolm Turnbull’s only economic plan is to deliver a <mark>$50 billion tax giveaway to big business</mark>. Australia can not afford this reckless policy</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“the Liberals have gutted Australia’s aid program”
+</div>
+<span class="context">Since coming to Government in 2013, <mark>the Liberals have gutted Australia’s aid program</mark>. It is now the weakest in history.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“give a tax cut to big business”
+</div>
+<span class="context">Liberals’ plan for another round of harsh and unfair cuts – all so Malcolm Turnbull can <mark>give a tax cut to big business</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“tax cut to big business”
+</div>
+<span class="context">Liberals’ plan for another round of harsh and unfair cuts – all so Malcolm Turnbull can give a <mark>tax cut to big business</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 8</span>
+<div class="quote">
+“$50 billion tax cut to big business”
+</div>
+<span class="context">the Liberals’ plan for another round of harsh and unfair cuts – all so Malcolm Turnbull can give a <mark>$50 billion tax cut to big business</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 9</span>
+<div class="quote">
+“Abbott-Turnbull Government broke an election promise”
+</div>
+<span class="context">this has not been delivered because the <mark>Abbott-Turnbull Government broke an election promise</mark> to match this by creating a transparent register</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“put people first, strengthening and protecting workers’ rights”
+</div>
+<span class="context">A Shorten Labor Government will stand up for working and middle class families. Labor will <mark>put people first, strengthening and protecting workers’ rights</mark> at work by: Cracking down on the underpayment of workers, with increased penalties for employers who deliberately and systemically avoid paying their employees properly;</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Labor’s approach to budget management has fairness at its core, and will not seek to fix the Liberals’ budget mess by attacking family budgets”
+</div>
+<span class="context"><mark>Labor’s approach to budget management has fairness at its core, and will not seek to fix the Liberals’ budget mess by attacking family budgets</mark>. We will budget transparently and honestly.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“Labor will work with homelessness services to deliver long-term certainty for the sector”
+</div>
+<span class="context">Labor wants to work with homelessness services to deliver long-term certainty for the sector and will begin this important work by immediately hosting a national roundtable on homelessness and a meeting of State and Territory Housing and Homelessness Ministers.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 7</span>
+<div class="quote">
+“put people first”
+</div>
+<span class="context">My commitment is to always <mark>put people first</mark>. Labor’s positive plan is the right one for the Central Coast.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“put people first”
+</div>
+<span class="context">…Labor’s team has remained united, with a single-minded commitment to deliver those policies that <mark>put people first</mark>. A healthcare system underpinned by Medicare. An education system that gives every child in every school more individual attention – Public, Catholic or Independent.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Labor’s plan for fairer growth, real jobs”
+</div>
+<span class="context">It’s central to <mark>Labor’s plan for fairer growth, real jobs</mark> and greater opportunities. Families who rely on early education and care need a better deal now</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Labor will take the politics out of infrastructure”
+</div>
+<span class="context"><mark>Labor will take the politics out of infrastructure</mark> and put the nation’s interest at the heart of nation building again.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“budget repair that’s fair”
+</div>
+<span class="context">Budget repair that’s fair: a 10 year plan to strengthen the Australian economy. The problem with Mr Turnbull is he’s soft on multinationals but hard on schools and hospitals.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“middle and working class families are not left behind”
+</div>
+<span class="context">Labor’s inclusive growth approach will ensure that <mark>middle and working class families are not left behind</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“bipartisan approach to Australia’s national security”
+</div>
+<span class="context">Labor will continue to adopt a constructive and <mark>bipartisan approach to Australia’s national security</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“govern for all Australians”
+</div>
+<span class="context">Labor will <mark>govern for all Australians</mark>, in every State and Territory.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 7</span>
+<div class="quote">
+“positive plan is the right one”
+</div>
+<span class="context">I believe Labor’s <mark>positive plan is the right one</mark> for Western Australia</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 8</span>
+<div class="quote">
+“middle and working class families”
+</div>
+<span class="context">Labor believes that when middle and working class Territory families are succeeding, all of the Territory will prosper.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 9</span>
+<div class="quote">
+“put people first”
+</div>
+<span class="context">A UNITED LABOR TEAM WILL PUT PEOPLE FIRST … a single-minded commitment to deliver those policies that <mark>put people first</mark>.</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“tackle inequality”
+</div>
+<span class="context">part of Labor’s plan to <mark>tackle inequality</mark>. The vocational education</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“protecting students and taxpayers from rip-offs”
+</div>
+<span class="context">Restoring Integrity in VET and Protecting Students and Taxpayers from Rip-offs A Shorten Labor Government</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“multinationals pay their fair share of tax”
+</div>
+<span class="context">level the playing field for first home buyers and make <mark>multinationals pay their fair share of tax</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“middle and working class families are not left behind”
+</div>
+<span class="context">Our responsible and fair approach ensures that <mark>middle and working class families are not left behind</mark>. Right now, the Australian economy is</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“addressing inequality and harnessing opportunity”
+</div>
+<span class="context">strengthening community cohesion, <mark>addressing inequality and harnessing opportunity</mark>. We know that government</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“Malcolm Turnbull can give a tax cut to big business”
+</div>
+<span class="context">another round of harsh and unfair cuts – all so <mark>Malcolm Turnbull can give a tax cut to big business</mark>. My commitment to Western Australia</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“middle and working class Western Australians succeed”
+</div>
+<span class="context">I believe that when <mark>middle and working class Western Australians succeed</mark>, the whole of Western Australia</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 8</span>
+<div class="quote">
+“Malcolm Turnbull can give a $50 billion tax cut to big business”
+</div>
+<span class="context">or the Liberals’ plan for another round of harsh and unfair cuts – all so that <mark>Malcolm Turnbull can give a $50 billion tax cut to big business</mark>. This election, my commitment</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 9</span>
+<div class="quote">
+“A healthcare system underpinned by Medicare”
+</div>
+<span class="context"><mark>A healthcare system underpinned by Medicare</mark>. An education system that gives every child</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“protecting and strengthening Medicare”
+</div>
+<span class="context">Labor’s economic plan will boost growth now through nation-building infrastructure, make our nation smarter and more productive through investing in education and drive greater participation through <mark>protecting and strengthening Medicare</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Labor will strengthen the budget over the medium term through a fairer tax system and reducing tax concessions like negative gearing and capital gains”
+</div>
+<span class="context">That is why an elected Shorten Labor Government will strengthen the budget over the medium term through a fairer tax system and reducing tax concessions like negative gearing and capital gains. Our responsible savings and structural reforms will steadily and permanently improve the budget bottom line, making room for critical investments in Medicare, education and infrastructure.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“Labor will limit negative gearing to new property”
+</div>
+<span class="context">From 1 July 2017, <mark>Labor will limit negative gearing to new property</mark>. This is a significant policy that will provide an incentive for new construction and add thousands of jobs to the building industry.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“Labor will scrap the Liberals’ harsh and unfair cuts to Paid Parental Leave”
+</div>
+<span class="context">Labor will protect penalty rates, scrap the Liberals’ harsh and unfair cuts to Paid Parental Leave and Family Tax Benefits and give families immediate child care relief.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“protect Medicare and ensure our world class universal health care system”
+</div>
+<span class="context">…Labor has a positive plan to <mark>protect Medicare and ensure our world class universal health care system</mark> continues to deliver good health outcomes for South Australia into the future.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“needs-based funding permanently at the heart”
+</div>
+<span class="context">Your Child. Our Future will put <mark>needs-based funding permanently at the heart</mark> of our school system – so every student in every school will get the support they need to achieve their best.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“fight to keep high-skilled, high-wage jobs in Australia”
+</div>
+<span class="context">In contrast, Labor will <mark>fight to keep high-skilled, high-wage jobs in Australia</mark>, and is committed to supporting manufacturing workers and their families.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“multinationals pay their fair share of tax”
+</div>
+<span class="context">Labor will shut down loopholes which allow big multinational companies to send profits overseas, ensuring they pay their fair share of tax just like everyone else has to.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“fairer tax system and reducing tax concessions”
+</div>
+<span class="context">strengthen the budget over the medium term through a <mark>fairer tax system and reducing tax concessions</mark> like negative gearing and capital gains</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“limit negative gearing to new property”
+</div>
+<span class="context">From 1 July 2017, Labor will <mark>limit negative gearing to new property</mark>. This is a significant policy that will provide an incentive for new construction.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“inequality hampers growth”
+</div>
+<span class="context">It is now well acknowledged that <mark>inequality hampers growth</mark>. The IMF, OECD, Reserve Bank of England…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“protect penalty rates”
+</div>
+<span class="context">Labor’s plan includes protecting penalty rates, scrapping the Liberals’ harsh and unfair cuts to Paid Parental Leave</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 8</span>
+<div class="quote">
+“protect penalty rates”
+</div>
+<span class="context">Labor does not want some of our lowest paid workers to be forced to take a pay cut. Labor will intervene in proceedings in the Fair Work Commission to protect weekend penalty rates.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 9</span>
+<div class="quote">
+“regional Australians benefit, while protecting our environment”
+</div>
+<span class="context">Labor will put the right rules and structures in place to ensure <mark>regional Australians benefit, while protecting our environment</mark> and resources in the process.</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“tackle inequality”
+</div>
+<span class="context">part of Labor’s plan to <mark>tackle inequality</mark>. The vocational education</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“dodgy private providers who have been ripping”
+</div>
+<span class="context">by cleaning out the <mark>dodgy private providers who have been ripping</mark> Australians off for too long.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“multinationals pay their fair share of tax”
+</div>
+<span class="context">level the playing field for first home buyers and make <mark>multinationals pay their fair share of tax</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“middle and working class families are not left behind”
+</div>
+<span class="context">Our responsible and fair approach ensures that <mark>middle and working class families are not left behind</mark>. Right now, the Australian economy is</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“addressing inequality and harnessing opportunity”
+</div>
+<span class="context">strengthening community cohesion, <mark>addressing inequality and harnessing opportunity</mark>. We know that government</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“Malcolm Turnbull can give a tax cut to big business”
+</div>
+<span class="context">another round of harsh and unfair cuts – all so <mark>Malcolm Turnbull can give a tax cut to big business</mark>. My commitment to Western Australia</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 7</span>
+<div class="quote">
+“middle and working class Western Australians succeed”
+</div>
+<span class="context">I believe that when <mark>middle and working class Western Australians succeed</mark>, the whole of Western Australia</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 8</span>
+<div class="quote">
+“Malcolm Turnbull can give a $50 billion tax cut to big business”
+</div>
+<span class="context">or the Liberals’ plan for another round of harsh and unfair cuts – all so that <mark>Malcolm Turnbull can give a $50 billion tax cut to big business</mark>. This election, my commitment</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 9</span>
+<div class="quote">
+“A healthcare system underpinned by Medicare”
+</div>
+<span class="context"><mark>A healthcare system underpinned by Medicare</mark>. An education system that gives every child</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“put people first, strengthening and protecting workers’ rights”
+</div>
+<span class="context">A Shorten Labor Government will stand up for working and middle class families. Labor will <mark>put people first, strengthening and protecting workers’ rights</mark> at work by: Cracking down on the underpayment of workers, with increased penalties for employers who deliberately and systemically avoid paying their employees properly;</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Labor will strengthen the budget over the medium term through a fairer tax system and reducing tax concessions like negative gearing and capital gains”
+</div>
+<span class="context">That is why an elected Shorten Labor Government will strengthen the budget over the medium term through a fairer tax system and reducing tax concessions like negative gearing and capital gains. Our responsible savings and structural reforms will steadily and permanently improve the budget bottom line, making room for critical investments in Medicare, education and infrastructure.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“Labor will limit negative gearing to new property”
+</div>
+<span class="context">From 1 July 2017, <mark>Labor will limit negative gearing to new property</mark>. This is a significant policy that will provide an incentive for new construction and add thousands of jobs to the building industry.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“Labor will protect penalty rates, scrap the Liberals’ harsh and unfair cuts”
+</div>
+<span class="context"><mark>Labor will protect penalty rates, scrap the Liberals’ harsh and unfair cuts</mark> to Paid Parental Leave and Family Tax Benefits and give families immediate child care relief.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 8</span>
+<div class="quote">
+“put people first”
+</div>
+<span class="context">…Labor’s team has remained united, with a single-minded commitment to deliver those policies that <mark>put people first</mark>. A healthcare system underpinned by Medicare. An education system that gives every child in every school more individual attention – Public, Catholic or Independent.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Having a strong VET sector is an important part of Labor’s plan to tackle inequality”
+</div>
+<span class="context"><mark>Having a strong VET sector is an important part of Labor’s plan to tackle inequality</mark>. The vocational education and training sector deserves a comprehensive, evidence-based approach to policy-making</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“fight to keep high-skilled, high-wage jobs in Australia”
+</div>
+<span class="context">In contrast, Labor will <mark>fight to keep high-skilled, high-wage jobs in Australia</mark>, and is committed to supporting manufacturing workers and their families.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“anti-corporate elite, redistribution”
+</div>
+<span class="context">Labor will shut down loopholes which allow big multinational companies to send profits overseas, ensuring they pay their fair share of tax just like everyone else has to.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“anti-corporate elite, redistribution”
+</div>
+<span class="context">fairer tax system and reducing tax concessions like negative gearing and capital gains. Our responsible savings and structural reforms</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“limit negative gearing to new property”
+</div>
+<span class="context">From 1 July 2017, Labor will <mark>limit negative gearing to new property</mark>. This is a significant policy that will provide an incentive for new construction.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“middle and working class families”
+</div>
+<span class="context">Labor believes that when <mark>middle and working class families</mark> are succeeding, Australia succeeds.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“middle and working class families”
+</div>
+<span class="context">Labor believes that when <mark>middle and working class families</mark> are succeeding, Australia succeeds</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 8</span>
+<div class="quote">
+“anti-corporate elite, redistribution”
+</div>
+<span class="context">$50 billion tax cut to big business…Labor will protect penalty rates…protect Medicare…Family Tax Benefits targeted to families that need them most</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 9</span>
+<div class="quote">
+“regional Australians benefit, while protecting our environment”
+</div>
+<span class="context">Labor will put the right rules and structures in place to ensure <mark>regional Australians benefit, while protecting our environment</mark> and resources in the process.</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“Labor will reinstate references to the UN Refugees Convention in the Migration Act”
+</div>
+<span class="context"><mark>Labor will reinstate references to the UN Refugees Convention in the Migration Act</mark> to reverse the Abbott-Turnbull Government’s retrograde efforts to undermine international law.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 8</span>
+<div class="quote">
+“Liberals are doing everything they can to wreck Medicare”
+</div>
+<span class="context">…<mark>Liberals are doing everything they can to wreck Medicare</mark> and take our health care system down the same path as America’s, where it is your credit card and not your Medicare Card that determines the quality of your health care.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“no matter where they live - city, suburb or in the regions”
+</div>
+<span class="context">no matter what their background, <mark>no matter where they live - city, suburb or in the regions</mark> – no matter what type of school they go to – Government, Catholic or Independent, Labor wants every child to have the same chance</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“Domestic Gas National Interest Test”
+</div>
+<span class="context">a Shorten Labor Government will introduce a <mark>Domestic Gas National Interest Test</mark> for new LNG facilities to ensure exporting natural gas is in the interests of all Australians.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“temporary overseas workers are not being exploited”
+</div>
+<span class="context">Introducing reforms to ensure that <mark>temporary overseas workers are not being exploited</mark> and underpaid and that there is a level playing field for all workers in Australia.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“new humanitarian migrants expected to arrive”
+</div>
+<span class="context">Australia will see one of the largest humanitarian programs in our history, with over 20,000 <mark>new humanitarian migrants expected to arrive</mark> and settle</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 5</span>
+<div class="quote">
+“maintaining the integrity of Australia’s borders”
+</div>
+<span class="context">tackle this crisis while <mark>maintaining the integrity of Australia’s borders</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 6</span>
+<div class="quote">
+“preventing people smuggling”
+</div>
+<span class="context">Labor is absolutely committed to <mark>preventing people smuggling</mark> and ensuring vulnerable people do not drown at sea.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 7</span>
+<div class="quote">
+“preventing people smuggling”
+</div>
+<span class="context">Labor is absolutely committed to <mark>preventing people smuggling</mark> and ensuring vulnerable people do not drown at sea</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 8</span>
+<div class="quote">
+“foreign investment screening thresholds”
+</div>
+<span class="context">The foreign investment screening changes introduced by the Abbott-Turnbull Government run directly counter to the goal of attracting more investment from new sources. The Government has imposed new <mark>foreign investment screening thresholds</mark></span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“shonks and sharks”
+</div>
+<span class="context">significantly damaged by <mark>shonks and sharks</mark> ripping off vulnerable people.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“callously and heartlessly abolished by the Abbott-Turnbull”
+</div>
+<span class="context">Commonwealth Cleaning Services Guidelines, which were <mark>callously and heartlessly abolished by the Abbott-Turnbull</mark> Government.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“deceitfully hid it’s plans for harsh cuts”
+</div>
+<span class="context">We are being upfront and honest about our plans, in contrast to the current government which <mark>deceitfully hid it’s plans for harsh cuts</mark> from the Australian people before</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“Liberals have done all they can to destroy Medicare”
+</div>
+<span class="context">GP Tax by stealth by freezing the Medicare Benefits Schedule. The <mark>Liberals have done all they can to destroy Medicare</mark>. By contrast, Labor has a positive</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“harsh and unfair cuts”
+</div>
+<span class="context">choice between Labor’s positive plan and the Liberals’ plan for another round of <mark>harsh and unfair cuts</mark> – all so Malcolm</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 8</span>
+<div class="quote">
+“harsh cuts, chaos and broken promises”
+</div>
+<span class="context">Under the Liberals, South Australians have been through three years of <mark>harsh cuts, chaos and broken promises</mark>. Cuts to schools and universities</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 3</span>
+<div class="quote">
+“Malcolm Turnbull says one thing but he does another”
+</div>
+<span class="context">On the GST just like on marriage equality and climate change, <mark>Malcolm Turnbull says one thing but he does another</mark>. Malcolm Turnbull is committed to increasing the GST. The Liberals can’t be trusted on the GST,</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 4</span>
+<div class="quote">
+“The Liberals have the wrong plan for Australia, ignoring the recommendations of international organizations like the IMF”
+</div>
+<span class="context"><mark>The Liberals have the wrong plan for Australia, ignoring the recommendations of international organizations like the IMF</mark> that budget repair should “improve the access of lower-income groups to higher education and maintain access to health services.” This isn’t just fair, it’s also good for growth.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Vulnerable people should never be subject to degrading violence in Australia’s name”
+</div>
+<span class="context">Processing offshore does not, for one minute, mean we can offshore or outsource our responsibility to treat people fleeing from persecution with humanity. <mark>Vulnerable people should never be subject to degrading violence in Australia’s name</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 7</span>
+<div class="quote">
+“Liberals are doing everything they can to wreck Medicare”
+</div>
+<span class="context">The <mark>Liberals are doing everything they can to wreck Medicare</mark> and take our health care system down the same path as America’s, where it is your credit card and not your Medicare Card that determines the quality of your health care.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 8</span>
+<div class="quote">
+“Liberals are doing everything they can to wreck Medicare”
+</div>
+<span class="context">…<mark>Liberals are doing everything they can to wreck Medicare</mark> and take our health care system down the same path as America’s, where it is your credit card and not your Medicare Card that determines the quality of your health care. By contrast, Labor has a positive plan to protect Medicare and ensure our world class universal health care system continues to deliver good health outcomes for South Australia into the future.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“A vote for Malcolm Turnbull and the Liberals is a vote for a $50 billion tax cut for big business”
+</div>
+<span class="context">The choice for families is clear this election. <mark>A vote for Malcolm Turnbull and the Liberals is a vote for a $50 billion tax cut for big business</mark>. A vote for Bill Shorten and Labor is a vote for strong schools.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Only Labor has a positive plan”
+</div>
+<span class="context">While the Liberals’ agenda to deregulate our higher education sector would see our regional campuses close their doors, <mark>Only Labor has a positive plan</mark> for higher education.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“soft on multinationals but hard on schools”
+</div>
+<span class="context">The problem with Mr Turnbull is he’s <mark>soft on multinationals but hard on schools</mark> and hospitals. The budget is a matter of priorities</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“telling Australians one thing and doing another”
+</div>
+<span class="context">the Abbott Opposition did in the 2013 election, <mark>telling Australians one thing and doing another</mark>: Hiding their plans for a 15 per cent GST</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“cynical attempts to cut the pay”
+</div>
+<span class="context">putting an end to the Abbott-Turnbull Government’s <mark>cynical attempts to cut the pay</mark> and conditions of ADF personnel.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“harsh and unfair cuts”
+</div>
+<span class="context">choice between Labor’s positive plan and the Liberals’ plan for another round of <mark>harsh and unfair cuts</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 7</span>
+<div class="quote">
+“harsh and unfair cuts”
+</div>
+<span class="context">choice between Labor’s positive plan and the Liberals’ plan for another round of <mark>harsh and unfair cuts</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 8</span>
+<div class="quote">
+“harsh and unfair cuts”
+</div>
+<span class="context">the people of Queensland will have a choice between Labor’s positive plan and the Liberals’ next round of <mark>harsh and unfair cuts</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 9</span>
+<div class="quote">
+“Barnaby Joyce’s half-baked plan”
+</div>
+<span class="context">Labor will not proceed with <mark>Barnaby Joyce’s half-baked plan</mark> to move the authority for no good reason.</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Only Labor will put people first”
+</div>
+<span class="context">resources and support they need to succeed at school. <mark>Only Labor will put people first</mark> – and support Aboriginal</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Labor will put people first”
+</div>
+<span class="context">A Shorten Labor Government will stand up for working and middle class families. <mark>Labor will put people first</mark>, strengthening and protecting</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“fully costed, responsible and put people first”
+</div>
+<span class="context">repayment to strengthen our balance sheet. Labor’s fiscal plans are <mark>fully costed, responsible and put people first</mark>. Our Economic Plan Australia is facing</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“when middle and working class Western Australians succeed”
+</div>
+<span class="context">positive plan is the right one for Western Australia. I believe that <mark>when middle and working class Western Australians succeed</mark>, the whole of Western Australia</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“always put people first”
+</div>
+<span class="context">this election is that a Shorten Labor Government will <mark>always put people first</mark>.I invite you to read more</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 8</span>
+<div class="quote">
+“single-minded commitment to deliver those policies that put people first”
+</div>
+<span class="context">From the day Bill Shorten became Leader, Labor’s team has remained united, with a <mark>single-minded commitment to deliver those policies that put people first</mark>. A healthcare system</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 9</span>
+<div class="quote">
+“single-minded commitment to deliver those policies that put people first”
+</div>
+<span class="context">From the day Bill Shorten became Leader, Labor’s team has remained united, with a <mark>single-minded commitment to deliver those policies that put people first</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“put people first, strengthening and protecting workers’ rights”
+</div>
+<span class="context">A Shorten Labor Government will stand up for working and middle class families. Labor will <mark>put people first, strengthening and protecting workers’ rights</mark> at work by: Cracking down on the underpayment of workers, with increased penalties for employers who deliberately and systemically avoid paying their employees properly;</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Labor’s inclusive growth approach will ensure that middle and working class families are not left behind”
+</div>
+<span class="context">Labor’s economic plan will boost growth now through nation-building infrastructure, make our nation smarter and more productive through investing in education and drive greater participation through protecting and strengthening Medicare. <mark>Labor’s inclusive growth approach will ensure that middle and working class families are not left behind</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Australia is a nation writ large because of migration”
+</div>
+<span class="context"><mark>Australia is a nation writ large because of migration</mark>. We should never forget the debt we owe to generations of migrants, and refugees, who in seeking a better life have enriched the lives of all Australians.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“when middle and working class families are succeeding, Australia succeeds”
+</div>
+<span class="context">I believe that <mark>when middle and working class families are succeeding, Australia succeeds</mark>. That is why Labor has a plan to protect the living standards of middle and working class families.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“put people first”
+</div>
+<span class="context">…Labor’s team has remained united, with a single-minded commitment to deliver those policies that <mark>put people first</mark>. A healthcare system underpinned by Medicare. An education system that gives every child in every school more individual attention – Public, Catholic or Independent.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Only Labor will put people first”
+</div>
+<span class="context">Mr Turnbull’s decision to dump the Gonski reforms and rip $29 billion out of schools will mean that students who need the most help are not getting the resources and support they need to succeed at school. <mark>Only Labor will put people first</mark> – and support Aboriginal and Torres Strait Islander students</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“opening access to higher education to more Australians”
+</div>
+<span class="context">Labor has always been committed to <mark>opening access to higher education to more Australians</mark> and supporting universities as critical drivers of innovation.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Labor will put people first”
+</div>
+<span class="context">Only Labor can be trusted to deliver a fair paid parental leave scheme. <mark>Labor will put people first</mark>. We will protect paid parental leave for young families.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Labor’s fiscal plans are fully costed, responsible and put people first”
+</div>
+<span class="context"><mark>Labor’s fiscal plans are fully costed, responsible and put people first</mark>. Our Economic Plan Australia is facing two major economic challenges</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“putting people first”
+</div>
+<span class="context">This is not an attack on DVA employees, or their commitment to the important work they do. This is about <mark>putting people first</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“I will always put people first”
+</div>
+<span class="context">This election, my commitment to the people of Victoria is that <mark>I will always put people first</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“I will always put people first”
+</div>
+<span class="context">my commitment to the people of Victoria is that <mark>I will always put people first</mark>. Labor has a clear plan</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“put people first”
+</div>
+<span class="context">A UNITED LABOR TEAM WILL PUT PEOPLE FIRST…with a single-minded commitment to deliver those policies that <mark>put people first</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 9</span>
+<div class="quote">
+“deliver those policies that put people first”
+</div>
+<span class="context">A UNITED LABOR TEAM WILL PUT PEOPLE FIRST From the day Bill Shorten became Leader, Labor’s team has remained united, with a single-minded commitment to <mark>deliver those policies that put people first</mark>.</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Only Labor will put people first”
+</div>
+<span class="context">resources and support they need to succeed at school. <mark>Only Labor will put people first</mark> – and support Aboriginal</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“dodgy private providers who have been ripping”
+</div>
+<span class="context">by cleaning out the <mark>dodgy private providers who have been ripping</mark> Australians off for too long.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“soft on multinationals but hard on schools”
+</div>
+<span class="context">The problem with Mr Turnbull is he’s <mark>soft on multinationals but hard on schools</mark> and hospitals.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“fully costed, responsible and put people first”
+</div>
+<span class="context">repayment to strengthen our balance sheet. Labor’s fiscal plans are <mark>fully costed, responsible and put people first</mark>. Our Economic Plan Australia is facing</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“the Liberals have treated the community and not-for-profit sector with contempt”
+</div>
+<span class="context">But for three years, <mark>the Liberals have treated the community and not-for-profit sector with contempt</mark>. First the Liberals ripped</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“Malcolm Turnbull can give a tax cut to big business”
+</div>
+<span class="context">another round of harsh and unfair cuts – all so <mark>Malcolm Turnbull can give a tax cut to big business</mark>. My commitment to Western Australia</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 7</span>
+<div class="quote">
+“always put people first”
+</div>
+<span class="context">this election is that a Shorten Labor Government will <mark>always put people first</mark>.I invite you to read more</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 8</span>
+<div class="quote">
+“single-minded commitment to deliver those policies that put people first”
+</div>
+<span class="context">From the day Bill Shorten became Leader, Labor’s team has remained united, with a <mark>single-minded commitment to deliver those policies that put people first</mark>. A healthcare system</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 9</span>
+<div class="quote">
+“single-minded commitment to deliver those policies that put people first”
+</div>
+<span class="context">From the day Bill Shorten became Leader, Labor’s team has remained united, with a <mark>single-minded commitment to deliver those policies that put people first</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“big multinationals get to play by different rules”
+</div>
+<span class="context">It is not fair that Australians work hard and pay tax while <mark>big multinationals get to play by different rules</mark>. The Australian Tax Office has revealed one in four big multinationals pay no tax at all in Australia – not one cent.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Malcolm Turnbull’s only economic plan is to deliver a $50 billion tax giveaway to big business”
+</div>
+<span class="context">by the Australian community. <mark>Malcolm Turnbull’s only economic plan is to deliver a $50 billion tax giveaway to big business</mark>. Australia can not afford this reckless policy which undermines our fiscal sustainability.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“The Liberals have turned the issue of Australia’s submarine build into a political football”
+</div>
+<span class="context">Since then, the Liberals have turned the issue of Australia’s submarine build into a political football and refused to guarantee they will deliver on that promise. And while a preferred bidder – DCNS – has been announced, contracts are not yet signed.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 7</span>
+<div class="quote">
+“Malcolm Turnbull can give a tax cut to big business”
+</div>
+<span class="context">On July 2, Victorians will have a choice between Labor’s positive plan and the Liberals’ next round of harsh and unfair cuts – all so that Malcolm Turnbull can give a $50 billion tax cut to big business.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 8</span>
+<div class="quote">
+“put people first”
+</div>
+<span class="context">…Labor’s team has remained united, with a single-minded commitment to deliver those policies that <mark>put people first</mark>. A healthcare system underpinned by Medicare. An education system that gives every child in every school more individual attention – Public, Catholic or Independent.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“shonks and sharks ripping off vulnerable people”
+</div>
+<span class="context">Our national skills and training sector used to be the envy of the world – since the election of the Liberal Government it has been significantly damaged by <mark>shonks and sharks ripping off vulnerable people</mark>. People’s livelihoods are being destroyed</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“the Liberals goaded the car industry into closing”
+</div>
+<span class="context">These regions face the prospect of high unemployment and social dislocation after <mark>the Liberals goaded the car industry into closing</mark> down and leaving Australia.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“working and middle class families”
+</div>
+<span class="context">Labor will put people first, strengthening and protecting workers’ rights at work… A Shorten Labor Government will stand up for <mark>working and middle class families</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“only Labor will put people first”
+</div>
+<span class="context">Budget repair under Labor will occur without smashing family budgets. Only Labor will stand up for families, because <mark>only Labor will put people first</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“the Liberals have gutted Australia’s aid program”
+</div>
+<span class="context">Since coming to Government in 2013, <mark>the Liberals have gutted Australia’s aid program</mark>. It is now the weakest in history.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“put their interests ahead of big business”
+</div>
+<span class="context">They deserve a Government that will put their interests ahead of the interests of big business.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“put their interests ahead of big business”
+</div>
+<span class="context">They deserve a Government that will put their interests ahead of the interests of big business</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 8</span>
+<div class="quote">
+“Labor’s positive plan, or the Liberals’ plan”
+</div>
+<span class="context">Territorians have a clear choice: <mark>Labor’s positive plan, or the Liberals’ plan</mark> for another round of harsh and unfair cuts</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 9</span>
+<div class="quote">
+“deliver those policies that put people first”
+</div>
+<span class="context">A UNITED LABOR TEAM WILL PUT PEOPLE FIRST From the day Bill Shorten became Leader, Labor’s team has remained united, with a single-minded commitment to <mark>deliver those policies that put people first</mark>.</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="63320_201607_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

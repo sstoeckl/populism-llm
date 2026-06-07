@@ -1,0 +1,2221 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>DL (Spain, 2015) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/33099_201512_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">DL (Spain, 2015)</h1>
+<p class="subtitle lead">manifesto_id 33099_201512</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Spain · <span class="item"><strong>Party</strong></span> DL (Democracy and Freedom) · <span class="item"><strong>Year</strong></span> 2015 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 90</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.4</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.8</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.8</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.8</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.8</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“respectar els criteris legals de competitivitat”
+</div>
+<span class="context">poden treballar sense <mark>respectar els criteris legals de competitivitat</mark> i/o defensa dels consumidors existents a Catalunya</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“funcionament dels mercats mateixos”
+</div>
+<span class="context">deteriorar la qualitat institucional i de <mark>funcionament dels mercats mateixos</mark>, a causa de l’augment</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“reduir el tipus de l’impost sobre societats per a les pimes”
+</div>
+<span class="context">compensar les maniobres fiscals de certes grans empreses. Rebaixarem el tipus de l’impost sobre societats per a les pimes del 25% al 20%, en línia amb la rebaixa de 5 punts del tipus general, aprovada en la darrera reforma de l’impost i que s’aplica a les grans empreses.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“defensat amb prou energia la competència front aquesta amenaça”
+</div>
+<span class="context">Mai a Espanya s’ha <mark>defensat amb prou energia la competència front aquesta amenaça</mark>. Cal denunciar la regulació</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“completar el mercat interior de la Unió Europea”
+</div>
+<span class="context">Continuarem apostant per <mark>completar el mercat interior de la Unió Europea</mark> amb una defensa específica</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“l’ofec econòmic al qual s’ha sotmès al Govern de la Generalitat, tant a través d’uns objectius de dèficit públic injustos”
+</div>
+<span class="context">…L’ofegament econòmic al qual s’ha sotmès al Govern de la Generalitat, tant a través d’uns objectius de dèficit públic injustos com del persistent dèficit fiscal, ha estat notable. La darrera mesura ha estat la intervenció de la Generalitat a través del control absolut de les seves finances…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“model comercial català. L’Estat, amb la seva voluntat uniformitzadora”
+</div>
+<span class="context">Model comercial català. L’Estat, amb la seva voluntat uniformitzadora, ha obert litigis en tots els àmbits (horaris, rebaixes, ordenació comercial, etc.) i sota l’excusa d’una major eficiència econòmica ha continuat aplicant mesures recentralitzadores per tal d’atacar el model català de comerç.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Promourem una fiscalitat: Que estimuli més la creació d’ocupació”
+</div>
+<span class="context"><mark>Promourem una fiscalitat: Que estimuli més la creació d’ocupació</mark>. Que contribueixi a combatre les desigualtats, de manera que aportin més els que més tenen. Que afavoreixi el creixement econòmic, sabent que tenim un teixit productiu de petites i mitjanes empreses que són motors de generació d’activitat productiva.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Rebaixarem el tipus de l’impost sobre societats per a les pimes del 25% al 20%”
+</div>
+<span class="context">És fonamental que es restableixi un camp de joc equilibrat entre PIMEs i multinacionals, i que les primeres no hagin de pagar per compensar les maniobres fiscals de certes grans empreses. <mark>Rebaixarem el tipus de l’impost sobre societats per a les pimes del 25% al 20%</mark>, en línia amb la rebaixa de 5 punts del tipus general, aprovada en la darrera reforma de l’impost i que s’aplica a les grans empreses.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“Impulsarem en el si de la Unió Europea la entrada en vigor de la Taxa a les Transaccions Financeres”
+</div>
+<span class="context"><mark>Impulsarem en el si de la Unió Europea la entrada en vigor de la Taxa a les Transaccions Financeres</mark> i assegurarem que a nivell de l’Estat es destini a finançar, addicionalment als recursos pressupostaris ja existents, polítiques socials específiques dirigides a les persones més vulnerables, així com programes de cooperació internacional contra la fam, la pobresa i la desigualtat.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“ofec econòmic sistemàtic per part de l’Estat”
+</div>
+<span class="context">A aquesta crisi s’hi ha afegit un <mark>ofec econòmic sistemàtic per part de l’Estat</mark> espanyol que no només ens ha obligat a complir uns objectius de dèficit absolutament injustos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 2</span>
+<div class="quote">
+“major eficiència econòmica ha continuat aplicant mesures recentralitzadores”
+</div>
+<span class="context">sota l’excusa d’una <mark>major eficiència econòmica ha continuat aplicant mesures recentralitzadores</mark> per tal d’atacar el model català de comerç</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“autonomia de les universitats (organitzativa, financera, de gestió”
+</div>
+<span class="context">Flexibilitzarem la legislació vigent en matèria universitària per tal de reforçar l’<mark>autonomia de les universitats (organitzativa, financera, de gestió</mark> de personal i acadèmica).</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Rebaixarem el tipus de l’impost sobre societats per a les pimes del 25% al 20%”
+</div>
+<span class="context"><mark>Rebaixarem el tipus de l’impost sobre societats per a les pimes del 25% al 20%</mark>, en línia amb la rebaixa de 5 punts del tipus general</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“completar el mercat interior de la Unió Europea”
+</div>
+<span class="context">Continuarem apostant per <mark>completar el mercat interior de la Unió Europea</mark> amb una defensa específica del manteniment i l’enfortiment de les quatre llibertats</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Impost sobre dipòsits en entitats de crèdit”
+</div>
+<span class="context">destaquen:Taxes judicials catalanes. Taxa de “euro per recepta”. <mark>Impost sobre dipòsits en entitats de crèdit</mark>. L’impost sobre la producció d’energia elèctrica</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“estatut de l’inversor que protegeixi els inversors minoristes”
+</div>
+<span class="context">de les finances alternatives realitzades a través de les plataformes digitals, i alhora, garantint la protecció dels consumidors. Aprovarem un <mark>estatut de l’inversor que protegeixi els inversors minoristes</mark> i apliqui la normativa europea de protecció dels consumidors en l’àmbit financer (directives MiFID).</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“protegeixi els inversors minoristes i apliqui la normativa”
+</div>
+<span class="context">Aprovarem un estatut de l’inversor que <mark>protegeixi els inversors minoristes i apliqui la normativa</mark> europea de protecció</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“Taxa a les Transaccions Financeres”
+</div>
+<span class="context">Impulsarem en el si de la Unió Europea la entrada en vigor de la <mark>Taxa a les Transaccions Financeres</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“intervenció financera del Govern de la Generalitat”
+</div>
+<span class="context">…El Govern del PP justifica aquesta intervenció a partir d’una despesa de 1.300 M€, que amb només criteris electorals argumenten desconèixer… El Govern espanyol: controla l’accés de la Generalitat a l’endeutament, té la possibilitat d’exigir mesures d’ajustament d’ingressos i despeses…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“SAREB, una societat propietària de centenars de pisos buits”
+</div>
+<span class="context">L’Estat avui disposa d’instruments que no utilitza, com per exemple la <mark>SAREB, una societat propietària de centenars de pisos buits</mark>, procedents dels desnonaments, dels quals només una petita part s’ha posat a disposició d’ajuntaments i de la Generalitat.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Actuarem en l’àmbit de la competència bancària, mitjançant la legislació d’entitats de crèdit”
+</div>
+<span class="context"><mark>Actuarem en l’àmbit de la competència bancària, mitjançant la legislació d’entitats de crèdit</mark>, per evitar posicions de domini, facilitant la diversificació dels tipus d’entitats financeres (cooperatives de crèdit, caixes populars, banca ètica), tot garantint la solvència del conjunt del sistema i la protecció dels consumidors.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Actuarem en l’àmbit de la competència bancària, mitjançant la legislació d’entitats de crèdit”
+</div>
+<span class="context">Cal defensar un sistema financer que estigui al costat de l’economia productiva, que compleixi la seva funció de canalització de l’estalvi cap al crèdit i la inversió, a la vegada que eviti posicions de domini en el mercat de qualsevol entitat i que diversifiqui els canals del crèdit i la inversió, incrementant la protecció dels consumidors en l’àmbit financer. Així, doncs:<mark>Actuarem en l’àmbit de la competència bancària, mitjançant la legislació d’entitats de crèdit</mark>, per evitar posicions de domini, facilitant la diversificació dels tipus d’entitats financeres (cooperatives de crèdit, caixes populars, banca ètica), tot garantint la solvència del conjunt del sistema i la protecció dels consumidors.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“Revisarem el model Defensa i els seus programes especials d’armament”
+</div>
+<span class="context"><mark>Revisarem el model Defensa i els seus programes especials d’armament</mark> i exigirem el compliment de la Llei general pressupostaria i de la Llei d’estabilitat pressupostària aplicable al Ministeri de Defensa, evitant així la presentació de futurs reials secrets per cobrir despeses ja conegudes.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“intervenció financera del Govern de la Generalitat”
+</div>
+<span class="context">tutela que finalment ha reblat amb l’acord… que suposa la <mark>intervenció financera del Govern de la Generalitat</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“accés al crèdit per a capitalització”
+</div>
+<span class="context">Garantirem l’<mark>accés al crèdit per a capitalització</mark> i circulant de les diferents línies de l’Instituto de Crédito Oficial (ICO) a les entitats del tercer sector</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“protecció dels consumidors en l’àmbit financer”
+</div>
+<span class="context">Aprovarem un estatut de l’inversor que protegeixi els inversors minoristes i apliqui la normativa europea de <mark>protecció dels consumidors en l’àmbit financer</mark> (directives MiFID).</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Actuarem en l’àmbit de la competència bancària”
+</div>
+<span class="context"><mark>Actuarem en l’àmbit de la competència bancària</mark>, mitjançant la legislació d’entitats de crèdit, per evitar posicions de domini, facilitant la diversificació dels tipus d’entitats financeres</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“Taxa a les Transaccions Financeres”
+</div>
+<span class="context">Impulsarem en el si de la Unió Europea la entrada en vigor de la <mark>Taxa a les Transaccions Financeres</mark> i assegurarem que a nivell de l’Estat es destini a finançar</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“respecte degut a les regles del joc”
+</div>
+<span class="context">es requereix el reconeixement internacional, cosa que va lligada amb el <mark>respecte degut a les regles del joc</mark> i a les de la cultura democràtica</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“principi constitucional de separació de poders”
+</div>
+<span class="context">a més, trenca amb el <mark>principi constitucional de separació de poders</mark>, de manera que a la llarga</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“reforçar l’autonomia de les universitats”
+</div>
+<span class="context">recaure el seu cost de manera injusta en el sistema universitari català. Flexibilitzarem la legislació vigent en matèria universitària per tal de <mark>reforçar l’autonomia de les universitats</mark> (organitzativa, financera, de gestió de personal i acadèmica), possibilitant el desenvolupament d’òrgans de govern</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“garantir la independència dels vocals del Consejo General”
+</div>
+<span class="context">destinades a <mark>garantir la independència dels vocals del Consejo General</mark> del Poder Judicial i dels membres del Tribunal Constitucional</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“vulnerar greument el principi de separació de poders”
+</div>
+<span class="context">cosa que, a més de <mark>vulnerar greument el principi de separació de poders</mark>, significa situar el Tribunal Constitucional</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“la democràcia de l’Estat, després de quatre anys de govern del Partit Popular, és significativament més dèbil”
+</div>
+<span class="context">…En definitiva, es constata que <mark>la democràcia de l’Estat, després de quatre anys de govern del Partit Popular, és significativament més dèbil</mark> que abans de començar la legislatura, cosa que urgeix corregir, atès que Catalunya n’ha resultant especialment perjudicada…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“trencat normes fonamentals de la democràcia”
+</div>
+<span class="context">No ho ha evitat, però en la seva fal·lera per fer-ho ha <mark>trencat normes fonamentals de la democràcia</mark>, com ara fer una reforma exprés del Tribunal Constitucional per donar resposta al procés català.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Garantirem que el català sigui reconegut i acceptat com a llengua de ple dret”
+</div>
+<span class="context"><mark>Garantirem que el català sigui reconegut i acceptat com a llengua de ple dret</mark> en tots els organismes internacionals, especialment tots els que depenen de l’entramat d’institucions europees.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“la Llei 19/2013, de 9 de desembre, de transparència, accés a la informació pública i bon govern”
+</div>
+<span class="context">En funció pública, també, <mark>la Llei 19/2013, de 9 de desembre, de transparència, accés a la informació pública i bon govern</mark>, on l’Estat imposa determinades mesures limitadores de la contractació de caràcter conjuntural, com ara la prohibició d’incorporar nou personal excepte en determinats sectors i la impossibilitat de contractar personal temporal i de nomenar personal estatutari temporal o funcionaris interins, llevat de casos excepcionals.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“La derogació de la darrera reforma de la Llei orgànica del Tribunal Constitucional”
+</div>
+<span class="context">Cal impulsar des del Congrés dels Diputats mesures d’urgència relatives a una profunda regeneració democràtica, que corregeixin el deteriorament de la democràcia durant la legislatura del 2011-2015, algunes de les quals ja han estat citades en apartats anteriors: <mark>La derogació de la darrera reforma de la Llei orgànica del Tribunal Constitucional</mark>, la qual permet que el Tribunal Constitucional pugui arribar a suspendre de funcions càrrecs electes, cosa que, a més de vulnerar greument el principi de separació de poders, significa situar el Tribunal Constitucional per damunt dels electors mateixos que han escollit un Parlament o un Govern.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“trenca amb el principi constitucional de separació de poders”
+</div>
+<span class="context">una Llei orgànica anti-president Mas i anti-Parlament de Catalunya que, a més, <mark>trenca amb el principi constitucional de separació de poders</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 2</span>
+<div class="quote">
+“trenca amb el principi constitucional de separació de poders”
+</div>
+<span class="context">És una Llei orgànica anti-president Mas i anti-Parlament de Catalunya que, a més, <mark>trenca amb el principi constitucional de separació de poders</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“autonomia local que és injustificada i desproporcionada”
+</div>
+<span class="context">Derogarem la Llei 27/2013… ja que suposa una ingerència en el principi d’<mark>autonomia local que és injustificada i desproporcionada</mark>, i que en matèria d’igualtat i violència de gènere impedeix l’efectiva realització de polítiques de proximitat.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“garantir la independència dels vocals del Consejo General del Poder Judicial”
+</div>
+<span class="context">Procedirem a l’adopció de mesures destinades a <mark>garantir la independència dels vocals del Consejo General del Poder Judicial</mark> i dels membres del Tribunal Constitucional, com element imprescindible d’un Estat de Dret</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“vulnerar greument el principi de separació de poders”
+</div>
+<span class="context">cosa que, a més de <mark>vulnerar greument el principi de separació de poders</mark>, significa situar el Tribunal Constitucional per damunt dels electors</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“vulneracions flagrants de drets fonamentals”
+</div>
+<span class="context">en la X Legislatura (2011-2015) s’han donat altres <mark>vulneracions flagrants de drets fonamentals</mark> que debiliten la qualitat de la democràcia</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“vulneracions flagrants de drets fonamentals”
+</div>
+<span class="context">s’han donat altres <mark>vulneracions flagrants de drets fonamentals</mark> que debiliten la qualitat de la democràcia.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“reconeixement dels drets de les persones del col·lectiu LGTBI”
+</div>
+<span class="context">Justícia Universal perquè faciliti la persecució d’aquest tipus de delictes. Igualtat amb els col·lectius LGTBI i altre s col ·lectius discriminats Avançarem en el <mark>reconeixement dels drets de les persones del col·lectiu LGTBI</mark> (lesbianes, gais, bisexuals, transgèneres i intersexuals) en tots els àmbits.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“garantir el dret de les persones a morir dignament”
+</div>
+<span class="context">un seriós debat per <mark>garantir el dret de les persones a morir dignament</mark>, un debat que cal afrontar de manera participativa</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“vulneració dels drets humans i del dret d’asil”
+</div>
+<span class="context">atès que en molts casos és una clara <mark>vulneració dels drets humans i del dret d’asil</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“menysteniment a la llengua catalana i aquesta tendència no ha fet més que agreujar-se”
+</div>
+<span class="context">…Ja fa molts anys que l’Estat espanyol menysté la llengua catalana i aquesta tendència no ha fet més que agreujar-se independentment del color polític del Govern espanyol. Cada vegada són més els contenciosos contra normatives catalanes que busquen empetitir la seva presència i ús…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“igualtat d’oportunitats, en la garantia de la igualtat”
+</div>
+<span class="context">per avançar en la reducció de les desigualtats, en l’increment de la cohesió social, en la garantia de la igualtat d’oportunitats, en la millora del benestar i en l’atenció de les situacions d’urgència social de la societat catalana durant aquest període transitori.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Treballarem perquè el Govern de l’Estat impulsi polítiques per aconseguir igualtat retributiva”
+</div>
+<span class="context"><mark>Treballarem perquè el Govern de l’Estat impulsi polítiques per aconseguir igualtat retributiva</mark> per a treballs del mateix valor, així com la igualtat d’accés a l’ocupació. Promourem la recuperació de l’aportació estatal per a programes específics per a dones i la promoció de la igualtat.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“la defensa dels drets lingüístics dels catalans en les seves relacions amb l’Administració de justícia”
+</div>
+<span class="context">L’ampliació de les competències del Tribunal Superior de Justícia de Catalunya, fent que sigui el tribunal d’última instància jurisdiccional a Catalunya en tots els ordres jurisdiccionals (art. 95 de l’EAC). La garantia dels drets lingüístics dels catalans en les seves relacions amb l’Administració de justícia.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“recuperar el dret universal a la sanitat”
+</div>
+<span class="context">La recuperació del dret universal a la sanitat. El PP ha exclòs del dret a la sanitat immigrants i altres col·lectius; cal recuperar-lo.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“vulneracions flagrants de drets fonamentals”
+</div>
+<span class="context">en la X Legislatura (2011-2015) s’han donat altres <mark>vulneracions flagrants de drets fonamentals</mark> que debiliten la qualitat de la democràcia</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“drets de les persones del col·lectiu LGTBI”
+</div>
+<span class="context">Avançarem en el reconeixement dels <mark>drets de les persones del col·lectiu LGTBI</mark> (lesbianes, gais, bisexuals, transgèneres i intersexuals) en tots els àmbits</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“reconeixement dels drets de les persones del col·lectiu LGTBI”
+</div>
+<span class="context">Avançarem en el <mark>reconeixement dels drets de les persones del col·lectiu LGTBI</mark> (lesbianes, gais, bisexuals, transgèneres i intersexuals) en tots els àmbits.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“dret de les persones a morir dignament”
+</div>
+<span class="context">cal fer referència a la necessitat d’abordar un seriós debat per garantir el <mark>dret de les persones a morir dignament</mark>, un debat que cal afrontar de manera participativa i democràtica</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“drets humans, individuals i col·lectius”
+</div>
+<span class="context">la defensa, la protecció i la garantia dels <mark>drets humans, individuals i col·lectius</mark> es consideren com un eix nuclear de la política exterior</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“respecte degut a les regles del joc”
+</div>
+<span class="context">es requereix el reconeixement internacional, cosa que va lligada amb el <mark>respecte degut a les regles del joc</mark> i a les de la cultura democràtica</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“principi constitucional de separació de poders”
+</div>
+<span class="context">a més, trenca amb el <mark>principi constitucional de separació de poders</mark>, de manera que a la llarga</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“estatut de l’inversor que protegeixi els inversors minoristes”
+</div>
+<span class="context">de les finances alternatives realitzades a través de les plataformes digitals, i alhora, garantint la protecció dels consumidors. Aprovarem un <mark>estatut de l’inversor que protegeixi els inversors minoristes</mark> i apliqui la normativa europea de protecció dels consumidors en l’àmbit financer (directives MiFID).</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“garantir la independència dels vocals del Consejo General”
+</div>
+<span class="context">destinades a <mark>garantir la independència dels vocals del Consejo General</mark> del Poder Judicial i dels membres del Tribunal Constitucional</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“vulnerar greument el principi de separació de poders”
+</div>
+<span class="context">cosa que, a més de <mark>vulnerar greument el principi de separació de poders</mark>, significa situar el Tribunal Constitucional</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“L’ofegament econòmic al qual s’ha sotmès al Govern de la Generalitat”
+</div>
+<span class="context">…<mark>L’ofegament econòmic al qual s’ha sotmès al Govern de la Generalitat</mark>, tant a través d’uns objectius de dèficit públic injustos com del persistent dèficit fiscal, ha estat notable. La darrera mesura ha estat la intervenció de la Generalitat a través del control absolut de les seves finances…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“model comercial català. L’Estat, amb la seva voluntat uniformitzadora”
+</div>
+<span class="context">Model comercial català. L’Estat, amb la seva voluntat uniformitzadora, ha obert litigis en tots els àmbits (horaris, rebaixes, ordenació comercial, etc.) i sota l’excusa d’una major eficiència econòmica ha continuat aplicant mesures recentralitzadores per tal d’atacar el model català de comerç.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Actuarem en l’àmbit de la competència bancària, mitjançant la legislació d’entitats de crèdit”
+</div>
+<span class="context"><mark>Actuarem en l’àmbit de la competència bancària, mitjançant la legislació d’entitats de crèdit</mark>, per evitar posicions de domini, facilitant la diversificació dels tipus d’entitats financeres (cooperatives de crèdit, caixes populars, banca ètica), tot garantint la solvència del conjunt del sistema i la protecció dels consumidors.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Rebaixarem el tipus de l’impost sobre societats per a les pimes del 25% al 20%”
+</div>
+<span class="context">És fonamental que es restableixi un camp de joc equilibrat entre PIMEs i multinacionals, i que les primeres no hagin de pagar per compensar les maniobres fiscals de certes grans empreses. <mark>Rebaixarem el tipus de l’impost sobre societats per a les pimes del 25% al 20%</mark>, en línia amb la rebaixa de 5 punts del tipus general, aprovada en la darrera reforma de l’impost i que s’aplica a les grans empreses.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“La derogació de la darrera reforma de la Llei orgànica del Tribunal Constitucional”
+</div>
+<span class="context">Cal impulsar des del Congrés dels Diputats mesures d’urgència relatives a una profunda regeneració democràtica, que corregeixin el deteriorament de la democràcia durant la legislatura del 2011-2015, algunes de les quals ja han estat citades en apartats anteriors: <mark>La derogació de la darrera reforma de la Llei orgànica del Tribunal Constitucional</mark>, la qual permet que el Tribunal Constitucional pugui arribar a suspendre de funcions càrrecs electes, cosa que, a més de vulnerar greument el principi de separació de poders, significa situar el Tribunal Constitucional per damunt dels electors mateixos que han escollit un Parlament o un Govern.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“la democràcia de l’Estat… és significativament més dèbil”
+</div>
+<span class="context">es constata que la democràcia de l’Estat, després de quatre anys de govern del Partit Popular, és significativament més dèbil que abans de començar la legislatura</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“drets de les persones del col·lectiu LGTBI”
+</div>
+<span class="context">Avançarem en el reconeixement dels <mark>drets de les persones del col·lectiu LGTBI</mark> (lesbianes, gais, bisexuals, transgèneres i intersexuals) en tots els àmbits</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“reconeixement dels drets de les persones del col·lectiu LGTBI”
+</div>
+<span class="context">Avançarem en el <mark>reconeixement dels drets de les persones del col·lectiu LGTBI</mark> (lesbianes, gais, bisexuals, transgèneres i intersexuals) en tots els àmbits.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“garantir la independència dels vocals del Consejo General del Poder Judicial”
+</div>
+<span class="context">Procedirem a l’adopció de mesures destinades a <mark>garantir la independència dels vocals del Consejo General del Poder Judicial</mark> i dels membres del Tribunal Constitucional, com element imprescindible d’un Estat de Dret</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“completar el mercat interior de la Unió Europea”
+</div>
+<span class="context">Continuarem apostant per <mark>completar el mercat interior de la Unió Europea</mark> amb una defensa específica del manteniment i l’enfortiment de les quatre llibertats</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“negat sistemàticament per l’Estat espanyol”
+</div>
+<span class="context">un ampli suport ciutadà i de la majoria dels diputats del Parlament, ha estat i encara és <mark>negat sistemàticament per l’Estat espanyol</mark>, que avui continua donant l’esquena</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“un atac a la democràcia”
+</div>
+<span class="context">X Legislatura (2011-2015): <mark>un atac a la democràcia</mark> Un dels objectius principals del Govern del PP</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“L’ofensiva premeditada d’ofec financer duta a terme pel govern del PP”
+</div>
+<span class="context">ment de la nova legislatura, la Generalitat ha de disposar de més recursos per gestionar el seu dia a dia. <mark>L’ofensiva premeditada d’ofec financer duta a terme pel govern del PP</mark> ha agreujat la gestió de la crisi a Catalunya. Per això, per justícia i per reforçar una ràpida i sòlida sortida de la crisi:</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“satisfan clientelismes polítics i plantejaments ideològics centralistes”
+</div>
+<span class="context">destinats a inversions improductives, que <mark>satisfan clientelismes polítics i plantejaments ideològics centralistes</mark>, que no són sostenibles</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“l’ús partidista de la política de seguretat”
+</div>
+<span class="context">La legislatura passada ha estat caracteritzada per <mark>l’ús partidista de la política de seguretat</mark> que ha portat a terme el Govern de l’Estat</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“l’Estat espanyol, que avui continua donant l’esquena al diàleg i a la negociació”
+</div>
+<span class="context">…el dret a decidir el futur nacional i polític del seu país. Un dret que, tot i comptar amb un ampli suport ciutadà i de la majoria dels diputats del Parlament, ha estat i encara és negat sistemàticament per <mark>l’Estat espanyol, que avui continua donant l’esquena al diàleg i a la negociació</mark>. Les eleccions del 27 de setembre han donat finalment al poble de Catalunya l’oportunitat de poder exercir el seu dret a decidir…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Govern del PP en la legislatura passada ha estat evitar que Catalunya posi les urnes”
+</div>
+<span class="context">X Legislatura (2011-2015): un atac a la democràcia Un dels objectius principals del <mark>Govern del PP en la legislatura passada ha estat evitar que Catalunya posi les urnes</mark> i pugui donar una resposta democràtica a l’anhel ciutadà de decidir el seu futur polític.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“La deslleialtat de l’Estat en matèria de cultura és pública i notòria”
+</div>
+<span class="context"><mark>La deslleialtat de l’Estat en matèria de cultura és pública i notòria</mark>. L’Estatut d’Autonomia de Catalunya estableix la cultura com un àmbit en què la Generalitat té competència exclusiva i, basant-se en això, el Tribunal Constitucional ha dictat sentències que exigeixen a l’Estat la territorialització dels fons culturals.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“falsos informes policials, investigacions secretes”
+</div>
+<span class="context">La legislatura passada ha estat caracteritzada per l’ús partidista de la política de seguretat que ha portat a terme el Govern de l’Estat: <mark>falsos informes policials, investigacions secretes</mark> que han arribat a mans de la premsa abans que els afectats mateixos sabessin de què se’ls acusava o per què se’ls investigava, detencions mediàtiques, una voluntat d’influir amb notícies policials en processos electorals, entre d’altres.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“la negativa a l’exercici del dret a decidir”
+</div>
+<span class="context">havent constatat, de forma reiterada, <mark>la negativa a l’exercici del dret a decidir</mark> dels ciutadans de Catalunya per part de l’Estat</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“un atac a la democràcia”
+</div>
+<span class="context">X Legislatura (2011-2015): <mark>un atac a la democràcia</mark> Un dels objectius principals del Govern del PP en la legislatura passada ha estat evitar que Catalunya posi les urnes</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“ofensiva premeditada d’ofeg financer duta a terme pel govern del PP”
+</div>
+<span class="context">La darrera mesura del Govern del PP ha estat la intervenció de les finances de la Generalitat… L’<mark>ofensiva premeditada d’ofeg financer duta a terme pel govern del PP</mark> ha agreujat la gestió de la crisi a Catalunya.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“privilegiar les empreses molt grans, especialment les derivades d’antics règims de monopoli”
+</div>
+<span class="context">Caldrà combatre la tendència del govern espanyol de <mark>privilegiar les empreses molt grans, especialment les derivades d’antics règims de monopoli</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“ús partidista de la política de seguretat”
+</div>
+<span class="context">la legislatura passada ha estat caracteritzada per l’<mark>ús partidista de la política de seguretat</mark> que ha portat a terme el Govern de l’Estat</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“al servei del poble de Catalunya”
+</div>
+<span class="context">depenen també la força i l’autoritat d’aquesta veu <mark>al servei del poble de Catalunya</mark> i del seu mandat expressat el 27 de setembre</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“L’ofensiva premeditada d’ofec financer duta a terme pel govern del PP”
+</div>
+<span class="context">ment de la nova legislatura, la Generalitat ha de disposar de més recursos per gestionar el seu dia a dia. <mark>L’ofensiva premeditada d’ofec financer duta a terme pel govern del PP</mark> ha agreujat la gestió de la crisi a Catalunya. Per això, per justícia i per reforçar una ràpida i sòlida sortida de la crisi:</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“satisfan clientelismes polítics i plantejaments ideològics centralistes”
+</div>
+<span class="context">destinats a inversions improductives, que <mark>satisfan clientelismes polítics i plantejaments ideològics centralistes</mark>, que no són sostenibles</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“tornar la política a la ciutadania”
+</div>
+<span class="context">Creiem que cal <mark>tornar la política a la ciutadania</mark>, cal recuperar la cultura dels valors</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“un moviment plural i transversal imparable. Un moviment per a tothom, pacífic, democràtic i que no exclou ningú”
+</div>
+<span class="context">…El món ens observa i està amatent a aquest moviment plural i transversal imparable. Un moviment per a tothom, pacífic, democràtic i que no exclou ningú, que busca amb la mà estesa construir un nou marc de relacions que faci possible un futur millor per als ciutadans de Catalunya…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“actuacions empresarials responsables”
+</div>
+<span class="context">Reconeixerem, premiarem i incentivarem les <mark>actuacions empresarials responsables</mark>. Cal que les administracions valorin en el tractament i suport que poden oferir a les empreses (fiscalitat, ajuts i subvencions) elements com la integració de les preocupacions socials, mediambientals i ètiques,</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“Catalunya no disposa d’un Estat ni de les eines necessàries”
+</div>
+<span class="context"><mark>Catalunya no disposa d’un Estat ni de les eines necessàries</mark> per facilitar més oportunitats de feina, derivades de la capacitat de legislar en matèria laboral; no té capacitat per disposar de més recursos, decidir els increments de la despesa pública, de la millora de la seva eficàcia i de la seva orientació cap al creixement.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“la voluntat del poble de Catalunya d’esdevenir un Estat”
+</div>
+<span class="context">Treballarem perquè la Unió Europea reconegui la voluntat del poble de Catalunya d’esdevenir un estat membre homologable a la resta de vint-i-vuit estats membres de la UE d’acord amb el mandat expressat per la ciutadania al Parlament de Catalunya.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“regeneració democràtica”
+</div>
+<span class="context">la transparència, la lluita contra la corrupció, la rendició de comptes i la <mark>regeneració democràtica</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“diàleg i la negociació”
+</div>
+<span class="context">Les eines de l’agenda espanyola són el <mark>diàleg i la negociació</mark> amb l’Estat. Havent constatat, de forma reiterada, la negativa a l’exercici del dret a decidir</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“Cal recuperar el diàleg social i el consens”
+</div>
+<span class="context"><mark>Cal recuperar el diàleg social i el consens</mark> amb els interlocutors socials.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“transparència, informació i major participació dels Estats”
+</div>
+<span class="context">cal garantir que el desplegament d’aquestes oportunitats es materialitzi en benefici de tots els ciutadans. Per això cal <mark>transparència, informació i major participació dels Estats</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“regeneració i obertura democràtica”
+</div>
+<span class="context">cal recuperar la cultura dels valors i de la <mark>regeneració i obertura democràtica</mark>, i cal inaugurar una nova forma de fer política</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“reduir les desigualtats com a garantia”
+</div>
+<span class="context">3.1.2. Reduir les desigualtats com a garantia de creixement sostenible i estable.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“l’ofec econòmic al qual s’ha sotmès al Govern de la Generalitat”
+</div>
+<span class="context">…L’ofegament econòmic al qual s’ha sotmès al Govern de la Generalitat, tant a través d’uns objectius de dèficit públic injustos com del persistent dèficit fiscal, ha estat notable. La darrera mesura ha estat la intervenció de la Generalitat a través del control absolut de les seves finances…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“reducció de les desigualtats, en l’increment de la cohesió social”
+</div>
+<span class="context">mentre no disposem dels nostres recursos i prenguem les nostres pròpies decisions, a les Corts Generals treballarem des de la perspectiva social en una doble direcció: per facilitar aquest trànsit cap la consecució d’un nou Estat per a Catalunya i, a la vegada, per avançar en la <mark>reducció de les desigualtats, en l’increment de la cohesió social</mark>, en la garantia de la igualtat d’oportunitats,</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Cal corregir el que ha succeït durant els anys de la recessió”
+</div>
+<span class="context">Necessitem un nou enfocament que vinculi clarament el creixement i la recuperació econòmica amb una distribució més justa de la riquesa. <mark>Cal corregir el que ha succeït durant els anys de la recessió</mark> ara que el cicle econòmic sembla que canvia de tendència.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“recuperar el dret universal a la sanitat”
+</div>
+<span class="context">La recuperació del dret universal a la sanitat. El PP ha exclòs del dret a la sanitat immigrants i altres col·lectius; cal recuperar-lo.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“lluitar contra la pobresa”
+</div>
+<span class="context">Ser al costat d’aquells que ho passen molt malament, <mark>lluitar contra la pobresa</mark>, ajudar a donar impuls a la recuperació econòmica</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“reduir les desigualtats, en l’increment de la cohesió social”
+</div>
+<span class="context">treballarem des de la perspectiva social en una doble direcció: per facilitar aquest trànsit cap la consecució d’un nou Estat per a Catalunya i, a la vegada, per avançar en la reducció de les desigualtats, en l’increment de la cohesió social</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“distribució més justa de la riquesa”
+</div>
+<span class="context">Necessitem un nou enfocament que vinculi clarament el creixement i la recuperació econòmica amb una <mark>distribució més justa de la riquesa</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“reequilibrar-ho. Incentivarem la inversió productiva i sostenible”
+</div>
+<span class="context">les rendes del treball avui són les que suporten el gruix de la pressió fiscal, amb uns tipus impositius que arriben a ser excessius. Cal <mark>reequilibrar-ho. Incentivarem la inversió productiva i sostenible</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“recuperar el dret universal a la sanitat”
+</div>
+<span class="context">La recuperació del dret universal a la sanitat. El PP ha exclòs del dret a la sanitat immigrants i altres col·lectius; cal recuperar-lo.</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“al servei del poble de Catalunya”
+</div>
+<span class="context">depenen també la força i l’autoritat d’aquesta veu <mark>al servei del poble de Catalunya</mark> i del seu mandat expressat el 27 de setembre</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“reduir les desigualtats com a garantia”
+</div>
+<span class="context">3.1.2. Reduir les desigualtats com a garantia de creixement sostenible i estable.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“L’ofensiva premeditada d’ofec financer duta a terme pel govern del PP”
+</div>
+<span class="context">ment de la nova legislatura, la Generalitat ha de disposar de més recursos per gestionar el seu dia a dia. <mark>L’ofensiva premeditada d’ofec financer duta a terme pel govern del PP</mark> ha agreujat la gestió de la crisi a Catalunya. Per això, per justícia i per reforçar una ràpida i sòlida sortida de la crisi:</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“satisfan clientelismes polítics i plantejaments ideològics centralistes”
+</div>
+<span class="context">destinats a inversions improductives, que <mark>satisfan clientelismes polítics i plantejaments ideològics centralistes</mark>, que no són sostenibles</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“tornar la política a la ciutadania”
+</div>
+<span class="context">Creiem que cal <mark>tornar la política a la ciutadania</mark>, cal recuperar la cultura dels valors</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“un moviment plural i transversal imparable. Un moviment per a tothom, pacífic, democràtic i que no exclou ningú”
+</div>
+<span class="context">…El món ens observa i està amatent a aquest moviment plural i transversal imparable. Un moviment per a tothom, pacífic, democràtic i que no exclou ningú, que busca amb la mà estesa construir un nou marc de relacions que faci possible un futur millor per als ciutadans de Catalunya…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Govern del PP en la legislatura passada ha estat evitar que Catalunya posi les urnes”
+</div>
+<span class="context">X Legislatura (2011-2015): un atac a la democràcia Un dels objectius principals del <mark>Govern del PP en la legislatura passada ha estat evitar que Catalunya posi les urnes</mark> i pugui donar una resposta democràtica a l’anhel ciutadà de decidir el seu futur polític.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“L’ofensiva premeditada d’ofec financer duta a terme pel govern del PP”
+</div>
+<span class="context"><mark>L’ofensiva premeditada d’ofec financer duta a terme pel govern del PP</mark> ha agreujat la gestió de la crisi a Catalunya. Per això, per justícia i per reforçar una ràpida i sòlida sortida de la crisi:</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“recuperar el dret universal a la sanitat”
+</div>
+<span class="context">La recuperació del dret universal a la sanitat. El PP ha exclòs del dret a la sanitat immigrants i altres col·lectius; cal recuperar-lo.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Un moviment per a tothom, pacífic, democràtic”
+</div>
+<span class="context"><mark>Un moviment per a tothom, pacífic, democràtic</mark> i que no exclou ningú, que busca amb la mà estesa construir un nou marc de relacions</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“reduir les desigualtats”
+</div>
+<span class="context">per avançar en la reducció de les desigualtats, en l’increment de la cohesió social, en la garantia de la igualtat d’oportunitats</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“distribució més justa de la riquesa”
+</div>
+<span class="context">Necessitem un nou enfocament que vinculi clarament el creixement i la recuperació econòmica amb una <mark>distribució més justa de la riquesa</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“privilegiar les empreses molt grans, especialment les derivades d’antics règims de monopoli”
+</div>
+<span class="context">Caldrà combatre la tendència del govern espanyol de <mark>privilegiar les empreses molt grans, especialment les derivades d’antics règims de monopoli</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“tornar la política a la ciutadania”
+</div>
+<span class="context">Creiem que cal <mark>tornar la política a la ciutadania</mark>, cal recuperar la cultura dels valors i de la regeneració i obertura democràtica</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“atacar la nostra identitat i laminant de forma constant les nostres competències”
+</div>
+<span class="context">…Ho ha fet menystenint les nostres institucions, atacant la nostra identitat i laminant de forma constant les nostres competències. L’ofegament econòmic al qual s’ha sotmès al Govern de la Generalitat…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“negociació espanyola i la voluntat de permanència a la UE”
+</div>
+<span class="context">El full de ruta i l’acord de Junts pel Sí El programa electoral amb el qual Junts pel Sí es va presentar a les eleccions al Parlament de Catalunya del 27 de setembre passat preveia un full de ruta cap a la independència, definit en diverses etapes. En aquest full de ruta es definia l’agenda de la <mark>negociació espanyola i la voluntat de permanència a la UE</mark> i el reconeixement internacional.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“El Govern Rajoy ha actuat amb hostilitat contra Catalunya”
+</div>
+<span class="context"><mark>El Govern Rajoy ha actuat amb hostilitat contra Catalunya</mark>, però també contra la cultura arreu de l’Estat i com a sector. El llistat de greuges del Govern espanyol cap als catalans en matèria de cultura és llarg.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“eliminarem la Disposició addicional d’aquesta llei que permet les expulsions en calent”
+</div>
+<span class="context">Modificarem la Llei orgànica de protecció de la seguretat ciutadana per recuperar els drets fonamentals retallats per la reforma del Govern del Partit Popular i <mark>eliminarem la Disposició addicional d’aquesta llei que permet les expulsions en calent</mark> als territoris de Ceuta i Melilla, atès que en molts casos és una clara vulneració dels drets humans i del dret d’asil.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“construcció d’un estat propi per a Catalunya”
+</div>
+<span class="context">un mandat inequívoc: l’inici del procés de <mark>construcció d’un estat propi per a Catalunya</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“full de ruta cap a la independència”
+</div>
+<span class="context">programa electoral amb el qual Junts pel Sí es va presentar a les eleccions al Parlament de Catalunya del 27 de setembre passat preveia un <mark>full de ruta cap a la independència</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“sistema propi de formació professional”
+</div>
+<span class="context">Exigirem i garantirem respecte per a la creació… d’un <mark>sistema propi de formació professional</mark> de qualitat adaptat a les necessitats… d’acord principalment amb el model productiu de Catalunya.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“defensa de la nostra agricultura i pesca marítima”
+</div>
+<span class="context">Orientarem l’acció política vers la <mark>defensa de la nostra agricultura i pesca marítima</mark> en aspectes que li estan vinculats</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“lluita contra el terrorisme jihadista”
+</div>
+<span class="context">El nostre compromís és la lluita per tots els mitjans legals contra el terrorisme jihadista i per la convivència pacífica</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“ofensiva premeditada: la destrucció de l’autogovern”
+</div>
+<span class="context">per una Catalunya que ja mira al futur, que albira una vida millor. Una <mark>ofensiva premeditada: la destrucció de l’autogovern</mark> En els darrers anys l’objectiu</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“voluntat uniformitzadora, ha obert litigis”
+</div>
+<span class="context">L’Estat, amb la seva <mark>voluntat uniformitzadora, ha obert litigis</mark> en tots els àmbits</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“implacables amb la xacra de la corrupció”
+</div>
+<span class="context">La societat reivindica ser <mark>implacables amb la xacra de la corrupció</mark>. La lluita contra la corrupció</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“l’Estat espanyol ha impedit exercir el dret a decidir”
+</div>
+<span class="context">…En canvi, <mark>l’Estat espanyol ha impedit exercir el dret a decidir</mark> quan el suport a la independència arriba gairebé al 48 %. Així doncs, estem plenament legitimitats. Tenim un mandat democràtic majoritari i un full de ruta per tal d’iniciar el procés que ha de permetre construir un nou estat i dotar d’una vida millor els catalans i les catalanes…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“fal·lera per fer-ho ha trencat normes fonamentals de la democràcia”
+</div>
+<span class="context">No ho ha evitat, però en la seva <mark>fal·lera per fer-ho ha trencat normes fonamentals de la democràcia</mark>, com ara fer una reforma exprés del Tribunal Constitucional per donar resposta al procés català.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“L’ofensiva premeditada d’ofec financer duta a terme pel govern del PP”
+</div>
+<span class="context"><mark>L’ofensiva premeditada d’ofec financer duta a terme pel govern del PP</mark> ha agreujat la gestió de la crisi a Catalunya. Per això, per justícia i per reforçar una ràpida i sòlida sortida de la crisi:</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“situar el Tribunal Constitucional per damunt dels electors”
+</div>
+<span class="context">La derogació de la darrera reforma de la Llei orgànica del Tribunal Constitucional, la qual permet que el Tribunal Constitucional pugui arribar a suspendre de funcions càrrecs electes, cosa que, a més de vulnerar greument el principi de separació de poders, significa <mark>situar el Tribunal Constitucional per damunt dels electors</mark> mateixos que han escollit un Parlament o un Govern.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“ofensiva predeterminada… destrucció de l’autogovern”
+</div>
+<span class="context">Una ofensiva premeditada: la destrucció de l’autogovern. En els darrers anys l’objectiu del Govern espanyol ha estat empetitir cada vegada més la capacitat de Catalunya</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“ha trencat normes fonamentals de la democràcia”
+</div>
+<span class="context">No ho ha evitat, però en la seva fal·lera per fer-ho <mark>ha trencat normes fonamentals de la democràcia</mark>, com ara fer una reforma exprés del Tribunal Constitucional</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“plantejament injust i deslleial”
+</div>
+<span class="context">Així, per al 2016 el Govern Rajoy ha fixat una distribució del dèficit que deixa el 10% a les comunitats autònomes i el 90% per a l’Estat. És un <mark>plantejament injust i deslleial</mark>, en el qual els ciutadans en són els principals perjudicats.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“ús partidista de la política de seguretat”
+</div>
+<span class="context">La legislatura passada ha estat caracteritzada per l’<mark>ús partidista de la política de seguretat</mark> que ha portat a terme el Govern de l’Estat</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“pretén posar les decisions del Tribunal Constitucional per damunt”
+</div>
+<span class="context">que <mark>pretén posar les decisions del Tribunal Constitucional per damunt</mark> de les decisions dels ciutadans a les urnes</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“donat finalment al poble de Catalunya”
+</div>
+<span class="context">Les eleccions del 27 de setembre han <mark>donat finalment al poble de Catalunya</mark> l’oportunitat de poder exercir el seu dret</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“l’anhel ciutadà de decidir”
+</div>
+<span class="context">donar una resposta democràtica a <mark>l’anhel ciutadà de decidir</mark> el seu futur polític.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“tornar la política a la ciutadania”
+</div>
+<span class="context">Creiem que cal <mark>tornar la política a la ciutadania</mark>, cal recuperar la cultura dels valors</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“el poble de Catalunya l’oportunitat de poder exercir el seu dret a decidir”
+</div>
+<span class="context">…Les eleccions del 27 de setembre han donat finalment al poble de Catalunya l’oportunitat de poder exercir el seu dret a decidir tot atorgant caràcter plebiscitari als seus vots. Un plebiscit que a hores d’ara ja no és negat per ningú. Amb una participació històrica del 75 %, els vots han atorgat una majoria absoluta indiscutible als partits favorables a la independència de Catalunya…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“anhel ciutadà de decidir el seu futur polític”
+</div>
+<span class="context">Govern del PP en la legislatura passada ha estat evitar que Catalunya posi les urnes i pugui donar una resposta democràtica a l’<mark>anhel ciutadà de decidir el seu futur polític</mark>. No ho ha evitat, però en la seva fal·lera per fer-ho ha trencat normes fonamentals de la democràcia,</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“Catalunya ha hagut de fer front a aquesta crisi”
+</div>
+<span class="context">Com s’ha posat de manifest en el primer apartat relatiu als greuges de l’Estat amb Catalunya, en els darrers anys <mark>Catalunya ha hagut de fer front a aquesta crisi</mark> amb unes condicions de finançament enormement adverses, que no es poden perllongar en el temps.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“la voluntat del poble de Catalunya d’esdevenir un Estat”
+</div>
+<span class="context">Treballarem perquè la Unió Europea reconegui la voluntat del poble de Catalunya d’esdevenir un estat membre homologable a la resta de vint-i-vuit estats membres de la UE d’acord amb el mandat expressat per la ciutadania al Parlament de Catalunya.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“el mandat democràtic del poble de Catalunya”
+</div>
+<span class="context">recau sobre aquesta formació la responsabilitat de formar govern i impulsar el full de ruta… fent seu <mark>el mandat democràtic del poble de Catalunya</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“l’anhel ciutadà de decidir el seu futur polític”
+</div>
+<span class="context">evitar que Catalunya posi les urnes i pugui donar una resposta democràtica a <mark>l’anhel ciutadà de decidir el seu futur polític</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“els ciutadans en són els principals perjudicats”
+</div>
+<span class="context">És un plantejament injust i deslleial, en el qual <mark>els ciutadans en són els principals perjudicats</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“protegir els consumidors, vetllar pel benestar i la dignitat de les persones”
+</div>
+<span class="context">Això no és incompatible amb l’exercici de la responsabilitat, també pública, de <mark>protegir els consumidors, vetllar pel benestar i la dignitat de les persones</mark> o preservar la qualitat ambiental</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“tornar la política a la ciutadania”
+</div>
+<span class="context">Creiem que cal <mark>tornar la política a la ciutadania</mark>, cal recuperar la cultura dels valors i de la regeneració i obertura democràtica</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“donat finalment al poble de Catalunya”
+</div>
+<span class="context">Les eleccions del 27 de setembre han <mark>donat finalment al poble de Catalunya</mark> l’oportunitat de poder exercir el seu dret</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“un atac a la democràcia”
+</div>
+<span class="context">X Legislatura (2011-2015): <mark>un atac a la democràcia</mark> Un dels objectius principals del Govern del PP</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“L’ofensiva premeditada d’ofec financer duta a terme pel govern del PP”
+</div>
+<span class="context">ment de la nova legislatura, la Generalitat ha de disposar de més recursos per gestionar el seu dia a dia. <mark>L’ofensiva premeditada d’ofec financer duta a terme pel govern del PP</mark> ha agreujat la gestió de la crisi a Catalunya. Per això, per justícia i per reforçar una ràpida i sòlida sortida de la crisi:</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“satisfan clientelismes polítics i plantejaments ideològics centralistes”
+</div>
+<span class="context">destinats a inversions improductives, que <mark>satisfan clientelismes polítics i plantejaments ideològics centralistes</mark>, que no són sostenibles</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“tornar la política a la ciutadania”
+</div>
+<span class="context">Creiem que cal <mark>tornar la política a la ciutadania</mark>, cal recuperar la cultura dels valors</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“l’Estat espanyol, que avui continua donant l’esquena al diàleg i a la negociació”
+</div>
+<span class="context">…ha estat i encara és negat sistemàticament per <mark>l’Estat espanyol, que avui continua donant l’esquena al diàleg i a la negociació</mark>. Les eleccions del 27 de setembre han donat finalment al poble de Catalunya l’oportunitat de poder exercir el seu dret a decidir…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Govern del PP en la legislatura passada ha estat evitar que Catalunya posi les urnes”
+</div>
+<span class="context">X Legislatura (2011-2015): un atac a la democràcia Un dels objectius principals del <mark>Govern del PP en la legislatura passada ha estat evitar que Catalunya posi les urnes</mark> i pugui donar una resposta democràtica a l’anhel ciutadà de decidir el seu futur polític.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“L’ofensiva premeditada d’ofec financer duta a terme pel govern del PP”
+</div>
+<span class="context"><mark>L’ofensiva premeditada d’ofec financer duta a terme pel govern del PP</mark> ha agreujat la gestió de la crisi a Catalunya. Per això, per justícia i per reforçar una ràpida i sòlida sortida de la crisi:</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“falsos informes policials, investigacions secretes”
+</div>
+<span class="context">La legislatura passada ha estat caracteritzada per l’ús partidista de la política de seguretat que ha portat a terme el Govern de l’Estat: <mark>falsos informes policials, investigacions secretes</mark> que han arribat a mans de la premsa abans que els afectats mateixos sabessin de què se’ls acusava o per què se’ls investigava, detencions mediàtiques, una voluntat d’influir amb notícies policials en processos electorals, entre d’altres.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“el mandat democràtic del poble de Catalunya”
+</div>
+<span class="context">fent seu <mark>el mandat democràtic del poble de Catalunya</mark> i aplicant-lo amb coherència, rigor, respecte i responsabilitat</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“un atac a la democràcia”
+</div>
+<span class="context">X Legislatura (2011-2015): <mark>un atac a la democràcia</mark> Un dels objectius principals del Govern del PP en la legislatura passada</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“ofensiva premeditada d’ofeg financer”
+</div>
+<span class="context">L’<mark>ofensiva premeditada d’ofeg financer</mark> duta a terme pel govern del PP ha agreujat la gestió de la crisi a Catalunya.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“privilegiar les empreses molt grans, especialment les derivades d’antics règims de monopoli”
+</div>
+<span class="context">Caldrà combatre la tendència del govern espanyol de <mark>privilegiar les empreses molt grans, especialment les derivades d’antics règims de monopoli</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“ús partidista de la política de seguretat”
+</div>
+<span class="context">la legislatura passada ha estat caracteritzada per l’<mark>ús partidista de la política de seguretat</mark> que ha portat a terme el Govern de l’Estat</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="33099_201512_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

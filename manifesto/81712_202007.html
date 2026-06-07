@@ -1,0 +1,1682 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>HNS (Croatia, 2020) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/81712_202007_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">HNS (Croatia, 2020)</h1>
+<p class="subtitle lead">manifesto_id 81712_202007</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Croatia · <span class="item"><strong>Party</strong></span> HNS (Croatian People’s Party - Liberal Democrats) · <span class="item"><strong>Year</strong></span> 2020 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 40</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.3</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">0.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">0.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">9.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.3</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“sloboda tržišta i poduzetništva prijeko”
+</div>
+<span class="context">demokracije, a pravo vlasništva, <mark>sloboda tržišta i poduzetništva prijeko</mark> su potrebni preduvjeti za ostvarenje</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“smanjenje poreznih opterećenja na rad”
+</div>
+<span class="context">Te politike neizostavno trebaju uključiti: nastavak fiskalne konsolidacije uz <mark>smanjenje poreznih opterećenja na rad</mark> i na kapital</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“slobodnog tržišnog gospodarstva”
+</div>
+<span class="context">omogućuje stabilan okvir za razvoj građanskog društva i <mark>slobodnog tržišnog gospodarstva</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“HNS snažno zagovara ekonomske slobode, što znači smanjivanje utjecaja države na tržišne tijekove i funkcioniranje gospodarstva”
+</div>
+<span class="context"><mark>HNS snažno zagovara ekonomske slobode, što znači smanjivanje utjecaja države na tržišne tijekove i funkcioniranje gospodarstva</mark>. Pritom se posebno zalaže za što manje fiskalno opterećenje gospodarskih subjekata, vladavinu prava, uvođenje eura, ukidanje regulatornih prepreka poduzetništvu, fleksibilnost tržišta rada i općenito što veću slobodu tržišta.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“smanjenje poreznih opterećenja na rad i na kapital”
+</div>
+<span class="context">To, prije svega, podrazumijeva mjere smanjenja poreznih opterećenja na rad i na kapital, budući da se time izravno potiče gospodarska aktivnost, poglavito investicije, proizvodnja, zaposlenost i izvoz.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“poticanje razvoja ovog sektora jedan od glavnih političkih ciljeva”
+</div>
+<span class="context">…<mark>poticanje razvoja ovog sektora jedan od glavnih političkih ciljeva</mark>. 5.8.2. Prostorno planiranje i društveni razvoj Prostorno planiranje označava zemljopisni izraz ekonomske, socijalne, kulturne, energetske, transportne i ekološke politike društva…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“slobodu tržišta i poduzetništva”
+</div>
+<span class="context">Država bi trebala osigurati <mark>slobodu tržišta i poduzetništva</mark>, uzdržavajući se od interveniranja većeg od potrebnoga za održanje stabilnosti gospodarstva</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“zalažemo se za manje poreza i pozdravljamo svako porezno rasterećenje”
+</div>
+<span class="context">Kao liberalna stranka <mark>zalažemo se za manje poreza i pozdravljamo svako porezno rasterećenje</mark>. Jednako tako, HNS se zalaže za cjelovita rješenja, time i za cjelovitu poreznu reformu</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“slobodnog tržišnog gospodarstva”
+</div>
+<span class="context">osigurava djelotvorno funkcioniranje pravne države te omogućuje stabilan okvir za razvoj građanskog društva i <mark>slobodnog tržišnog gospodarstva</mark></span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“gospodarskih subjekata, vladavinu prava, uvođenje”
+</div>
+<span class="context">se posebno zalaže za što manje fiskalno opterećenje <mark>gospodarskih subjekata, vladavinu prava, uvođenje</mark> eura, ukidanje regulatornih prepreka poduzetništvu</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“spriječiti zloupotrebe banaka u odnosu”
+</div>
+<span class="context">riješiti socijalne statuse blokiranih. To znači da prvenstvenstveno treba <mark>spriječiti zloupotrebe banaka u odnosu</mark> prema građanima, kao i da se</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“investiranja i poslovanja banaka”
+</div>
+<span class="context">veće investicije, što pridonosi povećanju opsega <mark>investiranja i poslovanja banaka</mark>. Povećana financijska djelatnost pak pridonosi</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“za veću transparentnost u upotrebi javnih sredstava”
+</div>
+<span class="context">HNS podržava povećanje izdvajanja za znanosti i visoko obrazovanje, ali uz jasne pokazatelje uspješnosti te povećanu učinkovitost i transparentnost u upotrebi javnih sredstava.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Hrvatska banka za obnovu i razvitak mora poduzetnicima ponuditi financijske proizvode”
+</div>
+<span class="context">Potrebno je shvatiti i odlučiti da se Hrvatska banka za obnovu i razvitak (HBOR) mora pretvoriti u razvojni fond koji će financirati investicije u industriju. Hrvatska banka za obnovu i razvitak se na financijskom tržištu ne može ponašati kao komercijalna banka, već mora poduzetnicima ponuditi financijske proizvode koji će osigurati nove investicije i nova radna mjesta u industriji.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Građevinska djelatnost nužno aktivira financijski sektor budući da su građevinski projekti relativno trajniji”
+</div>
+<span class="context">…<mark>Građevinska djelatnost nužno aktivira financijski sektor budući da su građevinski projekti relativno trajniji</mark> od onih u drugim djelatnostima i zahtijevaju razmjerno veće investicije, što pridonosi povećanju opsega investiranja i poslovanja banaka…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“uvođenje eura, ukidanje regulatornih prepreka”
+</div>
+<span class="context">posebno zalaže za što manje fiskalno opterećenje gospodarskih subjekata, vladavinu prava, <mark>uvođenje eura, ukidanje regulatornih prepreka</mark> poduzetništvu, fleksibilnost tržišta rada</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“HNS apsolutno podržava uvođenje eura”
+</div>
+<span class="context">kriza uzrokovana epidemijom korona virusa pokazala je da bi Hrvatska došla do jeftinijeg financiranja da je u toj situaciji bila članica eurozone, tako da, <mark>HNS apsolutno podržava uvođenje eura</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“financijski sektor budući da su građevinski projekti”
+</div>
+<span class="context">Građevinska djelatnost nužno aktivira <mark>financijski sektor budući da su građevinski projekti</mark> relativno trajniji od onih u drugim djelatnostima i zahtijevaju razmjerno veće investicije, što pridonosi povećanju opsega investiranja i poslovanja banaka</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 10.0 · verified · chunk 1</span>
+<div class="quote">
+“vladavinu zakona, političku i pravnu”
+</div>
+<span class="context">promiču individualne, političke i ekonomske slobode, <mark>vladavinu zakona, političku i pravnu</mark> jednakost, toleranciju i poštivanje razlika</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“proširuje prostor građanske participacije”
+</div>
+<span class="context">izborima, referendumima, raznim inicijativama. Sve to u konačnici <mark>proširuje prostor građanske participacije</mark>. Ona društva koja ne prate</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“razvoja liberalne demokracije kao općeg”
+</div>
+<span class="context">obnove povjerenja građana u institucije. Ono je nužan uvjet <mark>razvoja liberalne demokracije kao općeg</mark> okvira društva u kakvom</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“vladavinu prava, zaštitu ljudskih i građanskih prava te sigurnosti građana”
+</div>
+<span class="context">Za ostvarenje tog načela HNS se zalaže za transparentan sustav vlasti u kojem su zaštićena prava svih građana uz ograničenje i nadzor moći vlasti, <mark>vladavinu prava, zaštitu ljudskih i građanskih prava te sigurnosti građana</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Pravo na obrazovanje i sloboda izbora studija i zanimanja demokratsko su pravo koje država treba osigurati”
+</div>
+<span class="context"><mark>Pravo na obrazovanje i sloboda izbora studija i zanimanja demokratsko su pravo koje država treba osigurati</mark>. U tom smislu, diversifikacija visokog obrazovanja, onog javnog i privatnog, te sloboda organizacije svih vrsta obrazovnih programa dio su te slobode i prava, koji država treba omogućiti.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“HNS stoga teži reformi pravosuđa radi obnove povjerenja građana u institucije”
+</div>
+<span class="context">…nužni su uvjeti za postizanje ovog strateškog cilja. <mark>HNS stoga teži reformi pravosuđa radi obnove povjerenja građana u institucije</mark>. Ono je nužan uvjet razvoja liberalne demokracije kao općeg okvira društva u kakvom članovi…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“vladavinu zakona, političku i pravnu jednakost”
+</div>
+<span class="context">promiču individualne, političke i ekonomske slobode, <mark>vladavinu zakona, političku i pravnu jednakost</mark>, toleranciju i poštivanje razlika, građanska prava i odgovornosti</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Pravo na obrazovanje i sloboda izbora studija”
+</div>
+<span class="context"><mark>Pravo na obrazovanje i sloboda izbora studija</mark> i zanimanja demokratsko su pravo koje država treba osigurati.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“jačanju liberalno-demokratskih vrijednosti u političkom sustavu”
+</div>
+<span class="context">može realizirati svoje javne politike i pridonijeti kvaliteti i učinkovitosti izvršne vlasti te <mark>jačanju liberalno-demokratskih vrijednosti u političkom sustavu</mark> i društvu u cjelini</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 10.0 · verified · chunk 1</span>
+<div class="quote">
+“zaštitu prava žena, seksualnih i”
+</div>
+<span class="context">ljudskim i građanskim pravima, s osobitim naglaskom na <mark>zaštitu prava žena, seksualnih i</mark> etničkih manjina, imigranata i drugih</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“prevladavanju razlika među djecom”
+</div>
+<span class="context">Kvalitetno predškolsko obrazovanje najuspješniji je faktor u <mark>prevladavanju razlika među djecom</mark> koje nastaju i prije početka formalnog</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“afirmacije inkluzivnog življenja u zelenim”
+</div>
+<span class="context">reindustrijalizacije i razvoja kreativnih industrija s ciljem <mark>afirmacije inkluzivnog življenja u zelenim</mark> gradovima. Uključenost građana</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“HNS će poticati svijest i osjetljivost prema ljudskim i građanskim pravima, s osobitim naglaskom na prava žena, seksualnih i etničkih manjina”
+</div>
+<span class="context">HNS će stoga poticati svijest i osjetljivost prema ljudskim i građanskim pravima, s osobitim naglaskom na prava žena, seksualnih i etničkih manjina, imigranata i drugih obespravljenih skupina.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“pravo djeteta na rani predškolski odgoj podrazumijeva ujednačavanje predškolskog sustava s jednakim pravima za svu djecu”
+</div>
+<span class="context">Sustav predškolskog odgoja, namijenjen djeci od 6 mjeseci starosti do polaska u školu, sastavni je dio obrazovnog sustava, a <mark>pravo djeteta na rani predškolski odgoj podrazumijeva ujednačavanje predškolskog sustava s jednakim pravima za svu djecu</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“poticanje dualne karijere uspješnih sportaša, razvoj znanosti i istraživačkih centara povezanih sa sportom”
+</div>
+<span class="context">…uključivanje hrvatskih sportaša u brendiranje Hrvatske kao turističko-sportske destinacije, razvijanje sportskih djelatnika, <mark>poticanje dualne karijere uspješnih sportaša, razvoj znanosti i istraživačkih centara povezanih sa sportom</mark>. Država mora odlučiti…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“prava žena, seksualnih i etničkih manjina”
+</div>
+<span class="context">HNS će stoga poticati svijest i osjetljivost prema ljudskim i građanskim pravima, s osobitim naglaskom na <mark>prava žena, seksualnih i etničkih manjina</mark>, imigranata i drugih obespravljenih skupina</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Jednak pristup treba se primjenjivati od najranije dobi”
+</div>
+<span class="context">Niža stopa uključenosti djece u predškolske sustave skrbi i obrazovanja jedna je od najvažnijih hrvatskih slabosti. <mark>Jednak pristup treba se primjenjivati od najranije dobi</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“spriječiti socijalnu isključenost”
+</div>
+<span class="context">poticati održivu gradnju sigurnijih, pristupačnijih te zdravstveno-ekološki primjerenijih građevina, unaprijediti nadzor zakonitosti i kvalitete građenja, omogućiti pristupačne uvjete za rješavanje stambenih pitanja, unaprijediti kvalitetu stanovanja i <mark>spriječiti socijalnu isključenost</mark></span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“reafirmirao njezin liberalno-demokratski identitet”
+</div>
+<span class="context">političkog djelovanja i <mark>reafirmirao njezin liberalno-demokratski identitet</mark>. Spremni smo i odlučni prilagoditi</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“smanjenje poreznih opterećenja na rad”
+</div>
+<span class="context">Te politike neizostavno trebaju uključiti: nastavak fiskalne konsolidacije uz <mark>smanjenje poreznih opterećenja na rad</mark> i na kapital</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“vrijednosti liberalne demokracije za koje”
+</div>
+<span class="context">nisu u suprotnosti s temeljnim načelima stranke i vrijednostima liberalne demokracije za koje se zalaže.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“vladavinu prava, zaštitu ljudskih i građanskih prava te sigurnosti građana”
+</div>
+<span class="context">Za ostvarenje tog načela HNS se zalaže za transparentan sustav vlasti u kojem su zaštićena prava svih građana uz ograničenje i nadzor moći vlasti, <mark>vladavinu prava, zaštitu ljudskih i građanskih prava te sigurnosti građana</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Pravo na obrazovanje i sloboda izbora studija i zanimanja demokratsko su pravo koje država treba osigurati”
+</div>
+<span class="context"><mark>Pravo na obrazovanje i sloboda izbora studija i zanimanja demokratsko su pravo koje država treba osigurati</mark>. U tom smislu, diversifikacija visokog obrazovanja, onog javnog i privatnog, te sloboda organizacije svih vrsta obrazovnih programa dio su te slobode i prava, koji država treba omogućiti.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“HNS stoga teži reformi pravosuđa radi obnove povjerenja građana u institucije”
+</div>
+<span class="context">…nužni su uvjeti za postizanje ovog strateškog cilja. <mark>HNS stoga teži reformi pravosuđa radi obnove povjerenja građana u institucije</mark>. Ono je nužan uvjet razvoja liberalne demokracije kao općeg okvira društva u kakvom članovi…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“individualnih, političkih i ekonomskih sloboda”
+</div>
+<span class="context">Temeljeći se na tradiciji zapadne liberalne demokracije, članovi stranke promiču individualne, političke i ekonomske slobode, vladavinu zakona, političku i pravnu jednakost</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“HNS kao liberalna stranka protivi svim oblicima zabrana”
+</div>
+<span class="context">HNS se kao liberalna stranka protivi svim oblicima zabrana, pa tako i zabrani rada nedjeljom. Smatramo da rad nedjeljom nije nešto što bi trebala regulirati država, već isključivo zakoni tržišta.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“razvoja liberalne demokracije kao općeg okvira društva”
+</div>
+<span class="context">To je povjerenje ozbiljno narušeno. HNS stoga teži reformi pravosuđa radi obnove povjerenja građana u institucije. Ono je nužan uvjet <mark>razvoja liberalne demokracije kao općeg okvira društva</mark> u kakvom članovi, simpatizeri i glasači HNS-a žele živjeti</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“populizma i destrukcije – HNS nastoji”
+</div>
+<span class="context">konkretne rezultate umjesto ideoloških sukoba i izazivanja krize po svaku cijenu, <mark>populizma i destrukcije – HNS nastoji</mark> biti predvodnikom nove i drukčije politike</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“borbe protiv korupcije i varanja”
+</div>
+<span class="context">vratiti povjerenje u sustav odgoja i obrazovanja. Ovakve i slične mjere <mark>borbe protiv korupcije i varanja</mark> trebaju i dalje biti u fokusu</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 3</span>
+<div class="quote">
+“odmak od prakse ideološke isključivosti”
+</div>
+<span class="context">pokazati svoju dosljednost u ostvarenju javnog interesa i dobrobiti hrvatskih građana i društva u cjelini te <mark>odmak od prakse ideološke isključivosti</mark>, diskreditacija političkih suparnika i moraliziranja politike</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“HNS ne podliježe populizmu niti se koristi populističkom retorikom”
+</div>
+<span class="context">HNS se ne ustručava javno izreći ono što misli da je ispravno i preuzeti vodstvo, čak i kad to nije ono što bi ljudi trenutno željeli čuti i zbog čega bi mogli steći kratkotrajnu podršku. HNS se nastoji dosljedno držati naših temeljnih vrijednosti. <mark>HNS ne podliježe populizmu niti se koristi populističkom retorikom</mark>, neutemeljenim i lažnim obećanjima s ciljem pridobivanja političke naklonosti i odriče se potrebe svidjeti se građanima pod svaku cijenu.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“izostanak političke volje vlasti i prakse preferiranja održanja socijalnog mira”
+</div>
+<span class="context">To je, prije svega, zbog izostanka političke volje vlasti i prakse preferiranja održanja socijalnog mira nasuprot možebitno politički riskantnim reformskih potezima koji bi kratkoročno doveli određene socijalne skupine u manje povoljan položaj (te posljedično vodili padu političke potpore njihovim akterima), ali dugoročno većinu društva u znatno bolji položaj, budući da bi ojačala gospodarska osnova društva.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“populizma i destrukcije”
+</div>
+<span class="context">racionalnu i konstruktivnu politiku te konkretne rezultate umjesto ideoloških sukoba i izazivanja krize po svaku cijenu, <mark>populizma i destrukcije</mark> – HNS nastoji biti predvodnikom</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“snažan utjecaj države i glomazne javne uprave koji guše”
+</div>
+<span class="context">od lošeg modela privatizacije do nekonzistentnih ekonomskih i drugih javnih politika koje su tome pridonijele (<mark>snažan utjecaj države i glomazne javne uprave koji guše</mark> uspostavu slobodnih tržišnih odnosa i poduzetništva</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“politiziranost javne uprave upućuje na izostanak demokratskih standarda”
+</div>
+<span class="context"><mark>politiziranost javne uprave upućuje na izostanak demokratskih standarda</mark> i instrumentalizaciju javne uprave kao općeg dobra od političke vlasti, redovito za ostvarenje partikularnih interesa (klijentelizam, nepotizam, protekcija, korupcija)</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“borbe protiv korupcije i varanja”
+</div>
+<span class="context">vratiti povjerenje u sustav odgoja i obrazovanja. Ovakve i slične mjere <mark>borbe protiv korupcije i varanja</mark> trebaju i dalje biti u fokusu</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Promovirajući dijalog i kompromis, suradnju i konsenzus oko zajedničkih politika”
+</div>
+<span class="context"><mark>Promovirajući dijalog i kompromis, suradnju i konsenzus oko zajedničkih politika</mark>, racionalnu i konstruktivnu politiku te konkretne rezultate umjesto ideoloških sukoba i izazivanja krize po svaku cijenu, populizma i destrukcije – HNS nastoji biti predvodnikom nove i drukčije politike, one koja vodi stabilnosti političke vlasti i djelovanju na programima društvenog razvoja.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“HNS vodi politiku kompromisa i suradnje”
+</div>
+<span class="context"><mark>HNS vodi politiku kompromisa i suradnje</mark>, a porezna politika mora imati za cilj bolji život građana.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“dijalog i kompromis, suradnju i konsenzus”
+</div>
+<span class="context">Promovirajući <mark>dijalog i kompromis, suradnju i konsenzus</mark> oko zajedničkih politika, racionalnu i konstruktivnu politiku te konkretne rezultate</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“HNS vodi politiku kompromisa i suradnje”
+</div>
+<span class="context"><mark>HNS vodi politiku kompromisa i suradnje</mark>, a porezna politika mora imati za cilj bolji život građana.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“inkluzivnost, suradnju i dogovor nasuprot isključivosti”
+</div>
+<span class="context">HNS će pritom zastupati <mark>inkluzivnost, suradnju i dogovor nasuprot isključivosti</mark>, konfliktu, ideološkim i svim drugim podjelama i zalagati se za konstruktivnu politiku nasuprot destrukciji</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“HNS snažno zagovara ekonomske slobode, što znači smanjivanje utjecaja države na tržišne tijekove”
+</div>
+<span class="context"><mark>HNS snažno zagovara ekonomske slobode, što znači smanjivanje utjecaja države na tržišne tijekove</mark> i funkcioniranje gospodarstva. Pritom se posebno zalaže za što manje fiskalno opterećenje gospodarskih subjekata, vladavinu prava, uvođenje eura, ukidanje regulatornih prepreka poduzetništvu, fleksibilnost tržišta rada i općenito što veću slobodu tržišta.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“smanjenje poreznih opterećenja na rad i na kapital”
+</div>
+<span class="context">Njihov konačni cilj jest jačanje nacionalnog gospodarstva i stvaranje pretpostavki uravnoteženom ostvarivanju gospodarskog rasta. Usprkos nedvojbenoj potrebi koncipiranja i provedbe tih reformskih politika i mjera, uočljiv je njihov izostanak tijekom dugog razdoblja. To je, prije svega, zbog izostanka političke volje vlasti i prakse preferiranja održanja socijalnog mira nasuprot možebitno politički riskantnim reformskih potezima koji bi kratkoročno doveli određene socijalne skupine u manje povoljan položaj (te posljedično vodili padu političke potpore njihovim akterima), ali dugoročno većinu društva u znatno bolji položaj, budući da bi ojačala gospodarska osnova društva.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“solidarnosti i socijalna sigurnost”
+</div>
+<span class="context">Vrijednosnu osnovu političkog djelovanja Hrvatske narodne stranke čine: dostojanstvo, sloboda, jednakost, vladavina prava i zaštita ljudskih i građanskih prava, tolerancija, slobodno tržište i poduzetništvo, <mark>solidarnosti i socijalna sigurnost</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“smanjenje socioekonomskih razlika te veće i kvalitetnije uključivanje”
+</div>
+<span class="context">Njihov primarni cilj je <mark>smanjenje socioekonomskih razlika te veće i kvalitetnije uključivanje</mark> socioekonomski depriviranih (građani s niskim primanjima, nezaposleni, osobe s invaliditetom</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“osigurati mjesečne sportske vaučere za svu osnovnoškolsku djecu”
+</div>
+<span class="context">Država mora odlučiti da je razvoj sporta od strateške važnosti za Republiku Hrvatsku i uvesti mjere kojima jasno i nedvosmisleno daje podršku sportu – <mark>osigurati mjesečne sportske vaučere za svu osnovnoškolsku djecu</mark></span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 1</span>
+<div class="quote">
+“HNS se ne služi populističkom”
+</div>
+<span class="context"><mark>HNS se ne služi populističkom</mark> retorikom i moraliziranjem politike, već</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“borbe protiv korupcije i varanja”
+</div>
+<span class="context">vratiti povjerenje u sustav odgoja i obrazovanja. Ovakve i slične mjere <mark>borbe protiv korupcije i varanja</mark> trebaju i dalje biti u fokusu</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Promovirajući dijalog i kompromis, suradnju i konsenzus oko zajedničkih politika”
+</div>
+<span class="context"><mark>Promovirajući dijalog i kompromis, suradnju i konsenzus oko zajedničkih politika</mark>, racionalnu i konstruktivnu politiku te konkretne rezultate umjesto ideoloških sukoba i izazivanja krize po svaku cijenu, populizma i destrukcije – HNS nastoji biti predvodnikom nove i drukčije politike, one koja vodi stabilnosti političke vlasti i djelovanju na programima društvenog razvoja.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“HNS vodi politiku kompromisa i suradnje”
+</div>
+<span class="context"><mark>HNS vodi politiku kompromisa i suradnje</mark>, a porezna politika mora imati za cilj bolji život građana. Kao liberalna stranka zalažemo se za manje poreza i pozdravljamo svako porezno rasterećenje.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“liberalno-demokratski identitet”
+</div>
+<span class="context">HNS novim političkim programom želi potvrditi svoj <mark>liberalno-demokratski identitet</mark>, učvrstiti svoja politička stajališta</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“HNS kao liberalna stranka smatra”
+</div>
+<span class="context">Ključna poruka HNS-a je stabilnija, slobodnija i sigurnija budućnost Hrvatske. <mark>HNS kao liberalna stranka smatra</mark> da se Hrvatska voli radom</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“odmak od prakse ideološke isključivosti”
+</div>
+<span class="context">HNS će pokazati svoju dosljednost u ostvarenju javnog interesa i dobrobiti hrvatskih građana i društva u cjelini te <mark>odmak od prakse ideološke isključivosti</mark>, diskreditacija političkih suparnika i moraliziranja politike</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“Kao glavnu opasnost u nastupajućem razdoblju vidimo radikalizaciju političkog spektra, naročito na njegovoj desnoj polovici”
+</div>
+<span class="context"><mark>Kao glavnu opasnost u nastupajućem razdoblju vidimo radikalizaciju političkog spektra, naročito na njegovoj desnoj polovici</mark>, koja bi RH odvela u pravcu zemalja poput Poljske, Mađarske, Srbije ili Turske.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“HNS se kao liberalna stranka protivi svim oblicima zabrana, pa tako i zabrani rada nedjeljom”
+</div>
+<span class="context"><mark>HNS se kao liberalna stranka protivi svim oblicima zabrana, pa tako i zabrani rada nedjeljom</mark>. Smatramo da rad nedjeljom nije nešto što bi trebala regulirati država, već isključivo zakoni tržišta.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“nacionalnim interesima hrvatskog društva”
+</div>
+<span class="context">liberalne demokracije, koju stranka promiče u svim segmentima svojeg djelovanja vodeći računa o <mark>nacionalnim interesima hrvatskog društva</mark> i svih njegovih sastavnica</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“nacionalni zanos i naboj za reprezentacijom”
+</div>
+<span class="context">Hrvatska mora znati iskoristiti popularnost sporta kod velikog broja stanovnika, talent sportaša, tradiciju, vrhunske sportske rezultate, planetarno poznate sportaše, sposobne i priznate trenere, <mark>nacionalni zanos i naboj za reprezentacijom</mark></span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 3</span>
+<div class="quote">
+“nasuprot isključivosti, konfliktu, ideološkim”
+</div>
+<span class="context">HNS će pritom zastupati inkluzivnost, suradnju i dogovor <mark>nasuprot isključivosti, konfliktu, ideološkim</mark> i svim drugim podjelama i zalagati se za konstruktivnu politiku</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“Suprotstavljanje tim akterima i takvim političkim stajalištima znatno utjecalo na podizanje demokratske svijesti”
+</div>
+<span class="context">Mnoge prepreke na tom putu, pa i političke diskvalifikacije od različitih, mahom antiliberalnih, autoritarnih i nedemokratskih političkih aktera, samo su ojačali HNS u tim nastojanjima. Štoviše, upravo je suprotstavljanje tim akterima i takvim političkim stajalištima znatno utjecalo na podizanje demokratske svijesti, podjednako građana i političkih aktera.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“izostanak političke volje vlasti i prakse preferiranja održanja socijalnog mira”
+</div>
+<span class="context">To je, prije svega, zbog izostanka političke volje vlasti i prakse preferiranja održanja socijalnog mira nasuprot možebitno politički riskantnim reformskih potezima koji bi kratkoročno doveli određene socijalne skupine u manje povoljan položaj (te posljedično vodili padu političke potpore njihovim akterima), ali dugoročno većinu društva u znatno bolji položaj, budući da bi ojačala gospodarska osnova društva.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“radikalizaciju političkog spektra, naročito na njegovoj desnoj polovici”
+</div>
+<span class="context">Kao glavnu opasnost u nastupajućem razdoblju vidimo <mark>radikalizaciju političkog spektra, naročito na njegovoj desnoj polovici</mark>, koja bi RH odvela u pravcu zemalja poput Poljske, Mađarske</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“Taj začarani krug hrvatske politike stoga je nužno prekinuti”
+</div>
+<span class="context">ali dugoročno većinu društva u znatno bolji položaj, budući da bi ojačala gospodarska osnova društva. <mark>Taj začarani krug hrvatske politike stoga je nužno prekinuti</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“populističke retorike i ideoloških podjela”
+</div>
+<span class="context">HNS će svoj politički kredibilitet i svoju poziciju legitimirati na osnovi konkretnih rezultata i izvedivih javnih politika, a ne na osnovi <mark>populističke retorike i ideoloških podjela</mark></span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 3</span>
+<div class="quote">
+“odmak od prakse… moraliziranja politike”
+</div>
+<span class="context">hrvatskih građana i društva u cjelini te odmak od prakse ideološke isključivosti, diskreditacija političkih suparnika i moraliziranja politike, što je umnogome obilježje</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Načelo kompromisa (prijeko potrebno u postizanju optimalnog rezultata) za HNS temelj političkog djelovanja”
+</div>
+<span class="context">Cilj je ostvarenje općeg interesa i dobrobiti u najvišem mogućem opsegu oko kojeg treba postići političku suglasnost. Stoga je načelo kompromisa (prijeko potrebno u postizanju optimalnog rezultata) za HNS temelj političkog djelovanja. Naime, politika je djelovanje za opće dobro i ostvarenje javnog interesa, stoga treba biti plemenita i časna djelatnost.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“HNS kao liberalna stranka smatra da se Hrvatska voli radom”
+</div>
+<span class="context">Ključna poruka HNS-a je stabilnija, slobodnija i sigurnija budućnost Hrvatske. <mark>HNS kao liberalna stranka smatra da se Hrvatska voli radom</mark> i to smo reformskim tempom u ministarstvima obrazovanja i graditeljstva u proteklom mandatu i dokazali.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“uvijek vodeći računa o najboljem mogućem promicanju i zaštiti interesa svih građana RH”
+</div>
+<span class="context">na lokalnoj, nacionalnoj, regionalnoj, europskoj i svjetskoj razini, <mark>uvijek vodeći računa o najboljem mogućem promicanju i zaštiti interesa svih građana RH</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“naš zadatak je što bolje odraditi posao za građane”
+</div>
+<span class="context">Naš zadatak je što bolje odraditi posao za građane, poduzetnike i za realni sektor i kao dio Vlade ili Sabora osigurati Hrvatskoj što stabilniju budućnost.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“dobrobiti hrvatskih građana i društva u cjelini”
+</div>
+<span class="context">HNS će pokazati svoju dosljednost u ostvarenju javnog interesa i <mark>dobrobiti hrvatskih građana i društva u cjelini</mark> te odmak od prakse ideološke isključivosti</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“HNS ne podliježe populizmu niti”
+</div>
+<span class="context">kratkotrajnu podršku. <mark>HNS ne podliježe populizmu niti</mark> se koristi populističkom retorikom, neutemeljenim</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“borbe protiv korupcije i varanja”
+</div>
+<span class="context">vratiti povjerenje u sustav odgoja i obrazovanja. Ovakve i slične mjere <mark>borbe protiv korupcije i varanja</mark> trebaju i dalje biti u fokusu</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 3</span>
+<div class="quote">
+“ne na osnovi populističke retorike”
+</div>
+<span class="context">svoju poziciju legitimirati na osnovi konkretnih rezultata i izvedivih javnih politika, a <mark>ne na osnovi populističke retorike</mark> i ideoloških podjela.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“HNS ne podliježe populizmu niti se koristi populističkom retorikom”
+</div>
+<span class="context">HNS se ne ustručava javno izreći ono što misli da je ispravno i preuzeti vodstvo, čak i kad to nije ono što bi ljudi trenutno željeli čuti i zbog čega bi mogli steći kratkotrajnu podršku. HNS se nastoji dosljedno držati naših temeljnih vrijednosti. <mark>HNS ne podliježe populizmu niti se koristi populističkom retorikom</mark>, neutemeljenim i lažnim obećanjima s ciljem pridobivanja političke naklonosti i odriče se potrebe svidjeti se građanima pod svaku cijenu.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“izostanak političke volje vlasti i prakse preferiranja održanja socijalnog mira”
+</div>
+<span class="context">To je, prije svega, zbog izostanka političke volje vlasti i prakse preferiranja održanja socijalnog mira nasuprot možebitno politički riskantnim reformskih potezima koji bi kratkoročno doveli određene socijalne skupine u manje povoljan položaj (te posljedično vodili padu političke potpore njihovim akterima), ali dugoročno većinu društva u znatno bolji položaj, budući da bi ojačala gospodarska osnova društva.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“HNS ne podliježe populizmu niti se koristi populističkom retorikom”
+</div>
+<span class="context"><mark>HNS ne podliježe populizmu niti se koristi populističkom retorikom</mark>, neutemeljenim i lažnim obećanjima s ciljem pridobivanja političke naklonosti</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“snažan utjecaj države i glomazne javne uprave koji guše”
+</div>
+<span class="context">od lošeg modela privatizacije do nekonzistentnih ekonomskih i drugih javnih politika koje su tome pridonijele (<mark>snažan utjecaj države i glomazne javne uprave koji guše</mark> uspostavu slobodnih tržišnih odnosa</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“a ne na osnovi populističke retorike”
+</div>
+<span class="context">HNS će svoj politički kredibilitet i svoju poziciju legitimirati na osnovi konkretnih rezultata i izvedivih javnih politika, <mark>a ne na osnovi populističke retorike</mark> i ideoloških podjela</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="81712_202007_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,2683 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>BQ (Canada, 2008) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/62901_200810_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">BQ (Canada, 2008)</h1>
+<p class="subtitle lead">manifesto_id 62901_200810</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Canada · <span class="item"><strong>Party</strong></span> BQ (Quebec Bloc) · <span class="item"><strong>Year</strong></span> 2008 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 90</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.9</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.3</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.9</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.1</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.1</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.1</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.6</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.1</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.9</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.5</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.6</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“laisser-faire économique, approche répressive et rigide”
+</div>
+<span class="context">la plupart de leurs politiques sont calquées sur l’approche de la droite républicaine aux États-Unis : <mark>laisser-faire économique, approche répressive et rigide</mark> dans l’application de la justice</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“s’oppose à toute modification des quotas relatifs à la propriété étrangère”
+</div>
+<span class="context">Pour sa part, le Bloc Québécois <mark>s’oppose à toute modification des quotas relatifs à la propriété étrangère</mark>. À l’heure actuelle, la Loi sur les télécommunications</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“moderniser nos lois commerciales pour qu’elles protègent mieux nos entreprises”
+</div>
+<span class="context">Ces mesures incluent : <mark>moderniser nos lois commerciales pour qu’elles protègent mieux nos entreprises</mark> contre le dumping étranger; cesser de rejeter les</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“le laisser-faire, les slogans creux”
+</div>
+<span class="context">N’en déplaise au gouvernement conservateur, <mark>le laisser-faire, les slogans creux</mark> et la pensée magique ne sont pas des politiques.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“opposé à une privatisation, même partielle”
+</div>
+<span class="context">Le Bloc Québécois est fermement <mark>opposé à une privatisation, même partielle</mark>, de Postes Canada. Cette société d’État</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“L’ouverture au commerce et la création de règles internationales pour contrer le protectionnisme”
+</div>
+<span class="context">créent plus de désespoir que le contraire. <mark>L’ouverture au commerce et la création de règles internationales pour contrer le protectionnisme</mark> et protéger les</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“le Québec doit pouvoir exercer pleinement les compétences qui sont censées être les siennes”
+</div>
+<span class="context">Premièrement, <mark>le Québec doit pouvoir exercer pleinement les compétences qui sont censées être les siennes</mark> en vertu de la constitution canadienne. Il doit pouvoir assumer ses propres responsabilités à même ses propres moyens, ce qui implique un important transfert de capacité fiscale.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“le gouvernement fédéral multiplie les cadeaux à l’industrie pétrolière et gazière”
+</div>
+<span class="context">Qu’il soit conservateur ou libéral, <mark>le gouvernement fédéral multiplie les cadeaux à l’industrie pétrolière et gazière</mark>, lui permettant d’épargner des milliards de dollars.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“mesures fiscales, mesures budgétaires, mesures commerciales”
+</div>
+<span class="context">…il faut beaucoup mieux soutenir l’industrie par des mesures fiscales, des mesures budgétaires, des mesures commerciales et des investissements structurants. …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“le gouvernement fédéral offre aussi des incitatifs fiscaux à la R&amp;D”
+</div>
+<span class="context">De plus, le gouvernement offre du soutien à l’investissement et des crédits d’impôts élevés qui font diminuer le coût de la recherche et font du Québec un lieu de prédilection pour les entreprises de haute technologie. Le gouvernement fédéral offre aussi des incitatifs fiscaux à la R&amp;D.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“le Bloc Québécois propose que le gouvernement prête sans intérêt un montant pouvant atteindre 10 000 dollars”
+</div>
+<span class="context">Le Bloc Québécois, conscient de cette problématique, envisage de mettre de l’avant un programme facilitant l’accès à une première propriété. Le Bloc Québécois propose que le gouvernement prête sans intérêt un montant pouvant atteindre 10 000 dollars pour faciliter l’accès à une première propriété.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“le Bloc Québécois demande une augmentation substantielle des transferts au Québec”
+</div>
+<span class="context">Le Bloc Québécois va continuer d’exiger une hausse importante de l’effort financier du gouvernement fédéral consacré aux études postsecondaires par le biais de ses transferts au Québec et aux provinces.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“L’ouverture au commerce et la création de règles internationales pour contrer le protectionnisme”
+</div>
+<span class="context">…<mark>L’ouverture au commerce et la création de règles internationales pour contrer le protectionnisme</mark> et protéger les investissements sont de bonnes choses auxquelles le Bloc Québécois adhère…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“les marchés financiers ontariens aux secteurs de pointe”
+</div>
+<span class="context">Une politique qui privilégie le pétrole albertain aux entreprises manufacturières québécoises, <mark>les marchés financiers ontariens aux secteurs de pointe</mark> du Québec nuit aux intérêts du Québec.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“déréglementation des télécommunications en 2005”
+</div>
+<span class="context">Alors que le gouvernement libéral se dirigeait vers une <mark>déréglementation des télécommunications en 2005</mark>, l’urgence de contrer cette orientation devient d’autant plus criante</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 3</span>
+<div class="quote">
+“laisser-faire, les slogans creux”
+</div>
+<span class="context">N’en déplaise au gouvernement conservateur, le <mark>laisser-faire, les slogans creux</mark> et la pensée magique ne sont pas des politiques.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“effets pervers de la déréglementation et de la libéralisation des marchés”
+</div>
+<span class="context">À l’idéologie du gouvernement conservateur en place, qui refuse de corriger les <mark>effets pervers de la déréglementation et de la libéralisation des marchés</mark>, nous opposons une approche plus respectueuse</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“le libre marché, le désengagement gouvernemental”
+</div>
+<span class="context">Selon eux, <mark>le libre marché, le désengagement gouvernemental</mark> et les baisses d’impôt sauront régler tous les problèmes. Avec les conservateurs, l’idéologie et la partisanerie passent avant les personnes.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“les sommes versées au régime d’assurance-emploi ne fassent plus partie des comptes”
+</div>
+<span class="context">que <mark>les sommes versées au régime d’assurance-emploi ne fassent plus partie des comptes</mark> du Canada (fonds consolidés), mais soient dorénavant transférées dans un compte à part</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · mixed · chunk 7</span>
+<div class="quote">
+“L’ouverture au commerce et la création de règles internationales”
+</div>
+<span class="context"><mark>L’ouverture au commerce et la création de règles internationales</mark> pour contrer le protectionnisme et protéger les investissements sont de bonnes choses auxquelles le Bloc Québécois adhère.</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“création d’une commission pancanadienne des valeurs mobilières”
+</div>
+<span class="context">opposition à la <mark>création d’une commission pancanadienne des valeurs mobilières</mark>; transfert à Québec</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“financement des ventes, en particulier des ventes à l’exportation”
+</div>
+<span class="context">un engagement ferme et prévisible de <mark>financement des ventes, en particulier des ventes à l’exportation</mark>;</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“le gouvernement fédéral de créer un organisme commun de réglementation des valeurs mobilières”
+</div>
+<span class="context">Avec l’arrivée des conservateurs de Stephen Harper, les pressions pour évincer le Québec du monde de la finance ont monté d’un cran. Le ministre des Finances, l’Ontarien Jim Flaherty, a inscrit dans son budget 2006 la volonté du gouvernement fédéral de « travailler avec les provinces et les territoires en vue de mettre sur pied un organisme commun de réglementation des valeurs mobilières ».</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“le gouvernement fédéral compte un centre de recherche, l’Institut de recherche en aérospatiale du CNRC”
+</div>
+<span class="context">En plus du soutien direct, <mark>le gouvernement fédéral compte un centre de recherche, l’Institut de recherche en aérospatiale du CNRC</mark>. Celui-ci compte 250 chercheurs et des équipements de pointe comme des souffleries, des bancs d’essai, des aéronefs de recherche ou des chaînes de montage expérimentales.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“le Bloc Québécois est fermement opposé à une privatisation, même partielle, de Postes Canada”
+</div>
+<span class="context">Le Bloc Québécois est fermement opposé à une privatisation, même partielle, de Postes Canada. Cette société d’État doit demeurer un organisme public afin de maintenir des services universels avec des tarifs uniformes sur l’ensemble du territoire. Le Bloc Québécois considère donc : qu’avant de réduire ou d’éliminer le « privilège exclusif » de Postes Canada, le gouvernement doit tenir un examen public et exhaustif de la question, y compris son impact sur l’obligation de fournir un service public, universel et abordable, à tous les Québécois et à tous les Canadiens.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“Le Bloc Québécois presse le gouvernement fédéral de réviser ses positions dans les négociations commerciales”
+</div>
+<span class="context">…<mark>Le Bloc Québécois presse le gouvernement fédéral de réviser ses positions dans les négociations commerciales</mark> pour faire en sorte d’inclure dans les accords commerciaux des clauses prévoyant le respect de standards internationaux en termes de droit du travail, de respect des droits de la personne et de l’environnement…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“commission pancanadienne des valeurs mobilières”
+</div>
+<span class="context">opposition à la création d’une <mark>commission pancanadienne des valeurs mobilières</mark>; transfert à Québec de la formation de la main-d’œuvre</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“propriété étrangère dans le secteur des télécommunications”
+</div>
+<span class="context">s’était dit ouvert à un relâchement de la réglementation actuelle sur la <mark>propriété étrangère dans le secteur des télécommunications</mark>, dans la mesure où cela permettait au Canada d’être plus concurrentiel.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“bourse du carbone à Montréal”
+</div>
+<span class="context">sur la création d’une <mark>bourse du carbone à Montréal</mark> et sur des mesures fédérales que le gouvernement peut entreprendre dans ses propres champs de compétence</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“facilités d’accès au crédit”
+</div>
+<span class="context">il faut redonner à l’industrie sa capacité concurrentielle par une fiscalité adaptée, des mesures pour stimuler les ventes, des <mark>facilités d’accès au crédit</mark> et un soutien à l’investissement</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“accès à des sources de financement adaptées”
+</div>
+<span class="context">Il vise à favoriser la plus grande autonomie financière possible pour ces entreprises, en leur donnant <mark>accès à des sources de financement adaptées</mark> à leur réalité.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“protection de certains REER et FEER”
+</div>
+<span class="context">le gouvernement conservateur n’en a pas moins persisté à ignorer une lacune majeure soulevée par le gouvernement du Québec quant à la <mark>protection de certains REER et FEER</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 7</span>
+<div class="quote">
+“offensive rigoureuse et sans précédent pour mettre fin à l’évitement fiscal”
+</div>
+<span class="context">le Bloc Québécois mettra de l’avant une <mark>offensive rigoureuse et sans précédent pour mettre fin à l’évitement fiscal</mark> par l’entremise des paradis fiscaux.</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“La démocratie parlementaire québécoise remonte à 1792”
+</div>
+<span class="context"><mark>La démocratie parlementaire québécoise remonte à 1792</mark> et au Parlement du Bas Canada</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“fondement de la démocratie et de la société de droit”
+</div>
+<span class="context">s’en prend systématiquement à tous les contrepouvoirs qui constituent pourtant le <mark>fondement de la démocratie et de la société de droit</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“le plein respect des compétences du Québec”
+</div>
+<span class="context">l’application du principe du pollueur-payeur; l’équité en matière d’efforts demandés et <mark>le plein respect des compétences du Québec</mark>. Sur cette base, le Bloc Québécois propose un</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“la participation citoyenne et démocratique”
+</div>
+<span class="context">l’épanouissement et le rayonnement de la langue et de la culture québécoise; <mark>la participation citoyenne et démocratique</mark>; le droit de recevoir</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“respecter un juste équilibre entre le droit à la sécurité et les autres droits fondamentaux”
+</div>
+<span class="context">toute mesure de lutte contre le terrorisme devait <mark>respecter un juste équilibre entre le droit à la sécurité et les autres droits fondamentaux</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“respecter un juste équilibre entre le droit à la sécurité et les autres droits fondamentaux”
+</div>
+<span class="context">lutte contre le terrorisme devait <mark>respecter un juste équilibre entre le droit à la sécurité et les autres droits fondamentaux</mark>. Lors de l’étude</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“La démocratie est une valeur fondamentale de l’action politique du Bloc Québécois”
+</div>
+<span class="context"><mark>La démocratie est une valeur fondamentale de l’action politique du Bloc Québécois</mark>. L’assemblée nationale du Québec L’Assemblée nationale est le lieu privilégié de la démocratie québécoise. C’est le seul Parlement maîtrisé par le peuple québécois et autorisé à parler en son nom.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“le gouvernement ne fait pas les lois et ne peut, de son propre chef, effectuer des dépenses ou lever l’impôt”
+</div>
+<span class="context">Dans notre société, <mark>le gouvernement ne fait pas les lois et ne peut, de son propre chef, effectuer des dépenses ou lever l’impôt</mark>. C’est la responsabilité du Parlement. Il ne peut non plus interpréter lui-même les lois. C’est la responsabilité des tribunaux.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“le respect des engagements internationaux”
+</div>
+<span class="context">…le Bloc Québécois propose un plan basé sur trois principes incontournables, soit : <mark>le respect des engagements internationaux</mark>; l’application du principe du pollueur-payeur; l’équité en matière d’efforts demandés et le plein respect des compétences du Québec. …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“le gouvernement fédéral doit adopter une clause territoriale qui le forcerait à tenir compte de l’impact”
+</div>
+<span class="context">Le Bloc Québécois demande au gouvernement fédéral d’adopter une clause territoriale qui le forcerait à tenir compte de l’impact de l’ensemble de ses décisions sur les régions rurales.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“le gouvernement fédéral ne cesse de se mettre le nez là où cela ne le regarde pas, principalement en raison de son pouvoir de dépenser”
+</div>
+<span class="context">Les politiques sociales sont clairement la responsabilité du Québec et des provinces, mais <mark>le gouvernement fédéral ne cesse de se mettre le nez là où cela ne le regarde pas, principalement en raison de son pouvoir de dépenser</mark>. C’est pourquoi le Bloc Québécois joue, à Ottawa, le rôle essentiel qui consiste à veiller à ce que ce pouvoir ne vienne pas entraver la capacité du Québec de faire ses propres choix sur les plans social et économique et de gérer lui-même son développement.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“le Bloc Québécois dénonce vigoureusement la démarche du gouvernement visant à rendre l’affiliation politique des candidats plus importante”
+</div>
+<span class="context">Le Bloc Québécois dénonce vigoureusement la démarche du gouvernement visant à rendre l’affiliation politique des candidats plus importante que leurs qualifications.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“la Charte de l’ONU est le principal fondement du droit international”
+</div>
+<span class="context">…La Charte de l’ONU est le principal fondement du droit international qui régit les relations entre les pays. Cette action se fonde sur un certain nombre de principes fondamentaux, dont celui de l’égalité souveraine de tous les États membres de l’ONU…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“La démocratie est une valeur fondamentale”
+</div>
+<span class="context"><mark>La démocratie est une valeur fondamentale</mark> de l’action politique du Bloc Québécois. L’assemblée nationale du Québec</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“fondement de la démocratie et de la société de droit”
+</div>
+<span class="context">s’en prend systématiquement à tous les contrepouvoirs qui constituent pourtant le <mark>fondement de la démocratie et de la société de droit</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“compétences du Québec”
+</div>
+<span class="context">l’équité en matière d’efforts demandés et le plein respect des <mark>compétences du Québec</mark>. Sur cette base, le Bloc Québécois propose un plan</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“non seulement le gouvernement n’a pas été transparent”
+</div>
+<span class="context"><mark>non seulement le gouvernement n’a pas été transparent</mark> dans sa façon de mener à terme son projet de déréglementation, mais qui plus est, il a mis la santé de la population en danger</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“la participation citoyenne et démocratique”
+</div>
+<span class="context">les droits de la personne et le droit à la sécurité; le droit de vivre et de travailler en français partout au Québec; <mark>la participation citoyenne et démocratique</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“l’indépendance, à l’impartialité et à l’objectivité des juges”
+</div>
+<span class="context">Les conservateurs s’attaquent ainsi ouvertement à la crédibilité du processus judiciaire, à <mark>l’indépendance, à l’impartialité et à l’objectivité des juges</mark>, ainsi qu’à la séparation des pouvoirs entre les trois branches du gouvernement.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“les fondements de notre société et de notre État de droit”
+</div>
+<span class="context">la chasse aux terroristes peut se faire sans que <mark>les fondements de notre société et de notre État de droit</mark> soient remis en cause.</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“sa propre Charte des droits sept ans avant”
+</div>
+<span class="context">le Québec s’est doté de <mark>sa propre Charte des droits sept ans avant</mark> que le Canada ne nous impose la sienne.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“La Charte québécoise des droits protège cette diversité”
+</div>
+<span class="context">également choisi de mettre en valeur la diversité, non seulement des origines, mais également des modes de vie de chacun. <mark>La Charte québécoise des droits protège cette diversité</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“l’égalité et la justice entre les hommes et les femmes”
+</div>
+<span class="context">l’enrayement maximum de la pauvreté, de l’exclusion et de la violence; <mark>l’égalité et la justice entre les hommes et les femmes</mark>, ainsi qu’entre</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“respecter leur droit d’orienter, de développer et de perpétuer eux-mêmes leurs langues”
+</div>
+<span class="context">À ce titre, il respecte leur droit d’orienter, de développer et de perpétuer eux-mêmes leurs langues, leurs cultures, leurs coutumes</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“brimer les libertés d’association, de conscience et de religion”
+</div>
+<span class="context">terroristes, ce qui a pour effet de <mark>brimer les libertés d’association, de conscience et de religion</mark>. Les procès secrets</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“la Charte des droits sept ans avant que le Canada ne nous impose la sienne”
+</div>
+<span class="context">Au 20e siècle, le Québec s’est doté de sa propre Charte des droits sept ans avant que le Canada ne nous impose la sienne. Plus près de nous, le référendum de 1995 sur la souveraineté a démontré la grande qualité de la démocratie québécoise avec un taux de participation record et des débats tout aussi animés que pacifiques.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“la Charte québécoise des droits protège cette diversité”
+</div>
+<span class="context">Nous avons également choisi de mettre en valeur la diversité, non seulement des origines, mais également des modes de vie de chacun. La Charte québécoise des droits protège cette diversité.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“droits, minorités, égalité”
+</div>
+<span class="context">…le libéralisme social inclut la protection des <mark>droits, minorités, égalité</mark>, discrimination, genre/LGBTQ+, race, religion, ou termes apparentés. Le texte mentionne explicitement le respect des droits et équité. …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“le secteur des entreprises d’économie sociale a pris une expansion considérable”
+</div>
+<span class="context">Le secteur des entreprises d’économie sociale a pris une expansion considérable depuis les dix dernières années. Et malgré ce fait, le gouvernement conservateur sabre de plus de 38 millions les budgets qui leur sont destinés.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“les conservateurs ont amputé de 40 % le budget de fonctionnement de Condition féminine Canada”
+</div>
+<span class="context">Au premier chef, <mark>les conservateurs ont amputé de 40 % le budget de fonctionnement de Condition féminine Canada</mark> (CFC), qui est l’organisme fédéral responsable de promouvoir l’égalité entre les sexes et d’assurer la pleine participation des femmes à la vie économique, sociale, culturelle et politique du Canada. La réduction de cinq millions de dollars sur un budget déjà bien modeste de 13 millions de dollars a entraîné la fermeture de 12 des 16 bureaux régionaux de CFC, dont celui situé dans la ville de Québec, et une réduction de près de la moitié de son personnel à la grandeur du Canada.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“le Bloc Québécois appuie les nations autochtones dans leur quête pour la reconnaissance de leur droit”
+</div>
+<span class="context">Le Bloc Québécois appuie depuis longtemps les nations autochtones québécoises dans leur quête pour la reconnaissance de leur droit à une plus grande autonomie gouvernementale.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“le Bloc Québécois est très préoccupé par les allégations de plusieurs organisations de défense des droits de la personne”
+</div>
+<span class="context">…Le Bloc Québécois est très préoccupé par les allégations de plusieurs organisations de défense des droits de la personne selon lesquelles le profilage racial puisse être utilisé lors d’enquêtes contre le terrorisme…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“la pleine participation des femmes”
+</div>
+<span class="context">favorisant la natalité, l’épanouissement des enfants et <mark>la pleine participation des femmes</mark> au marché du travail a fait subir au Québec une perte énorme</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“La Charte québécoise des droits protège cette diversité”
+</div>
+<span class="context">Nous avons également choisi de mettre en valeur la diversité, non seulement des origines, mais également des modes de vie de chacun. <mark>La Charte québécoise des droits protège cette diversité</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“l’égalité et la justice entre les hommes et les femmes”
+</div>
+<span class="context"><mark>l’égalité et la justice entre les hommes et les femmes</mark>, ainsi qu’entre les groupes minoritaires et majoritaires; l’intégration maximale des Québécoises et des Québécois</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“droits à l’égalité et à l’équité des travailleurs québécois”
+</div>
+<span class="context">Le Bloc Québécois continuera de se faire le défenseur des <mark>droits à l’égalité et à l’équité des travailleurs québécois</mark> à Ottawa.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“le profilage racial puisse être utilisé”
+</div>
+<span class="context">Le Bloc Québécois est très préoccupé par les allégations de plusieurs organisations de défense des droits de la personne selon lesquelles <mark>le profilage racial puisse être utilisé</mark> lors d’enquêtes contre le terrorisme.</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“La démocratie parlementaire québécoise remonte à 1792”
+</div>
+<span class="context"><mark>La démocratie parlementaire québécoise remonte à 1792</mark> et au Parlement du Bas Canada</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“fondement de la démocratie et de la société de droit”
+</div>
+<span class="context">s’en prend systématiquement à tous les contrepouvoirs qui constituent pourtant le <mark>fondement de la démocratie et de la société de droit</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“le plein respect des compétences du Québec”
+</div>
+<span class="context">l’application du principe du pollueur-payeur; l’équité en matière d’efforts demandés et <mark>le plein respect des compétences du Québec</mark>. Sur cette base, le Bloc Québécois propose un</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“le laisser-faire, les slogans creux”
+</div>
+<span class="context">N’en déplaise au gouvernement conservateur, <mark>le laisser-faire, les slogans creux</mark> et la pensée magique ne sont pas des politiques.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“l’égalité et la justice entre les hommes et les femmes”
+</div>
+<span class="context">l’enrayement maximum de la pauvreté, de l’exclusion et de la violence; <mark>l’égalité et la justice entre les hommes et les femmes</mark>, ainsi qu’entre</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“respecter un juste équilibre entre le droit à la sécurité et les autres droits fondamentaux”
+</div>
+<span class="context">toute mesure de lutte contre le terrorisme devait <mark>respecter un juste équilibre entre le droit à la sécurité et les autres droits fondamentaux</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“respecter un juste équilibre entre le droit à la sécurité et les autres droits fondamentaux”
+</div>
+<span class="context">lutte contre le terrorisme devait <mark>respecter un juste équilibre entre le droit à la sécurité et les autres droits fondamentaux</mark>. Lors de l’étude</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“La démocratie est une valeur fondamentale de l’action politique du Bloc Québécois”
+</div>
+<span class="context"><mark>La démocratie est une valeur fondamentale de l’action politique du Bloc Québécois</mark>. L’assemblée nationale du Québec L’Assemblée nationale est le lieu privilégié de la démocratie québécoise. C’est le seul Parlement maîtrisé par le peuple québécois et autorisé à parler en son nom.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“le gouvernement ne fait pas les lois et ne peut, de son propre chef, effectuer des dépenses ou lever l’impôt”
+</div>
+<span class="context">Dans notre société, <mark>le gouvernement ne fait pas les lois et ne peut, de son propre chef, effectuer des dépenses ou lever l’impôt</mark>. C’est la responsabilité du Parlement. Il ne peut non plus interpréter lui-même les lois. C’est la responsabilité des tribunaux.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“le respect des engagements internationaux”
+</div>
+<span class="context">…le Bloc Québécois propose un plan basé sur trois principes incontournables, soit : <mark>le respect des engagements internationaux</mark>; l’application du principe du pollueur-payeur; l’équité en matière d’efforts demandés et le plein respect des compétences du Québec. …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“le gouvernement fédéral offre aussi des incitatifs fiscaux à la R&amp;D”
+</div>
+<span class="context">De plus, le gouvernement offre du soutien à l’investissement et des crédits d’impôts élevés qui font diminuer le coût de la recherche et font du Québec un lieu de prédilection pour les entreprises de haute technologie. Le gouvernement fédéral offre aussi des incitatifs fiscaux à la R&amp;D.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“le Bloc Québécois est fermement opposé à une privatisation, même partielle, de Postes Canada”
+</div>
+<span class="context">Le Bloc Québécois est fermement opposé à une privatisation, même partielle, de Postes Canada. Cette société d’État doit demeurer un organisme public afin de maintenir des services universels avec des tarifs uniformes sur l’ensemble du territoire. Le Bloc Québécois considère donc : qu’avant de réduire ou d’éliminer le « privilège exclusif » de Postes Canada, le gouvernement doit tenir un examen public et exhaustif de la question, y compris son impact sur l’obligation de fournir un service public, universel et abordable, à tous les Québécois et à tous les Canadiens.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“le Bloc Québécois dénonce vigoureusement la démarche du gouvernement visant à rendre l’affiliation politique des candidats plus importante”
+</div>
+<span class="context">Le Bloc Québécois dénonce vigoureusement la démarche du gouvernement visant à rendre l’affiliation politique des candidats plus importante que leurs qualifications.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“La Charte de l’ONU est le principal fondement du droit international”
+</div>
+<span class="context">…<mark>La Charte de l’ONU est le principal fondement du droit international</mark> qui régit les relations entre les pays. Cette action se fonde sur un certain nombre de principes fondamentaux, dont celui de l’égalité souveraine de tous les États membres de l’ONU…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“transparence à Ottawa pour que la population”
+</div>
+<span class="context">qu’il y ait suffisamment de <mark>transparence à Ottawa pour que la population</mark> et ses représentants aient accès à l’information</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“contrepouvoirs qui constituent pourtant le fondement”
+</div>
+<span class="context">s’en prend systématiquement à tous les <mark>contrepouvoirs qui constituent pourtant le fondement</mark> de la démocratie et de la société de droit.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 3</span>
+<div class="quote">
+“marché de permis échangeables”
+</div>
+<span class="context">le Bloc Québécois propose d’intégrer à une telle approche territoriale un <mark>marché de permis échangeables</mark>, géré au moyen d’une bourse du carbone</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“effets pervers de la déréglementation et de la libéralisation des marchés”
+</div>
+<span class="context">À l’idéologie du gouvernement conservateur en place, qui refuse de corriger les <mark>effets pervers de la déréglementation et de la libéralisation des marchés</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“droits de la personne et le droit à la sécurité”
+</div>
+<span class="context">les <mark>droits de la personne et le droit à la sécurité</mark>; le droit de vivre et de travailler en français partout au Québec; la participation citoyenne et démocratique</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“juste équilibre entre le droit à la sécurité et les autres droits fondamentaux”
+</div>
+<span class="context">toute mesure de lutte contre le terrorisme devait respecter un <mark>juste équilibre entre le droit à la sécurité et les autres droits fondamentaux</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“les fondements de notre société et de notre État de droit”
+</div>
+<span class="context">la chasse aux terroristes peut se faire sans que <mark>les fondements de notre société et de notre État de droit</mark> soient remis en cause.</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“les députés conservateurs du Québec, ne cessent de le répéter”
+</div>
+<span class="context">Ses perroquets chez nous, <mark>les députés conservateurs du Québec, ne cessent de le répéter</mark> depuis.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“mettre fin à la culture du secret”
+</div>
+<span class="context"> Ottawa pour que la population et ses représentants aient accès à l’information. Il faut <mark>mettre fin à la culture du secret</mark> qui règne au gouvernement fédéral; que les membres du gouvernement cessent d’abuser de leurs pouvoirs</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“les multiples cadeaux aux riches pétrolières consentis tant par les libéraux que les conservateurs”
+</div>
+<span class="context">représentera un millard d’économie d’impôt. Bref, <mark>les multiples cadeaux aux riches pétrolières consentis tant par les libéraux que les conservateurs</mark> leur permettront d’économiser plus de 2,7 milliards</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“désintérêt des politiciens des partis fédéralistes”
+</div>
+<span class="context">Vis-à-vis du <mark>désintérêt des politiciens des partis fédéralistes</mark>, le Bloc Québécois a même présenté</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“les conservateurs ont une lecture idéologique”
+</div>
+<span class="context">La plupart du temps, <mark>les conservateurs ont une lecture idéologique</mark> de la réalité. Selon eux, le libre marché</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“libéraux et conservateurs ont encore une fois démontré qu’ils ne se soucient pas”
+</div>
+<span class="context">Le 5 octobre 2005, <mark>libéraux et conservateurs ont encore une fois démontré qu’ils ne se soucient pas</mark> des conditions de travail des travailleuses</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 7</span>
+<div class="quote">
+“les conservateurs délaissent le rôle diplomatique traditionnel”
+</div>
+<span class="context">force est de constater que depuis 2006, <mark>les conservateurs délaissent le rôle diplomatique traditionnel</mark> du Canada pour s’investir</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“les députés fédéralistes du Québec s’écraser et se taire”
+</div>
+<span class="context">Malheureusement, une fois élus, les conservateurs ont modifié leur discours. Ils sont bien prêts à transférer de l’argent, mais ils veulent conserver le pouvoir de l’argent, donc la capacité, pour le gouvernement central, d’imposer ses priorités. Comme ses prédécesseurs à Ottawa, et peut-être même davantage, Stephen Harper veut tout maîtriser, y compris les priorités des Québécois. Et le plus triste, c’est de voir <mark>les députés fédéralistes du Québec s’écraser et se taire</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“le premier ministre Harper considère l’État comme son domaine personnel”
+</div>
+<span class="context">Malheureusement, <mark>le premier ministre Harper considère l’État comme son domaine personnel</mark>. Il tient à tout maîtriser et s’en prend systématiquement à tous les contrepouvoirs qui constituent pourtant le fondement de la démocratie et de la société de droit.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“les multiples cadeaux aux riches pétrolières”
+</div>
+<span class="context">…cela représentera un millard d’économie d’impôt. Bref, <mark>les multiples cadeaux aux riches pétrolières</mark> consentis tant par les libéraux que les conservateurs leur permettront d’économiser plus de 2,7 milliards de dollars en 2008-2009. C’est indécent ! Cette complaisance à l’endroit des pétrolières a même été critiquée par l’OCDE. …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“le gouvernement conservateur semble décidé à sortir le Canada du jeu”
+</div>
+<span class="context">Malheureusement, sous les conservateurs, le gouvernement fédéral semble décidé à sortir le Canada du jeu et son action est proprement catastrophique. Non seulement il n’a aucune politique de l’aéronautique, mais toutes ses actions contribuent à affaiblir ce pilier de notre économie, soit par incompétence, soit par aveuglement, ou les deux.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“l’intransigeance du ministre Blackburn démontre une nouvelle fois l’incohérence des conservateurs”
+</div>
+<span class="context">Cette mesure a été vivement condamnée par le gouvernement du Québec, les maires de plusieurs municipalités (Québec, Rimouski et Montréal notamment), plusieurs commissions régionales des élus et le monde économique québécois. Elle affecte également des acteurs du développement social et culturel, par exemple Le Chantier de l’économie sociale. Il s’agit donc d’une mesure inappropriée et fortement préjudiciable au tissu économique régional québécois. Ceci pourrait avoir comme conséquence la suppression d’un certain nombre d’emplois en milieu local. De plus, <mark>l’intransigeance du ministre Blackburn démontre une nouvelle fois l’incohérence des conservateurs</mark> en matière de développement régional au Québec, puisqu’ils font fi de la demande de nombreux acteurs économiques québécois, mais également du gouvernement du Québec et du Parti québécois de revenir sur cette décision.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 6</span>
+<div class="quote">
+“le gouvernement fédéral n’assume pas ses responsabilités”
+</div>
+<span class="context"><mark>le gouvernement fédéral n’assume pas ses responsabilités</mark> de fiduciaire et, par conséquent, des communautés autochtones vivent une situation que l’on retrouve dans de nombreux pays en développement.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 7</span>
+<div class="quote">
+“le gouvernement conservateur s’est lancé dans une série de dépenses exorbitantes”
+</div>
+<span class="context">…<mark>le gouvernement conservateur s’est lancé dans une série de dépenses exorbitantes</mark> sans tenir un vaste débat sur les orientations à donner au mandat des Forces armées, à l’élaboration de leurs composantes…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“les libéraux et les conservateurs se battent pour prendre le pouvoir”
+</div>
+<span class="context">pendant que <mark>les libéraux et les conservateurs se battent pour prendre le pouvoir</mark> à Ottawa, nous, on se bat pour le Québec</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“le premier ministre Harper considère l’État comme son domaine personnel”
+</div>
+<span class="context">Malheureusement, <mark>le premier ministre Harper considère l’État comme son domaine personnel</mark>. Il tient à tout maîtriser et s’en prend systématiquement à tous les contrepouvoirs</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“multiples cadeaux aux riches pétrolières”
+</div>
+<span class="context">Bref, les <mark>multiples cadeaux aux riches pétrolières</mark> consentis tant par les libéraux que les conservateurs leur permettront d’économiser plus de 2,7 milliards</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“le laisser-faire, les slogans creux et la pensée magique”
+</div>
+<span class="context">N’en déplaise au gouvernement conservateur, <mark>le laisser-faire, les slogans creux et la pensée magique</mark> ne sont pas des politiques.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“l’intransigeance du ministre Blackburn démontre une nouvelle fois l’incohérence des conservateurs”
+</div>
+<span class="context">Cette mesure a été vivement condamnée… <mark>l’intransigeance du ministre Blackburn démontre une nouvelle fois l’incohérence des conservateurs</mark> en matière de développement régional au Québec</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“libéraux et conservateurs ont encore une fois démontré qu’ils ne se soucient pas des conditions de travail”
+</div>
+<span class="context">Le 5 octobre 2005, <mark>libéraux et conservateurs ont encore une fois démontré qu’ils ne se soucient pas des conditions de travail</mark> des travailleuses et des travailleurs en rejetant le projet de loi du Bloc Québécois.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 7</span>
+<div class="quote">
+“les libéraux que les conservateurs ont failli volontairement”
+</div>
+<span class="context">Force est de constater que tant <mark>les libéraux que les conservateurs ont failli volontairement</mark> à la tâche en matière de prévision de surplus.</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“un parti pancanadien défend les intérêts du Canada”
+</div>
+<span class="context">Il est impossible de tenir cette position dans un parti pancanadien. Par essence, un tel parti défend les intérêts du Canada. Les députés québécois d’un parti canadien, enfermés dans la ligne de parti pancanadienne, sont condamnés à défendre le Canada, ses intérêts, ses valeurs et son identité.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“le Bloc Québécois est le parti de la vigilance”
+</div>
+<span class="context">À Ottawa, <mark>le Bloc Québécois est le parti de la vigilance</mark>. Il s’engage à garder le gouvernement fédéral sous surveillance, peu importe le parti au pouvoir.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“le Bloc Québécois demande au gouvernement de mettre sur pied une politique aéronautique”
+</div>
+<span class="context">Depuis plusieurs années, <mark>le Bloc Québécois demande au gouvernement de mettre sur pied une politique aéronautique</mark> qui assurerait aux entreprises un soutien fiable et prévisible, leur permettant ainsi de planifier à l’avance leurs projets de développement.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“le Bloc Québécois demande au gouvernement fédéral de : respecter les compétences du gouvernement du Québec”
+</div>
+<span class="context">Le Bloc Québécois demande à Ottawa de respecter les choix québécois Parce qu’il défend la position traditionnelle du Québec en matière de développement régional, <mark>le Bloc Québécois demande au gouvernement fédéral de : respecter les compétences du gouvernement du Québec</mark> en matière de développement régional; respecter et favoriser la mise en œuvre des objectifs du Québec en matière de développement régional, notamment en tenant compte des politiques régionales établies par le gouvernement du Québec en 2001, dont la stratégie de développement pour les régions ressources ainsi que la politique nationale de la ruralité pour soutenir le développement des communautés rurales québécoises; conclure avec le gouvernement du Québec des ententes prévoyant le transfert au Québec des fonds fédéraux alloués aux programmes de développement régional.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“la différence québécoise doit être représentée, entendue et prise en compte à Ottawa”
+</div>
+<span class="context">Tant que les lois fédérales s’appliquent sur le territoire québécois, le gouvernement fédéral ne peut pas faire fi des valeurs et des opinions du Québec. La différence québécoise doit être représentée, entendue et prise en compte à Ottawa.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“le Bloc Québécois considère que les interventions militaires devraient être uniquement entreprises avec l’aval de l’ONU”
+</div>
+<span class="context">…Le Bloc Québécois considère que les interventions militaires devraient être uniquement entreprises avec l’aval de l’ONU — organisation chargée de faire en sorte que d’autres solutions puissent être appliquées en lieu et place de la guerre…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“libre des compromissions avec la gauche centralisatrice”
+</div>
+<span class="context"><mark>libre des compromissions avec la gauche centralisatrice</mark> ou la droite doctrinaire du Canada, libre de représenter et de défendre le Québec</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“À Ottawa, le Bloc Québécois est le parti de la vigilance”
+</div>
+<span class="context"><mark>À Ottawa, le Bloc Québécois est le parti de la vigilance</mark>. Il s’engage à garder le gouvernement fédéral sous surveillance, peu importe le parti au pouvoir.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“le seul parti politique dont la loyauté va d’abord au Québec”
+</div>
+<span class="context">Le Bloc Québécois est <mark>le seul parti politique dont la loyauté va d’abord au Québec</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“le Bloc Québécois répond par une approche humaine”
+</div>
+<span class="context">À cette approche doctrinaire, <mark>le Bloc Québécois répond par une approche humaine</mark>. Une approche qui a le cœur à la bonne place.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“faire valoir les consensus québécois”
+</div>
+<span class="context">Pour <mark>faire valoir les consensus québécois</mark>, les préoccupations québécoises et les valeurs québécoises à Ottawa, il n’y a que les députés du Bloc Québécois.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 7</span>
+<div class="quote">
+“seul le Bloc Québécois a développé une position rigoureuse”
+</div>
+<span class="context">Dans tout ce débat, <mark>seul le Bloc Québécois a développé une position rigoureuse</mark>, réaliste, claire et constante, respectueuse des désirs de la population du Québec.</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“mettre fin aux cadeaux fiscaux aux riches pétrolières”
+</div>
+<span class="context">Le Bloc Québécois continuera d’exiger que le gouvernement mette fin aux cadeaux fiscaux aux riches pétrolières.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“mettre fin aux cadeaux fiscaux aux riches pétrolières”
+</div>
+<span class="context">Le Bloc Québécois continuera d’exiger que le gouvernement mette fin aux cadeaux fiscaux aux riches pétrolières. 3.4 Lutte aux gaz à effet de serre</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“soutenir les travailleurs âgés”
+</div>
+<span class="context">mesures spéciales d’assurance-emploi et mettre sur pied un programme pour <mark>soutenir les travailleurs âgés</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“outil de lutte à la pauvreté”
+</div>
+<span class="context">comme outil de développement économique, de prise en charge dans les collectivités et comme <mark>outil de lutte à la pauvreté</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“défenseur des droits à l’égalité et à l’équité des travailleurs”
+</div>
+<span class="context">Le Bloc Québécois continuera de se faire le <mark>défenseur des droits à l’égalité et à l’équité des travailleurs</mark> québécois à Ottawa.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“élimination de toutes les baisses d’impôt accordées”
+</div>
+<span class="context">le Bloc Québécois propose l’<mark>élimination de toutes les baisses d’impôt accordées</mark> par les libéraux et les conservateurs aux riches</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“les libéraux et les néodémocrates désirent que le gouvernement fédéral intervienne fortement dans le domaine social”
+</div>
+<span class="context">Les libéraux et les néodémocrates désirent que le gouvernement fédéral intervienne fortement dans le domaine social, qu’il assure l’uniformisation de la couverture sociale partout. Bref, selon eux, c’est Ottawa qui doit orienter le développement social, économique et culturel du Canada, même si ces questions ne relèvent pas du gouvernement fédéral, et ce sans égard pour le fait que les Québécois forment une nation.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“les libéraux n’ont pas hésité à fausser les élections fédérales”
+</div>
+<span class="context">Conservateurs et libéraux n’ont pas hésité à fausser les élections fédérales, soit en ayant recours à des fonds douteux, soit en dépensant plus qu’il n’est permis.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“le principe du pollueur-payeur”
+</div>
+<span class="context">…le gouvernement fédéral persiste à lui offrir un régime fiscal avantageux et à rejeter <mark>le principe du pollueur-payeur</mark>. À cet égard, le budget 2008-2009 du gouvernement fédéral en remet. …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“le Bloc Québécois demande au gouvernement de mettre sur pied une politique aéronautique”
+</div>
+<span class="context">Depuis plusieurs années, <mark>le Bloc Québécois demande au gouvernement de mettre sur pied une politique aéronautique</mark> qui assurerait aux entreprises un soutien fiable et prévisible, leur permettant ainsi de planifier à l’avance leurs projets de développement.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“les conservateurs ont amputé de 40 % le budget de fonctionnement de Condition féminine Canada”
+</div>
+<span class="context">En septembre 2006, au même moment où il annonçait un surplus budgétaire de plus de 13 milliards de dollars, le gouvernement conservateur faisait pour un milliard de dollars de compressions dans une série de programmes honnis de la droite canadienne. Au premier chef, <mark>les conservateurs ont amputé de 40 % le budget de fonctionnement de Condition féminine Canada</mark> (CFC), qui est l’organisme fédéral responsable de promouvoir l’égalité entre les sexes et d’assurer la pleine participation des femmes à la vie économique, sociale, culturelle et politique du Canada.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“le Bloc Québécois a déposé un projet de loi pour protéger les travailleurs victimes de harcèlement psychologique”
+</div>
+<span class="context">le Bloc Québécois a déposé, le 7 avril 2005, un projet de loi pour protéger les travailleurs victimes de harcèlement psychologique dans la fonction publique et sous l’égide du Code canadien du travail.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 7</span>
+<div class="quote">
+“le Bloc Québécois a toujours adopté une approche équilibrée quant au système pénal”
+</div>
+<span class="context">…Le Bloc Québécois a toujours adopté une approche équilibrée quant au système pénal en favorisant des mesures qui permettent de réhabiliter les criminels tout en maintenant à l’écart de la société les personnes qui mettent la sécurité des citoyens en danger…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“laisser-faire économique, approche répressive”
+</div>
+<span class="context">la plupart de leurs politiques sont calquées sur l’approche de la droite républicaine aux États-Unis : <mark>laisser-faire économique, approche répressive</mark> et rigide</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“cadeaux fiscaux aux riches pétrolières”
+</div>
+<span class="context">Le Bloc Québécois continuera d’exiger que le gouvernement mette fin aux <mark>cadeaux fiscaux aux riches pétrolières</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“abolition du régime fiscal avantageux à l’égard des pétrolières”
+</div>
+<span class="context">5. Abolition du régime fiscal avantageux à l’égard des pétrolières : Le gouvernement fédéral, par l’intermédiaire du régime fiscal très avantageux dont profitent les grandes pétrolières</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“soutien stable, prévisible et élevé en matière de R&amp;D”
+</div>
+<span class="context">Le Bloc Québécois considère que le gouvernement fédéral doit offrir à l’industrie aéronautique un <mark>soutien stable, prévisible et élevé en matière de R&amp;D</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“sabre de plus de 38 millions les budgets”
+</div>
+<span class="context">le gouvernement conservateur <mark>sabre de plus de 38 millions les budgets</mark> qui leur sont destinés… l’économie sociale est utilisée comme outil de lutte à la pauvreté</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“interdire l’utilisation de travailleurs de remplacement lors de grèves”
+</div>
+<span class="context">Le Bloc Québécois a déposé un projet de loi en 2006 pour modifier le Code canadien du travail de façon à <mark>interdire l’utilisation de travailleurs de remplacement lors de grèves</mark> ou de lock-out.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 7</span>
+<div class="quote">
+“élimination de toutes les baisses d’impôt accordées”
+</div>
+<span class="context">le Bloc Québécois propose l’<mark>élimination de toutes les baisses d’impôt accordées</mark> par les libéraux et les conservateurs aux riches pétrolières.</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Défendre l’identité québécoise Reconnaître que la nation québécoise existe”
+</div>
+<span class="context"><mark>Défendre l’identité québécoise Reconnaître que la nation québécoise existe</mark>, c’est reconnaître qu’elle a une identité</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“défendre et promouvoir la culture de la nation québécoise”
+</div>
+<span class="context">2.2 Défendre et promouvoir la culture de la nation québécoise Les Québécois ont choisi d’accueillir de nombreux immigrants</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“mettre fin aux cadeaux fiscaux aux riches pétrolières”
+</div>
+<span class="context">Le Bloc Québécois continuera d’exiger que le gouvernement mette fin aux cadeaux fiscaux aux riches pétrolières. 3.4 Lutte aux gaz à effet de serre</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“soutenir les travailleurs âgés”
+</div>
+<span class="context">mesures spéciales d’assurance-emploi et mettre sur pied un programme pour <mark>soutenir les travailleurs âgés</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“outil de lutte à la pauvreté”
+</div>
+<span class="context">comme outil de développement économique, de prise en charge dans les collectivités et comme <mark>outil de lutte à la pauvreté</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“défenseur des droits à l’égalité et à l’équité des travailleurs”
+</div>
+<span class="context">Le Bloc Québécois continuera de se faire le <mark>défenseur des droits à l’égalité et à l’équité des travailleurs</mark> québécois à Ottawa.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 7</span>
+<div class="quote">
+“élimination de toutes les baisses d’impôt accordées”
+</div>
+<span class="context">le Bloc Québécois propose l’<mark>élimination de toutes les baisses d’impôt accordées</mark> par les libéraux et les conservateurs aux riches</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“un parti pancanadien défend les intérêts du Canada”
+</div>
+<span class="context">Il est impossible de tenir cette position dans un parti pancanadien. Par essence, un tel parti défend les intérêts du Canada. Les députés québécois d’un parti canadien, enfermés dans la ligne de parti pancanadienne, sont condamnés à défendre le Canada, ses intérêts, ses valeurs et son identité.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“le Bloc Québécois est la meilleure protection dont dispose le peuple québécois”
+</div>
+<span class="context">Comme la démocratie est l’arme utilisée par le Bloc Québécois pour faire des gains en faveur du Québec, <mark>le Bloc Québécois est la meilleure protection dont dispose le peuple québécois</mark> contre les dérives autoritaires du gouvernement.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“le principe du pollueur-payeur”
+</div>
+<span class="context">…le gouvernement fédéral persiste à lui offrir un régime fiscal avantageux et à rejeter <mark>le principe du pollueur-payeur</mark>. À cet égard, le budget 2008-2009 du gouvernement fédéral en remet. …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“le gouvernement conservateur semble décidé à sortir le Canada du jeu”
+</div>
+<span class="context">Malheureusement, sous les conservateurs, le gouvernement fédéral semble décidé à sortir le Canada du jeu et son action est proprement catastrophique. Non seulement il n’a aucune politique de l’aéronautique, mais toutes ses actions contribuent à affaiblir ce pilier de notre économie, soit par incompétence, soit par aveuglement, ou les deux.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“les conservateurs ont amputé de 40 % le budget de fonctionnement de Condition féminine Canada”
+</div>
+<span class="context">En septembre 2006, au même moment où il annonçait un surplus budgétaire de plus de 13 milliards de dollars, le gouvernement conservateur faisait pour un milliard de dollars de compressions dans une série de programmes honnis de la droite canadienne. Au premier chef, <mark>les conservateurs ont amputé de 40 % le budget de fonctionnement de Condition féminine Canada</mark> (CFC), qui est l’organisme fédéral responsable de promouvoir l’égalité entre les sexes et d’assurer la pleine participation des femmes à la vie économique, sociale, culturelle et politique du Canada.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“le Bloc Québécois continuera de faire valoir le point de vue québécois et les valeurs québécoises à Ottawa”
+</div>
+<span class="context">Le Bloc Québécois continuera de faire valoir le point de vue québécois et les valeurs québécoises à Ottawa dans tous les dossiers de compétence fédérale.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 7</span>
+<div class="quote">
+“Le Bloc Québécois considère que les interventions militaires devraient être uniquement entreprises avec l’aval de l’ONU”
+</div>
+<span class="context">…<mark>Le Bloc Québécois considère que les interventions militaires devraient être uniquement entreprises avec l’aval de l’ONU</mark> — organisation chargée de faire en sorte que d’autres solutions puissent être appliquées en lieu et place de la guerre…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“défendre les intérêts propres au Québec”
+</div>
+<span class="context">Seul le Bloc Québécois est apte à représenter et à défendre l’identité, les valeurs et les intérêts propres au Québec.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“défendre les intérêts du Québec”
+</div>
+<span class="context">Seuls les députés du Bloc Québécois défendent les intérêts du Québec sur cette question en réclamant que l’on garantisse au Québec un minimum de 25 %</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“pollueur-payeur”
+</div>
+<span class="context">le gouvernement fédéral persiste à lui offrir un régime fiscal avantageux et à rejeter le principe du <mark>pollueur-payeur</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“soutien stable, prévisible et élevé en matière de R&amp;D”
+</div>
+<span class="context">Le Bloc Québécois considère que le gouvernement fédéral doit offrir à l’industrie aéronautique un <mark>soutien stable, prévisible et élevé en matière de R&amp;D</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“outil de lutte à la pauvreté”
+</div>
+<span class="context">L’économie sociale est ainsi utilisée comme outil de développement économique, de prise en charge dans les collectivités et comme <mark>outil de lutte à la pauvreté</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“interdire l’utilisation de travailleurs de remplacement”
+</div>
+<span class="context">modifier le Code canadien du travail de façon à <mark>interdire l’utilisation de travailleurs de remplacement</mark> lors de grèves ou de lock-out.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 7</span>
+<div class="quote">
+“élimination de toutes les baisses d’impôt accordées”
+</div>
+<span class="context">le Bloc Québécois propose l’<mark>élimination de toutes les baisses d’impôt accordées</mark> par les libéraux et les conservateurs aux riches pétrolières.</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Défendre l’identité québécoise Reconnaître que la nation québécoise existe”
+</div>
+<span class="context"><mark>Défendre l’identité québécoise Reconnaître que la nation québécoise existe</mark>, c’est reconnaître qu’elle a une identité</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“défendre et promouvoir la culture de la nation québécoise”
+</div>
+<span class="context">2.2 Défendre et promouvoir la culture de la nation québécoise Les Québécois ont choisi d’accueillir de nombreux immigrants</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“les conservateurs ne cherchent pas à ce que le gouvernement intervienne davantage dans le domaine social”
+</div>
+<span class="context">De leur côté, <mark>les conservateurs ne cherchent pas à ce que le gouvernement intervienne davantage dans le domaine social</mark>. Ils souhaitent plutôt que les citoyens se débrouillent seuls. En fait la plupart de leurs politiques sont calquées sur l’approche de la droite républicaine aux États-Unis : laisser-faire économique, approche répressive et rigide dans l’application de la justice, politique étrangère axée sur la force et la menace — plutôt que sur la prévention des conflits, sur le développement et sur la coopération —, investissements massifs en défense pour appuyer cette politique étrangère belliqueuse, approche moralisatrice de la vie publique qui les amène à considérer comme suspects ceux qui font preuve de liberté d’esprit, etc.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“le premier ministre étant un militariste, il a d’abord nommé un lobbyiste pour des compagnies d’armement”
+</div>
+<span class="context">Le premier ministre étant un militariste, il a d’abord nommé un lobbyiste pour des compagnies d’armement, Gordon O’Connor, comme ministre de la Défense pour s’assurer que l’industrie militaire serait bien représentée au gouvernement.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“le gouvernement conservateur semble décidé à sortir le Canada du jeu”
+</div>
+<span class="context">Malheureusement, sous les conservateurs, le gouvernement fédéral semble décidé à sortir le Canada du jeu et son action est proprement catastrophique. Non seulement il n’a aucune politique de l’aéronautique, mais toutes ses actions contribuent à affaiblir ce pilier de notre économie, soit par incompétence, soit par aveuglement, ou les deux.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“le gouvernement conservateur refuse d’honorer la parole donnée par l’ancien gouvernement lors de la rencontre de Kelowna”
+</div>
+<span class="context">Quant aux Autochtones, ils sont victimes du complet désintérêt du gouvernement fédéral. Alors que leur situation en matière de santé, de logement, d’éducation et de conditions de vie en général est incroyablement mauvaise, <mark>le gouvernement conservateur refuse d’honorer la parole donnée par l’ancien gouvernement lors de la rencontre de Kelowna</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“le Bloc Québécois dénonce la militarisation de l’Arctique”
+</div>
+<span class="context"><mark>le Bloc Québécois dénonce la militarisation de l’Arctique</mark>. Plutôt que de chercher à occuper militairement la région, le Canada devrait plutôt chercher à étoffer sa cause en vue d’une reconnaissance internationale de sa souveraineté.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 7</span>
+<div class="quote">
+“Stephen Harper était un farouche partisan de la guerre en Irak”
+</div>
+<span class="context">…<mark>Stephen Harper était un farouche partisan de la guerre en Irak</mark>. À son arrivée à la tête du gouvernement canadien, il a imprimé un virage important et parfois improvisé à la politique étrangère canadienne pour l’aligner sur les positions du gouvernement américain…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“identité qui lui est propre”
+</div>
+<span class="context">c’est reconnaître qu’elle a une <mark>identité qui lui est propre</mark> et voir à ce qu’Ottawa la respecte au lieu de l’entraver</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“la nation québécoise est francophone”
+</div>
+<span class="context">le Bloc Québécois reviendra à la charge et n’aura de cesse tant que le Canada n’aura pas reconnu concrètement que <mark>la nation québécoise est francophone</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“Seuls les députés du Bloc Québécois”
+</div>
+<span class="context">D’ici là, le Québec a besoin de représentants qui défendent ses intérêts à Ottawa. <mark>Seuls les députés du Bloc Québécois</mark> ont la liberté de se tenir debout pour les intérêts du Québec.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“souveraineté alimentaire du Québec”
+</div>
+<span class="context">nous opposons une approche plus respectueuse des gens et de l’environnement : la <mark>souveraineté alimentaire du Québec</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“le droit de vivre et de travailler en français”
+</div>
+<span class="context">les droits de la personne et le droit à la sécurité; <mark>le droit de vivre et de travailler en français</mark> partout au Québec; l’épanouissement et le rayonnement de la langue et de la culture québécoise</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“la nation québécoise, comme toutes les nations, a une culture”
+</div>
+<span class="context">La nation québécoise, comme toutes les nations, a une culture qui lui est propre et qui constitue le fondement même de son existence.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“la nation québécoise”
+</div>
+<span class="context">Par sa langue, <mark>la nation québécoise</mark> est soumise à des influences trop multiples pour voir le monde à travers le prisme américain.</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“nous, on se bat pour le Québec”
+</div>
+<span class="context">pendant que les libéraux et les conservateurs se battent pour prendre le pouvoir à Ottawa, <mark>nous, on se bat pour le Québec</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“considère l’État comme son domaine personnel”
+</div>
+<span class="context">Malheureusement, le premier ministre Harper <mark>considère l’État comme son domaine personnel</mark>. Il tient à tout maîtriser et s’en prend systématiquement</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“complètement dénués de cette intelligence du cœur”
+</div>
+<span class="context">Les élus conservateurs sont <mark>complètement dénués de cette intelligence du cœur</mark> qui permet aux gouvernements</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“l’une de ses plus grandes injustices jamais perpétré”
+</div>
+<span class="context">détermination à réparer <mark>l’une de ses plus grandes injustices jamais perpétré</mark> par le gouvernement fédéral sur le dos des travailleurs.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 7</span>
+<div class="quote">
+“uniquement en termes de « bien » et de « mal »”
+</div>
+<span class="context">font une lecture des relations internationales <mark>uniquement en termes de « bien » et de « mal »</mark>, une lecture totalement dénuée</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“le Bloc Québécois est un empêcheur de tourner en rond”
+</div>
+<span class="context">Parfois, les Canadiens trouvent même que <mark>le Bloc Québécois est un empêcheur de tourner en rond</mark> lorsqu’il soulève sans relâche ces questions, et ils souhaiteraient le voir disparaître. Dans leur irritation à devoir débattre de questions qui ne sont prioritaires qu’au Québec, ils se plaisent même à répéter que le Bloc Québécois est inutile.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“les conservateurs se sont sournoisement attaqués à l’impartialité et à l’intégrité”
+</div>
+<span class="context">Pris en flagrant délit relativement à de graves infractions à la Loi électorale, le parti de Stephen Harper n’a pas hésité à attaquer l’arbitre en matière d’application de cette loi : le Directeur général des élections. En plus d’avoir le culot de poursuivre le Directeur général des élections devant les tribunaux, <mark>les conservateurs se sont sournoisement attaqués à l’impartialité et à l’intégrité</mark> du Directeur général des élections… qu’ils ont eux-mêmes nommé !</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“le message qu’ils envoient, c’est que l’économie albertaine a plus de valeur, à leurs yeux, que l’environnement”
+</div>
+<span class="context">…elles pourront même augmenter les émissions de ce polluant de 5 % pour la même période, ce qui est totalement inacceptable et franchement arrogant de la part des conservateurs. Le message qu’ils envoient, c’est que l’économie albertaine a plus de valeur, à leurs yeux, que l’environnement. …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“le gouvernement fédéral semble décidé à sortir le Canada du jeu et son action est proprement catastrophique”
+</div>
+<span class="context">Malheureusement, sous les conservateurs, <mark>le gouvernement fédéral semble décidé à sortir le Canada du jeu et son action est proprement catastrophique</mark>. Non seulement il n’a aucune politique de l’aéronautique, mais toutes ses actions contribuent à affaiblir ce pilier de notre économie, soit par incompétence, soit par aveuglement, ou les deux.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“les conservateurs causent des torts à l’économie québécoise, mais en plus ils n’offrent aucun véritable soutien aux travailleurs”
+</div>
+<span class="context">Venir en aide aux travailleurs des régions victimes de la crise Non seulement <mark>les conservateurs causent des torts à l’économie québécoise, mais en plus ils n’offrent aucun véritable soutien aux travailleurs</mark> durement touchés par les pertes d’emploi. Faute de ressources, il est à craindre que les travailleurs ne quittent leur communauté au moindre coup dur, comme c’est le cas actuellement en plusieurs endroits du Québec.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · mixed · chunk 6</span>
+<div class="quote">
+“le gouvernement conservateur n’a pas daigné donner une réponse négative”
+</div>
+<span class="context">Le gouvernement conservateur n’a pas daigné donner une réponse négative pour une subvention destinée aux services d’aide à l’enfance des Premières Nations du Québec plus d’une année après la demande initiale et, ce, malgré la réprimande de la vérificatrice générale.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“Les interventions du gouvernement fédéral en politique étrangère font preuve de manichéisme”
+</div>
+<span class="context">…<mark>Les interventions du gouvernement fédéral en politique étrangère font preuve de manichéisme</mark>. Les conservateurs font une lecture des relations internationales uniquement en termes de « bien » et de « mal », une lecture totalement dénuée de nuance…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“fédéralisme d’ouverture n’est qu’une supercherie”
+</div>
+<span class="context">son <mark>fédéralisme d’ouverture n’est qu’une supercherie</mark>. 1.3 Paver la voie démocratique maintenant</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“les conservateurs pratiquent le principe du pollueur-payé”
+</div>
+<span class="context">Encore une fois, <mark>les conservateurs pratiquent le principe du pollueur-payé</mark>. Le Bloc Québécois continuera d’exiger que le gouvernement mette fin aux cadeaux fiscaux aux riches pétrolières.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“les conservateurs pratiquent le principe du pollueur-payé”
+</div>
+<span class="context">Encore une fois, <mark>les conservateurs pratiquent le principe du pollueur-payé</mark>. Le Bloc Québécois continuera d’exiger que le gouvernement mette fin aux cadeaux fiscaux</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“son action est proprement catastrophique”
+</div>
+<span class="context">sous les conservateurs, le gouvernement fédéral semble décidé à sortir le Canada du jeu et <mark>son action est proprement catastrophique</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“les conservateurs sont complètement dénués de cette intelligence du cœur”
+</div>
+<span class="context">Les élus conservateurs sont complètement dénués de cette intelligence du cœur qui permet aux gouvernements de se préoccuper du sort des gens.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“une des plus grandes injustices jamais perpétré par le gouvernement fédéral”
+</div>
+<span class="context">Aucun parti politique fédéral ne s’est engagé dans ce dossier avec autant de conviction et de détermination à réparer l’<mark>une des plus grandes injustices jamais perpétré par le gouvernement fédéral</mark> sur le dos des travailleurs.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 7</span>
+<div class="quote">
+“lecture des relations internationales uniquement en termes de « bien » et de « mal »”
+</div>
+<span class="context">Les interventions du gouvernement fédéral en politique étrangère font preuve de manichéisme. Les conservateurs font une <mark>lecture des relations internationales uniquement en termes de « bien » et de « mal »</mark></span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“représentants de la population représentent vraiment la population”
+</div>
+<span class="context">Mais pour que ce système fonctionne, il faut que les <mark>représentants de la population représentent vraiment la population</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“meilleure protection dont dispose le peuple”
+</div>
+<span class="context">le Bloc Québécois est la <mark>meilleure protection dont dispose le peuple</mark> québécois contre les dérives autoritaires du gouvernement.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“l’idéologie et la partisanerie passent avant les personnes”
+</div>
+<span class="context">Avec les conservateurs, <mark>l’idéologie et la partisanerie passent avant les personnes</mark>. À cette approche doctrinaire</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“Heureusement que le Bloc voit aux intérêts de tous les travailleurs”
+</div>
+<span class="context">celui du Québec. <mark>Heureusement que le Bloc voit aux intérêts de tous les travailleurs</mark> du Québec, sans exception.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 7</span>
+<div class="quote">
+“respectueux des désirs de la population du Québec”
+</div>
+<span class="context">développé une position rigoureuse, réaliste, claire et constante, respectueuse des désirs de la population du Québec. Mettre fin à la</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“les Québécoises et les Québécois forment une nation”
+</div>
+<span class="context">Introduction Libre et présent pour le Québec Reconnaître la nation québécoise : pour vrai Les Québécoises et les Québécois forment une nation. Même le Parlement canadien a fini par reconnaître cette évidence. Or, une nation, c’est plus qu’un mot : c’est une réalité bien concrète.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“le Bloc Québécois est la meilleure protection dont dispose le peuple québécois”
+</div>
+<span class="context">Comme la démocratie est l’arme utilisée par le Bloc Québécois pour faire des gains en faveur du Québec, <mark>le Bloc Québécois est la meilleure protection dont dispose le peuple québécois</mark> contre les dérives autoritaires du gouvernement.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“le Bloc Québécois demande au gouvernement de mettre sur pied une politique aéronautique”
+</div>
+<span class="context">Depuis plusieurs années, <mark>le Bloc Québécois demande au gouvernement de mettre sur pied une politique aéronautique</mark> qui assurerait aux entreprises un soutien fiable et prévisible, leur permettant ainsi de planifier à l’avance leurs projets de développement.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“le Bloc Québécois demande au gouvernement fédéral de : respecter les compétences du gouvernement du Québec”
+</div>
+<span class="context">Le Bloc Québécois demande à Ottawa de respecter les choix québécois Parce qu’il défend la position traditionnelle du Québec en matière de développement régional, <mark>le Bloc Québécois demande au gouvernement fédéral de : respecter les compétences du gouvernement du Québec</mark> en matière de développement régional; respecter et favoriser la mise en œuvre des objectifs du Québec en matière de développement régional, notamment en tenant compte des politiques régionales établies par le gouvernement du Québec en 2001, dont la stratégie de développement pour les régions ressources ainsi que la politique nationale de la ruralité pour soutenir le développement des communautés rurales québécoises; conclure avec le gouvernement du Québec des ententes prévoyant le transfert au Québec des fonds fédéraux alloués aux programmes de développement régional.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“les peuples autochtones ont chacun une identité qui leur est propre”
+</div>
+<span class="context">le Bloc Québécois reconnaît que <mark>les peuples autochtones ont chacun une identité qui leur est propre</mark> et qu’ils forment des nations. À ce titre, il respecte leur droit d’orienter, de développer et de perpétuer eux-mêmes leurs langues, leurs cultures, leurs coutumes et leurs traditions.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“la population du Québec s’attend à plus de franchise”
+</div>
+<span class="context">…dans tout ce débat, seul le Bloc Québécois a développé une position rigoureuse, réaliste, claire et constante, respectueuse des désirs de la population du Québec. Mettre fin à la mission actuelle…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“les Québécoises et les Québécois forment une nation”
+</div>
+<span class="context">Reconnaître la nation québécoise : pour vrai Les Québécoises et les Québécois forment une nation. Même le Parlement canadien a fini par reconnaître cette évidence.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“le peuple québécois contre les dérives autoritaires”
+</div>
+<span class="context">le Bloc Québécois est la meilleure protection dont dispose <mark>le peuple québécois contre les dérives autoritaires</mark> du gouvernement.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Les Québécoises et les Québécois pourront ainsi bénéficier”
+</div>
+<span class="context">Dans un horizon de 10 ans, l’atteinte de ces objectifs apporterait de nombreux bienfaits au Québec. <mark>Les Québécoises et les Québécois pourront ainsi bénéficier</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“défend résolument les intérêts des producteurs québécois”
+</div>
+<span class="context">Le Bloc Québécois est le seul parti politique dont la loyauté va d’abord au Québec. Le Bloc Québécois <mark>défend résolument les intérêts des producteurs québécois</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“défendre ceux qui en ont le plus besoin”
+</div>
+<span class="context">À cette approche doctrinaire, le Bloc Québécois répond par une approche humaine. Une approche qui a le cœur à la bonne place. Pour <mark>défendre ceux qui en ont le plus besoin</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“milliers de travailleuses et travailleurs du Québec qui en sont affectés”
+</div>
+<span class="context">Le Bloc Québécois veillera à ce que toutes les iniquités et les injustices qu’il a maintes fois soulevées en Chambre soient corrigées au nom des <mark>milliers de travailleuses et travailleurs du Québec qui en sont affectés</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 7</span>
+<div class="quote">
+“La population est en droit d’exiger”
+</div>
+<span class="context"><mark>La population est en droit d’exiger</mark> du gouvernement fédéral qu’il soit transparent et responsable dans l’utilisation des fonds publics.</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“nous, on se bat pour le Québec”
+</div>
+<span class="context">pendant que les libéraux et les conservateurs se battent pour prendre le pouvoir à Ottawa, <mark>nous, on se bat pour le Québec</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“meilleure protection dont dispose le peuple”
+</div>
+<span class="context">le Bloc Québécois est la <mark>meilleure protection dont dispose le peuple</mark> québécois contre les dérives autoritaires du gouvernement.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“les multiples cadeaux aux riches pétrolières consentis tant par les libéraux que les conservateurs”
+</div>
+<span class="context">représentera un millard d’économie d’impôt. Bref, <mark>les multiples cadeaux aux riches pétrolières consentis tant par les libéraux que les conservateurs</mark> leur permettront d’économiser plus de 2,7 milliards</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“désintérêt des politiciens des partis fédéralistes”
+</div>
+<span class="context">Vis-à-vis du <mark>désintérêt des politiciens des partis fédéralistes</mark>, le Bloc Québécois a même présenté</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“l’idéologie et la partisanerie passent avant les personnes”
+</div>
+<span class="context">Avec les conservateurs, <mark>l’idéologie et la partisanerie passent avant les personnes</mark>. À cette approche doctrinaire</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“libéraux et conservateurs ont encore une fois démontré qu’ils ne se soucient pas”
+</div>
+<span class="context">Le 5 octobre 2005, <mark>libéraux et conservateurs ont encore une fois démontré qu’ils ne se soucient pas</mark> des conditions de travail des travailleuses</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 7</span>
+<div class="quote">
+“les conservateurs délaissent le rôle diplomatique traditionnel”
+</div>
+<span class="context">force est de constater que depuis 2006, <mark>les conservateurs délaissent le rôle diplomatique traditionnel</mark> du Canada pour s’investir</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“les députés fédéralistes du Québec s’écraser et se taire”
+</div>
+<span class="context">Malheureusement, une fois élus, les conservateurs ont modifié leur discours. Ils sont bien prêts à transférer de l’argent, mais ils veulent conserver le pouvoir de l’argent, donc la capacité, pour le gouvernement central, d’imposer ses priorités. Comme ses prédécesseurs à Ottawa, et peut-être même davantage, Stephen Harper veut tout maîtriser, y compris les priorités des Québécois. Et le plus triste, c’est de voir <mark>les députés fédéralistes du Québec s’écraser et se taire</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“le premier ministre Harper considère l’État comme son domaine personnel”
+</div>
+<span class="context">Malheureusement, <mark>le premier ministre Harper considère l’État comme son domaine personnel</mark>. Il tient à tout maîtriser et s’en prend systématiquement à tous les contrepouvoirs qui constituent pourtant le fondement de la démocratie et de la société de droit.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“les multiples cadeaux aux riches pétrolières”
+</div>
+<span class="context">…cela représentera un millard d’économie d’impôt. Bref, <mark>les multiples cadeaux aux riches pétrolières</mark> consentis tant par les libéraux que les conservateurs leur permettront d’économiser plus de 2,7 milliards de dollars en 2008-2009. C’est indécent ! Cette complaisance à l’endroit des pétrolières a même été critiquée par l’OCDE. …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“le gouvernement conservateur semble décidé à sortir le Canada du jeu”
+</div>
+<span class="context">Malheureusement, sous les conservateurs, le gouvernement fédéral semble décidé à sortir le Canada du jeu et son action est proprement catastrophique. Non seulement il n’a aucune politique de l’aéronautique, mais toutes ses actions contribuent à affaiblir ce pilier de notre économie, soit par incompétence, soit par aveuglement, ou les deux.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“l’intransigeance du ministre Blackburn démontre une nouvelle fois l’incohérence des conservateurs”
+</div>
+<span class="context">Ceci pourrait avoir comme conséquence la suppression d’un certain nombre d’emplois en milieu local. De plus, <mark>l’intransigeance du ministre Blackburn démontre une nouvelle fois l’incohérence des conservateurs</mark> en matière de développement régional au Québec, puisqu’ils font fi de la demande de nombreux acteurs économiques québécois, mais également du gouvernement du Québec et du Parti québécois de revenir sur cette décision.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 6</span>
+<div class="quote">
+“le gouvernement fédéral n’assume pas ses responsabilités”
+</div>
+<span class="context"><mark>le gouvernement fédéral n’assume pas ses responsabilités</mark> de fiduciaire et, par conséquent, des communautés autochtones vivent une situation que l’on retrouve dans de nombreux pays en développement.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 7</span>
+<div class="quote">
+“Les interventions du gouvernement fédéral en politique étrangère font preuve de manichéisme”
+</div>
+<span class="context">…<mark>Les interventions du gouvernement fédéral en politique étrangère font preuve de manichéisme</mark>. Les conservateurs font une lecture des relations internationales uniquement en termes de « bien » et de « mal », une lecture totalement dénuée de nuance…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“seul le Bloc Québécois est apte à représenter”
+</div>
+<span class="context">Seul le Bloc Québécois est apte à représenter et à défendre l’identité, les valeurs et les intérêts propres au Québec.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“La population ne peut se fier ni aux conservateurs ni aux libéraux”
+</div>
+<span class="context"><mark>La population ne peut se fier ni aux conservateurs ni aux libéraux</mark> pour restaurer l’accès du public à l’information. Seul le Bloc Québécois a intérêt à ce que cela se fasse.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“cadeaux fiscaux aux riches pétrolières”
+</div>
+<span class="context">Le Bloc Québécois continuera d’exiger que le gouvernement mette fin aux <mark>cadeaux fiscaux aux riches pétrolières</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“le laisser-faire, les slogans creux et la pensée magique”
+</div>
+<span class="context">N’en déplaise au gouvernement conservateur, <mark>le laisser-faire, les slogans creux et la pensée magique</mark> ne sont pas des politiques.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“Avec les conservateurs, l’idéologie et la partisanerie passent avant les personnes”
+</div>
+<span class="context">Selon eux, le libre marché, le désengagement gouvernemental et les baisses d’impôt sauront régler tous les problèmes. <mark>Avec les conservateurs, l’idéologie et la partisanerie passent avant les personnes</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“gouvernement fédéral sur le dos des travailleurs”
+</div>
+<span class="context">à réparer l’une des plus grandes injustices jamais perpétré par le <mark>gouvernement fédéral sur le dos des travailleurs</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 7</span>
+<div class="quote">
+“les libéraux que les conservateurs ont failli volontairement”
+</div>
+<span class="context">Force est de constater que tant <mark>les libéraux que les conservateurs ont failli volontairement</mark> à la tâche en matière de prévision de surplus.</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="62901_200810_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

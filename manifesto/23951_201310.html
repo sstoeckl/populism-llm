@@ -1,0 +1,2277 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ADR (Luxembourg, 2013) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/23951_201310_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">ADR (Luxembourg, 2013)</h1>
+<p class="subtitle lead">manifesto_id 23951_201310</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Luxembourg · <span class="item"><strong>Party</strong></span> ADR (Alternative Democatic Reform Party) · <span class="item"><strong>Year</strong></span> 2013 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 95</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.8</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.8</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.8</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.8</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.6</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Gesellschaftsmodell der sozialen Marktwirtschaft muss weiter gelten”
+</div>
+<span class="context">den wirklich Hilfsbedürftigen solidarisch zur Seite zu stehen. Das <mark>Gesellschaftsmodell der sozialen Marktwirtschaft muss weiter gelten</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Bedingungen der freien Markwirtschaft – zu der die ADR sich bekennt”
+</div>
+<span class="context">Dieses ist unter den <mark>Bedingungen der freien Markwirtschaft – zu der die ADR sich bekennt</mark> – hauptsächlich über die Steigerung des Angebots zu erreichen.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“zueinander in freie Konkurrenz zu bringen”
+</div>
+<span class="context">Sachen Finanzierung auf eine Ebene zu stellen, um sie <mark>zueinander in freie Konkurrenz zu bringen</mark>. Für die Infrastrukturkosten ist eine einheitliche</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“optimale Entwicklung der Privatwirtschaft”
+</div>
+<span class="context">sondern auch eine wichtige Voraussetzung für eine <mark>optimale Entwicklung der Privatwirtschaft</mark> . Die öffentliche Funktion soll innovativ, dynamisch und</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“Privatwirtschaft, insbesondere die Klein-und Mittelbetriebe, sollen somit administrativ entlastet”
+</div>
+<span class="context">Sehr viel konsequenter als die bisherigen Regierungsparteien wird die ADR die Gesetze „entschlacken“ und überflüssige Bürokratie bekämpfen. Die <mark>Privatwirtschaft, insbesondere die Klein-und Mittelbetriebe, sollen somit administrativ entlastet</mark> werden. Die „simplification administrative“ wird zu einer Priorität der Regierungsarbeit.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“wehrt sich gegen ultra-liberale Vorstellungen”
+</div>
+<span class="context">Auch wehrt sich die ADR gegen ultra-liberale Vorstellungen, die alle möglichen Dienstzweige liberalisieren und privatisieren wollen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Das Gesellschaftsmodell der sozialen Marktwirtschaft muss weiter gelten”
+</div>
+<span class="context">…<mark>Das Gesellschaftsmodell der sozialen Marktwirtschaft muss weiter gelten</mark>. Damit die soziale Komponente dieses Gesellschaftsmodells sich aber voll entfalten kann, muss zuerst eine hohe, wirtschaftliche Leistung erbracht werden. Sozialpolitik kann daher nie gegen die Wirtschaftsinteressen entworfen werden…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Die ADR bekennt sich zum Grundprinzip des elterlichen Sorgerechts”
+</div>
+<span class="context"><mark>Die ADR bekennt sich zum Grundprinzip des elterlichen Sorgerechts</mark> (autorité parentale). Der Staat darf sich in dieses elterliche Erziehungs-und Sorgevorrecht nur in seltenen und gut begründeten Ausnahmefällen einmischen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Die Neuordnung der Studienbeihilfen darf auf keinen Fall die luxemburgischen Studenten gegenüber anderen benachteiligen”
+</div>
+<span class="context">…<mark>Die Neuordnung der Studienbeihilfen darf auf keinen Fall die luxemburgischen Studenten gegenüber anderen benachteiligen</mark>, egal ob sie in Luxemburg oder im Ausland leben…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Die ADR unterstreicht den Wert einer unabhängigen und gut funktionierenden öffentlichen Funktion im Dienst des Staates und seiner Bürger.”
+</div>
+<span class="context">Fir en effizienten ëffentlechen Déngscht <mark>Die ADR unterstreicht den Wert einer unabhängigen und gut funktionierenden öffentlichen Funktion im Dienst des Staates und seiner Bürger.</mark> Sie ist überzeugt, dass ein effizienter Staatsapparat nicht nur eine wesentliche Stütze der nationalen Souveränität ist, sondern auch eine wichtige Voraussetzung für eine optimale Entwicklung der Privatwirtschaft.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“Die Privatwirtschaft, insbesondere die Klein-und Mittelbetriebe, sollen somit administrativ entlastet werden”
+</div>
+<span class="context">Sehr viel konsequenter als die bisherigen Regierungsparteien wird die ADR die Gesetze „entschlacken“ und überflüssige Bürokratie bekämpfen. <mark>Die Privatwirtschaft, insbesondere die Klein-und Mittelbetriebe, sollen somit administrativ entlastet werden</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“Die ADR setzt sich dafür ein, dass der Staat auch weiterhin eine starke Rolle in der luxemburgischen Wirtschaft spielt.”
+</div>
+<span class="context">…<mark>Die ADR setzt sich dafür ein, dass der Staat auch weiterhin eine starke Rolle in der luxemburgischen Wirtschaft spielt.</mark> Lebenswichtige Güter, wie zum Beispiel Wasser, dürfen keinesfalls privatisiert werden…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Wettbewerbsfähigkeit der in Luxemburg angesiedelten Unternehmen darf nicht durch Steuererhöhungen untergraben werden”
+</div>
+<span class="context">Die ADR plant keinerlei Steuererhöhungen, also ausdrücklich auch keine für die Wirtschaft. Die <mark>Wettbewerbsfähigkeit der in Luxemburg angesiedelten Unternehmen darf nicht durch Steuererhöhungen untergraben werden</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“freien Markwirtschaft – zu der die ADR sich bekennt”
+</div>
+<span class="context">Dieses ist unter den Bedingungen der <mark>freien Markwirtschaft – zu der die ADR sich bekennt</mark> – hauptsächlich über die Steigerung des Angebots zu erreichen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“natürliche Konkurrenz, wie sie überall in der freien Marktwirtschaft”
+</div>
+<span class="context">Es entsteht eine <mark>natürliche Konkurrenz, wie sie überall in der freien Marktwirtschaft</mark> anzutreffen ist. Die Schulen dürfen eigene Aufnahmeprüfungen</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Privatwirtschaft, insbesondere die Klein-und Mittelbetriebe”
+</div>
+<span class="context">Die <mark>Privatwirtschaft, insbesondere die Klein-und Mittelbetriebe</mark>, sollen somit administrativ entlastet werden. Die ‘simplification administrative’ wird zu einer Priorität der Regierungsarbeit.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 6</span>
+<div class="quote">
+“ultra-liberale Vorstellungen, die alle möglichen Dienstzweige liberalisieren”
+</div>
+<span class="context">Auch wehrt sich die ADR gegen <mark>ultra-liberale Vorstellungen, die alle möglichen Dienstzweige liberalisieren</mark> und privatisieren wollen. Die Erfahrung zeigt, dass solche Bestrebungen oft mehr Nachteile als Vorteile bringen.</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“nicht teilweise in Spekulationsprodukte investiert werden dürfen”
+</div>
+<span class="context">Die ADR spricht sich erneut dagegen aus, dass die im Rahmen dieses Gesetzes angelegten Gelder auch nur teilweise in Spekulationsprodukte investiert werden dürfen.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“teilweise in Spekulationsprodukte investiert werden dürfen”
+</div>
+<span class="context">Die ADR spricht sich erneut dagegen aus, dass die im Rahmen dieses Gesetzes angelegten Gelder auch nur <mark>teilweise in Spekulationsprodukte investiert werden dürfen</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“luxemburgische Wirtschaft, Industrie und den Finanzplatz”
+</div>
+<span class="context">Die Universität muss für die <mark>luxemburgische Wirtschaft, Industrie und den Finanzplatz</mark> ein offener und wertvoller Ansprechpartner sein. Die</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Die ADR möchte die geltende Steuergesetzgebung korrekt und vollständig anwenden”
+</div>
+<span class="context">…<mark>Die ADR möchte die geltende Steuergesetzgebung korrekt und vollständig anwenden</mark>. Da es ihr Ziel ist, wenn möglich ohne Steuererhöhungen das Budget ins Gleichgewicht zu bekommen, müssen zumindest alle nach der jetzigen Gesetzeslage geschuldeten Steuern erhoben und eingetrieben werden…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 2</span>
+<div class="quote">
+“Die ADR spricht sich erneut dagegen aus, dass die im Rahmen dieses Gesetzes angelegten Gelder auch nur teilweise in Spekulationsprodukte investiert werden dürfen”
+</div>
+<span class="context"><mark>Die ADR spricht sich erneut dagegen aus, dass die im Rahmen dieses Gesetzes angelegten Gelder auch nur teilweise in Spekulationsprodukte investiert werden dürfen</mark>. Auch ethische Kriterien sollen respektiert werden.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Die ADR wird systematisch die Verwaltungen dahingehend überprüfen, ob sie staatliche Kernaufgaben erfüllen.”
+</div>
+<span class="context">Fir en effizienten ëffentlechen Déngscht Die ADR wird systematisch die Verwaltungen dahingehend überprüfen, ob sie staatliche Kernaufgaben erfüllen, ob sie nicht mit anderen Dienststellen zusammengelegt werden können oder ob sie umorganisiert werden können. Ziel muss es sein, die Zahl der Bediensteten der öffentlichen Funktion zu stabilisieren und, über natürliche Abgänge, progressiv zu reduzieren.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Steuergesetzgebung muss so ausgelegt werden, dass Risikokapital leichter den Firmengründern zur Verfügung gestellt werden kann”
+</div>
+<span class="context">Die <mark>Steuergesetzgebung muss so ausgelegt werden, dass Risikokapital leichter den Firmengründern zur Verfügung gestellt werden kann</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“Spekulationsprodukte investiert werden dürfen”
+</div>
+<span class="context">Die ADR spricht sich erneut dagegen aus, dass die im Rahmen dieses Gesetzes angelegten Gelder auch nur teilweise in <mark>Spekulationsprodukte investiert werden dürfen</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“Finanzierung der Religionsgemeinschaften sollte neu überdacht”
+</div>
+<span class="context">Die <mark>Finanzierung der Religionsgemeinschaften sollte neu überdacht</mark> werden, damit jeder Bürger frei darüber entscheiden kann, welcher religiösen, philosophischen oder humanitären Institution er seine Unterstützung zukommen lässt</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Universität und den Finanzplatz ein offener”
+</div>
+<span class="context">Die Universität muss für die luxemburgische Wirtschaft, Industrie und den Finanzplatz ein offener und wertvoller Ansprechpartner sein.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“Post als einheitliche Struktur mit den drei Geschäftsbereichen”
+</div>
+<span class="context">Die ADR spricht sich dafür aus, die <mark>Post als einheitliche Struktur mit den drei Geschäftsbereichen</mark> Post, Telekom und Finanzen (Postscheck) zu erhalten.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“Neugestaltung der Funktionsweise der EZB”
+</div>
+<span class="context">Sie verlangt desgleichen eine <mark>Neugestaltung der Funktionsweise der EZB</mark> um finanzielle Risiken, die derzeit über das sogenannte Target-System für Luxemburg entstehen zu beseitigen.</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Kompetenzen des Rechnungshofs („Cour des Comptes“) werden gestärkt”
+</div>
+<span class="context">Eine Gesamtreduktion der Ausgaben um mindestens 10% ist absolut unerlässlich. Die <mark>Kompetenzen des Rechnungshofs („Cour des Comptes“) werden gestärkt</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Gleichheitsprinzip, das eine tragende Säule des demokratischen Rechtsstaats ist”
+</div>
+<span class="context">Quoten verletzen das <mark>Gleichheitsprinzip, das eine tragende Säule des demokratischen Rechtsstaats ist</mark>. Sie haben selbst eine diskrimierende Wirkung</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Grundlage der Menschenrechte und des geltenden Rechts”
+</div>
+<span class="context">Ausgleichs, der auf der <mark>Grundlage der Menschenrechte und des geltenden Rechts</mark> die freie Ausübung der verschiedenen philosophischen</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“Freiheit und Demokratie resolut zu verteidigen”
+</div>
+<span class="context">ADR hat sich daher zum Ziel gesetzt, <mark>Freiheit und Demokratie resolut zu verteidigen</mark>! Die ADR steht für die Freiheit des Einzelnen</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“Staat und Gemeinden erhalten ein Informations-und Transparenzgesetz”
+</div>
+<span class="context">Luxemburg muss wieder zum Land der kurzen Wege werden. Die Idee der „cellules de facilitation“ zwischen den Behõrden wird weitergeführt. In den Bereichen, wo man vernünftigerweise binnen ein paar Monaten eine Entscheidung der Behörden erwarten kann, wird das Prinzip eingeführt, dass nach Ablauf einer bestimmten Frist eine erbetene Erlaubnis als gegeben gilt, falls der Staat keine gegenteilige Entscheidung schriftlich und fristgerecht mitgeteilt hat. <mark>Staat und Gemeinden erhalten ein Informations-und Transparenzgesetz</mark>, das allerdings genauso wenig den Schutz der Privatsphäre in Frage stellt wie die Geheimhaltungspflicht des Staates in Angelegenheiten, die die nationale Sicherheit betreffen.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“Erhaltung eines demokratischen Staatssystems in Freiheit”
+</div>
+<span class="context">Die Verteidigungspolitik soll zur <mark>Erhaltung eines demokratischen Staatssystems in Freiheit</mark> und Sicherheit beitragen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Die ADR will die Zuständigkeiten und Befugnisse des Rechnungshofes bei der Kontrolle der öffentlichen Ausgaben auf sämtliche öffentlichen Einrichtungen sowie die Bezieher von öffentlichen Finanzmitteln und Beihilfen ausweiten”
+</div>
+<span class="context">…<mark>Die ADR will die Zuständigkeiten und Befugnisse des Rechnungshofes bei der Kontrolle der öffentlichen Ausgaben auf sämtliche öffentlichen Einrichtungen sowie die Bezieher von öffentlichen Finanzmitteln und Beihilfen ausweiten</mark>. Die öffentliche Ausgabenpolitik wird viel strengeren Kontrollen unterzogen…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Die ADR steht ausdrücklich für eine möglichst umfassende Meinungs-und Redefreiheit”
+</div>
+<span class="context"><mark>Die ADR steht ausdrücklich für eine möglichst umfassende Meinungs-und Redefreiheit</mark>. Sie steht daher Versuchen, die Medien zu zensieren oder das Kulturgut Sprache nach staatlich verordneten Geschlechterkriterien zu reglementieren, ablehnend gegenüber.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Der Staat ist weder der alleinige Interessenvertreter der Religionsgemeinschaften”
+</div>
+<span class="context">…<mark>Der Staat ist weder der alleinige Interessenvertreter der Religionsgemeinschaften</mark>, noch derjenige der Atheisten oder Agnostiker. Er ist vielmehr ein Wahrer des gesellschaftlichen Gesamtinteresses und Ausgleichs, der auf der Grundlage der Menschenrechte und des geltenden Rechts die freie Ausübung der verschiedenen philosophischen oder religiösen Überzeugungen ermöglichen muss…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“Die ADR steht für die Freiheit des Einzelnen, eine lebendige Demokratie und einen starken Rechtstaat.”
+</div>
+<span class="context">De Rechtsstat stäerken Die ADR möchte das Bewusstsein der Bürger für die vielen Probleme rechtsstaatlicher Natur schärfen, die Luxemburg derzeit zu schaffen machen. <mark>Die ADR steht für die Freiheit des Einzelnen, eine lebendige Demokratie und einen starken Rechtstaat.</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“Die ADR ist der Auffassung, dass die Gesetzestexte sehr viel mehr in koordinierter, vereinfachter und leicht verständlicher Form zur Verfügung stehen müssen”
+</div>
+<span class="context">Der Staat sollte für die Bürger transparent sein. <mark>Die ADR ist der Auffassung, dass die Gesetzestexte sehr viel mehr in koordinierter, vereinfachter und leicht verständlicher Form zur Verfügung stehen müssen</mark>. Immer weniger Bürger haben noch einen Überblick über die Flut an Gesetzen und anderen staatlichen Verordnungen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“Die ADR bekennt sich zur europäischen Integration und zu Luxemburgs Mitgliedschaft in der NATO.”
+</div>
+<span class="context">…Die ADR strebt eine aktive Außenpolitik an, um Luxemburgs Beitrag zur internationalen Politik weiterhin zu stärken. Sie bekennt sich zur europäischen Integration und zu Luxemburgs Mitgliedschaft in der NATO. Sie strebt eine konsequente und erfolgreiche Verteidigung der luxemburgischen Interessen sowohl auf bilateraler Ebene als auch in der multilateralen Diplomatie an…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Davon kann das demokratische System nur profitieren”
+</div>
+<span class="context">Somit wird dem Bürger und Steuerzahler Gelegenheit gegeben, sich ein begründetes Urteil zu bilden. <mark>Davon kann das demokratische System nur profitieren</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Quoten verletzen das Gleichheitsprinzip”
+</div>
+<span class="context"><mark>Quoten verletzen das Gleichheitsprinzip</mark>, das eine tragende Säule des demokratischen Rechtsstaats ist. Sie haben selbst eine diskriminierende Wirkung und sind deshalb nicht akzeptabel.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Rede-und Meinungsfreiheit nicht vereinbar”
+</div>
+<span class="context">Dies scheint der ADR mit der <mark>Rede-und Meinungsfreiheit nicht vereinbar</mark> zu sein. Hingegen spricht sich die ADR für ein explizites Verbot von Hasspredigten aus</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Pressefreiheit, die Unschuldsvermutung vor Gericht”
+</div>
+<span class="context">Daher gelten für sie klare politische Richtlinien, wie zum Beispiel die unbedingte Achtung der Menschenrechte, der Respekt der Privatsphäre durch den Staat, der Datenschutz, die <mark>Pressefreiheit, die Unschuldsvermutung vor Gericht</mark>, die Verhältnismäßigkeit des staatlichen Handelns</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“Souveränität Luxemburgs gegenüber den europäischen Institutionen”
+</div>
+<span class="context">Die ADR wird darauf achten, dass die <mark>Souveränität Luxemburgs gegenüber den europäischen Institutionen</mark> vollständig wiederhergestellt wird.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · mixed · chunk 6</span>
+<div class="quote">
+“parlamentarische Kontrolle des Geheimdienstes”
+</div>
+<span class="context">Sie spricht sich gleichzeitig für ein neues Geheimdienstgesetz aus, das wichtige Aspekte, wie zum Beispiel die <mark>parlamentarische Kontrolle des Geheimdienstes</mark>, präzise regelt.</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“Niederlassungsfreiheit innerhalb der EU soll mit sprachlichen Auflagen verknüpft”
+</div>
+<span class="context">Die Immigrationspolitik wird auf europäischer Ebene und notfalls im nationalen Alleingang reformiert. Die <mark>Niederlassungsfreiheit innerhalb der EU soll mit sprachlichen Auflagen verknüpft</mark> werden.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Adoptionsmöglichkeit für gleichgeschlechtliche Paare nicht gegeben sein sollte”
+</div>
+<span class="context">Ebenfalls aus Sorge um die Rechte und die harmonische Entwicklung der Kinder ist die ADR der Auffassung, dass eine <mark>Adoptionsmöglichkeit für gleichgeschlechtliche Paare nicht gegeben sein sollte</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Einhaltung des Grundsatzes der Religionsfreiheit”
+</div>
+<span class="context">Dazu zählt auch die <mark>Einhaltung des Grundsatzes der Religionsfreiheit</mark>, inklusive der Freiheit, seinen Glauben wechseln zu</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“unbedingte Achtung der Menschenrechte, der Respekt”
+</div>
+<span class="context">klare politische Richtlinien, wie zum Beispiel die <mark>unbedingte Achtung der Menschenrechte, der Respekt</mark> der Privatsphäre durch den Staat, der Datenschutz</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Sinn der Religionsfreiheit respektiert die ADR die religiösen”
+</div>
+<span class="context">Sportvereine, die exklusiv einer bestimmten Nationalität offen stehen, sollen keine öffentlichen Zuwendungen bekommen. Andererseits dürfen Sportverbände keine Vereine ausschließen, deren Mitglieder überwiegend einer bestimmten Nationalität angehören. Die Statuten der Verbände und ihrer Vereine sollen so ausgelegt sein, dass alle Einwohner Luxemburgs, gleich welcher Nationalität, an den Aktivitäten teilnehmen können. Im Sinne der Religionsfreiheit respektiert die ADR die religiösen und philosophischen Überzeugungen aller Bürger.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“Stärkung der Menschenrechte, der Vorrang des Völkerrechts”
+</div>
+<span class="context">Grundprinzipien der Außenpolitik bleiben die <mark>Stärkung der Menschenrechte, der Vorrang des Völkerrechts</mark> und die Solidarität mit den ärmeren Staaten.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Die ADR bekennt sich ohne Wenn und Aber zur Gesetzgebung über das Mindesteinkommen (RMG, revenu minimum garanti)”
+</div>
+<span class="context">…<mark>Die ADR bekennt sich ohne Wenn und Aber zur Gesetzgebung über das Mindesteinkommen (RMG, revenu minimum garanti)</mark>, das weiter ein unerlässliches Mittel im Kampf gegen die Armut bleiben wird. Die nationale Solidarität muss aber weiter denjenigen Menschen zugutekommen, die ein Anrecht darauf haben…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Die ADR duldet keine Benachteiligung eines Menschen aufgrund seines Geschlechts”
+</div>
+<span class="context"><mark>Die ADR duldet keine Benachteiligung eines Menschen aufgrund seines Geschlechts</mark>. Genau so wenig akzeptiert sie aber eine Besserbehandlung einer Person aufgrund eines solchen Kriteriums, zum Beispiel durch eine sogenannte „positive“ Diskriminierung.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Achtung der Menschenrechte sowie eine Haltung des Respekts und der Toleranz gegenüber anderen Religionen”
+</div>
+<span class="context">…Die <mark>Achtung der Menschenrechte sowie eine Haltung des Respekts und der Toleranz gegenüber anderen Religionen</mark> und philosophischen Auffassungen sind unverzichtbare Inhalte eines solchen Unterrichts…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Die ADR bekennt sich zu den Prinzipien des liberalen Rechtsstaats und den historischen jüdisch-christlichen Werten.”
+</div>
+<span class="context">Politik auf der Grundlage solider Werte Die Politik der ADR orientiert sich an den universellen Menschenrechten wie sie u.a. in der UN-Menschenrechtscharta und der Konvention zum Schutze der Menschenrechte und Grundfreiheiten des Europarates festgehalten sind. Die ADR bekennt sich zu den Prinzipien des liberalen Rechtsstaats und den historischen jüdisch-christlichen Werten, die Europa und Luxemburg geprägt haben.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“Kampf gegen Fremdenhass (Xenophobie) besonders wichtig”
+</div>
+<span class="context">Gerade in wirtschaftlich schweren Zeiten ist der <mark>Kampf gegen Fremdenhass (Xenophobie) besonders wichtig</mark>. Wegen der Vielfalt von Kulturen auf kleinstem Raum und des erhöhten Risikos von Fremdenhass (Xenophobie) in Krisenzeiten, ist es von besonderer Bedeutung, dass durch ein harmonisches Zusammenleben der soziale Frieden sowie eine Gesellschaft, in der sich alle für gemeinsame Ziele und den sozialen Zusammenhalt einsetzen, gewahrt werden.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“Die ADR bekennt sich zu den Grundsätzen der individuellen und kollektiven Selbstverteidigung im Geiste der Charta der Vereinten Nationen.”
+</div>
+<span class="context">…<mark>Die ADR bekennt sich zu den Grundsätzen der individuellen und kollektiven Selbstverteidigung im Geiste der Charta der Vereinten Nationen.</mark> Luxemburg muss einen, seiner Größe entsprechenden, Beitrag zur internationalen Sicherheit, zur Nicht-Weiterverbreitung von Massenvernichtungswaffen und zum Kampf gegen den Terrorismus leisten…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Diskriminierung der Vollzeiteltern gegenüber Arbeitnehmern”
+</div>
+<span class="context">Die in der letzten Legislaturperiode erfolgte Erhöhung des Bezugsalters der Mammerent von 60 auf 65 Jahre ist für die ADR nicht annehmbar. Sie stellt eine <mark>Diskriminierung der Vollzeiteltern gegenüber Arbeitnehmern</mark> dar.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 2</span>
+<div class="quote">
+“Adoptionsmöglichkeit für gleichgeschlechtliche Paare nicht gegeben sein”
+</div>
+<span class="context">Ebenfalls aus Sorge um die Rechte und die harmonische Entwicklung der Kinder ist die ADR der Auffassung, dass eine <mark>Adoptionsmöglichkeit für gleichgeschlechtliche Paare nicht gegeben sein</mark> sollte.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 3</span>
+<div class="quote">
+“Achtung der Menschenrechte”
+</div>
+<span class="context">Die <mark>Achtung der Menschenrechte</mark> sowie eine Haltung des Respekts und der Toleranz gegenüber anderen Religionen und philosophischen Auffassungen sind unverzichtbare Inhalte</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · mixed · chunk 4</span>
+<div class="quote">
+“Regulierungswut im Bereich der Nichtdiskriminierung”
+</div>
+<span class="context">Insbesondere die moderne <mark>Regulierungswut im Bereich der Nichtdiskriminierung</mark> und der zwischenmenschlichen Beziehungen nimmt mittlerweile Ausmaße an, die nicht mehr vernünftig erscheinen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 5</span>
+<div class="quote">
+“Religionsfreiheit respektiert die ADR die religiösen”
+</div>
+<span class="context">Im Sinne der <mark>Religionsfreiheit respektiert die ADR die religiösen</mark> und philosophischen Überzeugungen aller Bürger. Unter religiösem Vorwand dürfen keine Sonderbehandlungen beantragt oder genehmigt werden.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 6</span>
+<div class="quote">
+“Stärkung der Menschenrechte”
+</div>
+<span class="context">Grundprinzipien der Außenpolitik bleiben die <mark>Stärkung der Menschenrechte</mark>, der Vorrang des Völkerrechts und die Solidarität mit den ärmeren Staaten.</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Gesellschaftsmodell der sozialen Marktwirtschaft muss weiter gelten”
+</div>
+<span class="context">den wirklich Hilfsbedürftigen solidarisch zur Seite zu stehen. Das <mark>Gesellschaftsmodell der sozialen Marktwirtschaft muss weiter gelten</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Bedingungen der freien Markwirtschaft – zu der die ADR sich bekennt”
+</div>
+<span class="context">Dieses ist unter den <mark>Bedingungen der freien Markwirtschaft – zu der die ADR sich bekennt</mark> – hauptsächlich über die Steigerung des Angebots zu erreichen.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“zueinander in freie Konkurrenz zu bringen”
+</div>
+<span class="context">Sachen Finanzierung auf eine Ebene zu stellen, um sie <mark>zueinander in freie Konkurrenz zu bringen</mark>. Für die Infrastrukturkosten ist eine einheitliche</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Freiheit und Demokratie resolut zu verteidigen”
+</div>
+<span class="context">ADR hat sich daher zum Ziel gesetzt, <mark>Freiheit und Demokratie resolut zu verteidigen</mark>! Die ADR steht für die Freiheit des Einzelnen</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“Privatwirtschaft, insbesondere die Klein-und Mittelbetriebe, sollen somit administrativ entlastet”
+</div>
+<span class="context">Sehr viel konsequenter als die bisherigen Regierungsparteien wird die ADR die Gesetze „entschlacken“ und überflüssige Bürokratie bekämpfen. Die <mark>Privatwirtschaft, insbesondere die Klein-und Mittelbetriebe, sollen somit administrativ entlastet</mark> werden. Die „simplification administrative“ wird zu einer Priorität der Regierungsarbeit.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“Erhaltung eines demokratischen Staatssystems in Freiheit”
+</div>
+<span class="context">Die Verteidigungspolitik soll zur <mark>Erhaltung eines demokratischen Staatssystems in Freiheit</mark> und Sicherheit beitragen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Die ADR will die Zuständigkeiten und Befugnisse des Rechnungshofes bei der Kontrolle der öffentlichen Ausgaben auf sämtliche öffentlichen Einrichtungen sowie die Bezieher von öffentlichen Finanzmitteln und Beihilfen ausweiten”
+</div>
+<span class="context">…<mark>Die ADR will die Zuständigkeiten und Befugnisse des Rechnungshofes bei der Kontrolle der öffentlichen Ausgaben auf sämtliche öffentlichen Einrichtungen sowie die Bezieher von öffentlichen Finanzmitteln und Beihilfen ausweiten</mark>. Die öffentliche Ausgabenpolitik wird viel strengeren Kontrollen unterzogen…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Die ADR steht ausdrücklich für eine möglichst umfassende Meinungs-und Redefreiheit”
+</div>
+<span class="context"><mark>Die ADR steht ausdrücklich für eine möglichst umfassende Meinungs-und Redefreiheit</mark>. Sie steht daher Versuchen, die Medien zu zensieren oder das Kulturgut Sprache nach staatlich verordneten Geschlechterkriterien zu reglementieren, ablehnend gegenüber.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Der Staat ist weder der alleinige Interessenvertreter der Religionsgemeinschaften”
+</div>
+<span class="context">…<mark>Der Staat ist weder der alleinige Interessenvertreter der Religionsgemeinschaften</mark>, noch derjenige der Atheisten oder Agnostiker. Er ist vielmehr ein Wahrer des gesellschaftlichen Gesamtinteresses und Ausgleichs, der auf der Grundlage der Menschenrechte und des geltenden Rechts die freie Ausübung der verschiedenen philosophischen oder religiösen Überzeugungen ermöglichen muss…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Die ADR steht für die Freiheit des Einzelnen, eine lebendige Demokratie und einen starken Rechtstaat.”
+</div>
+<span class="context">De Rechtsstat stäerken Die ADR möchte das Bewusstsein der Bürger für die vielen Probleme rechtsstaatlicher Natur schärfen, die Luxemburg derzeit zu schaffen machen. <mark>Die ADR steht für die Freiheit des Einzelnen, eine lebendige Demokratie und einen starken Rechtstaat.</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“Die ADR ist der Auffassung, dass die Gesetzestexte sehr viel mehr in koordinierter, vereinfachter und leicht verständlicher Form zur Verfügung stehen müssen”
+</div>
+<span class="context">Der Staat sollte für die Bürger transparent sein. <mark>Die ADR ist der Auffassung, dass die Gesetzestexte sehr viel mehr in koordinierter, vereinfachter und leicht verständlicher Form zur Verfügung stehen müssen</mark>. Immer weniger Bürger haben noch einen Überblick über die Flut an Gesetzen und anderen staatlichen Verordnungen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“Die ADR bekennt sich zur europäischen Integration und zu Luxemburgs Mitgliedschaft in der NATO.”
+</div>
+<span class="context">…Die ADR strebt eine aktive Außenpolitik an, um Luxemburgs Beitrag zur internationalen Politik weiterhin zu stärken. Sie bekennt sich zur europäischen Integration und zu Luxemburgs Mitgliedschaft in der NATO. Sie strebt eine konsequente und erfolgreiche Verteidigung der luxemburgischen Interessen sowohl auf bilateraler Ebene als auch in der multilateralen Diplomatie an…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Wettbewerbsfähigkeit der in Luxemburg angesiedelten Unternehmen darf nicht durch Steuererhöhungen untergraben werden”
+</div>
+<span class="context">Die ADR plant keinerlei Steuererhöhungen, also ausdrücklich auch keine für die Wirtschaft. Die <mark>Wettbewerbsfähigkeit der in Luxemburg angesiedelten Unternehmen darf nicht durch Steuererhöhungen untergraben werden</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 2</span>
+<div class="quote">
+“freien Markwirtschaft – zu der die ADR sich bekennt”
+</div>
+<span class="context">Dieses ist unter den Bedingungen der <mark>freien Markwirtschaft – zu der die ADR sich bekennt</mark> – hauptsächlich über die Steigerung des Angebots zu erreichen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“natürliche Konkurrenz, wie sie überall in der freien Marktwirtschaft”
+</div>
+<span class="context">Es entsteht eine <mark>natürliche Konkurrenz, wie sie überall in der freien Marktwirtschaft</mark> anzutreffen ist. Die Schulen dürfen eigene Aufnahmeprüfungen</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Pressefreiheit, die Unschuldsvermutung vor Gericht”
+</div>
+<span class="context">Daher gelten für sie klare politische Richtlinien, wie zum Beispiel die unbedingte Achtung der Menschenrechte, der Respekt der Privatsphäre durch den Staat, der Datenschutz, die <mark>Pressefreiheit, die Unschuldsvermutung vor Gericht</mark>, die Verhältnismäßigkeit des staatlichen Handelns</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 6</span>
+<div class="quote">
+“Stärkung der Menschenrechte, der Vorrang des Völkerrechts”
+</div>
+<span class="context">Grundprinzipien der Außenpolitik bleiben die <mark>Stärkung der Menschenrechte, der Vorrang des Völkerrechts</mark> und die Solidarität mit den ärmeren Staaten.</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Regierungsparteien haben den Ernst der Lage überhaupt noch nicht erkannt”
+</div>
+<span class="context">Die bisherigen <mark>Regierungsparteien haben den Ernst der Lage überhaupt noch nicht erkannt</mark> oder aber, was noch schlimmer wäre, die Situation bewusst verharmlosend dargestellt.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“vorherigen Regierungen nicht systematisch Gelder der Pensionskasse zugunsten des Staatshaushaltes zweckentfremdet hätten”
+</div>
+<span class="context">Diese Reserven wären noch höher, wenn die <mark>vorherigen Regierungen nicht systematisch Gelder der Pensionskasse zugunsten des Staatshaushaltes zweckentfremdet hätten</mark>. Die ADR wird sich auch in Zukunft</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“politische Vetternwirtschaft, wie sie von den bisherigen Regierungsparteien”
+</div>
+<span class="context">erhofft sich, dass durch diese Maßnahme die <mark>politische Vetternwirtschaft, wie sie von den bisherigen Regierungsparteien</mark> schon fast selbstverständlich betrieben wird, zurückgedrängt</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“politische Vetternwirtschaft, wie sie von den bisherigen Regierungsparteien”
+</div>
+<span class="context">erhofft sich, dass durch diese Maßnahme die <mark>politische Vetternwirtschaft, wie sie von den bisherigen Regierungsparteien</mark> schon fast selbstverständlich betrieben wird, zurückgedrängt</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“amateurhaften Versuche seitens der Regierung”
+</div>
+<span class="context">Cargolux und ihr Personal in Turbulenzen zu bringen. Deshalb sind alle <mark>amateurhaften Versuche seitens der Regierung</mark> strikt zu unterbinden</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Die bisherigen Regierungsparteien haben den Ernst der Lage überhaupt noch nicht erkannt”
+</div>
+<span class="context">…Die Staatsverschuldung ist auf ein noch nie dagewesenes Niveau gestiegen… <mark>Die bisherigen Regierungsparteien haben den Ernst der Lage überhaupt noch nicht erkannt</mark> oder aber, was noch schlimmer wäre, die Situation bewusst verharmlosend dargestellt. Für die ADR heißt es dringend handeln…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“wenn die vorherigen Regierungen nicht systematisch Gelder der Pensionskasse zugunsten des Staatshaushaltes zweckentfremdet hätten”
+</div>
+<span class="context">Die Rentenkasse des Privatsektors verfügt augenblicklich über Reserven in Höhe von 12,6 Milliarden Euro, was einer Deckung von 3,9 Mal den Jahresausgaben entspricht. Diese Reserven wären noch höher, <mark>wenn die vorherigen Regierungen nicht systematisch Gelder der Pensionskasse zugunsten des Staatshaushaltes zweckentfremdet hätten</mark>. Die ADR wird sich auch in Zukunft vehement dagegen wehren, dass Gelder der Pensionskasse zweckentfremdet werden.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“Die ADR sieht mit einer gewissen Sorge, dass die Universität in einigen Bereichen in einem sehr engen Naheverhältnis zur Regierung steht.”
+</div>
+<span class="context">Größere Unabhängigkeit von der Regierung <mark>Die ADR sieht mit einer gewissen Sorge, dass die Universität in einigen Bereichen in einem sehr engen Naheverhältnis zur Regierung steht.</mark> Eine solche Zusammenarbeit darf niemals auf Kosten der akademischen Unabhängigkeit der Universität geschehen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“die politische Vetternwirtschaft, wie sie von den bisherigen Regierungsparteien schon fast selbstverständlich betrieben wird”
+</div>
+<span class="context">Die ADR erhofft sich, dass durch diese Maßnahme <mark>die politische Vetternwirtschaft, wie sie von den bisherigen Regierungsparteien schon fast selbstverständlich betrieben wird</mark>, zurückgedrängt wird.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“bisherigen Regierungsparteien haben den Ernst der Lage überhaupt noch nicht erkannt”
+</div>
+<span class="context">Die <mark>bisherigen Regierungsparteien haben den Ernst der Lage überhaupt noch nicht erkannt</mark> oder aber, was noch schlimmer wäre, die Situation bewusst verharmlosend dargestellt.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“vorherigen Regierungen nicht systematisch Gelder der Pensionskasse zweckentfremdet”
+</div>
+<span class="context">Diese Reserven wären noch höher, wenn die vorherigen Regierungen nicht systematisch Gelder der Pensionskasse zugunsten des Staatshaushaltes zweckentfremdet hätten.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“politische Vetternwirtschaft, wie sie von den bisherigen Regierungsparteien”
+</div>
+<span class="context">Die ADR erhofft sich, dass durch diese Maßnahme die <mark>politische Vetternwirtschaft, wie sie von den bisherigen Regierungsparteien</mark> schon fast selbstverständlich betrieben wird, zurückgedrängt wird.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“politische Vetternwirtschaft, wie sie von den bisherigen Regierungsparteien”
+</div>
+<span class="context">Die ADR erhofft sich, dass durch diese Maßnahme die <mark>politische Vetternwirtschaft, wie sie von den bisherigen Regierungsparteien</mark> schon fast selbstverständlich betrieben wird, zurückgedrängt wird.</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“vorherigen Regierungen nicht systematisch Gelder der Pensionskasse zugunsten des Staatshaushaltes zweckentfremdet hätten”
+</div>
+<span class="context">Diese Reserven wären noch höher, wenn die <mark>vorherigen Regierungen nicht systematisch Gelder der Pensionskasse zugunsten des Staatshaushaltes zweckentfremdet hätten</mark>. Die ADR wird sich auch in Zukunft</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“politische Vetternwirtschaft, wie sie von den bisherigen Regierungsparteien”
+</div>
+<span class="context">erhofft sich, dass durch diese Maßnahme die <mark>politische Vetternwirtschaft, wie sie von den bisherigen Regierungsparteien</mark> schon fast selbstverständlich betrieben wird, zurückgedrängt</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Die ADR wird sich resolut für die Freiheit und die persönliche Verantwortung des Einzelnen einsetzen”
+</div>
+<span class="context">…Für die ADR heißt es dringend handeln um dem Land noch eine Zukunft zu geben! <mark>Die ADR wird sich resolut für die Freiheit und die persönliche Verantwortung des Einzelnen einsetzen</mark>. Der Staat hat einen zu großen Einfluss auf die Privatsphäre der Menschen erlangt…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“Die ADR fühlt sich dem Schutz der Familie – der Keimzelle der Gesellschaft -in besonderem Maße verpflichtet”
+</div>
+<span class="context">Die ADR unterstreicht die herausragende Bedeutung der Familien für unsere Gesellschaft. Sie fühlt sich dem Schutz der Familie – der Keimzelle der Gesellschaft -in besonderem Maße verpflichtet.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“Die ADR möchte, dass so viele Bürger wie möglich am politischen Geschehen teilhaben und es aktiv mitgestalten.”
+</div>
+<span class="context">Für eine starke Demokratie <mark>Die ADR möchte, dass so viele Bürger wie möglich am politischen Geschehen teilhaben und es aktiv mitgestalten.</mark> Niemand sollte an der Ausübung des Grundrechts auf freie politische Betätigung durch soziale oder berufliche Gegebenheiten gehindert werden.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“Die ADR möchte ganz allgemein die Prozeduren vereinfachen, die administrative Sprache verständlicher machen”
+</div>
+<span class="context">Für die Bürger müssen die Verwaltungswege so kurz und einfach wie nur möglich sein. <mark>Die ADR möchte ganz allgemein die Prozeduren vereinfachen, die administrative Sprache verständlicher machen</mark> und die Formulare weniger kompliziert gestalten.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Wir brauchen eine Politik, die nicht einfach weitermacht wie bisher”
+</div>
+<span class="context"><mark>Wir brauchen eine Politik, die nicht einfach weitermacht wie bisher</mark>, sondern wir müssen tiefgreifende Reformen durchführen, die Luxemburg zukunftsfähig machen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“pragmatische und gerechte Politik der Chancengleichheit”
+</div>
+<span class="context">Die ADR steht für eine <mark>pragmatische und gerechte Politik der Chancengleichheit</mark> ohne jegliche Ideologie.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“kein Gegeneinander sondern ein respektvolles Miteinander”
+</div>
+<span class="context">grundsätzliche Haltung der ADR zu der Beziehung zwischen Staat und Religion wieder: <mark>kein Gegeneinander sondern ein respektvolles Miteinander</mark> im Geist der Toleranz</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“fairen politischen Wettbewerb aus und lehnt”
+</div>
+<span class="context">Die ADR spricht sich für einen <mark>fairen politischen Wettbewerb aus und lehnt</mark> daher jede Art von Quoten oder andere Einschränkungen des freien Wählerwillens ab.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“nüchterne, ausgewogene und konstruktive Diplomatie im nationalen Interesse”
+</div>
+<span class="context">Die oft sehr einseitige und ideologisierte Politik der letzten Jahre in wichtigen Politikbereichen sollte durch eine <mark>nüchterne, ausgewogene und konstruktive Diplomatie im nationalen Interesse</mark> ersetzt werden.</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Sozialpolitik kann daher nie gegen die Wirtschaftsinteressen entworfen werden”
+</div>
+<span class="context">…<mark>Sozialpolitik kann daher nie gegen die Wirtschaftsinteressen entworfen werden</mark>, sondern erst eine erfolgreiche und wettbewerbsfähige Wirtschaft ermöglicht eine breite, gesellschaftliche Gewinnbeteiligung. Luxemburg muss seine Wirtschaft stärken und diversifizieren…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Die Grundprinzipien der ADR-Vorschläge sind u.a.: -die Beibehaltung des Solidaritätsprinzips zwischen den Generationen durch das Umlageverfahren”
+</div>
+<span class="context"><mark>Die Grundprinzipien der ADR-Vorschläge sind u.a.: -die Beibehaltung des Solidaritätsprinzips zwischen den Generationen durch das Umlageverfahren</mark>; -der Bestand des Pensionssystems ohne auf betriebliche oder private Zusatzversicherungen zurückgreifen zu müssen (Prinzip des ersten Pfeilers); -Gleichbehandlung des öffentlichen und des privaten Sektors;</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“Die ADR spricht sich für die Rücknahme einiger bereits bestehender Verbote ein oder fordert zumindest deren Abschwächung.”
+</div>
+<span class="context">Persönliche Freiheiten Die ADR wird prinzipiell keinen weiteren Einschränkung der persönlichen Freiheiten zustimmen und sehr genau jede weitere Kontrolle menschlichen Handels analysieren, bevor sie solchen Regeln zustimmt. <mark>Die ADR spricht sich für die Rücknahme einiger bereits bestehender Verbote ein oder fordert zumindest deren Abschwächung.</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“Missbrauch und „Sozialtourismus“ ausgeschlossen werden”
+</div>
+<span class="context">Sowohl im Sozialversicherungsrecht als auch in der Gesetzgebung über die nationale Solidarität müssen die Kriterien für alle in Not Geratene transparent, gerecht und einfach sein. Die ADR besteht gleichzeitig darauf, dass <mark>Missbrauch und „Sozialtourismus“ ausgeschlossen werden</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“soziale Marktwirtschaft muss weiter gelten”
+</div>
+<span class="context">Das Gesellschaftsmodell der sozialen Marktwirtschaft muss weiter gelten. Damit die soziale Komponente dieses Gesellschaftsmodells sich aber voll entfalten kann, muss zuerst eine hohe, wirtschaftliche Leistung erbracht werden.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“Beibehaltung des Solidaritätsprinzips zwischen den Generationen”
+</div>
+<span class="context">Die Grundprinzipien der ADR-Vorschläge sind u.a.: -die <mark>Beibehaltung des Solidaritätsprinzips zwischen den Generationen</mark> durch das Umlageverfahren;</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“soziale Gerechtigkeit und Chancengleichheit”
+</div>
+<span class="context"><mark>soziale Gerechtigkeit und Chancengleichheit</mark>. Jede Verbesserung der Gesundheit kann nur von einer solchen Basis aus erreicht werden</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“soziale Kriterien stärker berücksichtigt werden”
+</div>
+<span class="context">Bei der Festlegung der Höhe der Studienbeihilfen soll verstärkt auf die wirklichen Bedürfnisse geachtet werden… Daneben sollen auch <mark>soziale Kriterien stärker berücksichtigt werden</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“Rentner und Pensionierte des öffentlichen und privaten Sektors”
+</div>
+<span class="context"><mark>Rentner und Pensionierte des öffentlichen und privaten Sektors</mark> sollen somit regelmäßig Anteil an der allgemeinen Einkommensentwicklung und am Wirtschaftswachstum des Landes haben.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“soziale Sicherung der Bauern-Winzer-und Gärtnerfamilien verbessern”
+</div>
+<span class="context">Die ADR will die <mark>soziale Sicherung der Bauern-Winzer-und Gärtnerfamilien verbessern</mark>, im Krankheitsfall, bei beruflichen Unfällen, im Alter</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Integration der ausländischen Bevölkerung über die luxemburgische Sprache”
+</div>
+<span class="context">die Qualität der Schulen verschlechtert sich seit Jahren, die <mark>Integration der ausländischen Bevölkerung über die luxemburgische Sprache</mark> muss dringender denn je zu einer politischen Priorität werden.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“vorherigen Regierungen nicht systematisch Gelder der Pensionskasse zugunsten des Staatshaushaltes zweckentfremdet hätten”
+</div>
+<span class="context">Diese Reserven wären noch höher, wenn die <mark>vorherigen Regierungen nicht systematisch Gelder der Pensionskasse zugunsten des Staatshaushaltes zweckentfremdet hätten</mark>. Die ADR wird sich auch in Zukunft</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“politische Vetternwirtschaft, wie sie von den bisherigen Regierungsparteien”
+</div>
+<span class="context">erhofft sich, dass durch diese Maßnahme die <mark>politische Vetternwirtschaft, wie sie von den bisherigen Regierungsparteien</mark> schon fast selbstverständlich betrieben wird, zurückgedrängt</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“Einwanderungs-und Integrationspolitik im Einklang mit und im Respekt vor der luxemburgischen Identität”
+</div>
+<span class="context">steht die ADR für eine <mark>Einwanderungs-und Integrationspolitik im Einklang mit und im Respekt vor der luxemburgischen Identität</mark>. Um die neuen Bürger in unserem kleinen Land</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“Grenzen so kontrollieren darf, dass er seine Bürger vor kriminellen Akten”
+</div>
+<span class="context">Sie ist aber der Auffassung, dass jeder Mitgliedsstaat seine <mark>Grenzen so kontrollieren darf, dass er seine Bürger vor kriminellen Akten</mark> jeder Art schützen kann.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Die bisherigen Regierungsparteien haben den Ernst der Lage überhaupt noch nicht erkannt oder aber, was noch schlimmer wäre, die Situation bewusst verharmlosend dargestellt”
+</div>
+<span class="context">…Die Staatsverschuldung ist auf ein noch nie dagewesenes Niveau gestiegen… <mark>Die bisherigen Regierungsparteien haben den Ernst der Lage überhaupt noch nicht erkannt oder aber, was noch schlimmer wäre, die Situation bewusst verharmlosend dargestellt</mark>. Für die ADR heißt es dringend handeln…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Die ADR unterstreicht die herausragende Bedeutung der Familien für unsere Gesellschaft”
+</div>
+<span class="context"><mark>Die ADR unterstreicht die herausragende Bedeutung der Familien für unsere Gesellschaft</mark>. Sie fühlt sich dem Schutz der Familie – der Keimzelle der Gesellschaft -in besonderem Maße verpflichtet.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“Die ADR möchte, dass so viele Bürger wie möglich am politischen Geschehen teilhaben und es aktiv mitgestalten.”
+</div>
+<span class="context">Für eine starke Demokratie <mark>Die ADR möchte, dass so viele Bürger wie möglich am politischen Geschehen teilhaben und es aktiv mitgestalten.</mark> Niemand sollte an der Ausübung des Grundrechts auf freie politische Betätigung durch soziale oder berufliche Gegebenheiten gehindert werden.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“Die ADR möchte ganz allgemein die Prozeduren vereinfachen, die administrative Sprache verständlicher machen”
+</div>
+<span class="context">Für die Bürger müssen die Verwaltungswege so kurz und einfach wie nur möglich sein. <mark>Die ADR möchte ganz allgemein die Prozeduren vereinfachen, die administrative Sprache verständlicher machen</mark> und die Formulare weniger kompliziert gestalten.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Niederlassungsfreiheit innerhalb der EU soll mit sprachlichen Auflagen verknüpft werden”
+</div>
+<span class="context">Die Immigrationspolitik wird auf europäischer Ebene und notfalls im nationalen Alleingang reformiert. Die <mark>Niederlassungsfreiheit innerhalb der EU soll mit sprachlichen Auflagen verknüpft werden</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“vorherigen Regierungen nicht systematisch Gelder der Pensionskasse zweckentfremdet”
+</div>
+<span class="context">Diese Reserven wären noch höher, wenn die vorherigen Regierungen nicht systematisch Gelder der Pensionskasse zugunsten des Staatshaushaltes zweckentfremdet hätten.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“Verbot der Ganzkörperverschleierung”
+</div>
+<span class="context">wird die ADR für ein <mark>Verbot der Ganzkörperverschleierung</mark> eintreten (Burqa). Polygame Lebensgemeinschaften werden in Luxemburg weder geschlossen noch anerkannt</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“Wahlrecht bei den Parlamentswahlen ausschliesslich den luxemburgischen Staatsbürgern”
+</div>
+<span class="context">Sie setzt sich dafür ein, dass das <mark>Wahlrecht bei den Parlamentswahlen ausschliesslich den luxemburgischen Staatsbürgern</mark> vorbehalten bleibt.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“Zuwanderung soll zahlenmäßig in einem überschaubaren Rahmen”
+</div>
+<span class="context">Die <mark>Zuwanderung soll zahlenmäßig in einem überschaubaren Rahmen</mark> bleiben. Dort wo sie gesteuert werden kann soll sie sich überwiegend auf den europäischen Kulturkreis beschränken.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“ADR lehnt einen Beitritt der Türkei zur EU entschieden ab”
+</div>
+<span class="context">Die <mark>ADR lehnt einen Beitritt der Türkei zur EU entschieden ab</mark>. Die ADR begrüßt das noch relativ junge Instrument der Europäischen Bürgerinitiative.</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Integration der ausländischen Bevölkerung über die luxemburgische Sprache”
+</div>
+<span class="context">die Qualität der Schulen verschlechtert sich seit Jahren, die <mark>Integration der ausländischen Bevölkerung über die luxemburgische Sprache</mark> muss dringender denn je zu einer politischen Priorität werden.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“Einwanderungs-und Integrationspolitik im Einklang mit und im Respekt vor der luxemburgischen Identität”
+</div>
+<span class="context">steht die ADR für eine <mark>Einwanderungs-und Integrationspolitik im Einklang mit und im Respekt vor der luxemburgischen Identität</mark>. Um die neuen Bürger in unserem kleinen Land</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“Grenzen so kontrollieren darf, dass er seine Bürger vor kriminellen Akten”
+</div>
+<span class="context">Sie ist aber der Auffassung, dass jeder Mitgliedsstaat seine <mark>Grenzen so kontrollieren darf, dass er seine Bürger vor kriminellen Akten</mark> jeder Art schützen kann.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Die Immigrationspolitik wird auf europäischer Ebene und notfalls im nationalen Alleingang reformiert”
+</div>
+<span class="context">…<mark>Die Immigrationspolitik wird auf europäischer Ebene und notfalls im nationalen Alleingang reformiert</mark>. Die Niederlassungsfreiheit innerhalb der EU soll mit sprachlichen Auflagen verknüpft werden…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Die ADR möchte, dass alle Menschen die in Luxemburg arbeiten und dort ihr Leben bzw. das ihrer Familie gestalten möchten, ein Recht auf eine angemessene Wohnung haben”
+</div>
+<span class="context">Ein sicheres Dach über dem Kopf ist ein Grundbedürfnis der Menschen. <mark>Die ADR möchte, dass alle Menschen die in Luxemburg arbeiten und dort ihr Leben bzw. das ihrer Familie gestalten möchten, ein Recht auf eine angemessene Wohnung haben</mark>, ohne dass sie dazu ins benachbarte Ausland ziehen müssen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Das Wahlrecht bei den Parlamentswahlen ausschliesslich den luxemburgischen Staatsbürgern vorbehalten bleibt.”
+</div>
+<span class="context">Für eine starke Demokratie Die ADR setzt sich dafür ein, dass das Wahlrecht bei den Parlamentswahlen ausschliesslich den luxemburgischen Staatsbürgern vorbehalten bleibt. Die Staatsform Luxemburgs als konstitutionelle Monarchie darf nicht in Frage gestellt werden.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“Die ADR setzt sich für ein Verbot der Ganzkörperverschleierung ein”
+</div>
+<span class="context">In Luxemburg gilt ein Vermummungsverbot. Die ADR setzt sich deshalb für ein Verbot der Ganzkörperverschleierung ein; Die Beschneidung von Jungen wird gesetzlich geregelt; Es gibt keine Sonderregelungen für religiöse Feiertage in den Schulen, die nicht in der nationalen Tradition verankert sind;</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Niederlassungsfreiheit innerhalb der EU soll mit sprachlichen Auflagen verknüpft werden”
+</div>
+<span class="context">Die Immigrationspolitik wird auf europäischer Ebene und notfalls im nationalen Alleingang reformiert. Die <mark>Niederlassungsfreiheit innerhalb der EU soll mit sprachlichen Auflagen verknüpft werden</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“Verbot der Ganzkörperverschleierung eintreten (Burqa)”
+</div>
+<span class="context">In diesem Sinne wird die ADR für ein <mark>Verbot der Ganzkörperverschleierung eintreten (Burqa)</mark>. Polygame Lebensgemeinschaften werden in Luxemburg weder geschlossen noch anerkannt.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“Verbot der Ganzkörperverschleierung”
+</div>
+<span class="context">wird die ADR für ein <mark>Verbot der Ganzkörperverschleierung</mark> eintreten (Burqa). Polygame Lebensgemeinschaften werden in Luxemburg weder geschlossen noch anerkannt</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“Wahlrecht bei den Parlamentswahlen ausschliesslich den luxemburgischen Staatsbürgern”
+</div>
+<span class="context">Sie setzt sich dafür ein, dass das <mark>Wahlrecht bei den Parlamentswahlen ausschliesslich den luxemburgischen Staatsbürgern</mark> vorbehalten bleibt.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“Zuwanderung soll zahlenmäßig in einem überschaubaren Rahmen”
+</div>
+<span class="context">Die <mark>Zuwanderung soll zahlenmäßig in einem überschaubaren Rahmen</mark> bleiben. Dort wo sie gesteuert werden kann soll sie sich überwiegend auf den europäischen Kulturkreis beschränken.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“ADR lehnt einen Beitritt der Türkei zur EU entschieden ab”
+</div>
+<span class="context">Jede weitere Vertragsänderung, jede Erweiterung der EU nach dem Beitritt Kroatiens und jeder Schengen-Beitritt (z.B. Rumänien und Bulgarien) sollen fortan in Luxemburg per Referendum entschieden werden. Die <mark>ADR lehnt einen Beitritt der Türkei zur EU entschieden ab</mark>.</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“die Situation bewusst verharmlosend dargestellt”
+</div>
+<span class="context">Regierungsparteien haben den Ernst der Lage überhaupt noch nicht erkannt oder aber, was noch schlimmer wäre, <mark>die Situation bewusst verharmlosend dargestellt</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Die bisherigen Regierungsparteien haben den Ernst der Lage überhaupt noch nicht erkannt oder aber, was noch schlimmer wäre, die Situation bewusst verharmlosend dargestellt”
+</div>
+<span class="context">…Die Staatsverschuldung ist auf ein noch nie dagewesenes Niveau gestiegen… <mark>Die bisherigen Regierungsparteien haben den Ernst der Lage überhaupt noch nicht erkannt oder aber, was noch schlimmer wäre, die Situation bewusst verharmlosend dargestellt</mark>. Für die ADR heißt es dringend handeln…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Es ist jedem Beobachter klar, dass die erfolgte Rentenreform vollkommen ungenügend ist und erhebliche konzeptuelle Schwachstellen aufweist”
+</div>
+<span class="context">In der Tat ist es jedem Beobachter klar, dass die erfolgte Rentenreform vollkommen ungenügend ist und erhebliche konzeptuelle Schwachstellen aufweist. Die ADR ist überzeugt, dass ihr eigener Vorschlag, wegen seines finanziell tragbaren und sozial gerechten Charakters, sich auch dieses Mal durchsetzen wird.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“Luxemburgs demokratische Grundordnung ist zunehmend Gefahren ausgesetzt.”
+</div>
+<span class="context">De Rechtsstat stäerken Die ADR möchte das Bewusstsein der Bürger für die vielen Probleme rechtsstaatlicher Natur schärfen, die Luxemburg derzeit zu schaffen machen. Während der letzten Jahre wurden immer wieder rechtliche Neuerungen eingeführt, die freiheitsbeschränkende Wirkungen entfalten. <mark>Luxemburgs demokratische Grundordnung ist zunehmend Gefahren ausgesetzt.</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“die Situation bewusst verharmlosend dargestellt”
+</div>
+<span class="context">Die bisherigen Regierungsparteien haben den Ernst der Lage überhaupt noch nicht erkannt oder aber, was noch schlimmer wäre, <mark>die Situation bewusst verharmlosend dargestellt</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Ruckartige und zusätzlich auch noch sozial ungerechte Rentenkürzungen”
+</div>
+<span class="context"><mark>Ruckartige und zusätzlich auch noch sozial ungerechte Rentenkürzungen</mark>, wie etwa die 2012 von der letzten Regierungsmajorität beschlossenen, lehnt die ADR resolut ab.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“Damit muss endlich Schluss sein!”
+</div>
+<span class="context">Die Leidtragenden einer solchen Schulpolitik sind unsere Kinder. <mark>Damit muss endlich Schluss sein!</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“ständige Kompetenzenüberschreitung europäischer Institutionen”
+</div>
+<span class="context">Das 2013 vom EuGH gefällte präjudizielle Urteil in Sachen Studienbeihilfen über den Umweg der Niederlassungsfreiheit ist ein weiteres Beispiel für die <mark>ständige Kompetenzenüberschreitung europäischer Institutionen</mark> zu Lasten der Mitgliedsstaaten.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“bisherigen Regierungen es versäumt haben”
+</div>
+<span class="context">Die ADR beklagt, dass die <mark>bisherigen Regierungen es versäumt haben</mark>, eine wahre Integrationspolitik zu betreiben.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“amateurhaften Versuche seitens der Regierung strikt zu unterbinden”
+</div>
+<span class="context">Deshalb sind alle <mark>amateurhaften Versuche seitens der Regierung strikt zu unterbinden</mark>, die Cargolux und ihr Personal in Turbulenzen zu bringen.</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Unterstützung und Mitwirkung der Bürger angewiesen”
+</div>
+<span class="context">Bei der Bewältigung der Krise sind die Parteien, das Parlament und die Regierung auf die <mark>Unterstützung und Mitwirkung der Bürger angewiesen</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“harmonische Beziehung zwischen den staatlichen Instanzen und den Bürgern”
+</div>
+<span class="context">Die Verwaltungen im Dienst der Bürger Die <mark>harmonische Beziehung zwischen den staatlichen Instanzen und den Bürgern</mark> steht im Zentrum des Interesses der ADR.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Die ADR wird sich resolut für die Freiheit und die persönliche Verantwortung des Einzelnen einsetzen”
+</div>
+<span class="context">…Für die ADR heißt es dringend handeln um dem Land noch eine Zukunft zu geben! <mark>Die ADR wird sich resolut für die Freiheit und die persönliche Verantwortung des Einzelnen einsetzen</mark>. Der Staat hat einen zu großen Einfluss auf die Privatsphäre der Menschen erlangt…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Die ADR unterstreicht die herausragende Bedeutung der Familien für unsere Gesellschaft”
+</div>
+<span class="context"><mark>Die ADR unterstreicht die herausragende Bedeutung der Familien für unsere Gesellschaft</mark>. Sie fühlt sich dem Schutz der Familie – der Keimzelle der Gesellschaft -in besonderem Maße verpflichtet.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“Die ADR möchte, dass so viele Bürger wie möglich am politischen Geschehen teilhaben und es aktiv mitgestalten.”
+</div>
+<span class="context">Für eine starke Demokratie <mark>Die ADR möchte, dass so viele Bürger wie möglich am politischen Geschehen teilhaben und es aktiv mitgestalten.</mark> Niemand sollte an der Ausübung des Grundrechts auf freie politische Betätigung durch soziale oder berufliche Gegebenheiten gehindert werden.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Die harmonische Beziehung zwischen den staatlichen Instanzen und den Bürgern steht im Zentrum des Interesses der ADR”
+</div>
+<span class="context">Die Verwaltungen im Dienst der Bürger <mark>Die harmonische Beziehung zwischen den staatlichen Instanzen und den Bürgern steht im Zentrum des Interesses der ADR</mark>. Für die Bürger müssen die Verwaltungswege so kurz und einfach wie nur möglich sein.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“im alleinigen Interesse des Steuerzahlers arbeiten”
+</div>
+<span class="context">Das Führungskollegium muss in totaler politischer Unabhängigkeit, <mark>im alleinigen Interesse des Steuerzahlers arbeiten</mark> können.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“finanziell tragbaren und sozial gerechten Charakters”
+</div>
+<span class="context">Die ADR ist überzeugt, dass ihr eigener Vorschlag, wegen seines <mark>finanziell tragbaren und sozial gerechten Charakters</mark>, sich auch dieses Mal durchsetzen wird.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“jedem Kind und jedem Jugendlichen”
+</div>
+<span class="context">um <mark>jedem Kind und jedem Jugendlichen</mark>, gleich welcher nationaler, ethnischer oder sozialer Herkunft, das seiner natürlichen Begabung entsprechende</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“Freiheit und Demokratie resolut zu verteidigen”
+</div>
+<span class="context">Die ADR hat sich daher zum Ziel gesetzt, <mark>Freiheit und Demokratie resolut zu verteidigen</mark>! Die ADR steht für die Freiheit des Einzelnen, eine lebendige Demokratie und einen starken Rechtstaat.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“Für die Bürger müssen die Verwaltungswege so kurz”
+</div>
+<span class="context">Die harmonische Beziehung zwischen den staatlichen Instanzen und den Bürgern steht im Zentrum des Interesses der ADR. <mark>Für die Bürger müssen die Verwaltungswege so kurz</mark> und einfach wie nur möglich sein.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“allein die Luxemburger über ihre politischen Vertreter die Verhältnisse”
+</div>
+<span class="context">Es wird daran erinnert, dass <mark>allein die Luxemburger über ihre politischen Vertreter die Verhältnisse</mark> in diesem Lande bestimmen und nicht irgendwelche ausländischen Expertengremien.</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Regierungsparteien haben den Ernst der Lage überhaupt noch nicht erkannt”
+</div>
+<span class="context">Die bisherigen <mark>Regierungsparteien haben den Ernst der Lage überhaupt noch nicht erkannt</mark> oder aber, was noch schlimmer wäre, die Situation bewusst verharmlosend dargestellt.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“vorherigen Regierungen nicht systematisch Gelder der Pensionskasse zugunsten des Staatshaushaltes zweckentfremdet hätten”
+</div>
+<span class="context">Diese Reserven wären noch höher, wenn die <mark>vorherigen Regierungen nicht systematisch Gelder der Pensionskasse zugunsten des Staatshaushaltes zweckentfremdet hätten</mark>. Die ADR wird sich auch in Zukunft</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“politische Vetternwirtschaft, wie sie von den bisherigen Regierungsparteien”
+</div>
+<span class="context">erhofft sich, dass durch diese Maßnahme die <mark>politische Vetternwirtschaft, wie sie von den bisherigen Regierungsparteien</mark> schon fast selbstverständlich betrieben wird, zurückgedrängt</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“politische Vetternwirtschaft, wie sie von den bisherigen Regierungsparteien”
+</div>
+<span class="context">erhofft sich, dass durch diese Maßnahme die <mark>politische Vetternwirtschaft, wie sie von den bisherigen Regierungsparteien</mark> schon fast selbstverständlich betrieben wird, zurückgedrängt</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“amateurhaften Versuche seitens der Regierung”
+</div>
+<span class="context">Cargolux und ihr Personal in Turbulenzen zu bringen. Deshalb sind alle <mark>amateurhaften Versuche seitens der Regierung</mark> strikt zu unterbinden</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Die bisherigen Regierungsparteien haben den Ernst der Lage überhaupt noch nicht erkannt oder aber, was noch schlimmer wäre, die Situation bewusst verharmlosend dargestellt”
+</div>
+<span class="context">…Die Staatsverschuldung ist auf ein noch nie dagewesenes Niveau gestiegen… <mark>Die bisherigen Regierungsparteien haben den Ernst der Lage überhaupt noch nicht erkannt oder aber, was noch schlimmer wäre, die Situation bewusst verharmlosend dargestellt</mark>. Für die ADR heißt es dringend handeln…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“wenn die vorherigen Regierungen nicht systematisch Gelder der Pensionskasse zugunsten des Staatshaushaltes zweckentfremdet hätten”
+</div>
+<span class="context">Die Rentenkasse des Privatsektors verfügt augenblicklich über Reserven in Höhe von 12,6 Milliarden Euro, was einer Deckung von 3,9 Mal den Jahresausgaben entspricht. Diese Reserven wären noch höher, <mark>wenn die vorherigen Regierungen nicht systematisch Gelder der Pensionskasse zugunsten des Staatshaushaltes zweckentfremdet hätten</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“Luxemburgs demokratische Grundordnung ist zunehmend Gefahren ausgesetzt.”
+</div>
+<span class="context">De Rechtsstat stäerken Die ADR möchte das Bewusstsein der Bürger für die vielen Probleme rechtsstaatlicher Natur schärfen, die Luxemburg derzeit zu schaffen machen. Während der letzten Jahre wurden immer wieder rechtliche Neuerungen eingeführt, die freiheitsbeschränkende Wirkungen entfalten. <mark>Luxemburgs demokratische Grundordnung ist zunehmend Gefahren ausgesetzt.</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“die politische Vetternwirtschaft, wie sie von den bisherigen Regierungsparteien schon fast selbstverständlich betrieben wird”
+</div>
+<span class="context">Die ADR erhofft sich, dass durch diese Maßnahme <mark>die politische Vetternwirtschaft, wie sie von den bisherigen Regierungsparteien schon fast selbstverständlich betrieben wird</mark>, zurückgedrängt wird.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“bisherigen Regierungsparteien haben den Ernst der Lage überhaupt noch nicht erkannt”
+</div>
+<span class="context">Die <mark>bisherigen Regierungsparteien haben den Ernst der Lage überhaupt noch nicht erkannt</mark> oder aber, was noch schlimmer wäre, die Situation bewusst verharmlosend dargestellt.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“vorherigen Regierungen nicht systematisch Gelder der Pensionskasse zweckentfremdet”
+</div>
+<span class="context">Diese Reserven wären noch höher, wenn die vorherigen Regierungen nicht systematisch Gelder der Pensionskasse zugunsten des Staatshaushaltes zweckentfremdet hätten.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“politische Vetternwirtschaft, wie sie von den bisherigen Regierungsparteien”
+</div>
+<span class="context">Die ADR erhofft sich, dass durch diese Maßnahme die <mark>politische Vetternwirtschaft, wie sie von den bisherigen Regierungsparteien</mark> schon fast selbstverständlich betrieben wird, zurückgedrängt wird.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“politische Vetternwirtschaft, wie sie von den bisherigen Regierungsparteien”
+</div>
+<span class="context">Die ADR erhofft sich, dass durch diese Maßnahme die <mark>politische Vetternwirtschaft, wie sie von den bisherigen Regierungsparteien</mark> schon fast selbstverständlich betrieben wird, zurückgedrängt wird.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“allein die Luxemburger über ihre politischen Vertreter”
+</div>
+<span class="context">Es wird daran erinnert, dass <mark>allein die Luxemburger über ihre politischen Vertreter</mark> die Verhältnisse in diesem Lande bestimmen und nicht irgendwelche ausländischen Expertengremien.</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="23951_201310_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

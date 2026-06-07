@@ -1,0 +1,2263 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ERC (Spain, 2019) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/33905_201904_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">ERC (Spain, 2019)</h1>
+<p class="subtitle lead">manifesto_id 33905_201904</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Spain · <span class="item"><strong>Party</strong></span> ERC (Catalan Republican Left) · <span class="item"><strong>Year</strong></span> 2019 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 90</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.6</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.8</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.6</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.8</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.6</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“la lliure competència i l’interès general”
+</div>
+<span class="context">La meritocrácia, la igualtat d’oportunitats, la innovació, <mark>la lliure competència i l’interès general</mark> resten pervertits</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“limitar el preu máxim del lloguer”
+</div>
+<span class="context">incorporant mesures perquè els ajuntaments puguin <mark>limitar el preu máxim del lloguer</mark> a les zones tensionades.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · mixed · chunk 3</span>
+<div class="quote">
+“lliure competència que eviti les situacions”
+</div>
+<span class="context">garantir la lliure i lleial competència que eviti les situacions de domini del mercat i desvinculi</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · mixed · chunk 4</span>
+<div class="quote">
+“garantir la lliure i lleial competència”
+</div>
+<span class="context">organismes reguladors per <mark>garantir la lliure i lleial competència</mark> que eviti les situacions de domini del mercat</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“Mesures de control de preus del lloguer”
+</div>
+<span class="context">canvis legislatius en matèria d’habitatge de lloguer. <mark>Mesures de control de preus del lloguer</mark> i/o increment de la intervenció administrativa en el mercat</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“foment de la competitivitat i la sostenibilitat, sempre al costat de l’economia productiva i no de l’especulativa”
+</div>
+<span class="context">…Un principis i valors que depenen del <mark>foment de la competitivitat i la sostenibilitat, sempre al costat de l’economia productiva i no de l’especulativa</mark>. …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“redistribució de la riquesa i de la lluita contra les desigualtats com a pilars de l’estat del benestar”
+</div>
+<span class="context">Una República de benestar que redistribueixi la riquesa per donar una vida digna a tothom, que lluiti contra les desigualtats per donar a tothom les mateixes oportunitats i que garanteixi els drets socials de tota la ciutadania, amb especial atenció als col-lectius mès vulnerables i en situació de risc de pobresa.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“fomentar l’emprenedoria, abandoni la burocratització i elimini les barreres”
+</div>
+<span class="context">Impulsar un estat emprenedor que esdevingui una administració eficient, simplificadora i facilitadora de l’activitat econòmica, a travès d’una finestra única per a trámits administratius, que estimuli l’emprenedoria, abandoni la burocratització i elimini les barreres innecessáries a l’activitat económica i industrial.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“lliure i lleial competència que eviti les situacions de domini del mercat”
+</div>
+<span class="context">Protegir els drets de les persones consumidores a través d’organismes reguladors per garantir la <mark>lliure i lleial competència que eviti les situacions de domini del mercat</mark> i desvinculi els grans oligopolis dels poders polítics i de les portes giratóries.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“planificades amb criteris de rendibilitat socioeconómica, d’avaluació del cost i d’impacte social”
+</div>
+<span class="context">Infraestructures sostenibles al servei de l’economia productiva i <mark>planificades amb criteris de rendibilitat socioeconómica, d’avaluació del cost i d’impacte social</mark>, territorial i mediambiental. Propostes per a la República Catalana: Canvis legislatius marc amb la definició d’una llei de territori de Catalunya.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“la meritocrácia, la igualtat d’oportunitats, la innovació, la lliure competència”
+</div>
+<span class="context">La meritocrácia, la igualtat d’oportunitats, la innovació, la lliure competència i l’interès general resten pervertits i segrestats en mans d’un capitalisme d’amiguets</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“sistema fiscal que no és redistributiu”
+</div>
+<span class="context">l’efecte d’un <mark>sistema fiscal que no és redistributiu</mark> i que trenca el principi de progressivitat, ja que aquesta progressivitat només s’aplica a les rendes del treball</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“vetllar per la lliure competència”
+</div>
+<span class="context">el govern de l’Estat no ha procurat <mark>vetllar per la lliure competència</mark>, sinó que ha blindat els privilegis d’aquests oligopolis</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“llibertat d’elecció de la població consumidora entre marques i formats”
+</div>
+<span class="context">Mantenir l’actual model d’equilibri de formats i <mark>llibertat d’elecció de la població consumidora entre marques i formats</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 5</span>
+<div class="quote">
+“eviti el monopoli privat”
+</div>
+<span class="context">Establir un sistema de gestió de l’energia a Catalunya que garanteixi les inversions necessàries, que sigui sostenible econòmicament, que <mark>eviti el monopoli privat</mark> i que garanteixi l’accès al recurs per a tothom.</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“legislacions a mida de la gran banca”
+</div>
+<span class="context">un capitalisme d’amiguets que assegura amb recursos públics inversions fallides com el Castor i les autopistes radials de Madrid i aprova <mark>legislacions a mida de la gran banca</mark></span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · mixed · chunk 3</span>
+<div class="quote">
+“creació d’una banca pública”
+</div>
+<span class="context">sector, mitjançant mesures com la <mark>creació d’una banca pública</mark> (que permetria posar fi al problema</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“l’economia cooperativa de crèdit i de consum”
+</div>
+<span class="context">Impulsar <mark>l’economia cooperativa de crèdit i de consum</mark> com a forma per afavorir la democratització empresarial</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“legislacions a mida de la gran banca i dels monopolis energètics”
+</div>
+<span class="context">…la meritocrácia, la igualtat d’oportunitats, la innovació, la lliure competència i l’interès general resten pervertits i segrestats en mans d’un capitalisme d’amiguets que assegura amb recursos públics inversions fallides com el Castor i les autopistes radials de Madrid i aprova <mark>legislacions a mida de la gran banca i dels monopolis energètics</mark>. …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“exigir a les empreses transnacionals el compliment dels Drets Humans a tot el món”
+</div>
+<span class="context">Mentrestant, mesures que presentarem al Congrés i al Senat: Exigir a les empreses transnacionals el compliment dels Drets Humans a tot el món.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“crear una banca pública que aporti més competència al sector”
+</div>
+<span class="context">Creació d’una banca pública que aporti més competència al sector i garanteixi el finançament al sector productiu, centrat en les petites i mitjanes empreses i en la collaboració per a la inversió en grans projectes estratègics (infraestructures, recerca, etc.).</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“llei de seguretat en l’adquisició de béns i serveis bancaris”
+</div>
+<span class="context">Impulsar la <mark>llei de seguretat en l’adquisició de béns i serveis bancaris</mark> i actius immobiliaris.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“aprova legislacions a mida de la gran banca”
+</div>
+<span class="context">un capitalisme d’amiguets que assegura amb recursos públics inversions fallides com el Castor i les autopistes radials de Madrid i <mark>aprova legislacions a mida de la gran banca</mark> i dels monopolis energètics.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“impost sobre els dipòsits bancaris”
+</div>
+<span class="context">En el cas de l’<mark>impost sobre els dipòsits bancaris</mark>, els magistrats del TC van considerar que era gairebé idèntic a un impost de valor 0</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · mixed · chunk 3</span>
+<div class="quote">
+“Separació de la banca comercial minorista”
+</div>
+<span class="context"><mark>Separació de la banca comercial minorista</mark> (destinada a l’estalvi i al crèdit de les famílies) de la banca d’inversió (destinada a la inversió en productes de mercats cotitzats).</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“llei de seguretat en l’adquisició de béns i serveis bancaris”
+</div>
+<span class="context">Impulsar la <mark>llei de seguretat en l’adquisició de béns i serveis bancaris</mark> i actius immobiliaris</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“Mesures de control de preus del lloguer”
+</div>
+<span class="context"><mark>Mesures de control de preus del lloguer</mark> i/o increment de la intervenció administrativa en el mercat del lloguer; diferenciació entre arrendadors grans tenidors i persones físiques.</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“defensa dels drets i les llibertats”
+</div>
+<span class="context">millor garantia pel que fa a la <mark>defensa dels drets i les llibertats</mark> de la ciutadania i esdevenir un autèntic</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“plena separació de poders de l’estat”
+</div>
+<span class="context">Poder judicial i ministeri fiscal independents, amb els quals es garanteixi la <mark>plena separació de poders de l’estat</mark> de dret.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“independència, la transparència i el retiment”
+</div>
+<span class="context">Garantia de la <mark>independència, la transparència i el retiment</mark> de comptes dels organismes reguladors</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“governabilitat, transparència, participació ciutadana i democrácia”
+</div>
+<span class="context">administracions públiques republicanes amb govern obert, transparència, participació ciutadana i democrácia cooperativa.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“valors de la democrácia, la llibertat i els drets humans”
+</div>
+<span class="context">desenvolupant una cultura cívica comuna basada en els <mark>valors de la democrácia, la llibertat i els drets humans</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“la democrácia espanyola s’encamina cap a un horitzó autoritari, de greus limitacions a les llibertats ciutadanes”
+</div>
+<span class="context">…si no ès capaç de donar una solució democrática a les demandes de la ciutadania de Catalunya, amb el reconeixement de l’exercici del dret a l’autodeterminació, <mark>la democrácia espanyola s’encamina cap a un horitzó autoritari, de greus limitacions a les llibertats ciutadanes</mark>, molt difícilment equiparable als models imperants al seu entorn europeu mès proper. …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“una justícia independent entesa primordialment com a servei públic”
+</div>
+<span class="context">Una justícia independent entesa primordialment com a servei públic, una concepció de la seguretat integral i no autoritária, una funció pública eficaç i amb voluntat de servei, una vocació de solidaritat amb tots els pobles del món i un clar compromís de potenciar la memória democrática.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“democràcia, amb especial atenció als collectius mès vulnerables”
+</div>
+<span class="context">1. Una atenció integral de salut i social centrada en la persona d’acord amb els valors republicans, amb especial atenció als collectius mès vulnerables i que vetlli pels drets i deures dels pacients.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“govern obert, transparència, participació ciutadana”
+</div>
+<span class="context">1. Unes administracions públiques republicanes amb <mark>govern obert, transparència, participació ciutadana</mark> i democrácia cooperativa.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“valors de la democrácia, la llibertat i els drets humans”
+</div>
+<span class="context">Interculturalitat per viure junts els que som diferents, desenvolupant una cultura cívica comuna basada en els <mark>valors de la democrácia, la llibertat i els drets humans</mark>. 3. Un estat laic amb llibertat de creences i conviccions que garanteixi la lliure práctica de les creences i el pluralisme religiós partint del principi de laicitat de l’espai públic.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“democrácia de baixa qualitat, amb inquietants zones d’ombra”
+</div>
+<span class="context">Promoure els valors republicans, la transparència i el retiment de comptes enfront d’un estat monárquic i conservador, amb una <mark>democrácia de baixa qualitat, amb inquietants zones d’ombra</mark> i impunitat en els ámbits judicial, policial i de l’alt funcionariat.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“justícia independent entesa primordialment com a servei públic”
+</div>
+<span class="context">una <mark>justícia independent entesa primordialment com a servei públic</mark>, una concepció de la seguretat integral i no autoritària</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“independència, la transparència i el retiment de comptes dels organismes reguladors”
+</div>
+<span class="context">Garantia de la <mark>independència, la transparència i el retiment de comptes dels organismes reguladors</mark>, creant organismes o seccions independents per a cadascun dels mercats</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“qualitat democràtica d’un estat depèn de la qualitat de les seves institucions”
+</div>
+<span class="context">La qualitat democrática d’un estat depèn de la qualitat de les seves institucions. La democrácia a l’Estat espanyol</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“aprofundiment democràtic que hi ha en marxa”
+</div>
+<span class="context">el projecte més ambiciós de transformació socioeconòmica i d’<mark>aprofundiment democràtic que hi ha en marxa</mark> a Europa. Aquesta transformació social s’ha de projectar en multiplicitat de polítiques públiques.</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Combatre les desigualtats de gènere”
+</div>
+<span class="context"><mark>Combatre les desigualtats de gènere</mark> i ser inflexibles amb qualsevol manifestació</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“igualtat real i erradicar la LGTBIfóbia”
+</div>
+<span class="context">de manera transversal, ens permetin avangar cap a la <mark>igualtat real i erradicar la LGTBIfóbia</mark> de la nostra societat.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“drets de les persones amb discapacitat”
+</div>
+<span class="context">Adaptar la normativa sobre els <mark>drets de les persones amb discapacitat</mark> a la Convenció Internacional</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“evitin la discriminació de les dones”
+</div>
+<span class="context">Adopció de mesures amb perspectiva de gènere que <mark>evitin la discriminació de les dones</mark>, les barreres d’accès i els sostres</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 5</span>
+<div class="quote">
+“prevenir el racisme i la xenofòbia i evitar la discriminació”
+</div>
+<span class="context">Instauració d’actuacions d’acció positiva per <mark>prevenir el racisme i la xenofòbia i evitar la discriminació</mark> o l’exclusió social de tots els grups</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Combatre les desigualtats de gènere i ser inflexibles amb qualsevol manifestació de violència masclista”
+</div>
+<span class="context">…Ser la millor garantia pel que fa a la defensa dels drets i les llibertats de la ciutadania i esdevenir un autèntic baluard a l’hora de barrar el pas a l’extrema dreta. <mark>Combatre les desigualtats de gènere i ser inflexibles amb qualsevol manifestació de violència masclista</mark>. Les dones han de jugar un paper de primer ordre en la nostra societat i els plantejaments feministes han d’inspirar el conjunt de les polítiques públiques. …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“igualtat d’oportunitats, la igualtat d’oportunitats no ès el tracte lineal i igual per a tota la ciutadania”
+</div>
+<span class="context">Les republicanes i republicans volem viure en una societat que garanteixi la igualtat d’oportunitats, perquè totes les persones, en l’exercici dels seus drets i deures, puguin gaudir, de l’inici al final de la seva existència, una vida digna i independent.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“drets i deures dels pacients”
+</div>
+<span class="context">1. Una atenció integral de salut i social centrada en la persona d’acord amb els valors republicans, amb especial atenció als collectius mès vulnerables i que vetlli pels <mark>drets i deures dels pacients</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“igualtat de condicions, sense discriminació”
+</div>
+<span class="context">La República ha de bastir un mercat laboral enfocat al fet que les persones puguin exercir el seu dret i deure al treball, digne i de qualitat, en igualtat de condicions, amb seguretat en la feina, amb participació en la presa de decisions de les empreses i amb concertació social en les relacions laborals.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 5</span>
+<div class="quote">
+“garantint els mateixos drets i oportunitats per a tothom, promovent la interculturalitat i el plurilingüisme”
+</div>
+<span class="context">La República Catalana es constituirá com una societat diversa, <mark>garantint els mateixos drets i oportunitats per a tothom, promovent la interculturalitat i el plurilingüisme</mark> com a riquesa del país i configurant una societat cohesionada, inclusiva i solidária d’acord amb els valors republicans i els drets humans.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Combatre les desigualtats de gènere i ser inflexibles”
+</div>
+<span class="context"><mark>Combatre les desigualtats de gènere i ser inflexibles</mark> amb qualsevol manifestació de violència masclista. Les dones han de jugar un paper de primer ordre en la nostra societat</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“llibertat religiosa de les persones sense discriminacions”
+</div>
+<span class="context">la <mark>llibertat religiosa de les persones sense discriminacions</mark> de cap mena, per la qual cosa, bo i atenent a la neutralitat de l’Estat</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“drets de les persones amb discapacitat”
+</div>
+<span class="context">Adaptar la normativa sobre els <mark>drets de les persones amb discapacitat</mark> a la Convenció Internacional del 2006.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“discriminació de les dones, les barreres d’accès i els sostres de vida”
+</div>
+<span class="context">Adopció de mesures amb perspectiva de gènere que evitin la <mark>discriminació de les dones, les barreres d’accès i els sostres de vida</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“combatre totes les ideologies de l’odi”
+</div>
+<span class="context">Fer ciutadania, fer república, vol dir respectar i valorar la diversitat i <mark>combatre totes les ideologies de l’odi</mark>. Com més capaç sigui la nostra societat de reconèixer aquesta diversitat.</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“defensa dels drets i les llibertats”
+</div>
+<span class="context">millor garantia pel que fa a la defense dels drets i les llibertats de la ciutadania i esdevenir un autèntic</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“plena separació de poders de l’estat”
+</div>
+<span class="context">Poder judicial i ministeri fiscal independents, amb els quals es garanteixi la <mark>plena separació de poders de l’estat</mark> de dret.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“lliure competència que eviti les situacions”
+</div>
+<span class="context">garantir la lliure i lleial competència que eviti les situacions de domini del mercat i desvinculi</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“garantir la lliure i lleial competència”
+</div>
+<span class="context">organismes reguladors per <mark>garantir la lliure i lleial competència</mark> que eviti les situacions de domini del mercat</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“valors de la democrácia, la llibertat i els drets humans”
+</div>
+<span class="context">desenvolupant una cultura cívica comuna basada en els <mark>valors de la democrácia, la llibertat i els drets humans</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“la democrácia espanyola s’encamina cap a un horitzó autoritari, de greus limitacions a les llibertats ciutadanes”
+</div>
+<span class="context">…si no ès capaç de donar una solució democrática a les demandes de la ciutadania de Catalunya, amb el reconeixement de l’exercici del dret a l’autodeterminació, <mark>la democrácia espanyola s’encamina cap a un horitzó autoritari, de greus limitacions a les llibertats ciutadanes</mark>, molt difícilment equiparable als models imperants al seu entorn europeu mès proper. …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“una justícia independent entesa primordialment com a servei públic”
+</div>
+<span class="context">Una justícia independent entesa primordialment com a servei públic, una concepció de la seguretat integral i no autoritária, una funció pública eficaç i amb voluntat de servei, una vocació de solidaritat amb tots els pobles del món i un clar compromís de potenciar la memória democrática.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Impulsar un estat emprenedor que esdevingui una administració eficient”
+</div>
+<span class="context"><mark>Impulsar un estat emprenedor que esdevingui una administració eficient</mark>, simplificadora i facilitadora de l’activitat econòmica, a travès d’una finestra única per a trámits administratius, que estimuli l’emprenedoria, abandoni la burocratització i elimini les barreres innecessáries a l’activitat económica i industrial.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“govern obert, transparència, participació ciutadana”
+</div>
+<span class="context">1. Unes administracions públiques republicanes amb <mark>govern obert, transparència, participació ciutadana</mark> i democrácia cooperativa.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“valors de la democrácia, la llibertat i els drets humans”
+</div>
+<span class="context">Interculturalitat per viure junts els que som diferents, desenvolupant una cultura cívica comuna basada en els <mark>valors de la democrácia, la llibertat i els drets humans</mark>. 3. Un estat laic amb llibertat de creences i conviccions que garanteixi la lliure práctica de les creences i el pluralisme religiós partint del principi de laicitat de l’espai públic.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“República dels drets i les llibertats”
+</div>
+<span class="context">CONSTRUÏM LA REPÚBLICA DELS DRETS I LES LLIBERTATS Els drets i les llibertats públiques són un dels ámbits en els quals s’está fent mès palesa la distáncia que separa la realitat del règim del 78 i el projecte de futur</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“drets i les llibertats democràtiques”
+</div>
+<span class="context">en l’àmbit dels <mark>drets i les llibertats democràtiques</mark>: amb una laicitat pública respectuosa amb les creences privades de tothom</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“política procompetitiva i d’integració en l’espai europeu”
+</div>
+<span class="context">Política procompetitiva i d’integració en l’espai europeu en els mercats regulats, especialment en l’energia i les telecomunicacions, impedint la creació d’oligopolis.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“lliure i lleial competència que eviti les situacions de domini del mercat”
+</div>
+<span class="context">Protegir els drets de les persones consumidores a través d’organismes reguladors per garantir la <mark>lliure i lleial competència que eviti les situacions de domini del mercat</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“aprofundiment democràtic que hi ha en marxa”
+</div>
+<span class="context">el projecte més ambiciós de transformació socioeconòmica i d’<mark>aprofundiment democràtic que hi ha en marxa</mark> a Europa.</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“un règim del 78 caduc i en crisi”
+</div>
+<span class="context">posar el nostre model republicá en contraposició al que ens ofereix <mark>un règim del 78 caduc i en crisi</mark>. El propósit de la nostra presència</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“corrosió i la podridura de les institucions”
+</div>
+<span class="context">Oficina Antifrau de Catalunya posen en evidència la <mark>corrosió i la podridura de les institucions</mark> i del sistema polític espanyol</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“oligarquia extractiva de portes giratòries”
+</div>
+<span class="context">5. PRECARIETAT O PROSPERITAT A) SUPEREM UNA OLIGARQUIA EXTRACTIVA DE PORTES GIRATÒRIES Bona part de les elits</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“desvinculi els grans oligopolis dels poders polítics”
+</div>
+<span class="context">garantir la lliure i lleial competència que eviti les situacions de domini del mercat i <mark>desvinculi els grans oligopolis dels poders polítics</mark> i de les portes giratóries.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“les elits i oligarquies que controlen l’aparell”
+</div>
+<span class="context">les minories nacionals. En el pla cultural i lingüístic, <mark>les elits i oligarquies que controlen l’aparell</mark> administratiu i el repartiment dels recursos estan</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“la meritocrácia, la igualtat d’oportunitats, la innovació, la lliure competència i l’interès general resten pervertits i segrestats en mans d’un capitalisme d’amiguets”
+</div>
+<span class="context">…de l’Estat. La meritocrácia, la igualtat d’oportunitats, la innovació, la lliure competència i l’interès general resten pervertits i segrestats en mans d’un capitalisme d’amiguets que assegura amb recursos públics inversions fallides com el Castor i les autopistes radials de Madrid i aprova legislacions a mida de la gran banca i dels monopolis energètics. …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“la corrupció i la podridura de les institucions i del sistema polític espanyol”
+</div>
+<span class="context">’Oficina Antifrau de Catalunya posen en evidència la corrosió i la podridura de les institucions i del sistema polític espanyol, així com la utilització dels aparells de l’Estat i les forces i cossos de seguretat amb finalitats polítiques.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Bona part de les elits económiques i empresarials de l’Estat són hereves del franquisme”
+</div>
+<span class="context">5. PRECARIETAT O PROSPERITAT A) SUPEREM UNA OLIGARQUIA EXTRACTIVA DE PORTES GIRATÒRIES <mark>Bona part de les elits económiques i empresarials de l’Estat són hereves del franquisme</mark>. Les empreses que van acumular poder i riquesa mitjangant la seva connivència amb la dictadura, avui dia les podem trobar, sense complexos, cotitzant en l’IBEX 35.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“un règim corrupte i malbaratador”
+</div>
+<span class="context">6. ESPECULACIÓ O SOSTENIBILITAT A) SUPEREM UN RÈGIM CORRUPTE I MALBARATADOR En les darreres dècades, el model de creixement económic espanyol s’ha basat, en bona part, en un model especulatiu i insostenible que s’ha dedicat a mercantilitzar les necessitats básiques de la gent, degradar el territori i malbaratar recursos en infraestructures infrautilitzades i ineficients.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“oligarquia hereva del franquisme que ocupa els poders fáctics”
+</div>
+<span class="context">un sistema de baixa qualitat democrática sustentat per una <mark>oligarquia hereva del franquisme que ocupa els poders fáctics</mark> de l’Estat.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“les elits extractives que el van edificar”
+</div>
+<span class="context">desemmascarant <mark>les elits extractives que el van edificar</mark>. Una forma de corrupció institucionalitzada que s’ha plasmat en les portes giratòries</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“elits económiques i empresarials de l’Estat són hereves del franquisme”
+</div>
+<span class="context">Bona part de les <mark>elits económiques i empresarials de l’Estat són hereves del franquisme</mark>. Les empreses que van acumular poder i riquesa mitjangant la seva connivència amb la dictadura</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“elits extractives que el van edificar”
+</div>
+<span class="context">ha desemmascarat les <mark>elits extractives que el van edificar</mark>. Una xarxa ferroviària ineficient</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“elits i oligarquies que controlen l’aparell administratiu”
+</div>
+<span class="context">En el pla cultural i lingüístic, les <mark>elits i oligarquies que controlen l’aparell administratiu</mark> i el repartiment dels recursos estan plenament compromeses amb una identitat nacional de matriu castellana.</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“la voluntat democràtica de la ciutadania”
+</div>
+<span class="context">repressió política i de la manca de reconeixement de <mark>la voluntat democràtica de la ciutadania</mark> de Catalunya</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“al servei de la ciutadania”
+</div>
+<span class="context">desenvolupar un model de seguretat integral <mark>al servei de la ciutadania</mark> amb un model de cos</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“la ciutadania es faci corresponsable del bon funcionament de la República”
+</div>
+<span class="context">…Una altra manera de fer política basada en el dret a decidir i la democrácia cooperativa, en què tota <mark>la ciutadania es faci corresponsable del bon funcionament de la República</mark>. …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“valors republicans com a base de la societat per a una ciutadania crítica, solidária, compromesa”
+</div>
+<span class="context">Els <mark>valors republicans com a base de la societat per a una ciutadania crítica, solidária, compromesa</mark> i amb vocació transformadora.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“la ciutadania es faci corresponsable de la seva salut”
+</div>
+<span class="context">UN SISTEMA DE SALUT I SOCIAL INTEGRAT I UNIVERSAL El nou sistema nacional de salut i social de la República estará centrat en la persona i será públic, universal, equitatiu i integrat, garantirá la qualitat, serà finangat amb recursos públics i estará orientat a preservar la salut i el benestar de la ciutadania. Un sistema en què <mark>la ciutadania es faci corresponsable de la seva salut</mark>, disposi de la máxima informació sobre el diagnòstic propi i tingui la capacitat de prendre decisions de manera compartida sobre el tractament que vol rebre.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“participació ciutadana i democrácia cooperativa”
+</div>
+<span class="context">1. Unes administracions públiques republicanes amb govern obert, transparència, <mark>participació ciutadana i democrácia cooperativa</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“voluntat democràtica de la ciutadania de Catalunya”
+</div>
+<span class="context">sabent que els anhels del conjunt de la ciutadania de Catalunya van en la línia d’afavorir una solució democrática al conflicte amb l’Estat</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“proposta republicana”
+</div>
+<span class="context">pren tot el sentit la <mark>proposta republicana</mark>. Una proposta que depèn de promoure els valors i els principis republicans</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“un estat emprenedor que faci una aposta decidida”
+</div>
+<span class="context">És l’oportunitat per disposar d’<mark>un estat emprenedor que faci una aposta decidida</mark> per l’economia productiva, social, sostenible i innovadora</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“al marge dels interessos d’una oligarquia”
+</div>
+<span class="context">disposem d’una administració pública eficient i transparent <mark>al marge dels interessos d’una oligarquia</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“pacte nacional d’educació”
+</div>
+<span class="context">Un <mark>pacte nacional d’educació</mark> que elabori les bases de la nova llei d’educació de Catalunya per organitzar el trànsit de l’actual sistema educatiu.</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“interessos de les classes populars i l’economia”
+</div>
+<span class="context">Protegir els <mark>interessos de les classes populars i l’economia</mark> innovadora i productiva des d’uns postulats</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“redistribució de la riquesa i de la lluita”
+</div>
+<span class="context">Redistribució de la riquesa i de la lluita contra les desigualtats com a pilars de l’estat del benestar</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“privilegis fiscals a grans fortunes”
+</div>
+<span class="context">Estat espanyol que permet inadmissibles avantatges fiscals a grans empreses i fortunes, com les sicavs</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“combatre les desigualtats, ja sigui als centres”
+</div>
+<span class="context">eines per avangar en cohesió social i <mark>combatre les desigualtats, ja sigui als centres</mark> de treball a travès de la negociació</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“republicanisme independentista, i d’esquerres”
+</div>
+<span class="context">aspiracions polítiques del sobiranisme catalá i de les esquerres transformadores, sinó que s’adequa a les exigències. Així, el <mark>republicanisme independentista, i d’esquerres</mark>, com a laboratori avançat</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Protegir els interessos de les classes populars i l’economia innovadora i productiva des d’uns postulats republicans i partidaris de la justícia social”
+</div>
+<span class="context">…Combatre les desigualtats de gènere i ser inflexibles amb qualsevol manifestació de violència masclista. Les dones han de jugar un paper de primer ordre en la nostra societat i els plantejaments feministes han d’inspirar el conjunt de les polítiques públiques. <mark>Protegir els interessos de les classes populars i l’economia innovadora i productiva des d’uns postulats republicans i partidaris de la justícia social</mark>. …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“redistribució de la riquesa i de la lluita contra les desigualtats”
+</div>
+<span class="context">Una República de benestar que redistribueixi la riquesa per donar una vida digna a tothom, que lluiti contra les desigualtats per donar a tothom les mateixes oportunitats i que garanteixi els drets socials de tota la ciutadania, amb especial atenció als col-lectius mès vulnerables i en situació de risc de pobresa.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“un règim fiscal que grava mès les rendes del treball que les del capital”
+</div>
+<span class="context">Aquest estat de coses s’ha traduit en l’existència d’un sistema financer especulador que s’ha beneficiat de la crisi que ell mateix va generar, d’unes grans empreses de l’IBEX 35 que reben tractes de favor mentre la petita i mitjana empresa ha hagut de viure al marge de la contractació pública —i sovint sense poder tenir accès al crèdit bancari— i d’un regim fiscal que grava mès les rendes del treball que les del capital.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“redistribució de la riquesa”
+</div>
+<span class="context">2. Salari digne i reducció de les desigualtats salarials per a una millor <mark>redistribució de la riquesa</mark>, incrementant el salari mínim interprofessional a 1.200 euros i establint una escala salarial 1/12 per a una equitat retributiva mès alta.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Protegir els interessos de les classes populars”
+</div>
+<span class="context"><mark>Protegir els interessos de les classes populars</mark> i l’economia innovadora i productiva des d’uns postulats republicans i partidaris de la justícia social.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“sistema capitalista devorador que no fa més que incrementar les desigualtats”
+</div>
+<span class="context">cal fer front a un <mark>sistema capitalista devorador que no fa més que incrementar les desigualtats</mark> socials i especular amb els drets de les persones</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“afavoreix els poderosos i on s’acaben gravant més les rendes del treball”
+</div>
+<span class="context">tenim davant un Estat on el règim fiscal afavoreix els poderosos i on s’acaben gravant mès les rendes del treball que les del capital</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“contrapoder de les grans corporacions i del sistema econòmic del gran capital”
+</div>
+<span class="context">enfortir un sindicalisme nacional i de classe com a contrapoder de les grans corporacions i del sistema económic del gran capital</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“redistribució, cohesió social”
+</div>
+<span class="context">garantir la igualtat d’oportunitats i la inclusió educativa per tal d’aconseguir l’èxit educatiu de tot l’alumnat sense cap discriminació</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“interessos de les classes populars i l’economia”
+</div>
+<span class="context">Protegir els <mark>interessos de les classes populars i l’economia</mark> innovadora i productiva des d’uns postulats</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“redistribució de la riquesa i de la lluita”
+</div>
+<span class="context">Redistribució de la riquesa i de la lluita contra les desigualtats com a pilars de l’estat del benestar</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“privilegis fiscals a grans fortunes”
+</div>
+<span class="context">Estat espanyol que permet inadmissibles avantatges fiscals a grans empreses i fortunes, com les sicavs</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“combatre les desigualtats, ja sigui als centres”
+</div>
+<span class="context">eines per avangar en cohesió social i <mark>combatre les desigualtats, ja sigui als centres</mark> de treball a travès de la negociació</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“republicanisme independentista, i d’esquerres”
+</div>
+<span class="context">aspiracions polítiques del sobiranisme catalá i de les esquerres transformadores, sinó que s’adequa a les exigències. Així, el <mark>republicanisme independentista, i d’esquerres</mark>, com a laboratori avançat</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“la ciutadania es faci corresponsable del bon funcionament de la República”
+</div>
+<span class="context">…Una altra manera de fer política basada en el dret a decidir i la democrácia cooperativa, en què tota <mark>la ciutadania es faci corresponsable del bon funcionament de la República</mark>. …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“redistribució de la riquesa i de la lluita contra les desigualtats”
+</div>
+<span class="context">Una República de benestar que redistribueixi la riquesa per donar una vida digna a tothom, que lluiti contra les desigualtats per donar a tothom les mateixes oportunitats i que garanteixi els drets socials de tota la ciutadania, amb especial atenció als col-lectius mès vulnerables i en situació de risc de pobresa.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“un règim fiscal que grava mès les rendes del treball que les del capital”
+</div>
+<span class="context">Aquest estat de coses s’ha traduit en l’existència d’un sistema financer especulador que s’ha beneficiat de la crisi que ell mateix va generar, d’unes grans empreses de l’IBEX 35 que reben tractes de favor mentre la petita i mitjana empresa ha hagut de viure al marge de la contractació pública —i sovint sense poder tenir accès al crèdit bancari— i d’un regim fiscal que grava mès les rendes del treball que les del capital.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“un règim corrupte i malbaratador”
+</div>
+<span class="context">6. ESPECULACIÓ O SOSTENIBILITAT A) SUPEREM UN RÈGIM CORRUPTE I MALBARATADOR En les darreres dècades, el model de creixement económic espanyol s’ha basat, en bona part, en un model especulatiu i insostenible que s’ha dedicat a mercantilitzar les necessitats básiques de la gent, degradar el territori i malbaratar recursos en infraestructures infrautilitzades i ineficients.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“justícia social. Reforçar el model català de ciutadania”
+</div>
+<span class="context">Protegir els interessos de les classes populars i l’economia innovadora i productiva des d’uns postulats republicans i partidaris de la <mark>justícia social. Reforçar el model català de ciutadania</mark>, obert a gent de totes les procedències</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“redistribueixi la riquesa per donar una vida digna”
+</div>
+<span class="context">Una República de benestar que <mark>redistribueixi la riquesa per donar una vida digna</mark> a tothom, que lluiti contra les desigualtats</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“anti-corporativa, redistribució, igualtat social”
+</div>
+<span class="context">Les empreses que van acumular poder i riquesa… Tota la societat hem hagut de pagar la factura del seu deute… el règim fiscal afavoreix els poderosos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“oligopolis dels poders polítics i de les portes giratòries”
+</div>
+<span class="context">desvinculi els grans oligopolis dels poders polítics i de les portes giratóries</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“republicanisme independentista, i d’esquerres”
+</div>
+<span class="context">Així, el <mark>republicanisme independentista, i d’esquerres</mark>, com a laboratori avançat d’experiències del canvi social i polític es representa com un marc teòric i polític útil.</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 1</span>
+<div class="quote">
+“superar els vells esquemes de nacionalisme autoritari”
+</div>
+<span class="context">obert a gent de totes les procedències i respectuós amb els sentiments de pertinenga de tothom. Cal <mark>superar els vells esquemes de nacionalisme autoritari</mark></span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 2</span>
+<div class="quote">
+“barrar el pas a qualsevol intent de retrocès”
+</div>
+<span class="context">discurs que incita a l’odi contra la diferència i promou valors com el masclisme, el racisme i l’homofóbia, cal reafirmar el compromís de treballar en la defensa dels drets i les llibertats de les dones, les persones LGTBI, les persones migrades i de qualsevol altre collectiu vulnerable per tal de <mark>barrar el pas a qualsevol intent de retrocès</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“barrar el pas a l’extrema dreta”
+</div>
+<span class="context">…Ser la millor garantia pel que fa a la defensa dels drets i les llibertats de la ciutadania i esdevenir un autèntic baluard a l’hora de <mark>barrar el pas a l’extrema dreta</mark>. …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“discurs que incita a l’odi contra la diferència i promou valors com el masclisme, el racisme i l’homófóbia”
+</div>
+<span class="context">Davant l’avanç de l’extrema dreta arreu d’Europa, amb un <mark>discurs que incita a l’odi contra la diferència i promou valors com el masclisme, el racisme i l’homófóbia</mark>, cal reafirmar el compromís de treballar en la defensa dels drets i les llibertats de les dones, les persones LGTBI, les persones migrades i de qualsevol altre collectiu vulnerable per tal de barrar el pas a qualsevol intent de retrocès en les fites aconseguides.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“Madrid ès avui dia el quilómetre zero de totes les infraestructures”
+</div>
+<span class="context">El model de finançament actual de l’Estat espanyol es pot resumir en dues idees básiques: no ha servit per reduir les disparitats regionals i s’ha focalitzat a augmentar les inversions a Madrid, “capital del reino”, propi de la visió imperialista i centrífuga de l’Estat. <mark>Madrid ès avui dia el quilómetre zero de totes les infraestructures</mark> i la seu de les grans empreses públiques i de la majoriade les privades, exemple illustratiu d’un model anacrónic que per si sol explica la dramática situació espanyola.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“defensa de la llei d’horaris comercials”
+</div>
+<span class="context">Mentrestant, mesures que presentarem al Congrés i al Senat: Vetllar pel model català de comerç i la <mark>defensa de la llei d’horaris comercials</mark> d’acord amb els principis que preveuen la normativa catalana i evitar la liberalització total del sector.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“Reforçar el model català de ciutadania, obert a gent”
+</div>
+<span class="context"><mark>Reforçar el model català de ciutadania, obert a gent</mark> de totes les procedències i respectuós amb els sentiments de pertinenga de tothom. Cal superar els vells esquemes de nacionalisme autoritari</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“avanç de l’extrema dreta arreu d’Europa”
+</div>
+<span class="context">Davant l’<mark>avanç de l’extrema dreta arreu d’Europa</mark>, amb un discurs que incita a l’odi contra la diferència i promou valors com el masclisme</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“Constituir seleccions esportives catalanes”
+</div>
+<span class="context"><mark>Constituir seleccions esportives catalanes</mark> promovent l’afiliació de les federacions catalanes a les federacions internacionals. Promoure el reconeixement internacional del Comitè Olímpic de Catalunya.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“trets que ens distingeixen com a nació”
+</div>
+<span class="context">contribueixi a fer conèixer a tot el món els <mark>trets que ens distingeixen com a nació</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“Regulació dels fluxos migratoris”
+</div>
+<span class="context"><mark>Regulació dels fluxos migratoris</mark> des d’una perspectiva real i objectiva de les causes de les migracions per a la bona gestió de les entrades i sortides.</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“clima de revenja i demagógia reaccionária”
+</div>
+<span class="context">un context marcat per la crisi institucional del règim del 78 i per un <mark>clima de revenja i demagógia reaccionária</mark> en relació amb Catalunya</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“conspiració contra dirigents polítics d’arreu”
+</div>
+<span class="context">s’han destapat múltiples trames d’investigació, espionatges, seguiments i <mark>conspiració contra dirigents polítics d’arreu</mark> de l’Estat espanyol</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“el règim fiscal afavoreix els poderosos”
+</div>
+<span class="context">on <mark>el règim fiscal afavoreix els poderosos</mark> i on s’acaben gravant més les rendes del treball</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“SUPEREM UN RÈGIM CORRUPTE I MALBARATADOR”
+</div>
+<span class="context">6. ESPECULACIÓ O SOSTENIBILITAT A) <mark>SUPEREM UN RÈGIM CORRUPTE I MALBARATADOR</mark> En les darreres dècades, el model de creixement</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“forces reaccionáries volen construir un model”
+</div>
+<span class="context">uninacional on nomès hi pot haver una identitat, una bandera i una llengua. Aquestes <mark>forces reaccionáries volen construir un model</mark> educatiu que separi els alumnes</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“la repressió policial i judicial contra el referèndum de l’1 d’octubre”
+</div>
+<span class="context">…La negativa absoluta a acordar un referèndum i, amb posterioritat, <mark>la repressió policial i judicial contra el referèndum de l’1 d’octubre</mark>, han situat el règim del 78 en una situació límit, en la qual s’han fet molt paleses les cárregues i els pecats d’origen que arrossega des dels seus inicis. …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“espionatges, seguiments i conspiració contra dirigents polítics”
+</div>
+<span class="context">Des de llavors, s’han destapat múltiples trames d’investigació, <mark>espionatges, seguiments i conspiració contra dirigents polítics</mark> d’arreu de l’Estat espanyol orquestrades per cárrecs públics i electes provinents del mateix govern de Madrid i d’alguns governs autonómics.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“els poders polítics i de les portes giratóries”
+</div>
+<span class="context">Protegir els drets de les persones consumidores a través d’organismes reguladors per garantir la lliure i lleial competència que eviti les situacions de domini del mercat i desvinculi els grans oligopolis d<mark>els poders polítics i de les portes giratóries</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“corrupció estructural i institucionalitzada”
+</div>
+<span class="context">A l’Estat espanyol existeix una <mark>corrupció estructural i institucionalitzada</mark> que ha esquitxat les principals institucions de l’Estat. La qualitat democrática d’un estat depèn de la qualitat de les seves institucions.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“règim del 78 caduc i en crisi”
+</div>
+<span class="context">hem considerat que valia la pensa posar el nostre model republicá en contraposició al que ens ofereix un <mark>règim del 78 caduc i en crisi</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“corrosió i la podridura de les institucions”
+</div>
+<span class="context">posen en evidència la <mark>corrosió i la podridura de les institucions</mark> i del sistema polític espanyol, així com la utilització dels aparells de l’Estat</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“oligarquia extractiva de portes giratòries”
+</div>
+<span class="context">A) SUPEREM UNA OLIGARQUIA EXTRACTIVA DE PORTES GIRATÒRIES Bona part de les elits económiques i empresarials de l’Estat són hereves del franquisme</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“corrupció estructural i institucionalitzada”
+</div>
+<span class="context">A l’Estat espanyol existeix una <mark>corrupció estructural i institucionalitzada</mark> que ha esquitxat les principals institucions</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“forces reaccionàries volen construir un model educatiu”
+</div>
+<span class="context">Aquestes <mark>forces reaccionàries volen construir un model educatiu</mark> que separi els alumnes per raó de llengua i divideixi els estudiants.</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“la voluntat democràtica de la ciutadania”
+</div>
+<span class="context">repressió política i de la manca de reconeixement de <mark>la voluntat democràtica de la ciutadania</mark> de Catalunya</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“al servei de la ciutadania”
+</div>
+<span class="context">desenvolupar un model de seguretat integral <mark>al servei de la ciutadania</mark> amb un model de cos policial</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“centrat en la persona”
+</div>
+<span class="context">nou sistema nacional de salut i social de la República estarà <mark>centrat en la persona</mark> i serà públic</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“situi la ciutadania al centre del cercle”
+</div>
+<span class="context">Un model que <mark>situi la ciutadania al centre del cercle</mark> de la innovació. En aquest ámbit, els pilars fonamentals</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“cohesionar un poble divers com el catalá”
+</div>
+<span class="context">actius de l’autogovern, perquè ha permès <mark>cohesionar un poble divers com el catalá</mark> i garantir un assoliment de competències</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“els valors republicans com a base d’una ciutadania lliure, crítica i compromesa”
+</div>
+<span class="context">…La República ès una oportunitat per exercir una altra manera de fer política basada en el dret a decidir i la democrácia cooperativa, en què tota la ciutadania es faci corresponsable del bon funcionament de la República. Una República que, prenent com a marc de referència els Paisos Catalans, sigui fruit de la lliure voluntat de la ciutadania de Catalunya… <mark>els valors republicans com a base d’una ciutadania lliure, crítica i compromesa</mark> en què tota la societat es faci corresponsable de la República i el bè comú. …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“la defensa dels drets i les llibertats de la ciutadania de Catalunya”
+</div>
+<span class="context">Es demostra, un cop mès, que <mark>la defensa dels drets i les llibertats de la ciutadania de Catalunya</mark> avanga en paral~lel a la defensa de la causa democrática que poden dur a terme els sectors mès avançats de la societat espanyola.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“la ciutadania es faci corresponsable de la seva salut”
+</div>
+<span class="context">UN SISTEMA DE SALUT I SOCIAL INTEGRAT I UNIVERSAL El nou sistema nacional de salut i social de la República estará centrat en la persona i será públic, universal, equitatiu i integrat, garantirá la qualitat, serà finangat amb recursos públics i estará orientat a preservar la salut i el benestar de la ciutadania. Un sistema en què <mark>la ciutadania es faci corresponsable de la seva salut</mark>, disposi de la máxima informació sobre el diagnòstic propi i tingui la capacitat de prendre decisions de manera compartida sobre el tractament que vol rebre.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“els interessos generals en benefici d’aquestes elits”
+</div>
+<span class="context">…ha condicionat la relació del sistema polític amb els poders económics conformant relacions de poder que han suposat autèntiques estafes i agressions als interessos generals en benefici d’aquestes elits.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“apoderament real de la gent i una concepció activa”
+</div>
+<span class="context">l’<mark>apoderament real de la gent i una concepció activa</mark> de la democrácia que no es conforma a reduir-la únicament al simple exercici del dret a vot cada quatre anys.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“garanteixi els mateixos drets i oportunitats a tota la ciutadania”
+</div>
+<span class="context">una societat cohesionada que <mark>garanteixi els mateixos drets i oportunitats a tota la ciutadania</mark>. Entenem des del vessant republicà</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Tota la societat hem hagut de pagar la factura”
+</div>
+<span class="context"><mark>Tota la societat hem hagut de pagar la factura</mark> del seu deute, mentre ells mantenien sous, beneficis i privilegis</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“apoderament de la ciutadania i la seva qualitat de vida”
+</div>
+<span class="context">que permeti augmentar l’<mark>apoderament de la ciutadania i la seva qualitat de vida</mark>, millori la competitivitat</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“som un sol poble davant les envestides de l’Estat”
+</div>
+<span class="context">La convicció de que <mark>som un sol poble davant les envestides de l’Estat</mark>. Un altre dels elements de preocupació de les estructures de poder davant l’èxit del model educatiu català.</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“un règim del 78 caduc i en crisi”
+</div>
+<span class="context">posar el nostre model republicá en contraposició al que ens ofereix <mark>un règim del 78 caduc i en crisi</mark>. El propósit de la nostra presència</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“corrosió i la podridura de les institucions”
+</div>
+<span class="context">Oficina Antifrau de Catalunya posen en evidència la <mark>corrosió i la podridura de les institucions</mark> i del sistema polític espanyol</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“oligarquia extractiva de portes giratòries”
+</div>
+<span class="context">5. PRECARIETAT O PROSPERITAT A) SUPEREM UNA OLIGARQUIA EXTRACTIVA DE PORTES GIRATÒRIES Bona part de les elits</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“SUPEREM UN RÈGIM CORRUPTE I MALBARATADOR”
+</div>
+<span class="context">6. ESPECULACIÓ O SOSTENIBILITAT A) <mark>SUPEREM UN RÈGIM CORRUPTE I MALBARATADOR</mark> En les darreres dècades, el model de creixement</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“les elits i oligarquies que controlen l’aparell”
+</div>
+<span class="context">les minories nacionals. En el pla cultural i lingüístic, <mark>les elits i oligarquies que controlen l’aparell</mark> administratiu i el repartiment dels recursos estan</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“la repressió policial i judicial contra el referèndum de l’1 d’octubre”
+</div>
+<span class="context">…La negativa absoluta a acordar un referèndum i, amb posterioritat, <mark>la repressió policial i judicial contra el referèndum de l’1 d’octubre</mark>, han situat el règim del 78 en una situació límit, en la qual s’han fet molt paleses les cárregues i els pecats d’origen que arrossega des dels seus inicis. …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“la corrupció i la podridura de les institucions i del sistema polític espanyol”
+</div>
+<span class="context">’Oficina Antifrau de Catalunya posen en evidència la corrosió i la podridura de les institucions i del sistema polític espanyol, així com la utilització dels aparells de l’Estat i les forces i cossos de seguretat amb finalitats polítiques.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Bona part de les elits económiques i empresarials de l’Estat són hereves del franquisme”
+</div>
+<span class="context">5. PRECARIETAT O PROSPERITAT A) SUPEREM UNA OLIGARQUIA EXTRACTIVA DE PORTES GIRATÒRIES <mark>Bona part de les elits económiques i empresarials de l’Estat són hereves del franquisme</mark>. Les empreses que van acumular poder i riquesa mitjangant la seva connivència amb la dictadura, avui dia les podem trobar, sense complexos, cotitzant en l’IBEX 35.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“un règim corrupte i malbaratador”
+</div>
+<span class="context">6. ESPECULACIÓ O SOSTENIBILITAT A) SUPEREM UN RÈGIM CORRUPTE I MALBARATADOR En les darreres dècades, el model de creixement económic espanyol s’ha basat, en bona part, en un model especulatiu i insostenible que s’ha dedicat a mercantilitzar les necessitats básiques de la gent, degradar el territori i malbaratar recursos en infraestructures infrautilitzades i ineficients.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“els poders que s’oposen al que representa la República Catalana”
+</div>
+<span class="context"><mark>els poders que s’oposen al que representa la República Catalana</mark>, utilitzant sense cap pudor la violència policial —i sovint la dels grups de l’extrema dreta organitzada— i la repressió judicial, són els mateixos que, en la defensa dels seus privilegis, volen mantenir inalterable un sistema institucional</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“oligarquia franquista continuar dirigint el país”
+</div>
+<span class="context">va permetre a l’<mark>oligarquia franquista continuar dirigint el país</mark>, i perpetuar-se en els estaments del poder</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“blindat els privilegis d’aquests oligopolis”
+</div>
+<span class="context">el govern de l’Estat no ha procurat vetllar per la lliure competència, sinó que ha <mark>blindat els privilegis d’aquests oligopolis</mark>, amb exemples paradigmátics</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“interessos d’uns pocs que no en un sistema racional”
+</div>
+<span class="context">ès un model territorial molt mès basat en l’interès d’uns pocs que no en un sistema racional que beneficii la majoria</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“elits i oligarquies que controlen l’aparell administratiu”
+</div>
+<span class="context">les <mark>elits i oligarquies que controlen l’aparell administratiu</mark> i el repartiment dels recursos estan plenament compromeses amb una identitat nacional de matriu castellana.</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="33905_201904_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

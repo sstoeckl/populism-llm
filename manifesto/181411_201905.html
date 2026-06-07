@@ -1,0 +1,1773 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>DA (South Africa, 2019) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/181411_201905_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">DA (South Africa, 2019)</h1>
+<p class="subtitle lead">manifesto_id 181411_201905</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> South Africa · <span class="item"><strong>Party</strong></span> DA (Democratic Alliance) · <span class="item"><strong>Year</strong></span> 2019 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 40</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.7</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.5</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">9.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">9.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">9.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.5</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 10.0 · verified · chunk 1</span>
+<div class="quote">
+“enabling environment for the private sector to be”
+</div>
+<span class="context">role of the state to provide an <mark>enabling environment for the private sector to be</mark> the engine of economic growth</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“open up the market and allow the private sector to invest”
+</div>
+<span class="context">It is vital that we <mark>open up the market and allow the private sector to invest</mark> and inject efficiency into the system.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“enabling environment for investment by independent power”
+</div>
+<span class="context">renewable energy projects around South Africa by creating an <mark>enabling environment for investment by independent power</mark> producers (see the DA energy policy for more information</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“market-based economy; protecting and upholding individual rights and freedoms”
+</div>
+<span class="context">In this we are guided by our fundamental belief in: the rule of law; the <mark>market-based economy; protecting and upholding individual rights and freedoms</mark>; the importance of building a caring, opportunity-rich South Africa; the significance of a capable state (staffed with qualified, fit-for-purpose professionals); as well as the moral imperative to redress the stark inequalities that remain all pervasive in South Africa, 25 years into democracy.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“free markets, competition, free enterprise”
+</div>
+<span class="context">The DA national government will implement a programme of full and partial privatisation by: Analysing all SOEs with the aim of identifying those which should undergo full or partial privatisation by bringing in private equity partners and disinvesting from non-core SOEs urgently.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“digitising government records and declaring certain classes of documents automatically publicly available online”
+</div>
+<span class="context">Ensure the payment of all public money is done in a transparent fashion by: placing key information about tender processes – such as bid specifications, names of companies submitting tenders, names of selection panel members, scores given by the selection panel and so forth – online; <mark>digitising government records and declaring certain classes of documents automatically publicly available online</mark>, particularly documents relating to supply chain management; and requiring government departments to publish monthly financial reports detailing, amongst other things, contracts entered into and tenders awarded.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“enabling environment for the private sector”
+</div>
+<span class="context">it is the role of the state to provide an <mark>enabling environment for the private sector</mark> to be the engine of economic growth</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“inject competition into the market”
+</div>
+<span class="context">It is vital to <mark>inject competition into the market</mark> for many of these goods and services as many SOEs have complete monopolies over their respective markets.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“enabling environment for investment by independent power producers”
+</div>
+<span class="context">Up-scaling the installation of renewable energy projects around South Africa by creating an <mark>enabling environment for investment by independent power producers</mark></span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Protecting the SARB’s mandate as depicted in the Constitution”
+</div>
+<span class="context">Opposing the SARB Amendment Bill (EFF PMB) which aims to nationalise the SARB… <mark>Protecting the SARB’s mandate as depicted in the Constitution</mark>, including the current monetary policy</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“adequate access to financing and support”
+</div>
+<span class="context">Working with beneficiaries of land reform programmes and share equity schemes to ensure that they have <mark>adequate access to financing and support</mark> for ‘on-farm’ infrastructure</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Ensuring that the South African Reserve Bank (SARB) remains independent”
+</div>
+<span class="context"><mark>Ensuring that the South African Reserve Bank (SARB) remains independent</mark> and is able to deliver on its constitutional mandate of protecting the value of the Rand by making sure that it stays independent and free of political control.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Assuring investors of the constitutional protection of their investment and intellectual property”
+</div>
+<span class="context"><mark>Assuring investors of the constitutional protection of their investment and intellectual property</mark> in terms of owning and operating ICT facilities, such as networks and data centres.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Subject all defence procurement to strict regulations in order to prevent corruption”
+</div>
+<span class="context">The DA is of the belief that the primary focus of a national defence force should be to keep South Africans safe. We currently have far too few troops deployed on our national borders. Thus, as a first priority a DA national government will: Increase the 15 companies protecting South Africa’s borders to the required 22 companies and ensure that they are properly resourced and trained. The size of our defence force is relatively small and because of this we believe we it is necessary to be strategic about how and where we use our troops mindful that South Africa has an important role to play on the continent and in the SADC region. A DA national government will: Ensure that participation in foreign peacekeeping is only undertaken to secure the region, and missions will only be undertaken further afield when: mandated to do so by the United Nations or African Union; and the mission is funded in concert with multi-laterals. The South African military also needs to be modernised. In this regard a DA national government will: Undertake a full audit of equipment and personnel available to determine procurement priorities and assets that can be sold or re-purposed. <mark>Subject all defence procurement to strict regulations in order to prevent corruption</mark>. Reduce the wage bill by retiring medically unfit and elderly members.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“SARB remains independent and is able”
+</div>
+<span class="context">Ensuring that the South African Reserve Bank (SARB) remains independent and is able to deliver on its constitutional mandate</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“competitive market process in the best interests”
+</div>
+<span class="context">Motivating that the regulator assigns spectrum via a <mark>competitive market process in the best interests</mark> of driving affordable, user-driven Internet access demand</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“State Capture has destroyed SOE credibility in the market”
+</div>
+<span class="context"><mark>State Capture has destroyed SOE credibility in the market</mark> along with reducing the sovereign and SOE Ratings Corporate governance and the financial stability of the SOEs has also been severely affected.</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 10.0 · verified · chunk 1</span>
+<div class="quote">
+“the rule of law; the market-based economy; protecting”
+</div>
+<span class="context">In this we are guided by our fundamental belief in: <mark>the rule of law; the market-based economy; protecting</mark> and upholding individual</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“strengthen accountability, transparency and the rule of law”
+</div>
+<span class="context">The DA in national government will <mark>strengthen accountability, transparency and the rule of law</mark> as well as the supremacy of the Constitution.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“strengthen institutional independence of the judiciary”
+</div>
+<span class="context">national government would: Continue to support measures to <mark>strengthen institutional independence of the judiciary</mark>. Ensure the independence of Chapter 9 institutions particularly by</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“rule of law; the market-based economy; protecting and upholding individual rights and freedoms”
+</div>
+<span class="context">In this we are guided by our fundamental belief in: the <mark>rule of law; the market-based economy; protecting and upholding individual rights and freedoms</mark>; the importance of building a caring, opportunity-rich South Africa; the significance of a capable state (staffed with qualified, fit-for-purpose professionals); as well as the moral imperative to redress the stark inequalities that remain all pervasive in South Africa, 25 years into democracy.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“strengthen institutional independence of the judiciary”
+</div>
+<span class="context">Continue to support measures to <mark>strengthen institutional independence of the judiciary</mark>. Ensure the independence of Chapter 9 institutions particularly by taking steps to strengthen their financial and administrative independence.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“Continue to support measures to strengthen institutional independence of the judiciary”
+</div>
+<span class="context">The DA cares about establishing a government that is serious about being transparent and accountable. To this end a DA national government would: <mark>Continue to support measures to strengthen institutional independence of the judiciary</mark>. Ensure the independence of Chapter 9 institutions particularly by taking steps to strengthen their financial and administrative independence.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“rule of law; the market-based economy”
+</div>
+<span class="context">we are guided by our fundamental belief in: the <mark>rule of law; the market-based economy</mark>; protecting and upholding individual rights and freedoms</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“independence of the Chapter Nine institutions”
+</div>
+<span class="context">Ensure the independence of Chapter 9 institutions particularly by taking steps to strengthen their financial and administrative independence. Improve accountability by: extending our current performance monitoring system</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“strengthen institutional independence of the judiciary”
+</div>
+<span class="context">Continue to support measures to <mark>strengthen institutional independence of the judiciary</mark>. Ensure the independence of Chapter 9 institutions particularly by taking steps to strengthen their financial and administrative independence.</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“regardless of their race, gender, sexual orientation”
+</div>
+<span class="context">it is our foundational belief that no South African – <mark>regardless of their race, gender, sexual orientation</mark> or any other marker</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“Combat discrimination against the LGBTIQ+ community and promote the community’s rights”
+</div>
+<span class="context"><mark>Combat discrimination against the LGBTIQ+ community and promote the community’s rights</mark> by: Creating safe and non-discriminative environments</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“protecting and hosting refugees and those who”
+</div>
+<span class="context">actively assisting, supporting and caring for asylum seekers, and <mark>protecting and hosting refugees and those who</mark> have been trafficked, smuggled or abused within or</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“reject unfair discrimination and exclusion”
+</div>
+<span class="context">Individuals are free to flourish as fairness rejects unfair discrimination and exclusion.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“combat discrimination against the LGBTIQ+ community”
+</div>
+<span class="context">Combat discrimination against the LGBTIQ+ community and promote the community’s rights by: Creating safe and non-discriminative environments and ensuring government makes opportunities for dialogues on identities and sexuality.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Ensure that every South African is able to access justice in the language he or she is most comfortable litigating in”
+</div>
+<span class="context">a DA national government will: Strengthen the resources of Legal Aid South Africa to provide litigation support to poor South Africans including exploring incentive packages to attract the best and brightest in the legal field to work for Legal Aid. Make litigation in the Small Claims Court mandatory for claims that fall within its jurisdiction and impose heavy cost penalties on parties that choose to litigate in higher courts where a lower court has jurisdiction. <mark>Ensure that every South African is able to access justice in the language he or she is most comfortable litigating in</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“rejects unfair discrimination and exclusion”
+</div>
+<span class="context">Individuals are free to flourish as fairness <mark>rejects unfair discrimination and exclusion</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“Combat discrimination against the LGBTIQ+ community”
+</div>
+<span class="context"><mark>Combat discrimination against the LGBTIQ+ community</mark> and promote the community’s rights by: Creating safe and non-discriminative environments and ensuring government makes opportunities for dialogues on identities and sexuality.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“every South African is entitled to a safe”
+</div>
+<span class="context">The DA acknowledges that every person in South Africa is entitled to a safe and secure environment, regardless of where they live.</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 10.0 · verified · chunk 1</span>
+<div class="quote">
+“Our liberal democratic world view”
+</div>
+<span class="context"><mark>Our liberal democratic world view</mark> and the related belief in the role of institutions</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“strengthen accountability, transparency and the rule of law”
+</div>
+<span class="context">The DA in national government will <mark>strengthen accountability, transparency and the rule of law</mark> as well as the supremacy of the Constitution.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“strengthen institutional independence of the judiciary”
+</div>
+<span class="context">national government would: Continue to support measures to <mark>strengthen institutional independence of the judiciary</mark>. Ensure the independence of Chapter 9 institutions particularly by</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“rule of law; the market-based economy; protecting and upholding individual rights and freedoms”
+</div>
+<span class="context">In this we are guided by our fundamental belief in: the <mark>rule of law; the market-based economy; protecting and upholding individual rights and freedoms</mark>; the importance of building a caring, opportunity-rich South Africa; the significance of a capable state (staffed with qualified, fit-for-purpose professionals); as well as the moral imperative to redress the stark inequalities that remain all pervasive in South Africa, 25 years into democracy.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“strengthen institutional independence of the judiciary”
+</div>
+<span class="context">Continue to support measures to <mark>strengthen institutional independence of the judiciary</mark>. Ensure the independence of Chapter 9 institutions particularly by taking steps to strengthen their financial and administrative independence.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Continue to support measures to strengthen institutional independence of the judiciary”
+</div>
+<span class="context">The DA cares about establishing a government that is serious about being transparent and accountable. To this end a DA national government would: <mark>Continue to support measures to strengthen institutional independence of the judiciary</mark>. Ensure the independence of Chapter 9 institutions particularly by taking steps to strengthen their financial and administrative independence.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Our liberal democratic world view”
+</div>
+<span class="context"><mark>Our liberal democratic world view</mark> and the related belief in the role of institutions has arguably never been more important</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“private sector investment”
+</div>
+<span class="context">Work with local and provincial governments to plan and facilitate <mark>private sector investment</mark> in agro-processing plants – located along key corridors – with the aim of adding further value to agricultural production</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“transparent and accountable to those it serves”
+</div>
+<span class="context">We believe government can be more responsive to the needs of the people, we believe it can be more <mark>transparent and accountable to those it serves</mark>, and we believe that it can be more efficient in delivering services.</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“protect the interests of workers, not their own elites”
+</div>
+<span class="context">ensuring labour unions <mark>protect the interests of workers, not their own elites</mark>; and introducing a Voluntary</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“used these enterprises as vehicles of corruption and patronage”
+</div>
+<span class="context">The current government cannot take the action needed because they have <mark>used these enterprises as vehicles of corruption and patronage</mark> with the enterprises facing increasing political interference</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“This system has enriched cronies at the top”
+</div>
+<span class="context">is a patronage system or sophisticated racketeering syndicate. <mark>This system has enriched cronies at the top</mark> of the party at the expense of millions of South</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“populism, nationalism and proto-fascism”
+</div>
+<span class="context">Our liberal democratic world view and the related belief in the role of institutions has arguably never been more important in light of the rise of <mark>populism, nationalism and proto-fascism</mark>, both domestically and internationally.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“The ANC has no genuine intention of fighting corruption”
+</div>
+<span class="context"><mark>The ANC has no genuine intention of fighting corruption</mark>. It is not a political party, it is a patronage system or sophisticated racketeering syndicate. This system has enriched cronies at the top of the party at the expense of millions of South Africans who continue to live in abject poverty.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“The ANC has no genuine intention of fighting corruption”
+</div>
+<span class="context">Eliminating Corruption and State Capture <mark>The ANC has no genuine intention of fighting corruption</mark>. It is not a political party, it is a patronage system or sophisticated racketeering syndicate. This system has enriched cronies at the top of the party at the expense of millions of South Africans who continue to live in abject poverty.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“enriching a politically connected elite”
+</div>
+<span class="context">The current BEE system has only had the consequence of <mark>enriching a politically connected elite</mark> and to dampen economic growth</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“it is a patronage system or sophisticated racketeering syndicate”
+</div>
+<span class="context">The ANC has no genuine intention of fighting corruption. It is not a political party, <mark>it is a patronage system or sophisticated racketeering syndicate</mark>. This system has enriched cronies at the top of the party</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“it is a patronage system or sophisticated racketeering syndicate”
+</div>
+<span class="context">The ANC has no genuine intention of fighting corruption. It is not a political party, <mark>it is a patronage system or sophisticated racketeering syndicate</mark>. This system has enriched cronies at the top</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“ANC factional interests and not the hopes, needs and aspirations of citizens”
+</div>
+<span class="context">The state in South Africa serves <mark>ANC factional interests and not the hopes, needs and aspirations of citizens</mark>. Through fundamental mismanagement the state has become bloated</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“One South Africa for All”
+</div>
+<span class="context">The DA’s vision of <mark>One South Africa for All</mark> is founded on the fundamental belief that there is an urgent need to remedy this manifestly unfair reality to ensure that all South Africans – regardless of their race, gender or geographical context – are able to reach their full potential and in so doing, truly build One South Africa for All.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“One South Africa for All”
+</div>
+<span class="context">The DA is committed to building <mark>One South Africa for All</mark> and a fundamental step to achieving this is building a social assistance system which, as part of a package of policies, is able to deal with the challenges posed by increasing levels of economic inequality and income poverty.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“A DA national government will have the following 15 ministries”
+</div>
+<span class="context">Our proposal will see 15 ministries carefully and purposefully designed to direct government spending towards the right mix of priorities, which will in turn lead to economic growth. <mark>A DA national government will have the following 15 ministries</mark>: 1. Employment and Enterprise , 2. Economic Infrastructure, 3. Finance, 4. Basic Education, 5. Further Education, Skills and Innovation, 6. Health and Social Development, 7. Integrated Planning and Service Delivery, 8. Police, 9. Local and Provincial Government, 10. Home Affairs, 11. Agriculture and Land Reform, 12. Justice and Correctional Services, 13. Environment, 14. Foreign Affairs, 15. Defence.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“government cannot take sides but must”
+</div>
+<span class="context">the <mark>government cannot take sides but must</mark> be able to function as a neutral agent responsible for opening the playing field</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“The DA is the only party that can”
+</div>
+<span class="context"><mark>The DA is the only party that can</mark> fix the mess at our SOEs… The ANC will not bite the hand that feeds it, even if the consequences are devastating for South Africans.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“Only the DA can fix the rot”
+</div>
+<span class="context"><mark>Only the DA can fix the rot</mark> at Home Affairs by eliminating corruption, inefficiency, poor leadership and policy uncertainty.</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“economic redress is not to mean taking from one group”
+</div>
+<span class="context">Economic redress does not have to mean taking from one group or individual to give to another. It is about expanding access to opportunity to all South Africans. It must not, and should never be, reduced to a zero-sum game, where there is a fight for the scraps of a shrinking economic pie.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“increasing levels of economic inequality and income poverty”
+</div>
+<span class="context">The DA is committed to building One South Africa for All and a fundamental step to achieving this is building a social assistance system which, as part of a package of policies, is able to deal with the challenges posed by <mark>increasing levels of economic inequality and income poverty</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“billions of Rands have been looted from these entities through a shadow network”
+</div>
+<span class="context">Billions of Rands have been looted from these entities through a shadow network of procurement irregularities, BEE fronting, inflated contract prices, middleman service fees and kickbacks. Recent evidence now shows that the Gupta family were not the only ones taking advantage of the ANC’s willingness to put themselves and their government up for sale – there are others that were equally eager to take up the ANC on their offer.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“moral imperative to redress the stark inequalities”
+</div>
+<span class="context">the <mark>moral imperative to redress the stark inequalities</mark> that remain all pervasive in South Africa, 25 years into democracy</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“social assistance system”
+</div>
+<span class="context">building a <mark>social assistance system</mark> which, as part of a package of policies, is able to deal with the challenges posed by increasing levels of economic inequality and income poverty</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“enriched cronies at the top of the party”
+</div>
+<span class="context">This system has <mark>enriched cronies at the top of the party</mark> at the expense of millions of South Africans who continue to live in abject poverty.</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“ANC factional interests and not the hopes, needs and aspirations of citizens”
+</div>
+<span class="context">The state in South Africa serves <mark>ANC factional interests and not the hopes, needs and aspirations of citizens</mark>. Through fundamental mismanagement the state has become bloated</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“preventing irregular migration and incentivising regular migration”
+</div>
+<span class="context">Our migration policy will be based upon <mark>preventing irregular migration and incentivising regular migration</mark> to grow our economy, the region and Africa as</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“One South Africa for All”
+</div>
+<span class="context">The DA’s vision of <mark>One South Africa for All</mark> is founded on the fundamental belief that there is an urgent need to remedy this manifestly unfair reality to ensure that all South Africans – regardless of their race, gender or geographical context – are able to reach their full potential and in so doing, truly build One South Africa for All.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“The ANC has no genuine intention of fighting corruption”
+</div>
+<span class="context"><mark>The ANC has no genuine intention of fighting corruption</mark>. It is not a political party, it is a patronage system or sophisticated racketeering syndicate. This system has enriched cronies at the top of the party at the expense of millions of South Africans who continue to live in abject poverty.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“The ANC has no genuine intention of fighting corruption”
+</div>
+<span class="context">Eliminating Corruption and State Capture <mark>The ANC has no genuine intention of fighting corruption</mark>. It is not a political party, it is a patronage system or sophisticated racketeering syndicate. This system has enriched cronies at the top of the party at the expense of millions of South Africans who continue to live in abject poverty.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“rise of populism, nationalism and proto-fascism”
+</div>
+<span class="context">Our liberal democratic world view and the related belief in the role of institutions has arguably never been more important in light of the <mark>rise of populism, nationalism and proto-fascism</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“vehicles of corruption and patronage”
+</div>
+<span class="context">they have used these enterprises as <mark>vehicles of corruption and patronage</mark> with the enterprises facing increasing political interference in the awarding of tenders and contracts</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“Only a DA government has the political will”
+</div>
+<span class="context"><mark>Only a DA government has the political will</mark> to fix the fundamentals in the police force to truly tackle crime for the benefit of all the people of this country.</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“combatting cross- border crime, crime syndicates and undocumented migration”
+</div>
+<span class="context">Strengthen border security in the relevant provinces, with a specific focus on <mark>combatting cross- border crime, crime syndicates and undocumented migration</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“preventing irregular migration and incentivising regular migration”
+</div>
+<span class="context">Our migration policy will be based upon <mark>preventing irregular migration and incentivising regular migration</mark> to grow our economy, the region and Africa as</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“reject the ANC and EFF’s plan to change the Constitution”
+</div>
+<span class="context">We are directly opposed to the ANC and EFF’s plan to change the Constitution to allow government to expropriate land without compensation. This would make government the owner of all property and land, and citizens would have to rent their homes and land from government for life.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Strengthen border security in the relevant provinces”
+</div>
+<span class="context"><mark>Strengthen border security in the relevant provinces</mark>, with a specific focus on combatting cross- border crime, crime syndicates and undocumented migration.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“We believe that the only way to create cohesive and united communities, in the spirit of One South Africa for All”
+</div>
+<span class="context">The DA is the only party which is willing to tackle the challenge head on and provide leadership on this difficult and indeed emotive issue. <mark>We believe that the only way to create cohesive and united communities, in the spirit of One South Africa for All</mark>, is to make sure that migration occurs legally.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Strengthen border security in the relevant provinces”
+</div>
+<span class="context"><mark>Strengthen border security in the relevant provinces</mark>, with a specific focus on combatting cross-border crime, crime syndicates and undocumented migration</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“combatting cross-border crime, crime syndicates and undocumented migration”
+</div>
+<span class="context">Strengthen border security in the relevant provinces, with a specific focus on <mark>combatting cross-border crime, crime syndicates and undocumented migration</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“migration must happen in a legal manner”
+</div>
+<span class="context">South Africa desperately needs skills and is, and should continue to be, a cosmopolitan country… But this <mark>migration must happen in a legal manner</mark>.</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“rooted in populism that venerates the failed nationalist”
+</div>
+<span class="context">Racially divisive rhetoric, <mark>rooted in populism that venerates the failed nationalist</mark> policies of countries like Zimbabwe</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“ANC factional interests and not the hopes, needs and aspirations of citizens”
+</div>
+<span class="context">The state in South Africa serves <mark>ANC factional interests and not the hopes, needs and aspirations of citizens</mark>. Through fundamental mismanagement the state has become bloated</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“because it is rotten to its core”
+</div>
+<span class="context">The ANC government is not capable of fighting corruption <mark>because it is rotten to its core</mark>. What is needed is a party that has a</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“racially divisive rhetoric, rooted in populism”
+</div>
+<span class="context">Our country has not faced a period of more racially divisive rhetoric and tension since the dawn of our democracy. While much of this rhetoric stems from opportunistic political parties mobilising people on the basis of race, it must also be recognised that it is because many millions of South Africans remain on the periphery of our society, where apartheid forced them or their parents that this rhetoric takes hold. Racially divisive rhetoric, rooted in populism that venerates the failed nationalist policies of countries like Zimbabwe and Venezuela, takes advantage of the reality that there has been no real justice or redress for our divided past.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“corruption and patronage”
+</div>
+<span class="context">The current government cannot take the action needed because they have used these enterprises as vehicles of <mark>corruption and patronage</mark> with the enterprises facing increasing political interference in the awarding of tenders and contracts.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“The ANC government is not capable of fighting corruption because it is rotten to its core”
+</div>
+<span class="context">The recent revelations concerning the cosy relationship between Bosasa and very senior public office bearers – including President Ramaphosa and his son – shows that the problem of State Capture did not begin or end with Zuma and the Guptas. It is part and parcel of the culture of the failing ANC government. <mark>The ANC government is not capable of fighting corruption because it is rotten to its core</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Coalition of Corruption regained control”
+</div>
+<span class="context">before the <mark>Coalition of Corruption regained control</mark> of the purse strings, the DA-led administration passed the City’s largest ever operating budget</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“ANC will not bite the hand that feeds it”
+</div>
+<span class="context">The current government cannot take the action needed because they have used these enterprises as vehicles of corruption and patronage… The <mark>ANC will not bite the hand that feeds it</mark>, even if the consequences are devastating for South Africans.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“The ANC government is rotten to its core”
+</div>
+<span class="context">The ANC government is not capable of fighting corruption because it is rotten to its core. What is needed is a party that has a solid record of fighting corruption</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“elected by the people and must be close and accountable”
+</div>
+<span class="context">Our leaders must never forget they are <mark>elected by the people and must be close and accountable</mark> to them.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“Our citizens in rural communities should not live in fear”
+</div>
+<span class="context">The DA government will prioritise the safety of farming communities as workers and farmers have a right to be protected from violent attacks. <mark>Our citizens in rural communities should not live in fear</mark> while their leaders turn a blind eye</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“so that the South African people can”
+</div>
+<span class="context">Bringing in direct elections for all political office holders <mark>so that the South African people can</mark> hold their president, premiers and mayors directly accountable.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“One South Africa for All”
+</div>
+<span class="context">The DA’s vision of <mark>One South Africa for All</mark> is founded on the fundamental belief that there is an urgent need to remedy this manifestly unfair reality to ensure that all South Africans – regardless of their race, gender or geographical context – are able to reach their full potential and in so doing, truly build One South Africa for All.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“One South Africa for All”
+</div>
+<span class="context">The DA is committed to building <mark>One South Africa for All</mark> and a fundamental step to achieving this is building a social assistance system which, as part of a package of policies, is able to deal with the challenges posed by increasing levels of economic inequality and income poverty.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“the South African people can hold their president, premiers and mayors directly accountable”
+</div>
+<span class="context">Bringing in direct elections for all political office holders so that <mark>the South African people can hold their president, premiers and mayors directly accountable</mark>. Implementing lifestyle audits for all politicians and government officials above a certain level, or suspected of fraud and/or corruption, as well as doing annual lifestyle audits for government officials selected randomly, by a similar process as that through which SARS identifies taxpayers for auditing.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“elected by the people and must be close”
+</div>
+<span class="context">Our leaders must never forget they are <mark>elected by the people and must be close</mark> and accountable to them</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“One South Africa for All”
+</div>
+<span class="context">we must ensure that Section 27 of the Constitution is realised and that each and every South African can confidently access reliable and excellent health services… build <mark>One South Africa for All</mark></span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“in light of the rise of populism, nationalism”
+</div>
+<span class="context">arguably never been more important <mark>in light of the rise of populism, nationalism</mark> and proto-fascism, both domestically</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“ANC factional interests and not the hopes, needs and aspirations of citizens”
+</div>
+<span class="context">The state in South Africa serves <mark>ANC factional interests and not the hopes, needs and aspirations of citizens</mark>. Through fundamental mismanagement the state has become bloated</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“This system has enriched cronies at the top”
+</div>
+<span class="context">is a patronage system or sophisticated racketeering syndicate. <mark>This system has enriched cronies at the top</mark> of the party at the expense of millions of South</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“populism, nationalism and proto-fascism”
+</div>
+<span class="context">Our liberal democratic world view and the related belief in the role of institutions has arguably never been more important in light of the rise of <mark>populism, nationalism and proto-fascism</mark>, both domestically and internationally.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“The ANC has no genuine intention of fighting corruption”
+</div>
+<span class="context"><mark>The ANC has no genuine intention of fighting corruption</mark>. It is not a political party, it is a patronage system or sophisticated racketeering syndicate. This system has enriched cronies at the top of the party at the expense of millions of South Africans who continue to live in abject poverty.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“The ANC has no genuine intention of fighting corruption”
+</div>
+<span class="context">Eliminating Corruption and State Capture <mark>The ANC has no genuine intention of fighting corruption</mark>. It is not a political party, it is a patronage system or sophisticated racketeering syndicate. This system has enriched cronies at the top of the party at the expense of millions of South Africans who continue to live in abject poverty.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“enriching a politically connected elite”
+</div>
+<span class="context">The current BEE system has only had the consequence of <mark>enriching a politically connected elite</mark> and to dampen economic growth</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“The DA is the only party that can fix”
+</div>
+<span class="context"><mark>The DA is the only party that can fix</mark> the mess at our SOEs. The current government cannot take the action needed because they have used these enterprises as vehicles of corruption and patronage</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“The DA is the only party that can offer”
+</div>
+<span class="context"><mark>The DA is the only party that can offer</mark> South Africans a corruption-free future. Under a DA national government anybody found guilty of corruption</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="181411_201905_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

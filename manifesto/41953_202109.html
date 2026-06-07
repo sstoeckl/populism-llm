@@ -1,0 +1,1745 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>AfD (Germany, 2021) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/41953_202109_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">AfD (Germany, 2021)</h1>
+<p class="subtitle lead">manifesto_id 41953_202109</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Germany · <span class="item"><strong>Party</strong></span> AfD (Alternative for Germany) · <span class="item"><strong>Year</strong></span> 2021 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 70</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.3</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-na">–</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Soziale Marktwirtschaft von Ludwig Erhard wiederbeleben”
+</div>
+<span class="context">Wir wollen die <mark>Soziale Marktwirtschaft von Ludwig Erhard wiederbeleben</mark> und Wohlstand für alle schaffen.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“gesetzliche Mindestlohn ist mit dem Wesen”
+</div>
+<span class="context">Lohndumping in der Leiharbeit verhindern. Der <mark>gesetzliche Mindestlohn ist mit dem Wesen</mark> der Sozialen Marktwirtschaft eng verbunden.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“auf klaren Regeln basierende Marktwirtschaft”
+</div>
+<span class="context">seit Jahrzehnten reduziert, sondern technischer Fortschritt und eine <mark>auf klaren Regeln basierende Marktwirtschaft</mark>. Techniken müssen dem Wohl</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Soziale Marktwirtschaft statt sozialistischer „Industriepolitik“”
+</div>
+<span class="context">Die AfD steht für eine marktwirtschaftliche Wirtschaftspolitik: Schutz des Eigentums, Vertragsfreiheit, die Einheit von Handeln und Haftung, Berufsfreiheit und eine wettbewerbliche Wirtschaftsordnung sind elementare Bestandteile einer freiheitlichen und prosperierenden bürgerlichen Gesellschaft. Diese wollen wir erhalten und Fehlentwicklungen korrigieren. In den letzten Jahren haben sich die Bedingungen zur Mehrung des Wohlstandes verschlechtert. Die weltweite Konjunktur hat an Fahrt verloren. Politisch initiierte Umbrüche wie die „Klimarettung“ fordern enorme Investitionen und Umstrukturierungen und treffen manche Branchen brachial. So wird der Kern der deutschen Wirtschaft geschwächt. Gleichzeitig liegt Deutschland gemäß einer Studie der Europäischen Zentralbank bei diversen Wohlstandsindikatoren im europäischen Vergleich auf den hinteren Plätzen. In dieser Situation legt die Corona-Pandemie die internationale Wirtschaft zeitweise weitgehend lahm und führt zu einem dramatischen Rückgang der Wertschöpfung. Die deutsche Volkswirtschaft ist exportorientiert und von internationaler Arbeitsteilung abhängig. Deshalb ist unser Land ganz besonders von den weltweiten Auswirkungen der Corona-Krise betroffen. Die AfD will deshalb die Volkswirtschaft auf einen normalen Entwicklungspfad zurückführen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“Technischer Fortschritt und eine auf klaren Regeln basierende Marktwirtschaft.”
+</div>
+<span class="context">Nicht Verzicht, Rückschritt und Sozialismus haben die Umweltbelastungen seit Jahrzehnten reduziert, sondern technischer Fortschritt und eine auf klaren Regeln basierende Marktwirtschaft. Techniken müssen dem Wohl der Bürger, der Wirtschaft und auch unserer Heimat, d.&nbsp;h. der Umwelt, zugute kommen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“Energiepolitik bedeutet, Rahmenbedingungen so zu setzen, dass die Energieversorgung gesichert, umweltfreundlich und kostengünstig im Rahmen des freien Marktes gewährleistet ist.”
+</div>
+<span class="context">Gesicherte und günstige Energieversorgung ist eine der Grundvoraussetzungen von Wohlstand, Sicherheit und Gesundheit. Diese sicherzustellen ist Kernaufgabe des Staates. <mark>Energiepolitik bedeutet, Rahmenbedingungen so zu setzen, dass die Energieversorgung gesichert, umweltfreundlich und kostengünstig im Rahmen des freien Marktes gewährleistet ist.</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“eine auf klaren Regeln basierende Marktwirtschaft”
+</div>
+<span class="context">Nicht Verzicht, Rückschritt und Sozialismus haben die Umweltbelastungen reduziert, sondern technischer Fortschritt und <mark>eine auf klaren Regeln basierende Marktwirtschaft</mark>.</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“EZB zur Manipulation des freien Kapitalmarkts müssen eingestellt werden”
+</div>
+<span class="context">Die AfD fordert eine Rückkehr zum Recht: (1) Alle Maßnahmen der <mark>EZB zur Manipulation des freien Kapitalmarkts müssen eingestellt werden</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Die EZB-Nullzinspolitik zerstört langfristig alle kapitalgedeckten Alterssicherungssysteme”
+</div>
+<span class="context">Die EZB sollte eine zweite Deutsche Bundesbank sein. Stattdessen betreibt sie eine Währungspolitik der wirtschaftsfeindlichen Null- und Negativzinspolitik. Diese zerstört langfristig alle kapitalgedeckten Alterssicherungssysteme von Betriebsrenten, über staatlich geförderte kapitalgedeckte Rentensysteme, private Lebensversicherungen bis zu privaten Sparvermögen. Inzwischen fehlen über die vergangenen Jahre mehr als 500 Mrd. Euro für die Altersvorsorge der Deutschen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“Die AfD fordert die Abschaffung der DSGVO und seine Ersetzung durch ein neues, schlankes Datenschutzgesetz”
+</div>
+<span class="context">Datenschutz und Datensicherheit Wir stehen für Datenschutz und Datensicherheit ohne ausufernde Bürokratie: <mark>Die AfD fordert die Abschaffung der DSGVO und seine Ersetzung durch ein neues, schlankes Datenschutzgesetz</mark> zur Wahrung informationeller Selbstbestimmung.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 1</span>
+<div class="quote">
+“Alle Maßnahmen der EZB zur Manipulation des freien Kapitalmarkts”
+</div>
+<span class="context"><mark>Alle Maßnahmen der EZB zur Manipulation des freien Kapitalmarkts</mark> müssen eingestellt werden — pro free capital markets, but also advocates national currencies and gold-backed systems.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“Steuer auf Rücküberweisungen”
+</div>
+<span class="context">befürworten wir die Einführung einer <mark>Steuer auf Rücküberweisungen</mark>, die den Europäischen Wirtschaftsraum (EWR) verlassen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“Auch bei Versicherungsverträgen, Finanzprodukten und Mobilfunkverträgen”
+</div>
+<span class="context"><mark>Auch bei Versicherungsverträgen, Finanzprodukten und Mobilfunkverträgen</mark> wollen wir mehr Transparenz schaffen. Herstellerangaben und Vertragsklauseln sind in einer verständlichen Sprache zu verfassen.</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Gewaltenteilung in Deutschland als Kernelement des Rechtsstaats”
+</div>
+<span class="context">Zahlreiche Gesetze und die politische Praxis haben die <mark>Gewaltenteilung in Deutschland als Kernelement des Rechtsstaats</mark> über die Jahre in Gefahr gebracht</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“Einschränkungen von Grundrechten durch Verwaltungsermächtigungen unter”
+</div>
+<span class="context">willkürlichen Grenzwerten, nicht nachvollziehbaren Maßnahmen und <mark>Einschränkungen von Grundrechten durch Verwaltungsermächtigungen unter</mark> Umgehung der Parlamente sind für uns</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Einhaltung des Grundgesetzes und aller rechtsstaatlichen Prinzipien”
+</div>
+<span class="context">Überwachung oder Bevormundung von Bürgern und Unternehmen führen. Wir fordern auch hier die <mark>Einhaltung des Grundgesetzes und aller rechtsstaatlichen Prinzipien</mark> bei der Erstellung und Nutzung von digitalen Diensten.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Die Gewaltenteilung in Deutschland als Kernelement des Rechtsstaats”
+</div>
+<span class="context">Zahlreiche Gesetze und die politische Praxis haben die Gewaltenteilung in Deutschland als Kernelement des Rechtsstaats über die Jahre in Gefahr gebracht und zu einer überbordenden Staatsgewalt geführt: Ehemalige Politiker auf Richterstühlen, Abgeordnete, die zugleich Kanzler, Ministerpräsident oder Minister sind und sich insoweit selbst kontrollieren, sowie parteipolitische Netzwerke, die durch verbotene, verfassungswidrige Ämterpatronage entstehen, können nicht länger toleriert werden.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“Die AfD fordert, die deutsche Sprache als Staatssprache im Grundgesetz festschreiben.”
+</div>
+<span class="context">Die deutsche Leitkultur beschreibt unseren Wertekonsens, der für unser Volk identitätsbildend ist und uns von anderen unterscheidet. Sie sorgt für den Zusammenhalt der Gesellschaft und ist Voraussetzung für das Funktionieren unseres Staates. Die gemeinschaftsstiftende Wirkung der deutschen Kultur ist Fundament unseres Grundgesetzes und kann nicht durch einen Verfassungspatriotismus ersetzt werden. <mark>Die AfD fordert, die deutsche Sprache als Staatssprache im Grundgesetz festschreiben.</mark> An deutschen Bildungseinrichtungen darf das Deutsche nicht durch andere Sprachen zurückgedr.ngt werden.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“Grundrechte und Meinungsfreiheit gelten auch im Internet.”
+</div>
+<span class="context">Als freiheitliche und demokratische Partei wendet sich die AfD jedoch gegen jeglichen Missbrauch digitaler Techniken, die zur Überwachung oder Bevormundung von Bürgern und Unternehmen führen. Wir fordern auch hier die Einhaltung des Grundgesetzes und aller rechtsstaatlichen Prinzipien bei der Erstellung und Nutzung von digitalen Diensten. <mark>Grundrechte und Meinungsfreiheit gelten auch im Internet.</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 1</span>
+<div class="quote">
+“Gewaltenteilung in Deutschland als Kernelement des Rechtsstaats”
+</div>
+<span class="context">Zahlreiche Gesetze und die politische Praxis haben die <mark>Gewaltenteilung in Deutschland als Kernelement des Rechtsstaats</mark> über die Jahre in Gefahr gebracht.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Einschränkungen von Grundrechten durch Verwaltungsermächtigungen”
+</div>
+<span class="context"><mark>Einschränkungen von Grundrechten durch Verwaltungsermächtigungen</mark> unter Umgehung der Parlamente sind für uns inakzeptabel.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 3</span>
+<div class="quote">
+“Grundrechte und Meinungsfreiheit gelten auch im Internet”
+</div>
+<span class="context">Wir fordern auch hier die Einhaltung des Grundgesetzes und aller rechtsstaatlichen Prinzipien bei der Erstellung und Nutzung von digitalen Diensten. <mark>Grundrechte und Meinungsfreiheit gelten auch im Internet</mark>.</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“lehnen jede Art von Quoten ab”
+</div>
+<span class="context">Die grundgesetzlich garantierte Gleichberechtigung von Mann und Frau hat mit der vom Parteienkartell propagierten Gleichstellung und Gleichmacherei nichts zu tun. Die AfD lehnt jede Art von Quoten ab.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Kopftuch als religiös-politisches Zeichen soll im”
+</div>
+<span class="context">Öffentlichkeit wollen wir auch in Deutschland untersagen. Das <mark>Kopftuch als religiös-politisches Zeichen soll im</mark> Öffentlichen Dienst generell nicht gestattet</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“Käufer ohne deutsche Staatsbürgerschaft”
+</div>
+<span class="context">Einheimische besser auf das vorhandene Angebot zugreifen können, ist der Erwerb von Wohnimmobilien durch <mark>Käufer ohne deutsche Staatsbürgerschaft</mark>, deren Hauptwohnsitz im Ausland liegt</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Die grundgesetzlich garantierte Gleichberechtigung von Mann und Frau”
+</div>
+<span class="context"><mark>Die grundgesetzlich garantierte Gleichberechtigung von Mann und Frau</mark> hat mit der vom Parteienkartell propagierten Gleichstellung und Gleichmacherei nichts zu tun. Die AfD lehnt jede Art von Quoten ab. Sie sind leistungsfeindlich, ungerecht und stellen eine verfassungswidrige Diskriminierung derer dar, die nicht in den Genuss der Quote kommen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Die Gleichberechtigung von Mann und Frau ist ein hohes Gut und im Grundgesetz verankert.”
+</div>
+<span class="context">Der Unterdrückung muslimischer Frauen stellt sich die AfD entgegen und fordert in allen Bereichen die Gleichberechtigung von Mann und Frau. <mark>Die Gleichberechtigung von Mann und Frau ist ein hohes Gut und im Grundgesetz verankert.</mark> Die biologische Geschlechterbindung des Menschen betrachten wir nicht als Last, sondern als Geschenk.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“Wir lehnen jede Form der gesonderten Lebensmittelbesteuerung, wie eine Fleisch- oder Zuckersteuer, ab.”
+</div>
+<span class="context">Wir schätzen regionale und saisonale Lebensmittel aus Deutschland. Sie sichern unseren produzierenden und verarbeitenden Betrieben ein hinreichendes Einkommen – bei zugleich hohen Standards im Tier- und Umweltschutz. Die Versorgung der eigenen Bevölkerung sowie die Wirtschaftlichkeit und Wertschöpfung heimischer Lebensmittelproduktion muss gewährleistet bleiben. <mark>Wir lehnen jede Form der gesonderten Lebensmittelbesteuerung, wie eine Fleisch- oder Zuckersteuer, ab.</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Leistung statt Quote - Freiheit statt Diskriminierung”
+</div>
+<span class="context"><mark>Leistung statt Quote - Freiheit statt Diskriminierung</mark>: Die AfD lehnt jede Art von Quoten ab. Sie sind leistungsfeindlich, ungerecht und stellen eine verfassungswidrige Diskriminierung dar.</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Soziale Marktwirtschaft von Ludwig Erhard wiederbeleben”
+</div>
+<span class="context">Wir wollen die <mark>Soziale Marktwirtschaft von Ludwig Erhard wiederbeleben</mark> und Wohlstand für alle schaffen.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“gesetzliche Mindestlohn ist mit dem Wesen”
+</div>
+<span class="context">Lohndumping in der Leiharbeit verhindern. Der <mark>gesetzliche Mindestlohn ist mit dem Wesen</mark> der Sozialen Marktwirtschaft eng verbunden.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“auf klaren Regeln basierende Marktwirtschaft”
+</div>
+<span class="context">seit Jahrzehnten reduziert, sondern technischer Fortschritt und eine <mark>auf klaren Regeln basierende Marktwirtschaft</mark>. Techniken müssen dem Wohl</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Die AfD steht für eine marktwirtschaftliche Wirtschaftspolitik”
+</div>
+<span class="context"><mark>Die AfD steht für eine marktwirtschaftliche Wirtschaftspolitik</mark>: Schutz des Eigentums, Vertragsfreiheit, die Einheit von Handeln und Haftung, Berufsfreiheit und eine wettbewerbliche Wirtschaftsordnung sind elementare Bestandteile einer freiheitlichen und prosperierenden bürgerlichen Gesellschaft. Diese wollen wir erhalten und Fehlentwicklungen korrigieren.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“Die AfD fordert, die deutsche Sprache als Staatssprache im Grundgesetz festschreiben.”
+</div>
+<span class="context">Die deutsche Leitkultur beschreibt unseren Wertekonsens, der für unser Volk identitätsbildend ist und uns von anderen unterscheidet. Sie sorgt für den Zusammenhalt der Gesellschaft und ist Voraussetzung für das Funktionieren unseres Staates. Die gemeinschaftsstiftende Wirkung der deutschen Kultur ist Fundament unseres Grundgesetzes und kann nicht durch einen Verfassungspatriotismus ersetzt werden. <mark>Die AfD fordert, die deutsche Sprache als Staatssprache im Grundgesetz festschreiben.</mark> An deutschen Bildungseinrichtungen darf das Deutsche nicht durch andere Sprachen zurückgedr.ngt werden.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“Grundrechte und Meinungsfreiheit gelten auch im Internet.”
+</div>
+<span class="context">Als freiheitliche und demokratische Partei wendet sich die AfD jedoch gegen jeglichen Missbrauch digitaler Techniken, die zur Überwachung oder Bevormundung von Bürgern und Unternehmen führen. Wir fordern auch hier die Einhaltung des Grundgesetzes und aller rechtsstaatlichen Prinzipien bei der Erstellung und Nutzung von digitalen Diensten. <mark>Grundrechte und Meinungsfreiheit gelten auch im Internet.</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 1</span>
+<div class="quote">
+“freiheitlichen Privatrechtsordnung einsetzen”
+</div>
+<span class="context">Die AfD wird sich im Deutschen Bundestag gegen diese Entwicklung und für die Bewahrung einer <mark>freiheitlichen Privatrechtsordnung einsetzen</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 3</span>
+<div class="quote">
+“eine auf klaren Regeln basierende Marktwirtschaft”
+</div>
+<span class="context">Nicht Verzicht, Rückschritt und Sozialismus haben die Umweltbelastungen reduziert, sondern technischer Fortschritt und <mark>eine auf klaren Regeln basierende Marktwirtschaft</mark>.</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“eine politische Klasse herausgebildet, deren vordringliches Interesse ihrer Macht”
+</div>
+<span class="context">In unserem Land hat sich aber <mark>eine politische Klasse herausgebildet, deren vordringliches Interesse ihrer Macht</mark>, ihrem Status und ihrem materiellen Wohlergehen gilt.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“ungesetzliche Migration führen dazu”
+</div>
+<span class="context">zunehmende Zahl der Ein-Personen-Haushalte sowie die ungezügelte und gesetzeswidrige Migration führen dazu, dass es für untere und mittlere</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Zusammenrücken der Altparteien zu einem politischen Meinungskartell”
+</div>
+<span class="context">tabuisiert. Das <mark>Zusammenrücken der Altparteien zu einem politischen Meinungskartell</mark> hat die linke Dominanz im öffentlich-rechtlichen</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“eine politische Klasse herausgebildet hat, deren vordringliches Interesse ihrer Macht, ihrem Status und ihrem materiellen Wohlergehen gilt”
+</div>
+<span class="context">Die Regierungspolitiker in Bund und Ländern haben mit ihrer Flüchtlings-, Europa- und Corona-Politik die Prinzipien der deutschen Staatlichkeit, des Rechts und der Verfassung vielfach verletzt. Zugleich haben sich die Volksvertreter der etablierten Parteien den grundgesetzlich garantierten Parlamentsvorbehalt für alle wichtigen Entscheidungen im Staat ohne Widerstand nehmen lassen. Einzelne rechts- und verfassungswidrige Maßnahmen wurden zwar durch mutige Richter in Hunderten von Urteilen zu Fall gebracht. In unserem Land hat sich aber <mark>eine politische Klasse herausgebildet hat, deren vordringliches Interesse ihrer Macht, ihrem Status und ihrem materiellen Wohlergehen gilt</mark>. Diese setzt die soziale und kulturelle Zukunft unseres Volkes, die Stärke unserer Wirtschaft und damit unseres Wohlstandes aufs Spiel und stellt Multikulturalität, Diversität, Globalisierung und vermeintliche Gendergerechtigkeit über alles.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Die Politik hat vor der Aufgabe, diesen Widerspruch aufzulösen, kapituliert – getrieben von einer mächtigen Anti-Abschiebe-Industrie.”
+</div>
+<span class="context">Die Zahl der Ausreisepflichtigen ist dabei kontinuierlich gestiegen und hat im zweiten Quartal 2021 die Zahl von ca. 300.000 Personen erreicht – während die Zahl freiwilliger Ausreisen und erfolgreicher Abschiebungen kontinuierlich sinkt. <mark>Die Politik hat vor der Aufgabe, diesen Widerspruch aufzulösen, kapituliert – getrieben von einer mächtigen Anti-Abschiebe-Industrie.</mark> Es ist zynisch und inhuman, Menschen mit der faktischen Garantie auf dauerhaften Verbleib im „reichen” Deutschland anzulocken und dabei deren möglichen Tod im Mittelmeer in Kauf zu nehmen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Die Regierung auch die privaten Medien. Diese parteipolitische Medienbeeinflussung lehnen wir ab.”
+</div>
+<span class="context">Über Subventionen, Unternehmensbeteiligungen und regierungspolitische Werbefinanzierung beeinflusst die Regierung auch die privaten Medien. Diese parteipolitische Medienbeeinflussung lehnen wir ab. Beteiligungen von Parteien an Medienunternehmen wollen wir verbieten.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“politische Klasse herausgebildet, deren vordringliches Interesse ihrer Macht”
+</div>
+<span class="context">In unserem Land hat sich aber eine <mark>politische Klasse herausgebildet, deren vordringliches Interesse ihrer Macht</mark>, ihrem Status und ihrem materiellen Wohlergehen gilt.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“entwürdigenden und ungerechten Rentenpolitik der Altparteien”
+</div>
+<span class="context">Der <mark>entwürdigenden und ungerechten Rentenpolitik der Altparteien</mark> erteilen wir daher eine deutliche Absage.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Das Zusammenrücken der Altparteien zu einem politischen Meinungskartell”
+</div>
+<span class="context">Tatsachen werden verdreht und kontroverse Themen tabuisiert. <mark>Das Zusammenrücken der Altparteien zu einem politischen Meinungskartell</mark> hat die linke Dominanz im öffentlich-rechtlichen Rundfunk verfestigt.</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“Entscheidungen näher zum Bürger bringen”
+</div>
+<span class="context">Werte von Stadt und Land sind gleichrangig und ergänzen sich. Mit einer traditionsbezogenen, familienfreundlichen und selbstbewussten Gestaltung des ländlichen Lebensraumes wollen wir unsere Heimat wieder ins Gleichgewicht bringen. <mark>Entscheidungen näher zum Bürger bringen</mark>: Die Regionen und Landkreise</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Wir vertrauen nicht mehr darauf, dass Regierungen und Parlamente zu Währungskrisen, Migration, Islamisierung oder zur Energiewende tragfähige Lösungen finden”
+</div>
+<span class="context">Entgegen anderslautenden Behauptungen entscheiden Bürger in Schicksalsfragen der Nation weitsichtiger, friedfertiger und gemeinwohlorientierter als Berufspolitiker. Das ist die Lehre aus der Wiedervereinigung, aus der Ablehnung des „EU-Verfassungsvertrags“ durch das französische und das niederländische Volk und der Entscheidung des Vereinigten Königreichs, aus der Europäischen Union auszutreten. <mark>Wir vertrauen nicht mehr darauf, dass Regierungen und Parlamente zu Währungskrisen, Migration, Islamisierung oder zur Energiewende tragfähige Lösungen finden</mark>. Das Volk als Souverän muss in direkter Mitbestimmung Träger solcher schicksalhaften Entscheidungen sein.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“Eine existentielle Frage wie die Zuwanderung muss in demokratischer Selbstbestimmung auf nationaler Ebene entschieden werden.”
+</div>
+<span class="context"><mark>Eine existentielle Frage wie die Zuwanderung muss in demokratischer Selbstbestimmung auf nationaler Ebene entschieden werden.</mark> Unser Modell für das 21. Jahrhundert hat neben der Ablösung der überholten internationalen Regelwerke, wie der Genfer Flüchtlingskonvention von 1951, folgende Kernpunkte: Fokus auf humanitäre Hilfe in Krisenregionen selbst (intrakontinentale Fluchtalternativen) Zurückweisung von Asylsuchenden bei Einreise an der Grenze gemäß Art. 16a Abs. 2 S. 1 GG Ausschließlich qualifizierte Einwanderung nach japanischem Vorbild</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“Wir wollen gleichwertige Lebens- und Arbeitsbedingungen in ganz Deutschland”
+</div>
+<span class="context"><mark>Wir wollen gleichwertige Lebens- und Arbeitsbedingungen in ganz Deutschland</mark>, die Wahrung und zukunftsfähige Weiterentwicklung regionaler Identität in allen Teilräumen des Landes. Die Lebensweisen und Werte von Stadt und Land sind gleichrangig und ergänzen sich.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Als einzige der im Bundestag vertretenen Parteien”
+</div>
+<span class="context"><mark>Als einzige der im Bundestag vertretenen Parteien</mark> halten wir das deutsche Volk für ebenso mündig wie das der Schweizer.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Interessenwahrung der Deutschen”
+</div>
+<span class="context">mit dem Primärziel der <mark>Interessenwahrung der Deutschen</mark> und bereits zugewanderter Bürger, die sich zur kulturellen Identität Deutschlands bekennen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“an den Bedürfnissen der Bürger orientierte Verkehrspolitik”
+</div>
+<span class="context">Die AfD spricht sich für eine <mark>an den Bedürfnissen der Bürger orientierte Verkehrspolitik</mark> aus.</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 1</span>
+<div class="quote">
+“hetzerische Klassenkampfrhetorik oder vorsätzlich herbeigeführte Konflikte durch Vertreter linker Parteien lehnen wir dagegen entschieden ab”
+</div>
+<span class="context">Forderungen nach Enteignungen, Abschaffung von Privateigentum und Vertragsfreiheit, <mark>hetzerische Klassenkampfrhetorik oder vorsätzlich herbeigeführte Konflikte durch Vertreter linker Parteien lehnen wir dagegen entschieden ab</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 3</span>
+<div class="quote">
+“Nicht Verzicht, Rückschritt und Sozialismus”
+</div>
+<span class="context">Zukunftserwartung zu vermitteln. <mark>Nicht Verzicht, Rückschritt und Sozialismus</mark> haben die Umweltbelastungen seit Jahrzehnten</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Forderungen nach Enteignungen, Abschaffung von Privateigentum und Vertragsfreiheit, hetzerische Klassenkampfrhetorik oder vorsätzlich herbeigeführte Konflikte durch Vertreter linker Parteien lehnen wir dagegen entschieden ab”
+</div>
+<span class="context">Zu unserem Verständnis von Sozialer Marktwirtschaft gehört ein gedeihliches Zusammenwirken von Unternehmern und Beschäftigten. Sie sind keine Gegner, sondern kooperieren im Geiste der Sozialpartnerschaft, um betriebliche Ziele zu erreichen und Interessengegensätze ins Gleichgewicht zu bringen. Als AfD bekennen wir uns zur Mitwirkung und Mitbestimmung der Beschäftigten in den Betrieben und zu allgemeinverbindlichen Tarifverträgen. <mark>Forderungen nach Enteignungen, Abschaffung von Privateigentum und Vertragsfreiheit, hetzerische Klassenkampfrhetorik oder vorsätzlich herbeigeführte Konflikte durch Vertreter linker Parteien lehnen wir dagegen entschieden ab</mark>. Sie gefährden den sozialen Frieden und eine vertrauensvolle Zusammenarbeit Die Zukunft der organisierten Unternehmer- und Beschäftigtenvertreter ist blau: Unser sozialpolitisches Ziel bleibt „Wohlstand für alle“!</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Die Behauptung einiger Wirtschaftsverbände und Lobbyisten, in Deutschland herrsche Fachkräftemangel und damit ein Bedarf an qualifizierter Einwanderung, dient nur vordergründig dem Gemeinwohl”
+</div>
+<span class="context">Qualifizierte Zuwanderung Das aktuelle Einwanderungssystem schadet Deutschland kulturell sowie wirtschaftlich und ist dringend reformbedürftig. Die AfD bekennt sich dazu, die kulturelle Identität Deutschlands zu wahren. Vorbild einer identitätswahrenden Migrationspolitik können für Deutschland nicht klassische Einwanderungsländer von der Größe Kanadas oder Australiens sein, sondern eher Länder wie Japan, die eine ihrer Landesstruktur entsprechende Begrenzung und Steuerung der Migration verfolgen. Durch Lockdown-Krise, Automatisierung und Digitalisierung sind die Zeiten rekordhoher Beschäftigung absehbar vorbei. Massenmigration erzeugt Lohndruck bis in die Mittelschicht hinein und führt zu Konkurrenz um Sozialleistungen. Wir fordern die Ausarbeitung eines umfassenden migrationspolitischen Ansatzes nach japanischem Vorbild mit dem Primärziel der Interessenwahrung der Deutschen und bereits zugewanderter Bürger, die sich zur kulturellen Identität Deutschlands bekennen. <mark>Die Behauptung einiger Wirtschaftsverbände und Lobbyisten, in Deutschland herrsche Fachkräftemangel und damit ein Bedarf an qualifizierter Einwanderung, dient nur vordergründig dem Gemeinwohl</mark> und darf deshalb nicht maßgeblich sein.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“Der bisherige soziale Wohnungsbau ist gescheitert, er kann nur einen Bruchteil der Berechtigten erreichen.”
+</div>
+<span class="context">Mehr Wohngeld statt Sozialer Wohnungsbau <mark>Der bisherige soziale Wohnungsbau ist gescheitert, er kann nur einen Bruchteil der Berechtigten erreichen.</mark> Er führt zu Fehlbelegungen und verursacht hohe Kosten für den Steuerzahler. Es ist besser, einkommensschwache Mieter vermehrt mit Wohngeld zu unterstützen, wodurch eine soziale Durchmischung gewährleistet wird.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“Forderungen nach Enteignungen, Abschaffung von Privateigentum”
+</div>
+<span class="context"><mark>Forderungen nach Enteignungen, Abschaffung von Privateigentum</mark> und Vertragsfreiheit, hetzerische Klassenkampfrhetorik oder vorsätzlich herbeigeführte Konflikte durch Vertreter linker Parteien lehnen wir dagegen entschieden ab.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“schädliche Einfluss wirtschaftlicher Partikularinteressen”
+</div>
+<span class="context">Der <mark>schädliche Einfluss wirtschaftlicher Partikularinteressen</mark> oder gar damit kaschierter antideutscher Ressentiments muss beendet werden.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“Nicht Verzicht, Rückschritt und Sozialismus”
+</div>
+<span class="context"><mark>Nicht Verzicht, Rückschritt und Sozialismus</mark> haben die Umweltbelastungen seit Jahrzehnten reduziert, sondern technischer Fortschritt und eine auf klaren Regeln basierende Marktwirtschaft.</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Abwehr unerlaubter Zuwanderung und zur Kriminalitätsbekämpfung”
+</div>
+<span class="context">Die Grenzen müssen zur <mark>Abwehr unerlaubter Zuwanderung und zur Kriminalitätsbekämpfung</mark> mit einer modernen und wirksamen Sicherung ausgestattet werden.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“die kulturelle Identität Deutschlands zu wahren”
+</div>
+<span class="context">reformbedürftig. Die AfD bekennt sich dazu, <mark>die kulturelle Identität Deutschlands zu wahren</mark>. Vorbild einer identitätswahrenden Migrationspolitik</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“ungezügelte und gesetzeswidrige Migration”
+</div>
+<span class="context">zunehmende Zahl der Ein-Personen-Haushalte sowie die <mark>ungezügelte und gesetzeswidrige Migration</mark> führen dazu, dass es für untere</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Wir vertrauen nicht mehr darauf, dass Regierungen und Parlamente zu Währungskrisen, Migration, Islamisierung oder zur Energiewende tragfähige Lösungen finden”
+</div>
+<span class="context">Entgegen anderslautenden Behauptungen entscheiden Bürger in Schicksalsfragen der Nation weitsichtiger, friedfertiger und gemeinwohlorientierter als Berufspolitiker. Das ist die Lehre aus der Wiedervereinigung, aus der Ablehnung des „EU-Verfassungsvertrags“ durch das französische und das niederländische Volk und der Entscheidung des Vereinigten Königreichs, aus der Europäischen Union auszutreten. <mark>Wir vertrauen nicht mehr darauf, dass Regierungen und Parlamente zu Währungskrisen, Migration, Islamisierung oder zur Energiewende tragfähige Lösungen finden</mark>. Das Volk als Souverän muss in direkter Mitbestimmung Träger solcher schicksalhaften Entscheidungen sein.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Die AfD wird nicht zulassen, dass Deutschland aus falsch verstandener Toleranz vor dem Islam seine tradierte Kultur verliert.”
+</div>
+<span class="context">Kulturrelativismus und Multikulturalismus führen zu einem Neben- und Gegeneinander von Parallelgesellschaften, denen es an gemeinsamen Werten für das Zusammenleben fehlt. In einer derart fragmentierten Gesellschaft entstehen Konflikte, die kaum noch beherrschbar sind. <mark>Die AfD wird nicht zulassen, dass Deutschland aus falsch verstandener Toleranz vor dem Islam seine tradierte Kultur verliert.</mark> Die deutsche Sprache als Zentrum unserer Identität</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Diese parteipolitische Medienbeeinflussung lehnen wir ab.”
+</div>
+<span class="context">Über Subventionen, Unternehmensbeteiligungen und regierungspolitische Werbefinanzierung beeinflusst die Regierung auch die privaten Medien. <mark>Diese parteipolitische Medienbeeinflussung lehnen wir ab.</mark> Beteiligungen von Parteien an Medienunternehmen wollen wir verbieten.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Asylparadies Deutschland schließen”
+</div>
+<span class="context">Migration, Asyl und Integration: <mark>Asylparadies Deutschland schließen</mark> — strong right-populist framing combining nativist, anti-elite and people-centric appeals.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Zurückweisung von Asylsuchenden bei Einreise”
+</div>
+<span class="context"><mark>Zurückweisung von Asylsuchenden bei Einreise</mark> an der Grenze gemäß Art. 16a Abs. 2 S. 1 GG</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“ungezügelte und gesetzeswidrige Migration”
+</div>
+<span class="context">die <mark>ungezügelte und gesetzeswidrige Migration</mark> führen dazu, dass es für untere und mittlere Einkommensgruppen in angespannten Märkten zusehends schwerer wird, eine bezahlbare Wohnung zu finden.</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Abwehr unerlaubter Zuwanderung und zur Kriminalitätsbekämpfung”
+</div>
+<span class="context">Die Grenzen müssen zur <mark>Abwehr unerlaubter Zuwanderung und zur Kriminalitätsbekämpfung</mark> mit einer modernen und wirksamen Sicherung ausgestattet werden.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“die kulturelle Identität Deutschlands zu wahren”
+</div>
+<span class="context">reformbedürftig. Die AfD bekennt sich dazu, <mark>die kulturelle Identität Deutschlands zu wahren</mark>. Vorbild einer identitätswahrenden Migrationspolitik</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“ungezügelte und gesetzeswidrige Migration”
+</div>
+<span class="context">zunehmende Zahl der Ein-Personen-Haushalte sowie die <mark>ungezügelte und gesetzeswidrige Migration</mark> führen dazu, dass es für untere</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Die unlösbaren Folgeprobleme der unregulierten Massenzuwanderung seit 2015 sind unübersehbar”
+</div>
+<span class="context">Die desaströsen Folgen der unregulierten Massenzuwanderung seit 2015 sind unübersehbar und verschärfen sich weiter: überproportionale Zuwandererkriminalität, Terroranschläge und islamischer Separatismus belegen dies ebenso wie dreistellige Milliardenkosten, Wohnraummangel und die hohe Arbeitslosigkeit unter den Zuwanderern. Erfolgreiche Integration kann und wird so nicht gelingen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“Die AfD wird nicht zulassen, dass Deutschland aus falsch verstandener Toleranz vor dem Islam seine tradierte Kultur verliert.”
+</div>
+<span class="context">Kulturrelativismus und Multikulturalismus führen zu einem Neben- und Gegeneinander von Parallelgesellschaften, denen es an gemeinsamen Werten für das Zusammenleben fehlt. In einer derart fragmentierten Gesellschaft entstehen Konflikte, die kaum noch beherrschbar sind. <mark>Die AfD wird nicht zulassen, dass Deutschland aus falsch verstandener Toleranz vor dem Islam seine tradierte Kultur verliert.</mark> Die deutsche Sprache als Zentrum unserer Identität</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Der Erwerb von Wohnimmobilien durch Käufer ohne deutsche Staatsbürgerschaft, deren Hauptwohnsitz im Ausland liegt, über eine Erhöhung der Grunderwerbsteuer auf 20% zu erschweren.”
+</div>
+<span class="context">Damit Einheimische besser auf das vorhandene Angebot zugreifen können, ist der Erwerb von Wohnimmobilien durch Käufer ohne deutsche Staatsbürgerschaft, deren Hauptwohnsitz im Ausland liegt, über eine Erhöhung der Grunderwerbsteuer auf 20% zu erschweren. Die Grundsteuer und Gebühren wie die EEG-Umlage und die GEZ-Gebühren (Haushaltsabgabe) sind zu streichen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“kulturelle Identität Deutschlands zu wahren”
+</div>
+<span class="context">Die AfD bekennt sich dazu, die <mark>kulturelle Identität Deutschlands zu wahren</mark>. Vorbild einer identitätswahrenden Migrationspolitik</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“ungezügelte und gesetzeswidrige Migration führen dazu”
+</div>
+<span class="context">Fehlender Wohnungsneubau, Landflucht, die zunehmende Zahl der Ein-Personen-Haushalte sowie die <mark>ungezügelte und gesetzeswidrige Migration führen dazu</mark>, dass es für untere und mittlere Einkommensgruppen schwerer wird.</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“autoritären und teilweise totalitären Gebaren der Regierungspolitiker”
+</div>
+<span class="context">Deshalb halten wir die unmittelbare Demokratie für ein unverzichtbares Mittel, um dem <mark>autoritären und teilweise totalitären Gebaren der Regierungspolitiker</mark> Einhalt zu gebieten.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“familienzersetzenden Politik wird die demografische Katastrophe”
+</div>
+<span class="context">notwendig. Eine Fortsetzung der herrschenden, <mark>familienzersetzenden Politik wird die demografische Katastrophe</mark>, in die wir greaten sind, weiter</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“bedroht unsere Freiheit in einem immer beängstigenderen Ausmaß”
+</div>
+<span class="context">die CO2-Emissionen faktisch auf null zu senken, führt zu einem radikalen Umbau von Industrie und Gesellschaft („Die Große Transformation“ / „The Great Reset“) und <mark>bedroht unsere Freiheit in einem immer beängstigenderen Ausmaß</mark>. Die AfD lehnt dieses Ziel</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Die totalitären Tendenzen haben auch in Deutschland ein demokratiegefährdendes Maß angenommen”
+</div>
+<span class="context"><mark>Die totalitären Tendenzen haben auch in Deutschland ein demokratiegefährdendes Maß angenommen</mark>. Die verfassungswidrige Grenzöffnung und die massiven Grundrechtseinschränkungen im Namen der Corona-Krise waren die bisherigen Höhepunkte im täglichen Bruch von Recht und Verfassung durch Regierungspolitiker. Die Mainstream-Medien haben ihre elementare Aufgabe als vierte Gewalt aufgegeben und kritisch-objektive Berichterstattung gegen Regierungslobhudelei getauscht.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Die desaströsen Folgen der unregulierten Massenzuwanderung seit 2015 sind unübersehbar und verschärfen sich weiter: überproportionale Zuwandererkriminalität, Terroranschläge und islamischer Separatismus belegen dies ebenso”
+</div>
+<span class="context">Die unlösbaren Folgeprobleme <mark>Die desaströsen Folgen der unregulierten Massenzuwanderung seit 2015 sind unübersehbar und verschärfen sich weiter: überproportionale Zuwandererkriminalität, Terroranschläge und islamischer Separatismus belegen dies ebenso</mark> wie dreistellige Milliardenkosten, Wohnraummangel und die hohe Arbeitslosigkeit unter den Zuwanderern.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Eine Vormachtstellung in den sozialen Medien und im Bildungswesen darf nicht dazu missbraucht werden”
+</div>
+<span class="context"><mark>Eine Vormachtstellung in den sozialen Medien und im Bildungswesen darf nicht dazu missbraucht werden</mark>, die politische Willensbildung einseitig zu beeinflussen. Als Quasi-Oligopol wollen wir die Anbieter großer sozialer Medien wie Facebook, Twitter oder Instagram dazu verpflichten, die Meinungsfreiheit ihrer Nutzer zu respektieren.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“autoritären und teilweise totalitären Gebaren der Regierungspolitiker”
+</div>
+<span class="context">Deshalb halten wir die unmittelbare Demokratie für ein unverzichtbares Mittel, um dem <mark>autoritären und teilweise totalitären Gebaren der Regierungspolitiker</mark> Einhalt zu gebieten.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“mächtigen Anti-Abschiebe-Industrie”
+</div>
+<span class="context">Die Politik hat vor der Aufgabe, diesen Widerspruch aufzulösen, kapituliert – getrieben von einer <mark>mächtigen Anti-Abschiebe-Industrie</mark>.</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Das Volk ist der Souverän”
+</div>
+<span class="context">Demokratie und Rechtsstaat <mark>Das Volk ist der Souverän</mark> Die Regierungspolitiker in Bund und Ländern</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Interessenwahrung der Deutschen und bereits zugewanderter”
+</div>
+<span class="context">japanischem Vorbild mit dem Primärziel der <mark>Interessenwahrung der Deutschen und bereits zugewanderter</mark> Bürger, die sich zur kulturellen Identität</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Techniken müssen dem Wohl der Bürger”
+</div>
+<span class="context">Sozialismus haben die Umweltbelastungen seit Jahrzehnten reduziert, sondern technischer Fortschritt und eine auf klaren Regeln basierende Marktwirtschaft. <mark>Techniken müssen dem Wohl der Bürger</mark>, der Wirtschaft und auch unserer Heimat</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Das Volk als Souverän muss in direkter Mitbestimmung Träger solcher schicksalhaften Entscheidungen sein”
+</div>
+<span class="context">Entgegen anderslautenden Behauptungen entscheiden Bürger in Schicksalsfragen der Nation weitsichtiger, friedfertiger und gemeinwohlorientierter als Berufspolitiker. Das ist die Lehre aus der Wiedervereinigung, aus der Ablehnung des „EU-Verfassungsvertrags“ durch das französische und das niederländische Volk und der Entscheidung des Vereinigten Königreichs, aus der Europäischen Union auszutreten. Wir vertrauen nicht mehr darauf, dass Regierungen und Parlamente zu Währungskrisen, Migration, Islamisierung oder zur Energiewende tragfähige Lösungen finden. <mark>Das Volk als Souverän muss in direkter Mitbestimmung Träger solcher schicksalhaften Entscheidungen sein</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Unser Modell für das 21. Jahrhundert hat neben der Ablösung der überholten internationalen Regelwerke, wie der Genfer Flüchtlingskonvention von 1951, folgende Kernpunkte”
+</div>
+<span class="context">Eine existentielle Frage wie die Zuwanderung muss in demokratischer Selbstbestimmung auf nationaler Ebene entschieden werden. <mark>Unser Modell für das 21. Jahrhundert hat neben der Ablösung der überholten internationalen Regelwerke, wie der Genfer Flüchtlingskonvention von 1951, folgende Kernpunkte</mark>: Fokus auf humanitäre Hilfe in Krisenregionen selbst (intrakontinentale Fluchtalternativen) Zurückweisung von Asylsuchenden bei Einreise an der Grenze gemäß Art. 16a Abs. 2 S. 1 GG Ausschließlich qualifizierte Einwanderung nach japanischem Vorbild</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Die Lebensweisen und Werte von Stadt und Land sind gleichrangig und ergänzen sich.”
+</div>
+<span class="context">Wir wollen gleichwertige Lebens- und Arbeitsbedingungen in ganz Deutschland, die Wahrung und zukunftsfähige Weiterentwicklung regionaler Identität in allen Teilräumen des Landes. <mark>Die Lebensweisen und Werte von Stadt und Land sind gleichrangig und ergänzen sich.</mark> Mit einer traditionsbezogenen, familienfreundlichen und selbstbewussten Gestaltung des ländlichen Lebensraumes wollen wir unsere Heimat wieder ins Gleichgewicht bringen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Das Volk als Souverän muss in direkter Mitbestimmung”
+</div>
+<span class="context"><mark>Das Volk als Souverän muss in direkter Mitbestimmung</mark> Träger solcher schicksalhaften Entscheidungen sein.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Primärziel der Interessenwahrung der Deutschen”
+</div>
+<span class="context">umfassenden migrationspolitischen Ansatzes nach japanischem Vorbild mit dem <mark>Primärziel der Interessenwahrung der Deutschen</mark> und bereits zugewanderter Bürger</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Im Vordergrund steht für uns die Freiheit der Bürger”
+</div>
+<span class="context">Eine ideologisch geleitete Verbotspolitik, die bestimmte Verkehrsmittel bevorzugt oder diskriminiert, lehnt die AfD ab. <mark>Im Vordergrund steht für uns die Freiheit der Bürger</mark> in der Wahl des Verkehrsmittels.</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Das Volk als Souverän muss in direkter Mitbestimmung Träger solcher schicksalhaften Entscheidungen sein”
+</div>
+<span class="context">Wir vertrauen nicht mehr darauf, dass Regierungen und Parlamente zu Währungskrisen, Migration, Islamisierung oder zur Energiewende tragfähige Lösungen finden. <mark>Das Volk als Souverän muss in direkter Mitbestimmung Träger solcher schicksalhaften Entscheidungen sein</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“familienzersetzenden Politik wird die demografische Katastrophe”
+</div>
+<span class="context">notwendig. Eine Fortsetzung der herrschenden, <mark>familienzersetzenden Politik wird die demografische Katastrophe</mark>, in die wir greaten sind, weiter</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Zusammenrücken der Altparteien zu einem politischen Meinungskartell”
+</div>
+<span class="context">tabuisiert. Das <mark>Zusammenrücken der Altparteien zu einem politischen Meinungskartell</mark> hat die linke Dominanz im öffentlich-rechtlichen</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Das Volk als Souverän muss in direkter Mitbestimmung Träger solcher schicksalhaften Entscheidungen sein”
+</div>
+<span class="context">Entgegen anderslautenden Behauptungen entscheiden Bürger in Schicksalsfragen der Nation weitsichtiger, friedfertiger und gemeinwohlorientierter als Berufspolitiker. Das ist die Lehre aus der Wiedervereinigung, aus der Ablehnung des „EU-Verfassungsvertrags“ durch das französische und das niederländische Volk und der Entscheidung des Vereinigten Königreichs, aus der Europäischen Union auszutreten. Wir vertrauen nicht mehr darauf, dass Regierungen und Parlamente zu Währungskrisen, Migration, Islamisierung oder zur Energiewende tragfähige Lösungen finden. <mark>Das Volk als Souverän muss in direkter Mitbestimmung Träger solcher schicksalhaften Entscheidungen sein</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Die Politik hat vor der Aufgabe, diesen Widerspruch aufzulösen, kapituliert – getrieben von einer mächtigen Anti-Abschiebe-Industrie.”
+</div>
+<span class="context">Die Zahl der Ausreisepflichtigen ist dabei kontinuierlich gestiegen und hat im zweiten Quartal 2021 die Zahl von ca. 300.000 Personen erreicht – während die Zahl freiwilliger Ausreisen und erfolgreicher Abschiebungen kontinuierlich sinkt. <mark>Die Politik hat vor der Aufgabe, diesen Widerspruch aufzulösen, kapituliert – getrieben von einer mächtigen Anti-Abschiebe-Industrie.</mark> Es ist zynisch und inhuman, Menschen mit der faktischen Garantie auf dauerhaften Verbleib im „reichen” Deutschland anzulocken und dabei deren möglichen Tod im Mittelmeer in Kauf zu nehmen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Diese parteipolitische Medienbeeinflussung lehnen wir ab.”
+</div>
+<span class="context">Über Subventionen, Unternehmensbeteiligungen und regierungspolitische Werbefinanzierung beeinflusst die Regierung auch die privaten Medien. <mark>Diese parteipolitische Medienbeeinflussung lehnen wir ab.</mark> Beteiligungen von Parteien an Medienunternehmen wollen wir verbieten.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“politische Klasse herausgebildet, deren vordringliches Interesse ihrer Macht”
+</div>
+<span class="context">In unserem Land hat sich aber eine <mark>politische Klasse herausgebildet, deren vordringliches Interesse ihrer Macht</mark>, ihrem Status und ihrem materiellen Wohlergehen gilt.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“Altparteien erteilen wir daher eine deutliche Absage”
+</div>
+<span class="context">Der entwürdigenden und ungerechten Rentenpolitik der <mark>Altparteien erteilen wir daher eine deutliche Absage</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Das Zusammenrücken der Altparteien zu einem politischen Meinungskartell”
+</div>
+<span class="context"><mark>Das Zusammenrücken der Altparteien zu einem politischen Meinungskartell</mark> hat die linke Dominanz im öffentlich-rechtlichen Rundfunk und in privaten Mainstream-Medien verfestigt.</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="41953_202109_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>Stoeckl S. (2026). <em>Populism-LLM v1.</em> DOI:&nbsp;tba</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. Data © CC-BY 4.0. Code MIT.</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

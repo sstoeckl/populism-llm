@@ -1,0 +1,1997 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ECOLO (Belgium, 2019) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/21111_201905_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">ECOLO (Belgium, 2019)</h1>
+<p class="subtitle lead">manifesto_id 21111_201905</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Belgium · <span class="item"><strong>Party</strong></span> ECOLO (Ecologists) · <span class="item"><strong>Year</strong></span> 2019 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 10</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.5</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.5</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.5</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.8</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“diminuer les taux de TVA de 21 à 6 %”
+</div>
+<span class="context">Afin de favoriser les économies d’énergie, Ecolo propose de <mark>diminuer les taux de TVA de 21 à 6 %</mark> notamment pour la construction de maisons passives</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · mixed · chunk 2</span>
+<div class="quote">
+“État régulateur, qui fixe les règles du jeu”
+</div>
+<span class="context">favorise les multinationales , accroît les inégalités et asphyxie les dynamiques locales. Ecolo ne veut pas non plus d’un « État interventionniste », contrôlant l’ensemble des ficelles économiques mais bien d’un <mark>État régulateur, qui fixe les règles du jeu</mark>, les fait respecter</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“rétablir une concurrence loyale”
+</div>
+<span class="context">importés, afin de <mark>rétablir une concurrence loyale</mark>, de favoriser les circuits économiques</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“politique commerciale basée sur le respect des normes”
+</div>
+<span class="context">Ce qui compte, c’est de construire une <mark>politique commerciale basée sur le respect des normes</mark> sociales et environnementales</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“soutenir des investissements massifs et rentables dans l’efficacité énergétique, les énergies renouvelables”
+</div>
+<span class="context">Tous passent par des stratégies d’anticipation et par la mise en place d’une large gamme de mesures coordonnées, destinées à <mark>soutenir des investissements massifs et rentables dans l’efficacité énergétique, les énergies renouvelables</mark> et la réduction des émissions de gaz à effet de serre.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“L’État doit en ce sens (re)devenir un stratège économique avec une vision économique sur le long terme”
+</div>
+<span class="context"><mark>L’État doit en ce sens (re)devenir un stratège économique avec une vision économique sur le long terme</mark> et stable qui se concrétise notamment par un plan d’investissement fort et à l’horizon 2030 puis 2050.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“favoriser les placements dans les secteurs économiques innovants et durables”
+</div>
+<span class="context">Orienter les placements des fonds de pension, de façon à favoriser les placements dans les secteurs économiques innovants et « durables » (économie sociale, nouvelles technologies vertes, économies d’énergie,…).</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“favoriser la création d’emploi via la diminution de son coût unitaire”
+</div>
+<span class="context">…Il est nécessaire de <mark>favoriser la création d’emploi via la diminution de son coût unitaire</mark>, mais il faut également améliorer la situation des travailleurs aux bas et moyens revenus…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“objectifs contraignants pourront garantir ce développement”
+</div>
+<span class="context">Seuls des <mark>objectifs contraignants pourront garantir ce développement</mark>. Pour réussir à réduire des émissions de gaz à effet de serre de 55 %</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“État régulateur, qui fixe les règles du jeu”
+</div>
+<span class="context">bien d’un <mark>État régulateur, qui fixe les règles du jeu</mark>, les fait respecter et joue un rôle d’orientation de l’économie vers un modèle plus soutenable</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 3</span>
+<div class="quote">
+“droits de douane sociaux et environnementaux au niveau européen”
+</div>
+<span class="context">Ecolo propose l’instauration de <mark>droits de douane sociaux et environnementaux au niveau européen</mark> à l’égard des biens et services produits dans des conditions sociales et environnementales problématiques</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“taxe européenne sur les Gafa”
+</div>
+<span class="context">Un renforcement progressif mais conséquent pourrait être alimenté par la prochaine <mark>taxe européenne sur les Gafa</mark></span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“désinvestir du secteur des énergies fossiles”
+</div>
+<span class="context">Rendre obligatoire la sortie progressive des investissements dans le secteur des énergies fossiles. Les fonds de pension publics doivent <mark>désinvestir du secteur des énergies fossiles</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“potentiel destructeur d’une dérégulation généralisée des marchés”
+</div>
+<span class="context">crise économique et sociale, elle a également mis en lumière le <mark>potentiel destructeur d’une dérégulation généralisée des marchés</mark>. Aujourd’hui, si des mesures ont permis</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“séparant de façon stricte les métiers bancaires”
+</div>
+<span class="context">Renforcer les mesures de régulation financière, en <mark>séparant de façon stricte les métiers bancaires</mark>, en interdisant</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“assurances-pension privées, coûteuses et qui participent de la spéculation financière”
+</div>
+<span class="context">gouvernements ont fait largement la promotion des <mark>assurances-pension privées, coûteuses et qui participent de la spéculation financière</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“mobiliser les acteurs financiers (les pouvoirs publics via un financement direct ou de la garantie, l’épargne citoyenne, le privé)”
+</div>
+<span class="context">Il est important de mobiliser les acteurs financiers (les pouvoirs publics via un financement direct ou de la garantie, l’épargne citoyenne, le privé,…) pour mettre en place une solution de financement rapide et adapté pour ces initiatives.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“la crise financière a exposé au grand jour les dérives d’un système financier livré à lui-même”
+</div>
+<span class="context">La crise financière a exposé au grand jour les dérives d’un système financier livré à lui-même. En dégénérant en crise économique et sociale, elle a également mis en lumière le potentiel destructeur d’une dérégulation généralisée des marchés.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“renforcer les mesures de régulation financière, en séparant de façon stricte les métiers bancaires”
+</div>
+<span class="context">Renforcer les mesures de régulation financière, en séparant de façon stricte les métiers bancaires, en interdisant les pratiques spéculatives, en améliorant leur transparence, et en favorisant l’émergence de banques plus petites, spécialisées et éthiques.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“désinvestir du secteur des énergies fossiles”
+</div>
+<span class="context">Les fonds de pension publics doivent <mark>désinvestir du secteur des énergies fossiles</mark>. Pour éviter un effet de déstabilisation des marchés, ils doivent pouvoir le faire de façon progressive</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“dérégulation généralisée des marchés”
+</div>
+<span class="context">elle a également mis en lumière le potentiel destructeur d’une <mark>dérégulation généralisée des marchés</mark>. Aujourd’hui, si des mesures ont permis certaines améliorations</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“séparation stricte entre banques de détail et banques d’investissement”
+</div>
+<span class="context">Celui-ci devra viser l’établissement d’une <mark>séparation stricte entre banques de détail et banques d’investissement</mark>, en contraignant les banques universelles à opter pour le statut, soit d’une banque de détail, soit d’une banque d’investissement.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“fonds vautours”
+</div>
+<span class="context">Exporter le modèle belge de loi sur les <mark>fonds vautours</mark>, de manière à empêcher ceux-ci de réclamer des profits indus</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Inscrire le bien-être et la dignité des animaux en tant qu’êtres sentients (sensibles) dansConstitution”
+</div>
+<span class="context">3.12 <mark>Inscrire le bien-être et la dignité des animaux en tant qu’êtres sentients (sensibles) dansConstitution</mark>. Inscrire dans la Constitution le droit de l’animal</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“refondation de la démocratie autour de la participation citoyenne”
+</div>
+<span class="context">nécessité. D’une part, celle d’une <mark>refondation de la démocratie autour de la participation citoyenne</mark>. D’autre part, celle d’un assainissement profond</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“inacceptable dans un pays démocratique”
+</div>
+<span class="context">Les centres fermés sont un dispositif <mark>inacceptable dans un pays démocratique</mark> fermés dans la mesure</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“l’accès à la Justice constitue un pilier de notre démocratie”
+</div>
+<span class="context">problèmes d’accès à la Justice se sont aggravés. Or, <mark>l’accès à la Justice constitue un pilier de notre démocratie</mark> et une condition</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“La Loi visera à réaffirmer la place centrale que doit occuper l’énergie au sein des politiques publiques”
+</div>
+<span class="context"><mark>La Loi visera à réaffirmer la place centrale que doit occuper l’énergie au sein des politiques publiques</mark>. Ainsi, l’efficacité énergétique et la transition vers une consommation énergétique durable doivent être comprises comme des mesures transversales.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“transparence des mandats, des rémunérations, le fonctionnement et le contrôle démocratique”
+</div>
+<span class="context">Grâce à l’opinion publique, Ecolo a pu faire levier et faire adopter des réformes importantes en matière de gouvernance : la <mark>transparence des mandats, des rémunérations, le fonctionnement et le contrôle démocratique</mark> des intercommunales et autres associations ou structures para-publiques, etc.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“lutte contre la fraude fiscale en renforçant les différents services du SPF”
+</div>
+<span class="context">Lutter réellement contre la fraude fiscale en renforçant les différents services du SPF, les dispositifs policiers et judiciaires et les mesures de sanction.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“l’accès à la Justice constitue un pilier de notre démocratie”
+</div>
+<span class="context">…Or, <mark>l’accès à la Justice constitue un pilier de notre démocratie</mark> et une condition sine qua non d’une société juste. Pourtant, actuellement le droit à un accès effectif au juge n’est plus garanti pour une partie de la population…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Un conseil climatique indépendant devra analyser”
+</div>
+<span class="context"><mark>Un conseil climatique indépendant devra analyser</mark> de manière régulière si l’accord de gouvernement se traduit par une politique efficace</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“droit d’Initiative législative citoyenne”
+</div>
+<span class="context">Créer un <mark>droit d’Initiative législative citoyenne</mark> qui permette à des citoyen.nes d’obtenir d’une assemblée parlementaire que celle-ci vote sur des propositions législatives</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“centres fermés sont un dispositif inacceptable dans un pays démocratique”
+</div>
+<span class="context">Les <mark>centres fermés sont un dispositif inacceptable dans un pays démocratique</mark> fermés dans la mesure où ils relèvent d’une politique assimilant des personnes migrantes à des criminels en les enfermant pour des raisons administratives.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“l’accès à la Justice constitue un pilier de notre démocratie”
+</div>
+<span class="context">Or, <mark>l’accès à la Justice constitue un pilier de notre démocratie</mark> et une condition sine qua non d’une société juste</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“une approche genrée de la santé”
+</div>
+<span class="context">Notre programme santé comprend un chapitre qui attire l’attention sur la nécessité d’<mark>une approche genrée de la santé</mark> depuis la prévention</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“renforcement de la lutte contre les discriminations”
+</div>
+<span class="context">pauvreté infantile, le but ultime étant l’éradication de la pauvreté ; le <mark>renforcement de la lutte contre les discriminations</mark> directes et indirectes qui mettent à mal l’égalité</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“Garantir l’effectivité des lois anti-discrimination”
+</div>
+<span class="context">9.9 <mark>Garantir l’effectivité des lois anti-discrimination</mark> par l’organisation de tests de situation</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“respect des genres et contre le harcèlement sexuel”
+</div>
+<span class="context">Développer un vigilance active pour le <mark>respect des genres et contre le harcèlement sexuel</mark> dans les écoles</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“garantir l’accès à des soins de qualité pour tous”
+</div>
+<span class="context">Les pouvoirs publics ont la responsabilité de mettre en place des politiques concrètes qui protègent la santé des citoyen.ne.s. Ils ont aussi l’obligation de <mark>garantir l’accès à des soins de qualité pour tous</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“principe de l’alternance des genres sur les listes wallonnes ; règle d’un tiers au moins de chaque genre”
+</div>
+<span class="context">Des avancées ont été engrangées sous l’actuelle législature, entre autres à l’initiative d’Ecolo : <mark>principe de l’alternance des genres sur les listes wallonnes ; règle d’un tiers au moins de chaque genre</mark> au sein des exécutifs locaux, également en Wallonie et à Bruxelles.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“lutte contre les stéréotypes sexistes dans les outils pédagogiques”
+</div>
+<span class="context">Pour Ecolo, la <mark>lutte contre les stéréotypes sexistes dans les outils pédagogiques</mark> et les pratiques éducatives reste une priorité.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“lutte contre la discrimination et les violences policières”
+</div>
+<span class="context">…en généralisant et uniformisant les formations, notamment des fonctionnaires de police de référence dans le cadre de la <mark>lutte contre la discrimination et les violences policières</mark>, en améliorant la gestion des bases de données…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“approche genrée de la santé”
+</div>
+<span class="context">Notre programme santé comprend un chapitre qui attire l’attention sur la nécessité d’une <mark>approche genrée de la santé</mark> depuis la prévention, la promotion jusqu’aux soins.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“démocratie paritaire en terme de genre”
+</div>
+<span class="context">Mettre en place une <mark>démocratie paritaire en terme de genre</mark> ; dans les parlements dans les gouvernements dans la function publique et les organismes d’intérêt public</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“lutte contre les discriminations entre les femmes et les hommes”
+</div>
+<span class="context">l’adhésion de tous les partis politiques à un décret introduisant « la <mark>lutte contre les discriminations entre les femmes et les hommes</mark> et à la promotion de l’égalité des sexes» parmi les critères d’agrément des manuels scolaires</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“respect des genres et contre le harcèlement sexuel”
+</div>
+<span class="context">Développer un vigilance active pour le <mark>respect des genres et contre le harcèlement sexuel</mark> dans les écoles artistiques</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“diminuer les taux de TVA de 21 à 6 %”
+</div>
+<span class="context">Afin de favoriser les économies d’énergie, Ecolo propose de <mark>diminuer les taux de TVA de 21 à 6 %</mark> notamment pour la construction de maisons passives</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“refondation de la démocratie autour de la participation citoyenne”
+</div>
+<span class="context">nécessité. D’une part, celle d’une <mark>refondation de la démocratie autour de la participation citoyenne</mark>. D’autre part, celle d’un assainissement profond</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Garantir l’effectivité des lois anti-discrimination”
+</div>
+<span class="context">9.9 <mark>Garantir l’effectivité des lois anti-discrimination</mark> par l’organisation de tests de situation</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“l’accès à la Justice constitue un pilier de notre démocratie”
+</div>
+<span class="context">problèmes d’accès à la Justice se sont aggravés. Or, <mark>l’accès à la Justice constitue un pilier de notre démocratie</mark> et une condition</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“La Loi visera à réaffirmer la place centrale que doit occuper l’énergie au sein des politiques publiques”
+</div>
+<span class="context"><mark>La Loi visera à réaffirmer la place centrale que doit occuper l’énergie au sein des politiques publiques</mark>. Ainsi, l’efficacité énergétique et la transition vers une consommation énergétique durable doivent être comprises comme des mesures transversales.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“réformes importantes en matière de gouvernance : la transparence des mandats, des rémunérations”
+</div>
+<span class="context">Grâce à l’opinion publique, Ecolo a pu faire levier et faire adopter des <mark>réformes importantes en matière de gouvernance : la transparence des mandats, des rémunérations</mark>, le fonctionnement et le contrôle démocratique des intercommunales et autres associations ou structures para-publiques, etc.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“lutter réellement contre la fraude fiscale en renforçant les différents services du SPF”
+</div>
+<span class="context">Lutter réellement contre la fraude fiscale en renforçant les différents services du SPF, les dispositifs policiers et judiciaires et les mesures de sanction.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“l’accès à la Justice constitue un pilier de notre démocratie”
+</div>
+<span class="context">…Or, <mark>l’accès à la Justice constitue un pilier de notre démocratie</mark> et une condition sine qua non d’une société juste. Pourtant, actuellement le droit à un accès effectif au juge n’est plus garanti pour une partie de la population…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Un conseil climatique indépendant devra analyser”
+</div>
+<span class="context"><mark>Un conseil climatique indépendant devra analyser</mark> de manière régulière si l’accord de gouvernement se traduit par une politique efficace</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“transparence, renforcer la participation”
+</div>
+<span class="context">il faut oser la <mark>transparence, renforcer la participation</mark> , élargir les modes de décision aux citoyens et, plus que jamais, améliorer la gouvernance</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Garantir l’effectivité des lois anti-discrimination”
+</div>
+<span class="context"><mark>Garantir l’effectivité des lois anti-discrimination</mark> par l’organisation de tests de situation, par la formation des services de prévention et de police amenés à accueillir les plaignants.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“l’accès à la Justice constitue un pilier de notre démocratie”
+</div>
+<span class="context">Or, <mark>l’accès à la Justice constitue un pilier de notre démocratie</mark> et une condition sine qua non d’une société juste</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“les profits du secteur nucléaire sont largement privatisés”
+</div>
+<span class="context">Aujourd’hui <mark>les profits du secteur nucléaire sont largement privatisés</mark>, alors que les coûts en cas d’accident nucléaire pèseraient largement sur la collectivité.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“impliquant à des degrés divers des représentants des partis traditionnels”
+</div>
+<span class="context">révélé au grand jour une série de scandales (Publifin, ISPPC, Samusocial, Kazakhgate, etc.) , <mark>impliquant à des degrés divers des représentants des partis traditionnels</mark>. Ces dossiers d’une gravité extrême sapent la confiance</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“loin de tous les fantasmes entretenus par les nationalistes-populistes”
+</div>
+<span class="context">politique migratoire digne et solidaire, pragmatique et <mark>loin de tous les fantasmes entretenus par les nationalistes-populistes</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“ferme les yeux sur les méfaits des puissants”
+</div>
+<span class="context">qui maltraite les plus faibles et <mark>ferme les yeux sur les méfaits des puissants</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“la logique doit être inversée”
+</div>
+<span class="context">Aujourd’hui les profits du secteur nucléaire sont largement privatisés, alors que les coûts en cas d’accident nucléaire pèseraient largement sur la collectivité. La logique doit être inversée5. Pour Ecolo, le secteur nucléaire devrait être soumis à une responsabilité civile illimitée, comme c’est le cas pour les autres producteurs d’énergie, qu’ils utilisent le gaz ou le vent, et comme c’est le cas pour les producteurs d’énergie nucléaire en Allemagne.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“une série de scandales (Publifin, ISPPC, Samusocial, Kazakhgate, etc.)”
+</div>
+<span class="context">Tout au long de la législature et à tous les étages de la maisons « Belgique », l’actualité a révélé au grand jour <mark>une série de scandales (Publifin, ISPPC, Samusocial, Kazakhgate, etc.)</mark> , impliquant à des degrés divers des représentants des partis traditionnels. Ces dossiers d’une gravité extrême sapent la confiance des citoyens dans leurs institutions et dans leurs représentants et illustrent de façon dramatique une double nécessité.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“fraude fiscale représente un manque à gagner”
+</div>
+<span class="context">La Belgique est l’un des pays d’Europe où la fraude fiscale en part du PIB est la plus élevée. Même si ce montant est, par définition, difficile à évaluer, plusieurs études sur le sujet arrivent à cette conclusion. Ainsi, selon différentes études universitaires ou évaluations internationales, la <mark>fraude fiscale représente un manque à gagner</mark> de près de 20 milliards € par an pour les finances publiques.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“la montée en flèche des courants nationaux-populistes qui témoignent de leur mépris”
+</div>
+<span class="context">…plus égalitaire, plus social, plus solidaire et plus démocratique. Malheureusement, nous assistons, en même temps, à <mark>la montée en flèche des courants nationaux-populistes qui témoignent de leur mépris</mark> pour les enjeux contemporains, notamment environnementaux et migratoires. Les défis à venir sont importants…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“les profits du secteur nucléaire sont largement privatisés”
+</div>
+<span class="context">Aujourd’hui <mark>les profits du secteur nucléaire sont largement privatisés</mark>, alors que les coûts en cas d’accident nucléaire pèseraient largement sur la collectivité.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“scandales (Publifin, ISPPC, Samusocial, Kazakhgate”
+</div>
+<span class="context">l’actualité a révélé au grand jour une série de <mark>scandales (Publifin, ISPPC, Samusocial, Kazakhgate</mark>, etc.) , impliquant à des degrés divers des représentants des partis traditionnels</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 3</span>
+<div class="quote">
+“revenus de la dette se concentrent dans les mains des détenteurs des capitaux”
+</div>
+<span class="context">Les intérêts sur la dette publique engendrent une société duale dans laquelle les <mark>revenus de la dette se concentrent dans les mains des détenteurs des capitaux</mark> et des actionnaires des banques alors que le paiement des intérêts repose sur les contribuables.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 4</span>
+<div class="quote">
+“ferme les yeux sur les méfaits des puissants”
+</div>
+<span class="context">donner cette détestable image d’une justice qui maltraite les plus faibles et <mark>ferme les yeux sur les méfaits des puissants</mark></span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“citoyens, des entreprises et des associations les partenaires privilégiés”
+</div>
+<span class="context">Bâtir une Alliance Emploi Environnement « isolation » faisant des <mark>citoyens, des entreprises et des associations les partenaires privilégiés</mark> afin de généraliser l’isolation des maisons et bâtiments et la création d’emplois verts qui y sont liés.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“le citoyen retrouve sa place d’acteur fondamental”
+</div>
+<span class="context">Pour lutter contre le sentiment d’impuissance en matière d’affaires publiques, il faut oser la transparence, renforcer la participation , élargir les modes de décision aux citoyens et, plus que jamais, améliorer la gouvernance. C’est la seule voie pour redonner confiance dans nos institutions.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“transfert net des contribuables vers les détenteurs de la dette publique”
+</div>
+<span class="context">Les intérêts sur la dette publique engendrent une société duale dans laquelle les revenus de la dette se concentrent dans les mains des détenteurs des capitaux et des actionnaires des banques alors que le paiement des intérêts repose sur les contribuables. Il y a un <mark>transfert net des contribuables vers les détenteurs de la dette publique</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“faisant des citoyens, des entreprises et des associations”
+</div>
+<span class="context">Bâtir une Alliance Emploi Environnement « isolation » <mark>faisant des citoyens, des entreprises et des associations</mark> les partenaires privilégiés</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“le citoyen retrouve sa place d’acteur fondamental”
+</div>
+<span class="context">en proposant des alternatives où <mark>le citoyen retrouve sa place d’acteur fondamental</mark>. Pour lutter contre le sentiment d’impuissance en matière d’affaires publiques</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“nationalistes-populistes”
+</div>
+<span class="context">Ecolo est clairement du côté ouvert et veut par son approche de la question migratoire tout faire pour assurer une politique migratoire digne et solidaire, pragmatique et loin de tous les fantasmes entretenus par les <mark>nationalistes-populistes</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“impliquer davantage le public”
+</div>
+<span class="context">Ecolo entend <mark>impliquer davantage le public</mark> dans les grandes orientations de la RTBF</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“les profits du secteur nucléaire sont largement privatisés”
+</div>
+<span class="context">Aujourd’hui <mark>les profits du secteur nucléaire sont largement privatisés</mark>, alors que les coûts en cas d’accident nucléaire pèseraient largement sur la collectivité.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“alléger la pression fiscale sur le travail”
+</div>
+<span class="context">Ecolo propose donc d’<mark>alléger la pression fiscale sur le travail</mark>, particulièrement le travail peu qualifié, en supprimant les cotisations socialement injustes</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“une allure néolibérale, alors que les inégalités s’accroissent”
+</div>
+<span class="context">rouages économiques et tentant d’imposer à la marche du monde <mark>une allure néolibérale, alors que les inégalités s’accroissent</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Désinvestir des énergies fossiles : en priorité par une réorientation rapide de l’ensemble des fonds de pension publics vers des investissements durables”
+</div>
+<span class="context">1.13 <mark>Désinvestir des énergies fossiles : en priorité par une réorientation rapide de l’ensemble des fonds de pension publics vers des investissements durables</mark>, une incitation des autres fonds de pension à faire de même, et un reporting public des fonds d’investissement cotés en Bourse.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“la justice sociale, d’organisation des soins à partir de la 1ère ligne”
+</div>
+<span class="context">Des politiques de prévention, de justice sociale, d’organisation des soins à partir de la 1ère ligne, de régulation ferme des prix des médicaments et des rémunérations des prestataires permettront de maîtriser les budgets.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“cotisation de crise sur les patrimoines supérieurs à 1 million €”
+</div>
+<span class="context">Ecolo propose d’instaurer une <mark>cotisation de crise sur les patrimoines supérieurs à 1 million €</mark>, qui seraient taxés à hauteur de 1% à 1,5%, avec une exonération dans la base de calcul de l’habitation principale ainsi que des biens productifs utilisés dans le cadre d’une activité professionnelle.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“un autre modèle économique, social et politique plus égalitaire, plus social, plus solidaire”
+</div>
+<span class="context">…témoignent aujourd’hui de la volonté des différentes sociétés civiles de mettre en place <mark>un autre modèle économique, social et politique plus égalitaire, plus social, plus solidaire</mark> et plus démocratique. Malheureusement, nous assistons, en même temps, à la montée en flèche des courants nationaux-populistes…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“solidarité du financement”
+</div>
+<span class="context">L’accès aux soins de santé pour toutes et tous nécessite de préserver la <mark>solidarité du financement</mark>. Cette solidarité nécessite des politiques de cotisations sociales et fiscales justes</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“juste répartition de la valeur créée”
+</div>
+<span class="context">qui assure une <mark>juste répartition de la valeur créée</mark> afin de permettre à chacun de développer son projet de manière autonome et émancipatrice</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“globalisation des revenus d’un point de vue fiscal”
+</div>
+<span class="context">La <mark>globalisation des revenus d’un point de vue fiscal</mark> permettra de rééquilibrer l’imposition entre les revenus du travail et du capital pour qu’un euro de salaire ne soit pas plus imposé qu’un euro de revenu financier</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“augmenter les allocations sociales minimales”
+</div>
+<span class="context">Il est donc urgent d’<mark>augmenter les allocations sociales minimales</mark> au seuil de risque de pauvreté afin d’enrayer la spirale de la pauvreté</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“les profits du secteur nucléaire sont largement privatisés”
+</div>
+<span class="context">Aujourd’hui <mark>les profits du secteur nucléaire sont largement privatisés</mark>, alors que les coûts en cas d’accident nucléaire pèseraient largement sur la collectivité.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“alléger la pression fiscale sur le travail”
+</div>
+<span class="context">Ecolo propose donc d’<mark>alléger la pression fiscale sur le travail</mark>, particulièrement le travail peu qualifié, en supprimant les cotisations socialement injustes</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 3</span>
+<div class="quote">
+“loin de tous les fantasmes entretenus par les nationalistes-populistes”
+</div>
+<span class="context">politique migratoire digne et solidaire, pragmatique et <mark>loin de tous les fantasmes entretenus par les nationalistes-populistes</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“une allure néolibérale, alors que les inégalités s’accroissent”
+</div>
+<span class="context">rouages économiques et tentant d’imposer à la marche du monde <mark>une allure néolibérale, alors que les inégalités s’accroissent</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Désinvestir des énergies fossiles : en priorité par une réorientation rapide de l’ensemble des fonds de pension publics vers des investissements durables”
+</div>
+<span class="context">1.13 <mark>Désinvestir des énergies fossiles : en priorité par une réorientation rapide de l’ensemble des fonds de pension publics vers des investissements durables</mark>, une incitation des autres fonds de pension à faire de même, et un reporting public des fonds d’investissement cotés en Bourse.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“une série de scandales (Publifin, ISPPC, Samusocial, Kazakhgate, etc.)”
+</div>
+<span class="context">Tout au long de la législature et à tous les étages de la maisons « Belgique », l’actualité a révélé au grand jour <mark>une série de scandales (Publifin, ISPPC, Samusocial, Kazakhgate, etc.)</mark> , impliquant à des degrés divers des représentants des partis traditionnels. Ces dossiers d’une gravité extrême sapent la confiance des citoyens dans leurs institutions et dans leurs représentants et illustrent de façon dramatique une double nécessité.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“cotisation de crise sur les patrimoines supérieurs à 1 million €”
+</div>
+<span class="context">Ecolo propose d’instaurer une <mark>cotisation de crise sur les patrimoines supérieurs à 1 million €</mark>, qui seraient taxés à hauteur de 1% à 1,5%, avec une exonération dans la base de calcul de l’habitation principale ainsi que des biens productifs utilisés dans le cadre d’une activité professionnelle.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“la montée en flèche des courants nationaux-populistes qui témoignent de leur mépris”
+</div>
+<span class="context">…plus égalitaire, plus social, plus solidaire et plus démocratique. Malheureusement, nous assistons, en même temps, à <mark>la montée en flèche des courants nationaux-populistes qui témoignent de leur mépris</mark> pour les enjeux contemporains, notamment environnementaux et migratoires. Les défis à venir sont importants…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“solidarité du financement”
+</div>
+<span class="context">L’accès aux soins de santé pour toutes et tous nécessite de préserver la <mark>solidarité du financement</mark>. Cette solidarité nécessite des politiques de cotisations sociales et fiscales justes</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“juste répartition de la valeur créée”
+</div>
+<span class="context">qui assure une <mark>juste répartition de la valeur créée</mark> afin de permettre à chacun de développer son projet de manière autonome et émancipatrice</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“lutter contre le dumping social et environnemental”
+</div>
+<span class="context">L’objectif poursuivi vise à <mark>lutter contre le dumping social et environnemental</mark> qui, tout en portant préjudice à la compétitivité de nos entreprises, bafoue les droits des travailleurs</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“augmenter les allocations sociales minimales”
+</div>
+<span class="context">Il est donc urgent d’<mark>augmenter les allocations sociales minimales</mark> au seuil de risque de pauvreté afin d’enrayer la spirale de la pauvreté</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“éviter le recours à l’importation d’huile de soja ou de palme pour les agrocarburants”
+</div>
+<span class="context">Bâtir une Alliance Emploi Environnement «énergies renouvelables» faisant des citoyens, des entreprises et des associations les partenaires privilégiés afin de soutenir le développement accéléré des énergies renouvelables (en excluant le recours à l’importation d’huile de soja ou de palme pour les agrocarburants) et la création d’emplois verts qui y sont liés.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“la mise en valeur de ses spécificités et sa prise d’autonomie vis-à-vis des deux grandes communautés”
+</div>
+<span class="context">Quant à la Région bruxelloise, <mark>la mise en valeur de ses spécificités et sa prise d’autonomie vis-à-vis des deux grandes communautés</mark> de ce pays rendent obsolète le fait que les listes pour les élections régionales sont unilingues, ce qui n’est pas le cas pour les élections communales ou fédérales.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“lutte contre le dumping social et environnemental”
+</div>
+<span class="context">L’objectif poursuivi vise à lutter contre le dumping social et environnemental qui, tout en portant préjudice à la compétitivité de nos entreprises, bafoue les droits des travailleurs et épuise les ressources de certains pays qui exportent vers l’Europe.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“la montée en flèche des courants nationaux-populistes qui témoignent de leur mépris”
+</div>
+<span class="context">…plus égalitaire, plus social, plus solidaire et plus démocratique. Malheureusement, nous assistons, en même temps, à <mark>la montée en flèche des courants nationaux-populistes qui témoignent de leur mépris</mark> pour les enjeux contemporains, notamment environnementaux et migratoires. Les défis à venir sont importants…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“résider en Belgique”
+</div>
+<span class="context">Les officines et les consommateurs seront soumis au respect de règles strictes : pas avant 18 ans, <mark>résider en Belgique</mark>, pas de pub, ne pas fumer dans les espaces publics</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“En aucun cas, il ne s’agit d’instaurer un protectionnisme aveugle”
+</div>
+<span class="context"><mark>En aucun cas, il ne s’agit d’instaurer un protectionnisme aveugle</mark>. L’objectif poursuivi vise à lutter contre le dumping social et environnemental</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“montée en flèche des courants nationaux-populistes”
+</div>
+<span class="context">nous assistons, en même temps, à la <mark>montée en flèche des courants nationaux-populistes</mark> qui témoignent de leur mépris pour les enjeux contemporains</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“sapent la confiance des citoyens dans leurs institutions”
+</div>
+<span class="context">représentants des partis traditionnels. Ces dossiers d’une gravité extrême <mark>sapent la confiance des citoyens dans leurs institutions</mark> et dans leurs représentants</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“La guerre ouverte menée contre les artistes”
+</div>
+<span class="context">priorité culturelle d’Ecolo. <mark>La guerre ouverte menée contre les artistes</mark> qui ne représentent pourtant</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“profits du secteur nucléaire sont largement privatisés, alors que les coûts en cas d’accident nucléaire pèseraient largement sur la collectivité”
+</div>
+<span class="context">Aujourd’hui les <mark>profits du secteur nucléaire sont largement privatisés, alors que les coûts en cas d’accident nucléaire pèseraient largement sur la collectivité</mark>. La logique doit être inversée5.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 2</span>
+<div class="quote">
+“une série de scandales (Publifin, ISPPC, Samusocial, Kazakhgate, etc.)”
+</div>
+<span class="context">Tout au long de la législature et à tous les étages de la maisons « Belgique », l’actualité a révélé au grand jour <mark>une série de scandales (Publifin, ISPPC, Samusocial, Kazakhgate, etc.)</mark> , impliquant à des degrés divers des représentants des partis traditionnels. Ces dossiers d’une gravité extrême sapent la confiance des citoyens dans leurs institutions et dans leurs représentants et illustrent de façon dramatique une double nécessité.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“fraude fiscale n’est pas une fatalité, des solutions existent”
+</div>
+<span class="context">Pourtant, contrairement à ce qu’on pense parfois, la <mark>fraude fiscale n’est pas une fatalité, des solutions existent</mark> pour la combattre et il suffit de les mettre en œuvre.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“une petite minorité contrôlant l’ensemble des rouages économiques”
+</div>
+<span class="context">…un double basculement est survenu au sein des relations internationales. D’une part, de plus en plus d’États concourent à l’ordre international et intègrent les instances de décision… D’autre part, ce renversement du système unipolaire s’est réalisé autour d’<mark>une petite minorité contrôlant l’ensemble des rouages économiques</mark> et tentant d’imposer à la marche du monde une allure néolibérale…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“s’affranchir du lobby pharmaceutique”
+</div>
+<span class="context">à condition de <mark>s’affranchir du lobby pharmaceutique</mark>. Or, le budget destiné aux médicaments dérape (500 millions € en 2018)</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“sapent la confiance des citoyens dans leurs institutions”
+</div>
+<span class="context">Ces dossiers d’une gravité extrême <mark>sapent la confiance des citoyens dans leurs institutions</mark> et dans leurs représentants et illustrent de façon dramatique une double nécessité</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“partis populistes, souvent dans des régions prospères”
+</div>
+<span class="context">Les <mark>partis populistes, souvent dans des régions prospères</mark>, ont mis l’accent sur la question identitaire et ont généré les fantasmes du « grand remplacement »</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“maltraite les plus faibles et ferme les yeux”
+</div>
+<span class="context">détestable image d’une justice qui <mark>maltraite les plus faibles et ferme les yeux</mark> sur les méfaits des puissants</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“le citoyen retrouve sa place d’acteur fondamental”
+</div>
+<span class="context">réinventer la démocratie , en proposant des alternatives où <mark>le citoyen retrouve sa place d’acteur fondamental</mark>. Pour lutter contre le sentiment d’impuissance</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“l’ouverture de la RTBF à son public”
+</div>
+<span class="context">première étape, utile, mais non suffisante, à <mark>l’ouverture de la RTBF à son public</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“citoyens, des entreprises et des associations les partenaires privilégiés”
+</div>
+<span class="context">Bâtir une Alliance Emploi Environnement « isolation » faisant des <mark>citoyens, des entreprises et des associations les partenaires privilégiés</mark> afin de généraliser l’isolation des maisons et bâtiments et la création d’emplois verts qui y sont liés.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“le citoyen retrouve sa place d’acteur fondamental”
+</div>
+<span class="context">Pour lutter contre le sentiment d’impuissance en matière d’affaires publiques, il faut oser la transparence, renforcer la participation , élargir les modes de décision aux citoyens et, plus que jamais, améliorer la gouvernance. C’est la seule voie pour redonner confiance dans nos institutions.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“les contribuables vers les détenteurs de la dette publique”
+</div>
+<span class="context">Les intérêts sur la dette publique engendrent une société duale dans laquelle les revenus de la dette se concentrent dans les mains des détenteurs des capitaux et des actionnaires des banques alors que le paiement des intérêts repose sur les contribuables. Il y a un transfert net des contribuables vers les détenteurs de la dette publique.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“la volonté des différentes sociétés civiles de mettre en place un autre modèle économique”
+</div>
+<span class="context">…témoignent aujourd’hui de <mark>la volonté des différentes sociétés civiles de mettre en place un autre modèle économique</mark>, social et politique plus égalitaire, plus social, plus solidaire et plus démocratique. Malheureusement, nous assistons, en même temps, à la montée en flèche des courants nationaux-populistes…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“aider les citoyennes et les citoyens à contenir leurs factures”
+</div>
+<span class="context">Ces mesures doivent <mark>aider les citoyennes et les citoyens à contenir leurs factures</mark> d’énergie en prenant en compte les moyens disponibles de chacun.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“le citoyen retrouve sa place d’acteur fondamental”
+</div>
+<span class="context">en proposant des alternatives où <mark>le citoyen retrouve sa place d’acteur fondamental</mark>. Pour lutter contre le sentiment d’impuissance en matière d’affaires publiques</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“chacun.e puisse voir si ces entreprises paient des impôts”
+</div>
+<span class="context">L’idée étant que <mark>chacun.e puisse voir si ces entreprises paient des impôts</mark> là où se déroulent réellement leurs activités économiques ou si elles déplacent artificiellement leurs profits</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 4</span>
+<div class="quote">
+“chacun.e doit avoir la possibilité”
+</div>
+<span class="context">Dès l’enfance, <mark>chacun.e doit avoir la possibilité</mark> de goûter à la vie culturelle sous toutes ses formes</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“les profits du secteur nucléaire sont largement privatisés”
+</div>
+<span class="context">Aujourd’hui <mark>les profits du secteur nucléaire sont largement privatisés</mark>, alors que les coûts en cas d’accident nucléaire pèseraient largement sur la collectivité.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“sapent la confiance des citoyens dans leurs institutions”
+</div>
+<span class="context">représentants des partis traditionnels. Ces dossiers d’une gravité extrême <mark>sapent la confiance des citoyens dans leurs institutions</mark> et dans leurs représentants</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“loin de tous les fantasmes entretenus par les nationalistes-populistes”
+</div>
+<span class="context">politique migratoire digne et solidaire, pragmatique et <mark>loin de tous les fantasmes entretenus par les nationalistes-populistes</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“ferme les yeux sur les méfaits des puissants”
+</div>
+<span class="context">qui maltraite les plus faibles et <mark>ferme les yeux sur les méfaits des puissants</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“profits du secteur nucléaire sont largement privatisés, alors que les coûts en cas d’accident nucléaire pèseraient largement sur la collectivité”
+</div>
+<span class="context">Aujourd’hui les <mark>profits du secteur nucléaire sont largement privatisés, alors que les coûts en cas d’accident nucléaire pèseraient largement sur la collectivité</mark>. La logique doit être inversée5.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“une série de scandales (Publifin, ISPPC, Samusocial, Kazakhgate, etc.)”
+</div>
+<span class="context">Tout au long de la législature et à tous les étages de la maisons « Belgique », l’actualité a révélé au grand jour <mark>une série de scandales (Publifin, ISPPC, Samusocial, Kazakhgate, etc.)</mark> , impliquant à des degrés divers des représentants des partis traditionnels. Ces dossiers d’une gravité extrême sapent la confiance des citoyens dans leurs institutions et dans leurs représentants et illustrent de façon dramatique une double nécessité.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“fraude fiscale représente un manque à gagner”
+</div>
+<span class="context">La Belgique est l’un des pays d’Europe où la fraude fiscale en part du PIB est la plus élevée. Même si ce montant est, par définition, difficile à évaluer, plusieurs études sur le sujet arrivent à cette conclusion. Ainsi, selon différentes études universitaires ou évaluations internationales, la <mark>fraude fiscale représente un manque à gagner</mark> de près de 20 milliards € par an pour les finances publiques.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“la montée en flèche des courants nationaux-populistes qui témoignent de leur mépris”
+</div>
+<span class="context">…plus égalitaire, plus social, plus solidaire et plus démocratique. Malheureusement, nous assistons, en même temps, à <mark>la montée en flèche des courants nationaux-populistes qui témoignent de leur mépris</mark> pour les enjeux contemporains, notamment environnementaux et migratoires. Les défis à venir sont importants…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“les profits du secteur nucléaire sont largement privatisés”
+</div>
+<span class="context">Aujourd’hui <mark>les profits du secteur nucléaire sont largement privatisés</mark>, alors que les coûts en cas d’accident nucléaire pèseraient largement sur la collectivité.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“représentants des partis traditionnels”
+</div>
+<span class="context">impliquant à des degrés divers des <mark>représentants des partis traditionnels</mark>. Ces dossiers d’une gravité extrême sapent la confiance des citoyens</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“transfert net des contribuables vers les détenteurs de la dette publique”
+</div>
+<span class="context">Il y a un <mark>transfert net des contribuables vers les détenteurs de la dette publique</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · mixed · chunk 4</span>
+<div class="quote">
+“ferme les yeux sur les méfaits des puissants”
+</div>
+<span class="context">détestable image d’une justice qui maltraite les plus faibles et <mark>ferme les yeux sur les méfaits des puissants</mark></span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="21111_201905_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>CDA (Netherlands, 2021) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/22521_202103_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">CDA (Netherlands, 2021)</h1>
+<p class="subtitle lead">manifesto_id 22521_202103</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Netherlands · <span class="item"><strong>Party</strong></span> CDA (Christian Democratic Appeal) · <span class="item"><strong>Year</strong></span> 2021 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 50</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.7</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“ondernemers hebben de ruimte nodig om te ondernemen”
+</div>
+<span class="context">scale ups - helpen in de overstap naar nieuwe verdienmodellen. Ondernemers hebben de ruimte nodig om te ondernemen, groeien en innoveren.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“minder marktwerking, meer samenwerking”
+</div>
+<span class="context">daarom moet het roer drastisch om. Ook hier is het credo ‘<mark>minder marktwerking, meer samenwerking</mark>’. We maken van volkshuisvesting</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“netwerk voor Nederlandse ondernemers die”
+</div>
+<span class="context">zij vormen tevens een belangrijk <mark>netwerk voor Nederlandse ondernemers die</mark> internationaal zakendoen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Wij investeren in een krachtig economisch herstel en investeren in nieuwe banen, kennis en innovatie”
+</div>
+<span class="context">Wij zetten de schouders onder een krachtig economisch herstel en investeren in nieuwe banen, kennis en innovatie. We gaan voor de beste ideeën van Nederlandse bodem als basis voor een sterke en eerlijke economie van morgen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“marktwerking, meer samenwerking”
+</div>
+<span class="context">Het geloof in de markt was te groot. Voor investeerders is het bouwen van duurdere koopwoningen of de aanleg van een bedrijventerrein lucratiever dan woningen bouwen voor de huursector of betaalbare koophuizen voor gezinnen. Woningcorporaties zijn steeds verder beperkt in hun maatschappelijke taak en bouwregels en procedures zijn steeds ingewikkelder en zeer tijdrovend geworden. Het tekort is in korte tijd opgelopen tot ruim 1 miljoen woningen in 2030. Daarom moet het roer drastisch om. Ook hier is het credo ‘minder <mark>marktwerking, meer samenwerking</mark>’.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Fiscale prikkels die ervoor zorgen dat het aantrekkelijker is om arbeidsmigranten hierheen te halen”
+</div>
+<span class="context"><mark>Fiscale prikkels die ervoor zorgen dat het aantrekkelijker is om arbeidsmigranten hierheen te halen</mark> dan Nederlandse werknemers in dienst te nemen, worden geschrapt.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“ruimte voor goed ondernemerschap”
+</div>
+<span class="context">investeren in een krachtig economisch herstel en door te bouwen aan een duurzame, toekomstbestendige en innovatieve economie met alle <mark>ruimte voor goed ondernemerschap</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 2</span>
+<div class="quote">
+“minder marktwerking, meer samenwerking”
+</div>
+<span class="context">Ook hier is het credo ‘<mark>minder marktwerking, meer samenwerking</mark>’. We maken van volkshuisvesting weer een overheidstaak met een stevige regierol voor het Rijk.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“Fiscale prikkels die ervoor zorgen dat het aantrekkelijker is”
+</div>
+<span class="context"><mark>Fiscale prikkels die ervoor zorgen dat het aantrekkelijker is</mark> om arbeidsmigranten hierheen te halen dan Nederlandse werknemers in dienst te nemen, worden geschrapt.</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Volksbank als een vertrouwde en degelijke coöperatieve bank”
+</div>
+<span class="context">gezonde financiële sector. Om een norm te stellen voor andere banken, brengen wij de <mark>Volksbank als een vertrouwde en degelijke coöperatieve bank</mark> terug in de markt.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Om een eerlijke economie kan niet zonder een gezonde financiële sector. Om een norm te stellen voor andere banken, brengen wij de Volksbank als een vertrouwde en degelijke coöperatieve bank terug in de markt”
+</div>
+<span class="context">Een eerlijke economie kan niet zonder een gezonde financiële sector. Om een norm te stellen voor andere banken, brengen wij de Volksbank als een vertrouwde en degelijke coöperatieve bank terug in de markt. Het wordt een bank waar burgers en kleine bedrijven terecht kunnen voor heel eenvoudige en betrouwbare leningen, spaarproducten en andere diensten.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“strenge eisen aan duurzame productie en kwaliteit”
+</div>
+<span class="context">Strenge bronmaatregelen voor auto’s, apparaten of bouwmaterialen zijn voor het klimaat veel effectiever dan maatregelen die de schade achteraf beperken. Daarom stellen wij in Europees verband strengere eisen aan duurzame productie en kwaliteit van tal van producten.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“minder marktwerking en meer samenwerking”
+</div>
+<span class="context">Daarom kiezen wij voor <mark>minder marktwerking en meer samenwerking</mark> als basis voor de zorg. Wij willen af van ingewikkelde aanbestedingen</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“goede Bankenunie met streng toezicht”
+</div>
+<span class="context">We blijven werken aan een <mark>goede Bankenunie met streng toezicht</mark>. Om een nieuwe bankencrisis te voorkomen moeten conform de Europese bankenwetgeving zwakke banken worden afgewikkeld.</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“vertrouwen in de rechtsstaat en de overheid”
+</div>
+<span class="context">IV Een betrouwbare en dienstbare overheid Vertrouwen in de rechtsstaat en de overheid 79 Bescherming tegen criminaliteit</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“instituties van de democratische rechtsstaat”
+</div>
+<span class="context">tegen personen en partijen die het vertrouwen in de <mark>instituties van de democratische rechtsstaat</mark> ondermijnen of het belang in twijfel trekken.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“fundament is van onze democratie”
+</div>
+<span class="context">vertrouwen in de politiek het <mark>fundament is van onze democratie</mark> en onze rechtsstaat.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“‘Burgerschap, democratie en rechtsstaat’ worden voor alle leerlingen in het voortgezet onderwijs een apart onderdeel van het eindexamen”
+</div>
+<span class="context">Wij treden streng op tegen scholen die via het onderwijs onverdraagzaamheid, antidemocratische ideeën of een afkeer van de Nederlandse samenleving doorgeven. <mark>‘Burgerschap, democratie en rechtsstaat’ worden voor alle leerlingen in het voortgezet onderwijs een apart onderdeel van het eindexamen</mark>. Dat vraagt ook om extra aandacht voor dit thema in de opleiding en bijscholing van leraren.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“bescherming van de persvrijheid is een kerntaak van de overheid”
+</div>
+<span class="context">In tijden van fake news en buitenlandse beïnvloeding staan wij pal voor de persvrijheid en de vrije nieuwsgaring in Nederland en Europa. Bescherming van de persvrijheid is een kerntaak van de overheid.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“5 mei stilstaan bij onze hard bevochten vrijheid draagt bij aan nationale saamhorigheid”
+</div>
+<span class="context">Het op <mark>5 mei stilstaan bij onze hard bevochten vrijheid draagt bij aan nationale saamhorigheid</mark> en het besef dat het een groot goed is om te leven in een vrije en veilige samenleving.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Vertrouwen in de rechtsstaat en de overheid”
+</div>
+<span class="context">IV Een betrouwbare en dienstbare overheid <mark>Vertrouwen in de rechtsstaat en de overheid</mark> 79 Bescherming tegen criminaliteit en ondermijning</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“beschermen en versterken de instituties van de rechtsstaat”
+</div>
+<span class="context">Wij <mark>beschermen en versterken de instituties van de rechtsstaat</mark> om die rol voor de samenleving te kunnen blijven vervullen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“vertrouwen in de politiek het fundament is van onze democratie”
+</div>
+<span class="context">Maar vooral omdat het <mark>vertrouwen in de politiek het fundament is van onze democratie</mark> en onze rechtsstaat.</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“op alle scholen seksuele diversiteit onderwezen”
+</div>
+<span class="context">ruimte krijgen om zichzelf te zijn. Daarom wordt <mark>op alle scholen seksuele diversiteit onderwezen</mark>. Wij steunen de Zeeuws-Vlaanderen-wet</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“gelijke behandeling op basis van etniciteit”
+</div>
+<span class="context">Ook willen wij dat er meer aandacht is voor <mark>gelijke behandeling op basis van etniciteit</mark>. Een van de dingen waar wij op inzetten</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“racisme en discriminatie is geen enkele”
+</div>
+<span class="context">Voor <mark>racisme en discriminatie is geen enkele</mark> plaats in onze samenleving.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“In een samenleving waarin het uitgangspunt is dat iedereen er mag zijn is iedere suïcide er een teveel”
+</div>
+<span class="context"><mark>In een samenleving waarin het uitgangspunt is dat iedereen er mag zijn is iedere suïcide er een teveel</mark>. We moeten daarom sterker inzetten op het voorkomen van zelfmoord. Wij willen een flinke opwaardering van het beroep van verpleegkundige en verzorgende. Zij verdienen een goed salaris dat aansluit bij de verantwoordelijk- heden die ze dragen, maar ook meer zeggenschap over hun eigen werk en dus minder regels en afvinklijstjes.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“gelijke behandeling op basis van etniciteit”
+</div>
+<span class="context">Ook willen wij dat er meer aandacht is voor <mark>gelijke behandeling op basis van etniciteit</mark>. Een van de dingen waar wij op inzetten is anoniem solliciteren om bewuste en onbewuste discriminatie tegen te gaan en iedereen gelijke kansen te bieden, ongeacht afkomst en achternaam.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Voor racisme en discriminatie is geen enkele plaats in onze samenleving”
+</div>
+<span class="context"><mark>Voor racisme en discriminatie is geen enkele plaats in onze samenleving</mark>. Uitsluiting en belediging op basis van welke grond dan ook is een gif dat verhoudingen tussen mensen en groepen verziekt en mensen uit elkaar drijft.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“seksuele diversiteit onderwezen”
+</div>
+<span class="context">Kinderen horen in een veilige omgeving naar school te gaan. Zij moeten daarbij alle ruimte krijgen om zichzelf te zijn. Daarom wordt op alle scholen <mark>seksuele diversiteit onderwezen</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“discriminatie op grond van seksuele gerichtheid en handicap”
+</div>
+<span class="context">In artikel 1 van de Grondwet over gelijke behandeling wordt expliciet gemaakt dat ook discriminatie op grond van ‘seksuele gerichtheid’ en ‘handicap’ niet is toegestaan.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Voor racisme en discriminatie is geen enkele plaats”
+</div>
+<span class="context"><mark>Voor racisme en discriminatie is geen enkele plaats</mark> in onze samenleving. Uitsluiting en belediging op basis van welke grond dan ook is een gif.</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“vertrouwen in de rechtsstaat en de overheid”
+</div>
+<span class="context">IV Een betrouwbare en dienstbare overheid Vertrouwen in de rechtsstaat en de overheid 79 Bescherming tegen criminaliteit</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“instituties van de democratische rechtsstaat”
+</div>
+<span class="context">tegen personen en partijen die het vertrouwen in de <mark>instituties van de democratische rechtsstaat</mark> ondermijnen of het belang in twijfel trekken.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“fundament is van onze democratie”
+</div>
+<span class="context">vertrouwen in de politiek het <mark>fundament is van onze democratie</mark> en onze rechtsstaat.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“‘Burgerschap, democratie en rechtsstaat’ worden voor alle leerlingen in het voortgezet onderwijs een apart onderdeel van het eindexamen”
+</div>
+<span class="context">Wij treden streng op tegen scholen die via het onderwijs onverdraagzaamheid, antidemocratische ideeën of een afkeer van de Nederlandse samenleving doorgeven. <mark>‘Burgerschap, democratie en rechtsstaat’ worden voor alle leerlingen in het voortgezet onderwijs een apart onderdeel van het eindexamen</mark>. Dat vraagt ook om extra aandacht voor dit thema in de opleiding en bijscholing van leraren.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“bescherming van de persvrijheid is een kerntaak van de overheid”
+</div>
+<span class="context">In tijden van fake news en buitenlandse beïnvloeding staan wij pal voor de persvrijheid en de vrije nieuwsgaring in Nederland en Europa. Bescherming van de persvrijheid is een kerntaak van de overheid.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Voor racisme en discriminatie is geen enkele plaats in onze samenleving”
+</div>
+<span class="context"><mark>Voor racisme en discriminatie is geen enkele plaats in onze samenleving</mark>. Uitsluiting en belediging op basis van welke grond dan ook is een gif dat verhoudingen tussen mensen en groepen verziekt en mensen uit elkaar drijft.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Vertrouwen in de rechtsstaat en de overheid”
+</div>
+<span class="context">IV Een betrouwbare en dienstbare overheid <mark>Vertrouwen in de rechtsstaat en de overheid</mark> 79 Bescherming tegen criminaliteit en ondermijning</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“checks en balances in de rechtsstaat te versterken”
+</div>
+<span class="context">Nieuwe maatregelen zijn nodig om het geschade vertrouwen te herstellen en de <mark>checks en balances in de rechtsstaat te versterken</mark> in een nieuw sociaal contract.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“vertrouwen in de politiek het fundament is van onze democratie”
+</div>
+<span class="context">Maar vooral omdat het <mark>vertrouwen in de politiek het fundament is van onze democratie</mark> en onze rechtsstaat.</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“overheid bood steeds minder de bescherming”
+</div>
+<span class="context">saamhorigheid nam af en de <mark>overheid bood steeds minder de bescherming</mark> waar mensen wel op rekenden.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“jarenlange liberale pleidooi voor een kleinere”
+</div>
+<span class="context">De oorzaak voor dit falen ligt in het <mark>jarenlange liberale pleidooi voor een kleinere</mark> en goedkope overheid</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“politiek tweestromenland, waarin het politieke debat”
+</div>
+<span class="context">waken voor het gevaar van een <mark>politiek tweestromenland, waarin het politieke debat</mark> alleen nog wordt gevoerd door hoogopgeleiden</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“We missen het gevoel van solidariteit en saamhorigheid”
+</div>
+<span class="context">In een tijd van grote veranderingen, globalisering en individualisering zijn we elkaar kwijtgeraakt. Met een deel van ons ging het beter dan ooit, maar anderen kregen steeds meer het gevoel grip te verliezen of aan de kant te staan. Onzekerheid over de toekomst heeft geleid tot een on-Nederlandse polarisatie. <mark>We missen het gevoel van solidariteit en saamhorigheid</mark>. Het vertrouwen dat we bij elkaar horen en één gemeenschap zijn.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“steeds weer ging het debat over de vraag wat de overheid niet moet doen”
+</div>
+<span class="context">De oorzaak voor dit falen ligt in het jarenlange liberale pleidooi voor een kleinere en goedkope overheid, die de vrijheid van burgers zo min mogelijk mag beperken. Steeds weer ging het debat over de vraag wat de overheid niet moet doen, in plaats van waar de overheid wel voor is.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“politiek tweestromenland, waarin het politieke debat alleen nog wordt gevoerd door hoogopgeleiden en deskundigen”
+</div>
+<span class="context">In een samenleving waarin iedereen meedoet moeten wij waken voor het gevaar van een <mark>politiek tweestromenland, waarin het politieke debat alleen nog wordt gevoerd door hoogopgeleiden en deskundigen</mark> en anderen langs de kant staan met het gevoel dat ze niets te zeggen hebben.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“uitwassen van het roekeloze kapitalisme”
+</div>
+<span class="context">Wij willen in Europees verband onze economie en werkgelegenheid beschermen tegen de <mark>uitwassen van het roekeloze kapitalisme</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“jarenlange liberale pleidooi voor een kleinere en goedkope overheid”
+</div>
+<span class="context">De oorzaak voor dit falen ligt in het <mark>jarenlange liberale pleidooi voor een kleinere en goedkope overheid</mark>, die de vrijheid van burgers zo min mogelijk mag beperken.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“politieke afrekencultuur holt de ministeriële verantwoordelijkheid uit”
+</div>
+<span class="context">Het parlement is geen talkshow. De <mark>politieke afrekencultuur holt de ministeriële verantwoordelijkheid uit</mark> en schaadt het vertrouwen in de politiek.</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“een nieuwe politiek van samenwerking”
+</div>
+<span class="context">V Een land van waarden en traditie Beschermen wat ons bindt en dierbaar is 104 Kiezen voor <mark>een nieuwe politiek van samenwerking</mark> en verbinding 108</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Als brede volkspartij hechten wij”
+</div>
+<span class="context">de gemeentelijke hulp voor armoede en schulden ligt voor de hand. <mark>Als brede volkspartij hechten wij</mark> belang aan een inclusieve samenleving</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“Als brede volkspartij zien wij”
+</div>
+<span class="context"><mark>Als brede volkspartij zien wij</mark> het als onze taak om vanuit het midden</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Wij versterken het vertrouwen dat we één gemeenschap zijn en met elkaar elke uitdaging aan kunnen”
+</div>
+<span class="context">Wij geven alle ruimte aan de samenleving door onnodige regels te schrappen en zeggenschap terug te geven. En wij versterken het vertrouwen dat we één gemeenschap zijn en met elkaar elke uitdaging aan kunnen. Niet alleen in de samenleving, ook in de economie geldt dat ieder zijn verantwoordelijkheid heeft.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“ieder mens telt en ieder van ons heeft gelijke rechten”
+</div>
+<span class="context">In ons land is de verhouding tussen de burger en de overheid stevig verankerd in de democratische rechtsstaat. Ieder mens telt en ieder van ons heeft gelijke rechten om mee te doen en tegelijk de verantwoordelijkheid om naar vermogen bij te dragen aan de samenleving.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Als brede volkspartij zien wij het als onze taak om vanuit het midden steeds opnieuw een brug te slaan”
+</div>
+<span class="context"><mark>Als brede volkspartij zien wij het als onze taak om vanuit het midden steeds opnieuw een brug te slaan</mark> tussen verschillende groepen in onze samenleving en de verbinding en samenwerking te zoeken.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“coöperatieve samenleving, waar we samen”
+</div>
+<span class="context">Dat noemen we de <mark>coöperatieve samenleving, waar we samen</mark> sterker staan dan alleen. Wij geven alle ruimte aan de samenleving</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Niet de overheid of de markt staan voorop, maar de samenleving”
+</div>
+<span class="context"><mark>Niet de overheid of de markt staan voorop, maar de samenleving</mark>. Overheid en markt zijn dienstbaar aan de burger in plaats van andersom.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“brede volkspartij zien wij het als onze taak”
+</div>
+<span class="context">Als <mark>brede volkspartij zien wij het als onze taak</mark> om vanuit het midden steeds opnieuw een brug te slaan tussen verschillende groepen.</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“een op de negen kinderen groeit op in armoede”
+</div>
+<span class="context">studie van je kinderen te betalen. Een op de negen kinderen groeit op in armoede en gezinnen met middeninkomens</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“verhoging van het minimumloon of een”
+</div>
+<span class="context">bereiken door gerichte lastenverlichting, een <mark>verhoging van het minimumloon of een</mark> combinatie van ingrepen. Ook gaan we elke</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Wij willen in Europees verband onze economie en werkgelegenheid beschermen tegen de uitwassen van het roekeloze kapitalisme”
+</div>
+<span class="context">Bij nieuwe handelsverdragen moeten de belangen van Nederlandse agrariërs en het MKB beter behartigd worden en we sluiten geen verdragen die in strijd zijn met de grondwet en de Europese rechtsorde. Wij zetten ons in om afspraken te maken op nationaal én Europees niveau om te zorgen dat er beleid komt met maatregelen om maatschappelijk verantwoord ondernemen de norm te maken. <mark>Wij willen in Europees verband onze economie en werkgelegenheid beschermen tegen de uitwassen van het roekeloze kapitalisme</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“gerichte lastenverlichting, een verhoging van het minimumloon”
+</div>
+<span class="context">Veel mensen die op het minimumloon werken kunnen nauwelijks rondkomen van het inkomen dat ze verdienen. Dit zijn vooral jongeren, die net beginnen in een eerste baan of een bijbaan. Zij moeten onder de streep erop vooruitgaan. Wie normaal werkt voor de kost mag niet in armoede vervallen. We kunnen dat bereiken door <mark>gerichte lastenverlichting, een verhoging van het minimumloon</mark> of een combinatie van ingrepen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“tegen culturele tradities en rituelen die in strijd zijn met de Nederlandse rechtsstaat”
+</div>
+<span class="context">Tegen culturele tradities en rituelen die in strijd zijn met de Nederlandse rechtsstaat of het Europees Verdrag voor de Rechten van de Mens, zoals huwelijkse gevangenschap en vrouwelijke genitale verminking, treden we streng op.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“tijdelijk extra toptarief in de inkomstenbelasting”
+</div>
+<span class="context">Van de sterkste schouders vragen we na de coronacrisis ook meer, in de vorm van een <mark>tijdelijk extra toptarief in de inkomstenbelasting</mark> voor de hoogste inkomens.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“minder marktwerking, meer samenwerking”
+</div>
+<span class="context">Ook hier is het credo ‘<mark>minder marktwerking, meer samenwerking</mark>’. We maken van volkshuisvesting weer een overheidstaak met een stevige regierol voor het Rijk.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“uitbuiting van arbeidsmigranten worden aangepakt”
+</div>
+<span class="context">Slechte werkomstandigheden, misbruik en <mark>uitbuiting van arbeidsmigranten worden aangepakt</mark> met strengere eisen aan bemiddelaars en uitzendbureaus.</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“een nieuwe politiek van samenwerking”
+</div>
+<span class="context">V Een land van waarden en traditie Beschermen wat ons bindt en dierbaar is 104 Kiezen voor <mark>een nieuwe politiek van samenwerking</mark> en verbinding 108</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“Als brede volkspartij hechten wij”
+</div>
+<span class="context">de gemeentelijke hulp voor armoede en schulden ligt voor de hand. <mark>Als brede volkspartij hechten wij</mark> belang aan een inclusieve samenleving</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“Als brede volkspartij zien wij”
+</div>
+<span class="context"><mark>Als brede volkspartij zien wij</mark> het als onze taak om vanuit het midden</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Wij versterken het vertrouwen dat we één gemeenschap zijn en met elkaar elke uitdaging aan kunnen”
+</div>
+<span class="context">Wij geven alle ruimte aan de samenleving door onnodige regels te schrappen en zeggenschap terug te geven. En wij versterken het vertrouwen dat we één gemeenschap zijn en met elkaar elke uitdaging aan kunnen. Niet alleen in de samenleving, ook in de economie geldt dat ieder zijn verantwoordelijkheid heeft.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“ieder mens telt en ieder van ons heeft gelijke rechten”
+</div>
+<span class="context">In ons land is de verhouding tussen de burger en de overheid stevig verankerd in de democratische rechtsstaat. Ieder mens telt en ieder van ons heeft gelijke rechten om mee te doen en tegelijk de verantwoordelijkheid om naar vermogen bij te dragen aan de samenleving.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“politiek tweestromenland, waarin het politieke debat alleen nog wordt gevoerd door hoogopgeleiden en deskundigen”
+</div>
+<span class="context">In een samenleving waarin iedereen meedoet moeten wij waken voor het gevaar van een <mark>politiek tweestromenland, waarin het politieke debat alleen nog wordt gevoerd door hoogopgeleiden en deskundigen</mark> en anderen langs de kant staan met het gevoel dat ze niets te zeggen hebben.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“eerlijke economie”
+</div>
+<span class="context">We werken toe naar een <mark>eerlijke economie</mark>. Samen de schouders eronder, samen doorpakken.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“volkshuisvesting wordt weer een overheidstaak”
+</div>
+<span class="context">Volkshuisvesting wordt weer een overheidstaak onder regie van het Rijk. En we gaan in het hele land nieuwe bouwlocaties aanwijzen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“meer grip krijgen op het aantal nieuwkomers”
+</div>
+<span class="context">Juist daarom is het zaak dat we <mark>meer grip krijgen op het aantal nieuwkomers</mark> dat we als samenleving kunnen en willen opvangen.</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“meer grip op migratie, integratie”
+</div>
+<span class="context">Een sterke krijgsmacht 95 Meer grip op migratie, integratie en burgerschap 98 V Een land van waarden</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“meer grip krijgen op het aantal”
+</div>
+<span class="context">is het zaak dat we <mark>meer grip krijgen op het aantal</mark> nieuwkomers dat we als samenleving kunnen</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“unieke voorbeelden van de Nederlandse cultuur”
+</div>
+<span class="context">zonder ook de <mark>unieke voorbeelden van de Nederlandse cultuur</mark> te beschermen en behouden.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Wij versterken de grip op migratie om de integratie en opvang beter te organiseren”
+</div>
+<span class="context"><mark>Wij versterken de grip op migratie om de integratie en opvang beter te organiseren</mark> en het draagvlak voor asiel en migratie te behouden. In Europa maken we afspraken over een solide asiel- en migratiebeleid voor de toekomst.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“migratie moet een bewuste keuze zijn en niet iets dat ons overkomt”
+</div>
+<span class="context">Migratie moet een bewuste keuze zijn en niet iets dat ons overkomt. Meer grip vraagt om grenzen. Om een goede bewaking van de buitengrenzen van Europa en om heldere en snelle migratie- en asielprocedures om te bepalen wie mag blijven.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Meer grip op migratie, integratie en burgerschap”
+</div>
+<span class="context"><mark>Meer grip op migratie, integratie en burgerschap</mark> In een wereld die steeds kleiner wordt verlaten steeds meer mensen hun land, op de vlucht voor oorlog of geweld of op zoek naar een beter bestaan.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Meer grip op migratie, integratie en burgerschap”
+</div>
+<span class="context"><mark>Meer grip op migratie, integratie en burgerschap</mark> 98 V Een land van waarden en traditie Beschermen wat ons bindt en dierbaar is</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“meer grip krijgen op het aantal nieuwkomers”
+</div>
+<span class="context">Juist daarom is het zaak dat we <mark>meer grip krijgen op het aantal nieuwkomers</mark> dat we als samenleving kunnen en willen opvangen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“meer grip krijgen op het aantal nieuwkomers”
+</div>
+<span class="context">Juist daarom is het zaak dat we <mark>meer grip krijgen op het aantal nieuwkomers</mark> dat we als samenleving kunnen en willen opvangen.</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“on-Nederlandse polarisatie. We missen het gevoel”
+</div>
+<span class="context">Onzekerheid over de toekomst heeft geleid tot een <mark>on-Nederlandse polarisatie. We missen het gevoel</mark> van solidariteit</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“polarisatie tussen drammers en ontkenners doorbreken”
+</div>
+<span class="context">generaties die na ons komen. Daarom moeten we de <mark>polarisatie tussen drammers en ontkenners doorbreken</mark> en onze schouders eronder zetten.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“verruwing van feiten- vrije politieke stellingnames”
+</div>
+<span class="context">Wij doen niet mee aan de politieke <mark>verruwing van feiten- vrije politieke stellingnames</mark> en verdachtmakingen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Onzekerheid over de toekomst heeft geleid tot een on-Nederlandse polarisatie”
+</div>
+<span class="context">Met een deel van ons ging het beter dan ooit, maar anderen kregen steeds meer het gevoel grip te verliezen of aan de kant te staan. <mark>Onzekerheid over de toekomst heeft geleid tot een on-Nederlandse polarisatie</mark>. We missen het gevoel van solidariteit en saamhorigheid.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“personen en partijen die het vertrouwen in de instituties van de democratische rechtsstaat ondermijnen”
+</div>
+<span class="context">Wij willen dat politici zich krachtig uitspreken tegen <mark>personen en partijen die het vertrouwen in de instituties van de democratische rechtsstaat ondermijnen</mark> of het belang in twijfel trekken.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“politieke verruwing van feiten- vrije politieke stellingnames en verdachtmakingen”
+</div>
+<span class="context">Wij doen niet mee aan de <mark>politieke verruwing van feiten- vrije politieke stellingnames en verdachtmakingen</mark>. Wij zijn direct en duidelijk, maar niet onbeschoft.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“polarisatie van de samenleving”
+</div>
+<span class="context">het klimaat, de vergrijzing, migratie en de <mark>polarisatie van de samenleving</mark>. Niet eerder kreeg één generatie zoveel urgente keuzes voorgelegd</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Bezuinigingen, taakstellingen en privatiseringen hebben de publieke zaak uitgehold”
+</div>
+<span class="context"><mark>Bezuinigingen, taakstellingen en privatiseringen hebben de publieke zaak uitgehold</mark> met een averechts effect op onze vrijheid: we kregen meer regels, meer controles en hogere kosten.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“politici elkaar met filmpjes bestoken om tegenstanders zwart te maken”
+</div>
+<span class="context">Omdat de toon verhardt en omgangsvormen verruwen als <mark>politici elkaar met filmpjes bestoken om tegenstanders zwart te maken</mark>.</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“vertrouwen dat we één gemeenschap zijn”
+</div>
+<span class="context">Wij versterken het <mark>vertrouwen dat we één gemeenschap zijn</mark> en met elkaar elke uitdaging aan kunnen.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“Als brede volkspartij hechten wij”
+</div>
+<span class="context">de gemeentelijke hulp voor armoede en schulden ligt voor de hand. <mark>Als brede volkspartij hechten wij</mark> belang aan een inclusieve samenleving</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“zeggenschap teruggeven aan de samenleving”
+</div>
+<span class="context">Daarom willen wij <mark>zeggenschap teruggeven aan de samenleving</mark> en betrokkenheid en draagvlak van onderop</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Wij versterken het vertrouwen dat we één gemeenschap zijn”
+</div>
+<span class="context">Wij geven alle ruimte aan de samenleving door onnodige regels te schrappen en zeggenschap terug te geven. En wij versterken het vertrouwen dat we één gemeenschap zijn en met elkaar elke uitdaging aan kunnen. Niet alleen in de samenleving, ook in de economie geldt dat ieder zijn verantwoordelijkheid heeft.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“ieder mens telt en ieder van ons heeft gelijke rechten”
+</div>
+<span class="context">In ons land is de verhouding tussen de burger en de overheid stevig verankerd in de democratische rechtsstaat. Ieder mens telt en ieder van ons heeft gelijke rechten om mee te doen en tegelijk de verantwoordelijkheid om naar vermogen bij te dragen aan de samenleving.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Iedere mening telt en moet worden gehoord”
+</div>
+<span class="context"><mark>Iedere mening telt en moet worden gehoord</mark>. Daarom willen wij zeggenschap teruggeven aan de samenleving en betrokkenheid en draagvlak van onderop organiseren.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“samen sterker staan dan alleen”
+</div>
+<span class="context">Samenwerking en gedeelde verantwoordelijkheid bieden perspectief en vertrouwen. Dat noemen we de coöperatieve samenleving, waar we <mark>samen sterker staan dan alleen</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“Als brede volkspartij hechten wij belang aan een inclusieve samenleving”
+</div>
+<span class="context"><mark>Als brede volkspartij hechten wij belang aan een inclusieve samenleving</mark> waarin ieder mens gekend en erkend wordt.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“het overgrote deel van de Nederlanders die redelijk en genuanceerd”
+</div>
+<span class="context">Polarisatie vergroot tegenstellingen uit en sluit niet aan bij <mark>het overgrote deel van de Nederlanders die redelijk en genuanceerd</mark> in het leven staan.</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“overheid bood steeds minder de bescherming”
+</div>
+<span class="context">saamhorigheid nam af en de <mark>overheid bood steeds minder de bescherming</mark> waar mensen wel op rekenden.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“jarenlange liberale pleidooi voor een kleinere”
+</div>
+<span class="context">De oorzaak voor dit falen ligt in het <mark>jarenlange liberale pleidooi voor een kleinere</mark> en goedkope overheid</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“zeggenschap teruggeven aan de samenleving”
+</div>
+<span class="context">Daarom willen wij <mark>zeggenschap teruggeven aan de samenleving</mark> en betrokkenheid en draagvlak van onderop</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Onzekerheid over de toekomst heeft geleid tot een on-Nederlandse polarisatie”
+</div>
+<span class="context">Met een deel van ons ging het beter dan ooit, maar anderen kregen steeds meer het gevoel grip te verliezen of aan de kant te staan. <mark>Onzekerheid over de toekomst heeft geleid tot een on-Nederlandse polarisatie</mark>. We missen het gevoel van solidariteit en saamhorigheid.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“steeds weer ging het debat over de vraag wat de overheid niet moet doen”
+</div>
+<span class="context">De oorzaak voor dit falen ligt in het jarenlange liberale pleidooi voor een kleinere en goedkope overheid, die de vrijheid van burgers zo min mogelijk mag beperken. Steeds weer ging het debat over de vraag wat de overheid niet moet doen, in plaats van waar de overheid wel voor is.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“politiek tweestromenland, waarin het politieke debat alleen nog wordt gevoerd door hoogopgeleiden en deskundigen”
+</div>
+<span class="context">In een samenleving waarin iedereen meedoet moeten wij waken voor het gevaar van een <mark>politiek tweestromenland, waarin het politieke debat alleen nog wordt gevoerd door hoogopgeleiden en deskundigen</mark> en anderen langs de kant staan met het gevoel dat ze niets te zeggen hebben.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“uitwassen van het roekeloze kapitalisme”
+</div>
+<span class="context">Wij willen in Europees verband onze economie en werkgelegenheid beschermen tegen de <mark>uitwassen van het roekeloze kapitalisme</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Overheid en markt zijn dienstbaar aan de burger”
+</div>
+<span class="context"><mark>Overheid en markt zijn dienstbaar aan de burger</mark> in plaats van andersom. Dat vraagt om een slagvaardige en rechtvaardige overheid met een menselijk gezicht.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“politieke afrekencultuur holt de ministeriële verantwoordelijkheid uit”
+</div>
+<span class="context">Het parlement is geen talkshow. De <mark>politieke afrekencultuur holt de ministeriële verantwoordelijkheid uit</mark> en schaadt het vertrouwen in de politiek.</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="22521_202103_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,1584 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>PI (Uruguay, 2014) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/162510_201410_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">PI (Uruguay, 2014)</h1>
+<p class="subtitle lead">manifesto_id 162510_201410</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Uruguay · <span class="item"><strong>Party</strong></span> PI (Independent Party) · <span class="item"><strong>Year</strong></span> 2014 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 50</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“basado en la libertad económica”
+</div>
+<span class="context">un régimen de economía capitalista <mark>basado en la libertad económica</mark> pero con intervención estatal para</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“captar inversiones privadas importantes”
+</div>
+<span class="context">Plantear un esquema dinámico de financiamiento de los proyectos capaz de <mark>captar inversiones privadas importantes</mark>, profundizando lo desarrollado con las ERNC</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“crear centros de desarrollo empresarial”
+</div>
+<span class="context">múltiples instrumentos, como: 1) <mark>crear centros de desarrollo empresarial</mark>; 2) promover instrumentos de apoyo al emprendedurismo</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“competencia en los mercados”
+</div>
+<span class="context">El país necesita empresas privadas competitivas —bajo todas las formas societarias que la ley permite— y empresas públicas que presten servicios de buena calidad, de amplia cobertura y a precios competitivos. Para ello es preciso que exista <mark>competencia en los mercados</mark>, y las políticas públicas deben orientarse a la preservación de este valor social.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Es preciso desarrollar un esquema dinámico de financiamiento de los proyectos capaz de captar inversiones privadas importantes”
+</div>
+<span class="context">Plantear un esquema dinámico de financiamiento de los proyectos capaz de captar inversiones privadas importantes, profundizando lo desarrollado con las ERNC y extendiéndolo a otros proyectos de gran porte —centrales adicionales de ciclo combinado, por ejemplo—.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“la negociación colectiva un ámbito poco operativo”
+</div>
+<span class="context">Esto en principio hace más compleja la negociación colectiva —ya que se deben negociar por separado las distintas familias ocupacionales—, pero una vez establecidos estos pisos y techos, los aumentos salariales que dispone el gobierno se hacen proporcionalmente a partir del salario inferior en la escala. Hoy en día las unidades ejecutoras negocian por separado con su ministerio y el MEF, según el peso corporativo que tengan, lo que hace de <mark>la negociación colectiva un ámbito poco operativo</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“economías más abiertas de forma sostenida”
+</div>
+<span class="context">La evidencia comparada muestra que las <mark>economías más abiertas de forma sostenida</mark> registran niveles de gasto público alto con relación al producto</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“captación de inversiones privadas importantes”
+</div>
+<span class="context">Plantear un esquema dinámico de financiamiento de los proyectos capaz de captar inversiones privadas importantes, profundizando lo desarrollado con las ERNC</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“promover clústeres y eslabonamientos productivos”
+</div>
+<span class="context">promover instrumentos de apoyo al emprendedurismo —incubadoras, aceleradoras, asistencia integral a emprendedores—; 3) <mark>promover clústeres y eslabonamientos productivos</mark>; 4) constituir redes de empresas</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“apertura al mercado de capitales”
+</div>
+<span class="context">empresas públicas y su <mark>apertura al mercado de capitales</mark>. El dragado en los canales</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“apertura al mercado de capitales”
+</div>
+<span class="context">Eventualmente incorporar la discusión del financiamiento de las empresas públicas y su <mark>apertura al mercado de capitales</mark>. La falta de un esquema institucional</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“DYNAPYME y Microfinanzas OPP”
+</div>
+<span class="context">incorporación de la figura de representantes territoriales de diversos programas nacionales: <mark>DYNAPYME y Microfinanzas OPP</mark>. Sin embargo, hasta el presente no se observa</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“grado inversor, lo que lo habilita a acceder a financiamiento externo”
+</div>
+<span class="context">Uruguay salió de la crisis del año 2002 al borde del default y diez años después alcanzó el <mark>grado inversor, lo que lo habilita a acceder a financiamiento externo</mark> en condiciones muy competitivas. Ambas políticas, junto con la no reversión en la orientación general de la apertura económica, intensificó el proceso de inversión, y en particular hubo éxito en materia de inversión extranjera directa.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“discutir el financiamiento de las empresas públicas y su apertura al mercado de capitales”
+</div>
+<span class="context">Eventualmente incorporar la discusión del financiamiento de las empresas públicas y su apertura al mercado de capitales. La falta de un esquema institucional claro para la captación de inversiones privadas hace temer una fuerte recurrencia a las inversiones públicas con apoyo en la cuenta fiscal.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“liberalización financiera, la continuidad que se verifica”
+</div>
+<span class="context">En materia de <mark>liberalización financiera, la continuidad que se verifica</mark> es también uno de los componentes de la inserción internacional</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“apertura al mercado de capitales”
+</div>
+<span class="context">Eventualmente incorporar la discusión del financiamiento de las empresas públicas y su <mark>apertura al mercado de capitales</mark></span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“democrático y pluralista”
+</div>
+<span class="context">equitativo, republicano y políticamente <mark>democrático y pluralista</mark>. Justamente, la propuesta que aquí</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“potenciar sin concesiones ni debilidades al Estado democrático”
+</div>
+<span class="context">es precisamente en esta época que debemos <mark>potenciar sin concesiones ni debilidades al Estado democrático</mark> ante las pretensiones de las formas autoritarias</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“fortalecimiento de la democracia”
+</div>
+<span class="context">servicios, y c) el desarrollo de la ciudadanía y el <mark>fortalecimiento de la democracia</mark>. La simplificación de trámites se debe encarar</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“la democracia practicada en forma directa”
+</div>
+<span class="context">Esto únicamente puede conseguirse preservando la presencia partidaria en aquellos ámbitos de actuación popular. En ese sentido, lo que aquí ofrecemos es nuestro programa partidario expresado en un conjunto de pautas generales y propuestas concretas sobre los diferentes campos de nuestra vida en sociedad. Ellas expresan nuestras convicciones y apuestas para nuestro país, con la esperanza de que inviten a la ciudadanía a convertirse en agente activo de la generación de la casa común. Tal es la forma como nuestro partido concibe a la República, es decir, el ámbito donde los habitantes procuran su libre realización individual y familiar en condiciones materiales lo más igualitarias posible, para lo cual es imprescindible la presencia y la colaboración estatal. No solamente por razones de justicia, sino también para hacer efectivo el funcionamiento de la democracia. Podemos tener un futuro excepcional Se requiere un gobierno capaz de afrontar ese desafío con ideas nuevas, libres de viejos prejuicios y modos de pensamiento heredados del siglo XIX.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Potenciar al Tribunal de Cuentas para hacer controles de gestión”
+</div>
+<span class="context">Cuanto más fragmentado y complejo sea el sector público, más potente debe ser la capacidad de coordinación de los centros de gobierno, entre sí y con los distintos organismos públicos, semipúblicos y privados que están involucrados en una política pública. <mark>Potenciar al Tribunal de Cuentas para hacer controles de gestión</mark> de los organismos públicos.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“la rendición clara de cuentas al Parlamento”
+</div>
+<span class="context">El procesamiento de la información sobre la base de programas presupuestales basados en productos mejora notablemente <mark>la rendición clara de cuentas al Parlamento</mark> —el presupuesto basado en insumos no es una herramienta apta para ejercer un control sustantivo del gasto público—, pero también mejora la rendición de cuentas de los ministros al presidente de la República y ayuda a monitorear las prioridades presidenciales.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“instauración de un régimen parlamentarista favorecería”
+</div>
+<span class="context">la <mark>instauración de un régimen parlamentarista favorecería</mark> significativamente la consolidación de una cultura política fundada en acuerdos y entendimientos plurales</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“potenciar sin concesiones al Estado democrático”
+</div>
+<span class="context">debemos potenciar sin concesiones ni debilidades al Estado democrático ante las pretensiones de las formas autoritarias y totalitarias</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“fortalecimiento de la democracia”
+</div>
+<span class="context">c) el desarrollo de la ciudadanía y el <mark>fortalecimiento de la democracia</mark>. La simplificación de trámites se debe encarar como una tarea del conjunto</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“protegidos adecuadamente en sus derechos”
+</div>
+<span class="context">en el que los ciudadanos sean <mark>protegidos adecuadamente en sus derechos</mark> sin necesidad de que formen</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Protección Integral de Personas con Discapacidad”
+</div>
+<span class="context">Reglamentar e implementar la ley 18.651, de <mark>Protección Integral de Personas con Discapacidad</mark>, posibilitando el desarrollo de: 1) atención médica</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“defensa de los derechos de los niños”
+</div>
+<span class="context">significó un cambio cualitativo sustancial en el campo de la <mark>defensa de los derechos de los niños</mark> y adolescentes, por cuanto la nueva normativa legal reconoce</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“políticas sociales, educativas y culturales eficaces”
+</div>
+<span class="context">La necesidad urgente de <mark>políticas sociales, educativas y culturales eficaces</mark> que superen esta brecha creciente se transforma en un imperativo insoslayable y es demostrativa del mayor fracaso de los últimos gobiernos.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“un sistema nacional de cuidados con incentivos a las empresas que contemplen ventajas de horario y dedicación durante la lactancia”
+</div>
+<span class="context">Desarrollar el Sistema Nacional de Cuidados con el propósito de apoyar las funciones de las familias respecto a la primera infancia, los adultos mayores y las personas con discapacidad. Esto deberá incluir incentivos a las empresas que contemplen ventajas de horario y dedicación durante la lactancia — incluyendo trabajo a distancia— o la creación de oficinas maternales en los lugares de trabajo.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“la defensa de los derechos de los niños y adolescentes”
+</div>
+<span class="context">La aprobación del Código de la Niñez y la Adolescencia (CNA), en setiembre de 2004, significó un cambio cualitativo sustancial en el campo de <mark>la defensa de los derechos de los niños y adolescentes</mark>, por cuanto la nueva normativa legal reconoce plenamente aquellos consagrados por la Convención Internacional sobre los Derechos del Niño (CIDN) adoptada por la Asamblea General de las Naciones Unidas en noviembre de 1989.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“diferencias biológicas ni las sociales constituyen distinciones”
+</div>
+<span class="context">Tenemos la convicción de que ni las <mark>diferencias biológicas ni las sociales constituyen distinciones</mark> y particularidades que, si bien son inevitables, justifiquen la inequidad</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“integración de las personas con discapacidad”
+</div>
+<span class="context">educación en la diversidad, propendiendo a la <mark>integración de las personas con discapacidad</mark>; formación y desarrollo intelectual, físico y para el trabajo</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“derechos de los niños y adolescentes”
+</div>
+<span class="context">un cambio cualitativo sustancial en el campo de la defensa de los <mark>derechos de los niños y adolescentes</mark>, por cuanto la nueva normativa legal reconoce plenamente aquellos consagrados</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“democrático y pluralista”
+</div>
+<span class="context">equitativo, republicano y políticamente <mark>democrático y pluralista</mark>. Justamente, la propuesta que aquí</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“potenciar sin concesiones ni debilidades al Estado democrático”
+</div>
+<span class="context">es precisamente en esta época que debemos <mark>potenciar sin concesiones ni debilidades al Estado democrático</mark> ante las pretensiones de las formas autoritarias</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“fortalecimiento de la democracia”
+</div>
+<span class="context">servicios, y c) el desarrollo de la ciudadanía y el <mark>fortalecimiento de la democracia</mark>. La simplificación de trámites se debe encarar</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“competencia en los mercados”
+</div>
+<span class="context">El país necesita empresas privadas competitivas —bajo todas las formas societarias que la ley permite— y empresas públicas que presten servicios de buena calidad, de amplia cobertura y a precios competitivos. Para ello es preciso que exista <mark>competencia en los mercados</mark>, y las políticas públicas deben orientarse a la preservación de este valor social.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Potenciar al Tribunal de Cuentas para hacer controles de gestión”
+</div>
+<span class="context">Cuanto más fragmentado y complejo sea el sector público, más potente debe ser la capacidad de coordinación de los centros de gobierno, entre sí y con los distintos organismos públicos, semipúblicos y privados que están involucrados en una política pública. <mark>Potenciar al Tribunal de Cuentas para hacer controles de gestión</mark> de los organismos públicos.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“la rendición clara de cuentas al Parlamento”
+</div>
+<span class="context">El procesamiento de la información sobre la base de programas presupuestales basados en productos mejora notablemente <mark>la rendición clara de cuentas al Parlamento</mark> —el presupuesto basado en insumos no es una herramienta apta para ejercer un control sustantivo del gasto público—, pero también mejora la rendición de cuentas de los ministros al presidente de la República y ayuda a monitorear las prioridades presidenciales.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“libertad económica pero con intervención estatal”
+</div>
+<span class="context">un régimen de economía capitalista basado en la <mark>libertad económica pero con intervención estatal</mark> para incentivar, corregir o superar las fallas e imperfecciones del mercado</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“potenciar sin concesiones al Estado democrático”
+</div>
+<span class="context">debemos potenciar sin concesiones ni debilidades al Estado democrático ante las pretensiones de las formas autoritarias y totalitarias</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“fortalecimiento de la democracia”
+</div>
+<span class="context">c) el desarrollo de la ciudadanía y el <mark>fortalecimiento de la democracia</mark>. La simplificación de trámites se debe encarar como una tarea del conjunto</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“minorías elitistas altamente formadas”
+</div>
+<span class="context">El resultado será una sociedad con <mark>minorías elitistas altamente formadas</mark>, inmersas culturalmente en un pueblo</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“superar las tendencias corporativistas”
+</div>
+<span class="context">La construcción de un país próspero y solidario implica reivindicar la importancia del esfuerzo y la responsabilidad de los ciudadanos comunes, aquellos que viven de su trabajo, cumplen sus obligaciones y carecen de respaldos específicos que les permitan obtener resultados particularistas. Esto implica que es necesario <mark>superar las tendencias corporativistas</mark> y ubicar la reivindicación de los intereses particulares dentro del marco más general de articulación de los intereses generales de nuestra sociedad.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 1</span>
+<div class="quote">
+“viejas fórmulas en las que un comité de sabios elaboraba una propuesta”
+</div>
+<span class="context">convencido de que las <mark>viejas fórmulas en las que un comité de sabios elaboraba una propuesta</mark> para que luego la ciudadanía la acompañara no constituye la mejor manera</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“facilismo demagógico de victimizar a los infractores”
+</div>
+<span class="context">Se llegó incluso a caer en el <mark>facilismo demagógico de victimizar a los infractores</mark> y facilitar su “fuga” sistemática, incumpliendo las decisiones judiciales</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“peso corporativo que tengan”
+</div>
+<span class="context">según el <mark>peso corporativo que tengan</mark>, lo que hace de la negociación colectiva un ámbito poco operativo</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“responsabilidad de los ciudadanos comunes”
+</div>
+<span class="context">reivindicar la importancia del esfuerzo y la <mark>responsabilidad de los ciudadanos comunes</mark>, aquellos que viven de su</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“una constante incitación a la colaboración de todos”
+</div>
+<span class="context">Este modo de considerar la política como <mark>una constante incitación a la colaboración de todos</mark> en la generación de una ciudadanía común es el que caracteriza al Partido Independiente, convencido de que las viejas fórmulas en las que un comité de sabios elaboraba una propuesta para que luego la ciudadanía la acompañara no constituye la mejor manera de considerar la política en el mundo moderno.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“acuerdos y entendimientos plurales”
+</div>
+<span class="context">la consolidación de una cultura política fundada en <mark>acuerdos y entendimientos plurales</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Partido Independiente propone su visión de cómo organizar el Estado”
+</div>
+<span class="context">Por esta razón el <mark>Partido Independiente propone su visión de cómo organizar el Estado</mark> para que permita el ejercicio del buen gobierno</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“acuerdo de todos los partidos políticos”
+</div>
+<span class="context">fruto del <mark>acuerdo de todos los partidos políticos</mark>, ha reafirmado políticas de inserción social de los adolescentes infractores</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“un fuerte componente de justicia social”
+</div>
+<span class="context">Esta misma filosofía económica encierra, como adelantamos, <mark>un fuerte componente de justicia social</mark>, atendiendo a que esta, junto con el mantenimiento de la paz y la seguridad internas y externas, constituye los fundamentos últimos de la existencia del Estado.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“liberalismo igualitarista, en lo que también se ha denominado un liberalismo social”
+</div>
+<span class="context">el Partido Independiente se sitúa en un espacio común compartido por la socialdemocracia, ciertas corrientes del socialcristianismo y el <mark>liberalismo igualitarista, en lo que también se ha denominado un liberalismo social</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“equidad interna y del bienestar colectivo no es sustentable”
+</div>
+<span class="context">la mejora de la <mark>equidad interna y del bienestar colectivo no es sustentable</mark>. Se carece de los recursos y también de los incentivos para mejorar la distribución</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“integración de los sectores sociales más deprimidos”
+</div>
+<span class="context">será necesario un esfuerzo importante de <mark>integración de los sectores sociales más deprimidos</mark></span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“responsabilidad de los ciudadanos comunes”
+</div>
+<span class="context">reivindicar la importancia del esfuerzo y la <mark>responsabilidad de los ciudadanos comunes</mark>, aquellos que viven de su</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“un espacio común compartido por la socialdemocracia”
+</div>
+<span class="context">Por último, en lo referido a su posicionamiento ideológico, el Partido Independiente se sitúa en <mark>un espacio común compartido por la socialdemocracia</mark>, ciertas corrientes del socialcristianismo y el liberalismo igualitarista, en lo que también se ha denominado un liberalismo social o de izquierda.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · mixed · chunk 1</span>
+<div class="quote">
+“socialdemocracia, ciertas corrientes del socialcristianismo”
+</div>
+<span class="context">el Partido Independiente se sitúa en un espacio común compartido por la <mark>socialdemocracia, ciertas corrientes del socialcristianismo</mark> y el liberalismo igualitarista</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Partido Independiente propone su visión de cómo organizar el Estado”
+</div>
+<span class="context">el <mark>Partido Independiente propone su visión de cómo organizar el Estado</mark> para que permita el ejercicio del buen gobierno</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“peso corporativo que tengan”
+</div>
+<span class="context">según el <mark>peso corporativo que tengan</mark>, lo que hace de la negociación colectiva un ámbito poco operativo</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“nacionalismo económico característico de los nuevos populismos”
+</div>
+<span class="context">El <mark>nacionalismo económico característico de los nuevos populismos</mark> en América del Sur ha sido el principal enemigo del proceso de integración que se venía transitando tanto en la Comunidad Andina como en el Mercosur hasta finales del siglo pasado.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“nacionalismo económico característico de los nuevos populismos”
+</div>
+<span class="context">El <mark>nacionalismo económico característico de los nuevos populismos</mark> en América del Sur ha sido el principal enemigo del proceso de integración</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“formas autoritarias y totalitarias que lo amenazan”
+</div>
+<span class="context">debemos potenciar sin concesiones ni debilidades al Estado democrático ante las pretensiones de las <mark>formas autoritarias y totalitarias que lo amenazan</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“defensa de la soberanía, la independencia y la integridad territorial”
+</div>
+<span class="context">cuya institucionalidad se vincula con la <mark>defensa de la soberanía, la independencia y la integridad territorial</mark></span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Esta dicotomía maniqueísta ha supuesto”
+</div>
+<span class="context">en la oposición. <mark>Esta dicotomía maniqueísta ha supuesto</mark> un creciente empobrecimiento del debate</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Esta fractura que tiende a ensancharse”
+</div>
+<span class="context">En este sentido, si bien el crecimiento económico ha sido notorio, como también lo fueron el descenso en las tasas de pobreza e indigencia, este mejoramiento no fue acompañado por un proceso acorde de integración social. El Uruguay está dividido socialmente entre una gran mayoría alineada con las pautas generales de nuestra cultura como nación, construida y sostenida en largas décadas de acumulación, y una minoría que vive ajena a los valores y las formas de pensamiento de la mayoría. Por ende, esta minoría cultiva formas de vida diferentes, con conductas, aspiraciones y visiones del futuro distintas de las del resto de la población. <mark>Esta fractura que tiende a ensancharse</mark>, pese a la mejoría económica, ajena en gran medida al desarrollo económico y a las propias condiciones sociales, supone un grave problema para el país y constituye el factor más gravitante en la situación de inseguridad frente al delito en que vivimos.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“dicotomía maniqueísta ha supuesto un creciente empobrecimiento”
+</div>
+<span class="context">Esta <mark>dicotomía maniqueísta ha supuesto un creciente empobrecimiento</mark> del debate y de la discusión política que impide la posibilidad de entendimientos amplios</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“demagogia, que se quiso justificar con interpretaciones ideologizadas”
+</div>
+<span class="context">Esa <mark>demagogia, que se quiso justificar con interpretaciones ideologizadas</mark>, aparentemente de izquierda y de avanzada, motivó la reacción de signo opuesto</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“orientación ideológica que interpretaba las manifestaciones delictivas”
+</div>
+<span class="context">la acción del Ministerio del Interior estuvo condicionada por una <mark>orientación ideológica que interpretaba las manifestaciones delictivas</mark> como una consecuencia de la exclusión social</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“responsabilidad de los ciudadanos comunes”
+</div>
+<span class="context">reivindicar la importancia del esfuerzo y la <mark>responsabilidad de los ciudadanos comunes</mark>, aquellos que viven de su</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“la ciudadanía a convertirse en agente activo de la generación de la casa común”
+</div>
+<span class="context">Ellas expresan nuestras convicciones y apuestas para nuestro país, con la esperanza de que inviten a <mark>la ciudadanía a convertirse en agente activo de la generación de la casa común</mark>. Tal es la forma como nuestro partido concibe a la República, es decir, el ámbito donde los habitantes procuran su libre realización individual y familiar en condiciones materiales lo más igualitarias posible, para lo cual es imprescindible la presencia y la colaboración estatal.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“ciudadanos comunes, aquellos que viven de su trabajo”
+</div>
+<span class="context">reivindicar la importancia del esfuerzo y la responsabilidad de los <mark>ciudadanos comunes, aquellos que viven de su trabajo</mark>, cumplen sus obligaciones</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“al servicio de la gente y del bien común”
+</div>
+<span class="context">donde se concreta la orientación del Estado <mark>al servicio de la gente y del bien común</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“acercamiento de los servicios públicos a la ciudadanía”
+</div>
+<span class="context">c.&nbsp;El <mark>acercamiento de los servicios públicos a la ciudadanía</mark> Este componente de la reforma del Estado no solo es valioso como instrumento de construcción de ciudadanía</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Esta dicotomía maniqueísta ha supuesto”
+</div>
+<span class="context">en la oposición. <mark>Esta dicotomía maniqueísta ha supuesto</mark> un creciente empobrecimiento del debate</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“superar las tendencias corporativistas”
+</div>
+<span class="context">La construcción de un país próspero y solidario implica reivindicar la importancia del esfuerzo y la responsabilidad de los ciudadanos comunes, aquellos que viven de su trabajo, cumplen sus obligaciones y carecen de respaldos específicos que les permitan obtener resultados particularistas. Esto implica que es necesario <mark>superar las tendencias corporativistas</mark> y ubicar la reivindicación de los intereses particulares dentro del marco más general de articulación de los intereses generales de nuestra sociedad.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 1</span>
+<div class="quote">
+“ciudadanos comunes, aquellos que viven de su trabajo”
+</div>
+<span class="context">reivindicar la importancia del esfuerzo y la responsabilidad de los <mark>ciudadanos comunes, aquellos que viven de su trabajo</mark>, cumplen sus obligaciones</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“facilismo demagógico de victimizar a los infractores”
+</div>
+<span class="context">Se llegó incluso a caer en el <mark>facilismo demagógico de victimizar a los infractores</mark> y facilitar su “fuga” sistemática</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“peso corporativo que tengan”
+</div>
+<span class="context">según el <mark>peso corporativo que tengan</mark>, lo que hace de la negociación colectiva un ámbito poco operativo</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="162510_201410_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

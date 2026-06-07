@@ -1,0 +1,142 @@
+/* Populism-LLM website custom styles
+   Goal: clean, paper-like, dense information, scannable. */
+
+/* Draft / preview banner — always at top of every page */
+.draft-banner {
+  background: #FFF4CE;
+  border-bottom: 2px solid #E0B400;
+  color: #5C4A00;
+  padding: 0.55rem 1rem;
+  text-align: center;
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+.draft-banner strong { letter-spacing: 0.04em; }
+.draft-banner a { color: #5C4A00; text-decoration: underline; }
+
+
+:root {
+  --pop-strong: #B22222;     /* high populism — firebrick */
+  --pop-mid:    #DAA520;     /* mid — goldenrod */
+  --pop-low:    #4682B4;     /* low — steelblue */
+  --lib-strong: #2E8B57;     /* high liberalism — sea green */
+  --lib-mid:    #B0B0B0;
+  --lib-low:    #8B4513;     /* low liberalism — saddle brown */
+  --agree-strong: #2E8B57;
+  --agree-mid:    #DAA520;
+  --agree-low:    #B22222;
+}
+
+/* Landing page hero */
+.hero {
+  padding: 2.5rem 0 2rem;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 2rem;
+}
+.hero h1 { font-size: 2.4rem; margin-bottom: 0.4rem; }
+.hero .lead { font-size: 1.15rem; color: #555; }
+.hero-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+.hero-stat {
+  padding: 1rem;
+  background: #f7f7f9;
+  border-radius: 6px;
+  text-align: center;
+}
+.hero-stat .num { font-size: 1.8rem; font-weight: 600; color: #222; display: block; }
+.hero-stat .lbl { font-size: 0.85rem; color: #666; text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* Score badges */
+.score-badge {
+  display: inline-block;
+  padding: 0.15rem 0.55rem;
+  border-radius: 4px;
+  font-weight: 600;
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 0.95em;
+  min-width: 2.2em;
+  text-align: center;
+}
+.score-na { background: #eee; color: #888; }
+.score-low { background: #d6e4f0; color: #1e3a5f; }
+.score-mid { background: #faf4d4; color: #6b5a00; }
+.score-high { background: #f0c7c7; color: #6b1414; }
+
+/* Cross-model agreement table */
+.agreement-row { display: grid; grid-template-columns: 200px repeat(4, 1fr); gap: 0.5rem; align-items: center; }
+.agreement-row.header { font-weight: 600; border-bottom: 1px solid #ccc; padding-bottom: 0.3rem; }
+
+/* Evidence quote block */
+.evidence-block {
+  background: #fafafa;
+  border-left: 3px solid #999;
+  padding: 0.6rem 1rem;
+  margin: 0.5rem 0;
+  font-size: 0.93em;
+}
+.evidence-block.sonnet     { border-left-color: #d97706; }
+.evidence-block.gpt41mini  { border-left-color: #10a37f; }
+.evidence-block.gemini     { border-left-color: #4285f4; }
+.evidence-block .source-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.78em;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #666;
+  margin-right: 0.5rem;
+}
+.evidence-block .quote { font-style: italic; }
+.evidence-block .context {
+  display: block;
+  color: #555;
+  font-size: 0.9em;
+  margin-top: 0.3rem;
+}
+.evidence-block .context mark {
+  background: #ffeaa7;
+  padding: 0.05em 0.15em;
+  font-style: italic;
+}
+
+/* Manifesto page metadata bar */
+.manifesto-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0.8rem 1rem;
+  background: #f7f7f9;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+  font-size: 0.95em;
+}
+.manifesto-meta dt { font-weight: 600; color: #666; margin-right: 0.3rem; }
+.manifesto-meta dd { display: inline; margin: 0; }
+.manifesto-meta .item { display: inline-block; }
+
+/* Compact data tables */
+table.compact th, table.compact td { padding: 0.3rem 0.6rem; }
+table.compact { font-size: 0.93em; }
+
+/* Sticky page-toc on browse */
+.browse-table-wrap { max-width: 100%; overflow-x: auto; }
+
+/* Pipeline diagram — clickable to enlarge in a modal */
+.pipeline-diagram {
+  max-width: 720px;
+  margin: 1.5rem auto;
+  cursor: zoom-in;
+  transition: transform .2s;
+}
+.pipeline-diagram:hover { transform: scale(1.01); }
+.pipeline-diagram svg { max-width: 100%; height: auto; }
+.pipeline-diagram.zoomed {
+  position: fixed; inset: 0; max-width: none; margin: 0;
+  background: rgba(255,255,255,0.98); z-index: 9000;
+  display: flex; align-items: center; justify-content: center;
+  cursor: zoom-out; padding: 2rem;
+}
+.pipeline-diagram.zoomed svg { max-height: 92vh; max-width: 92vw; }

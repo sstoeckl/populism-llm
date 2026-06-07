@@ -1,0 +1,2277 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>BE (Portugal, 2022) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/35211_202201_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">BE (Portugal, 2022)</h1>
+<p class="subtitle lead">manifesto_id 35211_202201</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Portugal · <span class="item"><strong>Party</strong></span> BE (Left Bloc) · <span class="item"><strong>Year</strong></span> 2022 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 20</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.6</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.2</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.4</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.8</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.6</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.6</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.4</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Renacionalização da EDP e da GALP”
+</div>
+<span class="context">10.2.3.REN 10.3.<mark>Renacionalização da EDP e da GALP</mark>, objetivos de soberania económica 10.4.Participação democrática dos trabalhadores nas empresas</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Definição de margens máximas de intermediação”
+</div>
+<span class="context">contratos de abastecimento de produtos agroalimentares e do compromisso de que o preço de venda lhe é sempre superior; <mark>Definição de margens máximas de intermediação</mark> dos produtos agroalimentares.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“Nacionalização das ações”
+</div>
+<span class="context">As propostas do Bloco <mark>Nacionalização das ações</mark> representativas do capital social</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“reversão de algumas medidas da direita”
+</div>
+<span class="context">pela agenda neoliberal e pela escassez de recursos. Concluída a <mark>reversão de algumas medidas da direita</mark>, o governo do PS resistiu</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“eliminação das regras do mercado interno”
+</div>
+<span class="context">decisões soberanas sobre o sistema financeiro, incluindo processos de nacionalização, recapitalização, resgate, resolução ou venda; Eliminação das regras do mercado interno que condicionam a possibilidade</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Recuperação do salário mínimo que, tendo alcançado 705 euros em janeiro de 2022, deve continuar a aumentar”
+</div>
+<span class="context"><mark>Recuperação do salário mínimo que, tendo alcançado 705 euros em janeiro de 2022, deve continuar a aumentar</mark> ao longo da legislatura a um ritmo anual de, pelo menos, 10%, de forma a diminuir a diferença em relação ao SMN de Espanha; Reversão da “flexibilização” do trabalho suplementar, acompanhada desde 2012 pela redução para metade da sua remuneração.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Reforço das prestações de desemprego, designadamente: i)retomando o salário mínimo nacional como referência”
+</div>
+<span class="context">…<mark>Reforço das prestações de desemprego, designadamente: i)retomando o salário mínimo nacional como referência</mark> do valor mínimo do subsídio de desemprego contributivo…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“mercado, competição, privatização, tributação progressiva”
+</div>
+<span class="context">Introdução do englobamento obrigatório dos rendimentos em IRS, acabando com a dualidade em que só os rendimentos do trabalho e pensões são taxados de forma progressiva, ficando os restantes sujeitos a taxas planas que no caso dos rendimentos prediais e de capitais são de 28%.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“política orçamental de modo a cumprirem os objetivos fundamentais da democracia”
+</div>
+<span class="context">os Estados devem poder gerir a sua <mark>política orçamental de modo a cumprirem os objetivos fundamentais da democracia</mark>: responder perante os seus cidadãos no combate ao desemprego, na promoção de investimento que organize a transição climática, a reconversão da indústria e transportes, ou os serviços públicos em saúde e habitação, entre outros.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“defesa da neutralidade da internet, por uma internet enquanto um espaço liberdade”
+</div>
+<span class="context">Posicionamo-nos do lado da defesa dos direitos digitais, contra a introdução da censura neste espaço de liberdade, e não em oposição aos direitos autorais. De facto, uma verdadeira e justa defesa destes direitos, que também defendemos e respeitamos, não fica acautelada por normas como a do referido artigo 13.º, que visam unicamente proteger e beneficiar a grande indústria editorial. Continuaremos a bater-nos pela <mark>defesa da neutralidade da internet, por uma internet enquanto um espaço liberdade</mark> e ao qual todos e todas possam aceder de forma igual.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Renacionalização da EDP e da GALP”
+</div>
+<span class="context">10.3.<mark>Renacionalização da EDP e da GALP</mark>, objetivos de soberania económica</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“sucessivas vagas de privatizações promoveram a concentração de riqueza”
+</div>
+<span class="context">As <mark>sucessivas vagas de privatizações promoveram a concentração de riqueza</mark> e retiraram ao país o uso de bens comuns essenciais ao seu desenvolvimento económico e produtivo</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“rendimentos de capital e os altos rendimentos foram protegidos”
+</div>
+<span class="context">O sistema de tributação contribuiu decisivamente para aumentar as desigualdades no país ao transferir para o trabalho e para o consumo de bens essenciais o peso a carga fiscal. Enquanto isso, os <mark>rendimentos de capital e os altos rendimentos foram protegidos</mark>, e até favorecidos, com benefícios fiscais</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“agenda neoliberal e pela escassez de recursos”
+</div>
+<span class="context">O sistema educativo em Portugal tornou-se numa manta de retalhos, avulsa e incoerente, marcado pela <mark>agenda neoliberal e pela escassez de recursos</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“Eliminação das regras do mercado interno”
+</div>
+<span class="context"><mark>Eliminação das regras do mercado interno</mark> que condicionam a possibilidade de decisões soberanas sobre política industrial dos Estados-membros</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“Uma banca pública estratégica”
+</div>
+<span class="context">10.RECUPERAR O CONTROLE DE SETORES LUCRATIVOS E ESTRATÉGICOS 10.1.<mark>Uma banca pública estratégica</mark> 10.2.Um programa para a legislatura</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“abusos dos grandes fundos financeiros”
+</div>
+<span class="context">controle do valor das rendas e a proteção dos moradores face à especulação e os <mark>abusos dos grandes fundos financeiros</mark>. Defendemos propostas de equidade fiscal</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“controlo público do sistema bancário”
+</div>
+<span class="context">o Bloco de Esquerda defende o <mark>controlo público do sistema bancário</mark> e a sua recuperação</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“Tributação das operações com criptoativos”
+</div>
+<span class="context">Criação de um sistema de reporte obrigatório dos montantes detidos em criptomoedas… <mark>Tributação das operações com criptoativos</mark>, nomeadamente das suas mais-valias</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 5</span>
+<div class="quote">
+“recusa da União Bancária, de modo a”
+</div>
+<span class="context">desvinculação do Tratado Orçamental e a <mark>recusa da União Bancária, de modo a</mark> retomar a capacidade de decisão autónoma sobre investimento e</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Uma banca pública estratégica”
+</div>
+<span class="context">10.RECUPERAR O CONTROLE DE SETORES LUCRATIVOS E ESTRATÉGICOS 10.1.<mark>Uma banca pública estratégica</mark> 10.2.Um programa para a legislatura 10.2.1.ANA 10.2.2.CTT 10.2.3.REN 10.3.Renacionalização da EDP e da GALP, objetivos de soberania económica 10.4.Participação democrática dos trabalhadores nas empresas</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Fundo de Resolução, contribuições obrigatórias das instituições financeiras”
+</div>
+<span class="context">O Fundo de Resolução é financiado através de: i)contribuição periódica criada em 2013, com uma receita de 72 M€ em 2020. ii)contribuição extraordinária sobre o setor bancário, com uma receita de 178 M€ em 2020. Ambas as contribuições, suportadas pelas instituições financeiras em Portugal, constituem receita do Estado.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“sistema financeiro sempre salvo com dinheiros públicos”
+</div>
+<span class="context">os poderes ocultos dos “donos disto tudo” num <mark>sistema financeiro sempre salvo com dinheiros públicos</mark>, são exemplos que têm saído caros ao país.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Uma banca pública estratégica”
+</div>
+<span class="context">10.RECUPERAR O CONTROLE DE SETORES LUCRATIVOS E ESTRATÉGICOS 10.1.<mark>Uma banca pública estratégica</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“abusos dos grandes fundos financeiros”
+</div>
+<span class="context">Propomos uma verdadeira política pública de habitação, que inclui a oferta pública de habitação, o controle do valor das rendas e a proteção dos moradores face à especulação e os <mark>abusos dos grandes fundos financeiros</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“controlo democrático do sistema financeiro”
+</div>
+<span class="context">A transformação de um modelo económico que alia a financeirização às desigualdades e à destruição ambiental requer o <mark>controlo democrático do sistema financeiro</mark>. Para isso, a propriedade pública é condição essencial</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“Criminalização do recurso a serviços prestados por entidades situadas em territórios offshore”
+</div>
+<span class="context"><mark>Criminalização do recurso a serviços prestados por entidades situadas em territórios offshore</mark>; Exclusão do acesso aos apoios públicos e contratação com o Estado a empresas que sejam direta ou indiretamente participadas</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“desvinculação do país do Tratado Orçamental”
+</div>
+<span class="context">O Bloco de Esquerda defende como prioridade a <mark>desvinculação do país do Tratado Orçamental</mark> e a recusa da União Bancária, de modo a retomar a capacidade de decisão autónoma</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“serviços públicos e democracia”
+</div>
+<span class="context">11.INVESTIR NA COESÃO TERRITORIAL 11.1.Serviços públicos e democracia 11.2.Regiões Autónomas: solidariedade e democracia</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“prévia avaliação no Parlamento”
+</div>
+<span class="context">Subordinação das novas políticas públicas à <mark>prévia avaliação no Parlamento</mark> do seu previsível impacto, positivo ou negativo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“protege a democracia”
+</div>
+<span class="context">A transparência é a defesa que qualifica e <mark>protege a democracia</mark>. A exclusividade no mandato</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“A transparência é a defesa que qualifica e protege a democracia”
+</div>
+<span class="context">bases da confiança num Estado de Direito. <mark>A transparência é a defesa que qualifica e protege a democracia</mark>. A exclusividade no mandato</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“qualificação das ferramentas de participação cidadã”
+</div>
+<span class="context">passar pela democratização da democracia portuguesa e pela <mark>qualificação das ferramentas de participação cidadã</mark>. As propostas do Bloco Atribuir o direito</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“A democracia não sobrevive sem ele”
+</div>
+<span class="context">A extraordinária resposta que o SNS deu à pandemia deixou claro que a democracia não sobrevive sem ele. Ficou também claro que não podemos contar com o setor privado quando está em causa a proteção da saúde de todos.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“subordinação das novas políticas públicas à prévia avaliação no Parlamento do seu previsível impacto”
+</div>
+<span class="context">…Subordinação das novas políticas públicas à prévia avaliação no Parlamento do seu previsível impacto, positivo ou negativo, sobre a pobreza e a exclusão social…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“democracia, direitos, eleições, tribunais, media”
+</div>
+<span class="context">A Constituição portuguesa estabelece o direito dos trabalhadores das empresas públicas a elegerem diretamente um representante para integrar os conselhos de administração daquelas empresas.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“transparência é a defesa que qualifica e protege a democracia”
+</div>
+<span class="context">A corrupção mina as bases da confiança num Estado de Direito. A <mark>transparência é a defesa que qualifica e protege a democracia</mark>. A exclusividade no mandato dos deputados é a certeza da verdadeira separação entre interesses públicos e privados no poder legislativo.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“defesa da neutralidade da internet, por uma internet enquanto um espaço liberdade”
+</div>
+<span class="context">Posicionamo-nos do lado da defesa dos direitos digitais, contra a introdução da censura neste espaço de liberdade, e não em oposição aos direitos autorais. De facto, uma verdadeira e justa defesa destes direitos, que também defendemos e respeitamos, não fica acautelada por normas como a do referido artigo 13.º, que visam unicamente proteger e beneficiar a grande indústria editorial. Continuaremos a bater-nos pela <mark>defesa da neutralidade da internet, por uma internet enquanto um espaço liberdade</mark> e ao qual todos e todas possam aceder de forma igual.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“escrutínio democrático da aplicação dos fundos”
+</div>
+<span class="context">os mecanismos de transparência e prestação de contas têm que ser reforçados para assegurar o <mark>escrutínio democrático da aplicação dos fundos</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“prévia avaliação no Parlamento do seu previsível impacto”
+</div>
+<span class="context">Subordinação das novas políticas públicas à <mark>prévia avaliação no Parlamento do seu previsível impacto</mark>, positivo ou negativo, sobre a pobreza e a exclusão social</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“A transparência é a defesa que qualifica e protege a democracia”
+</div>
+<span class="context">A corrupção mina as bases da confiança num Estado de Direito. <mark>A transparência é a defesa que qualifica e protege a democracia</mark>. A exclusividade no mandato dos deputados é a certeza da verdadeira separação</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“termine o regime de pré-avaliação pela Comissão Europeia”
+</div>
+<span class="context">é imperativo, por razões de responsabilidade democrática, que <mark>termine o regime de pré-avaliação pela Comissão Europeia</mark> das propostas de Orçamento do Estado dos Estados-membros antes da respetiva apreciação parlamentar</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“clareza de um jornalismo sério e rigoroso é fundamental para a salvaguarda da própria democracia”
+</div>
+<span class="context">Num tempo em que os populismos se organizam na sombra das campanhas de desinformação, a <mark>clareza de um jornalismo sério e rigoroso é fundamental para a salvaguarda da própria democracia</mark></span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“combate às múltiplas discriminações”
+</div>
+<span class="context">A promoção da igualdade e da emancipação reclama medidas transversais de <mark>combate às múltiplas discriminações</mark>. Lutamos por uma política de migrações solidária</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“violaçãodos direitos humanos”
+</div>
+<span class="context">permanente, e com um fôlego diferente das que existem. Pobreza: <mark>violaçãodos direitos humanos</mark> Metade das pessoas em Portugal já viveram</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“promover a igualdade”
+</div>
+<span class="context">MEDIDAS FISCAIS PARA COMBATER ABUSOS E PROMOVER A IGUALDADE Um sistema fiscal justo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“combater a discriminação racial”
+</div>
+<span class="context">fragilidade das políticas públicas de efetivo combate à discriminação racial é flagrante, apesar da crescente visibilidade</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 5</span>
+<div class="quote">
+“combater o racismo estrutural”
+</div>
+<span class="context">21. NÃO DAR TRÉGUAS AOS PRECONCEITOS E À DISCRIMINAÇÃO 21.1.Combater o racismo estrutural Em Portugal a fragilidade das políticas públicas</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Apresentamos um programa feminista e de luta contra o preconceito e contra todas as discriminações”
+</div>
+<span class="context">Portugal é um país desigual e que sofre esse atraso. Queremos o fim da precariedade na ciência e na cultura e garantir o acesso da população ao conhecimento e à arte. <mark>Apresentamos um programa feminista e de luta contra o preconceito e contra todas as discriminações</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“direitos, igualdade, discriminação, género/LGBTQ+”
+</div>
+<span class="context">…O Bloco defende ainda que se repense profundamente a política pública de provisão de cuidados… O Serviço Nacional de Cuidados deve tutelar as respostas aos cuidadores e cuidadoras informais, concretizando todas as dimensões em falta no Estatuto dos Cuidadores Informais…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“proteção contra os despejos, garantindo alternativa habitacional”
+</div>
+<span class="context">Concretizar a Lei de Bases da Habitação: Proteção contra os despejos, garantindo alternativa habitacional e que todos os processos de despejo são acompanhados de relatório social,</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“combater o racismo estrutural”
+</div>
+<span class="context">21.1.Combater o racismo estrutural Em Portugal a fragilidade das políticas públicas de efetivo combate à discriminação racial é flagrante, apesar da crescente visibilidade que a discussão sobre o racismo tem conquistado, resultante, em grande medida, da luta das organizações antirracistas.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 5</span>
+<div class="quote">
+“combate ao racismo e ao discurso de ódio”
+</div>
+<span class="context">O Bloco confere centralidade às políticas de promoção de igualdade e de combate ao racismo. É tempo de romper com o estado de negação face ao racismo e ao discurso de ódio. O racismo institucional deve envergonhar um Estado de Direito que tantas vezes se vangloria das suas políticas de “integração”. O nosso compromisso é combatê-lo.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“racismo, a xenofobia, o sexismo, a homofobia”
+</div>
+<span class="context">O <mark>racismo, a xenofobia, o sexismo, a homofobia</mark> e a transfobia são estruturais e sistémicos, agravam as desigualdades que atingem desproporcionalmente as mulheres</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“A existência de 1,7 milhões de cidadãos e cidadãs”
+</div>
+<span class="context"><mark>A existência de 1,7 milhões de cidadãos e cidadãs</mark> (dos quais muitos são crianças e jovens) em situação de pobreza é um facto que ofende o país</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“passadeira vermelha às pessoas imigrantes ricas”
+</div>
+<span class="context">os Vistos Gold representam uma política de duplicidade inaceitável em matéria de imigração, estendendo uma <mark>passadeira vermelha às pessoas imigrantes ricas</mark> enquanto os e as imigrantes pobres são condenadas a um limbo jurídico</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“combatemos todas as formas de discriminação”
+</div>
+<span class="context">Enfrentamos o racismo, que destrói a vida social e <mark>combatemos todas as formas de discriminação</mark>. À política do ódio e desinformação da extrema-direita contrapomos uma cultura de respeito</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“combate contra a discriminação, medidas de proteção e segurança”
+</div>
+<span class="context">não devemos adiar medidas de <mark>combate contra a discriminação, medidas de proteção e segurança</mark> que possibilitem avançar na construção de uma sociedade mais inclusiva</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“serviços públicos e democracia”
+</div>
+<span class="context">11.INVESTIR NA COESÃO TERRITORIAL 11.1.Serviços públicos e democracia 11.2.Regiões Autónomas: solidariedade e democracia</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“violaçãodos direitos humanos”
+</div>
+<span class="context">permanente, e com um fôlego diferente das que existem. Pobreza: <mark>violaçãodos direitos humanos</mark> Metade das pessoas em Portugal já viveram</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“protege a democracia”
+</div>
+<span class="context">A transparência é a defesa que qualifica e <mark>protege a democracia</mark>. A exclusividade no mandato</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“A transparência é a defesa que qualifica e protege a democracia”
+</div>
+<span class="context">bases da confiança num Estado de Direito. <mark>A transparência é a defesa que qualifica e protege a democracia</mark>. A exclusividade no mandato</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“qualificação das ferramentas de participação cidadã”
+</div>
+<span class="context">passar pela democratização da democracia portuguesa e pela <mark>qualificação das ferramentas de participação cidadã</mark>. As propostas do Bloco Atribuir o direito</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“A democracia não sobrevive sem ele”
+</div>
+<span class="context">A extraordinária resposta que o SNS deu à pandemia deixou claro que a democracia não sobrevive sem ele. Ficou também claro que não podemos contar com o setor privado quando está em causa a proteção da saúde de todos.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Reforço das prestações de desemprego, designadamente: i)retomando o salário mínimo nacional como referência”
+</div>
+<span class="context">…<mark>Reforço das prestações de desemprego, designadamente: i)retomando o salário mínimo nacional como referência</mark> do valor mínimo do subsídio de desemprego contributivo…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Introdução do englobamento obrigatório dos rendimentos em IRS”
+</div>
+<span class="context"><mark>Introdução do englobamento obrigatório dos rendimentos em IRS</mark>, acabando com a dualidade em que só os rendimentos do trabalho e pensões são taxados de forma progressiva, ficando os restantes sujeitos a taxas planas que no caso dos rendimentos prediais e de capitais são de 28%.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“transparência é a defesa que qualifica e protege a democracia”
+</div>
+<span class="context">A corrupção mina as bases da confiança num Estado de Direito. A <mark>transparência é a defesa que qualifica e protege a democracia</mark>. A exclusividade no mandato dos deputados é a certeza da verdadeira separação entre interesses públicos e privados no poder legislativo.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“defesa da neutralidade da internet, por uma internet enquanto um espaço liberdade”
+</div>
+<span class="context">Posicionamo-nos do lado da defesa dos direitos digitais, contra a introdução da censura neste espaço de liberdade, e não em oposição aos direitos autorais. De facto, uma verdadeira e justa defesa destes direitos, que também defendemos e respeitamos, não fica acautelada por normas como a do referido artigo 13.º, que visam unicamente proteger e beneficiar a grande indústria editorial. Continuaremos a bater-nos pela <mark>defesa da neutralidade da internet, por uma internet enquanto um espaço liberdade</mark> e ao qual todos e todas possam aceder de forma igual.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“democracia vive diminuída”
+</div>
+<span class="context">sem segurança na saúde a <mark>democracia vive diminuída</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 2</span>
+<div class="quote">
+“rendimentos de capital e os altos rendimentos foram protegidos”
+</div>
+<span class="context">os <mark>rendimentos de capital e os altos rendimentos foram protegidos</mark>, e até favorecidos, com benefícios fiscais e sucessivas reduções das taxas de tributação</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“A transparência é a defesa que qualifica e protege a democracia”
+</div>
+<span class="context">A corrupção mina as bases da confiança num Estado de Direito. <mark>A transparência é a defesa que qualifica e protege a democracia</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“combatemos todas as formas de discriminação”
+</div>
+<span class="context">Enfrentamos o racismo, que destrói a vida social e <mark>combatemos todas as formas de discriminação</mark>. À política do ódio e desinformação da extrema-direita contrapomos uma cultura de respeito</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“salvaguarda da própria democracia”
+</div>
+<span class="context">a clareza de um jornalismo sério e rigoroso é fundamental para a <mark>salvaguarda da própria democracia</mark></span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“combater a corrupção, o privilégio”
+</div>
+<span class="context">e pelo respeito pelo direito à migração, tanto no quadro nacional como no europeu. Assumimos a recusa do Tratado Orçamental Europeu e das suas regras de imposição de austeridade e defendemos a reestruturação da dívida pública. Combatemos de forma determinada a corrupção, o privilégio e o crime económicos, e propomos um novo quadro legal para a criminalização do recurso a offshores.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“subjugados ao lóbi das indústrias poluentes”
+</div>
+<span class="context">os compromissos necessários para a descarbonização e para o apoio aos países mais pobres continuam <mark>subjugados ao lóbi das indústrias poluentes</mark>, à hipocrisia do “capitalismo verde”</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“abuso patronal”
+</div>
+<span class="context">deixando-os desprotegidos e suscetíveis ao <mark>abuso patronal</mark>. Para contrariar a situação</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“O PS e a direita uniram-se contra as mudanças”
+</div>
+<span class="context">há muito que ficou por fazer. <mark>O PS e a direita uniram-se contra as mudanças</mark> de fundo de que o país precisava, impedindo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“hipocrisia europeia – portas fechadas à imigração”
+</div>
+<span class="context">21.2.Um novo ciclo de políticas para a imigração Em sintonia com a <mark>hipocrisia europeia – portas fechadas à imigração</mark> legal, janelas escancaradas às máfias – responsável pela</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Combatemos de forma determinada a corrupção, o privilégio e o crime económicos”
+</div>
+<span class="context">Assumimos a recusa do Tratado Orçamental Europeu e das suas regras de imposição de austeridade e defendemos a reestruturação da dívida pública. <mark>Combatemos de forma determinada a corrupção, o privilégio e o crime económicos</mark>, e propomos um novo quadro legal para a criminalização do recurso a offshores.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“a hipocrisia do “capitalismo verde” e ao egoísmo de quem não quer abdicar do seu privilégio”
+</div>
+<span class="context">…os governos mundiais falham aos povos: os compromissos necessários para a descarbonização e para o apoio aos países mais pobres continuam subjugados ao lóbi das indústrias poluentes, à hipocrisia do “capitalismo verde” e ao egoísmo de quem não quer abdicar do seu privilégio. Acordo para travar a desflorestação…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“evidências de corrupção ou de favorecimento”
+</div>
+<span class="context">Em vários casos identificados tardiamente pelas autoridades judiciais, <mark>evidências de corrupção ou de favorecimento</mark> mostraram o perigo das políticas destinadas a promover grupos económicos privados.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“predomínio dos interesses do capital alemão”
+</div>
+<span class="context">governos portugueses, fossem de direita ou do PS, nunca questionaram estas regras, que têm sido destrutivas para a economia e a sociedade, impondo, em particular, um <mark>predomínio dos interesses do capital alemão</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“romper com o estado de negação face ao racismo e ao discurso de ódio”
+</div>
+<span class="context">O Bloco confere centralidade às políticas de promoção de igualdade e de combate ao racismo. É tempo de <mark>romper com o estado de negação face ao racismo e ao discurso de ódio</mark>. O racismo institucional deve envergonhar um Estado de Direito que tantas vezes se vangloria das suas políticas de “integração”. O nosso compromisso é combatê-lo.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“enfrentar o patronato”
+</div>
+<span class="context">não se ultrapassará sem a coragem de <mark>enfrentar o patronato</mark>: subida do salário mínimo que tire da pobreza quem trabalha</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“lóbi das indústrias poluentes, à hipocrisia do”capitalismo verde”“
+</div>
+<span class="context">os compromissos necessários para a descarbonização e para o apoio aos países mais pobres continuam subjugados ao <mark>lóbi das indústrias poluentes, à hipocrisia do “capitalismo verde”</mark> e ao egoísmo de quem não quer abdicar do seu privilégio</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“os poderes ocultos dos”donos disto tudo”“
+</div>
+<span class="context">Privatizações de empresas estratégicas, parcerias público-privado, concursos feitos à medida de um determinado privado, <mark>os poderes ocultos dos “donos disto tudo”</mark> num sistema financeiro sempre salvo com dinheiros públicos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“os poderes ocultos dos”donos disto tudo”“
+</div>
+<span class="context">Privatizações de empresas estratégicas, parcerias público-privado, concursos feitos à medida de um determinado privado, <mark>os poderes ocultos dos “donos disto tudo”</mark> num sistema financeiro sempre salvo com dinheiros públicos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“grandes interesses económicos e não para os verdadeiros detentores dos direitos”
+</div>
+<span class="context">apenas para daí, e mais uma vez, obter vantagens para os <mark>grandes interesses económicos e não para os verdadeiros detentores dos direitos</mark>, como é o caso da recente polémica</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Nem maioria absoluta, nem bloco central. Compromissos claros”
+</div>
+<span class="context">Razões fortes pela transformação do país. <mark>Nem maioria absoluta, nem bloco central. Compromissos claros</mark>: travar a devastação do SNS, recuperar o salário médio, justiça para quem trabalhou.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“políticas setoriais – particularmente aquelas que objetivamente terão um potencial impacto sobre a pobreza”
+</div>
+<span class="context">…É instrumentalmente crucial que, para além de atacarmos as consequências sejamos capazes de prevenir as causas e que, para isso, as <mark>políticas setoriais – particularmente aquelas que objetivamente terão um potencial impacto sobre a pobreza</mark> - sejam aprovadas após uma prévia avaliação dos seus impactos…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“uma estratégia de valorização do território e das comunidades rurais”
+</div>
+<span class="context">Uma estratégia de valorização do território e das comunidades rurais assente na transformação agrícola e florestal, do plano ferroviário nacional e da garantia de acessibilidades nas situações de isolamento das comunidades e dos aglomerados populacionais;</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“responder perante os seus cidadãos no combate ao desemprego”
+</div>
+<span class="context">os Estados devem poder gerir a sua política orçamental de modo a cumprirem os objetivos fundamentais da democracia: <mark>responder perante os seus cidadãos no combate ao desemprego</mark>, na promoção de investimento que organize a transição climática, a reconversão da indústria e transportes, ou os serviços públicos em saúde e habitação, entre outros.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“defesa da neutralidade da internet, por uma internet enquanto um espaço liberdade”
+</div>
+<span class="context">Posicionamo-nos do lado da defesa dos direitos digitais, contra a introdução da censura neste espaço de liberdade, e não em oposição aos direitos autorais. De facto, uma verdadeira e justa defesa destes direitos, que também defendemos e respeitamos, não fica acautelada por normas como a do referido artigo 13.º, que visam unicamente proteger e beneficiar a grande indústria editorial. Continuaremos a bater-nos pela <mark>defesa da neutralidade da internet, por uma internet enquanto um espaço liberdade</mark> e ao qual todos e todas possam aceder de forma igual.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Nem maioria absoluta, nem bloco central”
+</div>
+<span class="context">Razões fortes pela transformação do país. <mark>Nem maioria absoluta, nem bloco central</mark>. Compromissos claros</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“Demasiadas vezes o interesse público ficou refém”
+</div>
+<span class="context">Demasiadas vezes o interesse público tem ficado refém de interesses privados. Privatizações de empresas estratégicas, parcerias público-privado</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“democratização da democracia portuguesa”
+</div>
+<span class="context">a resposta da esquerda só pode passar pela <mark>democratização da democracia portuguesa</mark> e pela qualificação das ferramentas de participação cidadã</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“A ESQUERDA TEM PROGRAMA”
+</div>
+<span class="context">Razões fortes, Compromissos claros <mark>A ESQUERDA TEM PROGRAMA</mark> Razões fortes pela transformação do país.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“motiva a ação da esquerda”
+</div>
+<span class="context">em situação de pobreza é um facto que ofende o país e que <mark>motiva a ação da esquerda</mark>. A UNICEF Portuguesa, no relatório</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“combater as desigualdades”
+</div>
+<span class="context">Identificamos políticas para <mark>combater as desigualdades</mark> regionais e respeitar as regiões</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“predomínio dos interesses do capital alemão”
+</div>
+<span class="context">destrutivas para a economia e a sociedade, impondo, em particular, um <mark>predomínio dos interesses do capital alemão</mark>. Também é imperativo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“numa visão anticapitalista mais ampla”
+</div>
+<span class="context">reforça o seu compromisso para com as políticas de bem-estar animal. Fazemo-lo integrando a luta pelo respeito do bem-estar animal <mark>numa visão anticapitalista mais ampla</mark>, isto é, uma construção</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Aumentar o salário mínimo e o salário médio Combater a precariedade e as novas formas de exploração”
+</div>
+<span class="context">1.RECUPERAR OS RENDIMENTOS DO TRABALHO E COMBATER A PRECARIEDADE <mark>Aumentar o salário mínimo e o salário médio Combater a precariedade e as novas formas de exploração</mark> Valorizar as pensões e fazer justiça a quem trabalhou</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Reforço do Rendimento Social de Inserção, aumentando já em 2022 o valor de referência do RSI”
+</div>
+<span class="context">…As propostas do Bloco <mark>Reforço do Rendimento Social de Inserção, aumentando já em 2022 o valor de referência do RSI</mark> e diminuição da diferença da capitação entre os membros do agregado…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“tributação das grandes empresas e atividades especulativas”
+</div>
+<span class="context">9.2.Tributação das grandes empresas e atividades especulativas Consolidou-se, ao longo das últimas décadas, um desequilíbrio estrutural nos sistemas de tributação, em benefício do capital e das grandes fortunas e em prejuízo do trabalho e dos consumos básicos.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“combate eficaz contra a corrupção”
+</div>
+<span class="context">O Bloco de Esquerda é certeza de <mark>combate eficaz contra a corrupção</mark>. As portas giratórias entre o público e o privado devem ser travadas. Cada euro que a corrupção leva das contas públicas é um euro cortado ao Estado Social.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“combate à discriminação racial, abandonando o paradigma de intervenção assente na criminalização dos bairros”
+</div>
+<span class="context">Alocação do financiamento afeto aos Contratos Locais de Segurança, em vigor em bairros com forte presença de comunidades racializadas, a programas que tenham em vista a redução da vulnerabilidade social, a promoção da empregabilidade e o <mark>combate à discriminação racial, abandonando o paradigma de intervenção assente na criminalização dos bairros</mark>; Fim dos despejos e demolições forçados em territórios com forte presença de pessoas e comunidades africanas, afrodescendentes e ciganas, sem a existência de uma alternativa de habitação digna; Medidas legislativas e inspetivas especiais para proteção dos direitos laborais e combate à precariedade e exploração laboral nos setores de atividade em que pessoas provenientes das comunidades racializadas, em especial as mulheres, estão desproporcionalmente presentes (trabalho doméstico assalariado, serviços de limpeza e cuidadoras);</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Tributação das grandes empresas e atividades especulativas”
+</div>
+<span class="context">9.2.<mark>Tributação das grandes empresas e atividades especulativas</mark> 9.3.Combate à evasão e à despesa fiscal injustificada</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“distribuição primária de rendimento, de políticas orçamentais”
+</div>
+<span class="context">O combate à pobreza não é apenas uma questão de “apoio aos pobres”, mas sim uma questão de <mark>distribuição primária de rendimento, de políticas orçamentais</mark>, económicas, de políticas de emprego</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“concentração de riqueza e retiraram ao país”
+</div>
+<span class="context">As sucessivas vagas de privatizações promoveram a <mark>concentração de riqueza e retiraram ao país</mark> o uso de bens comuns essenciais ao seu desenvolvimento económico e produtivo</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“impondo, em particular, um predomínio dos interesses do capital alemão”
+</div>
+<span class="context">Os governos portugueses, fossem de direita ou do PS, nunca questionaram estas regras, que têm sido destrutivas para a economia e a sociedade, <mark>impondo, em particular, um predomínio dos interesses do capital alemão</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“visão anticapitalista mais ampla”
+</div>
+<span class="context">Fazemo-lo integrando a luta pelo respeito do bem-estar animal numa <mark>visão anticapitalista mais ampla</mark>, isto é, uma construção que combate a exploração e as relações de dominação</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“A ESQUERDA TEM PROGRAMA”
+</div>
+<span class="context">Razões fortes, Compromissos claros <mark>A ESQUERDA TEM PROGRAMA</mark> Razões fortes pela transformação do país.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“motiva a ação da esquerda”
+</div>
+<span class="context">em situação de pobreza é um facto que ofende o país e que <mark>motiva a ação da esquerda</mark>. A UNICEF Portuguesa, no relatório</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“combater as desigualdades”
+</div>
+<span class="context">Identificamos políticas para <mark>combater as desigualdades</mark> regionais e respeitar as regiões</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“predomínio dos interesses do capital alemão”
+</div>
+<span class="context">destrutivas para a economia e a sociedade, impondo, em particular, um <mark>predomínio dos interesses do capital alemão</mark>. Também é imperativo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“numa visão anticapitalista mais ampla”
+</div>
+<span class="context">reforça o seu compromisso para com as políticas de bem-estar animal. Fazemo-lo integrando a luta pelo respeito do bem-estar animal <mark>numa visão anticapitalista mais ampla</mark>, isto é, uma construção</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“É o reforço da esquerda que trava a derrapagem para o pântano político e para a estagnação social”
+</div>
+<span class="context"><mark>É o reforço da esquerda que trava a derrapagem para o pântano político e para a estagnação social</mark>, e que impõe compromissos claros que defendem o país.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Reforço do Rendimento Social de Inserção, aumentando já em 2022 o valor de referência do RSI”
+</div>
+<span class="context">…As propostas do Bloco <mark>Reforço do Rendimento Social de Inserção, aumentando já em 2022 o valor de referência do RSI</mark> e diminuição da diferença da capitação entre os membros do agregado…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“evidências de corrupção ou de favorecimento”
+</div>
+<span class="context">Em vários casos identificados tardiamente pelas autoridades judiciais, <mark>evidências de corrupção ou de favorecimento</mark> mostraram o perigo das políticas destinadas a promover grupos económicos privados.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“combate eficaz contra a corrupção”
+</div>
+<span class="context">O Bloco de Esquerda é certeza de <mark>combate eficaz contra a corrupção</mark>. As portas giratórias entre o público e o privado devem ser travadas. Cada euro que a corrupção leva das contas públicas é um euro cortado ao Estado Social.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“romper com o estado de negação face ao racismo e ao discurso de ódio”
+</div>
+<span class="context">O Bloco confere centralidade às políticas de promoção de igualdade e de combate ao racismo. É tempo de <mark>romper com o estado de negação face ao racismo e ao discurso de ódio</mark>. O racismo institucional deve envergonhar um Estado de Direito que tantas vezes se vangloria das suas políticas de “integração”. O nosso compromisso é combatê-lo.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“anti-corporativa, redistribuição, igualdade social”
+</div>
+<span class="context">Tributação das grandes empresas e atividades especulativas; recuperar o salário médio; combater a precariedade</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“os 10% mais ricos tinham passado a obter 30% do rendimento”
+</div>
+<span class="context">Em 2018, os 50% mais pobres continuavam a dividir um quarto de todo o rendimento, mas <mark>os 10% mais ricos tinham passado a obter 30% do rendimento</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“concentração de riqueza e retiraram ao país”
+</div>
+<span class="context">As sucessivas vagas de privatizações promoveram a <mark>concentração de riqueza e retiraram ao país</mark> o uso de bens comuns essenciais ao seu desenvolvimento económico e produtivo</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“impondo, em particular, um predomínio dos interesses do capital alemão”
+</div>
+<span class="context">Os governos portugueses, fossem de direita ou do PS, nunca questionaram estas regras, que têm sido destrutivas para a economia e a sociedade, <mark>impondo, em particular, um predomínio dos interesses do capital alemão</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“visão anticapitalista mais ampla”
+</div>
+<span class="context">Fazemo-lo integrando a luta pelo respeito do bem-estar animal numa <mark>visão anticapitalista mais ampla</mark>, isto é, uma construção que combate a exploração</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 1</span>
+<div class="quote">
+“O racismo, a xenofobia”
+</div>
+<span class="context">Apresentamos um programa feminista e de luta contra o preconceito e contra todas as discriminações. <mark>O racismo, a xenofobia</mark>, o sexismo, a homofobia e a transfobia são estruturais e sistémicos</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Lutamos por uma política de migrações solidária, com alternativas e rotas seguras”
+</div>
+<span class="context"><mark>Lutamos por uma política de migrações solidária, com alternativas e rotas seguras</mark> e pelo respeito pelo direito à migração, tanto no quadro nacional como no europeu.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“limitação do Alojamento Local, com imposição do licenciamento”
+</div>
+<span class="context">Limitação do Alojamento Local, com imposição do licenciamento como empreendimento turístico a todos os fogos habitacionais dedicados exclusivamente a esta atividade; imposição de quotas máximas de alojamento local por zona urbana,</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“duplicidade inaceitável em matéria de imigração”
+</div>
+<span class="context">Os Vistos Gold representam uma política de <mark>duplicidade inaceitável em matéria de imigração</mark>, estendendo uma passadeira vermelha às pessoas imigrantes ricas enquanto os e as imigrantes pobres são condenadas a um limbo jurídico e a um calvário burocrático de meses ou anos.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“fim da obrigatoriedade do período de reflexão”
+</div>
+<span class="context">Alteração à Lei n.º 16/2007, que descriminalizou o aborto a pedido da mulher, tendo como princípios orientadores: O consenso internacional sobre prazos de exclusão de ilicitude da interrupção voluntária da gravidez a pedido da mulher e por razões de doença fetal; As legislações que, desde 2007, têm sido aprovadas em diversos países, sustentadas nos direitos humanos e em princípios pró-escolha; O princípio da igualdade no acesso à saúde, independentemente da nacionalidade e da zona do território em que residam as mulheres; O <mark>fim da obrigatoriedade do período de reflexão</mark>; A descentralização da prática do aborto médico, alargando-a para os centros de saúde e para as unidades de saúde familiar.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“política de migrações solidária”
+</div>
+<span class="context">Lutamos por uma <mark>política de migrações solidária</mark>, com alternativas e rotas seguras e pelo respeito pelo direito à migração</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“política de duplicidade inaceitável em matéria de imigração”
+</div>
+<span class="context">os Vistos Gold representam uma <mark>política de duplicidade inaceitável em matéria de imigração</mark>, estendendo uma passadeira vermelha às pessoas imigrantes ricas enquanto os e as imigrantes pobres são condenadas</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“política de duplicidade inaceitável em matéria de imigração”
+</div>
+<span class="context">os Vistos Gold representam uma <mark>política de duplicidade inaceitável em matéria de imigração</mark>, estendendo uma passadeira vermelha às pessoas imigrantes ricas enquanto os e as imigrantes pobres são condenadas a um limbo jurídico</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 5</span>
+<div class="quote">
+“nova Lei de Imigração”
+</div>
+<span class="context">Uma <mark>nova Lei de Imigração</mark> que integre as sucessivas alterações positivas à atual Lei 23/2007 numa nova filosofia humanista e aberta ao mundo</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“predação do negócio privado”
+</div>
+<span class="context">O Serviço Nacional de Saúde, pressionado pela pandemia e pela <mark>predação do negócio privado</mark>, não sobreviverá sem os seus profissionais.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“protegiam a finança predatória”
+</div>
+<span class="context">enquanto os governos mais poderosos lutam pelas indústrias poluentes, <mark>protegiam a finança predatória</mark> e ignoravam os alertas dos cientistas.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Como a Fidelidade tramou os inquilinos”
+</div>
+<span class="context"><mark>Como a Fidelidade tramou os inquilinos</mark> e as inquilinas Em 2014, o governo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“barrar o caminho ao capitalismo criminal”
+</div>
+<span class="context">investigação é tão importante quanto a existência das ferramentas legais para <mark>barrar o caminho ao capitalismo criminal</mark>; Eliminação dos vistos gold</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“roubado ao país a possibilidade de fazer escolhas”
+</div>
+<span class="context">enfrentamento determinado dos constrangimentos externos resultantes de alinhamentos que têm <mark>roubado ao país a possibilidade de fazer escolhas</mark> em favor dos e das debaixo.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“O país conhece os perigos de maiorias absolutas como as que viveu com Cavaco Silva ou José Sócrates”
+</div>
+<span class="context"><mark>O país conhece os perigos de maiorias absolutas como as que viveu com Cavaco Silva ou José Sócrates</mark>. E sabe que uma viragem para um bloco central acordado formal ou informalmente, só pode traduzir-se num regresso à agenda privatizadora, de degradação dos serviços públicos e de desproteção das pessoas, no trabalho e na pobreza.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“os governos mais poderosos lutam pelas indústrias poluentes, protegiam a finança predatória”
+</div>
+<span class="context">…A crise climática agravou-se enquanto <mark>os governos mais poderosos lutam pelas indústrias poluentes, protegiam a finança predatória</mark> e ignoravam os alertas dos cientistas. Essa irresponsabilidade voltou a impor-se…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 3</span>
+<div class="quote">
+“Demasiadas vezes o interesse público tem ficado refém de interesses privados”
+</div>
+<span class="context">Cada euro que a corrupção leva das contas públicas é um euro cortado ao Estado Social. É um abuso sobre cada um dos seus cidadãos e cidadãs. <mark>Demasiadas vezes o interesse público tem ficado refém de interesses privados</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“interesses públicos tem ficado refém de interesses privados”
+</div>
+<span class="context">Demasiadas vezes o interesse público tem ficado refém de interesses privados. Privatizações de empresas estratégicas, parcerias público-privado, concursos feitos à medida de um determinado privado, os poderes ocultos dos “donos disto tudo” num sistema financeiro sempre salvo com dinheiros públicos, são exemplos que têm saído caros ao país.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“O racismo mata. É isso que provam os brutais assassinatos com motivações racistas”
+</div>
+<span class="context">A investigação realizada no âmbito do projeto COMBAT pelo Centro de Estudos Sociais da Universidade de Coimbra revela que, entre 2006 e 2016, cerca de 80% dos processos instaurados pela Comissão pela Igualdade e Contra a Discriminação Racial (CICDR) na sequência de queixas feitas por discriminação foram arquivados… <mark>O racismo mata. É isso que provam os brutais assassinatos com motivações racistas</mark> de Alcindo Monteiro, no dia 10 de junho de 1995, e Bruno Candé Marques, em julho de 2020.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“predação do negócio privado”
+</div>
+<span class="context">O Serviço Nacional de Saúde, pressionado pela pandemia e pela <mark>predação do negócio privado</mark>, não sobreviverá sem os seus profissionais</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“capitalismo é incapaz de encontrar soluções”
+</div>
+<span class="context">A cimeira do clima mostra que o <mark>capitalismo é incapaz de encontrar soluções</mark> para a crise climática que criou.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“interesse público tem ficado refém de interesses privados”
+</div>
+<span class="context">Demasiadas vezes o <mark>interesse público tem ficado refém de interesses privados</mark>. Privatizações de empresas estratégicas, parcerias público-privado, concursos feitos à medida de um determinado privado</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“O PS e a direita uniram-se contra”
+</div>
+<span class="context"><mark>O PS e a direita uniram-se contra</mark> as mudanças de fundo de que o país precisava, impedindo o alargamento do período de nojo para ex-governantes</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“em sintonia com a hipocrisia europeia”
+</div>
+<span class="context">Em sintonia com a hipocrisia europeia – portas fechadas à imigração legal, janelas escancaradas às máfias – responsável pela proliferação de fenómenos</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“a participação da população na construção”
+</div>
+<span class="context">O Bloco propõe metas e avanços claros para a transição climática, concretizando e aprofundando a recentemente aprovada Lei do Clima, e medidas de justiça social para a transição climática, com combate às rendas do setor elétrico, empregos para o clima, <mark>a participação da população na construção</mark> das soluções, o combate à crescente litoralização do país e promoção da coesão territorial.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“os governos mundiais falham aos povos”
+</div>
+<span class="context">No momento de todas as decisões, <mark>os governos mundiais falham aos povos</mark>: os compromissos necessários para a descarbonização</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“desprotegeu a maioria da população”
+</div>
+<span class="context">não investiu em habitação pública, como <mark>desprotegeu a maioria da população</mark> que vive do seu trabalho.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“responder perante os seus cidadãos”
+</div>
+<span class="context">objetivos fundamentais da democracia: <mark>responder perante os seus cidadãos</mark> no combate ao desemprego, na promoção de</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“herdeiro das lutas populares que há mais”
+</div>
+<span class="context">23.2.Participação democrática O sistema democrático português é <mark>herdeiro das lutas populares que há mais</mark> de quatro décadas derrubaram a ditadura fascista</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“É o reforço da esquerda que trava a derrapagem para o pântano político e para a estagnação social”
+</div>
+<span class="context"><mark>É o reforço da esquerda que trava a derrapagem para o pântano político e para a estagnação social</mark>, e que impõe compromissos claros que defendem o país.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“os desempregados e os jovens adultos, o grupo social mais vulnerável à pobreza”
+</div>
+<span class="context">…<mark>os desempregados e os jovens adultos, o grupo social mais vulnerável à pobreza</mark> em Portugal, não têm no RSI uma medida capaz de lhes responder. Além disso, os valores do RSI ficam muito aquém do limiar da pobreza…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“garantam que a mão de obra assalariada é assegurada”
+</div>
+<span class="context">Atribuição de apoios comunitários e nacionais apenas a beneficiários que <mark>garantam que a mão de obra assalariada é assegurada</mark> através de contratos de trabalho e sem recurso à subcontratação;</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“responder perante os seus cidadãos no combate ao desemprego”
+</div>
+<span class="context">os Estados devem poder gerir a sua política orçamental de modo a cumprirem os objetivos fundamentais da democracia: <mark>responder perante os seus cidadãos no combate ao desemprego</mark>, na promoção de investimento que organize a transição climática, a reconversão da indústria e transportes, ou os serviços públicos em saúde e habitação, entre outros.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“defender a memória destas conquistas através do seu aprofundamento”
+</div>
+<span class="context">O sistema democrático português é herdeiro das lutas populares que há mais de quatro décadas derrubaram a ditadura fascista do Estado Novo e abriram caminho à construção de um país mais justo, solidário e inclusivo. Hoje, o desafio que a sociedade portuguesa nos coloca passa por <mark>defender a memória destas conquistas através do seu aprofundamento</mark>. Por isso, a resposta da esquerda só pode passar pela democratização da democracia portuguesa e pela qualificação das ferramentas de participação cidadã.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“defender o país”
+</div>
+<span class="context">É o reforço da esquerda que trava a derrapagem para o pântano político e para a estagnação social, e que impõe compromissos claros que defendem o país</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“ninguém fica abaixo do limiar de pobreza”
+</div>
+<span class="context">Ela funcionaria como uma prestação diferencial capaz de garantir que <mark>ninguém fica abaixo do limiar de pobreza</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“rendimentos justos aos pescadores”
+</div>
+<span class="context">Só adaptando as possibilidades de pesca aos recursos disponíveis é possível garantir a sustentabilidade das pescarias, a proteção da biodiversidade e <mark>rendimentos justos aos pescadores</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“responder perante os seus cidadãos”
+</div>
+<span class="context">os Estados devem poder gerir a sua política orçamental de modo a cumprirem os objetivos fundamentais da democracia: <mark>responder perante os seus cidadãos</mark> no combate ao desemprego</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“robustez do movimento popular”
+</div>
+<span class="context">A capacidade de concretizar as propostas que aqui apresentamos joga-se na <mark>robustez do movimento popular</mark>, na relação de forças resultante das eleições</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“combater a corrupção, o privilégio”
+</div>
+<span class="context">e pelo respeito pelo direito à migração, tanto no quadro nacional como no europeu. Assumimos a recusa do Tratado Orçamental Europeu e das suas regras de imposição de austeridade e defendemos a reestruturação da dívida pública. Combatemos de forma determinada a corrupção, o privilégio e o crime económicos, e propomos um novo quadro legal para a criminalização do recurso a offshores.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“os governos mundiais falham aos povos”
+</div>
+<span class="context">No momento de todas as decisões, <mark>os governos mundiais falham aos povos</mark>: os compromissos necessários para a descarbonização</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“desprotegeu a maioria da população”
+</div>
+<span class="context">não investiu em habitação pública, como <mark>desprotegeu a maioria da população</mark> que vive do seu trabalho.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“O PS e a direita uniram-se contra as mudanças”
+</div>
+<span class="context">há muito que ficou por fazer. <mark>O PS e a direita uniram-se contra as mudanças</mark> de fundo de que o país precisava, impedindo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“roubado ao país a possibilidade de fazer escolhas”
+</div>
+<span class="context">enfrentamento determinado dos constrangimentos externos resultantes de alinhamentos que têm <mark>roubado ao país a possibilidade de fazer escolhas</mark> em favor dos e das debaixo.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“É o reforço da esquerda que trava a derrapagem para o pântano político e para a estagnação social”
+</div>
+<span class="context"><mark>É o reforço da esquerda que trava a derrapagem para o pântano político e para a estagnação social</mark>, e que impõe compromissos claros que defendem o país.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“a hipocrisia do “capitalismo verde” e ao egoísmo de quem não quer abdicar do seu privilégio”
+</div>
+<span class="context">…os governos mundiais falham aos povos: os compromissos necessários para a descarbonização e para o apoio aos países mais pobres continuam subjugados ao lóbi das indústrias poluentes, à hipocrisia do “capitalismo verde” e ao egoísmo de quem não quer abdicar do seu privilégio…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“evidências de corrupção ou de favorecimento”
+</div>
+<span class="context">Em vários casos identificados tardiamente pelas autoridades judiciais, <mark>evidências de corrupção ou de favorecimento</mark> mostraram o perigo das políticas destinadas a promover grupos económicos privados.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“predomínio dos interesses do capital alemão”
+</div>
+<span class="context">governos portugueses, fossem de direita ou do PS, nunca questionaram estas regras, que têm sido destrutivas para a economia e a sociedade, impondo, em particular, um <mark>predomínio dos interesses do capital alemão</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“romper com o estado de negação face ao racismo e ao discurso de ódio”
+</div>
+<span class="context">O Bloco confere centralidade às políticas de promoção de igualdade e de combate ao racismo. É tempo de <mark>romper com o estado de negação face ao racismo e ao discurso de ódio</mark>. O racismo institucional deve envergonhar um Estado de Direito que tantas vezes se vangloria das suas políticas de “integração”. O nosso compromisso é combatê-lo.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“a esquerda tem programa”
+</div>
+<span class="context">Bloco de Esquerda apresenta-se às eleições de 2022 com um programa que traduz o nosso percurso de luta por uma sociedade mais igual</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“lóbi das indústrias poluentes, à hipocrisia do”capitalismo verde”“
+</div>
+<span class="context">os compromissos necessários para a descarbonização continuam subjugados ao <mark>lóbi das indústrias poluentes, à hipocrisia do “capitalismo verde”</mark> e ao egoísmo de quem não quer abdicar do seu privilégio</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“os poderes ocultos dos”donos disto tudo”“
+</div>
+<span class="context">Privatizações de empresas estratégicas, parcerias público-privado, concursos feitos à medida de um determinado privado, <mark>os poderes ocultos dos “donos disto tudo”</mark> num sistema financeiro sempre salvo com dinheiros públicos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“os poderes ocultos dos”donos disto tudo”“
+</div>
+<span class="context">Privatizações de empresas estratégicas, parcerias público-privado, concursos feitos à medida de um determinado privado, <mark>os poderes ocultos dos “donos disto tudo”</mark> num sistema financeiro sempre salvo com dinheiros públicos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“grandes interesses económicos e não para os verdadeiros detentores dos direitos”
+</div>
+<span class="context">apenas para daí, e mais uma vez, obter vantagens para os <mark>grandes interesses económicos e não para os verdadeiros detentores dos direitos</mark></span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="35211_202201_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

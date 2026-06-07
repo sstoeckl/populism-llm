@@ -1,0 +1,2263 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>PS (Finland, 2019) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/14820_201904_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">PS (Finland, 2019)</h1>
+<p class="subtitle lead">manifesto_id 14820_201904</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Finland · <span class="item"><strong>Party</strong></span> PS (True Finns) · <span class="item"><strong>Year</strong></span> 2019 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 70</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.8</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.8</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.8</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.4</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.8</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.4</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“tuottavan työn ja yrittämisen edistämistä”
+</div>
+<span class="context">Suomalaisista huolehtiminen myös tulevaisuudessa vaatii <mark>tuottavan työn ja yrittämisen edistämistä</mark>. Taloutemme ja hyvinvointimme</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Vapaakauppa on elintärkeää taloudellemme ja hyvinvoinnillemme”
+</div>
+<span class="context">peräti 96 % Suomen Pankin kultavarannoista on ulkomaisten keskuspankkien säilytyksessä ja niiden turvallisuus on varmistettava kaikissa olosuhteissa. <mark>Vapaakauppa on elintärkeää taloudellemme ja hyvinvoinnillemme</mark>, mutta vastustamme vapaakaupan varjolla</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“yrittäjyyden toimintaedellytyksiä on korjattava”
+</div>
+<span class="context">Talouden elinvoiman palauttamiseksi <mark>yrittäjyyden toimintaedellytyksiä on korjattava</mark> monin eri tavoin. Yrittäjien sosiaaliturva</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“työn ja yrittämisen kannustaminen sekä kotitalouksien”
+</div>
+<span class="context">Perussuomalaisen veropolitiikan tavoitteena on <mark>työn ja yrittämisen kannustaminen sekä kotitalouksien</mark> ostovoiman lisääminen.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“Markkinatalouden ja vapaan maailmankaupan oloissa”
+</div>
+<span class="context">maamme omat ilmastopäästöt kyllä pienenevät. <mark>Markkinatalouden ja vapaan maailmankaupan oloissa</mark> samoille tuotteille kuitenkin</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Taloutemme ja hyvinvointimme perustuvat pitkälti vientiteollisuuteen, ja sen kilpailukyvyn turvaamisen tulee olla etusijalla.”
+</div>
+<span class="context">Suomalaisista huolehtiminen myös tulevaisuudessa vaatii tuottavan työn ja yrittämisen edistämistä. <mark>Taloutemme ja hyvinvointimme perustuvat pitkälti vientiteollisuuteen, ja sen kilpailukyvyn turvaamisen tulee olla etusijalla.</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“vapaakauppaa rehdein säännöin”
+</div>
+<span class="context">…EU-varainkäyttöä on syytä suitsia, EU-tukia karsia ja jäsenmaksuja alennettava. Vapaakauppaa rehdein säännöin, sopimuksilla ei saa heikentää kansallista itsemääräämisoikeutta. Kehitysyhteistyön rahareikiä tulee karsia…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Kynnystä yrittäjäksi ryhtymiselle ja muiden työllistämiselle tulee madaltaa”
+</div>
+<span class="context">…Tämä ei ole pelkästään periaatteellinen kysymys, vaan on muistettava, että ei ole kestävä ratkaisu paikata jatkuvaa budjettialijäämää velanotolla. Samalla, kun jaetaan sitä, mitä on, on pyrittävä tällöin myös kasvattamaan sitä säkkiä, josta jaetaan, jotta jaettavaa olisi enemmän. Tämä tarkoittaa tuottavan suomalaisen työn ja yrittämisen edistämistä. <mark>Kynnystä yrittäjäksi ryhtymiselle ja muiden työllistämiselle tulee madaltaa</mark>. Tulee muistaa, että pienyrittäjät ovat merkittävä työllistäjä ja työllistävät nimenomaan kotimaassa, eivätkä ole ensimmäisenä siirtämässä toimintaansa ulkomaille.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Perussuomalaiset esittää, että arvonlisäverollisen liiketoiminnan alarajaa nostettaisiin nykyisestä 10 000 eurosta 20 000 euroon.”
+</div>
+<span class="context">4.2 ALV:N ALARAJAN NOSTO SEKÄ UUDEN, KANNUSTAVAN YRITYSVERO- MALLIN KÄYTTÖÖNOTTO Arvonlisäverollisen liiketoiminnan alarajan nosto on tehokas keino harmaan talouden torjunnassa ja yrittäjyyteen kannustamisessa. Uudistus parantaisi erityisesti pienyritysten kannattavuutta ja mahdollisuuksia työllistää.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“Markkinatalouden ja vapaan maailmankaupan oloissa samoille tuotteille kuitenkin löytyy aina valmistajia”
+</div>
+<span class="context">Mikäli teollinen tuotanto vähenee Suomessa, maamme omat ilmastopäästöt kyllä pienenevät. <mark>Markkinatalouden ja vapaan maailmankaupan oloissa samoille tuotteille kuitenkin löytyy aina valmistajia</mark> niin kauan kuin on ostajiakin.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“teollisuuden kustannuksia on päinvastoin kevennettävä”
+</div>
+<span class="context">Tulevan vaalikauden aikana suomalaiselle teollisuudelle ei saa sälyttää mitään kilpailukykyä heikentäviä lisäkustannuksia – <mark>teollisuuden kustannuksia on päinvastoin kevennettävä</mark>. Laskemalla sähkövero minimiin, kuten Saksassa, tuotetaan yrityksille investointivarmuutta.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Vapaakauppa on elintärkeää taloudellemme”
+</div>
+<span class="context"><mark>Vapaakauppa on elintärkeää taloudellemme</mark> ja hyvinvoinnillemme, mutta vastustamme vapaakaupan varjolla tapahtuvaa kansallisen itsemääräämisoikeuden heikentämistä.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Ylisääntelyn ja byrokratian purkaminen on syytä aloittaa heti”
+</div>
+<span class="context"><mark>Ylisääntelyn ja byrokratian purkaminen on syytä aloittaa heti</mark>. Yritysten hallinnollista taakkaa on kevennettävä laatimalla eri sidosryhmien kanssa hallinnollisen taakan leikkauslista.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“työn ja yrittämisen kannustaminen”
+</div>
+<span class="context">Perussuomalaisen veropolitiikan tavoitteena on <mark>työn ja yrittämisen kannustaminen</mark> sekä kotitalouksien ostovoiman lisääminen. Yritysverotusta tulee kehittää siten, että yrittäjät, työntekijät ja omistajat saavat kohtuullisen osuuden panostensa tuotosta.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 5</span>
+<div class="quote">
+“kilpailu markkinoilla on koventunut huomattavasti”
+</div>
+<span class="context">Vaikka <mark>kilpailu markkinoilla on koventunut huomattavasti</mark>, potentiaali on huima, ja valtava mittakaava on haaste sinänsä. Markkinointi on ollut keskeinen ongelma.</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“Pikavippifirmojen koronkiskonta pitää kieltää”
+</div>
+<span class="context">Velallisten oikeudet on turvattava ja samalla on huolehdittava siitä, etteivät samanlaiset epäkohdat pääse enää toistumaan. Henkilökohtaisen konkurssin mahdollisuus on selvitettävä eikä keltään saa viedä tulevaisuuden mahdollisuuksia aloittaa uudestaan. <mark>Pikavippifirmojen koronkiskonta pitää kieltää</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Kannatamme sijoitussäästötilin käyttöönottoa”
+</div>
+<span class="context">laajemmin säästämiseen ja sijoittamiseen. <mark>Kannatamme sijoitussäästötilin käyttöönottoa</mark>. Nyt suuri osa suomalaisten varallisuudesta</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Aggressiiviseen verosuunnitteluun ja voittojen kotiuttamiseen ulkomaille veroparatiiseihin sekä veronkiertoon on puututtava tiukemmin.”
+</div>
+<span class="context">…Yritysten sukupolvenvaihdoksissa jatkuvuuden turvaaminen on tärkeää. <mark>Aggressiiviseen verosuunnitteluun ja voittojen kotiuttamiseen ulkomaille veroparatiiseihin sekä veronkiertoon on puututtava tiukemmin.</mark> Myös kaikki Suomen miljardien eurojen verotuet on käytävä kriittisesti läpi…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“Aggressiiviseen verosuunnitteluun ja voittojen kotiuttamiseen ulkomaille veroparatiiseihin sekä veronkiertoon on puututtava tiukemmin”
+</div>
+<span class="context">…<mark>Aggressiiviseen verosuunnitteluun ja voittojen kotiuttamiseen ulkomaille veroparatiiseihin sekä veronkiertoon on puututtava tiukemmin</mark>. Myös kaikki Suomen miljardien eurojen verotuet on käytävä kriittisesti läpi ja turhat karsittava asteittain.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“veronmaksajien rahat halutaan siirtää suuryrityksille”
+</div>
+<span class="context">Hallituksen soteuudistusta tehdään nimenomaan valinnanvapaus edellä – eli <mark>veronmaksajien rahat halutaan siirtää suuryrityksille</mark>, samalla kun julkinen terveydenhoitomme kuristetaan henkihieveriin.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“petolliset asuntoluottojohdannaiset, järjestelmällisen markkinamanipuloinnin”
+</div>
+<span class="context">Finanssi- ja eurokriisi toivat julkisuuteen koko joukon kansainvälisen talouden ja poliittisen järjestelmän kupruja, kuten <mark>petolliset asuntoluottojohdannaiset, järjestelmällisen markkinamanipuloinnin</mark> sekä talouseliitin ja poliittisten vallankäyttäjien keskinäisen suhmuroinnin</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“Kotitalouksia tulee kannustaa laajemmin säästämiseen ja sijoittamiseen”
+</div>
+<span class="context"><mark>Kotitalouksia tulee kannustaa laajemmin säästämiseen ja sijoittamiseen</mark>. Kannatamme sijoitussäästötilin käyttöönottoa. Nyt suuri osa suomalaisten varallisuudesta on nollakorkoisilla käyttötileillä.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“liikennerahastoon tulisi pääomaa noin 10 mrd euroa”
+</div>
+<span class="context">Perussuomalaiset esittää, että eduskunta säätää lain liikennerahastosta, johon jokainen työeläkevakuutuslaitos velvoitetaan sijoittamaan 5% rahastojensa varoista. Kun rahastoissa on nyt noin 200 mrd euroa varoja, <mark>liikennerahastoon tulisi pääomaa noin 10 mrd euroa</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“Sähköverkkoyhtiöt tulee pitää kotimaisessa omistuksessa”
+</div>
+<span class="context">Niille on asetettava yläraja ja mahdollisesti kehitettävä kompensointijärjestelmä, jossa kaupunkien siirtomaksuilla kompensoidaan haja-asutusalueen sähköverkon ylläpitokuluja. <mark>Sähköverkkoyhtiöt tulee pitää kotimaisessa omistuksessa</mark>.</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“päättää omista asioistaan”
+</div>
+<span class="context">voivat elää hyvää elämää ja <mark>päättää omista asioistaan</mark>. Nykyisen kaltainen Suomeen</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“vastustamme vapaakaupan varjolla tapahtuvaa kansallisen itsemääräämisoikeuden heikentämistä”
+</div>
+<span class="context">Vapaakauppa on elintärkeää taloudellemme ja hyvinvoinnillemme, mutta <mark>vastustamme vapaakaupan varjolla tapahtuvaa kansallisen itsemääräämisoikeuden heikentämistä</mark>. Siksi vapaakauppasopimuksiin tulee suhtautua</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“kansalaisen oikeusturvaa vaarantamatta mahdollista”
+</div>
+<span class="context">yhden valituksen periaatetta, aina kun se on <mark>kansalaisen oikeusturvaa vaarantamatta mahdollista</mark>. Kokonaan oma lukunsa on EU-byrokratia</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“edistää sekä kansalaisten oikeusturvan toteutumista”
+</div>
+<span class="context">Tämä edistäisi sekä kansalaisten oikeusturvan toteutumista, kun oikeusturvaan liittyvät palvelut toteutettaisiin yhden luukun periaatteella</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Järjestelmän ylläpitäminen edellyttää, että sen uskotaan kohtelevan ihmisiä oikeudenmukaisesti ja reilusti.”
+</div>
+<span class="context"><mark>Järjestelmän ylläpitäminen edellyttää, että sen uskotaan kohtelevan ihmisiä oikeudenmukaisesti ja reilusti.</mark> Perussuomalaiset maksavat kohtuullisia veroja mielellään, kunhan ne käytetään järkevästi ja reilusti.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“demokratian ja oikeusvaltion periaatteet”
+</div>
+<span class="context">…Julkisen vallan ja lainsäätäjän tehtävä on puolustaa sitä. Peruspalveluja ei tule yksityistää ideologisista syistä eikä yksityisyrityksiä tule päästää niskan päälle asemaan, jossa ne voivat rahastaa hallitsevan markkina-asemansa. Demokratian ja oikeusvaltion periaatteet ovat keskeisiä…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“Perussuomalaiset haluaa varmistaa, että talouskasvun hedelmistä pääsevät nauttimaan kaikki kansalaiset”
+</div>
+<span class="context">…Talouskasvun hedelmät ovat jakautuneet yhteiskunnassamme epätasapuolisesti. <mark>Perussuomalaiset haluaa varmistaa, että talouskasvun hedelmistä pääsevät nauttimaan kaikki kansalaiset</mark>. Panostamme Suomeen ja suomalaisiin, tarjoamme paremman ja oikeudenmukaisemman vaihtoehdon. Perussuomalaiset katsoo, että suomalaisten valitsemien päättäjien on ensisijaisesti puolustettava kotimaansa ja kansalaistensa etua, ei liittovaltioideologiaa tai muiden etua suomalaisten kustannuksella.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“Perussuomalaiset esittää totuusvelvoitetta vakuutuslääkäreille ja käänteistä todistustaakkaa vakuutusyhtiöille.”
+</div>
+<span class="context">5.3 VAKUUTUSLÄÄKÄRITOIMINTA Perussuomalaisten mielestä on aika korjata oikeustajun vastainen käytäntö, jossa vakuutusoikeus voi tehdä arvion potilaan terveydentilasta ilman tämän tutkimista ja lisäksi vailla velvollisuutta pysyä totuudessa. Perussuomalaiset ehdottaakin, että vakuutusoikeuden tulee jatkossa osoittaa hoitavan lääkärin lääketieteellinen arvio vääräksi.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“Suomen kehitysyhteistyö tuleekin kytkeä entistä tiiviimmin tekijöihin”
+</div>
+<span class="context"><mark>Suomen kehitysyhteistyö tuleekin kytkeä entistä tiiviimmin tekijöihin</mark>, jotka edesauttavat samalla muuttoliikkeiden ja pakolaiskriisien hallintaa. Tällaisia tekijöitä ovat esimerkiksi koulutuksen tukeminen, naisten aseman vahvistaminen sekä syntyvyyden vähentäminen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 1</span>
+<div class="quote">
+“ylioppilaskuntien pakkojäsenyys on poistettava”
+</div>
+<span class="context">Suomen kielen pitää säilyä tieteen ja tutkimuksen kielenä. Ylioppilaskuntien pakkojäsenyys on poistettava. Akateemista nurkkakuntaisuutta tulee kitkeä.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“Poliittisista virkanimityksistä sekä julkisen ja yksityisen sektorin kaksoisrooleista”
+</div>
+<span class="context"><mark>Poliittisista virkanimityksistä sekä julkisen ja yksityisen sektorin kaksoisrooleista</mark> pitää päästä eroon. Myös kansanedustajien erioikeudet kuten verottomat kulukorvaukset tulee lopettaa.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 3</span>
+<div class="quote">
+“kansalaisen oikeusturvaa vaarantamatta mahdollista”
+</div>
+<span class="context">Lisäksi on siirryttävä käyttämään yhden valituksen periaatetta, aina kun se on <mark>kansalaisen oikeusturvaa vaarantamatta mahdollista</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“Yle ei ole poliittisesti sitoutumaton”
+</div>
+<span class="context">Arvostelu on kohdistunut myös siihen, ettei Yle ole poliittisesti sitoutumaton. Tämä ilmenee mm. poliittisesti valitusta hallintoneuvostosta.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“Suomen nöyristelyyn EU:n ympäristöministerien kokouksissa”
+</div>
+<span class="context">Vihreyden ja ‘kestävän kehityksen’ nimissä tehtävään rahastukseen on suhtauduttava kriittisesti, samoin kuin <mark>Suomen nöyristelyyn EU:n ympäristöministerien kokouksissa</mark>, joista on tapana tuoda veronmaksajille kalliita ilmastopoliittisia tuliaisia.</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Suhtaudumme kriittisesti myös moniin ideologisiin kasvatuksen ja feminismin ajatuksiin”
+</div>
+<span class="context">joulujuhlat ja lauletaan suvivirret. <mark>Suhtaudumme kriittisesti myös moniin ideologisiin kasvatuksen ja feminismin ajatuksiin</mark>. Tytöt saavat olla tyttöjä</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Perussuomalaiset vastustaa laittomasti maassa olevien palveluiden lisäyksiä”
+</div>
+<span class="context">altistumisesta tartuntataudeille ja muille turvallisuusuhille. <mark>Perussuomalaiset vastustaa laittomasti maassa olevien palveluiden lisäyksiä</mark> ja sosiaaliturvaa. Laittomasti maassa olevat täytyy saada maasta pois</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“naisten työllisyystilastoa saataisiin nostettua”
+</div>
+<span class="context">pienenä kodin ulkopuolelle hoitoon tai kasvatusputkeen, vain jotta <mark>naisten työllisyystilastoa saataisiin nostettua</mark>. Emme myöskään pidä mielekkäänä</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“halal- ja kosherteurastus on kiellettävä”
+</div>
+<span class="context">Uskonto ei saa olla perusteena eläinten rääkkäykselle. Uskonnollinen eli pääasiassa <mark>halal- ja kosherteurastus on kiellettävä</mark>. Myös muihin</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Maahanmuuttajan lapset pitää saada päiväkotiin, jotta tapahtuisi kotoutumista, myös suomalaisen perheen mahdollisuuksia hoitaa lastaan kotona heikennetään.”
+</div>
+<span class="context">Samalla kun kotouttamisrahaa pannaan maahanmuuttajalähiöihin, vuosikymmenet veroja maksaneen suomalaisen palvelut heikkenevät. Samalla kun maahanmuuttajan lapset pitää saada päiväkotiin, jotta tapahtuisi kotoutumista, myös suomalaisen perheen mahdollisuuksia hoitaa lastaan kotona heikennetään.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“syrjäytymisen ehkäisy säästää paitsi inhimillistä tuskaa myös yhteiskunnan resursseja”
+</div>
+<span class="context">…Työllä on ihmiselle laaja-alaista merkitystä taloudellisen toimeentulon lisäksi. Syrjäytymisen ehkäisy säästää paitsi inhimillistä tuskaa myös yhteiskunnan resursseja. Perussuomalaiset kannustaa käyttämään kuntoutuspalveluita myös työllisyysasteen nostamiseen…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“Perussuomalaisten mielestä perhe on yhteiskunnan perusyksikkö ja lapset kansakunnan tulevaisuus”
+</div>
+<span class="context">…<mark>Perussuomalaisten mielestä perhe on yhteiskunnan perusyksikkö ja lapset kansakunnan tulevaisuus</mark>. Yhteiskunnan tulisi taata sellaiset olosuhteet, että nykyistä useammilla nuorilla suomalaisilla olisi vakaat olosuhteet perustaa perhe ja hankkia lapsia. Vastaavasti eläkeläisille, jotka ovat työllään hyvinvointimme rakentaneet, tulee taata arvokas vanhuus ja tarpeen vaatiessa laadukkaat hoivapalvelut.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“Perussuomalaiset haluaa varmistaa kotiseutumuseoiden rahoituksen säilymisen maakuntauudistuksen yhteydessä.”
+</div>
+<span class="context">3.5.6 Kotiseutumuseoiden tukeminen Suomessa on lähes 1000 paikallismuseota, joista 730 on kuntien, yhdistysten ja säätiöiden ylläpitämiä. Paikallismuseot ovat kirjastojen jälkeen alueellisesti kattavin kulttuuripalveluverkostomme. Paikallismuseoissa on vuosittain yhteensä miljoona kävijää.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“naisten aseman vahvistaminen sekä syntyvyyden vähentäminen”
+</div>
+<span class="context">Suomen kehitysyhteistyö tuleekin kytkeä entistä tiiviimmin tekijöihin, jotka edesauttavat samalla muuttoliikkeiden ja pakolaiskriisien hallintaa. Tällaisia tekijöitä ovat esimerkiksi koulutuksen tukeminen, <mark>naisten aseman vahvistaminen sekä syntyvyyden vähentäminen</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Tytöt saavat olla tyttöjä ja pojat poikia”
+</div>
+<span class="context">Suhtaudumme kriittisesti myös moniin ideologisiin kasvatuksen ja feminismin ajatuksiin. <mark>Tytöt saavat olla tyttöjä ja pojat poikia</mark>. Uskonnon opetuksessa valittavat vaihtoehdot ovat evankelisluterilainen ja ortodoksinen uskonto.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Sukupuolten välinen tasa-arvo ei lisäänny mitätöimällä”
+</div>
+<span class="context"><mark>Sukupuolten välinen tasa-arvo ei lisäänny mitätöimällä</mark> sitä tosiseikkaa, että äidin ja isän roolit ovat keskimäärin erilaiset, jo biologisista syistä juontaen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“tyttöjen ja naisten oikeuksien parantamiseen kehitysmaissa”
+</div>
+<span class="context">lahjoitus menisi suoraan ruohonjuurityöhön esimerkiksi konfliktien ehkäisyyn ja ratkaisuun, koulutukseen sekä <mark>tyttöjen ja naisten oikeuksien parantamiseen kehitysmaissa</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“kantaväestöön kuuluvia on ilman asuntoa”
+</div>
+<span class="context">Jatkossa Suomessa ei voi olla niin, että <mark>kantaväestöön kuuluvia on ilman asuntoa</mark>, mutta turvapaikanhakijoille asunnot etsitään hinnalla millä hyvänsä.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Uskonnollinen eli pääasiassa halal- ja kosherteurastus on kiellettävä”
+</div>
+<span class="context">Uskonto ei saa olla perusteena eläinten rääkkäykselle. <mark>Uskonnollinen eli pääasiassa halal- ja kosherteurastus on kiellettävä</mark>. Myös muihin monikulttuurisiin eläinongelmiin ja eläinten kaltoinkohteluun pitää puuttua.</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“tuottavan työn ja yrittämisen edistämistä”
+</div>
+<span class="context">Suomalaisista huolehtiminen myös tulevaisuudessa vaatii <mark>tuottavan työn ja yrittämisen edistämistä</mark>. Taloutemme ja hyvinvointimme</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“Vapaakauppa on elintärkeää taloudellemme ja hyvinvoinnillemme”
+</div>
+<span class="context">peräti 96 % Suomen Pankin kultavarannoista on ulkomaisten keskuspankkien säilytyksessä ja niiden turvallisuus on varmistettava kaikissa olosuhteissa. <mark>Vapaakauppa on elintärkeää taloudellemme ja hyvinvoinnillemme</mark>, mutta vastustamme vapaakaupan varjolla</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“yrittäjyyden toimintaedellytyksiä on korjattava”
+</div>
+<span class="context">Talouden elinvoiman palauttamiseksi <mark>yrittäjyyden toimintaedellytyksiä on korjattava</mark> monin eri tavoin. Yrittäjien sosiaaliturva</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“työn ja yrittämisen kannustaminen sekä kotitalouksien”
+</div>
+<span class="context">Perussuomalaisen veropolitiikan tavoitteena on <mark>työn ja yrittämisen kannustaminen sekä kotitalouksien</mark> ostovoiman lisääminen.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“Markkinatalouden ja vapaan maailmankaupan oloissa”
+</div>
+<span class="context">maamme omat ilmastopäästöt kyllä pienenevät. <mark>Markkinatalouden ja vapaan maailmankaupan oloissa</mark> samoille tuotteille kuitenkin</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Taloutemme ja hyvinvointimme perustuvat pitkälti vientiteollisuuteen, ja sen kilpailukyvyn turvaamisen tulee olla etusijalla.”
+</div>
+<span class="context">Suomalaisista huolehtiminen myös tulevaisuudessa vaatii tuottavan työn ja yrittämisen edistämistä. <mark>Taloutemme ja hyvinvointimme perustuvat pitkälti vientiteollisuuteen, ja sen kilpailukyvyn turvaamisen tulee olla etusijalla.</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“vapaakauppaa rehdein säännöin”
+</div>
+<span class="context">…EU-varainkäyttöä on syytä suitsia, EU-tukia karsia ja jäsenmaksuja alennettava. Vapaakauppaa rehdein säännöin, sopimuksilla ei saa heikentää kansallista itsemääräämisoikeutta. Kehitysyhteistyön rahareikiä tulee karsia…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“Perussuomalaiset haluaa varmistaa, että talouskasvun hedelmistä pääsevät nauttimaan kaikki kansalaiset”
+</div>
+<span class="context">…Talouskasvun hedelmät ovat jakautuneet yhteiskunnassamme epätasapuolisesti. <mark>Perussuomalaiset haluaa varmistaa, että talouskasvun hedelmistä pääsevät nauttimaan kaikki kansalaiset</mark>. Panostamme Suomeen ja suomalaisiin, tarjoamme paremman ja oikeudenmukaisemman vaihtoehdon. Perussuomalaiset katsoo, että suomalaisten valitsemien päättäjien on ensisijaisesti puolustettava kotimaansa ja kansalaistensa etua, ei liittovaltioideologiaa tai muiden etua suomalaisten kustannuksella.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“Perussuomalaiset haluaa alentaa maltillisesti ja asteittain Suomen kokonaisveroastetta lähemmäksi tärkeimpien kilpailijamaittemme tasoa.”
+</div>
+<span class="context">4. VEROKEVENNYKSET VEROTUS TUKEMAAN TYÖTÄ, TALOUSKASVUA JA OSTOVOIMAA Perussuomalaisen veropolitiikan tavoitteena on työn ja yrittämisen kannustaminen sekä kotitalouksien ostovoiman lisääminen. Yritysverotusta tulee kehittää siten, että yrittäjät, työntekijät ja omistajat saavat kohtuullisen osuuden panostensa tuotosta.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“Suomen kehitysyhteistyö tuleekin kytkeä entistä tiiviimmin tekijöihin”
+</div>
+<span class="context"><mark>Suomen kehitysyhteistyö tuleekin kytkeä entistä tiiviimmin tekijöihin</mark>, jotka edesauttavat samalla muuttoliikkeiden ja pakolaiskriisien hallintaa. Tällaisia tekijöitä ovat esimerkiksi koulutuksen tukeminen, naisten aseman vahvistaminen sekä syntyvyyden vähentäminen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 1</span>
+<div class="quote">
+“valtiokoneiston pöhöttymistä laskevaa politiikkaa”
+</div>
+<span class="context">Toisaalta perussuomalaiset kannattaa <mark>valtiokoneiston pöhöttymistä laskevaa politiikkaa</mark>, mikä tarkoittaa muun muassa sitä, että yhteiskunnan tulee huolehtia verorahoilla vain oleellisista asioista eikä holhota kansalaisten elämää turhanpäiväisesti.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“kansallisen itsemääräämisoikeuden heikentämistä”
+</div>
+<span class="context">vastustamme vapaakaupan varjolla tapahtuvaa <mark>kansallisen itsemääräämisoikeuden heikentämistä</mark>. Siksi vapaakauppasopimuksiin tulee suhtautua varovaisuudella</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“Aggressiiviseen verosuunnitteluun ja voittojen kotiuttamiseen ulkomaille”
+</div>
+<span class="context"><mark>Aggressiiviseen verosuunnitteluun ja voittojen kotiuttamiseen ulkomaille</mark> veroparatiiseihin sekä veronkiertoon on puututtava tiukemmin.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“työn ja yrittämisen kannustaminen”
+</div>
+<span class="context">Perussuomalaisen veropolitiikan tavoitteena on <mark>työn ja yrittämisen kannustaminen</mark> sekä kotitalouksien ostovoiman lisääminen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 5</span>
+<div class="quote">
+“kilpailu markkinoilla on koventunut huomattavasti”
+</div>
+<span class="context">Vaikka <mark>kilpailu markkinoilla on koventunut huomattavasti</mark>, potentiaali on huima, ja valtava mittakaava on haaste sinänsä. Markkinointi on ollut keskeinen ongelma.</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Kaikille viime vuosikymmenten hallituksille miljardit ovat pikkurahoja”
+</div>
+<span class="context">vammaiset. <mark>Kaikille viime vuosikymmenten hallituksille miljardit ovat pikkurahoja</mark>, kun puhutaan maahanmuutosta</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“talouseliitin ja poliittisten vallankäyttäjien keskinäisen suhmuroinnin”
+</div>
+<span class="context">kuten petolliset asuntoluottojohdannaiset, järjestelmällisen markkinamanipuloinnin sekä <mark>talouseliitin ja poliittisten vallankäyttäjien keskinäisen suhmuroinnin</mark>, jossa veronmaksajat laitetaan maksamaan lasku</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Suomi nöyristelee ja kumartaa Brysseliin”
+</div>
+<span class="context">EU-JÄSENMAKSU <mark>Suomi nöyristelee ja kumartaa Brysseliin</mark>. Sen on loputtava. Suomen on otettava</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“puolueilla ole puutetta niinkään rahasta, vaan moraalista”
+</div>
+<span class="context">Takavuosien vaalirahaskandaalit ovat kuitenkin osoittaneet, ettei monilla <mark>puolueilla ole puutetta niinkään rahasta, vaan moraalista</mark> ja lainkuuliaisuudesta.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“jaetaan sisäpiireissä suljettujen ovien takana”
+</div>
+<span class="context">YK:n miljardien hankintaohjelmiin, nyt suuri osa tästä rahasta <mark>jaetaan sisäpiireissä suljettujen ovien takana</mark>. Ympäristön muutos</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Perussuomalaiset on ainoa puolue, joka on aina vaatinut tekoja sanojen sijaan.”
+</div>
+<span class="context"><mark>Perussuomalaiset on ainoa puolue, joka on aina vaatinut tekoja sanojen sijaan.</mark> Valtion tärkein tehtävä on kansalaisten turvallisuudesta huolehtiminen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“poliittisten vallankäyttäjien keskinäisen suhmuroinnin”
+</div>
+<span class="context">…markkinamanipuloinnin sekä talouseliitin ja <mark>poliittisten vallankäyttäjien keskinäisen suhmuroinnin</mark>, jossa veronmaksajat laitetaan maksamaan lasku, mutta syyllisiä ei laiteta vastuuseen. Katastrofaaliseksi vajonnut tilanne korjattiin pumppaamalla tuhansia miljardeja keskuspankkirahaa ja laskemalla korot nolliin. Kun uusi raha on kanavoitunut pääomamarkkinoille, ne tahot ovat hyötyneet…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Suomalaisen työssäkäyvän veronmaksajan näkökulmasta ei ole reilua”
+</div>
+<span class="context">…esimerkiksi terveydenhuoltoa, sosiaaliturvaa ja julkisia palveluja ei tule yhtenäistää suomalaisten edun vastaisesti tai jopa tarjota laittomasti maassa oleskeleville parempaa palvelua kuin oman maan kansalaisille. Tästä hyvänä huonona esimerkkinä toimii Helsingin kaupunginvaltuuston päätös antaa paperittomille maahantulijoille ilmainen terveydenhuolto. Samaten suomalaisen työssäkäyvän veronmaksajan näkökulmasta ei ole reilua se, että päiväkodin lastenhoitajan palkka ei riitä korkeaan vuokraan sekä autoon. Samalla Suomeen saapunut turvapaikanhakijaperhe asuu veronmaksajien piikkiin isossa asunnossa kaupungin keskustassa ja lapset tuodaan hoitoon autolla, eikä kumpikaan vanhemmista käy töissä. Tilanne, jossa sosiaaliturvan varassa eläville on taattu leveämpi leipä kuin kovaa työtä tekeville pienipalkkaisille työntekijöille, on yhteiskuntamoraalin kannalta kestämätön.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“Perussuomalaiset eivät voi hyväksyä lapsiperheisiin kohdistuvia päätöksiä, jotka eriarvoistavat lapsiperheet ja lapsettomat perheet.”
+</div>
+<span class="context">Suomalaisten lapsiperheiden köyhyys on merkittävä epäkohta erityisesti yksinhuoltajaperheissä ja monilapsisissa perheissä. <mark>Perussuomalaiset eivät voi hyväksyä lapsiperheisiin kohdistuvia päätöksiä, jotka eriarvoistavat lapsiperheet ja lapsettomat perheet.</mark> Perussuomalaiset ajaa sellaisia yhteiskunnallisia muutoksia, joilla lapsiperheiden asemaa parannetaan.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“Perussuomalaiset haluaa lopettaa laajamittaisen maahanmuuton kehitysmaista”
+</div>
+<span class="context">Ympäristöolosuhteet ovat yksi pakolaisuuden ja siirtolaisuuden syitä aiheuttava taustatekijä. <mark>Perussuomalaiset haluaa lopettaa laajamittaisen maahanmuuton kehitysmaista</mark>. Siksi tarvitaan keinoja, jotka edistävät ihmisten elinkeinomahdollisuuksia kotiseudullaan ja vähentävät Eurooppaan ja myös Suomeen kohdistuvaa maahanmuuttopainetta.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Kaikille viime vuosikymmenten hallituksille miljardit ovat pikkurahoja”
+</div>
+<span class="context">Perussuomalaisten mielestä näitä ovat suomalaiset vähäosaiset, vanhukset, lapsiperheet, sairaat ja vammaiset. <mark>Kaikille viime vuosikymmenten hallituksille miljardit ovat pikkurahoja</mark>, kun puhutaan maahanmuutosta tai maailmanparantamisesta.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“talouseliitin ja poliittisten vallankäyttäjien keskinäisen suhmuroinnin”
+</div>
+<span class="context">petolliset asuntoluottojohdannaiset, järjestelmällisen markkinamanipuloinnin sekä <mark>talouseliitin ja poliittisten vallankäyttäjien keskinäisen suhmuroinnin</mark>, jossa veronmaksajat laitetaan maksamaan lasku</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“ministeriöiden työryhmissä pyörii aina sama porukka”
+</div>
+<span class="context">Ongelma lähtee liikkeelle jo siitä, että <mark>ministeriöiden työryhmissä pyörii aina sama porukka</mark>, eikä mukana ole yhtään yrittäjää.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“takavuosien vaalirahaskandaalit ovat kuitenkin osoittaneet”
+</div>
+<span class="context">Poliittista toimintaa tuetaan Suomessa avokätisesti ja monesta eri pussista. Takavuosien vaalirahaskandaalit ovat kuitenkin osoittaneet, ettei monilla puolueilla ole puutetta niinkään rahasta, vaan moraalista ja lainkuuliaisuudesta.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“suuri osa tästä rahasta jaetaan sisäpiireissä suljettujen ovien takana”
+</div>
+<span class="context">Suomalaisille alan yrityksille tulee määrätietoisesti avata ovea myös YK:n miljardien hankintaohjelmiin, nyt <mark>suuri osa tästä rahasta jaetaan sisäpiireissä suljettujen ovien takana</mark>.</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“suomalaisten veroeurot tulee käyttää suomalaisten hyväksi”
+</div>
+<span class="context">ensimmäinen ja tärkein periaate on siis sama kuin muillakin sektoreilla: <mark>suomalaisten veroeurot tulee käyttää suomalaisten hyväksi</mark>. Tätä tarkoitamme sisäisellä</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“terveen järjen talouspolitiikaksi”
+</div>
+<span class="context">Perinteisen poliittisen vasemmisto-oikeisto akselin sijaan on syytä painottaa jotain, mitä voitaisiin kutsua ”<mark>terveen järjen talouspolitiikaksi</mark>”. Niin mukavaa kuin rahan jakaminen onkin</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“terveen järjen talouspolitiikaksi”
+</div>
+<span class="context">…Perinteisen poliittisen vasemmisto-oikeisto akselin sijaan on syytä painottaa jotain, mitä voitaisiin kutsua ”<mark>terveen järjen talouspolitiikaksi</mark>”. Niin mukavaa kuin rahan jakaminen onkin, julkinen kulutus ei pitkän päälle voi perustua jatkuvaan lisävelkaan…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“Ministeriöitä ja hallinnonaloja tulee pystyä johtamaan enemmän asia- ja ilmiökohtaisesti”
+</div>
+<span class="context">…<mark>Ministeriöitä ja hallinnonaloja tulee pystyä johtamaan enemmän asia- ja ilmiökohtaisesti</mark>, ei sektorikohtaisesti siiloittain. Ilmiöpohjaiseen budjetointiin ja päätöksentekoon siirtyminen mahdollistaa strategisemman, pitkäjänteisemmän ja yhtenäisemmän johtamiskulttuurin, jolla päästään nykyistä tehokkaammin vaikuttaviin lopputuloksiin.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“Perussuomalaiset katsovat, että perheitä on kuunneltava, tuettava heitä vanhemmuudessa ja kaikille on tarjottava hyvän elämän edellytykset.”
+</div>
+<span class="context">3.3.1 Lapsivähennyksen palauttaminen Perussuomalaiset katsoo, että perheitä on kuunneltava, tuettava heitä vanhemmuudessa ja kaikille on tarjottava hyvän elämän edellytykset. On myös vastattava huoleen suomalaisten syntyvyyden laskemisesta.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“ihmisten elinkeinomahdollisuuksia kotiseudullaan ja vähentävät Eurooppaan”
+</div>
+<span class="context">Perussuomalaiset haluaa lopettaa laajamittaisen maahanmuuton kehitysmaista. Siksi tarvitaan keinoja, jotka edistävät <mark>ihmisten elinkeinomahdollisuuksia kotiseudullaan ja vähentävät Eurooppaan</mark> ja myös Suomeen kohdistuvaa maahanmuuttopainetta.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Perussuomalaiset eroaa sekä oikeiston että vasemmiston näkemyksestä”
+</div>
+<span class="context"><mark>Perussuomalaiset eroaa sekä oikeiston että vasemmiston näkemyksestä</mark>. Me haluamme korostaa, että mitä enemmän maahanmuuttoa, sitä mahdottomammaksi käy ylläpitää hyvää sosiaaliturvaa.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“terveen järjen talouspolitiikaksi”
+</div>
+<span class="context">Perinteisen poliittisen vasemmisto-oikeisto akselin sijaan on syytä painottaa jotain, mitä voitaisiin kutsua “<mark>terveen järjen talouspolitiikaksi</mark>”.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“Ketään ei jätetä yksin”
+</div>
+<span class="context">Tarjoamme työtä, turvaa ja oikeudenmukaisuutta suomalaisille. <mark>Ketään ei jätetä yksin</mark>. Kaikille suomalaisille taataan hyvät edellytykset menestymiseen työn ja yrittämisen kautta.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · mixed · chunk 4</span>
+<div class="quote">
+“oikeudenmukaisempaa sosiaalipolitiikkaa”
+</div>
+<span class="context">Perussuomalainen politiikka tukee perheitä myös muun muassa säilyttämällä perheiden oikeuden valita kotihoidosta, halpuuttamalla asumista ja liikkumista, parantamalla työllisyyttä sekä harjoittamalla <mark>oikeudenmukaisempaa sosiaalipolitiikkaa</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“Autoilijan kuritus kohtuuttomalla verotuksella on lopetettava”
+</div>
+<span class="context">Suhtaudumme myös hyvin kriittisesti siihen, että vapautta liikkua ollaan rajoittamassa. <mark>Autoilijan kuritus kohtuuttomalla verotuksella on lopetettava</mark>.</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“suomalaiset vähäosaiset, vanhukset, lapsiperheet, sairaat ja vammaiset”
+</div>
+<span class="context">mielestä näitä ovat <mark>suomalaiset vähäosaiset, vanhukset, lapsiperheet, sairaat ja vammaiset</mark>. Kaikille viime vuosikymmenten</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“Selkeä esimerkki suomalaisesta kaverikapitalismista on yritystuet”
+</div>
+<span class="context">Poliittisten-taloudellisten etupiirien sijaan talouspolitiikan ytimessä on oltava Suomen ja suomalaisten etu. <mark>Selkeä esimerkki suomalaisesta kaverikapitalismista on yritystuet</mark>, jotka tulee laittaa remonttiin.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Perussuomalaiset ei kannata koulumuotoisen oppivelvollisuuden jatkamista, mikä koskisi koko ikäluokkaa.”
+</div>
+<span class="context"><mark>Perussuomalaiset ei kannata koulumuotoisen oppivelvollisuuden jatkamista, mikä koskisi koko ikäluokkaa.</mark> Sen sijaan laajentaisimme kuitenkin peruskoulun päättäneiden nuorten velvollisuutta osallistua opiskeluun tai työelämään.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“yritystuet ovat ainoastaan jatkaneet kasvuaan niiden valtakaudella.”
+</div>
+<span class="context">…Nykyiset järjestelmäpuolueet eivät tule muuttamaan tilannetta, pikemminkin esimerkiksi <mark>yritystuet ovat ainoastaan jatkaneet kasvuaan niiden valtakaudella.</mark> Tätä taustaa vasten on syytä kiinnittää huomiota siihen epäoikeudenmukaisuuteen millä perustein leikkauksia on tehty…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“Yritystuilla tulee olla selkeä taloudellinen tai yhteiskunnallinen tavoite”
+</div>
+<span class="context">…Perussuomalaiset haluaa tarkastella yrityksille maksettavia tukia kriittisesti ja uudistaa tukijärjestelmän. Jo lainsäädännöstä seuraa, että yritystuilla tulee olla selkeä taloudellinen tai yhteiskunnallinen tavoite. Jos tuella on taloudellinen tavoite (tehokkuus, uudistuminen, kilpailukyky, kansantalouden kasvuedellytysten vahvistaminen) tuen on lisäksi kohdistuttava sellaisiin tarkoituksiin, joilla korjataan markkinoiden toimintapuutetta. Käytännössä tukia on kuitenkin maksettu sellaisille yrityksille ja sellaisiin tarkoituksiin, jotka eivät edistä suomalaisten työllistymistä tai lisää investointeja Suomeen, esimerkkinä jatkuvasti yhteiskunnan tukea saavan Viking Linen matkustajalaivatilaus Kiinasta.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“Perussuomalaiset esittää, että lapsivähennys otetaan käyttöön uudelleen.”
+</div>
+<span class="context">Lapsiperheet eivät enää vuonna 2018 saa lapsivähennystä. <mark>Perussuomalaiset esittää, että lapsivähennys otetaan käyttöön uudelleen.</mark> Perussuomalainen politiikka tukee perheitä myös muun muassa säilyttämällä perheiden oikeuden valita kotihoidosta, halpuuttamalla asumista ja liikkumista, parantamalla työllisyyttä sekä harjoittamalla oikeudenmukaisempaa sosiaalipolitiikkaa ja pitämällä palvelut lähellä.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“Perussuomalaiset haluaa lopettaa laajamittaisen maahanmuuton kehitysmaista”
+</div>
+<span class="context">Ympäristöolosuhteet ovat yksi pakolaisuuden ja siirtolaisuuden syitä aiheuttava taustatekijä. <mark>Perussuomalaiset haluaa lopettaa laajamittaisen maahanmuuton kehitysmaista</mark>. Siksi tarvitaan keinoja, jotka edistävät ihmisten elinkeinomahdollisuuksia kotiseudullaan ja vähentävät Eurooppaan ja myös Suomeen kohdistuvaa maahanmuuttopainetta.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Suomalaisten verorahoja ei tule siirtää monikansallisten suuryritysten taskuihin”
+</div>
+<span class="context">On utopistista kuvitella, että markkinoita vapauttamalla päästäisiin tilanteeseen, jossa myös ei-työssäkäyvät suomalaiset pääsisivät yhtä nopeasti korkealaatuisen hoidon pariin. <mark>Suomalaisten verorahoja ei tule siirtää monikansallisten suuryritysten taskuihin</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Kaverikapitalismia kitkettävä, yritystuet remonttiin”
+</div>
+<span class="context">Etupiirien sijaan suomalaisten intressit etusijalle. Poliittiset palkkiovirat on lopetettava. <mark>Kaverikapitalismia kitkettävä, yritystuet remonttiin</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“Talouskasvun hedelmät ovat jakautuneet yhteiskunnassamme epätasapuolisesti”
+</div>
+<span class="context"><mark>Talouskasvun hedelmät ovat jakautuneet yhteiskunnassamme epätasapuolisesti</mark>. Perussuomalaiset haluaa varmistaa, että talouskasvun hedelmistä pääsevät nauttimaan kaikki kansalaiset.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“pienituloisten lapsiperheiden asemaa on parannettava”
+</div>
+<span class="context">Perussuomalaisten mielestä lapsiperheiden hyvinvointiin on panostettava enemmän ja erityisesti <mark>pienituloisten lapsiperheiden asemaa on parannettava</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“kaivosyhtiöt tulee saattaa selvemmin vastuuseen”
+</div>
+<span class="context">Suhtaudumme kaivostoimintaan myönteisesti, mutta <mark>kaivosyhtiöt tulee saattaa selvemmin vastuuseen</mark> luontoon ja varsinkin vesistöihin kohdistuvasta haitasta.</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“suomalainen ja suomalaisten hyvinvointi on etusijalla”
+</div>
+<span class="context">arvovalinnoista, joissa <mark>suomalainen ja suomalaisten hyvinvointi on etusijalla</mark>. Meillä on mahdollisuus ja</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Haittamaahanmuutto on lopetettava”
+</div>
+<span class="context">Kehitysapua pitää uudistaa ja ottaa käyttöön perussuomalaisten esittämä kehitysapumalli, jossa rahoittamisesta huomattavan vastuun ottavat yksittäiset kansalaiset ja yritykset verokannustimin. Jatkuvien rahareikien sijaan kehityksen täytyy tapahtua paikallistasolla kestävästi. Määrärahojen valvontaa ja vaikuttavuutta on tehostettava. <mark>Haittamaahanmuutto on lopetettava</mark>. Maahanmuuton kustannuksissa tulee ottaa huomioon</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“lopettaa haittamaahanmuutto kokonaan”
+</div>
+<span class="context">tavoite on <mark>lopettaa haittamaahanmuutto kokonaan</mark>. Suomen tie ei voi olla Ruotsin</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“kantaväestöön kuuluvia on ilman asuntoa, mutta turvapaikanhakijoille”
+</div>
+<span class="context">Jatkossa Suomessa ei voi olla niin, että <mark>kantaväestöön kuuluvia on ilman asuntoa, mutta turvapaikanhakijoille</mark> asunnot etsitään hinnalla millä hyvänsä.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“lopettaa laajamittaisen maahanmuuton kehitysmaista”
+</div>
+<span class="context">taustatekijä. Perussuomalaiset haluaa <mark>lopettaa laajamittaisen maahanmuuton kehitysmaista</mark>. Siksi tarvitaan keinoja</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Suomen valtio on olemassa suomalaisia varten, ja sen täytyy aina huolehtia ensisijaisesti suomalaisista.”
+</div>
+<span class="context">Julkisen vallan tehtävä on puolustaa Suomen ja suomalaisten etua. Mitään muuta järkevää perustelua Suomi-nimisen valtion olemassaololle ei ole. <mark>Suomen valtio on olemassa suomalaisia varten, ja sen täytyy aina huolehtia ensisijaisesti suomalaisista.</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“Meille oma kansa tulee ensin.”
+</div>
+<span class="context">…<mark>Meille oma kansa tulee ensin.</mark> Yhteiskunnan on edistettävä suomalaisten hyvinvointia ja vaurastumista. Kolmas periaate on, että samalla, kun pitää elää suu säkkiä myöten, on myös pyrittävä kasvattamaan sitä säkkiä…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Suomesta tulee tehdä pikaisesti epähoukutteleva maa haittamaahanmuutolle”
+</div>
+<span class="context">…Perussuomalaisten tavoite on lopettaa haittamaahanmuutto kokonaan. Suomen tie ei voi olla Ruotsin tie. <mark>Suomesta tulee tehdä pikaisesti epähoukutteleva maa haittamaahanmuutolle</mark>. Tämä säästää lyhyelläkin aikavälillä satoja miljoonia – pidemmällä miljardeja euroja. Korkean verotuksen, kalliiden asumiskustannusten ja humanitäärisille maahanmuuttajille hyvän sosiaaliturvan yhdistelmä on luonut tilanteen, jossa Suomi ei ole erityisen houkutteleva kohde työperäiselle maahanmuutolle, mutta se on yksi maailman houkuttelevimmista, ellei houkuttelevin, kohde sosiaaliturvashoppailijoille ja turvapaikkaturisteille.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“Perussuomalaiset eivät voi hyväksyä lapsiperheisiin kohdistuvia päätöksiä, jotka eriarvoistavat lapsiperheet ja lapsettomat perheet.”
+</div>
+<span class="context">Suomalaisten lapsiperheiden köyhyys on merkittävä epäkohta erityisesti yksinhuoltajaperheissä ja monilapsisissa perheissä. <mark>Perussuomalaiset eivät voi hyväksyä lapsiperheisiin kohdistuvia päätöksiä, jotka eriarvoistavat lapsiperheet ja lapsettomat perheet.</mark> Perussuomalaiset ajaa sellaisia yhteiskunnallisia muutoksia, joilla lapsiperheiden asemaa parannetaan.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“Perussuomalaiset haluaa lopettaa laajamittaisen maahanmuuton kehitysmaista”
+</div>
+<span class="context">Ympäristöolosuhteet ovat yksi pakolaisuuden ja siirtolaisuuden syitä aiheuttava taustatekijä. <mark>Perussuomalaiset haluaa lopettaa laajamittaisen maahanmuuton kehitysmaista</mark>. Siksi tarvitaan keinoja, jotka edistävät ihmisten elinkeinomahdollisuuksia kotiseudullaan ja vähentävät Eurooppaan ja myös Suomeen kohdistuvaa maahanmuuttopainetta.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Maahanmuutto lisää myös rikollisuutta ja turvattomuutta”
+</div>
+<span class="context">Tiukka maahanmuuton kontrolli ja paluumuuton edistäminen ovat tärkeimmät ja käytännössä ainoat maahanmuuton haitoilta suojautumisen keinot. <mark>Maahanmuutto lisää myös rikollisuutta ja turvattomuutta</mark> sekä rapauttaa yhteiskuntamme tärkeimpiä arvoja kuten tasa-arvoa.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Sosiaaliturva ei saa toimia maahanmuuton vetotekijänä”
+</div>
+<span class="context"><mark>Sosiaaliturva ei saa toimia maahanmuuton vetotekijänä</mark> eikä sitä pidä rakentaa maahanmuuttajia varten. Sen sijaan haluamme muuttaa koko järjestelmäämme siihen suuntaan, että suomalaisten suosiminen on myös perustuslaillisesti mahdollista.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Suomesta vähiten houkutteleva Pohjoismaa ei-työperäisille maahanmuuttajille”
+</div>
+<span class="context"><mark>Suomesta vähiten houkutteleva Pohjoismaa ei-työperäisille maahanmuuttajille</mark>: haittamaahanmuutto seis! Sisäisestä turvallisuudesta huolehtiminen</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Perussuomalainen paluumuutto-ohjelma tyhjentää Suomen laittomasti”
+</div>
+<span class="context"><mark>Perussuomalainen paluumuutto-ohjelma tyhjentää Suomen laittomasti</mark> maassa olevista. Aivan ensimmäinen konkreettinen askel turvapaikkakriisin kulujen kitkemiseksi on kaikkien kielteisen turvapaikkapäätöksen saaneiden säilöönotto.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“Perussuomalaiset haluaa lopettaa laajamittaisen maahanmuuton kehitysmaista”
+</div>
+<span class="context">Ympäristöolosuhteet ovat yksi pakolaisuuden ja siirtolaisuuden syitä aiheuttava taustatekijä. <mark>Perussuomalaiset haluaa lopettaa laajamittaisen maahanmuuton kehitysmaista</mark>.</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“lopettaa kokonaan Suomeen suuntautuvan haitallisen ja yhteiskunnalle kalliiksi tulevan maahanmuuton”
+</div>
+<span class="context">rajojen yli ei kävellä. Haluamme <mark>lopettaa kokonaan Suomeen suuntautuvan haitallisen ja yhteiskunnalle kalliiksi tulevan maahanmuuton</mark>. Maahanmuutto lisää myös</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“Haittamaahanmuutto on lopetettava”
+</div>
+<span class="context">Kehitysapua pitää uudistaa ja ottaa käyttöön perussuomalaisten esittämä kehitysapumalli, jossa rahoittamisesta huomattavan vastuun ottavat yksittäiset kansalaiset ja yritykset verokannustimin. Jatkuvien rahareikien sijaan kehityksen täytyy tapahtua paikallistasolla kestävästi. Määrärahojen valvontaa ja vaikuttavuutta on tehostettava. <mark>Haittamaahanmuutto on lopetettava</mark>. Maahanmuuton kustannuksissa tulee ottaa huomioon</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“Suomelle haitallisen maahanmuuton lopettaminen”
+</div>
+<span class="context">turvapaikkapolitiikka. Perussuomalaisten tavoitteena on <mark>Suomelle haitallisen maahanmuuton lopettaminen</mark>. Pysyvän oleskeluluvan saa perussuomalaisessa</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“kantaväestöön kuuluvia on ilman asuntoa, mutta turvapaikanhakijoille”
+</div>
+<span class="context">Jatkossa Suomessa ei voi olla niin, että <mark>kantaväestöön kuuluvia on ilman asuntoa, mutta turvapaikanhakijoille</mark> asunnot etsitään hinnalla millä hyvänsä.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“lopettaa laajamittaisen maahanmuuton kehitysmaista”
+</div>
+<span class="context">taustatekijä. Perussuomalaiset haluaa <mark>lopettaa laajamittaisen maahanmuuton kehitysmaista</mark>. Siksi tarvitaan keinoja</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Suomen valtio on olemassa suomalaisia varten, ja sen täytyy aina huolehtia ensisijaisesti suomalaisista.”
+</div>
+<span class="context">Julkisen vallan tehtävä on puolustaa Suomen ja suomalaisten etua. Mitään muuta järkevää perustelua Suomi-nimisen valtion olemassaololle ei ole. <mark>Suomen valtio on olemassa suomalaisia varten, ja sen täytyy aina huolehtia ensisijaisesti suomalaisista.</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Meille oma kansa tulee ensin.”
+</div>
+<span class="context">…<mark>Meille oma kansa tulee ensin.</mark> Yhteiskunnan on edistettävä suomalaisten hyvinvointia ja vaurastumista. Kolmas periaate on, että samalla, kun pitää elää suu säkkiä myöten, on myös pyrittävä kasvattamaan sitä säkkiä…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“Suomesta tulee tehdä pikaisesti epähoukutteleva maa haittamaahanmuutolle”
+</div>
+<span class="context">…Perussuomalaisten tavoite on lopettaa haittamaahanmuutto kokonaan. Suomen tie ei voi olla Ruotsin tie. <mark>Suomesta tulee tehdä pikaisesti epähoukutteleva maa haittamaahanmuutolle</mark>. Tämä säästää lyhyelläkin aikavälillä satoja miljoonia – pidemmällä miljardeja euroja. Korkean verotuksen, kalliiden asumiskustannusten ja humanitäärisille maahanmuuttajille hyvän sosiaaliturvan yhdistelmä on luonut tilanteen, jossa Suomi ei ole erityisen houkutteleva kohde työperäiselle maahanmuutolle, mutta se on yksi maailman houkuttelevimmista, ellei houkuttelevin, kohde sosiaaliturvashoppailijoille ja turvapaikkaturisteille.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Perussuomalainen paluumuutto-ohjelma tyhjentää Suomen laittomasti maassa olevista.”
+</div>
+<span class="context">3.4 PALUUMUUTTO-OHJELMA <mark>Perussuomalainen paluumuutto-ohjelma tyhjentää Suomen laittomasti maassa olevista.</mark> Aivan ensimmäinen konkreettinen askel turvapaikkakriisin kulujen kitkemiseksi on kaikkien kielteisen turvapaikkapäätöksen saaneiden säilöönotto esimerkiksi parakkimajoitukseen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“Perussuomalaiset haluaa lopettaa laajamittaisen maahanmuuton kehitysmaista”
+</div>
+<span class="context">Ympäristöolosuhteet ovat yksi pakolaisuuden ja siirtolaisuuden syitä aiheuttava taustatekijä. <mark>Perussuomalaiset haluaa lopettaa laajamittaisen maahanmuuton kehitysmaista</mark>. Siksi tarvitaan keinoja, jotka edistävät ihmisten elinkeinomahdollisuuksia kotiseudullaan ja vähentävät Eurooppaan ja myös Suomeen kohdistuvaa maahanmuuttopainetta.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Haluamme lopettaa kokonaan Suomeen suuntautuvan haitallisen”
+</div>
+<span class="context">Rahan kippaaminen maahanmuuton mustaan aukkoon pitää lopettaa. Ongelmaan auttaa vain se, että Suomen rajojen yli ei kävellä. <mark>Haluamme lopettaa kokonaan Suomeen suuntautuvan haitallisen</mark> ja yhteiskunnalle kalliiksi tulevan maahanmuuton.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Haittamaahanmuutto on lopetettava”
+</div>
+<span class="context">Leikkaukset on aloitettava maahanmuuton ja EU-tulonsiirtojen kaltaisista ulkoisista kohteista. <mark>Haittamaahanmuutto on lopetettava</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“haittamaahanmuuton lopettaminen tavoitteeksi”
+</div>
+<span class="context">Perussuomalaisten tavoite on lopettaa haittamaahanmuutto kokonaan. Suomen tie ei voi olla Ruotsin tie. Suomesta tulee tehdä pikaisesti epähoukutteleva maa haittamaahanmuutolle.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Perussuomalainen paluumuutto-ohjelma tyhjentää Suomen laittomasti”
+</div>
+<span class="context"><mark>Perussuomalainen paluumuutto-ohjelma tyhjentää Suomen laittomasti</mark> maassa olevista. Aivan ensimmäinen konkreettinen askel turvapaikkakriisin kulujen kitkemiseksi on kaikkien kielteisen turvapaikkapäätöksen saaneiden säilöönotto.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“Perussuomalaiset haluaa lopettaa laajamittaisen maahanmuuton kehitysmaista”
+</div>
+<span class="context">Ympäristöolosuhteet ovat yksi pakolaisuuden ja siirtolaisuuden syitä aiheuttava taustatekijä. <mark>Perussuomalaiset haluaa lopettaa laajamittaisen maahanmuuton kehitysmaista</mark>.</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Vastakkainasettelu on välttämätöntä, koska nämä asiat ovat vastakkain”
+</div>
+<span class="context">tai homekoulujen korjaamiseen. <mark>Vastakkainasettelu on välttämätöntä, koska nämä asiat ovat vastakkain</mark>. Suomeen saapuva maahanmuutto</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“veronmaksajat laitetaan maksamaan lasku, mutta syyllisiä ei laiteta vastuuseen”
+</div>
+<span class="context">järjestelmällisen markkinamanipuloinnin sekä talouseliitin ja poliittisten vallankäyttäjien keskinäisen suhmuroinnin, jossa <mark>veronmaksajat laitetaan maksamaan lasku, mutta syyllisiä ei laiteta vastuuseen</mark>. Katastrofaaliseksi vajonnut tilanne</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“suomalaisten edun vastaisesti tai jopa”
+</div>
+<span class="context">palveluja ei tule yhtenäistää <mark>suomalaisten edun vastaisesti tai jopa</mark> tarjota laittomasti maassa oleskeleville</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“lyhytnäköinen maailmanparantaja voi saada hyvän omantunnon”
+</div>
+<span class="context">Suomen sijoitus ilmastotilastoissa paranee, mistä <mark>lyhytnäköinen maailmanparantaja voi saada hyvän omantunnon</mark>, mutta maailman kokonaispäästöt</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Maahanmuutto lisää myös rikollisuutta ja turvattomuutta sekä rapauttaa yhteiskuntamme tärkeimpiä arvoja kuten tasa-arvoa.”
+</div>
+<span class="context"><mark>Maahanmuutto lisää myös rikollisuutta ja turvattomuutta sekä rapauttaa yhteiskuntamme tärkeimpiä arvoja kuten tasa-arvoa.</mark> Lasten ja naisten tulee voida olla maassamme turvassa.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“maahanmuuton vetotekijänä eikä sitä pidä rakentaa maahanmuuttajia varten.”
+</div>
+<span class="context">…Sosiaaliturva ei saa toimia <mark>maahanmuuton vetotekijänä eikä sitä pidä rakentaa maahanmuuttajia varten.</mark> Sen sijaan haluamme muuttaa koko järjestelmäämme siihen suuntaan, että suomalaisten suosiminen on myös perustuslaillisesti mahdollista. Suomalaisten kustantama sosiaaliturva kuuluu suomalaisille…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Humanitäärinen maahanmuutto heikentää huoltosuhdetta sekä koko julkisen sektorin rahoitusvajetta”
+</div>
+<span class="context">…<mark>Humanitäärinen maahanmuutto heikentää huoltosuhdetta sekä koko julkisen sektorin rahoitusvajetta</mark>. Lisäksi se aiheuttaa sosiaalisia ongelmia, kuten rikollisuutta. Tämä puolestaan kuormittaa virkavaltaa ja koko yhteiskuntaa. Tilastoja eri maahanmuuttajaryhmien yliedustuksesta esimerkiksi seksuaali- ja väkivaltarikoksissa on tehnyt muun muassa poliisiammattikorkeakoulu.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“pakolaisaaltoja. Tätä ilmiötä kutsutaan usein ilmastopakolaisuudeksi.”
+</div>
+<span class="context">Elinolojen heikkeneminen ja esimerkiksi taistelu niukkenevista vesivaroista voivat aiheuttaa aseellisia konflikteja, mikä synnyttää <mark>pakolaisaaltoja. Tätä ilmiötä kutsutaan usein ilmastopakolaisuudeksi.</mark> Sana on sikäli pahasti yksinkertaistava, että kyse ei ole pelkästään ilmastosta, vaan mekanismi on monimutkaisempi.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Vastakkainasettelu on välttämätöntä, koska nämä asiat ovat vastakkain”
+</div>
+<span class="context">Samaan aikaan ollaan köyhiä ja kipeitä, jos puhe kääntyy vaikkapa säädyllisen vanhustenhuollon rahoittamiseen tai homekoulujen korjaamiseen. <mark>Vastakkainasettelu on välttämätöntä, koska nämä asiat ovat vastakkain</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“kansalaisille vahingollista ja kallista nöyristelypolitiikkaa”
+</div>
+<span class="context">Suomalaisia on vihdoinkin uskallettava puolustaa eikä jatkaa <mark>kansalaisille vahingollista ja kallista nöyristelypolitiikkaa</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Suomi nöyristelee ja kumartaa Brysseliin”
+</div>
+<span class="context"><mark>Suomi nöyristelee ja kumartaa Brysseliin</mark>. Sen on loputtava. Suomen on otettava käyttöön perussuomalainen linja, jossa oman maan ja sen kansalaisten etu tulee aina ensin.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“Me emme voi olla koko maailman sosiaalitoimisto”
+</div>
+<span class="context">Jatkossa Suomessa ei voi olla niin, että kantaväestöön kuuluvia on ilman asuntoa, mutta turvapaikanhakijoille asunnot etsitään hinnalla millä hyvänsä. <mark>Me emme voi olla koko maailman sosiaalitoimisto</mark>, ja ensisijaisesti olemme vastuussa omien kansalaistemme perustarpeiden hoitamisesta kuntoon.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“lyhytnäköinen maailmanparantaja voi saada hyvän omantunnon”
+</div>
+<span class="context">Suomen sijoitus ilmastotilastoissa paranee, mistä <mark>lyhytnäköinen maailmanparantaja voi saada hyvän omantunnon</mark>, mutta maailman kokonaispäästöt pysyvät ennallaan tai kasvavat</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Suomen valtio on olemassa suomalaisia varten”
+</div>
+<span class="context">perustelua Suomi-nimisen valtion olemassaololle ei ole. <mark>Suomen valtio on olemassa suomalaisia varten</mark>, ja sen täytyy aina huolehtia</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Meille oma kansa tulee ensin”
+</div>
+<span class="context">Samaan aikaan ollaan köyhiä ja kipeitä, jos puhe kääntyy vaikkapa säädyllisen vanhustenhoidon rahoittamiseen tai homekouluongelman korjaamiseen. Meidän prioriteettimme ovat toisenlaisia. <mark>Meille oma kansa tulee ensin</mark>. Yhteiskunnan on edistettävä suomalaisten hyvinvointia</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“suomalaisten kansallinen etu on aina”
+</div>
+<span class="context">pysäyttää. Suomalaisten kansallinen etu on aina perussuomalaisen politiikan ytimessä ja sen</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“vastuussa omien kansalaistemme perustarpeiden hoitamisesta”
+</div>
+<span class="context">Me emme voi olla koko maailman sosiaalitoimisto, ja ensisijaisesti olemme <mark>vastuussa omien kansalaistemme perustarpeiden hoitamisesta</mark> kuntoon.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“Kansalaisten syyllistäminen ilmastonmuutoksen varjolla on lopetettava”
+</div>
+<span class="context">vahingollisia ratkaisuja ideologisista syistä. <mark>Kansalaisten syyllistäminen ilmastonmuutoksen varjolla on lopetettava</mark>. Väheksymättä yksityisten</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Suomen valtio on olemassa suomalaisia varten, ja sen täytyy aina huolehtia ensisijaisesti suomalaisista.”
+</div>
+<span class="context">Julkisen vallan tehtävä on puolustaa Suomen ja suomalaisten etua. Mitään muuta järkevää perustelua Suomi-nimisen valtion olemassaololle ei ole. <mark>Suomen valtio on olemassa suomalaisia varten, ja sen täytyy aina huolehtia ensisijaisesti suomalaisista.</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“Meille oma kansa tulee ensin.”
+</div>
+<span class="context">…<mark>Meille oma kansa tulee ensin.</mark> Yhteiskunnan on edistettävä suomalaisten hyvinvointia ja vaurastumista. Kolmas periaate on, että samalla, kun pitää elää suu säkkiä myöten, on myös pyrittävä kasvattamaan sitä säkkiä…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Suomalaiset eivät tarvitse nettipoliiseja kyttäämään ajatusrikoksia”
+</div>
+<span class="context">…Perussuomalaiset esittävätkin kenttäpoliisin resurssien vahvistamista kouluttamalla ja palkkaamalla 2020-luvun alkuvuosina vähintään 800 uutta poliisimiestä kenttätehtäviin. <mark>Suomalaiset eivät tarvitse nettipoliiseja kyttäämään ajatusrikoksia</mark> sosiaalisessa mediassa, vaan osaavia, rehellisiä poliiseja kentälle takaamaan arjen turvallisuuden, huolehtimaan liikenneturvallisuudesta ja selvittämään rikoksia. Hallituksen poliisille osoittamista lisäresursseista liian iso osa on menossa kohonneiden vuokrien muodossa toimitilakustannuksiin.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“Perussuomalaisten mielestä perhe on yhteiskunnan perusyksikkö ja lapset kansakunnan tulevaisuus.”
+</div>
+<span class="context">3.3 KOTI, HOITO JA HOIVA <mark>Perussuomalaisten mielestä perhe on yhteiskunnan perusyksikkö ja lapset kansakunnan tulevaisuus.</mark> Yhteiskunnan tulisi taata sellaiset olosuhteet, että nykyistä useammilla nuorilla suomalaisilla olisi vakaat olosuhteet perustaa perhe ja hankkia lapsia.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“ihmisten elinkeinomahdollisuuksia kotiseudullaan ja vähentävät Eurooppaan”
+</div>
+<span class="context">Perussuomalaiset haluaa lopettaa laajamittaisen maahanmuuton kehitysmaista. Siksi tarvitaan keinoja, jotka edistävät <mark>ihmisten elinkeinomahdollisuuksia kotiseudullaan ja vähentävät Eurooppaan</mark> ja myös Suomeen kohdistuvaa maahanmuuttopainetta.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Suomen valtio on olemassa suomalaisia varten”
+</div>
+<span class="context">Julkisen vallan tehtävä on puolustaa Suomen ja suomalaisten etua. Mitään muuta järkevää perustelua Suomi-nimisen valtion olemassaololle ei ole. <mark>Suomen valtio on olemassa suomalaisia varten</mark>, ja sen täytyy aina huolehtia ensisijaisesti suomalaisista.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Meille oma kansa tulee ensin”
+</div>
+<span class="context">Meidän prioriteettimme ovat toisenlaisia. <mark>Meille oma kansa tulee ensin</mark>. Yhteiskunnan on edistettävä suomalaisten hyvinvointia ja vaurastumista.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Suomalaisten kansallinen etu on aina perussuomalaisen politiikan ytimessä”
+</div>
+<span class="context"><mark>Suomalaisten kansallinen etu on aina perussuomalaisen politiikan ytimessä</mark> ja sen lähtökohtana. Tarjoamme työtä, turvaa ja oikeudenmukaisuutta suomalaisille.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“tavallista suomalaista työssäkäyvää ja yrittäjää”
+</div>
+<span class="context">Perintövero koskee kovemmin <mark>tavallista suomalaista työssäkäyvää ja yrittäjää</mark> eikä vain varakasta marginaalia.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“Kansalaisten syyllistäminen ilmastonmuutoksen varjolla on lopetettava”
+</div>
+<span class="context">Ilmastopolitiikassa ei pidä tehdä tehottomia tai jopa vahingollisia ratkaisuja ideologisista syistä. <mark>Kansalaisten syyllistäminen ilmastonmuutoksen varjolla on lopetettava</mark>.</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Kansalaisten tehtävä ei ole rahoittaa Suomi-nimistä byrokratiakoneistoa”
+</div>
+<span class="context">vaurastuminen sallitaan. <mark>Kansalaisten tehtävä ei ole rahoittaa Suomi-nimistä byrokratiakoneistoa</mark>, vaan valtion tulee taata</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Meille oma kansa tulee ensin”
+</div>
+<span class="context">Samaan aikaan ollaan köyhiä ja kipeitä, jos puhe kääntyy vaikkapa säädyllisen vanhustenhoidon rahoittamiseen tai homekouluongelman korjaamiseen. Meidän prioriteettimme ovat toisenlaisia. <mark>Meille oma kansa tulee ensin</mark>. Yhteiskunnan on edistettävä suomalaisten hyvinvointia</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“oman maan ja sen kansalaisten etu”
+</div>
+<span class="context">perussuomalainen linja, jossa <mark>oman maan ja sen kansalaisten etu</mark> tulee aina ensin. Viis uhkasakoista</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“puolueilla ole puutetta niinkään rahasta, vaan moraalista”
+</div>
+<span class="context">Takavuosien vaalirahaskandaalit ovat kuitenkin osoittaneet, ettei monilla <mark>puolueilla ole puutetta niinkään rahasta, vaan moraalista</mark> ja lainkuuliaisuudesta.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“Kansalaisten syyllistäminen ilmastonmuutoksen varjolla on lopetettava”
+</div>
+<span class="context">vahingollisia ratkaisuja ideologisista syistä. <mark>Kansalaisten syyllistäminen ilmastonmuutoksen varjolla on lopetettava</mark>. Väheksymättä yksityisten</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Suomen valtio on olemassa suomalaisia varten, ja sen täytyy aina huolehtia ensisijaisesti suomalaisista.”
+</div>
+<span class="context">Julkisen vallan tehtävä on puolustaa Suomen ja suomalaisten etua. Mitään muuta järkevää perustelua Suomi-nimisen valtion olemassaololle ei ole. <mark>Suomen valtio on olemassa suomalaisia varten, ja sen täytyy aina huolehtia ensisijaisesti suomalaisista.</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Meille oma kansa tulee ensin.”
+</div>
+<span class="context">…<mark>Meille oma kansa tulee ensin.</mark> Yhteiskunnan on edistettävä suomalaisten hyvinvointia ja vaurastumista. Kolmas periaate on, että samalla, kun pitää elää suu säkkiä myöten, on myös pyrittävä kasvattamaan sitä säkkiä…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Suomalaisen työssäkäyvän veronmaksajan näkökulmasta ei ole reilua”
+</div>
+<span class="context">…esimerkiksi terveydenhuoltoa, sosiaaliturvaa ja julkisia palveluja ei tule yhtenäistää suomalaisten edun vastaisesti tai jopa tarjota laittomasti maassa oleskeleville parempaa palvelua kuin oman maan kansalaisille. Tästä hyvänä huonona esimerkkinä toimii Helsingin kaupunginvaltuuston päätös antaa paperittomille maahantulijoille ilmainen terveydenhuolto. Samaten suomalaisen työssäkäyvän veronmaksajan näkökulmasta ei ole reilua se, että päiväkodin lastenhoitajan palkka ei riitä korkeaan vuokraan sekä autoon. Samalla Suomeen saapunut turvapaikanhakijaperhe asuu veronmaksajien piikkiin isossa asunnossa kaupungin keskustassa ja lapset tuodaan hoitoon autolla, eikä kumpikaan vanhemmista käy töissä. Tilanne, jossa sosiaaliturvan varassa eläville on taattu leveämpi leipä kuin kovaa työtä tekeville pienipalkkaisille työntekijöille, on yhteiskuntamoraalin kannalta kestämätön.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“Perussuomalaiset eivät voi hyväksyä lapsiperheisiin kohdistuvia päätöksiä, jotka eriarvoistavat lapsiperheet ja lapsettomat perheet.”
+</div>
+<span class="context">Suomalaisten lapsiperheiden köyhyys on merkittävä epäkohta erityisesti yksinhuoltajaperheissä ja monilapsisissa perheissä. <mark>Perussuomalaiset eivät voi hyväksyä lapsiperheisiin kohdistuvia päätöksiä, jotka eriarvoistavat lapsiperheet ja lapsettomat perheet.</mark> Perussuomalaiset ajaa sellaisia yhteiskunnallisia muutoksia, joilla lapsiperheiden asemaa parannetaan.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Perussuomalaiset haluaa lopettaa laajamittaisen maahanmuuton kehitysmaista”
+</div>
+<span class="context">Ympäristöolosuhteet ovat yksi pakolaisuuden ja siirtolaisuuden syitä aiheuttava taustatekijä. <mark>Perussuomalaiset haluaa lopettaa laajamittaisen maahanmuuton kehitysmaista</mark>. Siksi tarvitaan keinoja, jotka edistävät ihmisten elinkeinomahdollisuuksia kotiseudullaan ja vähentävät Eurooppaan ja myös Suomeen kohdistuvaa maahanmuuttopainetta.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“suomalaisten veroeurot tulee käyttää suomalaisten hyväksi”
+</div>
+<span class="context">Perussuomalaisen sosiaalipolitiikan ensimmäinen ja tärkein periaate on siis sama kuin muillakin sektoreilla: <mark>suomalaisten veroeurot tulee käyttää suomalaisten hyväksi</mark>. Tätä tarkoitamme sisäisellä solidaarisuudella.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Etupiirien sijaan suomalaisten intressit etusijalle”
+</div>
+<span class="context"><mark>Etupiirien sijaan suomalaisten intressit etusijalle</mark>. Poliittiset palkkiovirat on lopetettava. Kaverikapitalismia kitkettävä, yritystuet remonttiin.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Tarjoamme työtä, turvaa ja oikeudenmukaisuutta suomalaisille”
+</div>
+<span class="context">Suomalaisten kansallinen etu on aina perussuomalaisen politiikan ytimessä ja sen lähtökohtana. <mark>Tarjoamme työtä, turvaa ja oikeudenmukaisuutta suomalaisille</mark>. Ketään ei jätetä yksin.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“tavallista suomalaista työssäkäyvää ja yrittäjää”
+</div>
+<span class="context">Perintövero koskee kovemmin <mark>tavallista suomalaista työssäkäyvää ja yrittäjää</mark> eikä vain varakasta marginaalia.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“suuri osa tästä rahasta jaetaan sisäpiireissä suljettujen ovien takana”
+</div>
+<span class="context">Suomalaisille alan yrityksille tulee määrätietoisesti avata ovea myös YK:n miljardien hankintaohjelmiin, nyt <mark>suuri osa tästä rahasta jaetaan sisäpiireissä suljettujen ovien takana</mark>.</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="14820_201904_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

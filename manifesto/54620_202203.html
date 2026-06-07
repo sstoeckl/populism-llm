@@ -1,0 +1,2466 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>PN (Malta, 2022) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/54620_202203_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">PN (Malta, 2022)</h1>
+<p class="subtitle lead">manifesto_id 54620_202203</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Malta · <span class="item"><strong>Party</strong></span> PN (Nationalist Party) · <span class="item"><strong>Year</strong></span> 2022 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 60</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.8</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“taxxi ġusti u kompetittivi li jinċentivaw”
+</div>
+<span class="context">15. Taxxi ġusti u kompetittivi li jinċentivaw l-investiment u x-xogħol 58 16. Il-familja</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“is-settur privat huwa l-magna tal-ekonomija”
+</div>
+<span class="context">Nemmnu li <mark>is-settur privat huwa l-magna tal-ekonomija</mark>, u għalhekk is-sistema tat-taxxi</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“tnaqqis fil-burokrazija għall-intrapriżi żgħar u medji”
+</div>
+<span class="context">kwalità tas-servizz liċ-ċittadini u lin-negozji, b’enfasi fuq it-<mark>tnaqqis fil-burokrazija għall-intrapriżi żgħar u medji</mark>. Se naraw ukoll li l-benefiċċji</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“inċentivi li jħajru l-investiment”
+</div>
+<span class="context">mill-gvern u mill-privat permezz ta’ mekkaniżmi ta’ <mark>inċentivi li jħajru l-investiment</mark> lokali u barrani.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“tnaqqas ir-rata tat-taxxa fuq il-qligħ tan-negozji”
+</div>
+<span class="context">Biex ninċentivaw aktar investiment fl-intrapriżi tagħna, ser innaqqsu r-rata tat-taxxa fuq il-qligħ tan-negozji, konformi mal-ESG</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“Nipprovdu krediti fiskjali lil intrapriżi”
+</div>
+<span class="context"><mark>Nipprovdu krediti fiskjali lil intrapriżi</mark> u istituzzjonijiet privati tal-edukazzjoni ogħla</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Taxxi ġusti u kompetittivi li jinċentivaw l-investiment u x-xogħol”
+</div>
+<span class="context"><mark>Taxxi ġusti u kompetittivi li jinċentivaw l-investiment u x-xogħol</mark>. Il-qafas ta’ l-ESG ser jinbena fuq għadd ta’ kriterji li se jitfasslu flimkien mal-korpi kostitwiti u l-imsieħba soċjali.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“ekonomija sostenibbli, risponsabbli u b’identità ċara”
+</div>
+<span class="context">Din hija l-viżjoni ekonomika tagħna: <mark>ekonomija sostenibbli, risponsabbli u b’identità ċara</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Ninvestu f’ċentri sportivi ta’ eċċellenza u f’miżuri konkreti kontra l-obeżità”
+</div>
+<span class="context">Ninvestu bis-sħiħ biex neqirdu l-faqar permezz tal-mobbiltà soċjali u mhux b’miżuri limitati jew sporadiċi. Insaħħu l-benefiċċji tas-sigurtà soċjali u nsawruhom f’pakkett ta’ benesseri soċjali personalizzat fejn kull persuna li tiġi bżonn il-benefiċċji jkollha pjan ta’ kif l-Istat ser jappoġġjaha fil-mobbiltà soċjali.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“tkabbir ekonomiku f’setturi ekonomiċi li ma’ jippreġudikawx l-ambjent naturali tagħna”
+</div>
+<span class="context">…Dan huwa dak li ser inwettqu: <mark>tkabbir ekonomiku f’setturi ekonomiċi li ma’ jippreġudikawx l-ambjent naturali tagħna</mark>, pagi aħjar u għola u bilanċ dejjem aħjar bejn ix-xogħol u l-ħin liberu u mal-familja. Din hija l-wegħda soċjo-ekonomika tagħna. Kommessi li nsaħħu l-ekosistemi tal-lum u noħolqu oħrajn ġodda, intejbu r-reżiljenza tal-ekonomija tagħna b’aktar diversifikazzjoni tas-setturi ekonomiċi u bi tħejjija u aġilita’ aħjar biex Malta tkun tista’ tilqa’ għall-kriżijiet internazzjonali futuri….</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“sistema ta’ tassazzjoni li tkun ġusta u ma’ tiddiskriminax kontra negozji Maltin”
+</div>
+<span class="context">Dħul akbar b’sistema fiskali ġusta. Irridu nibnu <mark>sistema ta’ tassazzjoni li tkun ġusta u ma’ tiddiskriminax kontra negozji Maltin</mark>, filwaqt li tkun mibnija fuq prinċipji li jinċentivaw lill-intrapriżi jinvestu dejjem aktar fil-ħaddiema u l-operat tagħhom.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“Nipprovdu krediti fiskjali lil intrapriżi u istituzzjonijiet privati tal-edukazzjoni ogħla u tar-riċerka ekwivalenti għal 100% tal-ammont investit minnhom fir-riċerka”
+</div>
+<span class="context"><mark>Nipprovdu krediti fiskjali lil intrapriżi u istituzzjonijiet privati tal-edukazzjoni ogħla u tar-riċerka ekwivalenti għal 100% tal-ammont investit minnhom fir-riċerka</mark>. Nappoġġaw bis-sħiħ l-investiment dirett billi nagħtu rebate fuq il-VAT imħallsa minn istituzzjonijiet privati tal-edukazzjoni ogħla għat-tagħmir u l-faċilitajiet maħsuba għall-proġetti tar-riċerka u l-iżvilupp.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Taxxi ġusti u kompetittivi li jinċentivaw l-investiment”
+</div>
+<span class="context">15. <mark>Taxxi ġusti u kompetittivi li jinċentivaw l-investiment</mark> u x-xogħol — the manifesto proposes tax cuts, reduced corporate rates, VAT reductions and incentives for enterprise</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“is-settur privat huwa l-magna tal-ekonomija”
+</div>
+<span class="context">Nemmnu li s-settur privat huwa l-magna tal-ekonomija, u għalhekk is-sistema tat-taxxi trid tinċentiva</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“ninċentivaw lis-settur privat”
+</div>
+<span class="context">B’politika u programmi ta’ investiment, u b’inċentivar lis-settur privat nistgħu nsiru pajjiż xempju ta’ adozzjoni teknoloġika</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“ambjent li fih it-talent, il-potenzjal”
+</div>
+<span class="context">Ser nikbru ekonomikament billi noħolqu <mark>ambjent li fih it-talent, il-potenzjal</mark> u l-aspirazzjonijiet ser jiġu xprunati biex jikbru u jimirħu</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“sistema tat-tassazzjoni Maltija tibqa’ tattira aktar investiment”
+</div>
+<span class="context">isaħħaħ is-sistema tat-tassazzjoni Maltija ħalli tibqa’ tattira aktar u aktar investiment ta’ livell għoli</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“krediti fiskjali lil intrapriżi u istituzzjonijiet privati”
+</div>
+<span class="context">Nipprovdu <mark>krediti fiskjali lil intrapriżi u istituzzjonijiet privati</mark> tal-edukazzjoni ogħla u tar-riċerka ekwivalenti għal 100% tal-ammont investit minnhom fir-riċerka.</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“investimenti f’pensjonijiet privati jew investimenti”
+</div>
+<span class="context">billi jissaħħu l-iskemi ta’ krediti fiskali għal min jinvesti f’pensjonijiet privati jew investimenti simili, kif ukoll</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“relazzjoni mal-banek kummerċjali”
+</div>
+<span class="context">dejjem aktar diffiċli speċjalment fejn tidħol ir-<mark>relazzjoni mal-banek kummerċjali</mark>. L-imprendituri spiċċaw iħallsu</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“istituzzjonijiet lokali u Ewropej tas-self”
+</div>
+<span class="context">it-30% l-oħra jinkisbu minn <mark>istituzzjonijiet lokali u Ewropej tas-self</mark> li għandhom l-għan li jappoġġaw</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“tiftaħ u topera kont bankarju bis-servizzi bażiċi”
+</div>
+<span class="context">Nassiguraw li kull persuna legalment residenti f’Malta jjkollha d-dritt li <mark>tiftaħ u topera kont bankarju bis-servizzi bażiċi</mark> ta’ depożitu</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Fond ta’ Trasformazzjoni Ekomomika (FTE) ta’ €1B biex nixprunaw u nkattru s-setturi ġodda”
+</div>
+<span class="context">Noħolqu Fond ta’ Trasformazzjoni Ekomomika (FTE) ta’ €1B (biljun Ewro) biex nixprunaw u nkattru s-setturi ġodda u nevolvu l-ġenerazzjoni li jmiss tas-setturi eżistenti, permezz ta’ programm li jiffinanzja nofs l-investiment kapitali ta’ intrapriżi eliġibbli u konformi mal-kriterji ESG.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“aġenzija ċentrali li tkun tista’ sservi ta’ clearing house għal-livelli varji tad-due diligence”
+</div>
+<span class="context">Se naraw li, bħala prijorità, Gvern Nazzjonalista jidħol f ’diskussjonijiet mal-entitajiet li jirrappreżentaw lil dawn il-professjonijiet biex titwaqqaf <mark>aġenzija ċentrali li tkun tista’ sservi ta’ clearing house għal-livelli varji tad-due diligence</mark> li jkun hemm bżonn.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“ser jingħata spazju ħafna akbar lill- istakeholders ewlenin kollha f’dan il-qasam bir-rwol tal-gvern ikun wieħed dejjem aktar limitat u ffukat fuq l-aspett regolatorju”
+</div>
+<span class="context">…Fil-qasam tas-servizzi finanzjarji <mark>ser jingħata spazju ħafna akbar lill- istakeholders ewlenin kollha f’dan il-qasam bir-rwol tal-gvern ikun wieħed dejjem aktar limitat u ffukat fuq l-aspett regolatorju</mark> u l-ħolqien ta’ mekkaniżmi ta’ inċentivar għall- operaturi li jkunu aderenti mal-kriterji tal-ESG. Biex innaqqsu l-piż minn fuq il- professjonisti fl-oqsma finanzjarji u legali, flimkien ma’ operaturi privati f’dan il-qasam, inwaqqfu aġenzija ċentrali li tkun tista’ sservi ta’ clearing house għal-livelli varji tad-due diligence li jkun hemm bżonn minn żmien għall-ieħor….</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“Nikkonsolidaw il-ħidma operazzjonali kollha fil-qasam fiskali sabiex ma’ nippermettux li pajjiżna jintuża bħala ġurisdizzjoni fejn tista’ tiġi evitata t-taxxa”
+</div>
+<span class="context">Sistema Fiskali Internazzjonali Niksbu u nużaw il-fondi tal-UE bi strateġija ffukata fuq it-tkabbir ekonomiku u t-tisħiħ tal-SME’s. <mark>Nikkonsolidaw il-ħidma operazzjonali kollha fil-qasam fiskali sabiex ma’ nippermettux li pajjiżna jintuża bħala ġurisdizzjoni fejn tista’ tiġi evitata t-taxxa</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“Inwaqqfu task force esperta biex tirrevedi l-kapaċità u l-għarfien espert ta’ l-FIAU u l-FCID biex tipproponi pjan ta’ azzjoni b’objettivi u riżultati mmirati”
+</div>
+<span class="context"><mark>Inwaqqfu task force esperta biex tirrevedi l-kapaċità u l-għarfien espert ta’ l-FIAU u l-FCID biex tipproponi pjan ta’ azzjoni b’objettivi u riżultati mmirati</mark>. Nipprovdu skemi ta’ taħriġ ta’ livell għoli għall-persuni impjegati fl-istituzzjonijiet investigattivi tal- kriminalità finanzjarja ħalli niżguraw li jkollhom kapaċità u għarfien mill-aktar avvanzati.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“depożiti lokali fit-tul miżmuma fl-istituzzjonijiet finanzjarji”
+</div>
+<span class="context">70% tal-Fond, li jkun garantit mill-Istat, jinġabar pubblikament, billi tingħata opportunita’ lil dawk li għandhom <mark>depożiti lokali fit-tul miżmuma fl-istituzzjonijiet finanzjarji</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Malta ma spiċċatx fuq il-Lista l-Griża tal-FATF”
+</div>
+<span class="context"><mark>Malta ma spiċċatx fuq il-Lista l-Griża tal-FATF</mark> minħabba l-awdituri, l-accountants, il-bankiera jew in-nutara</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“fuq l-istess linja tal-obbligi tal-entitajiet ikkwotati fuq il-Borża”
+</div>
+<span class="context">se jimponi l-obbligu lil kull entità pubblika li tippubblika kull informazzjoni marbuta mad-diretturi u l-immaniġġjar tagħha, fuq l-istess linja tal-obbligi li għandhom l-entitajiet ikkwotati fuq il-Borża ta’ Malta</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“rwol tal-gvern ikun wieħed dejjem aktar limitat”
+</div>
+<span class="context">fil-qasam tas-servizzi finanzjarji ser jingħata spazju ħafna akbar lill-istakeholders ewlenin kollha f’dan il-qasam bir-<mark>rwol tal-gvern ikun wieħed dejjem aktar limitat</mark> u ffukat fuq l-aspett regolatorju</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“kont bankarju bis-servizzi bażiċi ta’ depożitu”
+</div>
+<span class="context">Nassiguraw li kull persuna legalment residenti f’Malta jjkollha d-dritt li tiftaħ u topera <mark>kont bankarju bis-servizzi bażiċi ta’ depożitu</mark>, ħlasijiet elettroniċi u l-użu ta’ ATM.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“kriminalità finanzjarja”
+</div>
+<span class="context">Nipprovdu skemi ta’ taħriġ ta’ livell għoli għall-persuni impjegati fl-istituzzjonijiet investigattivi tal-<mark>kriminalità finanzjarja</mark> ħalli niżguraw li jkollhom kapaċità u għarfien mill-aktar avvanzati.</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“ħarsien tas-saltna tad-dritt u tal-governanza”
+</div>
+<span class="context">reġgħet lura fit-triq tal-<mark>ħarsien tas-saltna tad-dritt u tal-governanza</mark> tajba. Bl-ewwel liġi</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Korp tal-Pulizija indipendenti għalkollox mill-gvern”
+</div>
+<span class="context">Se ndaħħlu qafas leġiżlattiv li jiggarantixxi <mark>Korp tal-Pulizija indipendenti għalkollox mill-gvern</mark> tal-ġurnata</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Korp tal-Pulizija indipendenti għalkollox mill-gvern”
+</div>
+<span class="context">Se ndaħħlu qafas leġiżlattiv li jiggarantixxi <mark>Korp tal-Pulizija indipendenti għalkollox mill-gvern</mark> tal-ġurnata u b’hekk niżguraw li qatt ma</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“rispett lejn is-saltna tad-dritt”
+</div>
+<span class="context">sieħeb ewlieni fir-reġjun u l-UE, fejn ir-<mark>rispett lejn is-saltna tad-dritt</mark> isserraħ ras lil kull investitur</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 5</span>
+<div class="quote">
+“l-indipendenza tal-ġudikatura”
+</div>
+<span class="context">riforma ġudizzjarja li tixraq lil pajjiż Ewropew u modern b’emfażi qawwija fuq <mark>l-indipendenza tal-ġudikatura</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“insaħħu s-saltna tad-dritt”
+</div>
+<span class="context">Ser <mark>insaħħu s-saltna tad-dritt</mark> biex nerġgħu niksbu r-reputazzjoni li tixraq</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Indaħħlu fis-seħħ sistema komprensiva ta’ diġitalizazzjoni tas-servizz tal-Qrati”
+</div>
+<span class="context"><mark>Indaħħlu fis-seħħ sistema komprensiva ta’ diġitalizazzjoni tas-servizz tal-Qrati</mark> kemm f’kawżi ċivili kif ukoll f’dawk kriminali biex naqtgħu d-dewmien żejjed u nżidu l-effiċjenza u l-aċċessibbilità tal-pubbliku.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Leġislazzjoni li tagħti dritt lil kull utent li jinqeda b’mod diġitali”
+</div>
+<span class="context">Se ndaħħlu leġiżlazzjoni li tagħti dritt lil kull utent tas-servizz governattiv biex jinqeda b’mod diġitali minn kwalunkwe servizz li jista’ jiġi pprovdut b’mod diġitali.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Gvern ġdid Nazzjonalista se jeqred il-kultura tal-ħabi li rrenjat fl-aħħar snin”
+</div>
+<span class="context">Biex ikun jista’ jsir l-iskrutinju, qabelxejn hemm bżonn aċċess għall-informazzjoni. <mark>Gvern ġdid Nazzjonalista se jeqred il-kultura tal-ħabi li rrenjat fl-aħħar snin</mark>, biex l-aċċess għal kull forma ta’ informazzjoni pubblika tkun in-norma u mhux l-eċċezzjoni.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“rispett lejn is-saltna tad-dritt isserraħ ras lil kull investitur”
+</div>
+<span class="context">…mid-daqqa tal-pandemija naraw opportunità tad-deheb biex bi pjan fit-tul iżda b’azzjonijiet immedjati, insejsu l-ekonomija t’għada fuq sisien sodi. Hekk niżguraw futur mill-isbaħ liż-żgħażagħ tagħna u xogħol ta’ kwalità lill-ħaddiema Maltin u Għawdxin. Minn barra li noħorġu lil pajjiżna mill-kriżi li qiegħdin fiha sejrin ukoll nagħmlu sforzi fuq kull livel ta’ politika, diplomazija u teknika biex nerġgħu niksbu lura r-reputazzjoni ta’ pajjiżna bħala sieħeb ewlieni fir-reġjun u l-UE, fejn ir-<mark>rispett lejn is-saltna tad-dritt isserraħ ras lil kull investitur</mark> li jħares lejn pajjiżna bħala l-post fejn jibni l-intrapriża tiegħu….</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“Inwettqu riforma fil-qasam tal-ġustizzja li verament tikkontribwixxi biex is-saltna tad-dritt u l-amministrazzjoni sħiħa tal-ġustizzja jkunu l-pilastri”
+</div>
+<span class="context">Inwettqu riforma fil-qasam tal-ġustizzja li verament tikkontribwixxi biex is-saltna tad-dritt u l-amministrazzjoni sħiħa tal- ġustizzja jkunu l-pilastri li fuqhom nistgħu nerġgħu nibdew nibnu r-reputazzjoni tal- ġurisdizzjoni tagħna, fejn l-indħil politiku fil ħatriet u l-amministrazzjoni jispiċċaw darba għal dejjem.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“Ser insaħħu s-saltna tad-dritt biex nerġgħu niksbu r-reputazzjoni li tixraq lill-pajjiżna fl-interess tal-ġid komuni”
+</div>
+<span class="context"><mark>Ser insaħħu s-saltna tad-dritt biex nerġgħu niksbu r-reputazzjoni li tixraq lill-pajjiżna fl-interess tal-ġid komuni</mark>. Jekk fostna jirnexxilna niżguraw kultura ta’ integrità minflok kultura ta’ impunità, ikollna Stat li jittratta lil kull persuna b’mod ġust u ekwu.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“tisħiħ tad-demokrazija”
+</div>
+<span class="context">Tema 7: Ġustizzja u <mark>tisħiħ tad-demokrazija</mark> — the manifesto commits to implementing public inquiry recommendations, anti-corruption magistrate, parliamentary opposition involvement and transparency registers</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Korp tal-Pulizija indipendenti għalkollox mill-gvern”
+</div>
+<span class="context">se ndaħħlu qafas leġiżlattiv li jiggarantixxi <mark>Korp tal-Pulizija indipendenti għalkollox mill-gvern</mark> tal-ġurnata</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“nsaħħu d-demokrazija f’pajjiżna”
+</div>
+<span class="context">Se nagħmlu l-pass kuraġġuż li nkomplu <mark>nsaħħu d-demokrazija f’pajjiżna</mark> billi noħolqu l-ispazju meħtieġ biex is-sistema elettorali tagħna tagħti spazju biex jevolvu l-partiti żgħar</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“saltna tad-dritt isserraħ ras”
+</div>
+<span class="context">fejn ir-rispett lejn is-<mark>saltna tad-dritt isserraħ ras</mark> lil kull investitur li jħares lejn pajjiżna bħala l-post fejn jibni l-intrapriża tiegħu</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“is-saltna tad-dritt u l-amministrazzjoni sħiħa tal-ġustizzja”
+</div>
+<span class="context">riforma fil-qasam tal-ġustizzja li verament tikkontribwixxi biex <mark>is-saltna tad-dritt u l-amministrazzjoni sħiħa tal-ġustizzja</mark> jkunu l-pilastri</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“insaħħu s-saltna tad-dritt biex nerġgħu niksbu r-reputazzjoni”
+</div>
+<span class="context">Ser <mark>insaħħu s-saltna tad-dritt biex nerġgħu niksbu r-reputazzjoni</mark> li tixraq lill-pajjiżna fl-interess tal-ġid komuni.</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“rispett lejn id- diversita’”
+</div>
+<span class="context">b’sens qawwi ta’ toleranza u respekt lejn id- diversita’. Naraw li d-dikjarazzjonijiet</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“persuni b’diżabbiltà jingħataw l-appoġġ meħtieġ”
+</div>
+<span class="context">l-isforz kollettiv tagħna jrud iwassal biex anke l-<mark>persuni b’diżabbiltà jingħataw l-appoġġ meħtieġ</mark> ħalli jkunu jistgħu</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Insaħħu d-drittijiet ċivili u tal-minoritajiet”
+</div>
+<span class="context">anzjani tagħna jkunu tassew jistgħu jlaħħqu mal-ħajja u ma’ nħalluhomx ikomplu jiftaqru. Irridu nsaħħu d-drittijiet ċivili u tal-minoritajiet b’ħidma ġewnina, billi inħaddnu d-diversità</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“bżonn persuni trans”
+</div>
+<span class="context">kif ukoll l-kirurġija li jkollhom <mark>bżonn persuni trans</mark>. 104. Bħala prijorità ser naraw</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“rispett tad-drittijiet fundamentali tal-bniedem”
+</div>
+<span class="context">Ewropej tal-etika, tad-dinjità u r-<mark>rispett tad-drittijiet fundamentali tal-bniedem</mark>, biex it-teknoloġija twieżen lill-impjegati</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“rispett sħiħ lejn il-valuri tagħna u d-drittijiet fundamentali”
+</div>
+<span class="context">Nifirxu l-għodod tal-AI fis-servizzi pubbliċi b’<mark>rispett sħiħ lejn il-valuri tagħna u d-drittijiet fundamentali</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Insaħħu l-benefiċċji tas-sigurtà soċjali u nsawwruhom f’pakkett ta’ benesseri soċjali personalizzat”
+</div>
+<span class="context"><mark>Insaħħu l-benefiċċji tas-sigurtà soċjali u nsawwruhom f’pakkett ta’ benesseri soċjali personalizzat</mark> fejn kull persuna li tiġi bżonn il-benefiċċji jkollha pjan ta’ kif l-Istat ser jappoġġja fil-mobbilta soċjali tagħha.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“kulħadd għandu valur: kulħadd jeħtieġ jilħaq il-milja tiegħu”
+</div>
+<span class="context">Il-pedament strateġiku tat-twettiq tal-viżjoni tagħna se jkun fil-ħila tagħna li naħtfu l-potenzjal u t-talent ta’ kull wieħed u waħda minna.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“Nirriflettu l-prinċipji u l-mekkaniżmu tal-living income fil-mod ta’ kif jinħadmu l-paga minima, il-benefiċċji soċjali u r-reviżjonijiet fil-pensjoniet”
+</div>
+<span class="context">Insaħħu d-drittijiet ċivili u tal-minoritajiet b’ħidma ġewnina, billi inħaddnu d-diversità u nwaqqfu kull forma ta’ abbuż.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Nappoġġjaw permezz ta’ għajnuna teknika u inċentivi speċifiċi għall- bdiewa u r-raħħala biex isiru aktar kompetittivi”
+</div>
+<span class="context">…<mark>Nappoġġjaw permezz ta’ għajnuna teknika u inċentivi speċifiċi għall- bdiewa u r-raħħala biex isiru aktar kompetittivi</mark> permezz ta’ investimenti akbar fit-teknoloġija li jużaw f’ħidmiethom. Inħaddmu politika li tippromwovi l-prodott Malti permezz tat-twaqqif ta’ Aġenzija għall-Promozzjoni tal- Prodott, ta’ programm intensiv ta’ inċentivar tal-produzzjoni organika favur ambjent naturali, programmi ta’ edukazzjoni, proġett biex jattira raħħala u bdiewa żgħażagħ, appoġġ lill-bdiewa permezz ta’ sostenn tas- suq lokali u tnaqqis fil-piż eċċessiv tar-regolamentazzjoni u l-ispejjeż li poġġew lill-biedja Maltija f’morsa inġusta….</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“Insaħħu d-drittijiet taċ-ċittadini fuq id-data personali tagħhom”
+</div>
+<span class="context">Riformi Leġiżlattivi li Jsaħħu l-Prinċipji Insaħħu d-drittijiet taċ-ċittadini fuq id- data personali tagħhom billi ndaħħlu dritt ġdid ta’ self-determination fejn kull persuna tiddeċiedi hi fuq x’data tinżamm dwarha minn entitajiet pubbliċi u kumpaniji privati.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“Inwettqu miżuri li jippromwovu integrazzjoni strutturata, b’enfasi qawwija fuq it-toleranza, is-sabiħ tad-diversita’ u l-valur tad-dinjità tal-bniedem”
+</div>
+<span class="context"><mark>Inwettqu miżuri li jippromwovu integrazzjoni strutturata, b’enfasi qawwija fuq it-toleranza, is-sabiħ tad-diversita’ u l-valur tad-dinjità tal-bniedem</mark>. Inwettqu programm edukattiv intiż biex ikattar fit-tfal tagħna l-għarfien dwar kulturi differenti li għandna fostna u nsaħħu r-rispett lejn il-komunitajiet f’pajjiżna.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“miżuri ta’ integrazzjoni u l-aċċessibilita’ għall-persuni b’diżabilita’”
+</div>
+<span class="context">Il-miżuri addottati favur l-integrazzjoni u l-aċċessibilita’ għall-persuni b’diżabilita’ ser ikunu kriterju ewlieni u obbligatorju fit-tħaddim tal-qafas tal-ESG</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“nsaħħu d-drittijiet tat-tfal minn kull lat”
+</div>
+<span class="context">għandna l-viżjoni li nkomplu <mark>nsaħħu d-drittijiet tat-tfal minn kull lat</mark> biex pajjiżna tassew jipprovdi tfulija sana</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“nsaħħu d-drittijiet ċivili u tal-minoritajiet”
+</div>
+<span class="context">Irridu <mark>nsaħħu d-drittijiet ċivili u tal-minoritajiet</mark> b’ħidma ġewnina, billi inħaddnu d-diversità u nwaqqfu kull forma ta’ abbuż</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“kirurġija li jkollhom bżonn persuni trans”
+</div>
+<span class="context">nipprovdu s-servizzi meħtieġa minn ġeneri differenti inkluż t-terapiji ormonali kif ukoll l-<mark>kirurġija li jkollhom bżonn persuni trans</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“reati li jsiru fil-konfront ta’ nisa, tfajliet jew persuni vulnerabbli”
+</div>
+<span class="context">ser nagħtu aktar importanza fil-ħidma kontra r-<mark>reati li jsiru fil-konfront ta’ nisa, tfajliet jew persuni vulnerabbli</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“mingħajr diskriminazzjoni”
+</div>
+<span class="context">Kull persuna hija detentur ta’ drittijiet fil-konfront tal-amministrazzjoni u l-eżekuttiv tal-pajjiż u għaldaqstant dawn tal-aħħar obbligati jaraw li d-drittijiet ta’ dik il-persuna jkunu rikonoxxuti u implimentati b’rispett, dinjità u <mark>mingħajr diskriminazzjoni</mark>.</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“ħarsien tas-saltna tad-dritt u tal-governanza”
+</div>
+<span class="context">reġgħet lura fit-triq tal-<mark>ħarsien tas-saltna tad-dritt u tal-governanza</mark> tajba. Bl-ewwel liġi</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“is-settur privat huwa l-magna tal-ekonomija”
+</div>
+<span class="context">Nemmnu li <mark>is-settur privat huwa l-magna tal-ekonomija</mark>, u għalhekk is-sistema tat-taxxi</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Korp tal-Pulizija indipendenti għalkollox mill-gvern”
+</div>
+<span class="context">Se ndaħħlu qafas leġiżlattiv li jiggarantixxi <mark>Korp tal-Pulizija indipendenti għalkollox mill-gvern</mark> tal-ġurnata u b’hekk niżguraw li qatt ma</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“rispett lejn is-saltna tad-dritt”
+</div>
+<span class="context">sieħeb ewlieni fir-reġjun u l-UE, fejn ir-<mark>rispett lejn is-saltna tad-dritt</mark> isserraħ ras lil kull investitur</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“l-indipendenza tal-ġudikatura”
+</div>
+<span class="context">riforma ġudizzjarja li tixraq lil pajjiż Ewropew u modern b’emfażi qawwija fuq <mark>l-indipendenza tal-ġudikatura</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“insaħħu s-saltna tad-dritt”
+</div>
+<span class="context">Ser <mark>insaħħu s-saltna tad-dritt</mark> biex nerġgħu niksbu r-reputazzjoni li tixraq</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Indaħħlu fis-seħħ sistema komprensiva ta’ diġitalizazzjoni tas-servizz tal-Qrati”
+</div>
+<span class="context"><mark>Indaħħlu fis-seħħ sistema komprensiva ta’ diġitalizazzjoni tas-servizz tal-Qrati</mark> kemm f’kawżi ċivili kif ukoll f’dawk kriminali biex naqtgħu d-dewmien żejjed u nżidu l-effiċjenza u l-aċċessibbilità tal-pubbliku.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Leġislazzjoni li tagħti dritt lil kull utent li jinqeda b’mod diġitali”
+</div>
+<span class="context">Se ndaħħlu leġiżlazzjoni li tagħti dritt lil kull utent tas-servizz governattiv biex jinqeda b’mod diġitali minn kwalunkwe servizz li jista’ jiġi pprovdut b’mod diġitali.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Gvern ġdid Nazzjonalista se jeqred il-kultura tal-ħabi li rrenjat fl-aħħar snin”
+</div>
+<span class="context">Biex ikun jista’ jsir l-iskrutinju, qabelxejn hemm bżonn aċċess għall-informazzjoni. <mark>Gvern ġdid Nazzjonalista se jeqred il-kultura tal-ħabi li rrenjat fl-aħħar snin</mark>, biex l-aċċess għal kull forma ta’ informazzjoni pubblika tkun in-norma u mhux l-eċċezzjoni.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“tkabbir ekonomiku f’setturi ekonomiċi li ma’ jippreġudikawx l-ambjent naturali tagħna”
+</div>
+<span class="context">…Dan huwa dak li ser inwettqu: <mark>tkabbir ekonomiku f’setturi ekonomiċi li ma’ jippreġudikawx l-ambjent naturali tagħna</mark>, pagi aħjar u għola u bilanċ dejjem aħjar bejn ix-xogħol u l-ħin liberu u mal-familja. Din hija l-wegħda soċjo-ekonomika tagħna. Kommessi li nsaħħu l-ekosistemi tal-lum u noħolqu oħrajn ġodda, intejbu r-reżiljenza tal-ekonomija tagħna b’aktar diversifikazzjoni tas-setturi ekonomiċi u bi tħejjija u aġilita’ aħjar biex Malta tkun tista’ tilqa’ għall-kriżijiet internazzjonali futuri….</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“Inwettqu riforma fil-qasam tal-ġustizzja li verament tikkontribwixxi biex is-saltna tad-dritt u l-amministrazzjoni sħiħa tal-ġustizzja jkunu l-pilastri”
+</div>
+<span class="context">Inwettqu riforma fil-qasam tal-ġustizzja li verament tikkontribwixxi biex is-saltna tad-dritt u l-amministrazzjoni sħiħa tal- ġustizzja jkunu l-pilastri li fuqhom nistgħu nerġgħu nibdew nibnu r-reputazzjoni tal- ġurisdizzjoni tagħna, fejn l-indħil politiku fil ħatriet u l-amministrazzjoni jispiċċaw darba għal dejjem.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“Ser insaħħu s-saltna tad-dritt biex nerġgħu niksbu r-reputazzjoni li tixraq lill-pajjiżna fl-interess tal-ġid komuni”
+</div>
+<span class="context"><mark>Ser insaħħu s-saltna tad-dritt biex nerġgħu niksbu r-reputazzjoni li tixraq lill-pajjiżna fl-interess tal-ġid komuni</mark>. Jekk fostna jirnexxilna niżguraw kultura ta’ integrità minflok kultura ta’ impunità, ikollna Stat li jittratta lil kull persuna b’mod ġust u ekwu.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Ġustizzja u tisħiħ tad-demokrazija”
+</div>
+<span class="context">Tema 7: <mark>Ġustizzja u tisħiħ tad-demokrazija</mark> — the manifesto consistently promotes rule of law, democratic governance, anti-corruption, competitive taxation and market-enabling policies</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“is-settur privat huwa l-magna tal-ekonomija”
+</div>
+<span class="context">Nemmnu li s-settur privat huwa l-magna tal-ekonomija, u għalhekk is-sistema tat-taxxi trid tinċentiva</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“trasparenza, kontabbiltà u skrutinju”
+</div>
+<span class="context">Governanza tajba ma tinkisibx biss bil-liġijiet fuq il-karta iżda bl-aġir ta’ gvern li jdaħħal standards ċari ta’ <mark>trasparenza, kontabbiltà u skrutinju</mark> li qatt ma kellna bħalu f’pajjiżna</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“rwol tal-gvern ikun wieħed dejjem aktar limitat”
+</div>
+<span class="context">fil-qasam tas-servizzi finanzjarji ser jingħata spazju ħafna akbar lill-istakeholders ewlenin kollha f’dan il-qasam bir-<mark>rwol tal-gvern ikun wieħed dejjem aktar limitat</mark> u ffukat fuq l-aspett regolatorju</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“is-saltna tad-dritt u l-amministrazzjoni sħiħa tal-ġustizzja”
+</div>
+<span class="context">riforma fil-qasam tal-ġustizzja li verament tikkontribwixxi biex <mark>is-saltna tad-dritt u l-amministrazzjoni sħiħa tal-ġustizzja</mark> jkunu l-pilastri</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“insaħħu s-saltna tad-dritt”
+</div>
+<span class="context">Ser <mark>insaħħu s-saltna tad-dritt</mark> biex nerġgħu niksbu r-reputazzjoni li tixraq lill-pajjiżna fl-interess tal-ġid komuni.</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“ħaddieħor abbuża mill-fiduċja, seraqlek flusek”
+</div>
+<span class="context">Imma filwaqt li <mark>ħaddieħor abbuża mill-fiduċja, seraqlek flusek</mark> u kisser isem malta, aħna qattajna</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“prezz tal-impunità li ħoloq il-gvern”
+</div>
+<span class="context">L-imprendituri spiċċaw iħallsu l-<mark>prezz tal-impunità li ħoloq il-gvern</mark> stess. Se naraw li l-fornituri</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“Gvern Laburista rrenda lill-Kunsilli Lokali f’uffiċċji amministrattivi”
+</div>
+<span class="context">twemmin hu rifless fil-viżjoni tagħna għall-iggvernar lokali. <mark>Gvern Laburista rrenda lill-Kunsilli Lokali f’uffiċċji amministrattivi</mark> b’poteri dejjem inqas, sena wara oħra.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“is-salarji eżaġerati tal-pożizzjonijiet inutli ta’ fiduċja”
+</div>
+<span class="context">Minflok il-miljuni li qed jitberbqu bħalissa għas-salarji eżaġerati tal-pożizzjonijiet inutli ta’ fiduċja, għan-nefqa diskrezzjonali u għad- direct orders</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“negħlbu l-klikek korrotti u diżonesti”
+</div>
+<span class="context">b’kultura ta’ integrità jirnexxilna wkoll <mark>negħlbu l-klikek korrotti u diżonesti</mark> li jistinkaw biss għall-ġid tal-ftit</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Temmnuhomx meta jgħidulkom li l-politiċi huma kollha l-istess”
+</div>
+<span class="context">Tħallu lil ħadd jgħidilkom li dan hu impossibbli. Kull kisba tidher impossibbli sakemm tintlaħaq. <mark>Temmnuhomx meta jgħidulkom li l-politiċi huma kollha l-istess</mark>. Jien minix perfett.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“min ħoloq il-problema ma jistax ikun is-soluzzjoni”
+</div>
+<span class="context">Huwa ċar li <mark>min ħoloq il-problema ma jistax ikun is-soluzzjoni</mark>. Aħna nemmnu fil-potenzjal ta’ pajjiżna għax il-poplu Malti hu qalbieni, ħabrieki u ħawtiel.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“ma kienx biżżejjed li l-gvern stess ħoloq problemi kbar ta’ reputazzjoni għal pajjiżna”
+</div>
+<span class="context">tneħħija tal-piżijiet sproporzjonati li tefa’ fuqhom il-Gvern Laburista: għax <mark>ma kienx biżżejjed li l-gvern stess ħoloq problemi kbar ta’ reputazzjoni għal pajjiżna</mark>, issa dawn l-organizzazzjonijiet spiċċaw iridu jħallsu l-prezz qares ta’ din il-ħsara bil-burokrazija</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“l-indħil politiku fil ħatriet u l-amministrazzjoni jispiċċaw darba għal dejjem”
+</div>
+<span class="context">Inwettqu riforma fil-qasam tal-ġustizzja li verament tikkontribwixxi biex is-saltna tad-dritt u l-amministrazzjoni sħiħa tal- ġustizzja jkunu l-pilastri li fuqhom nistgħu nerġgħu nibdew nibnu r-reputazzjoni tal- ġurisdizzjoni tagħna, fejn <mark>l-indħil politiku fil ħatriet u l-amministrazzjoni jispiċċaw darba għal dejjem</mark>. B’viżjoni u bl-użu ta’ mezzi moderni diġitali naraw li l-operat tal-Qrati ta’ pajjiżna jiġi modernizzat</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“Il-Partit Nazzjonalista għandu r-rieda li jara li ħadd ma jkollu għalfejn ibigħ lilu nnifsu lil għadd magħżul ta’ politiċi, negozjanti u kriminali privileġġati”
+</div>
+<span class="context"><mark>Il-Partit Nazzjonalista għandu r-rieda li jara li ħadd ma jkollu għalfejn ibigħ lilu nnifsu lil għadd magħżul ta’ politiċi, negozjanti u kriminali privileġġati</mark> biex jikseb id-drittijiet tiegħu jew tagħha. Min-naħa l-oħra, b’kultura ta’ integrità jinfirex il-ġid fost in-nies, il-familji u n-negozji, għax ilkoll ikunu stmati bħala parteċipanti fit-tkabbir ekonomiku, soċjali u politiku ta’ pajjiżna.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“ħaddieħor abbuża mill-fiduċja, seraqlek flusek”
+</div>
+<span class="context">Temmnuhomx meta jgħidulkom li l-politiċi huma kollha l-istess. Jien minix perfett. U lanqas mhu perfett il-Partit Nazzjonalista. Imma filwaqt li <mark>ħaddieħor abbuża mill-fiduċja, seraqlek flusek</mark> u kisser isem malta</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“il-Gvern Laburista wasslet biex tgħakkset il-ħajja”
+</div>
+<span class="context">Il-politika li mexxa l-Gvern Laburista wasslet biex tgħakkset il-ħajja ta’ ħafna familji</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“il-Gvern Laburista rrenda lill-Kunsilli Lokali”
+</div>
+<span class="context">Gvern Laburista rrenda lill-Kunsilli Lokali f’uffiċċji amministrattivi b’poteri dejjem inqas, sena wara oħra.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · mixed · chunk 4</span>
+<div class="quote">
+“gwadann finanzjarju tal-ftit”
+</div>
+<span class="context">Minflok il-<mark>gwadann finanzjarju tal-ftit</mark>, irridu gwadann kollettiv għall-poplu kollu</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 5</span>
+<div class="quote">
+“indħil politiku fil ħatriet u l-amministrazzjoni jispiċċaw”
+</div>
+<span class="context">fejn l-<mark>indħil politiku fil ħatriet u l-amministrazzjoni jispiċċaw</mark> darba għal dejjem</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“klikek korrotti u diżonesti li jistinkaw biss għall-ġid tal-ftit privileġġati”
+</div>
+<span class="context">b’kultura ta’ integrità jirnexxilna wkoll negħlbu l-<mark>klikek korrotti u diżonesti li jistinkaw biss għall-ġid tal-ftit privileġġati</mark>, li allura mhux biss jisirqu l-opportunitajiet ta’ ħaddieħor</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Aħna hawn għalik. Din hija l-kampanja”
+</div>
+<span class="context">Aħna magħqudin għal Malta. <mark>Aħna hawn għalik. Din hija l-kampanja</mark> tiegħek. Aħna miegħek.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“aħna nemmnu fil-poplu Malti”
+</div>
+<span class="context">Fuq kollox, <mark>aħna nemmnu fil-poplu Malti</mark> u Għawdxi. Nemmnu fil-ġudizzju</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“fiduċja fil-ħiliet tal-poplu u mhux biss dawk tal-politiċi”
+</div>
+<span class="context">se jagħmel passi kbar ta’ <mark>fiduċja fil-ħiliet tal-poplu u mhux biss dawk tal-politiċi</mark> fil-qalba tas-sistema. Dan se jsir</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“is-salarji eżaġerati tal-pożizzjonijiet inutli ta’ fiduċja”
+</div>
+<span class="context">Minflok il-miljuni li qed jitberbqu bħalissa għas-salarji eżaġerati tal-pożizzjonijiet inutli ta’ fiduċja, għan-nefqa diskrezzjonali u għad- direct orders</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“governanza tajba f’kultura ta’ integrità”
+</div>
+<span class="context">Tema 15: Governanza tajba f’kultura ta’ integrità Ser insaħħu l-istandards fil-ħajja</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“irrid pajjiż li jkun kburi u li jemmen f’niesu”
+</div>
+<span class="context">Il-ħolma tiegħi hija sempliċi. Irrid pajjiż li jkun kburi u li jemmen f’niesu. Irridu ntejbu r-reputazzjoni għaliex pajjiż stmat biss jista’ jattira l-aqwa impjiegi u jagħti l-aqwa futur lil uliedna.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“nemmnu fil-ġudizzju tal-poplu tagħna”
+</div>
+<span class="context">Fuq kollox, aħna nemmnu fil-poplu Malti u Għawdxi. Nemmnu fil-ġudizzju tal-poplu tagħna: poplu li kull meta kien f ’salib it-toroq dejjem għaraf li l-politika tal-Partit Nazzjonalista hija l-aħjar għażla għal pajjiżna.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“b’involviment aktar estensiv ta’ firxa ferm usa’ ta’ persuni fil-proċess tal-iggvernar eżekuttiv”
+</div>
+<span class="context">Dan se jsir <mark>b’involviment aktar estensiv ta’ firxa ferm usa’ ta’ persuni fil-proċess tal-iggvernar eżekuttiv</mark> u mhux biss għal finijiet ta’ konsultazzjoni jew konsulenza, ħalli aktar esperti u tekniċi jiġu involuti f’ħidmet il-gvern.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“B’viżjoni u bl-użu ta’ mezzi moderni diġitali naraw li l-operat tal-Qrati ta’ pajjiżna jiġi modernizzat”
+</div>
+<span class="context">Inwettqu riforma fil-qasam tal-ġustizzja li verament tikkontribwixxi biex is-saltna tad-dritt u l-amministrazzjoni sħiħa tal- ġustizzja jkunu l-pilastri li fuqhom nistgħu nerġgħu nibdew nibnu r-reputazzjoni tal- ġurisdizzjoni tagħna, fejn l-indħil politiku fil ħatriet u l-amministrazzjoni jispiċċaw darba għal dejjem. <mark>B’viżjoni u bl-użu ta’ mezzi moderni diġitali naraw li l-operat tal-Qrati ta’ pajjiżna jiġi modernizzat</mark> u ffukat biex jaqdi lill-poplu b’mod effettiv u effiċjenti</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“Il-poplu tagħna jinsab fi żmien interessanti li fih irid jara kif ser jerfa’ r-responsabbiltà biex iħares l-identità u l-kultura tiegħu”
+</div>
+<span class="context"><mark>Il-poplu tagħna jinsab fi żmien interessanti li fih irid jara kif ser jerfa’ r-responsabbiltà biex iħares l-identità u l-kultura tiegħu</mark> ta’ poplu li għandu d-drawwiet tiegħu u li jagħżluh minn popli oħra.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Gvern kompetenti u onest li kapaċi jerġa’”
+</div>
+<span class="context">Għalhekk nemmnu li l-poplu Malti u Għawdxi jixraqlu Gvern ġdid Nazzjonalista. <mark>Gvern kompetenti u onest li kapaċi jerġa’</mark> jikseb ir-rispett internazzjonali.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“poplu li kull meta kien f’salib it-toroq”
+</div>
+<span class="context">Nemmnu fil-ġudizzju tal-poplu tagħna: <mark>poplu li kull meta kien f’salib it-toroq</mark> dejjem għaraf</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“mhux biss dawk tal-politiċi”
+</div>
+<span class="context">gvern immexxi mill-Partit Nazzjonalista se jagħmel passi kbar ta’ fiduċja fil-ħiliet tal-poplu u <mark>mhux biss dawk tal-politiċi</mark> fil-qalba tas-sistema</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“gwadann kollettiv għall-poplu kollu”
+</div>
+<span class="context">Minflok il-gwadann finanzjarju tal-ftit, irridu <mark>gwadann kollettiv għall-poplu kollu</mark> u għat-tgawdija tal-ġenerazzjonijiet attwali u futuri</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“Malta jixirqilha ħafna aħjar”
+</div>
+<span class="context">Dan irriżulta fil-grey listing ta’ pajjiżna li ser iħalli impatt ekonomiku qawwi fis-snin li ġejjin. <mark>Malta jixirqilha ħafna aħjar</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“governanza tajba m’hijiex kapriċċ”
+</div>
+<span class="context">Il-<mark>governanza tajba m’hijiex kapriċċ</mark>. Għal pajjiżna din tfisser bibien beraħ ta’ opportunitajiet lil kulħadd: ħadd mhu żgħir wisq.</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“soċjetà li tagħder u tgħin lill-vulnerabbli”
+</div>
+<span class="context">17. Soċjetà li tagħder u tgħin lill-vulnerabbli 62 18. Anzjanità attiva u parteċipattiva</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“Patt Soċjali ġdid għal Malta”
+</div>
+<span class="context">b’konsultazzjoni sħiħa magħhom, hekk noħolqu <mark>Patt Soċjali ġdid għal Malta</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“pjan maħdum bizzilla ta’ tixħim, korruzzjoni u klijenteliżmu sfrenat”
+</div>
+<span class="context">Taħt it-tlellix u x-xenxilli tal-hekk imsejħa “roadmap” tal-Gvern Laburista skoprejna li kien hemm <mark>pjan maħdum bizzilla ta’ tixħim, korruzzjoni u klijenteliżmu sfrenat</mark> li biddel lil dan il-pajjiż f ’wieħed li jpoġġi l-flus u l-gwadann personali fil-bidu u fit-tmiem ta’ kollox.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“patt soċjali ġdid li jerġa’ jiddefinixxi r-responsabbilitajiet ta’ kull persuna”
+</div>
+<span class="context">Il-viżjoni tagħna hija msejsa fuq it-tisħiħ ta’ <mark>patt soċjali ġdid li jerġa’ jiddefinixxi r-responsabbilitajiet ta’ kull persuna</mark> daqskemm tas-soċjetà Maltija kollha kemm hi.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Immorru lil hinn mill-benefiċċji soċjali u nibdew inħarsu lejn il-persuna mill-aspetti kollha tagħha sabiex verament insaħħu l-benesseri soċjali”
+</div>
+<span class="context">Pajjiżna jrid jinvesti ħafna u ħafna aktar fil-mobbiltà soċjali sabiex nibdew mexjin it-triq li permezz tagħha neliminaw il-faqar f’pajjiżna. <mark>Immorru lil hinn mill-benefiċċji soċjali u nibdew inħarsu lejn il-persuna mill-aspetti kollha tagħha sabiex verament insaħħu l-benesseri soċjali</mark> li jgħin lil kulħadd jgħix b’dinjità u bi dħul adekwat.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“riforma ġudizzjarja li tixraq lil pajjiż Ewropew u modern”
+</div>
+<span class="context">Flimkien mal-esperti u wara konsultazzjoni mal-partijiet kollha interessati, inwettqu <mark>riforma ġudizzjarja li tixraq lil pajjiż Ewropew u modern</mark> b’emfażi qawwija fuq l-indipendenza tal-ġudikatura.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“Nippromwovu l-importanza tas-sħubija partikolarment f’oqsma li fihom id-drittijiet tal-ħaddiema jistgħu jiġu mittiefsa”
+</div>
+<span class="context">Niżviluppaw qafas modern u innovattiv għall-impjiegi u r-relazzjonijiet industrijali. Flimkien mal-imsieħba soċjali nsaħħu r-rwol tat-trade unions u nippromwovu l-importanza tas-sħubija partikolarment f’oqsma li fihom id-drittijiet tal-ħaddiema jistgħu jiġu mittiefsa.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“living income, il-living wage, it-tisħiħ tad-dinjita’ tal-ħaddiem”
+</div>
+<span class="context">Immexxu t-tfassil ta’ Patt Soċjali ġdid bejn il-partijiet ikkonċernati rilevanti, il-korpi kostitwiti u ċ-ċittadini, bil-għan li jiffoka fuq l-aspetti tal-<mark>living income, il-living wage, it-tisħiħ tad-dinjita’ tal-ħaddiem</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“fil-prekarjat, għaċ-cheap labour jew għall-isfruttament tal-ħaddiema”
+</div>
+<span class="context">Fil-viżjoni tagħna m’hemmx lok għall-prekarjat, għaċ-cheap labour jew għall-isfruttament tal-ħaddiema</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“neliminaw il-faqar f’pajjiżna”
+</div>
+<span class="context">Pajjiżna jrid jinvesti ħafna u ħafna aktar fil-mobbiltà soċjali sabiex nibdew mexjin it-triq li permezz tagħha <mark>neliminaw il-faqar f’pajjiżna</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“living wage”
+</div>
+<span class="context">impjiegi ta’ kwalita li jrendu għall-ħaddiema tagħna fi kwalunkwe settur b’pagi li tal-anqas jilħqu l-<mark>living wage</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“equal pay for equal work ser jitħaddem”
+</div>
+<span class="context">Il-kunċett ta’ <mark>equal pay for equal work ser jitħaddem</mark> l-ewwel fl-entitajiet tal-gvern biex iservi ta’ mudell.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“tisħiħ tad-dinjita’ tal-ħaddiem, it-titjib fid-dħul”
+</div>
+<span class="context">Patt Soċjali ġdid bejn il-partijiet ikkonċernati rilevanti, il-korpi kostitwiti u ċ-ċittadini, bil-għan li jiffoka fuq l-aspetti tal-living income, il-living wage, it-<mark>tisħiħ tad-dinjita’ tal-ħaddiem, it-titjib fid-dħul</mark></span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Aħna hawn għalik. Din hija l-kampanja”
+</div>
+<span class="context">Aħna magħqudin għal Malta. <mark>Aħna hawn għalik. Din hija l-kampanja</mark> tiegħek. Aħna miegħek.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“aħna nemmnu fil-poplu Malti”
+</div>
+<span class="context">Fuq kollox, <mark>aħna nemmnu fil-poplu Malti</mark> u Għawdxi. Nemmnu fil-ġudizzju</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“fiduċja fil-ħiliet tal-poplu u mhux biss dawk tal-politiċi”
+</div>
+<span class="context">se jagħmel passi kbar ta’ <mark>fiduċja fil-ħiliet tal-poplu u mhux biss dawk tal-politiċi</mark> fil-qalba tas-sistema. Dan se jsir</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“is-salarji eżaġerati tal-pożizzjonijiet inutli ta’ fiduċja”
+</div>
+<span class="context">Minflok il-miljuni li qed jitberbqu bħalissa għas-salarji eżaġerati tal-pożizzjonijiet inutli ta’ fiduċja, għan-nefqa diskrezzjonali u għad- direct orders</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“negħlbu l-klikek korrotti u diżonesti”
+</div>
+<span class="context">b’kultura ta’ integrità jirnexxilna wkoll <mark>negħlbu l-klikek korrotti u diżonesti</mark> li jistinkaw biss għall-ġid tal-ftit</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Temmnuhomx meta jgħidulkom li l-politiċi huma kollha l-istess”
+</div>
+<span class="context">Tħallu lil ħadd jgħidilkom li dan hu impossibbli. Kull kisba tidher impossibbli sakemm tintlaħaq. <mark>Temmnuhomx meta jgħidulkom li l-politiċi huma kollha l-istess</mark>. Jien minix perfett.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“patt soċjali ġdid li jerġa’ jiddefinixxi r-responsabbilitajiet ta’ kull persuna”
+</div>
+<span class="context">Il-viżjoni tagħna hija msejsa fuq it-tisħiħ ta’ <mark>patt soċjali ġdid li jerġa’ jiddefinixxi r-responsabbilitajiet ta’ kull persuna</mark> daqskemm tas-soċjetà Maltija kollha kemm hi.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“Din hija d-direzzjoni li Bernard Grech se jagħti lil dan il-pajjiż bħala Prim Ministru”
+</div>
+<span class="context">Ma’ Gvern Nazzjonalista, mhux biss taf fejn qiegħed iżda taf ukoll fejn irridu naslu flimkien jekk niġbdu ħabel wieħed. <mark>Din hija d-direzzjoni li Bernard Grech se jagħti lil dan il-pajjiż bħala Prim Ministru</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Gvern Nazzjonalista ġdid jagħmel gwerra kontra l-kriminalita’ organizzata”
+</div>
+<span class="context"><mark>Gvern Nazzjonalista ġdid jagħmel gwerra kontra l-kriminalita’ organizzata</mark> billi jsaħħaħ idejn il-forzi ta’ l-ordni u l-qrati tagħna sabiex jinqabdu u jiġu pproċessati dawk li jeqirdu l-ħajja ta tant nies innoċenti.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“Il-Partit Nazzjonalista għandu r-rieda li jara li ħadd ma jkollu għalfejn ibigħ lilu nnifsu lil għadd magħżul ta’ politiċi, negozjanti u kriminali privileġġati”
+</div>
+<span class="context"><mark>Il-Partit Nazzjonalista għandu r-rieda li jara li ħadd ma jkollu għalfejn ibigħ lilu nnifsu lil għadd magħżul ta’ politiċi, negozjanti u kriminali privileġġati</mark> biex jikseb id-drittijiet tiegħu jew tagħha. Min-naħa l-oħra, b’kultura ta’ integrità jinfirex il-ġid fost in-nies, il-familji u n-negozji, għax ilkoll ikunu stmati bħala parteċipanti fit-tkabbir ekonomiku, soċjali u politiku ta’ pajjiżna.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“pjan maħdum bizzilla ta’ tixħim, korruzzjoni”
+</div>
+<span class="context">skoprejna li kien hemm <mark>pjan maħdum bizzilla ta’ tixħim, korruzzjoni</mark> u klijenteliżmu sfrenat li biddel lil dan il-pajjiż</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“nemmnu fil-poplu Malti u Għawdxi”
+</div>
+<span class="context">Fuq kollox, aħna <mark>nemmnu fil-poplu Malti u Għawdxi</mark>. Nemmnu fil-ġudizzju tal-poplu tagħna</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“nevitaw li naqgħu fin-nasba tal-popoliżmu”
+</div>
+<span class="context">jeħtieġ <mark>nevitaw li naqgħu fin-nasba tal-popoliżmu</mark> fil-konfront tal-persuni barranin. Il-Partit Nazzjonalista mhu se jippermetti qatt li jsir partit popolist</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“living wage”
+</div>
+<span class="context">impjiegi ta’ kwalita li jrendu għall-ħaddiema tagħna fi kwalunkwe settur b’pagi li tal-anqas jilħqu l-<mark>living wage</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“It-tmien snin tal-Labour tappnu bil-kbir isimna”
+</div>
+<span class="context"><mark>It-tmien snin tal-Labour tappnu bil-kbir isimna</mark> mal-bqija tad-dinja, b’daqqa wara oħra u bi skandlu wara ieħor.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“klikek korrotti u diżonesti li jistinkaw biss”
+</div>
+<span class="context">b’kultura ta’ integrità jirnexxilna wkoll negħlbu l-<mark>klikek korrotti u diżonesti li jistinkaw biss</mark> għall-ġid tal-ftit privileġġati</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“politika ta’ imigrazzjoni umana u ġusta”
+</div>
+<span class="context">29. Politika ta’ imigrazzjoni umana u ġusta 30. Il-ħolqa kruċjali: inxejnu t-tribaliżmu</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“kburin bl-identità tagħna”
+</div>
+<span class="context">trodd lura d-dinjità li jixirqilna bħala pajjiż u poplu tant <mark>kburin bl-identità tagħna</mark>. Il-politika mhi xejn</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“l-identità u l-kultura tiegħu”
+</div>
+<span class="context">responsabbiltà biex iħares <mark>l-identità u l-kultura tiegħu</mark> ta’ poplu li għandu d-drawwiet tiegħu</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“poplu tant kburin bl-identità tagħna”
+</div>
+<span class="context">Gvern immexxi minn partit b’viżjoni għal pajjiżna, viżjoni li se trodd lura d-dinjità li jixirqilna bħala pajjiż u <mark>poplu tant kburin bl-identità tagħna</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“Il-Partit Nazzjonalista mhu se jippermetti qatt li jsir partit popolist u juża l-ħajja tan-nies f’għawġ u riskju biex jidher b’saħħtu mad-dgħajjef”
+</div>
+<span class="context">Kull min jgħix f’pajżna huwa parti mis-soċjetà tagħna. Għalhekk jeħtieġ nevitaw li naqgħu fin-nasba tal-popoliżmu fil-konfront tal-persuni barranin. Dan japplika għal kwalunkwe tip ta’ immigrazzjoni. <mark>Il-Partit Nazzjonalista mhu se jippermetti qatt li jsir partit popolist u juża l-ħajja tan-nies f’għawġ u riskju biex jidher b’saħħtu mad-dgħajjef</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“Gvern Nazzjonalista ġdid jagħmel gwerra kontra l-kriminalita’ organizzata”
+</div>
+<span class="context"><mark>Gvern Nazzjonalista ġdid jagħmel gwerra kontra l-kriminalita’ organizzata</mark> billi jsaħħaħ idejn il-forzi ta’ l-ordni u l-qrati tagħna sabiex jinqabdu u jiġu pproċessati dawk li jeqirdu l-ħajja ta tant nies innoċenti.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“Rispett lejn il-kriterju ewlieni tal-għoti taċ-ċittadinanza lil dawk il-persuni u familji li għandhom rabta ġenwina ma’ pajjiżna”
+</div>
+<span class="context">Nerġgħu nibnu r-rispett u l-kburija għaċ-ċittadinanza Maltija billi wkoll naraw li l-kriterju ewlieni tal-għoti taċ-ċittadinanza tkun lil dawk il-persuni u familji li għandhom rabta ġenwina ma’ pajjiżna. Inbiddlu l-programm tal-bejgħ taċ-ċittadinanza (l-IIP) billi l-bażi ewlenija tiegħu jkun investiment attiv u fit-tul fl-ekonomija ta’ pajjiżna.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Politika ta’ imigrazzjoni umana u ġusta”
+</div>
+<span class="context">29. <mark>Politika ta’ imigrazzjoni umana u ġusta</mark> 30. Il-ħolqa kruċjali: inxejnu t-tribaliżmu</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“l-identità Għawdxija”
+</div>
+<span class="context">Il-viżjoni tagħna għal Għawdex hija mibnija fuq il-preżervazzjoni ta<mark>l-identità Għawdxija</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“l-identità nazzjonali hija wkoll dik”
+</div>
+<span class="context">Fil-viżjoni tagħna, <mark>l-identità nazzjonali hija wkoll dik</mark> li tagħmilna kburin li aħna Maltin. Fost l-elementi ewlenin tagħha hemm il-lingwa, il-wirt storiku tagħna</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“nipproteġu l-pajsaġġ uniku ta’ din il-gżira”
+</div>
+<span class="context">niżguraw li <mark>nipproteġu l-pajsaġġ uniku ta’ din il-gżira</mark>. Irridu li Għawdex jibqa’ differenti minn Malta</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“politika ta’ immigrazzjoni li teradika l-popoliżmu u r-razziżmu”
+</div>
+<span class="context">irridu nibnu <mark>politika ta’ immigrazzjoni li teradika l-popoliżmu u r-razziżmu</mark> u tkun mibnija fuq metodi li filwaqt li qatt ma jippreġudikaw il-ħajja, ikunu jirrispettaw il-limitazzjonijiet tal-kapjenza ta’ pajjiżna</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“pjan maħdum bizzilla ta’ tixħim, korruzzjoni”
+</div>
+<span class="context">skoprejna li kien hemm <mark>pjan maħdum bizzilla ta’ tixħim, korruzzjoni</mark> u klijenteliżmu sfrenat li biddel</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“min ħoloq il-problema ma jistax ikun”
+</div>
+<span class="context">la għall-immedjat u la għal aktar fit-tul. Huwa ċar li <mark>min ħoloq il-problema ma jistax ikun</mark> is-soluzzjoni. Aħna nemmnu</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“iċ-ċittadin onest ikollu rasu mistrieħa”
+</div>
+<span class="context">Taħt gvern immexxi mill-Partit Nazzjonlista, <mark>iċ-ċittadin onest ikollu rasu mistrieħa</mark> li hemm Gvern li jipproteġieh</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“xibka tal-kriminalita’ organizzata u l-korruzzjoni”
+</div>
+<span class="context">bidla radikali fil-ħidma tal-gvern biex tinqered ix-<mark>xibka tal-kriminalita’ organizzata u l-korruzzjoni</mark> li għerrew</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“pjan maħdum bizzilla ta’ tixħim, korruzzjoni u klijenteliżmu sfrenat”
+</div>
+<span class="context">Taħt it-tlellix u x-xenxilli tal-hekk imsejħa “roadmap” tal-Gvern Laburista skoprejna li kien hemm <mark>pjan maħdum bizzilla ta’ tixħim, korruzzjoni u klijenteliżmu sfrenat</mark> li biddel lil dan il-pajjiż f ’wieħed li jpoġġi l-flus u l-gwadann personali fil-bidu u fit-tmiem ta’ kollox.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“min ħoloq il-problema ma jistax ikun is-soluzzjoni”
+</div>
+<span class="context">Huwa ċar li <mark>min ħoloq il-problema ma jistax ikun is-soluzzjoni</mark>. Aħna nemmnu fil-potenzjal ta’ pajjiżna għax il-poplu Malti hu qalbieni, ħabrieki u ħawtiel.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“ma’ nħallux kultura ta’ qagħad tiżviluppa, filwaqt li ninċentivaw aktar taħriġ u speċjalizzazzjoni”
+</div>
+<span class="context">Biex ngħinu lil min jispiċċa bla xogħol, l-ewwel tnax-il xahar ta’ wara li l-persuna tiġi qiegħda ser tirċievi benefiċċju ekwivalenti għall-paga minima biex ngħinuhom jitħarrġu u jsibu impjieg li jrendi. Hekk nerġgħu nagħtu lura d-dinjità, <mark>ma’ nħallux kultura ta’ qagħad tiżviluppa, filwaqt li ninċentivaw aktar taħriġ u speċjalizzazzjoni</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“grey listing ta’ pajjiżna li ser iħalli impatt ekonomiku qawwi”
+</div>
+<span class="context">Ir-reputazzjoni tnawret u ġarrbet ħsarat li jaf ma jissewwew qatt. Dan irriżulta fil-<mark>grey listing ta’ pajjiżna li ser iħalli impatt ekonomiku qawwi</mark> fis-snin li ġejjin.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“Jekk fostna jirnexxilna niżguraw kultura ta’ integrità minflok kultura ta’ impunità”
+</div>
+<span class="context"><mark>Jekk fostna jirnexxilna niżguraw kultura ta’ integrità minflok kultura ta’ impunità</mark>, ikollna Stat li jittratta lil kull persuna b’mod ġust u ekwu. Kull persuna hija detentur ta’ drittijiet fil-konfront tal-amministrazzjoni u l-eżekuttiv tal-pajjiż u għaldaqstant dawn tal-aħħar obbligati jaraw li d-drittijiet ta’ dik il-persuna jkunu rikonoxxuti u implimentati b’rispett, dinjità u mingħajr diskriminazzjoni.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“pjan maħdum bizzilla ta’ tixħim, korruzzjoni”
+</div>
+<span class="context">Taħt it-tlellix u x-xenxilli tal-hekk imsejħa ‘roadmap’ tal-Gvern Laburista skoprejna li kien hemm <mark>pjan maħdum bizzilla ta’ tixħim, korruzzjoni</mark> u klijenteliżmu sfrenat</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“min ħoloq il-problema ma jistax ikun is-soluzzjoni”
+</div>
+<span class="context">Huwa ċar li <mark>min ħoloq il-problema ma jistax ikun is-soluzzjoni</mark>. Aħna nemmnu fil-potenzjal ta’ pajjiżna</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“il-kultura tal-ħabi li rrenjat”
+</div>
+<span class="context">Gvern ġdid Nazzjonalista se jeqred <mark>il-kultura tal-ħabi li rrenjat</mark> fl-aħħar tmien snin</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“negozji li jaħdmu b’mod inġust u qarrieq”
+</div>
+<span class="context">Nindirizzaw il-problema tal-kummerċ illeċitu biex inneħħu l-kompetizzjoni inġusta bejn negozji li jaħdmu sewwa u <mark>negozji li jaħdmu b’mod inġust u qarrieq</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“It-tmien snin tal-Labour tappnu bil-kbir isimna”
+</div>
+<span class="context"><mark>It-tmien snin tal-Labour tappnu bil-kbir isimna</mark> mal-bqija tad-dinja, b’daqqa wara oħra u bi skandlu wara ieħor.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“xinqered ix-xibka tal-kriminalita’ organizzata u l-korruzzjoni”
+</div>
+<span class="context">Inwettqu bidla radikali fil-ħidma tal-gvern biex tinqered ix-xibka tal-kriminalita’ organizzata u l-korruzzjoni li għerrew il-fiduċja tan-nies fil-politiċi</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“inservi lill-poplu ta’ dan il-pajjiż”
+</div>
+<span class="context">imma għax irrid <mark>inservi lill-poplu ta’ dan il-pajjiż</mark> uniku. Il-ħolma tiegħi hija sempliċi.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“aħna nemmnu fil-poplu Malti u Għawdxi”
+</div>
+<span class="context">Fuq kollox, <mark>aħna nemmnu fil-poplu Malti u Għawdxi</mark>. Nemmnu fil-ġudizzju tal-poplu tagħna</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“jimpenjaw ruħhom lejn il-poplu Malti”
+</div>
+<span class="context">tixraq lil persuni li verament <mark>jimpenjaw ruħhom lejn il-poplu Malti</mark> u Għawdxi. Dan is-sens ta’ impenn se jiġi</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“jiġi modernizzat u ffukat biex jaqdi lill-poplu”
+</div>
+<span class="context">naraw li l-operat tal-Qrati ta’ pajjiżna <mark>jiġi modernizzat u ffukat biex jaqdi lill-poplu</mark> b’mod effettiv u effiċjenti</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“l-aktar riżorsa prezzjuża tagħna”
+</div>
+<span class="context">jirrikonoxxi l-importance tal-ħaddiem bħala <mark>l-aktar riżorsa prezzjuża tagħna</mark>. Riżorsa li tiddependi</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“irrid inservi lill-poplu ta’ dan il-pajjiż uniku”
+</div>
+<span class="context">Dan huwa l-mument tagħna li nagħtu lil Malta paġna ġdida biex timxi ‘l quddiem fil-paċi u l-prosperita’. Jien hawn, għas-servizz tiegħek. Mhux għax irrid il-poter, imma għax <mark>irrid inservi lill-poplu ta’ dan il-pajjiż uniku</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“aħna nemmnu fil-poplu Malti u Għawdxi”
+</div>
+<span class="context">Il-viżjoni tagħna hija aspirazzjoni li tista’ tintlaħaq u tissarraf f’ġid u suċċess. Fuq kollox, <mark>aħna nemmnu fil-poplu Malti u Għawdxi</mark>. Nemmnu fil-ġudizzju tal-poplu tagħna: poplu li kull meta kien f ’salib it-toroq dejjem għaraf li l-politika tal-Partit Nazzjonalista hija l-aħjar għażla għal pajjiżna</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Din hija d-direzzjoni li Bernard Grech se jagħti lil dan il-pajjiż bħala Prim Ministru”
+</div>
+<span class="context">Ma’ Gvern Nazzjonalista, mhux biss taf fejn qiegħed iżda taf ukoll fejn irridu naslu flimkien jekk niġbdu ħabel wieħed. <mark>Din hija d-direzzjoni li Bernard Grech se jagħti lil dan il-pajjiż bħala Prim Ministru</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“jaqdi lill-poplu b’mod effettiv u effiċjenti”
+</div>
+<span class="context">B’viżjoni u bl-użu ta’ mezzi moderni diġitali naraw li l-operat tal-Qrati ta’ pajjiżna jiġi modernizzat u ffukat biex <mark>jaqdi lill-poplu b’mod effettiv u effiċjenti</mark> u li jiggarantixxi serħan tal-moħħ mil-lat amministrattiv f’termini ta’ integrità tal-proċessi u speditezza tal-każijiet.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“Il-Maltin u l-Għawdxin huma nies kapaċi, ambizzjużi u li kapaċi jirnexxu”
+</div>
+<span class="context"><mark>Il-Maltin u l-Għawdxin huma nies kapaċi, ambizzjużi u li kapaċi jirnexxu</mark>. Iċ-ċokon ġeografiku m’għandux jitqies bħala fruntiera li jwaqqaf lill-poplu tagħna milli jilħaq l-aspirazzjonijiet tiegħu.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Nemmnu fil-poplu Malti u Għawdxi”
+</div>
+<span class="context">Fuq kollox, aħna nemmnu fil-poplu Malti u Għawdxi. Nemmnu fil-ġudizzju tal-poplu tagħna: poplu li kull meta kien f’salib it-toroq dejjem għaraf li l-politika tal-Partit Nazzjonalista hija l-aħjar għażla</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“nemmnu fil-poplu Malti u Għawdxi”
+</div>
+<span class="context">Fuq kollox, aħna <mark>nemmnu fil-poplu Malti u Għawdxi</mark>. Nemmnu fil-ġudizzju tal-poplu tagħna</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“il-poplu Malti u Għawdxi se jieqaf”
+</div>
+<span class="context">fiduċjużi li f’dan il-mument kruċjali għal pajjiżna, <mark>il-poplu Malti u Għawdxi se jieqaf</mark> u jaħseb fuq fejn irid jara lil dan il-pajjiż</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“gwadann kollettiv għall-poplu kollu”
+</div>
+<span class="context">Minflok il-gwadann finanzjarju tal-ftit, irridu <mark>gwadann kollettiv għall-poplu kollu</mark> u għat-tgawdija tal-ġenerazzjonijiet attwali u futuri</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“il-poplu b’mod effettiv u effiċjenti”
+</div>
+<span class="context">biex jaqdi lill-poplu b’mod effettiv u effiċjenti u li jiggarantixxi serħan tal-moħħ</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“ekwilibriju ġdid għar-relazzjoni tal-poter bejn il-poplu kollu”
+</div>
+<span class="context">Dan l-<mark>ekwilibriju ġdid għar-relazzjoni tal-poter bejn il-poplu kollu</mark> u l-gvern jista’ jinstab jekk nindirizzaw l-aspetti kollha tal-amministrazzjoni tal-gvern</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“ħaddieħor abbuża mill-fiduċja, seraqlek flusek”
+</div>
+<span class="context">Imma filwaqt li <mark>ħaddieħor abbuża mill-fiduċja, seraqlek flusek</mark> u kisser isem malta, aħna qattajna</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“aħna nemmnu fil-poplu Malti u Għawdxi”
+</div>
+<span class="context">Fuq kollox, <mark>aħna nemmnu fil-poplu Malti u Għawdxi</mark>. Nemmnu fil-ġudizzju tal-poplu tagħna</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“Gvern Laburista rrenda lill-Kunsilli Lokali f’uffiċċji amministrattivi”
+</div>
+<span class="context">twemmin hu rifless fil-viżjoni tagħna għall-iggvernar lokali. <mark>Gvern Laburista rrenda lill-Kunsilli Lokali f’uffiċċji amministrattivi</mark> b’poteri dejjem inqas, sena wara oħra.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“is-salarji eżaġerati tal-pożizzjonijiet inutli ta’ fiduċja”
+</div>
+<span class="context">Minflok il-miljuni li qed jitberbqu bħalissa għas-salarji eżaġerati tal-pożizzjonijiet inutli ta’ fiduċja, għan-nefqa diskrezzjonali u għad- direct orders</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“negħlbu l-klikek korrotti u diżonesti”
+</div>
+<span class="context">b’kultura ta’ integrità jirnexxilna wkoll <mark>negħlbu l-klikek korrotti u diżonesti</mark> li jistinkaw biss għall-ġid tal-ftit</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Temmnuhomx meta jgħidulkom li l-politiċi huma kollha l-istess”
+</div>
+<span class="context">Tħallu lil ħadd jgħidilkom li dan hu impossibbli. Kull kisba tidher impossibbli sakemm tintlaħaq. <mark>Temmnuhomx meta jgħidulkom li l-politiċi huma kollha l-istess</mark>. Jien minix perfett.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“min ħoloq il-problema ma jistax ikun is-soluzzjoni”
+</div>
+<span class="context">Huwa ċar li <mark>min ħoloq il-problema ma jistax ikun is-soluzzjoni</mark>. Aħna nemmnu fil-potenzjal ta’ pajjiżna għax il-poplu Malti hu qalbieni, ħabrieki u ħawtiel.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“Din hija d-direzzjoni li Bernard Grech se jagħti lil dan il-pajjiż bħala Prim Ministru”
+</div>
+<span class="context">Ma’ Gvern Nazzjonalista, mhux biss taf fejn qiegħed iżda taf ukoll fejn irridu naslu flimkien jekk niġbdu ħabel wieħed. <mark>Din hija d-direzzjoni li Bernard Grech se jagħti lil dan il-pajjiż bħala Prim Ministru</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“l-indħil politiku fil ħatriet u l-amministrazzjoni jispiċċaw darba għal dejjem”
+</div>
+<span class="context">Inwettqu riforma fil-qasam tal-ġustizzja li verament tikkontribwixxi biex is-saltna tad-dritt u l-amministrazzjoni sħiħa tal- ġustizzja jkunu l-pilastri li fuqhom nistgħu nerġgħu nibdew nibnu r-reputazzjoni tal- ġurisdizzjoni tagħna, fejn <mark>l-indħil politiku fil ħatriet u l-amministrazzjoni jispiċċaw darba għal dejjem</mark>. B’viżjoni u bl-użu ta’ mezzi moderni diġitali naraw li l-operat tal-Qrati ta’ pajjiżna jiġi modernizzat</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“Il-Partit Nazzjonalista għandu r-rieda li jara li ħadd ma jkollu għalfejn ibigħ lilu nnifsu lil għadd magħżul ta’ politiċi, negozjanti u kriminali privileġġati”
+</div>
+<span class="context"><mark>Il-Partit Nazzjonalista għandu r-rieda li jara li ħadd ma jkollu għalfejn ibigħ lilu nnifsu lil għadd magħżul ta’ politiċi, negozjanti u kriminali privileġġati</mark> biex jikseb id-drittijiet tiegħu jew tagħha. Min-naħa l-oħra, b’kultura ta’ integrità jinfirex il-ġid fost in-nies, il-familji u n-negozji, għax ilkoll ikunu stmati bħala parteċipanti fit-tkabbir ekonomiku, soċjali u politiku ta’ pajjiżna.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“seraqlek flusek u kisser isem malta”
+</div>
+<span class="context">filwaqt li ħaddieħor abbuża mill-fiduċja, <mark>seraqlek flusek u kisser isem malta</mark>, aħna qattajna l-aħħar għaxar xnin nisimgħuk u nibnu l-viżjoni li jmiss</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“nemmnu fil-poplu Malti u Għawdxi”
+</div>
+<span class="context">Fuq kollox, aħna <mark>nemmnu fil-poplu Malti u Għawdxi</mark>. Nemmnu fil-ġudizzju tal-poplu tagħna</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“nevitaw li naqgħu fin-nasba tal-popoliżmu”
+</div>
+<span class="context">jeħtieġ <mark>nevitaw li naqgħu fin-nasba tal-popoliżmu</mark> fil-konfront tal-persuni barranin. Dan japplika għal kwalunkwe tip ta’ immigrazzjoni. Il-Partit Nazzjonalista mhu se jippermetti qatt li jsir partit popolist</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“gwadann kollettiv għall-poplu kollu”
+</div>
+<span class="context">Minflok il-gwadann finanzjarju tal-ftit, irridu <mark>gwadann kollettiv għall-poplu kollu</mark> u għat-tgawdija tal-ġenerazzjonijiet attwali u futuri</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“indħil politiku fil ħatriet u l-amministrazzjoni jispiċċaw”
+</div>
+<span class="context">fejn l-<mark>indħil politiku fil ħatriet u l-amministrazzjoni jispiċċaw</mark> darba għal dejjem</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“ħadd ma jkollu għalfejn ibigħ lilu nnifsu lil għadd magħżul ta’ politiċi”
+</div>
+<span class="context">Il-Partit Nazzjonalista għandu r-rieda li jara li <mark>ħadd ma jkollu għalfejn ibigħ lilu nnifsu lil għadd magħżul ta’ politiċi</mark>, negozjanti u kriminali privileġġati biex jikseb id-drittijiet tiegħu</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="54620_202203_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

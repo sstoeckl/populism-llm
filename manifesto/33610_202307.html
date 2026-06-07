@@ -1,0 +1,1675 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>PP (Spain, 2023) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/33610_202307_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">PP (Spain, 2023)</h1>
+<p class="subtitle lead">manifesto_id 33610_202307</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Spain · <span class="item"><strong>Party</strong></span> PP (People’s Party) · <span class="item"><strong>Year</strong></span> 2023 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 60</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.7</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“impulse la libre iniciativa, el desarrollo empresarial”
+</div>
+<span class="context">un marco regulatorio que <mark>impulse la libre iniciativa, el desarrollo empresarial</mark>, que sea un polo de</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“fomentando la colaboración público-privada”
+</div>
+<span class="context">Avanzaremos en la dualización real de la Formación Profesional implicando a las empresas, <mark>fomentando la colaboración público-privada</mark> y el contacto</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“la economía de mercado”
+</div>
+<span class="context">el respeto al Estado de Derecho, <mark>la economía de mercado</mark> y las sociedades abiertas.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“reducir la presión fiscal y al tiempo facilitar la prestación eficiente de los servicios públicos fundamentales”
+</div>
+<span class="context">Necesitamos potenciar los sectores que, como el sector agroalimentario y pesquero, el industrial, el turismo y los servicios, o el energético, nos dan ventajas competitivas sobre los demás miembros de la Unión Europea y en los mercados internacionales.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Reduciremos el desproporcionado número de ministerios y cargos de confianza”
+</div>
+<span class="context">Es preciso que el Gobierno vuelva a ser fiable, eficiente y riguroso en el uso de los recursos públicos. <mark>Reduciremos el desproporcionado número de ministerios y cargos de confianza</mark>, que se ha multiplicado injustificadamente durante los últimos años y haremos un uso riguroso de los recursos públicos.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“la política de competencia europea que preserve al mismo tiempo el mercado interior y la competitividad de las empresas europeas”
+</div>
+<span class="context">DEFENDEREMOS UNA POLÍTICA DE COMPETENCIA EUROPEA que preserve al mismo tiempo el mercado interior y la competitividad de las empresas europeas en los mercados globales.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“libre iniciativa, el desarrollo empresarial”
+</div>
+<span class="context">es necesario un marco regulatorio que impulse la <mark>libre iniciativa, el desarrollo empresarial</mark>, que sea un polo de atracción de inversiones y de talento internacional.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“colaboración público-privada y el contacto con el tejido industrial”
+</div>
+<span class="context">Avanzaremos en la dualización real de la Formación Profesional implicando a las empresas, fomentando la <mark>colaboración público-privada y el contacto con el tejido industrial</mark> para mejorar su empleabilidad.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“la economía de mercado y las sociedades abiertas”
+</div>
+<span class="context">FRENTE A POPULISMOS Y RADICALISMOS, España proyectará los valores de la libertad, la democracia, los derechos humanos, el respeto al Estado de Derecho, <mark>la economía de mercado y las sociedades abiertas</mark>.</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“hacer más atractivos los mercados de capitales”
+</div>
+<span class="context">requisites de cotización a fin de <mark>hacer más atractivos los mercados de capitales</mark> para las pequeñas y medianas</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“facilitaremos el acceso fuentes de financiación alternativas a la bancaria”
+</div>
+<span class="context">FACILITAREMOS LA FINANCIACIÓN DE LAS PYMES, permitiendo el acceso fuentes de financiación alternativas a la bancaria. También reforzaremos el papel del capital riesgo con una mayor implicación de instituciones como ENISA o ICO en el diseño de estrategias de financiación diseñadas para pymes y simplificaremos los requisites de cotización a fin de hacer más atractivos los mercados de capitales para las pequeñas y medianas empresas.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“la digitalización de la Administración Pública, especialmente en el ámbito de los servicios de empleo, fomentando su automatización”
+</div>
+<span class="context">DESARROLLAREMOS Y FOMENTAREMOS LA DIGITALIZACIÓN DE LA ADMINISTRACIÓN PÚBLICA, especialmente en el ámbito de los servicios de empleo, fomentando su automatización para acortar los tiempos de tramitación y pago y reducir la carga burocrática para los beneficiarios.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“mercados de capitales para las pequeñas y medianas empresas”
+</div>
+<span class="context">simplificaremos los requisites de cotización a fin de hacer más atractivos los <mark>mercados de capitales para las pequeñas y medianas empresas</mark>, en consonancia y como desarrollo de la normativa europea que promueve la Unión de Mercados de Capitales.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Instituto de Crédito al Desarrollo”
+</div>
+<span class="context">promoviendo la creación de un <mark>Instituto de Crédito al Desarrollo</mark>, similar a los que tienen los países más avanzados, que aglutine y canalice la ayuda económica y financiera.</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“garantizaremos la independencia de los organismos”
+</div>
+<span class="context">la erosion institucional y <mark>garantizaremos la independencia de los organismos</mark> del Estado para que vuelvan</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“recuperar la confianza en las instituciones y en el Estado de Derecho”
+</div>
+<span class="context">REGENERAR Y RESPETAR RECUPERAR LA CONFIANZA EN LAS INSTITUCIONES Y EN EL ESTADO DE DERECHO: LA NECESARIA REGENERACIÓN DEMOCRÁTICA</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“la democracia, los derechos humanos”
+</div>
+<span class="context">proyectará los valores de la libertad, <mark>la democracia, los derechos humanos</mark>, el respeto al Estado de Derecho</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Garantizar la independencia de las instituciones y organismos del Estado”
+</div>
+<span class="context"><mark>Garantizar la independencia de las instituciones y organismos del Estado</mark> para que vuelvan a estar al servicio de los ciudadanos.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“reforma de la ley Orgánica, incluyendo la modificación del sistema de elección de los miembros del Consejo”
+</div>
+<span class="context">REFORZAREMOS LAS GARANTÍAS DE INDEPENDENCIA DEL PODER JUDICIAL, mediante la reforma de su ley Orgánica, incluyendo la modificación del sistema de elección de los miembros del Consejo de manera que sean los jueces y magistrados los que elijan a los 12 vocales de procedencia judicial. Derogaremos la reforma que hoy impide su normal funcionamiento.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“la ley de transparencia de 2013, reforzando el derecho de acceso a la información pública”
+</div>
+<span class="context">MEJORAREMOS LA LEY DE TRANSPARENCIA DE 2013, reforzando el derecho de acceso a la información pública yla capacidad de respuesta del Consejo de transparencia y buen gobierno y el cumplimiento de sus resoluciones.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Garantizar la independencia de las instituciones y organismos del Estado”
+</div>
+<span class="context">REGENERAR Y RESPETAR: 1. <mark>Garantizar la independencia de las instituciones y organismos del Estado</mark>. 2. Promover de forma efectiva la convivencia de todos.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“necesaria regeneración democrática”
+</div>
+<span class="context">reafirmar nuestro compromiso decidido con el imprescindible respeto a las instituciones y la <mark>necesaria regeneración democrática</mark> tal y como fue suscrito solemnemente por nuestro presidente</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“la democracia liberal pugna con derivas autoritarias”
+</div>
+<span class="context"><mark>la democracia liberal pugna con derivas autoritarias</mark>, extremistas y populistas; surgen amenazas sobre la construcción europea, que es un empeño compartido e inequívoco de la sociedad y de los gobiernos españoles.</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“igualdad de las personas LGTBi”
+</div>
+<span class="context">violencia contra la mujer ………..58 8. Trabajar por la <mark>igualdad de las personas LGTBi</mark>………………………………….60 REGENERAR</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“garantice los derechos de las personas transexuales”
+</div>
+<span class="context">APROBAREMOS UNA NUEVA LEY QUE GARANTICE LOS DERECHOS DE LAS PERSONAS TRANSEXUALES, una ley que nacerá</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“accesibilidad, igualdad y no discriminación”
+</div>
+<span class="context">participación ciudadana a través de medios digitales en condiciones de <mark>accesibilidad, igualdad y no discriminación</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“lucharemos con todos los mecanismos a nuestro alcance contra la violencia machista”
+</div>
+<span class="context">Haremos frente a la soledad no deseada como uno de los principales males de nuestro tiempo y <mark>lucharemos con todos los mecanismos a nuestro alcance contra la violencia machista</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“LUCHAREMOS CONTRA TODO TIPO DE DISCRIMINACIÓN, con nuevos protocolos educativos”
+</div>
+<span class="context">El Partido Popular defiende el pluralismo y la diversidad como valores intrínsecos de la democracia. Creemos en una España en la que cada persona puede desarrollar su proyecto de vida sin sufrir discriminación de ningún tipo, tal y como recoge el artículo 14 de la Constitución Española. <mark>LUCHAREMOS CONTRA TODO TIPO DE DISCRIMINACIÓN, con nuevos protocolos educativos</mark> con el fin de que ningún menor sufra exclusión o humillación alguna.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“principio de transparencia y de reutilización de datos de las Administraciones públicas, garantizando la universalidad, la neutralidad y la no discriminación”
+</div>
+<span class="context">la participación ciudadana a través de medios digitales en condiciones de accesibilidad, igualdad y no discriminación, y el <mark>principio de transparencia y de reutilización de datos de las Administraciones públicas, garantizando la universalidad, la neutralidad y la no discriminación</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · mixed · chunk 1</span>
+<div class="quote">
+“Trabajar por la igualdad de las personas LGTBi”
+</div>
+<span class="context">8. <mark>Trabajar por la igualdad de las personas LGTBi</mark>. […] rechazamos también la asunción de las posiciones más extremas ante la cuestión trans: legislaremos con la máxima prudencia</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“cada persona puede desarrollar su proyecto de vida sin sufrir discriminación”
+</div>
+<span class="context">Creemos en una España en la que <mark>cada persona puede desarrollar su proyecto de vida sin sufrir discriminación</mark> de ningún tipo, tal y como recoge el artículo 14 de la Constitución Española.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“igualdad y no discriminación”
+</div>
+<span class="context">participación ciudadana a través de medios digitales en condiciones de accesibilidad, <mark>igualdad y no discriminación</mark>, y el principio de transparencia y de reutilización de datos de las Administraciones públicas.</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“impulse la libre iniciativa, el desarrollo empresarial”
+</div>
+<span class="context">un marco regulatorio que <mark>impulse la libre iniciativa, el desarrollo empresarial</mark>, que sea un polo de</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“recuperar la confianza en las instituciones y en el Estado de Derecho”
+</div>
+<span class="context">REGENERAR Y RESPETAR RECUPERAR LA CONFIANZA EN LAS INSTITUCIONES Y EN EL ESTADO DE DERECHO: LA NECESARIA REGENERACIÓN DEMOCRÁTICA</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“la economía de mercado”
+</div>
+<span class="context">el respeto al Estado de Derecho, <mark>la economía de mercado</mark> y las sociedades abiertas.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Garantizar la independencia de las instituciones y organismos del Estado”
+</div>
+<span class="context"><mark>Garantizar la independencia de las instituciones y organismos del Estado</mark> para que vuelvan a estar al servicio de los ciudadanos.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“reforma de su ley Orgánica, incluyendo la modificación del sistema de elección de los miembros del Consejo”
+</div>
+<span class="context">REFORZAREMOS LAS GARANTÍAS DE INDEPENDENCIA DEL PODER JUDICIAL, mediante la <mark>reforma de su ley Orgánica, incluyendo la modificación del sistema de elección de los miembros del Consejo</mark> de manera que sean los jueces y magistrados los que elijan a los 12 vocales de procedencia judicial. Derogaremos la reforma que hoy impide su normal funcionamiento.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“la ley de transparencia de 2013, reforzando el derecho de acceso a la información pública”
+</div>
+<span class="context">MEJORAREMOS LA LEY DE TRANSPARENCIA DE 2013, reforzando el derecho de acceso a la información pública yla capacidad de respuesta del Consejo de transparencia y buen gobierno y el cumplimiento de sus resoluciones.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“marco regulatorio que impulse la libre iniciativa”
+</div>
+<span class="context">es necesario un <mark>marco regulatorio que impulse la libre iniciativa</mark>, el desarrollo empresarial, que sea un polo de atracción de inversiones y de talento internacional.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“respeto a las instituciones y la necesaria regeneración democrática”
+</div>
+<span class="context">reafirmar nuestro compromiso decidido con el imprescindible <mark>respeto a las instituciones y la necesaria regeneración democrática</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“la democracia liberal pugna con derivas autoritarias”
+</div>
+<span class="context"><mark>la democracia liberal pugna con derivas autoritarias</mark>, extremistas y populistas; surgen amenazas sobre la construcción europea, que es un empeño compartido e inequívoco de la sociedad y de los gobiernos españoles.</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“intereses de sus políticos que a atender”
+</div>
+<span class="context">dedicado más tiempo a hablar de los <mark>intereses de sus políticos que a atender</mark> sus necesidades. La misma mayoría</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“frente a la desidia del actual Gobierno”
+</div>
+<span class="context">Por eso, <mark>frente a la desidia del actual Gobierno</mark>, el Partido Popular se compromete a estudiar</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“Frente a populismos y radicalismos”
+</div>
+<span class="context">325 FRENTE A POPULISMOS Y RADICALISMOS, España proyectará los valores de la libertad</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“la frivolidad, la división y el deterioro que hemos padecido en los años del sanchismo”
+</div>
+<span class="context">Hoy tenemos ante nosotros la posibilidad de pasar página de manera definitiva de <mark>la frivolidad, la división y el deterioro que hemos padecido en los años del sanchismo</mark> y abrir un tiempo en el que abordar la necesaria reconstrucción económica, social e institucional de nuestro país.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“el Gobierno ha colonizado todos esos organismos para someterlos a su control partidista”
+</div>
+<span class="context">El adecuado funcionamiento del Estado de Derecho depende de las neutralidad de instituciones reguladoras que aseguran el equilibrio de poder y el buen servicio de la Administración. En estos años, <mark>el Gobierno ha colonizado todos esos organismos para someterlos a su control partidista</mark>. El Partido Popular presentó a comienzos de 2023 un gran Plan de Calidad institucional que garantiza la independencia y profesionalidad de esas instituciones.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“la frivolidad, la división y el deterioro que hemos padecido en los años del sanchismo”
+</div>
+<span class="context">Hoy tenemos ante nosotros la posibilidad de pasar página de manera definitiva de <mark>la frivolidad, la división y el deterioro que hemos padecido en los años del sanchismo</mark> y abrir un tiempo en el que abordar la necesaria reconstrucción</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 2</span>
+<div class="quote">
+“según el manual populista de asalto a las instituciones”
+</div>
+<span class="context">sus socios han emprendido una campana constante de desprestigio contra el poder judicial, <mark>según el manual populista de asalto a las instituciones</mark>. Frente al uso partidista</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“Al contrario de lo que ha hecho el Gobierno de coalición”
+</div>
+<span class="context">desde el Partido Popular estamos convencidos de que la política exterior debe ser una política de Estado, de la que debe participar tanto el líder de la oposición como el Parlamento.</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“frente a la desidia del actual Gobierno”
+</div>
+<span class="context">Por eso, <mark>frente a la desidia del actual Gobierno</mark>, el Partido Popular se compromete a estudiar</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“la unión. Quiero reunir a una gran mayoría de ciudadanos para que trabajemos juntos y para todos por la gran Nación que compartimos”
+</div>
+<span class="context">Por eso este proyecto de país se construye desde un principio fundacional: <mark>la unión. Quiero reunir a una gran mayoría de ciudadanos para que trabajemos juntos y para todos por la gran Nación que compartimos</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“reafirmar nuestro compromiso decidido con el imprescindible respeto a las instituciones”
+</div>
+<span class="context">Queremos <mark>reafirmar nuestro compromiso decidido con el imprescindible respeto a las instituciones</mark> y la necesaria regeneración democrática tal y como fue suscrito solemnemente por nuestro presidente en el Oratorio de San Felipe Neri de Cádiz el pasado 23 de enero. El Plan de Calidad Institucional allí firmado sigue por tanto plenamente vigente e informa el conjunto de nuestro programa electoral.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“la política y los políticos como uno de los mayores problemas”
+</div>
+<span class="context">Esa mayoría decepcionada es la que hoy señala a <mark>la política y los políticos como uno de los mayores problemas</mark> de España.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“recuperar la voluntad de pacto y acuerdo”
+</div>
+<span class="context">El Partido Popular está plenamente comprometido en <mark>recuperar la voluntad de pacto y acuerdo</mark> en la vida pública, especialmente con el principal partido de la oposición.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“política exterior debe ser una política de Estado”
+</div>
+<span class="context">desde el Partido Popular estamos convencidos de que la <mark>política exterior debe ser una política de Estado</mark>, de la que debe participar tanto el líder de la oposición como el Parlamento.</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Medidas como el Ingreso Mínimo Vital han fallado en el cumplimiento de su importante objetivo”
+</div>
+<span class="context"><mark>Medidas como el Ingreso Mínimo Vital han fallado en el cumplimiento de su importante objetivo</mark> de reducir el riesgo de caer en la pobreza, como ha denunciado la AIREF.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“la política está para servir al ciudadano, no al poder”
+</div>
+<span class="context">La política está para servir al ciudadano, no al poder. Es preciso que el Gobierno vuelva a ser fiable, eficiente y riguroso en el uso de los recursos públicos. Reduciremos el desproporcionado número de ministerios y cargos de confianza, que se ha multiplicado injustificadamente durante los últimos años y haremos un uso riguroso de los recursos públicos.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“reducir la presión fiscal a los ciudadanos”
+</div>
+<span class="context">Tras años de constantes subidas de impuestos, el Partido Popular reafirma su vocación de <mark>reducir la presión fiscal a los ciudadanos</mark>. Queremos aliviar la carga fiscal de las familias, de los autónomos, de las empresas.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“promoveremos ayudas contra la pobreza infantil”
+</div>
+<span class="context">PROMOVEREMOS AYUDAS CONTRA LA POBREZA INFANTIL, donde España impulse y coordine un despliegue acelerado de la Garantía Infantil Europea</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“DEFENDEREMOS EL REFUERZO DE LAS POLÍTICAS DE COHESIÓN”
+</div>
+<span class="context"><mark>DEFENDEREMOS EL REFUERZO DE LAS POLÍTICAS DE COHESIÓN</mark> económica, social y territorial a través del presupuesto comunitario.</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“cesiones a socios radicales que se recuerdan”
+</div>
+<span class="context">peores errores y las peores <mark>cesiones a socios radicales que se recuerdan</mark> en nuestra democracia.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“frente a la desidia del actual Gobierno”
+</div>
+<span class="context">Por eso, <mark>frente a la desidia del actual Gobierno</mark>, el Partido Popular se compromete a estudiar</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 3</span>
+<div class="quote">
+“Frente a populismos y radicalismos”
+</div>
+<span class="context">325 FRENTE A POPULISMOS Y RADICALISMOS, España proyectará los valores de la libertad</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“la unión. Quiero reunir a una gran mayoría de ciudadanos para que trabajemos juntos y para todos por la gran Nación que compartimos”
+</div>
+<span class="context">Por eso este proyecto de país se construye desde un principio fundacional: <mark>la unión. Quiero reunir a una gran mayoría de ciudadanos para que trabajemos juntos y para todos por la gran Nación que compartimos</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“reafirmar nuestro compromiso decidido con el imprescindible respeto a las instituciones”
+</div>
+<span class="context">Queremos <mark>reafirmar nuestro compromiso decidido con el imprescindible respeto a las instituciones</mark> y la necesaria regeneración democrática tal y como fue suscrito solemnemente por nuestro presidente en el Oratorio de San Felipe Neri de Cádiz el pasado 23 de enero. El Plan de Calidad Institucional allí firmado sigue por tanto plenamente vigente e informa el conjunto de nuestro programa electoral.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“la frivolidad, la división y el deterioro”
+</div>
+<span class="context">pasar página de manera definitiva de <mark>la frivolidad, la división y el deterioro</mark> que hemos padecido en los años del sanchismo</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“cinco años de este Gobierno han sido un período de deterioro institucional”
+</div>
+<span class="context">Sin embargo, los <mark>cinco años de este Gobierno han sido un período de deterioro institucional</mark> acelerado para España.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“DEFENDEREMOS LA INTEGRIDAD TERRITORIAL, LA SOBERANÍA NACIONAL”
+</div>
+<span class="context"><mark>DEFENDEREMOS LA INTEGRIDAD TERRITORIAL, LA SOBERANÍA NACIONAL</mark> Y EL ORDEN CONSTITUCIONAL como máxima prioridad del Gobierno y de su política de defensa.</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“cesiones a socios radicales que se recuerdan”
+</div>
+<span class="context">peores errores y las peores <mark>cesiones a socios radicales que se recuerdan</mark> en nuestra democracia.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“legislar con la máxima prudencia para conciliar la expresión de la identidad personal con el cuidado a las mujeres, a la infancia y a las familias”
+</div>
+<span class="context">Por ello, rechazamos también la asunción de las posiciones más extremas ante la cuestión trans: legislaremos con la máxima prudencia para conciliar la expresión de la identidad personal con el cuidado a las mujeres, a la infancia y a las familias.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Recuperaremos el delito de sedición en el Código Penal”
+</div>
+<span class="context">Creemos que los poderes públicos deben promover la Convivencia entre los españoles, en lugar de ahondar en sus diferencias. No podemos acostumbrarnos al enfrentamiento entre administraciones ni al señalamiento de ciudadanos particulares ni empresas privadas desde los cargos públicos. La política debe unir, no dividir, y mucho menos polarizar a la sociedad. HOMOLOGAREMOS LA PROTECCIÓN DE LA CONSTITUCIÓN Y LA INTEGRIDAD TERRITORIAL DEL ESTADO A LOS PAÍSES DE NUESTRO ENTORNO. <mark>Recuperaremos el delito de sedición en el Código Penal</mark>, mejorando y actualizando su tipificación, para castigar las formas más graves de deslealtad constitucional.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“inmigración legal cualificada basado en un sistema de puntos”
+</div>
+<span class="context">Implementaremos un nuevo programa de <mark>inmigración legal cualificada basado en un sistema de puntos</mark> que premiará la formación académica, las competencias lingüísticas y la capacidad innovadora.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“Recuperaremos el delito de sedición en el Código Penal”
+</div>
+<span class="context">HOMOLOGAREMOS LA PROTECCIÓN DE LA CONSTITUCIÓN Y LA INTEGRIDAD TERRITORIAL DEL ESTADO. <mark>Recuperaremos el delito de sedición en el Código Penal</mark>, mejorando y actualizando su tipificación</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“DEFENDEREMOS LA INTEGRIDAD TERRITORIAL, LA SOBERANÍA NACIONAL”
+</div>
+<span class="context"><mark>DEFENDEREMOS LA INTEGRIDAD TERRITORIAL, LA SOBERANÍA NACIONAL</mark> Y EL ORDEN CONSTITUCIONAL como máxima prioridad del Gobierno y de su política de defensa.</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“empecinado en enfrentar también a los ciudadanos”
+</div>
+<span class="context">presidente paralizado por la división interna y <mark>empecinado en enfrentar también a los ciudadanos</mark>, según su ideología</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“la desazón de ver a su presidente paralizado por la división interna y empecinado en enfrentar también a los ciudadanos”
+</div>
+<span class="context">La misma que ha sufrido <mark>la desazón de ver a su presidente paralizado por la división interna y empecinado en enfrentar también a los ciudadanos</mark>, según su ideología, su territorio, su género o su actividad.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“ataques sufridos durante la última legislatura”
+</div>
+<span class="context">Queremos recuperar el protagonismo y la integridad del Parlamento como centro de la vida política española, tras cinco años de degradación constante por parte del Gobierno. Queremos recuperar el valor de la tramitación legislativa con todas sus garantías, limitar las normas extraordinarias a los casos expresamente previstos y garantizar los derechos de los diputados y senadores en el ejercicio de sus funciones. Se trata de un aspecto fundamental de nuestro programa de fortalecimiento del Estado de Derecho y de la calidad democrática. El actual Gobierno ha atentado sistemáticamente contra la Justicia. Mientras el presidente trataba de asegurarse el control, sus socios han emprendido una campana constante de desprestigio contra el poder judicial, según el manual populista de asalto a las instituciones.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“los peores errores y las peores cesiones a socios radicales”
+</div>
+<span class="context">cómo de la inexperiencia, la debilidad y la soberbia de su Gobierno surgían algunos de <mark>los peores errores y las peores cesiones a socios radicales</mark> que se recuerdan en nuestra democracia.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“frente a la desidia del actual Gobierno”
+</div>
+<span class="context">Por eso, <mark>frente a la desidia del actual Gobierno</mark>, el Partido Popular se compromete a estudiar todo lo que se ha visto afectado</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“FRENTE A POPULISMOS Y RADICALISMOS”
+</div>
+<span class="context"><mark>FRENTE A POPULISMOS Y RADICALISMOS</mark>, España proyectará los valores de la libertad, la democracia, los derechos humanos, el respeto al Estado de Derecho, la economía de mercado y las sociedades abiertas.</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“reunir a una gran mayoría de ciudadanos”
+</div>
+<span class="context">fundacional: la unión. Quiero <mark>reunir a una gran mayoría de ciudadanos</mark> para que trabajemos juntos</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“la unión. Quiero reunir a una gran mayoría de ciudadanos para que trabajemos juntos y para todos por la gran Nación que compartimos”
+</div>
+<span class="context">Por eso este proyecto de país se construye desde un principio fundacional: <mark>la unión. Quiero reunir a una gran mayoría de ciudadanos para que trabajemos juntos y para todos por la gran Nación que compartimos</mark>. Por una España reformista, alegre, comprometida, libre, valiente, ilusionada y con la mirada puesta en el futuro.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“la política debe unir, no dividir, y mucho menos polarizar a la sociedad”
+</div>
+<span class="context">Creemos que los poderes públicos deben promover la Convivencia entre los españoles, en lugar de ahondar en sus diferencias. No podemos acostumbrarnos al enfrentamiento entre administraciones ni al señalamiento de ciudadanos particulares ni empresas privadas desde los cargos públicos. La política debe unir, no dividir, y mucho menos polarizar a la sociedad.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Hay una amplia mayoría de españoles cansada de una política”
+</div>
+<span class="context"><mark>Hay una amplia mayoría de españoles cansada de una política</mark> que se ha dedicado más tiempo a hablar de los intereses de sus políticos que a atender sus necesidades.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“el dinero público sí tiene dueño, los contribuyentes”
+</div>
+<span class="context">Los recursos públicos deben estar a disposición de los ciudadanos, no para uso exclusivo del Gobierno. En el Partido Popular tenemos claro que <mark>el dinero público sí tiene dueño, los contribuyentes</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“Una Administración abierta que escuche al ciudadano”
+</div>
+<span class="context"><mark>Una Administración abierta que escuche al ciudadano</mark> y pueda anticiparse a sus necesidades, una Administración transparente y comprensible para todos.</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“intereses de sus políticos que a atender”
+</div>
+<span class="context">dedicado más tiempo a hablar de los <mark>intereses de sus políticos que a atender</mark> sus necesidades. La misma mayoría</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“frente a la desidia del actual Gobierno”
+</div>
+<span class="context">Por eso, <mark>frente a la desidia del actual Gobierno</mark>, el Partido Popular se compromete a estudiar</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“Frente a populismos y radicalismos”
+</div>
+<span class="context">325 FRENTE A POPULISMOS Y RADICALISMOS, España proyectará los valores de la libertad</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“la frivolidad, la división y el deterioro que hemos padecido en los años del sanchismo”
+</div>
+<span class="context">Hoy tenemos ante nosotros la posibilidad de pasar página de manera definitiva de <mark>la frivolidad, la división y el deterioro que hemos padecido en los años del sanchismo</mark> y abrir un tiempo en el que abordar la necesaria reconstrucción económica, social e institucional de nuestro país.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“el Gobierno ha colonizado todos esos organismos para someterlos a su control partidista”
+</div>
+<span class="context">El adecuado funcionamiento del Estado de Derecho depende de las neutralidad de instituciones reguladoras que aseguran el equilibrio de poder y el buen servicio de la Administración. En estos años, <mark>el Gobierno ha colonizado todos esos organismos para someterlos a su control partidista</mark>. El Partido Popular presentó a comienzos de 2023 un gran Plan de Calidad institucional que garantiza la independencia y profesionalidad de esas instituciones.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Hay una amplia mayoría de españoles cansada de una política”
+</div>
+<span class="context"><mark>Hay una amplia mayoría de españoles cansada de una política</mark> que se ha dedicado más tiempo a hablar de los intereses de sus políticos que a atender sus necesidades.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“uso partidista de los instrumentos del Estado”
+</div>
+<span class="context">Frente al <mark>uso partidista de los instrumentos del Estado</mark> evidenciado por este Gobierno (indultos a los líderes del procés, eliminación del delito de sedición)</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“Al contrario de lo que ha hecho el Gobierno de coalición”
+</div>
+<span class="context">desde el Partido Popular estamos convencidos de que la política exterior debe ser una política de Estado, de la que debe participar tanto el líder de la oposición como el Parlamento.</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="33610_202307_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

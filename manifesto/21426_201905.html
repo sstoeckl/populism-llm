@@ -1,0 +1,2809 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>MR (Belgium, 2019) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/21426_201905_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">MR (Belgium, 2019)</h1>
+<p class="subtitle lead">manifesto_id 21426_201905</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Belgium · <span class="item"><strong>Party</strong></span> MR (Reform Movement) · <span class="item"><strong>Year</strong></span> 2019 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 40</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.9</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.1</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.0</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.5</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.1</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-na">–</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.9</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.1</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.9</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.1</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.2</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“saine concurrence sur un marché ouvert”
+</div>
+<span class="context">bien-être de chacun et des impôts justes ; Le respect d’une <mark>saine concurrence sur un marché ouvert</mark> ; Une plus grande simplification du système fiscal belge La</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“compétitivité des entreprises doit être préservée”
+</div>
+<span class="context">La <mark>compétitivité des entreprises doit être préservée</mark> et renforcée et la mise au travail</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“baisse des charges sociales et fiscales”
+</div>
+<span class="context">activités d’internationalisation des entreprises (<mark>baisse des charges sociales et fiscales</mark>, etc)</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“la force conjuguée de la liberté, de l’intelligence, des innovations technologiques et de l’économie libre”
+</div>
+<span class="context">tout en préservant et en augmentant la qualité de vie de tous les citoyens grâce à <mark>la force conjuguée de la liberté, de l’intelligence, des innovations technologiques et de l’économie libre</mark> « Inciter plutôt qu’interdire ; exonérer plutôt que taxer »</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“se base sur la propriété, la responsabilité civile”
+</div>
+<span class="context">responsable et cohérente qui <mark>se base sur la propriété, la responsabilité civile</mark> (principe de pollueur/payeur), les partenariats</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“A l’instar du secteur privé”
+</div>
+<span class="context">Les modes d’actions et les manières de gérer les dossiers n’ont plus rien en commune avec ce qu’ils étaient il y a 15 ans <mark>A l’instar du secteur privé</mark>, il sera de plus en plus rare</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“saine concurrence entre les acteurs”
+</div>
+<span class="context">s’opère dans un équilibre global du marché des médias d’information et dans une <mark>saine concurrence entre les acteurs</mark></span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“développer la migration économique circulaire”
+</div>
+<span class="context">permettre aux assistants sociaux de recueillir les informations de façon fiable et juridiquement sûre Développer la migration économique circulaire L’immigration économique est fermée depuis 1974 sauf</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 9</span>
+<div class="quote">
+“Nous sommes pour une économie ouverte”
+</div>
+<span class="context">garantissant des conditions équitables de production et éviter ainsi une concurrence déloyale notamment par rapport à nos agriculteurs Nous n’accepterons jamais que des accords équilibrés <mark>Nous sommes pour une économie ouverte</mark>, mais nous ne voulons pas nous retrouver en</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Nous avons encouragé l’esprit d’entreprendre Aujourd’hui, les indépendants sont de plus en plus nombreux”
+</div>
+<span class="context">Depuis le début de la législature, plus de 230.000 emplois nouveaux ont été créés ! Le taux d’emploi a d’ailleurs augmenté <mark>Nous avons encouragé l’esprit d’entreprendre Aujourd’hui, les indépendants sont de plus en plus nombreux</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“réduction structurelle des charges sociales”
+</div>
+<span class="context">Une <mark>réduction structurelle des charges sociales</mark> La compétitivité des entreprises doit être préservée et renforcée et la mise en travail de personnes moins qualifiées doit être encouragée A ce titre, nous proposons de réduire les cotisations patronales sur les bas salaires</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“favoriser la concurrence présente dans le secteur des télécoms”
+</div>
+<span class="context">Poursuivre la dynamisation des marchés postaux et de télécommunications : grâce à la concurrence présente dans le secteur des télécoms, les citoyens et les entreprises peuvent profiter de services intéressants et innovants à des prix corrects</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“partenariats public-privé afin de faciliter la réalisation rapide de projets”
+</div>
+<span class="context">…financé par les fonds européens de développement régional (FEDER) et par les sociétés d’investissement publics Nous encouragerons par ailleurs la constitution de <mark>partenariats public-privé afin de faciliter la réalisation rapide de projets</mark> de qualité, facilités par une administration qui doit être optimalisée Renforcer l’attractivité des espaces urbanisés…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“La prospérité que notre modèle économique génère est indispensable au financement des mesures environnementales”
+</div>
+<span class="context">Seule une société prospère peut protéger l’environnement <mark>La prospérité que notre modèle économique génère est indispensable au financement des mesures environnementales</mark> Nos priorités Mettre en œuvre le Pacte Energétique En vue d’atteindre les objectifs ambitieux de la COP21</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“la redynamisation du financement des investissements”
+</div>
+<span class="context">Le Plan Wallon d’Investissements (PWI) encourage <mark>la redynamisation du financement des investissements</mark> et entend placer les Pouvoirs locaux en tant qu’acteurs prioritaires en matière de relance économique…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“favoriser la philanthropie culturelle et d’encourager les opérateurs culturels dans leurs démarches”
+</div>
+<span class="context">Développer le mécénat par des compléments de financements publics : il s’agit de <mark>favoriser la philanthropie culturelle et d’encourager les opérateurs culturels dans leurs démarches</mark> de recherche de mécénat par l’octroi d’un complément financier</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“L’immigration circulaire permet de remplir les emplois vacants chez nous tout en luttant contre la fuite des cerveaux”
+</div>
+<span class="context">…Il serait utile de supprimer ces accords qui ne correspondent plus au monde du travail moderne En 2019, il est aberrant de lier la compétence pour un emploi à une condition de nationalité Notre pays peut également davantage développer des programmes d’immigration circulaire qui répond aux besoins ponctuels de nos économies régionales <mark>L’immigration circulaire permet de remplir les emplois vacants chez nous tout en luttant contre la fuite des cerveaux</mark> qui entravent durablement le développement économique de certains pays pauvres…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 9</span>
+<div class="quote">
+“une économie ouverte”
+</div>
+<span class="context">Nous sommes pour <mark>une économie ouverte</mark>, mais nous ne voulons pas nous retrouver en situation de faiblesse Nous sommes convaincus que des initiatives doivent être prises pour prévenir, enquêter et, le cas échéant, rectifier les effets néfastes des activités commerciales sur les droits de l’homme par, entre autres, le biais de mesures correctives C’est la raison pour laquelle nous souhaitons que notre pays continue de jouer son rôle dans les négociations actuelles sur le traité contraignant sur les entreprises et les droits de l’homme</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“baisse des charges sur les revenus du travail”
+</div>
+<span class="context">Le Mouvement Réformateur défend plusieurs grands principes : Une <mark>baisse des charges sur les revenus du travail</mark> ; Une fiscalité au service du bien-être</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“compétitivité des entreprises doit être préservée et renforcée”
+</div>
+<span class="context">La <mark>compétitivité des entreprises doit être préservée et renforcée</mark> et la mise au travail de personnes moins qualifiées doit être encouragée</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“concurrence présente dans le secteur des télécoms”
+</div>
+<span class="context">grâce à la <mark>concurrence présente dans le secteur des télécoms</mark>, les citoyens et les entreprises peuvent profiter de services intéressants et innovants à des prix corrects</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Inciter plutôt qu’interdire ; exonérer plutôt que taxer”
+</div>
+<span class="context">L’écologie positive veut inciter plutôt qu’interdire, exonérer plutôt que taxer Et cela de multiples façons</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“inciter plutôt qu’interdire, exonérer plutôt que taxer”
+</div>
+<span class="context">L’écologie positive veut <mark>inciter plutôt qu’interdire, exonérer plutôt que taxer</mark>. Et cela de multiples façons</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“réduire la pression fiscale et parafiscale”
+</div>
+<span class="context">Cette politique d’assainissement responsable et soucieuse d’assurer le soutien à la croissance et l’emploi s’est opérée contrairement aux tendances du passé en réduisant la pression fiscale et parafiscale et en réduisant les dépenses publiques</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“favoriser les partenariats public/privé”
+</div>
+<span class="context">Favoriser les partenariats public/privé : il faut développer les PPP notamment dans le domaine du numérique et de la numérisation de la création artistique</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“économie dynamique et performante”
+</div>
+<span class="context">Ce modèle ne peut fonctionner sans une <mark>économie dynamique et performante</mark> En effet, les enjeux actuels et futurs des soins de santé nécessitent un financement important</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 9</span>
+<div class="quote">
+“économie de marché plus volontariste”
+</div>
+<span class="context">concentrer l’aide publique vers l’émergence d’une économie dynamisée par une <mark>économie de marché plus volontariste</mark>, seule susceptible d’apporter la prospérité économique</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“conditions de crédit toujours attrayantes”
+</div>
+<span class="context">rentabilité important, soutenue par des <mark>conditions de crédit toujours attrayantes</mark> et par une évolution favorable du pouvoir d’achat</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“tax-shelter pour start up, du tax-shelter pour scale-up et du crowdfunding”
+</div>
+<span class="context">Il s’agit tout spécialement du <mark>tax-shelter pour start up, du tax-shelter pour scale-up et du crowdfunding</mark></span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“prêts hypothécaires à taux zéro”
+</div>
+<span class="context">Lancer 1000 <mark>prêts hypothécaires à taux zéro</mark> en faveur des ménages acquérant un premier logement</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“secteur des assurances pour rassurer les propriétaires-bailleurs”
+</div>
+<span class="context">Etudier un système de garanties de bonne fin, notamment avec le <mark>secteur des assurances pour rassurer les propriétaires-bailleurs</mark> dans le cadre de la conclusion de contrats de bail</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“convention entre le secteur bancaire et les pouvoirs publics”
+</div>
+<span class="context">rénovation énergétique des logements via soit les organismes régionaux actuels soit une <mark>convention entre le secteur bancaire et les pouvoirs publics</mark></span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“valorisation des participations dans le secteur financier”
+</div>
+<span class="context">L’État doit donc trouver un juste équilibre entre garder des participations suffisantes pour agir dans les domaines concernés et maintenir ses intérêts ; à cet égard, la <mark>valorisation des participations dans le secteur financier</mark> doit se faire de manière prudente et opportune</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“développer un service de microcrédit”
+</div>
+<span class="context">Développer un service de microcrédit : en Flandre, un service de microcrédits est mis à disposition des artistes</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 9</span>
+<div class="quote">
+“un système bancaire stable et fiable”
+</div>
+<span class="context">dialogue ferme qui peut si nécessaire impliquer une suspension (ou selon les cas une réorientation) du financement de sa coopération Il est nécessaire de développer un tissu de PME, des emplois locaux, <mark>un système bancaire stable et fiable</mark> permettant l’émergence d’une réelle croissance économique</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Le Gouvernement a mis en place de nombreuses mesures pour lutter contre la fraude et l’évasion fiscale”
+</div>
+<span class="context">Poursuivre de manière intensive la lutte contre la fraude et l’évasion fiscale Le fraudeur fait porter sur l’ensemble de la société le poids de sa non-contribution aux finances de l’État C’est pourquoi les Libéraux combattent sans relâche la fraude fiscale</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“le tax-shelter pour start up, du tax-shelter pour scale-up et du crowdfunding”
+</div>
+<span class="context">Les efforts entrepris par le Gouvernement en matière d’accès des PME au financement devront être poursuivis afin que tout le potentiel des instruments existants soit exploité au maximum Il s’agit tout spécialement du tax-shelter pour start up, du tax-shelter pour scale-up et du crowdfunding</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“le MR a pu rendre la CWaPE, le régulateur énergétique véritablement indépendant”
+</div>
+<span class="context">…Le MR a pu rendre la CWaPE, le régulateur énergétique véritablement indépendant du gouvernement Outre le contrôle annuel et renforcé de la Cour des Comptes, c’est désormais le parlement qui assure démocratiquement le suivi de ses activités ; Le MR a entamé la fusion des distributeurs d’énergie pour diminuer les coûts de la logistique…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“Le MR plaide pour une taxation tenant compte davantage des valeurs environnementales”
+</div>
+<span class="context">Une fiscalité régionale plus verte <mark>Le MR plaide pour une taxation tenant compte davantage des valeurs environnementales</mark>, à l’instar de ce qui se fait en Flandre depuis 2014 On dénombre actuellement deux taxes relatives à l’usage de l’ensemble des véhicules de moins de 3,5 tonnes</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“la gestion dynamique de la dette wallonne”
+</div>
+<span class="context">Le Gouvernement wallon a créé un Centre stratégique d’expertise fiscale et financière (CSEFF) en lieu et place des multiples structures existantes Ce centre regroupe 3 organes en un organisme d’intérêt public : la Cellule fiscale d’expertise et de support stratégique, la Cellule d’informations financières et l’Agence de la dette La gestion dynamique de la dette wallonne permet une meilleure présentation de la Région wallonne auprès des agences de notations…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“conditions de crédit toujours attrayantes”
+</div>
+<span class="context">soutenue par des <mark>conditions de crédit toujours attrayantes</mark> et par une évolution favorable du pouvoir d’achat (Source : Bureau fédéral du Plan)</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“tax-shelter pour start up, du tax-shelter pour scale-up et du crowdfunding”
+</div>
+<span class="context">Il s’agit tout spécialement du <mark>tax-shelter pour start up, du tax-shelter pour scale-up et du crowdfunding</mark> Le MR se félicite que le tax-shelter soit prochainement élargi</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“prêts hypothécaires à taux zéro”
+</div>
+<span class="context">Lancer 1000 <mark>prêts hypothécaires à taux zéro</mark> en faveur des ménages acquérant un premier logement grâce à un partenariat public-privé (PPP) entre la Région et le secteur bancaire</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“gouvernement a mis en place les « Green Bonds »”
+</div>
+<span class="context">Le <mark>gouvernement a mis en place les « Green Bonds »</mark>, outils de financement de la politique énergétique Le montant total de cette obligation oscillera entre trois et cinq milliards d’euros</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“marché des émissions de CO2”
+</div>
+<span class="context">la responsabilité civile (principe de pollueur/payeur), les partenariats public-privés, le marché (exemple : marché des émissions de soufre, <mark>marché des émissions de CO2</mark>, etc)</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“valorisation des participations dans le secteur financier”
+</div>
+<span class="context">à cet égard, la <mark>valorisation des participations dans le secteur financier</mark> doit se faire de manière prudente et opportune De plus, la vente de participations publiques permet de contribuer à accélérer le désendettement</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“développer l’accès au crédit souvent plus difficile”
+</div>
+<span class="context">valorisation des compétences et des qualifications antérieures, favoriser l’accompagnement à la création d’entreprises, <mark>développer l’accès au crédit souvent plus difficile</mark> pour les personnes étrangères</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 9</span>
+<div class="quote">
+“Des politiques d’accès au crédit”
+</div>
+<span class="context"><mark>Des politiques d’accès au crédit</mark>, au transfert de technologie, à la formation professionnelle et au management doivent devenir des priorités absolues</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“renforcé l’Etat de droit”
+</div>
+<span class="context">améliorer le bien-être et le cadre de vie Nous avons <mark>renforcé l’Etat de droit</mark> pour garantir la sécurité Le combat contre le terrorisme</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“libre choix des parents, pourtant garanti par la Constitution”
+</div>
+<span class="context">mettent à mal le <mark>libre choix des parents, pourtant garanti par la Constitution</mark> et relèguent par ailleurs</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“nuits et les logements communautaires d’urgence”
+</div>
+<span class="context">le droit à avoir un logement salubre est fondamental dans un Etat de droit</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“fondamental dans un Etat de droit”
+</div>
+<span class="context">Le droit à avoir un logement salubre est <mark>fondamental dans un Etat de droit</mark> Le MR souhaite :Mettre en œuvre une allocation loyer encadrée</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“la justice est indépendante, équitable et impartiale”
+</div>
+<span class="context">Les droits de chacun sont pleinement garantis lorsque <mark>la justice est indépendante, équitable et impartiale</mark>, et lorsque la sécurité des personnes</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“Fondement de la démocratie libérale, le respect des minorités”
+</div>
+<span class="context">Nos priorités pour la périphérie <mark>Fondement de la démocratie libérale, le respect des minorités</mark> est une valeur auquel le Mouvement Réformateur est particulièrement attaché</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“respect des valeurs démocratiques et citoyennes”
+</div>
+<span class="context">chaque ministre du culte doit être respectueux des valeurs démocratiques et citoyennes de l’Etat de droit</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“nous sommes un pays des droits de l’homme”
+</div>
+<span class="context">en sanctionnant tous les abus en la matière Nous sommes un pays des droits de l’homme mais nous sommes intransigeants avec nos lois et nos</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 9</span>
+<div class="quote">
+“respect des différences, les Droits de l’Homme”
+</div>
+<span class="context">la Belgique, comme la démocratie, l’égalité Homme-Femme, le <mark>respect des différences, les Droits de l’Homme</mark>, la bonne gouvernance et l’Etat de droit</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Une démocratie plus forte, des institutions efficaces”
+</div>
+<span class="context">Chapitre : <mark>Une démocratie plus forte, des institutions efficaces</mark> Nous avons renforcé l’Etat de droit pour garantir la sécurité Le combat contre le terrorisme et le radicalisme est loin d’être terminé</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“le respect de la concertation sociale et des accords soumis au Gouvernement”
+</div>
+<span class="context">Le respect de la concertation sociale et des accords soumis au Gouvernement par les partenaires sociaux est un axe important de la politique sociale Cependant, le pays a été témoin d’une politisation de plus en plus flagrante du combat syndical et de différents abus qui ont conduit à des situations parfois dramatiques</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“la désinformation mine la confiance dans les institutions, les médias, la science”
+</div>
+<span class="context">Poursuivre la lutte contre les « fake news » : <mark>la désinformation mine la confiance dans les institutions, les médias, la science</mark> et les preuves empiriques, et nuit à nos démocraties en rendant les citoyens moins aptes à prendre des décisions éclairées Il ne revient pas aux autorités de se prononcer sur la véracité d’une information</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“le parlement qui assure démocratiquement le suivi de ses activités”
+</div>
+<span class="context">…le MR a pu rendre la CWaPE, le régulateur énergétique véritablement indépendant du gouvernement Outre le contrôle annuel et renforcé de la Cour des Comptes, c’est désormais <mark>le parlement qui assure démocratiquement le suivi de ses activités</mark> ; Le MR a entamé la fusion des distributeurs d’énergie pour diminuer les coûts de la logistique…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“la justice doit aussi être rapide, accessible, efficace et compréhensible”
+</div>
+<span class="context">Les droits de chacun sont pleinement garantis lorsque la justice est indépendante, équitable et impartiale, et lorsque la sécurité des personnes, en particulier des plus faibles, et des biens est assurée Pour renforcer la confiance du citoyen, <mark>la justice doit aussi être rapide, accessible, efficace et compréhensible</mark> La confiance des citoyens repose aussi sur l’impartialité des magistrats</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“la démocratie participative peut contribuer à améliorer la prise de décision”
+</div>
+<span class="context">Pour le MR, la citoyenneté ne doit pas se limiter à déposer un bulletin dans l’urne lors de chaque scrutin Pendant toute la durée de la mandature, le citoyen doit pouvoir être informé, consulté et doit pouvoir participer à la vie publique La démocratie participative peut contribuer à améliorer la prise de décision, à alerter les autorités sur des problèmes ou à proposer des solutions…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“la liberté de ne pas croire est tout aussi importante”
+</div>
+<span class="context">Car, si la liberté religieuse est importante, <mark>la liberté de ne pas croire est tout aussi importante</mark> La promotion de l’égalité passe aussi par une meilleure conciliation entre vie professionnelle et vie privée</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“Respect de l’Etat de droit Ces dernières années, de nombreux pays européens, notamment les pays de Visegrad, ont manifesté leur rejet des politiques d’accueil”
+</div>
+<span class="context">…<mark>Respect de l’Etat de droit Ces dernières années, de nombreux pays européens, notamment les pays de Visegrad, ont manifesté leur rejet des politiques d’accueil</mark> et le refus des politiques en faveur des réfugiés L’UE se doit de fonctionner sur un système équilibré entre responsabilité et solidarité entre les Etats membres…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 9</span>
+<div class="quote">
+“la liberté de la presse”
+</div>
+<span class="context">la liberté d’expression doit être vue dans un sens large, incluant <mark>la liberté de la presse</mark> et la préservation de la sécurité des journalistes Durant ces dernières années, notre pays a été fort actif dans la protection des minorités religieuses</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Une démocratie plus forte, des institutions efficaces”
+</div>
+<span class="context">Chapitre : <mark>Une démocratie plus forte, des institutions efficaces</mark> – listed in table of contents; also: renforcé l’Etat de droit pour garantir la sécurité</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“libre choix des parents, pourtant garanti par la Constitution”
+</div>
+<span class="context">le <mark>libre choix des parents, pourtant garanti par la Constitution</mark> et relèguent par ailleurs l’aspect pédagogique du choix de l’école au dernier rang des priorités</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“nuit à nos démocraties en rendant les citoyens”
+</div>
+<span class="context">la désinformation mine la confiance dans les institutions, les médias, la science et les preuves empiriques, et <mark>nuit à nos démocraties en rendant les citoyens</mark> moins aptes à prendre des décisions éclairées</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“garantir le cadre participatif et démocratique des débats”
+</div>
+<span class="context">Si le politique a le devoir d’arbitrer et de trancher, il doit <mark>garantir le cadre participatif et démocratique des débats</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“garantes de l’Etat de droit et de la démocratie”
+</div>
+<span class="context">Les institutions doivent rester <mark>garantes de l’Etat de droit et de la démocratie</mark>. Les femmes et les hommes qui les incarnent ont reçu la confiance des citoyens</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“La démocratie participative ne s’oppose pas”
+</div>
+<span class="context">La démocratie participative peut contribuer à améliorer la prise de décision, à alerter les autorités sur des problèmes ou à proposer des solutions <mark>La démocratie participative ne s’oppose pas</mark> à la démocratie représentative, elle en est un complément indispensable</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“pluralisme nécessaire dans une société démocratique”
+</div>
+<span class="context">la coexistence d’un service public principal et d’éditeurs privés favorise un <mark>pluralisme nécessaire dans une société démocratique</mark> Le MR considère toutefois que cette coexistence ne suffit pas</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“respect de la souveraineté de tous les Etats”
+</div>
+<span class="context">pour construire cette solution globale et ce, dans le strict <mark>respect de la souveraineté de tous les Etats</mark> Notre pays conservera donc pleinement le droit de mener sa propre politique</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 9</span>
+<div class="quote">
+“contrôle démocratique sur le pouvoir”
+</div>
+<span class="context">L’accès au bien-être, à des moyens de subsistance dans la dignité et à des possibilités d’avenir n’est possible que là où s’exerce un <mark>contrôle démocratique sur le pouvoir</mark></span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“refusons toutes les formes de discrimination”
+</div>
+<span class="context">la tolérance, le respect et l’ouverture d’esprit et nous <mark>refusons toutes les formes de discrimination</mark> Chaque être humain est porteur de droits et de</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“discriminations liées au genre au travail”
+</div>
+<span class="context">proactive de la lutte contre les <mark>discriminations liées au genre au travail</mark>, en accordant une attention</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“lutte contre les discriminations dans l’accès”
+</div>
+<span class="context">renforcer la <mark>lutte contre les discriminations dans l’accès</mark> à la location d’un logement</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“femmes victimes de violences”
+</div>
+<span class="context">Développer les abris de nuits et les logements communautaires d’urgence et renforcer le logement de d’accueil de transit pour les <mark>femmes victimes de violences</mark> ; Former le personnel</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“mieux soutenir les personnes transgenre”
+</div>
+<span class="context">afin de pouvoir changer d’identité de genre, tout en offrant un meilleur soutien aux personnes transgenre pendant leur parcours de transition</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“lutte contre toutes les discriminations, qu’elles soient basées”
+</div>
+<span class="context">La fonction publique doit se montrer exemplaire en matière de <mark>lutte contre toutes les discriminations, qu’elles soient basées</mark> sur le sexe, le handicap, l’origine ethnique</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 7</span>
+<div class="quote">
+“l’égalité des chances comme un fondement”
+</div>
+<span class="context">Nous considérons <mark>l’égalité des chances comme un fondement</mark> du libéralisme Sans elle, il n’y a pas de démocratie</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“lutter contre les discriminations, notamment à l’embauche”
+</div>
+<span class="context">la promotion de la diversité Les lois visant à <mark>lutter contre les discriminations, notamment à l’embauche</mark> doivent être strictement respectées Il faut inciter les</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 9</span>
+<div class="quote">
+“défendons également le droit à la liberté de l’orientation sexuelle”
+</div>
+<span class="context">Maputo que ces pays ont signé et pour la plupart ratifié, à ce qu’ils soient transcrits dans la législation nationale et appliqués Nous <mark>défendons également le droit à la liberté de l’orientation sexuelle</mark> La condition des communautés LGBTQI reste souvent précaire</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Nous voulons la tolérance, le respect et l’ouverture d’esprit et nous refusons toutes les formes de discrimination”
+</div>
+<span class="context">Nous voulons libérer les capacités individuelles, encourager les talents et le potentiel de chacun <mark>Nous voulons la tolérance, le respect et l’ouverture d’esprit et nous refusons toutes les formes de discrimination</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“la lutte contre les discriminations liées au genre au travail”
+</div>
+<span class="context">Promouvoir une approche proactive de <mark>la lutte contre les discriminations liées au genre au travail</mark>, en accordant une attention particulière aux groupes à risque, comme les femmes enceintes, les mères et les femmes d’origine étrangère</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“lutte contre les discriminations dans l’accès à la location d’un logement”
+</div>
+<span class="context">Encourager, sur l’ensemble de la Région, la mise en œuvre de mécanises divers en vue de renforcer la <mark>lutte contre les discriminations dans l’accès à la location d’un logement</mark> et assurer l’octroi de moyens suffisants aux services d’inspection ou au pouvoir judiciaire compétent</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“les Bruxellois eux-mêmes, par l’entremise des comités de quartier et des associations citoyennes”
+</div>
+<span class="context">…qui connait le mieux les réalités du terrain, des quartiers, ce qu’il faut y améliorer, y changer et ce qu’il faut y garder, y développer, sinon <mark>les Bruxellois eux-mêmes, par l’entremise des comités de quartier et des associations citoyennes</mark> ? Le MR veut soutenir les initiatives citoyennes, par l’organisation plus systématique de panels citoyens, de commissions mixtes députés/citoyens pour rendre des avis et des recommandations à caractère consultatif …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“Chaque jour, de nombreuses femmes sont victimes dans la rue ou dans les transports en commun de paroles, de gestes déplacés ou d’agressions”
+</div>
+<span class="context">Différents publics cibles sont en effet souvent confrontés à de la violence Cela vaut pour les femmes, les personnes âgées ou les personnes issues de la communauté LGBTQI Plus précisément, chaque jour, de nombreuses femmes sont victimes dans la rue ou dans les transports en commun de paroles, de gestes déplacés ou d’agressions Nos priorités dans le cadre de la sécurité pour tous sont :Encourager les personnes à porter plainte en cas d’agression</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“la lutte contre la paupérisation et la pauvreté, vectrices d’émancipation”
+</div>
+<span class="context">Le MR entend poursuivre le développement des politiques de cohésion sociale et de lutte contre la paupérisation et la pauvreté, vectrices d’émancipation pour les individus De même, il est primordial de stopper l’étouffement de nos centres urbains…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 7</span>
+<div class="quote">
+“égalité des chances comme un fondement du libéralisme Sans elle, il n’y a pas de démocratie”
+</div>
+<span class="context">Nous considérons l’<mark>égalité des chances comme un fondement du libéralisme Sans elle, il n’y a pas de démocratie</mark>, ni de liberté réelle Notre société permet à chacun de prendre son avenir en main et de contribuer à son fonctionnement</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“Les lois visant à lutter contre les discriminations, notamment à l’embauche doivent être strictement respectées”
+</div>
+<span class="context">…la responsabilité sociétale et, partant, sur les moyens qu’elles ont de contribuer à la lutte contre la discrimination à l’embauche et à la promotion de la diversité <mark>Les lois visant à lutter contre les discriminations, notamment à l’embauche doivent être strictement respectées</mark> Il faut inciter les employeurs à participer au changement des mentalités…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 9</span>
+<div class="quote">
+“la lutte contre les discriminations envers les personnes LGBTI”
+</div>
+<span class="context">notre pays a été fort actif dans la protection des minorités religieuses et ethniques notamment la protection des chrétiens d’Orient et des yézidis persécutés en Irak et en Syrie face à l’Etat islamique Cette année, le Prix Nobel de la Paix a été décerné à Nadia Mourad, jeune femme issue de la minorité yézidie et ancienne esclave de Daech Ce prix démontre la justesse et la nécessité de notre action envers les minorités opprimées Empowerment des femmes : une priorité de la coopération Selon les statistiques de l’Unesco, environ 263 millions d’enfants et d’adolescents, notamment en Afrique, ne sont toujours pas scolarisés La scolarité des fillettes est souvent un parcours semé d’obstacles à cause des normes sociales, la discrimination de genre, la violence liée au genre, les mariages précoces des enfants ou les grossesses précoces qui s’enchainent, ou par un manque d’infrastructures scolaires et d’installations sanitaires adaptées ou de proximité À chaque fois que 100 garçons ne sont pas scolarisés en Afrique sub-saharienne, 123 filles restent à la maison selon l’Unesco Les filles sont surtout discriminées sur le plan de l’achèvement des études En Afrique sub-saharienne, seule 1 fille sur 4 termine le cycle secondaire Les filles bénéficiant d’un enseignement de qualité risquent trois fois moins d’être forcées à un mariage précoce que les filles n’ayant pas ou peu fréquenté l’école Elles deviennent mères plus tard, ont moins d’enfants et sont mieux en mesure de les protéger contre certaines pratiques culturelles, telles que l’excision Les jeunes filles capables de lire sont en meilleure santé et les chances de survie de leurs enfants sont cinq fois supérieures à celles des enfants de mères illettrées Enfin, les femmes ayant été scolarisées envoient aussi plus souvent leurs enfants à l’école Fort de ces constats, il est essentiel que nous poursuivions notre politique visant à investir dans l’enseignement maternel et primaire et nous focaliser davantage sur les filles et les obstacles rencontrés par ces dernières pour suivre leur scolarité à terme C’est tout un accompagnement que nous devons proposer : résultats d’apprentissage, programmes de cours, mise en place d’outils pédagogiques et des enseignements transversaux évoquant également l’égalité entre les femmes et les hommes, investir dans des formations techniques et professionnelles offrant un accès à l’emploi rapide etc Il faut que chaque enfant puisse acquérir les compétences et les savoirs de base comme savoir lire, écrire et compter Renforcer et développer le réseau des écoles à programme belge à l’étranger en Afrique 6 écoles existent actuellement à Kinshasa, Lubumbashi, Kigali, Bujumbura, Casablanca et Rabat Il serait judicieux d’envisager l’extension de ce réseau à d’autres pays d’Afrique, tels que le Cameroun par exemple Il faut également soutenir le développement du réseau d’Écoles à programme belge à l’étranger en-dehors de l’Afrique Une meilleure promotion de ce réseau doit également être fait au niveau de la francophonie Tout comme il est essentiel de consolider et intensifier nos liens avec ces Écoles à programme belge à l’étranger et de soutenir le développement d’un réseau d’alumni composés des anciens diplômés de ces mêmes écoles Enfin, il est aussi essentiel d’assurer l’attractivité et la stabilité de l’emploi pour les enseignants travaillant dans ces écoles Raison pour laquelle le MR a défendu cette attractivité en faisant voter une résolution au parlement de la FWB sur les Ecoles belges à l’étranger Notre position est claire : il faut reconnaître l’ancienneté des enseignants nommés en FWB et engagés dans les écoles belges à l’étranger pour les années prestées, afin que cesderniers ne doivent plus recourir à l’interruption de carrière pour partir enseigner dans ces établissements</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“droits des femmes, des membres de la communauté LGBTQI”
+</div>
+<span class="context">mettre en péril les <mark>droits des femmes, des membres de la communauté LGBTQI</mark> et de celles et ceux qui, quelles que soient leurs origines, veulent vivre en paix</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“lutte contre les discriminations liées au genre”
+</div>
+<span class="context">Promouvoir une approche proactive de la <mark>lutte contre les discriminations liées au genre</mark> au travail, en accordant une attention particulière aux groupes à risque</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“lutte contre les discriminations dans l’accès”
+</div>
+<span class="context">Encourager, sur l’ensemble de la Région, la mise en œuvre de mécanismes divers en vue de renforcer la <mark>lutte contre les discriminations dans l’accès</mark> à la location d’un logement</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“droit à avoir un logement salubre est fondamental”
+</div>
+<span class="context">Le <mark>droit à avoir un logement salubre est fondamental</mark> dans un Etat de droit Le MR souhaite : Mettre en œuvre une allocation loyer encadrée</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“la féminisation du métier de militaire”
+</div>
+<span class="context">Pendant trop longtemps, les forces armées se sont déclinées au masculin. Pourtant, à nos yeux, <mark>la féminisation du métier de militaire</mark> est un objectif important</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“Fondement de la démocratie libérale, le respect des minorités”
+</div>
+<span class="context"><mark>Fondement de la démocratie libérale, le respect des minorités</mark> est une valeur auquel le Mouvement Réformateur est particulièrement attaché C’est pourquoi les libéraux ont toujours défendu ardemment les droits fondamentaux des francophones</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 7</span>
+<div class="quote">
+“égalité des chances comme un fondement du libéralisme”
+</div>
+<span class="context">Nous considérons l’<mark>égalité des chances comme un fondement du libéralisme</mark> Sans elle, il n’y a pas de démocratie, ni de liberté réelle</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“lutte contre la discrimination à l’embauche”
+</div>
+<span class="context">sur les moyens qu’elles ont de contribuer à la <mark>lutte contre la discrimination à l’embauche</mark> et à la promotion de la diversité</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 9</span>
+<div class="quote">
+“droit à la liberté de l’orientation sexuelle”
+</div>
+<span class="context">Nous défendons également le <mark>droit à la liberté de l’orientation sexuelle</mark> La condition des communautés LGBTQI reste souvent précaire et alarmante</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Le projet libéral et réformateur”
+</div>
+<span class="context">Un pays stable, prospère et innovant ! <mark>Le projet libéral et réformateur</mark> stimule la liberté et la responsabilité́ Il vise l</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“compétitivité des entreprises doit être préservée”
+</div>
+<span class="context">La <mark>compétitivité des entreprises doit être préservée</mark> et renforcée et la mise au travail</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“baisse des charges sociales et fiscales”
+</div>
+<span class="context">activités d’internationalisation des entreprises (<mark>baisse des charges sociales et fiscales</mark>, etc)</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“la force conjuguée de la liberté, de l’intelligence, des innovations technologiques et de l’économie libre”
+</div>
+<span class="context">tout en préservant et en augmentant la qualité de vie de tous les citoyens grâce à <mark>la force conjuguée de la liberté, de l’intelligence, des innovations technologiques et de l’économie libre</mark> « Inciter plutôt qu’interdire ; exonérer plutôt que taxer »</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“confiance des citoyens dans notre modèle de démocratie libérale”
+</div>
+<span class="context">Il y va également de la <mark>confiance des citoyens dans notre modèle de démocratie libérale</mark> alliant aspirations individuelles</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“Fondement de la démocratie libérale, le respect des minorités”
+</div>
+<span class="context">Nos priorités pour la périphérie <mark>Fondement de la démocratie libérale, le respect des minorités</mark> est une valeur auquel le Mouvement Réformateur est particulièrement attaché</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“valeurs libérales par excellence”
+</div>
+<span class="context">L’ouverture aux autres, à la différence, la tolérance et le respect sont des <mark>valeurs libérales par excellence</mark></span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“nous sommes un pays des droits de l’homme”
+</div>
+<span class="context">en sanctionnant tous les abus en la matière Nous sommes un pays des droits de l’homme mais nous sommes intransigeants avec nos lois et nos</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 9</span>
+<div class="quote">
+“Nous sommes pour une économie ouverte”
+</div>
+<span class="context">garantissant des conditions équitables de production et éviter ainsi une concurrence déloyale notamment par rapport à nos agriculteurs Nous n’accepterons jamais que des accords équilibrés <mark>Nous sommes pour une économie ouverte</mark>, mais nous ne voulons pas nous retrouver en</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Nous avons encouragé l’esprit d’entreprendre Aujourd’hui, les indépendants sont de plus en plus nombreux”
+</div>
+<span class="context">Depuis le début de la législature, plus de 230.000 emplois nouveaux ont été créés ! Le taux d’emploi a d’ailleurs augmenté <mark>Nous avons encouragé l’esprit d’entreprendre Aujourd’hui, les indépendants sont de plus en plus nombreux</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“réduction structurelle des charges sociales”
+</div>
+<span class="context">Une <mark>réduction structurelle des charges sociales</mark> La compétitivité des entreprises doit être préservée et renforcée et la mise en travail de personnes moins qualifiées doit être encouragée A ce titre, nous proposons de réduire les cotisations patronales sur les bas salaires</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“la désinformation mine la confiance dans les institutions, les médias, la science”
+</div>
+<span class="context">Poursuivre la lutte contre les « fake news » : <mark>la désinformation mine la confiance dans les institutions, les médias, la science</mark> et les preuves empiriques, et nuit à nos démocraties en rendant les citoyens moins aptes à prendre des décisions éclairées Il ne revient pas aux autorités de se prononcer sur la véracité d’une information</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“le MR a pu rendre la CWaPE, le régulateur énergétique véritablement indépendant”
+</div>
+<span class="context">…Le MR a pu rendre la CWaPE, le régulateur énergétique véritablement indépendant du gouvernement Outre le contrôle annuel et renforcé de la Cour des Comptes, c’est désormais le parlement qui assure démocratiquement le suivi de ses activités ; Le MR a entamé la fusion des distributeurs d’énergie pour diminuer les coûts de la logistique…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“la justice doit aussi être rapide, accessible, efficace et compréhensible”
+</div>
+<span class="context">Les droits de chacun sont pleinement garantis lorsque la justice est indépendante, équitable et impartiale, et lorsque la sécurité des personnes, en particulier des plus faibles, et des biens est assurée Pour renforcer la confiance du citoyen, <mark>la justice doit aussi être rapide, accessible, efficace et compréhensible</mark> La confiance des citoyens repose aussi sur l’impartialité des magistrats</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“la démocratie participative peut contribuer à améliorer la prise de décision”
+</div>
+<span class="context">Pour le MR, la citoyenneté ne doit pas se limiter à déposer un bulletin dans l’urne lors de chaque scrutin Pendant toute la durée de la mandature, le citoyen doit pouvoir être informé, consulté et doit pouvoir participer à la vie publique La démocratie participative peut contribuer à améliorer la prise de décision, à alerter les autorités sur des problèmes ou à proposer des solutions…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“égalité des chances comme un fondement du libéralisme Sans elle, il n’y a pas de démocratie”
+</div>
+<span class="context">Nous considérons l’<mark>égalité des chances comme un fondement du libéralisme Sans elle, il n’y a pas de démocratie</mark>, ni de liberté réelle Notre société permet à chacun de prendre son avenir en main et de contribuer à son fonctionnement</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“Respect de l’Etat de droit Ces dernières années, de nombreux pays européens, notamment les pays de Visegrad, ont manifesté leur rejet des politiques d’accueil”
+</div>
+<span class="context">…<mark>Respect de l’Etat de droit Ces dernières années, de nombreux pays européens, notamment les pays de Visegrad, ont manifesté leur rejet des politiques d’accueil</mark> et le refus des politiques en faveur des réfugiés L’UE se doit de fonctionner sur un système équilibré entre responsabilité et solidarité entre les Etats membres…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 9</span>
+<div class="quote">
+“la liberté d’expression doit être vue dans un sens large, incluant la liberté de la presse”
+</div>
+<span class="context"><mark>la liberté d’expression doit être vue dans un sens large, incluant la liberté de la presse</mark> et la préservation de la sécurité des journalistes Durant ces dernières années, notre pays a été fort actif dans la protection des minorités religieuses</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Le respect d’une saine concurrence sur un marché ouvert”
+</div>
+<span class="context">Le Mouvement Réformateur défend plusieurs grands principes : … <mark>Le respect d’une saine concurrence sur un marché ouvert</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“compétitivité des entreprises doit être préservée et renforcée”
+</div>
+<span class="context">La <mark>compétitivité des entreprises doit être préservée et renforcée</mark> et la mise au travail de personnes moins qualifiées doit être encouragée</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“concurrence présente dans le secteur des télécoms”
+</div>
+<span class="context">grâce à la <mark>concurrence présente dans le secteur des télécoms</mark>, les citoyens et les entreprises peuvent profiter de services intéressants et innovants à des prix corrects</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“force conjuguée de la liberté, de l’intelligence, des innovations”
+</div>
+<span class="context">permettra d’honorer dans les temps les ambitieux objectifs climatiques que nous nous sommes fixés tout en préservant et en augmentant la qualité de vie de tous les citoyens grâce à la <mark>force conjuguée de la liberté, de l’intelligence, des innovations</mark> technologiques et de l’économie libre</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“notre modèle de démocratie libérale”
+</div>
+<span class="context">Il y va également de la confiance des citoyens dans <mark>notre modèle de démocratie libérale</mark> alliant aspirations individuelles à un destin commun</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“Dans une démocratie libérale, travailler au service”
+</div>
+<span class="context"><mark>Dans une démocratie libérale, travailler au service</mark> de l’autorité publique, c’est travailler au Les fonctionnaires sont des acteurs essentiels d’une démocratie respectant chaque citoyen</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“égalité des chances comme un fondement du libéralisme”
+</div>
+<span class="context">Nous considérons l’<mark>égalité des chances comme un fondement du libéralisme</mark> Sans elle, il n’y a pas de démocratie, ni de liberté réelle</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“lutte contre la discrimination à l’embauche”
+</div>
+<span class="context">sur les moyens qu’elles ont de contribuer à la <mark>lutte contre la discrimination à l’embauche</mark> et à la promotion de la diversité</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 9</span>
+<div class="quote">
+“démocratie, l’égalité Homme-Femme, le respect des différences, les Droits de l’Homme”
+</div>
+<span class="context">Les valeurs qui sont celles de la Belgique, comme la <mark>démocratie, l’égalité Homme-Femme, le respect des différences, les Droits de l’Homme</mark>, la bonne gouvernance et l’Etat de droit</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“politisation de plus en plus flagrante du combat syndical”
+</div>
+<span class="context">le pays a été témoin d’une <mark>politisation de plus en plus flagrante du combat syndical</mark> et de différents abus</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“le parti dominant la majorité régionale actuelle s’est constitué une « méga-administration »”
+</div>
+<span class="context">Avec la création des OIP de type A (dont la structure dépend directement du ministre-président) que sont la SAU, le, BBP et Bruxelles Urbanisme et Patrimoine, <mark>le parti dominant la majorité régionale actuelle s’est constitué une « méga-administration »</mark>, favorisant la concentration des pouvoirs, des moyens et des outils entre ses mains</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“rémunérations injustifiées et des mécanismes décisionnels totalement opaques”
+</div>
+<span class="context">Les citoyens ont assisté à des polémiques liées à des <mark>rémunérations injustifiées et des mécanismes décisionnels totalement opaques</mark> Les citoyens exigent un changement radical</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Nous sommes responsables et choisissons de parler vrai”
+</div>
+<span class="context">Chaque être humain est porteur de droits et de devoirs universels <mark>Nous sommes responsables et choisissons de parler vrai</mark> Nos solutions sont efficaces pour relancer notre économie, améliorer le bien-être et préparer un avenir solide pour nos enfants</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“la multiplicité des situations des demandeurs d’emploi doit être reconnue”
+</div>
+<span class="context">La multiplicité des situations des demandeurs d’emploi doit être reconnue Une situation n’est pas l’autre A côté d’une très grande majorité de demandeurs d’emplois désireux de s’insérer durablement dans le marché du travail existent des personnes très éloignées du marché de l’emploi, dont l’insertion doit faire l’objet d’un suivi spécifique très adapté qui dépend bien plus de la politique sociale que celle de la politique de l’emploi</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“le parti dominant la majorité régionale actuelle s’est constitué une « méga-administration »”
+</div>
+<span class="context">…de type A (dont la structure dépend directement du ministreprésident) que sont la SAU, le, BBP et Bruxelles Urbanisme et Patrimoine, <mark>le parti dominant la majorité régionale actuelle s’est constitué une « méga-administration »</mark>, favorisant la concentration des pouvoirs, des moyens et des outils entre ses mains Pour un PRDD doté d’une vision du développement urbain …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“l’Etat libéral doit être un rempart contre toute forme de populisme et d’extrémisme”
+</div>
+<span class="context">Enfin, <mark>l’Etat libéral doit être un rempart contre toute forme de populisme et d’extrémisme</mark> La neutralité et l’impartialité de l’Etat sont également des impératifs pour lutter contre les communautarismes, contre les exigences religieuses et culturelles sous couvert d’accommodements raisonnables et, bien sûr, l’émergence des tendances les plus extrêmes Nul ne devrait pouvoir se revendiquer des droits et libertés constitutionnelles pour attaquer ces mêmes droits et libertés</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“loin des conservatismes institutionnels”
+</div>
+<span class="context">…prendre leur destin en mains, de construire leur avenir à travers la réalisation des enjeux stratégiques durables et traduits autour de politiques concrètes et spécifiques à chacun d’eux, <mark>loin des conservatismes institutionnels</mark> et du le sous-régionalisme primaire…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“les pouvoirs publics belges se privent de nouvelles sources de financements complémentaires, essentiellement pour des raisons idéologiques”
+</div>
+<span class="context">Cet apparent sous-financement chronique s’explique en partie par le fait que <mark>les pouvoirs publics belges se privent de nouvelles sources de financements complémentaires, essentiellement pour des raisons idéologiques</mark> A l’issue des trois législatures communautaires menées sans le Mouvement réformateur, force est de constater que, en dépit de quelques initiatives menées ces dernières années, l’état de la gestion culturelle ne s’est pas amélioré</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 8</span>
+<div class="quote">
+“Nous sommes un pays des droits de l’homme mais nous sommes intransigeants avec nos lois et nos valeurs”
+</div>
+<span class="context">…l’exécution et le contrôle des règles en vigueur tout en luttant drastiquement contre l’immigration illégale et en sanctionnant tous les abus en la matière <mark>Nous sommes un pays des droits de l’homme mais nous sommes intransigeants avec nos lois et nos valeurs</mark> Nous devons trouver une voie médiane entre la politique de frontières ouvertes prônée par les partis de gauche…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · mixed · chunk 1</span>
+<div class="quote">
+“gouvernées par les mêmes partis depuis plus de 15 ans”
+</div>
+<span class="context">les autorités régionales – <mark>gouvernées par les mêmes partis depuis plus de 15 ans</mark> – manquent cruellement de vision et d’ambition</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“politisation de plus en plus flagrante du combat syndical”
+</div>
+<span class="context">le pays a été témoin d’une <mark>politisation de plus en plus flagrante du combat syndical</mark> et de différents abus qui ont conduit à des situations parfois dramatiques</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · mixed · chunk 3</span>
+<div class="quote">
+“lutte contre les discriminations dans l’accès”
+</div>
+<span class="context">Encourager, sur l’ensemble de la Région, la mise en œuvre de mécanismes divers en vue de renforcer la <mark>lutte contre les discriminations dans l’accès</mark> à la location d’un logement</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“l’immobilisme et le court-termisme du gouvernement régional”
+</div>
+<span class="context">Car le gouvernement fédéral veut mettre continuellement Bruxelles en valeur… Pourtant, <mark>l’immobilisme et le court-termisme du gouvernement régional</mark> ont fait de notre Région un éternel chantier</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“gaspillage des deniers publics”
+</div>
+<span class="context">rapport accablant de la Cour des Comptes pointant les irrégularités multiples dans la gestion des marchés publics du SIAMU, le <mark>gaspillage des deniers publics</mark> qui en découle, ainsi que le manque de contrôle politique</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“rémunérations injustifiées et des mécanismes décisionnels totalement opaques”
+</div>
+<span class="context">Les citoyens ont assisté à des polémiques liées à des <mark>rémunérations injustifiées et des mécanismes décisionnels totalement opaques</mark> Les citoyens exigent un changement radical</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“le MR est malheureusement dans l’opposition depuis 15 longues années”
+</div>
+<span class="context">En Fédération Wallonie-Bruxelles, <mark>le MR est malheureusement dans l’opposition depuis 15 longues années</mark> La Fédération Wallonie-Bruxelles bénéficie</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · mixed · chunk 8</span>
+<div class="quote">
+“mouvements populistes tentent de le faire croire”
+</div>
+<span class="context">La réponse aux flux migratoires n’est pas simple comme les <mark>mouvements populistes tentent de le faire croire</mark> Une réponse coordonnée</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 9</span>
+<div class="quote">
+“Gouvernement PS-cdH en place en Fédération Wallonie-Bruxelles n’a pas fait preuve d’une grande ambition”
+</div>
+<span class="context">Le <mark>Gouvernement PS-cdH en place en Fédération Wallonie-Bruxelles n’a pas fait preuve d’une grande ambition</mark> pour révolutionner la politique sportive francophone</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“associer le citoyen à la gestion de Bruxelles”
+</div>
+<span class="context">Pour le MR, la participation citoyenne n’est pas un mot creux ou un simple slogan Il faut <mark>associer le citoyen à la gestion de Bruxelles</mark> en amont des décisions et de leur mise en œuvre</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“renforcement de la participation citoyenne au mécanisme de décision”
+</div>
+<span class="context">A l’heure où l’on parle beaucoup de démocratie directe, de <mark>renforcement de la participation citoyenne au mécanisme de décision</mark> politique, le moment est venu d’aller plus loin</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Nous voulons un projet cohérent, qui tient compte du statut international de Bruxelles”
+</div>
+<span class="context">Le Mouvement Réformateur veut lancer une nouvelle dynamique pour Bruxelles Faire de notre ville-région un lieu de vie et de travail agréable, où chacun a sa chance <mark>Nous voulons un projet cohérent, qui tient compte du statut international de Bruxelles</mark> mais aussi et avant tout du bien-être de tous ses habitants</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“la multiplicité des situations des demandeurs d’emploi doit être reconnue”
+</div>
+<span class="context">La multiplicité des situations des demandeurs d’emploi doit être reconnue Une situation n’est pas l’autre A côté d’une très grande majorité de demandeurs d’emplois désireux de s’insérer durablement dans le marché du travail existent des personnes très éloignées du marché de l’emploi, dont l’insertion doit faire l’objet d’un suivi spécifique très adapté qui dépend bien plus de la politique sociale que celle de la politique de l’emploi</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“les Bruxellois eux-mêmes, par l’entremise des comités de quartier et des associations citoyennes”
+</div>
+<span class="context">…qui connait le mieux les réalités du terrain, des quartiers, ce qu’il faut y améliorer, y changer et ce qu’il faut y garder, y développer, sinon <mark>les Bruxellois eux-mêmes, par l’entremise des comités de quartier et des associations citoyennes</mark> ? Le MR veut soutenir les initiatives citoyennes, par l’organisation plus systématique de panels citoyens, de commissions mixtes députés/citoyens pour rendre des avis et des recommandations à caractère consultatif …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“l’Etat libéral doit être un rempart contre toute forme de populisme et d’extrémisme”
+</div>
+<span class="context">Enfin, <mark>l’Etat libéral doit être un rempart contre toute forme de populisme et d’extrémisme</mark> La neutralité et l’impartialité de l’Etat sont également des impératifs pour lutter contre les communautarismes, contre les exigences religieuses et culturelles sous couvert d’accommodements raisonnables et, bien sûr, l’émergence des tendances les plus extrêmes Nul ne devrait pouvoir se revendiquer des droits et libertés constitutionnelles pour attaquer ces mêmes droits et libertés</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“la prise de décisions dynamiques et adaptées”
+</div>
+<span class="context">La supracommunalité, dans une logique ascendante à partir des communes pour favoriser l’émergence de projets impliquant plusieurs communes, doit permettre demain <mark>la prise de décisions dynamiques et adaptées</mark> permettant de doter nos territoires de politiques modernes, volontaires, autonomes et cohérentes…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“la société permet à chacun de prendre son avenir en main et de contribuer à son fonctionnement”
+</div>
+<span class="context">Notre société permet à chacun de prendre son avenir en main et de contribuer à son fonctionnement Cela n’est pourtant vrai que si, avant toute autre chose, nous nous débarrassons de nos préjugés, sur nous-mêmes et sur les autres</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“Nous devons trouver une voie médiane entre la politique de frontières ouvertes prônée par les partis de gauche et l’immigration zéro prônée par des partis extrémistes”
+</div>
+<span class="context">…Nous sommes un pays des droits de l’homme mais nous sommes intransigeants avec nos lois et nos valeurs <mark>Nous devons trouver une voie médiane entre la politique de frontières ouvertes prônée par les partis de gauche et l’immigration zéro prônée par des partis extrémistes</mark> Ces deux politiques seraient dramatiques pour notre pays et notre système social…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“projet libéral et réformateur stimule la liberté”
+</div>
+<span class="context">Le <mark>projet libéral et réformateur stimule la liberté</mark> et la responsabilité Il vise l’émancipation personnelle</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“libéralisme social”
+</div>
+<span class="context">Soutenir et venir en aide aux personnes particulièrement sensibles au risque de pauvreté et d’exclusion sociale est une des missions du <mark>libéralisme social</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“permettre à chacun d’avoir un toit”
+</div>
+<span class="context">Pour le MR, il faut permettre à toute personne d’avoir accès à un logement salubre et peu énergivore. En clair, il faut <mark>permettre à chacun d’avoir un toit</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“participation citoyenne n’est pas un mot creux”
+</div>
+<span class="context">Pour le MR, la <mark>participation citoyenne n’est pas un mot creux</mark> ou un simple slogan Il faut associer le citoyen à la gestion de Bruxelles</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“réduire la fracture entre les citoyens”
+</div>
+<span class="context">le MR se donne comme objectif de <mark>réduire la fracture entre les citoyens</mark> en proposant des réformes fondamentales et concrètes</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“renforcer les mécanismes de participation citoyenne”
+</div>
+<span class="context">Il faut donc <mark>renforcer les mécanismes de participation citoyenne</mark> en vue d’encourager la démocratie directe et d’ainsi mettre sur pied une véritable implication citoyenne</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 7</span>
+<div class="quote">
+“voie médiane entre la politique de frontières ouvertes”
+</div>
+<span class="context">Nous devons trouver une <mark>voie médiane entre la politique de frontières ouvertes</mark> prônée par les partis de gauche et l’immigration zéro prônée par des partis extrémistes</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 8</span>
+<div class="quote">
+“voie médiane entre la politique de frontières ouvertes”
+</div>
+<span class="context">Nous devons trouver une <mark>voie médiane entre la politique de frontières ouvertes</mark> prônée par les partis de gauche et l’immigration zéro prônée par des partis extrémistes</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 9</span>
+<div class="quote">
+“apolitique et méritoire”
+</div>
+<span class="context">Le MR plaide également pour une véritable professionnalisation du monde du sport, ambitieuse, <mark>apolitique et méritoire</mark></span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“lutte contre la pauvreté infantile doit s’inscrire dans une politique de soutien aux familles”
+</div>
+<span class="context">Investir dans la lutte contre la pauvreté infantile, c’est préparer l’avenir de notre société Pour le MR, la <mark>lutte contre la pauvreté infantile doit s’inscrire dans une politique de soutien aux familles</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“le développement de la croissance économique, l’augmentation du pouvoir d’achat”
+</div>
+<span class="context">Le développement de la croissance économique, l’augmentation du pouvoir d’achat et le renforcement de l’attractivité de la Belgique pour les investisseurs sont les moteurs essentiels pour dynamiser la création d’emplois et garantir le paiement des revenus sociaux</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“fracture sociale, une véritable dualité socio-économique”
+</div>
+<span class="context">…immobilisme et le court-termisme du gouvernement régional ont fait de notre Région un éternel chantier, congestionné, improvisé, peu accueillant et indigne de la capitale de notre pays Il faut constater une <mark>fracture sociale, une véritable dualité socio-économique</mark> Le MR veut changer de cap et faire entrer Bruxelles dans le 21ième siècle…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 7</span>
+<div class="quote">
+“l’égalité des chances comme un fondement du libéralisme Sans elle, il n’y a pas de démocratie”
+</div>
+<span class="context">Nous considérons <mark>l’égalité des chances comme un fondement du libéralisme Sans elle, il n’y a pas de démocratie</mark>, ni de liberté réelle</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 8</span>
+<div class="quote">
+“Il faut inciter les employeurs à participer au changement des mentalités en développant une politique de l’égalité et de la diversité dans le milieu du travail”
+</div>
+<span class="context">…Les lois visant à lutter contre les discriminations, notamment à l’embauche doivent être strictement respectées <mark>Il faut inciter les employeurs à participer au changement des mentalités en développant une politique de l’égalité et de la diversité dans le milieu du travail</mark> Il faut renforcer à cet effet la concertation entre les partenaires sociaux…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“lutter contre la pauvreté infantile”
+</div>
+<span class="context">Investir dans la lutte contre la pauvreté infantile, c’est préparer l’avenir de notre société</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“lutter contre le dumping social”
+</div>
+<span class="context">Lutter plus efficacement contre le dumping social L’arsenal des sanctions a été renforcé pour mettre un terme aux détachements abusifs de travailleurs</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“économie sociale et l’économie classique”
+</div>
+<span class="context">Rapprocher l’<mark>économie sociale et l’économie classique</mark> À l’instar de l’économie classique, l’économie sociale vise au développement d’activités économiques productrices de biens et de services</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“Améliorer l’aide aux sans-abris et aux plus précarisés”
+</div>
+<span class="context"><mark>Améliorer l’aide aux sans-abris et aux plus précarisés</mark> Ce phénomène doit être résorbé Le droit à avoir un logement salubre est fondamental</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 5</span>
+<div class="quote">
+“marché des émissions de CO2”
+</div>
+<span class="context">la responsabilité civile (principe de pollueur/payeur), les partenariats public-privés, le marché (exemple : marché des émissions de soufre, <mark>marché des émissions de CO2</mark>, etc)</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 6</span>
+<div class="quote">
+“lutte contre la pauvreté”
+</div>
+<span class="context">le MR entend poursuivre le développement des politiques de cohésion sociale et de lutte contre la paupérisation et la pauvreté, vectrices d’émancipation pour les individus</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 7</span>
+<div class="quote">
+“favoriser la philanthropie culturelle”
+</div>
+<span class="context">La « Fondation pour les Arts » aurait pour but de <mark>favoriser la philanthropie culturelle</mark> et de soutenir la création artistique</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 8</span>
+<div class="quote">
+“politique de frontières ouvertes prônée par les partis de gauche”
+</div>
+<span class="context">Nous devons trouver une voie médiane entre la <mark>politique de frontières ouvertes prônée par les partis de gauche</mark> et l’immigration zéro</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 9</span>
+<div class="quote">
+“revalorisation des pensions les plus faibles”
+</div>
+<span class="context">L’essentiel de ce montant a été affecté à la <mark>revalorisation des pensions les plus faibles</mark> et notamment des pensions minimums</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“associer le citoyen à la gestion de Bruxelles”
+</div>
+<span class="context">Pour le MR, la participation citoyenne n’est pas un mot creux ou un simple slogan Il faut <mark>associer le citoyen à la gestion de Bruxelles</mark> en amont des décisions et de leur mise en œuvre</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“renforcement de la participation citoyenne au mécanisme de décision”
+</div>
+<span class="context">A l’heure où l’on parle beaucoup de démocratie directe, de <mark>renforcement de la participation citoyenne au mécanisme de décision</mark> politique, le moment est venu d’aller plus loin</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Nous voulons un projet cohérent, qui tient compte du statut international de Bruxelles”
+</div>
+<span class="context">Le Mouvement Réformateur veut lancer une nouvelle dynamique pour Bruxelles Faire de notre ville-région un lieu de vie et de travail agréable, où chacun a sa chance <mark>Nous voulons un projet cohérent, qui tient compte du statut international de Bruxelles</mark> mais aussi et avant tout du bien-être de tous ses habitants</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“le développement de la croissance économique, l’augmentation du pouvoir d’achat”
+</div>
+<span class="context">Le développement de la croissance économique, l’augmentation du pouvoir d’achat et le renforcement de l’attractivité de la Belgique pour les investisseurs sont les moteurs essentiels pour dynamiser la création d’emplois et garantir le paiement des revenus sociaux</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“fracture sociale, une véritable dualité socio-économique”
+</div>
+<span class="context">…immobilisme et le court-termisme du gouvernement régional ont fait de notre Région un éternel chantier, congestionné, improvisé, peu accueillant et indigne de la capitale de notre pays Il faut constater une <mark>fracture sociale, une véritable dualité socio-économique</mark> Le MR veut changer de cap et faire entrer Bruxelles dans le 21ième siècle…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“loin des conservatismes institutionnels”
+</div>
+<span class="context">…prendre leur destin en mains, de construire leur avenir à travers la réalisation des enjeux stratégiques durables et traduits autour de politiques concrètes et spécifiques à chacun d’eux, <mark>loin des conservatismes institutionnels</mark> et du le sous-régionalisme primaire…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 7</span>
+<div class="quote">
+“la société permet à chacun de prendre son avenir en main et de contribuer à son fonctionnement”
+</div>
+<span class="context">Notre société permet à chacun de prendre son avenir en main et de contribuer à son fonctionnement Cela n’est pourtant vrai que si, avant toute autre chose, nous nous débarrassons de nos préjugés, sur nous-mêmes et sur les autres</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 8</span>
+<div class="quote">
+“Nous devons trouver une voie médiane entre la politique de frontières ouvertes prônée par les partis de gauche et l’immigration zéro prônée par des partis extrémistes”
+</div>
+<span class="context">…Nous sommes un pays des droits de l’homme mais nous sommes intransigeants avec nos lois et nos valeurs <mark>Nous devons trouver une voie médiane entre la politique de frontières ouvertes prônée par les partis de gauche et l’immigration zéro prônée par des partis extrémistes</mark> Ces deux politiques seraient dramatiques pour notre pays et notre système social…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“projet libéral et réformateur stimule la liberté”
+</div>
+<span class="context">Le <mark>projet libéral et réformateur stimule la liberté</mark> et la responsabilité Il vise l’émancipation personnelle</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“libéralisme social”
+</div>
+<span class="context">Soutenir et venir en aide aux personnes particulièrement sensibles au risque de pauvreté et d’exclusion sociale est une des missions du <mark>libéralisme social</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · mixed · chunk 3</span>
+<div class="quote">
+“économie sociale et l’économie classique”
+</div>
+<span class="context">Rapprocher l’<mark>économie sociale et l’économie classique</mark> À l’instar de l’économie classique, l’économie sociale vise au développement d’activités économiques productrices de biens et de services</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“l’immobilisme et le court-termisme du gouvernement régional”
+</div>
+<span class="context">Pourtant, <mark>l’immobilisme et le court-termisme du gouvernement régional</mark> ont fait de notre Région un éternel chantier</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“dangers du communautarisme”
+</div>
+<span class="context">tant sur l’échec de l’intégration que sur les <mark>dangers du communautarisme</mark> ou encore sur l’émergence de l’islamisme radical</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 6</span>
+<div class="quote">
+“chasse aux gaspillages de tous ordres”
+</div>
+<span class="context">Le MR veut garantir la transparence de l’utilisation de l’argent public, avec comme préoccupation constante la <mark>chasse aux gaspillages de tous ordres</mark>, en visant l’efficacité des services publics</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 7</span>
+<div class="quote">
+“mouvements populistes tentent de le faire croire”
+</div>
+<span class="context">La réponse aux flux migratoires n’est pas simple comme les <mark>mouvements populistes tentent de le faire croire</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 8</span>
+<div class="quote">
+“mouvements populistes tentent de le faire croire”
+</div>
+<span class="context">La réponse aux flux migratoires n’est pas simple comme les <mark>mouvements populistes tentent de le faire croire</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 9</span>
+<div class="quote">
+“Gouvernement PS-cdH en place en Fédération Wallonie-Bruxelles n’a pas fait preuve d’une grande ambition”
+</div>
+<span class="context">Le <mark>Gouvernement PS-cdH en place en Fédération Wallonie-Bruxelles n’a pas fait preuve d’une grande ambition</mark> pour révolutionner la politique sportive francophone</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Une immigration mieux contrôlée”
+</div>
+<span class="context">Chapitre : <mark>Une immigration mieux contrôlée</mark> Près de 6000 délinquants en situation illégale ont ainsi été expulsés depuis 2014, ce qui a permis de diminuer la population carcérale</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“l’apprentissage du français pourra se faire concomitamment”
+</div>
+<span class="context">Lister les fonctions pour lesquelles une connaissance basique ou très limitée du français est nécessaire en travaillant en concertation avec les entreprises concernées En effet, <mark>l’apprentissage du français pourra se faire concomitamment</mark> et plus rapidement, le travail étant un facteur accélérateur dans la connaissance d’une nouvelle langue</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 7</span>
+<div class="quote">
+“la lutte contre l’immigration clandestine doit s’intensifier, en particulier contre les passeurs”
+</div>
+<span class="context">La lutte contre l’immigration clandestine doit s’intensifier, en particulier contre les passeurs qui envoient sans scrupules des centaines de milliers de personnes, principalement sur des bateaux de fortune, traverser la Méditerranée</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“La lutte contre l’immigration clandestine doit s’intensifier, en particulier contre les passeurs”
+</div>
+<span class="context">…Pour conserver la confiance de la population, la politique d’asile et d’immigration doit garantir l’exécution et le contrôle des règles en vigueur tout en luttant drastiquement contre l’immigration illégale et en sanctionnant tous les abus en la matière <mark>La lutte contre l’immigration clandestine doit s’intensifier, en particulier contre les passeurs</mark> qui envoient sans scrupules des centaines de milliers de personnes…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“immigration mieux contrôlée”
+</div>
+<span class="context">Chapitre : Une <mark>immigration mieux contrôlée</mark> – listed in table of contents as a chapter</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“activation linguistique systématique pour les demandeurs d’emploi”
+</div>
+<span class="context">Mettre en place une <mark>activation linguistique systématique pour les demandeurs d’emploi</mark> dans les secteurs exposés à une bonne connaissance des langues étrangères</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“préserver la ruralité wallonne”
+</div>
+<span class="context">Préserver la ruralité wallonne L’un des atouts de la Wallonie est son territoire, offrant d’une part de multiples possibilités de développement</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“dangers du communautarisme”
+</div>
+<span class="context">tant sur l’échec de l’intégration que sur les <mark>dangers du communautarisme</mark> ou encore sur l’émergence de l’islamisme radical, nous n’avons pas toujours été écoutés</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 6</span>
+<div class="quote">
+“défense de leurs intérêts légitimes”
+</div>
+<span class="context">La garantie de l’autonomie des germanophones dans le futur mais aussi la <mark>défense de leurs intérêts légitimes</mark> s’inscrit pleinement dans le projet du MR</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“immigration illégale et le trafic des passeurs”
+</div>
+<span class="context">C’est ainsi que le droit d’asile pourra être garanti et que l’<mark>immigration illégale et le trafic des passeurs</mark> pourront être combattus sans relâche</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 8</span>
+<div class="quote">
+“lutter drastiquement contre l’immigration illégale”
+</div>
+<span class="context">doit garantir l’exécution et le contrôle des règles en vigueur tout en luttant drastiquement contre l’immigration illégale et en sanctionnant tous les abus</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 9</span>
+<div class="quote">
+“conditionner l’octroi de la Grapa à une période de résidence en Belgique de 5 ans minimum”
+</div>
+<span class="context">C’est pourquoi il a été décidé de <mark>conditionner l’octroi de la Grapa à une période de résidence en Belgique de 5 ans minimum</mark> avant la demande</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“fracture sociale, une véritable dualité socio-économique”
+</div>
+<span class="context">…immobilisme et le court-termisme du gouvernement régional ont fait de notre Région un éternel chantier, congestionné, improvisé, peu accueillant et indigne de la capitale de notre pays Il faut constater une <mark>fracture sociale, une véritable dualité socio-économique</mark> Le MR veut changer de cap et faire entrer Bruxelles dans le 21ième siècle…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“le racisme n’est pas une opinion c’est un délit qui doit sévèrement puni”
+</div>
+<span class="context">Le racisme n’est pas une opinion c’est un délit qui doit sévèrement puni au même titre que doit être puni la discrimination à l’embauche, au logement ou les incivilités du quotidien dont sont trop souvent victimes les personnes d’origine étrangère</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 8</span>
+<div class="quote">
+“La crise de l’asile a également montré de manière claire le rôle particulièrement néfaste et criminel des passeurs et des trafiquants”
+</div>
+<span class="context">…<mark>La crise de l’asile a également montré de manière claire le rôle particulièrement néfaste et criminel des passeurs et des trafiquants</mark> A l’image des moyens mis en œuvre contre le trafic de drogues ou les réseaux mafieux, leur « business model » doit être détruit C’est une priorité tout comme la fin des noyades en mer…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“manquent cruellement de vision et d’ambition”
+</div>
+<span class="context">les autorités régionales – gouvernées par les mêmes partis depuis plus de 15 ans – <mark>manquent cruellement de vision et d’ambition</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“quand on les laisse perdre espoir”
+</div>
+<span class="context">Quand on enferme des familles entières dans l’assistance, <mark>quand on les laisse perdre espoir</mark>, ce n’est pas de l’argent que l’on gaspille, ce sont des vies que l’on gâche</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“vision de Bruxelles…en totale déconnexion”
+</div>
+<span class="context">La vision de Bruxelles qu’a érigé le gouvernement régional actuel est, dès lors, en totale déconnexion avec les constats et revendications exprimés par les habitants</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 5</span>
+<div class="quote">
+“l’Etat libéral doit être un rempart contre toute forme de populisme”
+</div>
+<span class="context">Enfin, <mark>l’Etat libéral doit être un rempart contre toute forme de populisme</mark> et d’extrémisme</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 6</span>
+<div class="quote">
+“loin des conservatismes institutionnels”
+</div>
+<span class="context">de prendre leur destin en mains, de construire leur avenir à travers la réalisation des enjeux stratégiques durables et traduits autour de politiques concrètes et spécifiques à chacun d’eux, <mark>loin des conservatismes institutionnels</mark> et du le sous-régionalisme primaire</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 7</span>
+<div class="quote">
+“mouvements populistes tentent de le faire croire”
+</div>
+<span class="context">La réponse aux flux migratoires n’est pas simple comme les <mark>mouvements populistes tentent de le faire croire</mark> Une réponse coordonnée mais également plus ferme</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 8</span>
+<div class="quote">
+“rôle particulièrement néfaste et criminel des passeurs”
+</div>
+<span class="context">La crise de l’asile a également montré de manière claire le <mark>rôle particulièrement néfaste et criminel des passeurs</mark> et des trafiquants</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 9</span>
+<div class="quote">
+“pratiques héritées de ses prédécesseurs”
+</div>
+<span class="context">Le nouveau Ministre s’est ensuite consacré à assainir le fonds des sports et à tâcher de mettre fin à un certain nombre de <mark>pratiques héritées de ses prédécesseurs</mark></span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“associer le citoyen à la gestion de Bruxelles”
+</div>
+<span class="context">Pour le MR, la participation citoyenne n’est pas un mot creux ou un simple slogan Il faut <mark>associer le citoyen à la gestion de Bruxelles</mark> en amont des décisions et de leur mise en œuvre</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“répondant aux attentes des citoyens”
+</div>
+<span class="context">Les travaux subsidiés pourraient s’inscrire dans des priorités régionales (larges) <mark>répondant aux attentes des citoyens</mark> en matière de mobilité et d’espaces publics</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Nous voulons la tolérance, le respect et l’ouverture d’esprit”
+</div>
+<span class="context">Nous voulons libérer les capacités individuelles, encourager les talents et le potentiel de chacun <mark>Nous voulons la tolérance, le respect et l’ouverture d’esprit</mark> et nous refusons toutes les formes de discrimination</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“le peuple, la société, les familles monoparentales”
+</div>
+<span class="context">Soutenir la parentalité aujourd’hui, c’est aider les familles dans l’organisation de leur quotidien et chercher à apporter à chaque enfant les conditions de son plein épanouissement Du fait de l’augmentation des situations de monoparentalité, des séparations de couples et des recompositions familiales, les parents n’assument plus nécessairement toutes les fonctions parentales</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“les Bruxellois eux-mêmes, par l’entremise des comités de quartier et des associations citoyennes”
+</div>
+<span class="context">…qui connait le mieux les réalités du terrain, des quartiers, ce qu’il faut y améliorer, y changer et ce qu’il faut y garder, y développer, sinon <mark>les Bruxellois eux-mêmes, par l’entremise des comités de quartier et des associations citoyennes</mark> ? Le MR veut soutenir les initiatives citoyennes, par l’organisation plus systématique de panels citoyens, de commissions mixtes députés/citoyens pour rendre des avis et des recommandations à caractère consultatif …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“la prise de décisions dynamiques et adaptées”
+</div>
+<span class="context">La supracommunalité, dans une logique ascendante à partir des communes pour favoriser l’émergence de projets impliquant plusieurs communes, doit permettre demain <mark>la prise de décisions dynamiques et adaptées</mark> permettant de doter nos territoires de politiques modernes, volontaires, autonomes et cohérentes…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 7</span>
+<div class="quote">
+“la société permet à chacun de prendre son avenir en main et de contribuer à son fonctionnement”
+</div>
+<span class="context">Notre société permet à chacun de prendre son avenir en main et de contribuer à son fonctionnement Cela n’est pourtant vrai que si, avant toute autre chose, nous nous débarrassons de nos préjugés, sur nous-mêmes et sur les autres</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 8</span>
+<div class="quote">
+“Pour conserver la confiance de la population, la politique d’asile et d’immigration doit garantir l’exécution et le contrôle des règles en vigueur”
+</div>
+<span class="context">…la migration peut constituer un apport positif à notre société, tant au point de vue du développement économique que sur le plan culturel et humain <mark>Pour conserver la confiance de la population, la politique d’asile et d’immigration doit garantir l’exécution et le contrôle des règles en vigueur</mark> tout en luttant drastiquement contre l’immigration illégale…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Nous voulons libérer les capacités individuelles”
+</div>
+<span class="context">Il vise l’émancipation personnelle <mark>Nous voulons libérer les capacités individuelles</mark>, encourager les talents et le potentiel de chacun</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“chacun puisse trouver un cadre favorable à son épanouissement”
+</div>
+<span class="context">Nous tenons à ce que l’investissement personnel soit récompensé et souhaitons que <mark>chacun puisse trouver un cadre favorable à son épanouissement</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“permettre à chacun d’avoir un toit”
+</div>
+<span class="context">Pour le MR, il faut permettre à toute personne d’avoir accès à un logement salubre et peu énergivore. En clair, il faut <mark>permettre à chacun d’avoir un toit</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“les ambitions de ses habitants qu’il faut nourrir”
+</div>
+<span class="context">Bruxelles doit être ambitieuse et ce sont <mark>les ambitions de ses habitants qu’il faut nourrir</mark> et concrétiser</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“restaurer et renouveler la crédibilité du politique”
+</div>
+<span class="context">Pour le MR, la gouvernance au sein des pouvoirs publics doit être tout simplement exemplaire, pour <mark>restaurer et renouveler la crédibilité du politique</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“Sonder le citoyen, c’est se rendre compte”
+</div>
+<span class="context"><mark>Sonder le citoyen, c’est se rendre compte</mark> de ce que ce dernier attend du mandataire Il faut donc renforcer les mécanismes de participation citoyenne</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“au profit des artistes et du public”
+</div>
+<span class="context">le décret relatif au subventionnement des arts de la scène afin d’objectiver ce subventionnement et d’assurer une stabilité au secteur <mark>au profit des artistes et du public</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 8</span>
+<div class="quote">
+“Pour conserver la confiance de la population”
+</div>
+<span class="context"><mark>Pour conserver la confiance de la population</mark>, la politique d’asile et d’immigration doit garantir l’exécution et le contrôle des règles</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 9</span>
+<div class="quote">
+“favoriser l’accès au sport pour tous”
+</div>
+<span class="context">Nos priorités Favoriser l’accès au sport pour tous, notamment en améliorant et adaptant les infrastructures</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“politisation de plus en plus flagrante du combat syndical”
+</div>
+<span class="context">le pays a été témoin d’une <mark>politisation de plus en plus flagrante du combat syndical</mark> et de différents abus</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“le parti dominant la majorité régionale actuelle s’est constitué une « méga-administration »”
+</div>
+<span class="context">Avec la création des OIP de type A (dont la structure dépend directement du ministre-président) que sont la SAU, le, BBP et Bruxelles Urbanisme et Patrimoine, <mark>le parti dominant la majorité régionale actuelle s’est constitué une « méga-administration »</mark>, favorisant la concentration des pouvoirs, des moyens et des outils entre ses mains</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“rémunérations injustifiées et des mécanismes décisionnels totalement opaques”
+</div>
+<span class="context">Les citoyens ont assisté à des polémiques liées à des <mark>rémunérations injustifiées et des mécanismes décisionnels totalement opaques</mark> Les citoyens exigent un changement radical</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Nous sommes responsables et choisissons de parler vrai”
+</div>
+<span class="context">Chaque être humain est porteur de droits et de devoirs universels <mark>Nous sommes responsables et choisissons de parler vrai</mark> Nos solutions sont efficaces pour relancer notre économie, améliorer le bien-être et préparer un avenir solide pour nos enfants</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“la multiplicité des situations des demandeurs d’emploi doit être reconnue”
+</div>
+<span class="context">La multiplicité des situations des demandeurs d’emploi doit être reconnue Une situation n’est pas l’autre A côté d’une très grande majorité de demandeurs d’emplois désireux de s’insérer durablement dans le marché du travail existent des personnes très éloignées du marché de l’emploi, dont l’insertion doit faire l’objet d’un suivi spécifique très adapté qui dépend bien plus de la politique sociale que celle de la politique de l’emploi</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“le parti dominant la majorité régionale actuelle s’est constitué une « méga-administration »”
+</div>
+<span class="context">…favorisant la concentration des pouvoirs, des moyens et des outils entre ses mains Pour un PRDD doté d’une vision du développement urbain Le PRDD souffre d’un manque flagrant de cohérence Contrairement à ses constats fondamentaux en matière de densité…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“l’Etat libéral doit être un rempart contre toute forme de populisme et d’extrémisme”
+</div>
+<span class="context">Enfin, <mark>l’Etat libéral doit être un rempart contre toute forme de populisme et d’extrémisme</mark> La neutralité et l’impartialité de l’Etat sont également des impératifs pour lutter contre les communautarismes, contre les exigences religieuses et culturelles sous couvert d’accommodements raisonnables et, bien sûr, l’émergence des tendances les plus extrêmes Nul ne devrait pouvoir se revendiquer des droits et libertés constitutionnelles pour attaquer ces mêmes droits et libertés</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“loin des conservatismes institutionnels”
+</div>
+<span class="context">…prendre leur destin en mains, de construire leur avenir à travers la réalisation des enjeux stratégiques durables et traduits autour de politiques concrètes et spécifiques à chacun d’eux, <mark>loin des conservatismes institutionnels</mark> et du le sous-régionalisme primaire…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“les pouvoirs publics belges se privent de nouvelles sources de financements complémentaires, essentiellement pour des raisons idéologiques”
+</div>
+<span class="context">Cet apparent sous-financement chronique s’explique en partie par le fait que <mark>les pouvoirs publics belges se privent de nouvelles sources de financements complémentaires, essentiellement pour des raisons idéologiques</mark> A l’issue des trois législatures communautaires menées sans le Mouvement réformateur, force est de constater que, en dépit de quelques initiatives menées ces dernières années, l’état de la gestion culturelle ne s’est pas amélioré</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 8</span>
+<div class="quote">
+“Nous sommes un pays des droits de l’homme mais nous sommes intransigeants avec nos lois et nos valeurs”
+</div>
+<span class="context">…l’exécution et le contrôle des règles en vigueur tout en luttant drastiquement contre l’immigration illégale et en sanctionnant tous les abus en la matière <mark>Nous sommes un pays des droits de l’homme mais nous sommes intransigeants avec nos lois et nos valeurs</mark> Nous devons trouver une voie médiane entre la politique de frontières ouvertes prônée par les partis de gauche…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“gouvernées par les mêmes partis depuis plus de 15 ans”
+</div>
+<span class="context">les autorités régionales – <mark>gouvernées par les mêmes partis depuis plus de 15 ans</mark> – manquent cruellement de vision et d’ambition</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“politisation de plus en plus flagrante du combat syndical”
+</div>
+<span class="context">le pays a été témoin d’une <mark>politisation de plus en plus flagrante du combat syndical</mark> et de différents abus qui ont conduit à des situations parfois dramatiques</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · mixed · chunk 3</span>
+<div class="quote">
+“permettre à chacun d’avoir un toit”
+</div>
+<span class="context">Pour le MR, il faut permettre à toute personne d’avoir accès à un logement salubre et peu énergivore. En clair, il faut <mark>permettre à chacun d’avoir un toit</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“l’immobilisme et le court-termisme du gouvernement régional”
+</div>
+<span class="context">Pourtant, <mark>l’immobilisme et le court-termisme du gouvernement régional</mark> ont fait de notre Région un éternel chantier, congestionné, improvisé, peu accueillant</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“gaspillage des deniers publics”
+</div>
+<span class="context">rapport accablant de la Cour des Comptes pointant les irrégularités multiples dans la gestion des marchés publics du SIAMU, le <mark>gaspillage des deniers publics</mark> qui en découle</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“Les citoyens exigent un changement radical”
+</div>
+<span class="context">Les citoyens ont assisté à des polémiques liées à des rémunérations injustifiées et des mécanismes décisionnels totalement opaques <mark>Les citoyens exigent un changement radical</mark> et des décisions fortes en matière de bonne gouvernance</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“le MR est malheureusement dans l’opposition depuis 15 longues années”
+</div>
+<span class="context">En Fédération Wallonie-Bruxelles, <mark>le MR est malheureusement dans l’opposition depuis 15 longues années</mark> La Fédération Wallonie-Bruxelles bénéficie</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 8</span>
+<div class="quote">
+“mouvements populistes tentent de le faire croire”
+</div>
+<span class="context">La réponse aux flux migratoires n’est pas simple comme les <mark>mouvements populistes tentent de le faire croire</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 9</span>
+<div class="quote">
+“Gouvernement PS-cdH en place en Fédération Wallonie-Bruxelles n’a pas fait preuve d’une grande ambition”
+</div>
+<span class="context">Le <mark>Gouvernement PS-cdH en place en Fédération Wallonie-Bruxelles n’a pas fait preuve d’une grande ambition</mark> pour révolutionner la politique sportive francophone</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="21426_201905_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

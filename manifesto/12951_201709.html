@@ -1,0 +1,2137 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>FrP (Norway, 2017) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/12951_201709_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">FrP (Norway, 2017)</h1>
+<p class="subtitle lead">manifesto_id 12951_201709</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Norway · <span class="item"><strong>Party</strong></span> FrP (Progress Party) · <span class="item"><strong>Year</strong></span> 2017 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 70</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.5</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-na">–</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.6</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.5</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">9.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 10.0 · verified · chunk 1</span>
+<div class="quote">
+“økonomiske politikk på markedsøkonomi”
+</div>
+<span class="context">Fremskrittspartiet bygger sin <mark>økonomiske politikk på markedsøkonomi</mark>. Forutsetningene for markedsøkonomi</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“baseres på markedsøkonomiske prinsipper”
+</div>
+<span class="context">konkurranseevne må styrkes, slik at næringen kan <mark>baseres på markedsøkonomiske prinsipper</mark>, slik som landets</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“arbeide for en liberalisering av økonomien”
+</div>
+<span class="context">I Europa som område vil vi <mark>arbeide for en liberalisering av økonomien</mark> for å fremme vekst og velferdsutvikling.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“konkurrere på like vilkår om tjenestetilbud”
+</div>
+<span class="context">at både offentlige og private aktører skal ha mulighet til å <mark>konkurrere på like vilkår om tjenestetilbud</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 5</span>
+<div class="quote">
+“etablere et markedsstyrt transportmarked”
+</div>
+<span class="context">nødvendige lov- og forskriftsendringer for å <mark>etablere et markedsstyrt transportmarked</mark> at havnene organiseres som</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Fremskrittspartiet bygger sin økonomiske politikk på markedsøkonomi”
+</div>
+<span class="context">Markedsøkonomi for velstand og et fritt næringsliv <mark>Fremskrittspartiet bygger sin økonomiske politikk på markedsøkonomi</mark>. Forutsetningene for markedsøkonomi er et fritt og uavhengig næringsliv som har fri flyt av varer og tjenester, fri tilgang til markedene og ingen særbehandling eller konkurransehindrende avtaler.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“skattesystem som motiverer til investeringer, vekst og nyskaping i Norge”
+</div>
+<span class="context">Bedriftsbeskatning Fremskrittspartiet vil ha et <mark>skattesystem som motiverer til investeringer, vekst og nyskaping i Norge</mark>. Det er viktig å være oppmerksom på at Norge konkurrerer med andre land som også vil øke bedriftsetablering og innovasjon, noe som tilsier at skattesystemet må tilpasses dette.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Frihandel er den beste form for global arbeidsdeling med gjensidige fordeler av samhandel”
+</div>
+<span class="context">Forholdene til andre land må bygge på prinsippene om likeverd og frihandel. <mark>Frihandel er den beste form for global arbeidsdeling med gjensidige fordeler av samhandel</mark>. Norge bør derfor snarest bygge ned handelsbarrierene mot utlandet.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Private aktører skal kunne tilby sykehjemsplasser på lik linje med kommunene”
+</div>
+<span class="context"><mark>Private aktører skal kunne tilby sykehjemsplasser på lik linje med kommunene</mark>, og de som trenger en plass, skal ha mulighet til å velge tilbud også utenfor egen kommune. Når sykehjemmene må konkurrere om brukerne, vil dette heve kvaliteten på tilbudet.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“Private skoler er også viktige for at valgfriheten skal bli reell”
+</div>
+<span class="context"><mark>Private skoler er også viktige for at valgfriheten skal bli reell</mark> for foreldre og elever. Vi vil at pengene skal følge eleven gjennom en differensiert stykkprisfinansiering, uavhengig av om eleven går i offentlig eller privat skole (friskoler).</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“frihandel mellom landene”
+</div>
+<span class="context">Markedsøkonomi forutsetter også <mark>frihandel mellom landene</mark>. Fremskrittspartiet vil fjerne import- og eksportrestriksjoner og andre handelsbarrierer.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“næringsfrihet for bonden”
+</div>
+<span class="context">FREMSKRITTSPARTIET VIL: gjeninnføre <mark>næringsfrihet for bonden</mark> og som en konsekvens redusere næringssubsidiene</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Frihandel er den beste form for global arbeidsdeling”
+</div>
+<span class="context">Forholdene til andre land må bygge på prinsippene om likeverd og frihandel. <mark>Frihandel er den beste form for global arbeidsdeling</mark> med gjensidige fordeler av samhandel.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“offentlige og private aktører skal konkurrere på like vilkår”
+</div>
+<span class="context">Vi vil derfor at staten skal ha finansieringsansvaret for eldreomsorgen, og at både offentlige og private aktører skal ha mulighet til å konkurrere på like vilkår om tjenestetilbud.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“markedsstyrt utdanning av høy kvalitet”
+</div>
+<span class="context">For å få flere fagskoler som gir tilbud om <mark>markedsstyrt utdanning av høy kvalitet</mark>, vil vi legge bedre til rette for bransjestyrte fagskoler</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“videreføre et effektivt, uavhengig og kompetent norsk finanstilsyn”
+</div>
+<span class="context">forskning og utdanning for å stimulere til verdiskaping <mark>videreføre et effektivt, uavhengig og kompetent norsk finanstilsyn</mark> tilføre infrastrukturfondet</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“hemmer norsk privat eierskap og kapitalmarked”
+</div>
+<span class="context">herunder formuesskatten, som er en dobbeltbeskatning, og som <mark>hemmer norsk privat eierskap og kapitalmarked</mark>. Nivået på</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“etablere en robust nasjonalbank og en stabil, konvertibel valuta”
+</div>
+<span class="context">Hovedtyngden av norsk bistand bør konsentreres om utdanning, næringsutvikling, infrastruktur, formalisering av eiendomsretten og etablering av eiendomsregistre Det må etableres en robust nasjonalbank og en stabil, konvertibel valuta i de enkelte landene.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Fremskrittspartiet vil videreføre et effektivt, uavhengig og kompetent norsk finanstilsyn”
+</div>
+<span class="context">Fremskrittspartiet vil føre en ansvarlig økonomisk politikk. Staten må legge gode rammer for en velfungerende markedsøkonomi med tanke på å stimulere til verdiskaping og velferd. Det må skapes tillit mellom næringslivet, innbyggerne og offentlige myndigheter. Næringslivet er avhengig både av gode rammevilkår for den enkelte næring, og av et godt investeringsklima med forutsigbare rammer for inflasjon, renter og kronekurs. Folks trygghet i hverdagen handler om en sunn økonomisk utvikling og orden i de økonomiske forhold. Fremskrittspartiet vil legge til rette for dette. … <mark>Fremskrittspartiet vil videreføre et effektivt, uavhengig og kompetent norsk finanstilsyn</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Selskapsskatten må reduseres for å møte dette”
+</div>
+<span class="context">Norsk bedriftsbeskatning skal være innrettet slik at norsk virksomhet har de samme rammevilkårene som våre viktigste handelspartnere. <mark>Selskapsskatten må reduseres for å møte dette</mark>. Særnorske skatter bør avvikles, herunder formuesskatten, som er en dobbeltbeskatning, og som hemmer norsk privat eierskap og kapitalmarked.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“Skatte FUNN er et godt tiltak som stimulerer til økt forskningsinnsats”
+</div>
+<span class="context"><mark>Skatte FUNN er et godt tiltak som stimulerer til økt forskningsinnsats</mark> i næringslivet ved at det gis skattefradrag på privat kapital som benyttes til forskning. Ordningen bør utvides for å bidra til enda mer forskning.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“et effektivt, uavhengig og kompetent norsk finanstilsyn”
+</div>
+<span class="context">sikre Norges Banks frie rolle redusere det offentlige byråkratiet og frigjøre arbeidskraft til privat sektor styrke forskning og utdanning for å stimulere til verdiskaping videreføre <mark>et effektivt, uavhengig og kompetent norsk finanstilsyn</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“fjerne det statlige egenkapitalkravet for boliglån”
+</div>
+<span class="context">Vi ønsker derfor å fjerne egenkapitalkravet for boliglån og la bankene selv avgjøre den enkelte og familiens låneevne.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“fri bevegelse av kapital, virksomhet og mennesker”
+</div>
+<span class="context">Åpenhet, frivillighet og <mark>fri bevegelse av kapital, virksomhet og mennesker</mark> på global basis er viktige verdier.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Årlig innskudd inntil halvparten av folketrygdens grunnbeløp”
+</div>
+<span class="context">Personer som ønsker pensjonsytelser utover det nivået folketrygdens alderspensjon innebærer, må selv sørge for dette gjennom private avtaler med for eksempel forsikringsselskaper eller spareavtaler i bank. <mark>Årlig innskudd inntil halvparten av folketrygdens grunnbeløp</mark> (1/2 G) skal være skattfritt.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“skattefradrag på privat kapital som benyttes til forskning”
+</div>
+<span class="context">SkatteFUNN er et godt tiltak som stimulerer til økt forskningsinnsats i næringslivet ved at det gis <mark>skattefradrag på privat kapital som benyttes til forskning</mark></span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“verne om de rettighetene som Grunnloven”
+</div>
+<span class="context">etnisk opprinnelse, og vi vil <mark>verne om de rettighetene som Grunnloven</mark> legger opp til, som eiendomsrett</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“sikre enkeltmennesket rettssikkerhet. Domstolene skal”
+</div>
+<span class="context">Fremskrittspartiet legger vekt på å <mark>sikre enkeltmennesket rettssikkerhet. Domstolene skal</mark> sikre rask og</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“sikre uavhengighet for domstolene”
+</div>
+<span class="context">FREMSKRITTSPARTIET VIL: effektivisere domstolene og domstolsbehandlingen utvikle ordningen med hurtigdomstoler gjennomgå straffelovgivningen for å heve straffenivået øke minimumsstraffer for alvorlige lovbrudd at alle som blir dømt for overgrep mot barn automatisk skal bli idømt en forvaringsdom <mark>sikre uavhengighet for domstolene</mark> fjerne dagens kvantumsrabatt</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“brukerperspektivet og brukernes rettsikkerhet må styrkes”
+</div>
+<span class="context">Brukerperspektivet og brukernes rettsikkerhet må styrkes gjennom å tilbakeføre kompetanse til førstelinjen/NAV lokalt</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“forutsetning for demokratiet, ytringsfriheten og rettsstaten”
+</div>
+<span class="context">En fri og uavhengig presse er en <mark>forutsetning for demokratiet, ytringsfriheten og rettsstaten</mark>. For å sikre konkurranse</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Fremskrittspartiet bygger på Norges grunnlov”
+</div>
+<span class="context">Fremskrittspartiet er et liberalistisk folkeparti. Det bygger på Norges grunnlov, norsk og vestlig tradisjon og kulturarv, med basis i det kristne livssynet og humanistiske verdier. Hovedmålet er sterk nedsettelse av skatter, avgifter og offentlige inngrep.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“demokrati, rettssikkerhet og effektivitet i politiarbeidet”
+</div>
+<span class="context">Fremskrittspartiet ønsker et troverdig, moderne, handlekraftig, folkelig og ansvarlig politi, og vi vil sikre gjennomføringen av nærpolitireformen til det beste for folk flest. Slik sikrer vi rett kompetanse og kvalitet i politiavdelingene.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Domstolene skal sikre rask og rettferdig behandling”
+</div>
+<span class="context">Fremskrittspartiet legger vekt på å sikre enkeltmennesket rettssikkerhet. <mark>Domstolene skal sikre rask og rettferdig behandling</mark>. Dette er også viktig for å unngå at personer sitter i varetekt over lang tid.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Brukerperspektivet og brukernes rettsikkerhet må styrkes gjennom å tilbakeføre kompetanse til førstelinjen/NAV lokalt”
+</div>
+<span class="context">Et velfungerende NAV er selve forutsetningen for at fellesskapets velferdsgoder forvaltes på en god og riktig måte. <mark>Brukerperspektivet og brukernes rettsikkerhet må styrkes gjennom å tilbakeføre kompetanse til førstelinjen/NAV lokalt</mark>, slik at man sikrer god nok bistand og oppfølging av brukerne.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“En fri og uavhengig presse er en forutsetning for demokratiet”
+</div>
+<span class="context"><mark>En fri og uavhengig presse er en forutsetning for demokratiet</mark>, ytringsfriheten og rettsstaten. For å sikre konkurranse og mangfold i mediene vil vi arbeide for størst mulig grad av etableringsfrihet i medienæringen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“folkestyre, med desentralisert politisk makt”
+</div>
+<span class="context">Vår politikk bygger på <mark>folkestyre, med desentralisert politisk makt</mark> og avgjørelse i folkevalgte organer, samt å lovfeste bindende folkeavstemninger som en del av vårt konstitusjonelle system.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“domstolsadministrasjonen (DA) gjøres mer uavhengig”
+</div>
+<span class="context">For ytterligere å styrke uavhengigheten bør <mark>domstolsadministrasjonen (DA) gjøres mer uavhengig</mark> av Justis­ og beredskapsdepartementet og Regjeringen</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“sikre uavhengighet for domstolene”
+</div>
+<span class="context">FREMSKRITTSPARTIET VIL: effektivisere domstolene og domstolsbehandlingen utvikle ordningen med hurtigdomstoler gjennomgå straffelovgivningen for å heve straffenivået øke minimumsstraffer for alvorlige lovbrudd … <mark>sikre uavhengighet for domstolene</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“styrke brukermedvirkningen og valgfriheten”
+</div>
+<span class="context">FREMSKRITTSPARTIET VIL: nedlegge de regionale helseforetakene likebehandle offentlige og private sykehus <mark>styrke brukermedvirkningen og valgfriheten</mark> i spesialisthelsetjenesten</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“fri og uavhengig presse er en forutsetning for demokratiet”
+</div>
+<span class="context">En <mark>fri og uavhengig presse er en forutsetning for demokratiet</mark>, ytringsfriheten og rettsstaten</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“avstand fra forskjellsbehandling av mennesker basert”
+</div>
+<span class="context">Vi tar sterk <mark>avstand fra forskjellsbehandling av mennesker basert</mark> på kjønn, religion eller etnisk opprinnelse</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“ytringsfrihet, trosfrihet og beskyttelse av privat eiendomsrett”
+</div>
+<span class="context">Fremskrittspartiets liberalistiske grunnsyn bygger på at alle mennesker har visse universelle friheter og rettigheter uavhengig av hvor i verden de bor, slik som <mark>ytringsfrihet, trosfrihet og beskyttelse av privat eiendomsrett</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“forby rituell omskjæring av guttebarn”
+</div>
+<span class="context">Fremskrittspartiet vil <mark>forby rituell omskjæring av guttebarn</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“sikre kristendom og den kristne kulturarv”
+</div>
+<span class="context">ha en styrking av realfagene <mark>sikre kristendom og den kristne kulturarv</mark> i grunnopplæringen styrke kompetansen</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“vi tar sterk avstand fra forskjellsbehandling av mennesker basert på kjønn, religion eller etnisk opprinnelse”
+</div>
+<span class="context">Det fundamentale i vårt samfunnssyn er troen på, og respekten for, det enkelte menneskets egenart og retten til å bestemme over eget liv og økonomi. Enkeltmennesket er, sammen med familien og eiendomsretten, det grunnleggende i samfunnet. Vi tar sterk avstand fra forskjellsbehandling av mennesker basert på kjønn, religion eller etnisk opprinnelse, og vi vil verne om de rettighetene som Grunnloven legger opp til, som eiendomsrett, næringsfrihet, den personlige frihet, ytringsfrihet, trosfrihet og organisasjonsfrihet.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“sterkt dyrevern. Personer som har vist seg uskikket til å holde dyr, skal miste retten til dyrehold”
+</div>
+<span class="context">Norge skal ha et <mark>sterkt dyrevern. Personer som har vist seg uskikket til å holde dyr, skal miste retten til dyrehold</mark>. Fremskrittspartiet ønsker å etablere et dyrepoliti i hele Norge for å sikre dyrenes velferd, og for å overta mattilsynets opp gaver knyttet til dyrehold.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“Vi vil arbeide for å spre kunnskap om menneskerettigheter og bekjempe vold og undertrykkelse”
+</div>
+<span class="context">Fremskrittspartiets liberalistiske grunnsyn bygger på at alle mennesker har visse universelle friheter og rettigheter uavhengig av hvor i verden de bor, slik som ytringsfrihet, trosfrihet og beskyttelse av privat eiendomsrett. <mark>Vi vil arbeide for å spre kunnskap om menneskerettigheter og bekjempe vold og undertrykkelse</mark>, for eksempel kjønnslemlestelse, tvangsekteskap, menneskehandel og seksuelt misbruk av barn.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Eldreomsorg skal ytes ut fra prinsippet om at alle mennesker er likeverdige, og skal ha respekt for den enkeltes verdighet”
+</div>
+<span class="context"><mark>Eldreomsorg skal ytes ut fra prinsippet om at alle mennesker er likeverdige, og skal ha respekt for den enkeltes verdighet</mark>. Eldre pleietrengende må få muligheten til å bo hjemme så lenge de ønsker, så lenge det er forsvarlig.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“barne­ og ungdomsaktivitet prioriteres når offentlige kultur­ og idrettsmidler”
+</div>
+<span class="context">Barn og unge bør prioriteres når offentlige kultur­ og idrettsmidler skal fordeles. Fremskrittspartiet vil fjerne tilskuddsordningen for trossamfunn.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“vi vil forby bruk av heldekkende plagg”
+</div>
+<span class="context">Vi vil fremheve den nødvendige sammenhengen mellom åndsfrihet og kulturell og materiell fremgang… FrP vil innføre forbud mot hijab i grunnskolen. Videre vil vi forby bruk av heldekkende plagg (burka og nikab)</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 2</span>
+<div class="quote">
+“forbud mot tigging”
+</div>
+<span class="context">Mange steder sjeneres innbyggerne av tiggere. Vi vil derfor gjeninnføre <mark>forbud mot tigging</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 3</span>
+<div class="quote">
+“bekjempe vold og undertrykkelse, for eksempel kjønnslemlestelse”
+</div>
+<span class="context">vi vil arbeide for å spre kunnskap om menneskerettigheter og <mark>bekjempe vold og undertrykkelse, for eksempel kjønnslemlestelse</mark>, tvangsekteskap, menneskehandel</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 4</span>
+<div class="quote">
+“forbud mot hijab i grunnskolen”
+</div>
+<span class="context">Fremskrittspartiet vil innføre <mark>forbud mot hijab i grunnskolen</mark> og forbud mot bruk av heldekkende plagg (burka og nikab) i alle undervisningsinstitusjoner.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“integrering mellom landets forskjellige etniske befolkningsgrupper”
+</div>
+<span class="context">En bred satsing på idretten vil også være et viktig element i arbeidet for å oppnå en bredere <mark>integrering mellom landets forskjellige etniske befolkningsgrupper</mark></span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Fremskrittspartiets ideologiske grunnlag, liberalismen”
+</div>
+<span class="context">Ideologisk grunnlag <mark>Fremskrittspartiets ideologiske grunnlag, liberalismen</mark>, tar utgangspunkt i at folk selv</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“baseres på markedsøkonomiske prinsipper”
+</div>
+<span class="context">konkurranseevne må styrkes, slik at næringen kan <mark>baseres på markedsøkonomiske prinsipper</mark>, slik som landets</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Fremskrittspartiets liberalistiske grunnsyn bygger på at alle mennesker har visse universelle friheter”
+</div>
+<span class="context"><mark>Fremskrittspartiets liberalistiske grunnsyn bygger på at alle mennesker har visse universelle friheter</mark> og rettigheter uavhengig av hvor i verden de bor, slik som ytringsfrihet, trosfrihet og beskyttelse av privat eiendomsrett.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“konkurrere på like vilkår om tjenestetilbud”
+</div>
+<span class="context">at både offentlige og private aktører skal ha mulighet til å <mark>konkurrere på like vilkår om tjenestetilbud</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“etablere et markedsstyrt transportmarked”
+</div>
+<span class="context">nødvendige lov- og forskriftsendringer for å <mark>etablere et markedsstyrt transportmarked</mark> at havnene organiseres som</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Fremskrittspartiet bygger sin økonomiske politikk på markedsøkonomi”
+</div>
+<span class="context">Markedsøkonomi for velstand og et fritt næringsliv <mark>Fremskrittspartiet bygger sin økonomiske politikk på markedsøkonomi</mark>. Forutsetningene for markedsøkonomi er et fritt og uavhengig næringsliv som har fri flyt av varer og tjenester, fri tilgang til markedene og ingen særbehandling eller konkurransehindrende avtaler.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“skattesystem som motiverer til investeringer, vekst og nyskaping i Norge”
+</div>
+<span class="context">Bedriftsbeskatning Fremskrittspartiet vil ha et <mark>skattesystem som motiverer til investeringer, vekst og nyskaping i Norge</mark>. Det er viktig å være oppmerksom på at Norge konkurrerer med andre land som også vil øke bedriftsetablering og innovasjon, noe som tilsier at skattesystemet må tilpasses dette.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Frihandel er den beste form for global arbeidsdeling med gjensidige fordeler av samhandel”
+</div>
+<span class="context">Forholdene til andre land må bygge på prinsippene om likeverd og frihandel. <mark>Frihandel er den beste form for global arbeidsdeling med gjensidige fordeler av samhandel</mark>. Norge bør derfor snarest bygge ned handelsbarrierene mot utlandet.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Private aktører skal kunne tilby sykehjemsplasser på lik linje med kommunene”
+</div>
+<span class="context"><mark>Private aktører skal kunne tilby sykehjemsplasser på lik linje med kommunene</mark>, og de som trenger en plass, skal ha mulighet til å velge tilbud også utenfor egen kommune. Når sykehjemmene må konkurrere om brukerne, vil dette heve kvaliteten på tilbudet.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“Private skoler er også viktige for at valgfriheten skal bli reell”
+</div>
+<span class="context"><mark>Private skoler er også viktige for at valgfriheten skal bli reell</mark> for foreldre og elever. Vi vil at pengene skal følge eleven gjennom en differensiert stykkprisfinansiering, uavhengig av om eleven går i offentlig eller privat skole (friskoler).</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Fremskrittspartiets ideologiske grunnlag, liberalismen”
+</div>
+<span class="context"><mark>Fremskrittspartiets ideologiske grunnlag, liberalismen</mark>, tar utgangspunkt i at folk selv er bedre i stand enn politikerne til å bestemme hva som er best for seg og sine.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“næringsfrihet for bonden”
+</div>
+<span class="context">FREMSKRITTSPARTIET VIL: gjeninnføre <mark>næringsfrihet for bonden</mark> og som en konsekvens redusere næringssubsidiene</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Frihandel er den beste form for global arbeidsdeling”
+</div>
+<span class="context">Forholdene til andre land må bygge på prinsippene om likeverd og frihandel. <mark>Frihandel er den beste form for global arbeidsdeling</mark> med gjensidige fordeler av samhandel.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“offentlige og private aktører skal konkurrere på like vilkår”
+</div>
+<span class="context">Vi vil derfor at staten skal ha finansieringsansvaret for eldreomsorgen, og at både offentlige og private aktører skal ha mulighet til å konkurrere på like vilkår om tjenestetilbud.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“fri og uavhengig presse er en forutsetning for demokratiet”
+</div>
+<span class="context">En <mark>fri og uavhengig presse er en forutsetning for demokratiet</mark>, ytringsfriheten og rettsstaten</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“overnasjonalt byråkrati i Brussel som legger hindringer”
+</div>
+<span class="context">beveget seg mot et <mark>overnasjonalt byråkrati i Brussel som legger hindringer</mark> i veien for folk flest.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“desentralisere makten i næringen fra politikere”
+</div>
+<span class="context">Vi vil <mark>desentralisere makten i næringen fra politikere</mark> og organisasjoner til den enkelte bonde</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“et overnasjonalt byråkrati i Brussel som legger hindringer i veien for folk flest”
+</div>
+<span class="context">Man har beveget seg vekk fra de opprinnelige tankene, og beveget seg mot <mark>et overnasjonalt byråkrati i Brussel som legger hindringer i veien for folk flest</mark>. Derfor er FrP imot norsk medlemskap i EU.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“ideologisk-politisk dragkamp mellom partiene”
+</div>
+<span class="context">Dette setter skolen i en sårbar situasjon som ender i en <mark>ideologisk-politisk dragkamp mellom partiene</mark> om hvem som har den beste skolepolitikken.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Makt bør overføres fra politikerne til folk flest”
+</div>
+<span class="context">Maktkonsentrasjon i det offentlige gjør det også mer attraktivt å skaffe seg posisjoner i statsapparatet enn selv å jobbe for å skape verdier. <mark>Makt bør overføres fra politikerne til folk flest</mark>. Dette vil vi gjøre ved å la innbyggerne beholde mer av sine egne skattepenger, og gjennom å overlate flere av det offentliges oppgaver til enkeltmennesker, privat virksomhet og frivillige organisasjoner.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“hindre at offentlige bedrifter gis særfordeler som fører til konkurransevridning”
+</div>
+<span class="context">forenkle offentlig forvaltning, lover og regler <mark>hindre at offentlige bedrifter gis særfordeler som fører til konkurransevridning</mark> at søknader og henvendelser til det offentlige skal besvares innen fastsatte tidsfrister</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Fremskrittspartiet aksepterer ikke at straffesaker med kjent gjerningsmann henlegges på grunn av kapasitetsproblemer”
+</div>
+<span class="context">Vi mener at det offentlige bør gis anledning til å leie inn privatpraktiserende advokater til å føre straffesaker for å få avviklet den store saksmengden. <mark>Fremskrittspartiet aksepterer ikke at straffesaker med kjent gjerningsmann henlegges på grunn av kapasitetsproblemer</mark>. Vi ønsker å utvide den offentlige rettshjelpsordningen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“Fremskrittspartiet går inn for full organisasjons­ og avtalefrihet”
+</div>
+<span class="context">Et sterkt trepartssamarbeid mellom arbeidsgiversiden, arbeidstakersiden og myndighetene har vist seg å være vellykket for å sikre forutsigbare rammevilkår, nødvendig moderasjon og evne til omstilling. Et godt og velfungerende trepartssamarbeid forutsetter at alle berørte parter blir hørt og behandlet som likeverdige aktører i samarbeidet. <mark>Fremskrittspartiet går inn for full organisasjons­ og avtalefrihet</mark> og forholder seg til inngåtte avtaler i arbeidslivet.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“manglende kompetanse blant våre rådgivere”
+</div>
+<span class="context">Dessverre ser vi i dag at det er <mark>manglende kompetanse blant våre rådgivere</mark> både om næringsliv og utdanning. Rådgivere må derfor ha en minimumskompetanse.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Makt bør overføres fra politikerne til folk flest”
+</div>
+<span class="context">Maktkonsentrasjon i det offentlige gjør det også mer attraktivt å skaffe seg posisjoner i statsapparatet enn selv å jobbe for å skape verdier. <mark>Makt bør overføres fra politikerne til folk flest</mark>. Dette vil vi gjøre ved å la innbyggerne beholde mer av sine egne skattepenger</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · mixed · chunk 2</span>
+<div class="quote">
+“desentralisere makten i næringen fra politikere og organisasjoner”
+</div>
+<span class="context">Vi vil <mark>desentralisere makten i næringen fra politikere og organisasjoner</mark> til den enkelte bonde og forbruker.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“overnasjonalt byråkrati i Brussel som legger hindringer”
+</div>
+<span class="context">man har beveget seg mot et <mark>overnasjonalt byråkrati i Brussel som legger hindringer</mark> i veien for folk flest. Derfor er FrP imot norsk medlemskap i EU.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“unødvendig mellomledd som fører til ansvarsfraskrivelse”
+</div>
+<span class="context">De regionale helseforetakene er et <mark>unødvendig mellomledd som fører til ansvarsfraskrivelse</mark> og unødvendig byråkrati, og må derfor avskaffes.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“politisk motarbeidelse, er bilen det foretrukne”
+</div>
+<span class="context">Tross en lang historie med <mark>politisk motarbeidelse, er bilen det foretrukne</mark> transportmiddelet for de fleste av oss</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“folk flest har fått lavere skatt”
+</div>
+<span class="context">Folk flest har fått lavere skatt, det har blitt billigere å kjøre bil, investeringene i nye veier er rekordstore, innvandringspolitikken har blitt strengere, og pasienter får raskere behandling med FrP i regjering.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“forenkle offentlig forvaltning, lover og regler hindre at offentlige bedrifter gis særfordeler som fører til konkurransevridning”
+</div>
+<span class="context"><mark>forenkle offentlig forvaltning, lover og regler hindre at offentlige bedrifter gis særfordeler som fører til konkurransevridning</mark> at søknader og henvendelser til det offentlige skal besvares innen fastsatte tidsfrister</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“Det må legges vekt på at alle som har lovlig opphold i Norge, skal være sikret en rettferdig behandling”
+</div>
+<span class="context">Hovedprinsippet i Fremskrittspartiets innvandringspolitikk er likebehandling der ingen grupper gis særbehandling. <mark>Det må legges vekt på at alle som har lovlig opphold i Norge, skal være sikret en rettferdig behandling</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“Et sterkt trepartssamarbeid mellom arbeidsgiversiden, arbeidstakersiden og myndighetene”
+</div>
+<span class="context"><mark>Et sterkt trepartssamarbeid mellom arbeidsgiversiden, arbeidstakersiden og myndighetene</mark> har vist seg å være vellykket for å sikre forutsigbare rammevilkår, nødvendig moderasjon og evne til omstilling. Et godt og velfungerende trepartssamarbeid forutsetter at alle berørte parter blir hørt og behandlet som likeverdige aktører i samarbeidet.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“Private skoler er også viktige for at valgfriheten skal bli reell”
+</div>
+<span class="context"><mark>Private skoler er også viktige for at valgfriheten skal bli reell</mark> for foreldre og elever. Vi vil at pengene skal følge eleven gjennom en differensiert stykkprisfinansiering, uavhengig av om eleven går i offentlig eller privat skole (friskoler).</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“et liberalistisk folkeparti”
+</div>
+<span class="context">Fremskrittspartiet er <mark>et liberalistisk folkeparti</mark>. Det bygger på Norges grunnlov, norsk og vestlig tradisjon og kulturarv</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“folk flest til gode”
+</div>
+<span class="context">Vi ønsker færre og mer robuste nettselskaper. Det vil gi generelt lavere nettleiekostnader for folk flest.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“folk flest”
+</div>
+<span class="context">man har beveget seg mot et overnasjonalt byråkrati i Brussel som legger hindringer i veien for <mark>folk flest</mark>. Derfor er FrP imot norsk medlemskap i EU.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“pasientenes trygghet og valgfrihet ivaretas”
+</div>
+<span class="context">Vi ønsker et mangfoldig helsetilbud der <mark>pasientenes trygghet og valgfrihet ivaretas</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“folk flest ønsker å bevege seg raskt”
+</div>
+<span class="context">Folk flest ønsker å bevege seg raskt mellom bolig, arbeid, og fritidsaktiviteter</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“økonomisk sosialhjelp skal være en kortvarig hjelp”
+</div>
+<span class="context">Enkeltmennesket har selv hovedansvaret for å sørge for seg og sine nærmeste. Det offentlige skal ha et sikkerhetsnett for dem som ikke er i stand til å greie seg selv. Økonomisk sosialhjelp skal være en kortvarig hjelp for mennesker i en vanskelig livssituasjon.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“gradvis redusere subsidier til reindrift”
+</div>
+<span class="context"><mark>gradvis redusere subsidier til reindrift</mark> at årstidsbeiter for rein innlemmes i det enkelte sommerbeitedistrikt Veterinærtjenester og dyrevelferd Kommunene har ansvaret for tilfredsstillende tilgang til tjenester fra dyrehelsepersonell.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“Det er foreldrenes ansvar og plikt å gi barn den tryggheten, omsorgen og kjærligheten de trenger”
+</div>
+<span class="context"><mark>Det er foreldrenes ansvar og plikt å gi barn den tryggheten, omsorgen og kjærligheten de trenger</mark> for å vokse opp til å bli selvstendige og ansvarsfulle individer. Virkeligheten er dessverre ikke alltid slik.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“Fremskrittspartiet vil ha en fremtidsrettet velferdspolitikk basert på dette prinsippet”
+</div>
+<span class="context">Fremskrittspartiet mener en grunnleggende holdning må være at alle skal bidra etter evne for å sikre gode og bærekraftige velferdsordninger i fremtiden. Dagens velferdssystem baserer seg i utgangspunktet på prinsippet om at alle som kan, skal klare seg selv, leve av egen inntekt og ta vare på seg selv og sin egen familie. De som ikke makter dette av blant annet helsemessige årsaker, skal få hjelp av fellesskapet til å leve et verdig liv. Samtidig må velferdspolitikken innrettes slik at det alltid vil være lønnsomt å arbeide. Vi ønsker en fremtidsrettet velferdspolitikk basert på dette prinsippet.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“lavere skatter og avgifter”
+</div>
+<span class="context">Vi vil styrke familiens handlefrihet gjennom reduksjon av skatter og avgifter, og vi vil at barnefamilier i størst mulig grad skal likebehandles</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“reduksjon eller avskaffelse av hindringer”
+</div>
+<span class="context">Virkemidler i arbeidet for å nå dette målet er <mark>reduksjon eller avskaffelse av hindringer</mark> for menneskets utfoldelse, virketrang og realisering av egne mål.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“staten skal ha finansieringsansvaret for eldreomsorgen”
+</div>
+<span class="context">Vi vil derfor at <mark>staten skal ha finansieringsansvaret for eldreomsorgen</mark>, og at både offentlige og private aktører skal ha mulighet til å konkurrere på like vilkår.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 5</span>
+<div class="quote">
+“alle som er kvalifisert, skal ha mulighet”
+</div>
+<span class="context">at <mark>alle som er kvalifisert, skal ha mulighet</mark> til å ta høyere utdanning uavhengig av økonomi</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Innvandringspolitikken skal fortsatt strammes inn”
+</div>
+<span class="context">flere, ikke færre arbeidsplasser. <mark>Innvandringspolitikken skal fortsatt strammes inn</mark>. For at integreringen skal bli bedre</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“Kriminalitet som utøves av utlendinger”
+</div>
+<span class="context">Kampen mot kriminelle må skjerpes. <mark>Kriminalitet som utøves av utlendinger</mark>, gir lovlydige innvandrere</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“en begrenset og kontrollert asylinnvandring”
+</div>
+<span class="context">Fremskrittspartiet vil derfor arbeide for å innføre et nytt og mer rettferdig og humant internasjonalt asyl- og flyktningesystem som sikrer <mark>en begrenset og kontrollert asylinnvandring</mark> hvor nasjonalstatene har kontroll over antall asylsøkere.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Innvandringspolitikken skal fortsatt strammes inn”
+</div>
+<span class="context">Folk flest har fått lavere skatt, det har blitt billigere å kjøre bil, investeringene i nye veier er rekordstore, innvandringspolitikken har blitt strengere, og pasienter får raskere behandling med FrP i regjering. Vi har vist handlekraft. Det vil vi fortsette med. Vårt program forteller hvordan vi vil gi mer frihet og trygghet til folk flest. Skattene skal videre ned. Vi vil fjerne eiendomsskatten. Folk flest skal få lavere skatt. Byråkratiet skal reduseres slik at det blir enklere å skape og satse. Vi trenger flere, ikke færre arbeidsplasser. <mark>Innvandringspolitikken skal fortsatt strammes inn</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“hindre at offentlige bedrifter gis særfordeler som fører til konkurransevridning”
+</div>
+<span class="context">forenkle offentlig forvaltning, lover og regler <mark>hindre at offentlige bedrifter gis særfordeler som fører til konkurransevridning</mark> at søknader og henvendelser til det offentlige skal besvares innen fastsatte tidsfrister</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“Fremskrittspartiet vil derfor arbeide for å innføre et nytt og mer rettferdig og humant internasjonalt asyl­ og flyktningesystem”
+</div>
+<span class="context">Migrasjonsstrømmen i 2015 avslørte med all mulig tydelighet at dagens asylsystem ikke er bærekraftig verken utfra et økonomisk, demografisk, sosialt, sikkerhetspolitisk eller humanitært perspektiv. <mark>Fremskrittspartiet vil derfor arbeide for å innføre et nytt og mer rettferdig og humant internasjonalt asyl­ og flyktningesystem</mark> som sikrer en begrenset og kontrollert asylinnvandring hvor nasjonalstatene har kontroll over antall asylsøkere.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“Fremskrittspartiet vil forby rituell omskjæring av guttebarn”
+</div>
+<span class="context"><mark>Fremskrittspartiet vil forby rituell omskjæring av guttebarn</mark>. Eldreomsorg Eldreomsorg handler om mennesker som på grunn av sykdom eller svekkelse kombinert med aldring, har behov for behandling, pleie og/eller praktisk bistand.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Kristendommen og kristen kulturarv skal ha en sentral plass”
+</div>
+<span class="context"><mark>Kristendommen og kristen kulturarv skal ha en sentral plass</mark> i både religions­ livssyns­ og etikkfaget (KRLE) og formålsparagrafen. Det ikke skal være noen tvil om at skoleeier skal ha frihet til å trekke vår kristne kulturarv inn i skolehverdagen og at skolegudstjenester skal være lov.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Innvandringspolitikken skal fortsatt strammes inn”
+</div>
+<span class="context"><mark>Innvandringspolitikken skal fortsatt strammes inn</mark>. For at integreringen skal bli bedre, må vi ta vare på det som gjør Norge til Norge.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“strammere kurs i innvandringspolitikken”
+</div>
+<span class="context">En <mark>strammere kurs i innvandringspolitikken</mark> vil også gagne den folkelige forståelsen for de mange lovlydige utlendingers tilstedeværelse.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“restriktiv politikk når det gjelder å innvilge asyl”
+</div>
+<span class="context">Fremskrittspartiet vil føre en <mark>restriktiv politikk når det gjelder å innvilge asyl</mark>. Asylinstituttet er et meget viktig verktøy for å gi beskyttelse</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“Det norske velferdssystemet er sårbart for høy innvandring”
+</div>
+<span class="context">Økt arbeidsinnvandring fra EØS­land og rask opptjening av velferdsgoder har ført til økt eksport av enkelte velferdsordninger. <mark>Det norske velferdssystemet er sårbart for høy innvandring</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“kristendom og den kristne kulturarv”
+</div>
+<span class="context">sikre <mark>kristendom og den kristne kulturarv</mark> i grunnopplæringen</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Innvandringspolitikken skal fortsatt strammes inn”
+</div>
+<span class="context">flere, ikke færre arbeidsplasser. <mark>Innvandringspolitikken skal fortsatt strammes inn</mark>. For at integreringen skal bli bedre</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Kriminalitet som utøves av utlendinger”
+</div>
+<span class="context">Kampen mot kriminelle må skjerpes. <mark>Kriminalitet som utøves av utlendinger</mark>, gir lovlydige innvandrere</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“en begrenset og kontrollert asylinnvandring”
+</div>
+<span class="context">Fremskrittspartiet vil derfor arbeide for å innføre et nytt og mer rettferdig og humant internasjonalt asyl- og flyktningesystem som sikrer <mark>en begrenset og kontrollert asylinnvandring</mark> hvor nasjonalstatene har kontroll over antall asylsøkere.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Innvandringspolitikken skal fortsatt strammes inn”
+</div>
+<span class="context">Folk flest har fått lavere skatt, det har blitt billigere å kjøre bil, investeringene i nye veier er rekordstore, innvandringspolitikken har blitt strengere, og pasienter får raskere behandling med FrP i regjering. Vi har vist handlekraft. Det vil vi fortsette med. Vårt program forteller hvordan vi vil gi mer frihet og trygghet til folk flest. Skattene skal videre ned. Vi vil fjerne eiendomsskatten. Folk flest skal få lavere skatt. Byråkratiet skal reduseres slik at det blir enklere å skape og satse. Vi trenger flere, ikke færre arbeidsplasser. <mark>Innvandringspolitikken skal fortsatt strammes inn</mark>. For at integreringen skal bli bedre, må vi ta vare på det som gjør Norge til Norge. Derfor vil vi ha forbud mot kvinnediskriminerende plagg som burka og nikab.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“utvise utenlandske statsborgere som dømmes til ubetinget fengsel i tre måneder eller mer”
+</div>
+<span class="context">Kriminalitet som utøves av utlendinger, gir lovlydige innvandrere et dårlig renommé. Alle utenlandske statsborgere som blir straffet med mer enn tre måneders ubetinget fengsel, skal utvises. Utvisning alene er imidlertid ikke nok til å forebygge kriminalitet, men må kombineres med en god integreringspolitikk.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Innvandrings­ og integreringsfeltet er et følelsesladd område”
+</div>
+<span class="context"><mark>Innvandrings­ og integreringsfeltet er et følelsesladd område</mark>. For å bidra til et mer solid og mangfoldig faktagrunnlag bør det vurderes å opprette et nasjonalt senter for studier av langsiktige konsekvenser av høy ikke­vestlig innvandring for demografi, økonomi, sosiale forhold, radikalisering, terror og nasjonal sikkerhet.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Fremskrittspartiet vil forby rituell omskjæring av guttebarn”
+</div>
+<span class="context"><mark>Fremskrittspartiet vil forby rituell omskjæring av guttebarn</mark>. Eldreomsorg Eldreomsorg handler om mennesker som på grunn av sykdom eller svekkelse kombinert med aldring, har behov for behandling, pleie og/eller praktisk bistand.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Kristendommen og kristen kulturarv skal ha en sentral plass”
+</div>
+<span class="context"><mark>Kristendommen og kristen kulturarv skal ha en sentral plass</mark> i både religions­ livssyns­ og etikkfaget (KRLE) og formålsparagrafen. Det ikke skal være noen tvil om at skoleeier skal ha frihet til å trekke vår kristne kulturarv inn i skolehverdagen og at skolegudstjenester skal være lov.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Innvandringspolitikken skal fortsatt strammes inn”
+</div>
+<span class="context"><mark>Innvandringspolitikken skal fortsatt strammes inn</mark>. For at integreringen skal bli bedre, må vi ta vare på det som gjør Norge til Norge.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“strammere kurs i innvandringspolitikken”
+</div>
+<span class="context">En <mark>strammere kurs i innvandringspolitikken</mark> vil også gagne den folkelige forståelsen for de mange lovlydige utlendingers tilstedeværelse.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“restriktiv politikk når det gjelder å innvilge asyl”
+</div>
+<span class="context">Fremskrittspartiet vil føre en <mark>restriktiv politikk når det gjelder å innvilge asyl</mark>. Asylinstituttet er et meget viktig verktøy for å gi beskyttelse</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“norske velferdsordninger er under press”
+</div>
+<span class="context">Økt arbeidsinnvandring fra EØS­land og rask opptjening av velferdsgoder har ført til økt eksport av enkelte velferdsordninger. Det norske velferdssystemet er sårbart for høy innvandring.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“kristendom og den kristne kulturarv”
+</div>
+<span class="context">sikre <mark>kristendom og den kristne kulturarv</mark> i grunnopplæringen</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“det offentlige må stå i et tjenerforhold til innbyggerne”
+</div>
+<span class="context">Det stadig voksende, offentlige byråkratiet er en trussel mot enkeltmenneskets mulighet for utfoldelse. Det offentlige må stå i et tjenerforhold til innbyggerne. Personlig frihet og personvern Mennesker eksisterer først og fremst som enkeltmennesker, og ikke som en kollektiv gruppe.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“Det kan også bidra til fremmedfrykt, terror og økte konflikter i Norge og Europa”
+</div>
+<span class="context">Migrasjonsstrømmen i 2015 avslørte med all mulig tydelighet at dagens asylsystem ikke er bærekraftig verken utfra et økonomisk, demografisk, sosialt, sikkerhetspolitisk eller humanitært perspektiv. <mark>Det kan også bidra til fremmedfrykt, terror og økte konflikter i Norge og Europa</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Det offentlige må stå i et tjenerforhold til innbyggerne”
+</div>
+<span class="context">Det stadig voksende, offentlige byråkratiet er en trussel mot enkeltmenneskets mulighet for utfoldelse. <mark>Det offentlige må stå i et tjenerforhold til innbyggerne</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“islamsk fundamentalisme har ekspansive ambisjoner”
+</div>
+<span class="context">Etableringen av ISIL har vist at <mark>islamsk fundamentalisme har ekspansive ambisjoner</mark>. Islamister søker allianser med mål om å bekjempe dem som defineres som vantro</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“ansvarsfraskrivelse og unødvendig byråkrati”
+</div>
+<span class="context">De regionale helseforetakene er et unødvendig mellomledd som fører til <mark>ansvarsfraskrivelse og unødvendig byråkrati</mark>, og må derfor avskaffes.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 5</span>
+<div class="quote">
+“dårlig samvittighet heller enn et reelt ønske”
+</div>
+<span class="context">de siste tre tiårs politikk, som har vært preget av <mark>dårlig samvittighet heller enn et reelt ønske</mark> om å bevare disse språkene</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“enklere hverdag for folk flest”
+</div>
+<span class="context">viser hvordan vi vil skape en <mark>enklere hverdag for folk flest</mark> de neste fire årene.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“nærpolitireformen til det beste for folk flest”
+</div>
+<span class="context">og vi vil sikre gjennomføringen av <mark>nærpolitireformen til det beste for folk flest</mark>. Slik sikrer vi</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“harmonerer med befolkningens rettsoppfatning”
+</div>
+<span class="context">Dagens straffenivå i Norge er for mange typer forbrytelser så lavt at det ikke <mark>harmonerer med befolkningens rettsoppfatning</mark>. Vi ønsker derfor høyere strafferammer generelt sett</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“mer frihet og trygghet til folk flest”
+</div>
+<span class="context">Vårt program forteller hvordan vi vil gi <mark>mer frihet og trygghet til folk flest</mark>. Skattene skal videre ned. Vi vil fjerne eiendomsskatten. Folk flest skal få lavere skatt. Byråkratiet skal reduseres slik at det blir enklere å skape og satse.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Norge har en desentralisert næringsstruktur. En stor del av verdiskapingen skjer utenfor sentrale strøk.”
+</div>
+<span class="context">Verdiskaping <mark>Norge har en desentralisert næringsstruktur. En stor del av verdiskapingen skjer utenfor sentrale strøk.</mark> Gjennom generelle rammebetingelser må det legges til rette for at verdiskaping også skal kunne skje i distriktene, samt at verdiene i større grad må kunne beholdes der de skapes.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“Hovedprinsippet i Fremskrittspartiets innvandringspolitikk er likebehandling der ingen grupper gis særbehandling”
+</div>
+<span class="context"><mark>Hovedprinsippet i Fremskrittspartiets innvandringspolitikk er likebehandling der ingen grupper gis særbehandling</mark>. Det må legges vekt på at alle som har lovlig opphold i Norge, skal være sikret en rettferdig behandling.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“Seniorene besitter verdifull kompetanse og utgjør en verdifull ressurs i samfunnet”
+</div>
+<span class="context"><mark>Seniorene besitter verdifull kompetanse og utgjør en verdifull ressurs i samfunnet</mark>. Seniorbefolkningen i Norge er stadig økende. Seniorene er ingen ensartet gruppe. Det eneste som er felles for alle, er alderen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“en enklere hverdag for folk flest”
+</div>
+<span class="context">mens handlingsprogrammet viser hvordan vi vil skape <mark>en enklere hverdag for folk flest</mark> de neste fire årene. En stemme på FrP gir resultater. Folk flest har fått lavere skatt</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“folk flest til gode”
+</div>
+<span class="context">Vi ønsker færre og mer robuste nettselskaper. Det vil gi generelt lavere nettleiekostnader for folk flest.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“befolkningens rettsoppfatning”
+</div>
+<span class="context">straffenivå i Norge er for mange typer forbrytelser så lavt at det ikke harmonerer med <mark>befolkningens rettsoppfatning</mark>. Vi ønsker derfor høyere strafferammer</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“pasientenes trygghet og valgfrihet ivaretas”
+</div>
+<span class="context">Vi ønsker et mangfoldig helsetilbud der <mark>pasientenes trygghet og valgfrihet ivaretas</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“pengene skal følge eleven”
+</div>
+<span class="context">Vi vil at <mark>pengene skal følge eleven</mark> gjennom en differensiert stykkprisfinansiering, uavhengig av om eleven går i offentlig eller privat skole</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“enklere hverdag for folk flest”
+</div>
+<span class="context">viser hvordan vi vil skape en <mark>enklere hverdag for folk flest</mark> de neste fire årene.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“desentralisere makten i næringen fra politikere”
+</div>
+<span class="context">Vi vil <mark>desentralisere makten i næringen fra politikere</mark> og organisasjoner til den enkelte bonde</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“et overnasjonalt byråkrati i Brussel som legger hindringer i veien for folk flest”
+</div>
+<span class="context">Man har beveget seg vekk fra de opprinnelige tankene, og beveget seg mot <mark>et overnasjonalt byråkrati i Brussel som legger hindringer i veien for folk flest</mark>. Derfor er FrP imot norsk medlemskap i EU.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“ideologisk-politisk dragkamp mellom partiene”
+</div>
+<span class="context">Dette setter skolen i en sårbar situasjon som ender i en <mark>ideologisk-politisk dragkamp mellom partiene</mark> om hvem som har den beste skolepolitikken.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Makt bør overføres fra politikerne til folk flest”
+</div>
+<span class="context">Maktkonsentrasjon i det offentlige gjør det også mer attraktivt å skaffe seg posisjoner i statsapparatet enn selv å jobbe for å skape verdier. <mark>Makt bør overføres fra politikerne til folk flest</mark>. Dette vil vi gjøre ved å la innbyggerne beholde mer av sine egne skattepenger, og gjennom å overlate flere av det offentliges oppgaver til enkeltmennesker, privat virksomhet og frivillige organisasjoner.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“hindre at offentlige bedrifter gis særfordeler som fører til konkurransevridning”
+</div>
+<span class="context">forenkle offentlig forvaltning, lover og regler <mark>hindre at offentlige bedrifter gis særfordeler som fører til konkurransevridning</mark> at søknader og henvendelser til det offentlige skal besvares innen fastsatte tidsfrister</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“Fremskrittspartiet aksepterer ikke at straffesaker med kjent gjerningsmann henlegges på grunn av kapasitetsproblemer”
+</div>
+<span class="context">Vi mener at det offentlige bør gis anledning til å leie inn privatpraktiserende advokater til å føre straffesaker for å få avviklet den store saksmengden. <mark>Fremskrittspartiet aksepterer ikke at straffesaker med kjent gjerningsmann henlegges på grunn av kapasitetsproblemer</mark>. Vi ønsker å utvide den offentlige rettshjelpsordningen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“Fremskrittspartiet går inn for full organisasjons­ og avtalefrihet”
+</div>
+<span class="context">Et sterkt trepartssamarbeid mellom arbeidsgiversiden, arbeidstakersiden og myndighetene har vist seg å være vellykket for å sikre forutsigbare rammevilkår, nødvendig moderasjon og evne til omstilling. Et godt og velfungerende trepartssamarbeid forutsetter at alle berørte parter blir hørt og behandlet som likeverdige aktører i samarbeidet. <mark>Fremskrittspartiet går inn for full organisasjons­ og avtalefrihet</mark> og forholder seg til inngåtte avtaler i arbeidslivet.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“manglende kompetanse blant våre rådgivere”
+</div>
+<span class="context">Dessverre ser vi i dag at det er <mark>manglende kompetanse blant våre rådgivere</mark> både om næringsliv og utdanning. Rådgivere må derfor ha en minimumskompetanse.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Makt bør overføres fra politikerne til folk flest”
+</div>
+<span class="context">Maktkonsentrasjon i det offentlige gjør det også mer attraktivt å skaffe seg posisjoner i statsapparatet enn selv å jobbe for å skape verdier. <mark>Makt bør overføres fra politikerne til folk flest</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · mixed · chunk 2</span>
+<div class="quote">
+“desentralisere makten i næringen fra politikere og organisasjoner”
+</div>
+<span class="context">Vi vil <mark>desentralisere makten i næringen fra politikere og organisasjoner</mark> til den enkelte bonde og forbruker.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“overnasjonalt byråkrati i Brussel som legger hindringer”
+</div>
+<span class="context">man har beveget seg mot et <mark>overnasjonalt byråkrati i Brussel som legger hindringer</mark> i veien for folk flest. Derfor er FrP imot norsk medlemskap i EU.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“unødvendig mellomledd som fører til ansvarsfraskrivelse”
+</div>
+<span class="context">De regionale helseforetakene er et <mark>unødvendig mellomledd som fører til ansvarsfraskrivelse</mark> og unødvendig byråkrati, og må derfor avskaffes.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“politisk motarbeidelse, er bilen det foretrukne”
+</div>
+<span class="context">Tross en lang historie med <mark>politisk motarbeidelse, er bilen det foretrukne</mark> transportmiddelet for de fleste av oss</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="12951_201709_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

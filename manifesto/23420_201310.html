@@ -1,0 +1,1969 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>DP/PD (Luxembourg, 2013) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/23420_201310_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">DP/PD (Luxembourg, 2013)</h1>
+<p class="subtitle lead">manifesto_id 23420_201310</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Luxembourg · <span class="item"><strong>Party</strong></span> DP/PD (Democratic Party) · <span class="item"><strong>Year</strong></span> 2013 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 40</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.3</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-na">–</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.5</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.4</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.6</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.4</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.5</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“concurrence fiscale européenne et internationale selon des règles claires”
+</div>
+<span class="context">estimons que, dans un monde globalisé, il doit y avoir une <mark>concurrence fiscale européenne et internationale selon des règles claires</mark>. Il s’agit de reconnaître les avantages d’un</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“améliorer sensiblement les conditions cadres de l’économie”
+</div>
+<span class="context">Voter le DP signifie <mark>améliorer sensiblement les conditions cadres de l’économie</mark>, dans le but de créer</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“impliquer activement l’initiative privée”
+</div>
+<span class="context">Pour pouvoir satisfaire la demande énorme, nous voulons également <mark>impliquer activement l’initiative privée</mark> dans la création de logements sociaux</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“charges sociales modérées sur les salaires”
+</div>
+<span class="context">site économique luxembourgeois sont les <mark>charges sociales modérées sur les salaires</mark>. Le DP veut une réforme dans laquelle</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“le libre-échange, le soutien de la propriété privée”
+</div>
+<span class="context">Après l’éducation, la démocratie, <mark>le libre-échange, le soutien de la propriété privée</mark> et de l’économie de marché</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Die DP stellt sich dem Wähler mit einer verantwortungsvollen Politik im Umgang mit den öffentlichen Finanzen.”
+</div>
+<span class="context"><mark>Die DP stellt sich dem Wähler mit einer verantwortungsvollen Politik im Umgang mit den öffentlichen Finanzen.</mark> Einer Politik, mit der auch die kommenden Generationen den nötigen Handlungsspielraum haben, um ihre Zukunft selber gestalten zu können. Die DP ist deshalb die Stimme derjenigen Bürger, die mit einer ehrlichen Reformpolitik unser Land auf die Zukunft vorbereiten wollen!</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“une économie de marché sociale et que nous nous opposons au capitalisme de casino”
+</div>
+<span class="context">Étant donné que nous représentons <mark>une économie de marché sociale et que nous nous opposons au capitalisme de casino</mark>, nous sommes aussi en faveur de règles claires pour tous les acteurs de la place financière.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“soutenir l’élargissement de l’accueil des enfants et l’amélioration de la qualité”
+</div>
+<span class="context">Nous continuons donc à <mark>soutenir l’élargissement de l’accueil des enfants et l’amélioration de la qualité</mark> de celui-ci, étant donné que nous y voyons la possibilité d’améliorer considérablement les chances des enfants en matière d’éducation.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Les charges sociales modérées sur les salaires”
+</div>
+<span class="context">…L’un des avantages importants du site économique luxembourgeois sont les charges sociales modérées sur les salaires. Le DP veut une réforme dans laquelle les hausses des cotisations ne sont pas une condition indispensable de la survie du système des retraites…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 5</span>
+<div class="quote">
+“notre petite économie tournée vers les exportations a besoin de l’accès libre et équitable au marché unique européen”
+</div>
+<span class="context">Notre petite économie tournée vers les exportations a besoin de l’accès libre et équitable au marché unique européen pour continuer de garantir la croissance, l’emploi et le progrès social. L’assurance de la paix, de la démocratie et des droits de l’homme, la politique de sécurité transfrontalière, le renforcement de l’économie, le commerce et le développement durable ne sont que quelques-unes des questions que les pays européens doivent traiter ensemble.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“paysage fiscal compétitif”
+</div>
+<span class="context">Un <mark>paysage fiscal compétitif</mark> et un environnement approprié (écoles, mobilité, qualité de vie…) renforcent notre site économique, créent des emplois sûrs et procurent les recettes fiscales qui financeront en fin de compte une grande partie de nos systèmes sociaux.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“améliorer la compétitivité de notre économie”
+</div>
+<span class="context">Nous voulons améliorer considérablement la compétitivité de notre économie et des personnes à la recherche d’un emploi.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“investisseurs privés”
+</div>
+<span class="context">mobiliser immédiatement les réserves existantes de terrains à bâtir publics. Nous mettrons les réserves publiques… et les développerons ensemble avec les <mark>investisseurs privés</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“charges sociales modérées sur les salaires”
+</div>
+<span class="context">L’un des avantages importants du site économique luxembourgeois sont les <mark>charges sociales modérées sur les salaires</mark>. Le DP veut une réforme dans laquelle les hausses des cotisations ne sont pas une condition indispensable</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“accès libre et équitable au marché unique européen”
+</div>
+<span class="context">Notre petite économie tournée vers les exportations a besoin de l’<mark>accès libre et équitable au marché unique européen</mark> pour continuer de garantir la croissance, l’emploi et le progrès social.</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“protection des investisseurs, qui représente un système financier qui est sûr, transparent et responsable”
+</div>
+<span class="context">place financière doit mieux utiliser ses forces. Nous voulons une place financière qui s’engage pour la <mark>protection des investisseurs, qui représente un système financier qui est sûr, transparent et responsable</mark>, y compris dans le domaine social.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“règles claires pour tous les acteurs de la place financière”
+</div>
+<span class="context">nous sommes aussi en faveur de <mark>règles claires pour tous les acteurs de la place financière</mark>. À l’avenir</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“un acteur indépendant, tourné vers le marché”
+</div>
+<span class="context">Pour atteindre ces objectifs, il faut <mark>un acteur indépendant, tourné vers le marché</mark> et capable de faire de grands investissements, tels que la banque climatique.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“la microfinance et les microcrédits”
+</div>
+<span class="context">le DP continuera à promouvoir <mark>la microfinance et les microcrédits</mark> comme des outils précieux</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Der Status AAA unseres Landes, so wichtig für den Finanzplatz, ist in Gefahr.”
+</div>
+<span class="context">Wenn diese Politik beibehalten wird, ist der Status AAA unseres Landes, so wichtig für den Finanzplatz, in Gefahr. Die Situation wird sich weiter verschlechtern, auf Kosten der kommenden Generationen, wenn wir nicht schnell handeln. Wir müssen eine Politik der Konsolidierung verfolgen, um eine solide Finanzbasis zu schaffen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“renforcement additionnel de nos autorités de surveillance nationales”
+</div>
+<span class="context">Nous revendiquons un <mark>renforcement additionnel de nos autorités de surveillance nationales</mark> et soutenons les efforts internationaux qui contribuent à une réglementation plus efficace des marchés financiers et des banques.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“protection des investisseurs”
+</div>
+<span class="context">Nous voulons une place financière qui s’engage pour la <mark>protection des investisseurs</mark>, qui représente un système financier qui est sûr, transparent et responsable, y compris dans le domaine social.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“contre l’impôt sur les transactions financières”
+</div>
+<span class="context">le DP se prononce clairement contre l’impôt proposé par la Commission européenne… Son introduction au Luxembourg serait un désavantage concurrentiel évident pour notre place financière.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“banque climatique tourné vers le marché”
+</div>
+<span class="context">il faut un acteur indépendant, tourné vers le marché et capable de faire de grands investissements, tels que la banque climatique</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“promouvoir la microfinance et les microcrédits”
+</div>
+<span class="context">le DP continuera à <mark>promouvoir la microfinance et les microcrédits</mark> comme des outils précieux pour combattre la pauvreté.</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Ehrlichkeit, Transparenz und Rechtsstaatlichkeit setzt”
+</div>
+<span class="context">zurück gewinnen mit einer Politik, die voll und ganz auf <mark>Ehrlichkeit, Transparenz und Rechtsstaatlichkeit setzt</mark>. Die DP ist deshalb die Stimme derjenigen Bürger, für</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“la liberté de la presse et la protection des sources”
+</div>
+<span class="context">Pour le DP, <mark>la liberté de la presse et la protection des sources</mark> sont intouchables et le resteront</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“les principes de l’autonomie communale”
+</div>
+<span class="context">Il faut respecter les directives en matière d’aménagement du territoire et ce en accord avec les communes et <mark>les principes de l’autonomie communale</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“renforcer le principe de la séparation des pouvoirs”
+</div>
+<span class="context">institutions au XXIe siècle, <mark>renforcer le principe de la séparation des pouvoirs</mark> entre le gouvernement, la Chambre des députés et la justice</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“le développement de la démocratie”
+</div>
+<span class="context">responsables du développement de la démocratie, de l’économie de marché, des</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Die DP will dieses Vertrauen zurück gewinnen mit einer Politik, die voll und ganz auf Ehrlichkeit, Transparenz und Rechtsstaatlichkeit setzt.”
+</div>
+<span class="context">Das Vertrauen der Bürger in die Politik hat in den vergangenen Jahren des Stillstands und der Affären stark gelitten. <mark>Die DP will dieses Vertrauen zurück gewinnen mit einer Politik, die voll und ganz auf Ehrlichkeit, Transparenz und Rechtsstaatlichkeit setzt.</mark> Die DP ist deshalb die Stimme derjenigen Bürger, für die der Staat auf funktionierenden und modernen Institutionen aufbaut.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“la liberté de la presse et la protection des sources sont intouchables”
+</div>
+<span class="context">Le DP s’engage pour la liberté d’expression dans les médias et ne permettra pas que la liberté de la presse et la protection des sources, inscrites dans la loi, soient touchées.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“le libre choix des modèles de vie doit être au centre de la politique familiale”
+</div>
+<span class="context">Pour le DP, <mark>le libre choix des modèles de vie doit être au centre de la politique familiale</mark>. Nous ne voulons pas imposer un modèle idéal de vie commune, mais poser les bases pour que chacun puisse concevoir la vie de famille à sa façon.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“renforcer la séparation des pouvoirs entre le gouvernement, la Chambre des députés et la justice”
+</div>
+<span class="context">…Nous voulons renforcer les droits fondamentaux des individus dans la nouvelle Constitution. Nous voulons adapter les institutions au XXIe siècle, renforcer le principe de la séparation des pouvoirs entre le gouvernement, la Chambre des députés et la justice et, afin d’éviter les problèmes institutionnels à l’avenir, redéfinir les procédures correspondantes…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 5</span>
+<div class="quote">
+“L’UE est une communauté ouverte et démocratique”
+</div>
+<span class="context"><mark>L’UE est une communauté ouverte et démocratique</mark>. Le nationalisme, le protectionnisme et les contrôles aux frontières internes appartiennent au passé. Il s’ensuit que l’UE est ouverte à tous les pays européens ayant un ordre de base démocratique et une économie de marché qui fonctionne, en tenant compte de leur capacité d’intégration.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Ehrlichkeit, Transparenz und Rechtsstaatlichkeit”
+</div>
+<span class="context">Die DP will dieses Vertrauen zurück gewinnen mit einer Politik, die voll und ganz auf <mark>Ehrlichkeit, Transparenz und Rechtsstaatlichkeit</mark> setzt.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“liberté de la presse et la protection des sources”
+</div>
+<span class="context">Pour le DP, la <mark>liberté de la presse et la protection des sources</mark> sont intouchables et le resteront aussi à l’avenir.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“autonomie communale”
+</div>
+<span class="context">Il faut respecter les directives en matière d’aménagement du territoire et ce en accord avec les communes et les principes de l’<mark>autonomie communale</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“renforcer le principe de la séparation des pouvoirs”
+</div>
+<span class="context">Nous voulons adapter les institutions au XXIe siècle, <mark>renforcer le principe de la séparation des pouvoirs</mark> entre le gouvernement, la Chambre des députés et la justice</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 5</span>
+<div class="quote">
+“la démocratie, le libre-échange, le soutien de la propriété privée”
+</div>
+<span class="context">Après l’éducation, <mark>la démocratie, le libre-échange, le soutien de la propriété privée</mark> et de l’économie de marché sont les facteurs les plus importants du développement économique et social</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Garantie de l’égalité des droits entre hommes et femmes”
+</div>
+<span class="context">lutter contre la pauvreté des enfants en fonction des besoins et de garantir l’égalité des droits entre hommes et femmes. Nous retenons donc l’extension de l’accueil des</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“l’autodétermination informationnelle est un droit fondamental”
+</div>
+<span class="context">Pour le DP, <mark>l’autodétermination informationnelle est un droit fondamental</mark>, dont fait aussi partie le</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“libre choix des modèles de vie”
+</div>
+<span class="context">Pour le DP, le <mark>libre choix des modèles de vie</mark> doit être au centre de la politique familiale.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“combattre toute forme de discrimination”
+</div>
+<span class="context">rejet de leurs concitoyens. Nous voulons <mark>combattre toute forme de discrimination</mark> sur le fondement de l’identité sexuelle.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“l’oppression des femmes, des filles ou des minorités”
+</div>
+<span class="context">l’absence de liberté politique, <mark>l’oppression des femmes, des filles ou des minorités</mark>, la faim et la malnutrition</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Die DP stellt sich dem Wähler mit einer Politik die auf Solidarität aufbaut und diese auch vorlebt.”
+</div>
+<span class="context"><mark>Die DP stellt sich dem Wähler mit einer Politik die auf Solidarität aufbaut und diese auch vorlebt.</mark> Die großen Probleme unseres Landes werden wir nur lösen können, wenn alle gemeinsam an einem Strang ziehen. Die DP ist deshalb die Stimme derjenigen Bürger, die bereit sind ihren fairen Beitrag zu einem gemeinsamen Zukunftsprojekt für unser Land zu leisten!</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“l’égalité des chances dans la société de la connaissance numérique”
+</div>
+<span class="context">Le renforcement de la compétence médiatique de l’individu équivaut à <mark>l’égalité des chances dans la société de la connaissance numérique</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“l’égalité des chances, qui est au centre de notre politique familiale libérale”
+</div>
+<span class="context">Ce n’est donc pas une image toute prête de la vie en commun, mais <mark>l’égalité des chances, qui est au centre de notre politique familiale libérale</mark>. Nous avons besoin d’une société qui accueille les enfants et permettant aux jeunes couples de réaliser ce désir.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“Nous voulons combattre toute forme de discrimination sur le fondement de l’identité sexuelle”
+</div>
+<span class="context">…<mark>Nous voulons combattre toute forme de discrimination sur le fondement de l’identité sexuelle</mark>. De plus, nous examinerons dans quels domaines nous pouvons aider les personnes transsexuelles et intersexuelles, notamment en matière de démarches administratives qui impliquent la détermination du sexe…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“le renforcement de la démocratie et de la liberté individuelle”
+</div>
+<span class="context">Le renforcement de la démocratie et de la liberté individuelle fait partie des objectifs supérieurs de notre politique active d’aide au développement. Nous voulons renforcer considérablement les programmes et les actions qui soutiennent la création d’institutions démocratiques, de structures d’État de droit, et l’égalité des sexes.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“garantir l’égalité des droits entre hommes et femmes”
+</div>
+<span class="context">Notre objectif est de soutenir les enfants et les chances de démarrage dans une vie réussie, plutôt qu’une image déterminée de la famille, de lutter contre la pauvreté des enfants en fonction des besoins et de <mark>garantir l’égalité des droits entre hommes et femmes</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“l’éducation est un droit fondamental”
+</div>
+<span class="context">nous considérons que <mark>l’éducation est un droit fondamental</mark> pour toutes les personnes, indépendamment de leur revenu, leur origine, leur couleur de peau, leur religion ou leur sexe.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“libre choix des modèles de vie”
+</div>
+<span class="context">Pour le DP, le <mark>libre choix des modèles de vie</mark> doit être au centre de la politique familiale. Nous ne voulons pas imposer un modèle idéal de vie commune</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“mêmes droits aux couples homosexuels”
+</div>
+<span class="context">Nous voulons enfin donner aux couples homosexuels les mêmes droits qu’aux couples hétérosexuels dans tous les domaines. Nous introduirons donc la possibilité du mariage</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“l’oppression des femmes, des filles ou des minorités”
+</div>
+<span class="context">l’absence de liberté politique, <mark>l’oppression des femmes, des filles ou des minorités</mark>, la faim et la malnutrition, les maladies infectieuses, l’éducation insuffisante</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Ehrlichkeit, Transparenz und Rechtsstaatlichkeit setzt”
+</div>
+<span class="context">zurück gewinnen mit einer Politik, die voll und ganz auf <mark>Ehrlichkeit, Transparenz und Rechtsstaatlichkeit setzt</mark>. Die DP ist deshalb die Stimme derjenigen Bürger, für</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“d’après la conception libérale, le succès de l’école”
+</div>
+<span class="context">précisément. Nous examinerons en détail la mise en œuvre pratique des propositions de réforme. D’après la conception libérale, le succès de l’école doit aussi être mesuré</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“libre choix des modèles de vie”
+</div>
+<span class="context">Pour le DP, le <mark>libre choix des modèles de vie</mark> doit être au centre de la politique familiale.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“renforcer le principe de la séparation des pouvoirs”
+</div>
+<span class="context">institutions au XXIe siècle, <mark>renforcer le principe de la séparation des pouvoirs</mark> entre le gouvernement, la Chambre des députés et la justice</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“la démocratie, de l’économie de marché”
+</div>
+<span class="context">responsables du développement de <mark>la démocratie, de l’économie de marché</mark>, des droits de l’homme</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Die DP stellt sich dem Wähler mit einer verantwortungsvollen Politik im Umgang mit den öffentlichen Finanzen.”
+</div>
+<span class="context"><mark>Die DP stellt sich dem Wähler mit einer verantwortungsvollen Politik im Umgang mit den öffentlichen Finanzen.</mark> Einer Politik, mit der auch die kommenden Generationen den nötigen Handlungsspielraum haben, um ihre Zukunft selber gestalten zu können. Die DP ist deshalb die Stimme derjenigen Bürger, die mit einer ehrlichen Reformpolitik unser Land auf die Zukunft vorbereiten wollen!</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“liberté de la presse et la protection des sources sont intouchables”
+</div>
+<span class="context">Le DP s’engage pour la liberté d’expression dans les médias et ne permettra pas que la liberté de la presse et la protection des sources, inscrites dans la loi, soient touchées.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“le libre choix des modèles de vie doit être au centre de la politique familiale”
+</div>
+<span class="context">Pour le DP, <mark>le libre choix des modèles de vie doit être au centre de la politique familiale</mark>. Nous ne voulons pas imposer un modèle idéal de vie commune, mais poser les bases pour que chacun puisse concevoir la vie de famille à sa façon.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“renforcer la séparation des pouvoirs entre le gouvernement, la Chambre des députés et la justice”
+</div>
+<span class="context">…Nous voulons renforcer les droits fondamentaux des individus dans la nouvelle Constitution. Nous voulons adapter les institutions au XXIe siècle, renforcer le principe de la séparation des pouvoirs entre le gouvernement, la Chambre des députés et la justice et, afin d’éviter les problèmes institutionnels à l’avenir, redéfinir les procédures correspondantes…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 5</span>
+<div class="quote">
+“L’UE est une communauté ouverte et démocratique”
+</div>
+<span class="context"><mark>L’UE est une communauté ouverte et démocratique</mark>. Le nationalisme, le protectionnisme et les contrôles aux frontières internes appartiennent au passé. Il s’ensuit que l’UE est ouverte à tous les pays européens ayant un ordre de base démocratique et une économie de marché qui fonctionne, en tenant compte de leur capacité d’intégration.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Die Eckwerte einer liberalen Politik”
+</div>
+<span class="context"><mark>Die Eckwerte einer liberalen Politik</mark>, wie die Demokratische Partei sie lebt, sind Verantwortung, Ehrlichkeit, Solidarität, Partizipation und Innovation.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“liberté de la presse et la protection des sources”
+</div>
+<span class="context">Pour le DP, la <mark>liberté de la presse et la protection des sources</mark> sont intouchables et le resteront aussi à l’avenir.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“libre choix des modèles de vie”
+</div>
+<span class="context">Pour le DP, le <mark>libre choix des modèles de vie</mark> doit être au centre de la politique familiale</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“valeurs libérales sur lesquelles repose notre vie en communauté”
+</div>
+<span class="context">La Constitution doit fixer les <mark>valeurs libérales sur lesquelles repose notre vie en communauté</mark> : liberté d’expression, tolérance et liberté de croyance.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“la démocratie, le libre-échange, le soutien de la propriété privée”
+</div>
+<span class="context">Après l’éducation, <mark>la démocratie, le libre-échange, le soutien de la propriété privée</mark> et de l’économie de marché sont les facteurs les plus importants du développement économique et social</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Vertrauen der Bürger in die Politik hat in den vergangenen Jahren des Stillstands und der Affären stark gelitten”
+</div>
+<span class="context">Reformpolitik unser Land auf die Zukunft vorbereiten wollen! Das <mark>Vertrauen der Bürger in die Politik hat in den vergangenen Jahren des Stillstands und der Affären stark gelitten</mark>. Die DP will dieses Vertrauen zurück gewinnen mit einer</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“pour des raisons de tactique électorale, le gouvernement”
+</div>
+<span class="context">Au lieu d’élargir tout d’abord les capacités des places d’accueil de qualité, <mark>pour des raisons de tactique électorale, le gouvernement</mark> voulait encore rapidement distribuer des bons aux parents</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“style politique dépassé et de plusieurs affaires”
+</div>
+<span class="context">confiance mutuelle, qui a beaucoup souffert par le passé à cause du <mark>style politique dépassé et de plusieurs affaires</mark>. Nous refusons un style de gouvernement patriarcal.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Die DP ist deshalb die Stimme derjenigen Bürger, die mit einer ehrlichen Reformpolitik unser Land auf die Zukunft vorbereiten wollen!”
+</div>
+<span class="context">Die DP stellt sich dem Wähler mit einer verantwortungsvollen Politik im Umgang mit den öffentlichen Finanzen. Einer Politik, mit der auch die kommenden Generationen den nötigen Handlungsspielraum haben, um ihre Zukunft selber gestalten zu können. <mark>Die DP ist deshalb die Stimme derjenigen Bürger, die mit einer ehrlichen Reformpolitik unser Land auf die Zukunft vorbereiten wollen!</mark> Das Vertrauen der Bürger in die Politik hat in den vergangenen Jahren des Stillstands und der Affären stark gelitten.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“le gouvernement n’était pas uni et que les deux camps du gouvernement”
+</div>
+<span class="context">…était clair que <mark>le gouvernement n’était pas uni et que les deux camps du gouvernement</mark> et chaque membre du gouvernement poursuivait ses propres objectifs, et parce que, d’autre part, les forums de discussion existants entre les salariés et les patrons n’ont pas pu jouer le rôle qui leur revient. Le dialogue social et la politique ont été abandonnés…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“politique symbolique du gouvernement a largement détruit la confiance”
+</div>
+<span class="context">Good Governance: La <mark>politique symbolique du gouvernement a largement détruit la confiance</mark> : beaucoup de choses ont été déclarées prioritaires, sans résultats tangibles.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“décisions du gouvernement du passé”
+</div>
+<span class="context">Les changements législatifs constants contribuent au désarroi auquel nous sommes confrontés aujourd’hui, à la suite des <mark>décisions du gouvernement du passé</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“gouvernement a couru derrière ce développement”
+</div>
+<span class="context">Le <mark>gouvernement a couru derrière ce développement</mark> et a aggravé les problèmes par sa position molle et parfois contreproductive</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“style politique dépassé et de plusieurs affaires”
+</div>
+<span class="context">confiance mutuelle, qui a beaucoup souffert par le passé à cause du <mark>style politique dépassé et de plusieurs affaires</mark>. Nous refusons un style de gouvernement patriarcal.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“l’État ne doit pas fonctionner comme une boîte noire”
+</div>
+<span class="context">Nous pensons que <mark>l’État ne doit pas fonctionner comme une boîte noire</mark>. Le désir de dialogue et de participation, de transparence et d’efficacité, est grand.</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“die Politik die Menschen nicht bevormunden”
+</div>
+<span class="context">Beitrag zu einem gemeinsamen Zukunftsprojekt für unser Land zu leisten! Für die DP darf <mark>die Politik die Menschen nicht bevormunden</mark> und Ihnen von Oben herab diktieren, was am Besten</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“pour des raisons de tactique électorale, le gouvernement”
+</div>
+<span class="context">Au lieu d’élargir tout d’abord les capacités des places d’accueil de qualité, <mark>pour des raisons de tactique électorale, le gouvernement</mark> voulait encore rapidement distribuer des bons aux parents</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Die DP ist deshalb die Stimme derjenigen Bürger, die in einen konstruktiven Dialog und Austausch mit der Politik treten wollen.”
+</div>
+<span class="context">Für die DP darf die Politik die Menschen nicht bevormunden und Ihnen von Oben herab diktieren, was am Besten für sie ist. Die DP steht vielmehr für einen neuen Politikstil, der auf die Bürger zugeht und sie partizipieren lässt. <mark>Die DP ist deshalb die Stimme derjenigen Bürger, die in einen konstruktiven Dialog und Austausch mit der Politik treten wollen.</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“le gouvernement doit se présenter comme un acteur et non comme un intermédiaire”
+</div>
+<span class="context">…Le gouvernement doit se présenter comme un acteur et non comme un intermédiaire. En ce sens, nous comprenons le Conseil de gouvernement comme un collège qui doit poursuivre des objectifs supérieurs (croissance économique, lutte contre le chômage…) et agir comme une unité…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Die Eckwerte einer liberalen Politik”
+</div>
+<span class="context"><mark>Die Eckwerte einer liberalen Politik</mark>, wie die Demokratische Partei sie lebt, sind Verantwortung, Ehrlichkeit, Solidarität, Partizipation und Innovation.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“règles claires pour tous les acteurs”
+</div>
+<span class="context">nous sommes aussi en faveur de <mark>règles claires pour tous les acteurs</mark> de la place financière</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“libre choix des modèles de vie”
+</div>
+<span class="context">Pour le DP, le <mark>libre choix des modèles de vie</mark> doit être au centre de la politique familiale</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“bonne gouvernance commence par un plan d’avenir commun”
+</div>
+<span class="context">À nos yeux, la <mark>bonne gouvernance commence par un plan d’avenir commun</mark> aussi détaillé que possible avec des objectifs clairs et mesurables</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“intérêts des citoyens et de fonctionnaires de l’État”
+</div>
+<span class="context">Le DP s’engage pour l’innovation dans la fonction publique, en tenant compte des <mark>intérêts des citoyens et de fonctionnaires de l’État</mark>.</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Die DP stellt sich dem Wähler mit einer Politik die auf Solidarität aufbaut und diese auch vorlebt.”
+</div>
+<span class="context"><mark>Die DP stellt sich dem Wähler mit einer Politik die auf Solidarität aufbaut und diese auch vorlebt.</mark> Die großen Probleme unseres Landes werden wir nur lösen können, wenn alle gemeinsam an einem Strang ziehen. Die DP ist deshalb die Stimme derjenigen Bürger, die bereit sind ihren fairen Beitrag zu einem gemeinsamen Zukunftsprojekt für unser Land zu leisten!</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“Le DP n’est pas prêt à accepter une politique des retraites au détriment des générations à venir”
+</div>
+<span class="context">…<mark>Le DP n’est pas prêt à accepter une politique des retraites au détriment des générations à venir</mark>. Il l’a clairement exprimé à la Chambre des députés par le passé et était le seul parti à avoir voté contre des hausses additionnelles des retraites…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“nous nous opposons au capitalisme de casino”
+</div>
+<span class="context">Étant donné que nous représentons une économie de marché sociale et que <mark>nous nous opposons au capitalisme de casino</mark>, nous sommes aussi en faveur de règles claires pour tous les acteurs de la place financière.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“nous nous opposons au capitalisme de casino”
+</div>
+<span class="context">Étant donné que nous représentons une économie de marché sociale et que <mark>nous nous opposons au capitalisme de casino</mark>, nous sommes aussi en faveur de règles claires</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“lutte plus efficace contre la pauvreté des enfants”
+</div>
+<span class="context">pour une meilleure éducation, un meilleur accueil des enfants et une <mark>lutte plus efficace contre la pauvreté des enfants</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“avant tout les personnes ayant des revenus bas et moyens”
+</div>
+<span class="context">Nous ne voulons pas favoriser les personnes qui ont des revenus très élevés… mais <mark>avant tout les personnes ayant des revenus bas et moyens</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“améliorer considérablement leur sécurité sociale”
+</div>
+<span class="context">Il est d’autant plus important d’<mark>améliorer considérablement leur sécurité sociale</mark>, que ce soit pour l’assurance maladie, la retraite ou l’indemnité de chômage.</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“die Politik die Menschen nicht bevormunden”
+</div>
+<span class="context">Beitrag zu einem gemeinsamen Zukunftsprojekt für unser Land zu leisten! Für die DP darf <mark>die Politik die Menschen nicht bevormunden</mark> und Ihnen von Oben herab diktieren, was am Besten</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“pour des raisons de tactique électorale, le gouvernement”
+</div>
+<span class="context">Au lieu d’élargir tout d’abord les capacités des places d’accueil de qualité, <mark>pour des raisons de tactique électorale, le gouvernement</mark> voulait encore rapidement distribuer des bons aux parents</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Die DP ist deshalb die Stimme derjenigen Bürger, die mit einer ehrlichen Reformpolitik unser Land auf die Zukunft vorbereiten wollen!”
+</div>
+<span class="context">Die DP stellt sich dem Wähler mit einer verantwortungsvollen Politik im Umgang mit den öffentlichen Finanzen. Einer Politik, mit der auch die kommenden Generationen den nötigen Handlungsspielraum haben, um ihre Zukunft selber gestalten zu können. <mark>Die DP ist deshalb die Stimme derjenigen Bürger, die mit einer ehrlichen Reformpolitik unser Land auf die Zukunft vorbereiten wollen!</mark> Das Vertrauen der Bürger in die Politik hat in den vergangenen Jahren des Stillstands und der Affären stark gelitten.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“le gouvernement n’était pas uni et que les deux camps du gouvernement”
+</div>
+<span class="context">…était clair que <mark>le gouvernement n’était pas uni et que les deux camps du gouvernement</mark> et chaque membre du gouvernement poursuivait ses propres objectifs, et parce que, d’autre part, les forums de discussion existants entre les salariés et les patrons n’ont pas pu jouer le rôle qui leur revient. Le dialogue social et la politique ont été abandonnés…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Die DP ist deshalb die Stimme derjenigen Bürger”
+</div>
+<span class="context"><mark>Die DP ist deshalb die Stimme derjenigen Bürger</mark>, die mit einer ehrlichen Reformpolitik unser Land auf die Zukunft vorbereiten wollen!</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“nous nous opposons au capitalisme de casino”
+</div>
+<span class="context">Étant donné que nous représentons une économie de marché sociale et que <mark>nous nous opposons au capitalisme de casino</mark>, nous sommes aussi en faveur de règles claires</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“lutte plus efficace contre la pauvreté des enfants”
+</div>
+<span class="context">pour une meilleure éducation, un meilleur accueil des enfants et une <mark>lutte plus efficace contre la pauvreté des enfants</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“Le DP représente une société libre et ouverte”
+</div>
+<span class="context">Nous représentons une politique sociétale qui respecte le libre épanouissement et la diversité des personnes. <mark>Le DP représente une société libre et ouverte</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“intérêts des citoyens et de fonctionnaires de l’État”
+</div>
+<span class="context">Le DP s’engage pour l’innovation dans la fonction publique, en tenant compte des <mark>intérêts des citoyens et de fonctionnaires de l’État</mark>.</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Die Gesellschaft luxemburgische ist weitgehend einig, dass die Dinge nicht so weitergehen können.”
+</div>
+<span class="context"><mark>Die Gesellschaft luxemburgische ist weitgehend einig, dass die Dinge nicht so weitergehen können.</mark> Die Zeit, in der die Bürger sich von falschen beruhigenden Worten täuschen ließen, ist vorbei. Es ist nicht ein politischer Patriarch, sondern wir alle zusammen, die diese Herausforderungen überwinden können und müssen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“Nous refusons un style de gouvernement patriarcal”
+</div>
+<span class="context">…<mark>Nous refusons un style de gouvernement patriarcal</mark>. Pour nous, le gouvernement doit transmettre l’image d’une équipe soudée, où chacun répond de l’autre, quelle que soit sa couleur politique…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“ne soit plus considéré comme un paradis fiscal”
+</div>
+<span class="context">nous veillerons à ce que le Luxembourg <mark>ne soit plus considéré comme un paradis fiscal</mark> opportuniste, mais comme une place financière sérieuse</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“connaissance de la langue luxembourgeoise”
+</div>
+<span class="context">La <mark>connaissance de la langue luxembourgeoise</mark> est une condition fondamentale de la réussite scolaire</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“barrières linguistiques dans le système scolaire”
+</div>
+<span class="context">Réduire les <mark>barrières linguistiques dans le système scolaire</mark>. Le pourcentage élevé d’élèves issus de l’immigration pose de grands défis</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 5</span>
+<div class="quote">
+“nationalisme, le protectionnisme et les contrôles aux frontières”
+</div>
+<span class="context">Le <mark>nationalisme, le protectionnisme et les contrôles aux frontières</mark> internes appartiennent au passé.</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Die Zeit, in der die Bürger sich von falschen beruhigenden Worten täuschen ließen, ist vorbei.”
+</div>
+<span class="context">Die Gesellschaft luxemburgische ist weitgehend einig, dass die Dinge nicht so weitergehen können. <mark>Die Zeit, in der die Bürger sich von falschen beruhigenden Worten täuschen ließen, ist vorbei.</mark> Es ist nicht ein politischer Patriarch, sondern wir alle zusammen, die diese Herausforderungen überwinden können und müssen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“Les affaires concernant le stade de football de Wickrange-Livange, la société Cargolux”
+</div>
+<span class="context">…Pour nous, un gouvernement doit agir de manière transparente et exemplaire. <mark>Les affaires concernant le stade de football de Wickrange-Livange, la société Cargolux</mark> et le service de renseignement de l’Etat ont largement détruit la confiance dans la politique. Elles ont suscité le souhait de transparence, de règles identiques pour tous et d’exigences élevées en matière de déontologie…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Ceux qui affirment le contraire font de la politique au détriment des générations futures”
+</div>
+<span class="context">Nous devons agir aujourd’hui au lieu d’attendre demain. <mark>Ceux qui affirment le contraire font de la politique au détriment des générations futures</mark>, car les dettes d’aujourd’hui sont les hausses d’impôts de demain.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“nous nous opposons au capitalisme de casino”
+</div>
+<span class="context">Étant donné que nous représentons une économie de marché sociale et que <mark>nous nous opposons au capitalisme de casino</mark>, nous sommes aussi en faveur de règles claires</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“politique totalement insuffisantes”
+</div>
+<span class="context">Le gouvernement a essayé de contrer ce développement par des mesures totalement insuffisantes comme par exemple le pacte logement</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“torpillé par les autres instances de l’État”
+</div>
+<span class="context">le travail de la justice a parfois été <mark>torpillé par les autres instances de l’État</mark>. L’indépendance et la protection de la justice de l’immixtion</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 5</span>
+<div class="quote">
+“situation financière désastreuse de l’État”
+</div>
+<span class="context">Le DP réitère qu’un accord salarial ne peut être justifié dans le contexte de la <mark>situation financière désastreuse de l’État</mark>.</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“die Politik die Menschen nicht bevormunden”
+</div>
+<span class="context">Beitrag zu einem gemeinsamen Zukunftsprojekt für unser Land zu leisten! Für die DP darf <mark>die Politik die Menschen nicht bevormunden</mark> und Ihnen von Oben herab diktieren, was am Besten</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Die DP ist deshalb die Stimme derjenigen Bürger, die bereit sind ihren fairen Beitrag zu einem gemeinsamen Zukunftsprojekt für unser Land zu leisten!”
+</div>
+<span class="context">Die DP stellt sich dem Wähler mit einer Politik die auf Solidarität aufbaut und diese auch vorlebt. Die großen Probleme unseres Landes werden wir nur lösen können, wenn alle gemeinsam an einem Strang ziehen. <mark>Die DP ist deshalb die Stimme derjenigen Bürger, die bereit sind ihren fairen Beitrag zu einem gemeinsamen Zukunftsprojekt für unser Land zu leisten!</mark> Für die DP darf die Politik die Menschen nicht bevormunden und Ihnen von Oben herab diktieren, was am Besten für sie ist.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“Nous faisons confiance aux citoyens, quelle que soit leur nationalité”
+</div>
+<span class="context">…Nous avons pleinement confiance en les personnes et en ce qu’elles sont capables de décider pour elles-mêmes. <mark>Nous faisons confiance aux citoyens, quelle que soit leur nationalité</mark>, en ce qu’ils peuvent décider eux-mêmes dans quelle mesure ils veulent s’impliquer dans la vie en communauté dans notre société. Nous nous opposons expressément à une politique de tutelle et d’exclusion…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Die DP ist deshalb die Stimme derjenigen Bürger”
+</div>
+<span class="context"><mark>Die DP ist deshalb die Stimme derjenigen Bürger</mark>, die mit einer ehrlichen Reformpolitik unser Land auf die Zukunft vorbereiten wollen!</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Voter le DP signifie améliorer sensiblement”
+</div>
+<span class="context"><mark>Voter le DP signifie améliorer sensiblement</mark> les conditions cadres de l’économie, dans le but de créer plus d’emplois.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“permettre aux familles avec des enfants”
+</div>
+<span class="context"><mark>permettre aux familles avec des enfants</mark> d’avoir une chance de trouver un logement abordable au Luxembourg, indépendamment de leur origine</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“Nous faisons confiance aux citoyens”
+</div>
+<span class="context">Nous avons pleinement confiance en les personnes et en ce qu’elles sont capables de décider pour elles-mêmes. <mark>Nous faisons confiance aux citoyens</mark>, quelle que soit leur nationalité</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“ouvrir l’État aux citoyens et aux entreprises”
+</div>
+<span class="context">Nous voulons <mark>ouvrir l’État aux citoyens et aux entreprises</mark>, aux experts et à la science. Le concept d’un « État ouvert »</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“die Politik die Menschen nicht bevormunden”
+</div>
+<span class="context">Beitrag zu einem gemeinsamen Zukunftsprojekt für unser Land zu leisten! Für die DP darf <mark>die Politik die Menschen nicht bevormunden</mark> und Ihnen von Oben herab diktieren, was am Besten</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“pour des raisons de tactique électorale, le gouvernement”
+</div>
+<span class="context">Au lieu d’élargir tout d’abord les capacités des places d’accueil de qualité, <mark>pour des raisons de tactique électorale, le gouvernement</mark> voulait encore rapidement distribuer des bons aux parents</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“style politique dépassé et de plusieurs affaires”
+</div>
+<span class="context">confiance mutuelle, qui a beaucoup souffert par le passé à cause du <mark>style politique dépassé et de plusieurs affaires</mark>. Nous refusons un style de gouvernement patriarcal.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Die DP ist deshalb die Stimme derjenigen Bürger, die mit einer ehrlichen Reformpolitik unser Land auf die Zukunft vorbereiten wollen!”
+</div>
+<span class="context">Die DP stellt sich dem Wähler mit einer verantwortungsvollen Politik im Umgang mit den öffentlichen Finanzen. Einer Politik, mit der auch die kommenden Generationen den nötigen Handlungsspielraum haben, um ihre Zukunft selber gestalten zu können. <mark>Die DP ist deshalb die Stimme derjenigen Bürger, die mit einer ehrlichen Reformpolitik unser Land auf die Zukunft vorbereiten wollen!</mark> Das Vertrauen der Bürger in die Politik hat in den vergangenen Jahren des Stillstands und der Affären stark gelitten.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“le gouvernement n’était pas uni et que les deux camps du gouvernement”
+</div>
+<span class="context">…était clair que <mark>le gouvernement n’était pas uni et que les deux camps du gouvernement</mark> et chaque membre du gouvernement poursuivait ses propres objectifs, et parce que, d’autre part, les forums de discussion existants entre les salariés et les patrons n’ont pas pu jouer le rôle qui leur revient. Le dialogue social et la politique ont été abandonnés…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Die DP ist deshalb die Stimme derjenigen Bürger”
+</div>
+<span class="context"><mark>Die DP ist deshalb die Stimme derjenigen Bürger</mark>, die mit einer ehrlichen Reformpolitik unser Land auf die Zukunft vorbereiten wollen!</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“décisions du gouvernement du passé”
+</div>
+<span class="context">Les changements législatifs constants contribuent au désarroi auquel nous sommes confrontés aujourd’hui, à la suite des <mark>décisions du gouvernement du passé</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“gouvernement a couru derrière ce développement”
+</div>
+<span class="context">Le <mark>gouvernement a couru derrière ce développement</mark> et a aggravé les problèmes par sa position molle et parfois contreproductive</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“Nous refusons un style de gouvernement patriarcal”
+</div>
+<span class="context">confiance mutuelle, qui a beaucoup souffert par le passé à cause du style politique dépassé et de plusieurs affaires. <mark>Nous refusons un style de gouvernement patriarcal</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“l’État ne doit pas fonctionner comme une boîte noire”
+</div>
+<span class="context">Nous pensons que <mark>l’État ne doit pas fonctionner comme une boîte noire</mark>. Le désir de dialogue et de participation, de transparence et d’efficacité, est grand.</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="23420_201310_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

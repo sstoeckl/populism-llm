@@ -1,0 +1,3026 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>GP (Peru, 2011) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/179021_201104_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">GP (Peru, 2011)</h1>
+<p class="subtitle lead">manifesto_id 179021_201104</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Peru · <span class="item"><strong>Party</strong></span> GP (Peru Wins) · <span class="item"><strong>Year</strong></span> 2011 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 20</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.9</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.1</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.4</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.9</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.5</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.9</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.9</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.9</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.1</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.8</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.8</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · mixed · chunk 1</span>
+<div class="quote">
+“economía nacional de mercado abierta al mundo”
+</div>
+<span class="context">Forjar un nuevo modelo de desarrollo sobre la base de la construcción de una <mark>economía nacional de mercado abierta al mundo</mark>, que articule la costa</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“abandonar la dictadura del modelo neoliberal”
+</div>
+<span class="context">Segundo: Un régimen económico para la justicia social Debemos <mark>abandonar la dictadura del modelo neoliberal</mark> plasmado en el capítulo económico</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“contraria al modelo neoliberal porque este”
+</div>
+<span class="context">Nuestra estrategia de desarrollo es <mark>contraria al modelo neoliberal porque este</mark>, tal como se aplica en Perú, desarrolla un circuito económico</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · mixed · chunk 4</span>
+<div class="quote">
+“soberanía en la economía pluralista nacional de mercado”
+</div>
+<span class="context">desde una perspectiva de <mark>soberanía en la economía pluralista nacional de mercado</mark>, para que cumplan las funciones públicas</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“dejar de lado el modelo neoliberal”
+</div>
+<span class="context">profundo cambio para <mark>dejar de lado el modelo neoliberal</mark> y para llevar adelante una reestructuración total</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · mixed · chunk 6</span>
+<div class="quote">
+“revisar los TLC y autorizar su renegociación”
+</div>
+<span class="context">El Congreso instalado en julio de 2011 deberá <mark>revisar los TLC y autorizar su renegociación</mark>, en caso necesario.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“Renunciamos a que únicamente el mercado decida”
+</div>
+<span class="context">asimetrías persisten en la sociedad global. <mark>Renunciamos a que únicamente el mercado decida</mark> en nombre de la</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · mixed · chunk 8</span>
+<div class="quote">
+“únicamente el mercado decida”
+</div>
+<span class="context">Renunciamos a que <mark>únicamente el mercado decida</mark> en nombre de la sociedad peruana.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Se fomentará la competencia contra el monopolio y se impedirá el retorno al latifundio. Las inversiones extranjeras que respeten estándares laborales básicos serán bienvenidas”
+</div>
+<span class="context">Se fomentará la competencia contra el monopolio y se impedirá el retorno al latifundio. Las inversiones extranjeras que respeten estándares laborales básicos, que transfieran tecnología, que protejan el medio ambiente y que tributen con justicia serán bienvenidas.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“El Estado regula el desarrollo de la actividad económica”
+</div>
+<span class="context">…La iniciativa privada es libre en el marco de una economía nacional de mercado. El Estado planifica el desarrollo económico y social del país concertando con los actores respectivos. <mark>El Estado regula el desarrollo de la actividad económica</mark>…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“desarrollo de una economía nacional de mercado, abierta al mundo”
+</div>
+<span class="context">Nuestra estrategia de desarrollo es contraria al modelo neoliberal porque este, tal como se aplica en Perú, desarrolla un circuito económico desnacionalizador. … La construcción de la nación será posible mediante el <mark>desarrollo de una economía nacional de mercado, abierta al mundo</mark>, que conecte e integre a los pueblos excluidos y olvidados de la costa, sierra y selva.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“la Economía Nacional de Mercado se sustenta en el correcto funcionamiento de los mercados”
+</div>
+<span class="context">…La Economía Nacional de Mercado se sustenta en el correcto funcionamiento de los mercados. La existencia de un mercado presupone fundamentalmente cuatro componentes concurrentes: i) multiplicidad de proveedores en competencia; ii) multiplicidad de consumidores que realizan sus elecciones libremente…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“Se llevará a cabo un profundo cambio para dejar de lado el modelo neoliberal”
+</div>
+<span class="context">…<mark>Se llevará a cabo un profundo cambio para dejar de lado el modelo neoliberal</mark> y para llevar adelante una reestructuración total de todas las instituciones que debieran vigilar el funcionamiento de los mercados y que hoy sucumben ante la «captura» de los grupos de poder económico… La política neoliberal ha privilegiado a los intereses de los agentes inversionistas…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“reduciremos significativamente los costos de formalización y desburocratizaremos dichos procesos”
+</div>
+<span class="context">…Propuestas de política Reduciremos significativamente los costos de formalización y desburocratizaremos dichos procesos. Se dará continuidad, se fomentará y se corregirán las políticas públicas y normas destinadas a simplificar los trámites burocráticos…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“fortaleceremos el empresariado peruano y crearemos empresas mixtas, dentro del marco de un planeamiento estratégico de desarrollo”
+</div>
+<span class="context">Buscaremos el conocimiento en los países industrializados, no renunciaremos ni al empresariado ni al capital extranjero para impulsar políticas industriales y agroindustriales específicas, <mark>fortaleceremos el empresariado peruano y crearemos empresas mixtas, dentro del marco de un planeamiento estratégico de desarrollo</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 8</span>
+<div class="quote">
+“la simple apertura de la economía no genera desarrollo sostenido ni aumenta la productividad”
+</div>
+<span class="context">…La simple apertura de la economía no genera desarrollo sostenido ni aumenta la productividad de las empresas. Tampoco el simple comercio exterior conduce a tasas de crecimiento duradero…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“desregulación de los mercados financieros”
+</div>
+<span class="context">se promovieron y aplicaron políticas de <mark>desregulación de los mercados financieros</mark>, de privatización, de debilitamiento de las instituciones de protección social</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“La iniciativa privada es libre en el marco de una economía nacional de mercado”
+</div>
+<span class="context"><mark>La iniciativa privada es libre en el marco de una economía nacional de mercado</mark>. El Estado planifica el desarrollo económico y social del país concertando con los actores respectivos.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“Políticas de competencia y de regulación de los mercados”
+</div>
+<span class="context"><mark>Políticas de competencia y de regulación de los mercados</mark>. La economía nacional de mercado se sustenta en la existencia de mercados competitivos y en la ausencia de abusos de poder.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 4</span>
+<div class="quote">
+“dejar de lado el modelo neoliberal”
+</div>
+<span class="context">Se llevará a cabo un profundo cambio para <mark>dejar de lado el modelo neoliberal</mark> y para llevar adelante una reestructuración total</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 5</span>
+<div class="quote">
+“combata toda práctica anticompetitiva”
+</div>
+<span class="context">que se <mark>combata toda práctica anticompetitiva</mark> (concertación, reparto de mercado, limitación de producción, especulación, acaparamiento, etc.)</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“renegociar los tratados de libre comercio”
+</div>
+<span class="context">El Congreso instalado en julio de 2011 deberá revisar los TLC y autorizar su renegociación, en caso necesario.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 7</span>
+<div class="quote">
+“simple apertura de la economía no genera”
+</div>
+<span class="context">La <mark>simple apertura de la economía no genera</mark> desarrollo sostenido ni aumenta la productividad de las empresas. Tampoco el simple comercio exterior conduce a tasas de crecimiento duradero</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 8</span>
+<div class="quote">
+“no renunciaremos ni al empresariado ni al capital extranjero”
+</div>
+<span class="context">Buscaremos el conocimiento en los países industrializados, <mark>no renunciaremos ni al empresariado ni al capital extranjero</mark> para impulsar políticas industriales y agroindustriales específicas</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · mixed · chunk 1</span>
+<div class="quote">
+“desarrollo del mercado de capitales”
+</div>
+<span class="context">Se promoverá activamente las inversiones en infraestructura y el <mark>desarrollo del mercado de capitales</mark> para generar una economía nacional</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“rompa con el veto del gran capital”
+</div>
+<span class="context">logra a través de una mayoría progresista que <mark>rompa con el veto del gran capital</mark> y logre un nuevo contrato social</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“controlar el flujo internacional de capitales”
+</div>
+<span class="context">Esto quiere decir que hay que <mark>controlar el flujo internacional de capitales</mark> y, para asegurar un tipo de cambio real estable</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · mixed · chunk 4</span>
+<div class="quote">
+“desarrollo y profundización del mercado de capitales”
+</div>
+<span class="context">Implementaremos una política de <mark>desarrollo y profundización del mercado de capitales</mark> en soles. Esta política se llevará a cabo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Aprobación de una nueva Ley de Bancos”
+</div>
+<span class="context">Aprobación de una nueva Ley de Defensa de la Competencia Aprobación de una nueva Ley de Represión de Competencia Desleal Aprobación de una Ley de Control de Fusiones y Concentraciones Empresariales <mark>Aprobación de una nueva Ley de Bancos</mark> Aprobación de una reforma</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · mixed · chunk 6</span>
+<div class="quote">
+“participación de las empresas en el mercado de capitales”
+</div>
+<span class="context">Promoveremos la <mark>participación de las empresas en el mercado de capitales</mark> que ayudan al ordenamiento</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“inestabilidad de los mercados financieros globales”
+</div>
+<span class="context">vías de desarrollo ante la <mark>inestabilidad de los mercados financieros globales</mark> y la falta de</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 8</span>
+<div class="quote">
+“inestabilidad de los mercados financieros globales”
+</div>
+<span class="context">vías de desarrollo ante la <mark>inestabilidad de los mercados financieros globales</mark> y la falta de una regulación</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Se promoverá el desarrollo del mercado de capitales para generar una economía nacional de mercado. La inversión privada nacional es fundamental para construir una economía nacional de mercado”
+</div>
+<span class="context"><mark>Se promoverá el desarrollo del mercado de capitales para generar una economía nacional de mercado. La inversión privada nacional es fundamental para construir una economía nacional de mercado</mark>. Mientras en el modelo neoliberal la inversión extranjera tiene un papel dominante, en el desarrollo de una economía nacional de mercado este papel le corresponde a la inversión privada nacional.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“Banco Central de Reserva es autónomo pero su presidente debe darle cuentas al Congreso”
+</div>
+<span class="context">…Los recursos naturales tanto renovables como no renovables son propiedad de la nación. El Banco Central de Reserva es autónomo pero su presidente debe darle, por lo menos, una vez al año cuentas al Congreso de la labor de la entidad…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“mercado de capitales en soles facilita el financiamiento de mediano y largo plazo”
+</div>
+<span class="context">Por ejemplo, el <mark>mercado de capitales en soles facilita el financiamiento de mediano y largo plazo</mark> de la inversión, pero también mejora la eficiencia de la política monetaria basada en metas explícitas de inflación con la tasa de interés como instrumento (regla de Taylor). Cuanto más profundo y líquido es este mercado, mayor es la competencia en el mercado financiero, donde hoy domina el oligopolio bancario.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Implementaremos una política de desarrollo y profundización del mercado de capitales en soles”
+</div>
+<span class="context">…<mark>Implementaremos una política de desarrollo y profundización del mercado de capitales en soles</mark>. Esta política se llevará a cabo a través del desarrollo del mercado de deuda pública en soles, con un mayor impulso y promoción del Programa de Creadores de Mercados…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“Indecopi, encargado de regular y sancionar estas conductas, ha estado ausente”
+</div>
+<span class="context">…El <mark>Indecopi, encargado de regular y sancionar estas conductas, ha estado ausente</mark> y su actuación es un rotundo fracaso, incluso ha sido el promotor de que los consumidores asuman el costo de conocer las restricciones de la oferta…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“Promoveremos la participación del Banco de la Nación en el financiamiento de las pequeñas y medianas empresas”
+</div>
+<span class="context">…Fortaleceremos al FOGAPI para que extienda sus garantías a favor de las MYPEs… <mark>Promoveremos la participación del Banco de la Nación en el financiamiento de las pequeñas y medianas empresas</mark> mediante su red de agencias…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 7</span>
+<div class="quote">
+“buscaremos democratizar las relaciones internacionales y, especialmente, los organismos financieros como el FMI, el Banco Mundial, el BID”
+</div>
+<span class="context">Abogaremos por una mayor influencia de las Naciones Unidas en el desarrollo de un sistema de relaciones económicas justas, de políticas económicas globales en el área del comercio internacional y de las relaciones financieras, así como en sus interacciones con las instituciones de Bretton Woods, la OMC y otras estructuras multilaterales. Buscaremos democratizar las relaciones internacionales y, especialmente, los organismos financieros como el FMI, el Banco Mundial, el BID y las organizaciones multilaterales de comercio como la OMC.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 8</span>
+<div class="quote">
+“renovar las instituciones de Bretton Woods, fortalecer el G-20”
+</div>
+<span class="context">…<mark>renovar las instituciones de Bretton Woods, fortalecer el G-20</mark> y lograr una Organización Mundial del Comercio con reglas más equitativas…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“mercado interno de capitales en soles”
+</div>
+<span class="context">la restricción de financiamiento se supera al desarrollar el <mark>mercado interno de capitales en soles</mark>, con un marco regulatorio que facilite el financiamiento</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“El Banco Central de Reserva es autónomo”
+</div>
+<span class="context"><mark>El Banco Central de Reserva es autónomo</mark> pero su presidente debe darle, por lo menos, una vez al año cuentas al Congreso de la labor de la entidad.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“mercado de capitales en soles facilita el financiamiento”
+</div>
+<span class="context">el <mark>mercado de capitales en soles facilita el financiamiento</mark> de mediano y largo plazo de la inversión, pero también mejora la eficiencia de la política monetaria</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“desarrollo del mercado de capitales en soles”
+</div>
+<span class="context">Implementaremos una política de desarrollo y profundización del mercado de capitales en soles</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“Aprobación de una nueva Ley de Bancos”
+</div>
+<span class="context"><mark>Aprobación de una nueva Ley de Bancos</mark> Aprobación de una reforma del Código Penal en los delitos económicos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“participación en el mercado de capitales”
+</div>
+<span class="context">Promoveremos la participación de las empresas en el mercado de capitales que ayudan al ordenamiento y apertura de información, a tener acceso a nuevas formas de financiamiento</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 7</span>
+<div class="quote">
+“especulación al rentismo financiero”
+</div>
+<span class="context">la vulnerabilidad de los países en vías de desarrollo ante la inestabilidad de los mercados financieros globales y la falta de una regulación y control que ponga fin a la <mark>especulación al rentismo financiero</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 8</span>
+<div class="quote">
+“especulación al rentismo financiero”
+</div>
+<span class="context">la vulnerabilidad de los países en vías de desarrollo ante la inestabilidad de los mercados financieros globales y la falta de una regulación y control que ponga fin a la <mark>especulación al rentismo financiero</mark></span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“La democracia debe garantizar separación de poderes”
+</div>
+<span class="context"><mark>La democracia debe garantizar separación de poderes</mark>, así como la vigencia plena de los derechos civiles</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“establecer mecanismos de participación y control democráticos”
+</div>
+<span class="context">brinde acceso a los ciudadanos, a sus representantes y establezca mecanismos de participación y control democráticos. Hay que separar las figuras</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“democracia sólida, representativa y participativa”
+</div>
+<span class="context">Construiremos, por lo tanto, una <mark>democracia sólida, representativa y participativa</mark>, con presencia del Estado</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“democracia es al sistema político”
+</div>
+<span class="context">el mercado de capitales en moneda local es a la economía lo que la <mark>democracia es al sistema político</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“redistribución del poder político a los Gobiernos”
+</div>
+<span class="context">Profundizaremos la <mark>redistribución del poder político a los Gobiernos</mark> Regionales y Locales, promoviendo mecanismos</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“descentralización del Estado en curso”
+</div>
+<span class="context">sin tomar en cuenta el proceso de <mark>descentralización del Estado en curso</mark> ni a los procesos de descentralización</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“garante de los derechos de los ciudadanos”
+</div>
+<span class="context">debe recuperarse al Estado como <mark>garante de los derechos de los ciudadanos</mark>, tanto de los derechos</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“defensa de los derechos humanos”
+</div>
+<span class="context">en la Carta Democrática Interamericana, en la <mark>defensa de los derechos humanos</mark>, en el fortalecimiento de la</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“La democracia debe garantizar separación de poderes, así como la vigencia plena de los derechos civiles, sociales, políticos y humanos”
+</div>
+<span class="context">Practicar una forma republicana de gobierno, con mecanismos explícitos de evaluación y control constitucional de los gobernantes. <mark>La democracia debe garantizar separación de poderes, así como la vigencia plena de los derechos civiles, sociales, políticos y humanos</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Estado constitucional, social y democrático, que sea descentralizado, laico, pluricultural y participativo”
+</div>
+<span class="context">…Definir el <mark>Estado constitucional, social y democrático, que sea descentralizado, laico, pluricultural y participativo</mark>. Un Estado activo y responsable del bienestar de las personas, contrario al Estado mínimo y socialmente irresponsable del texto de 1993…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“fortalezca la participación ciudadana en la toma de decisiones”
+</div>
+<span class="context">Construiremos, por lo tanto, una democracia sólida, representativa y participativa, con presencia del Estado en las zonas pobres y desarticuladas; que <mark>fortalezca la participación ciudadana en la toma de decisiones</mark> y el ejercicio del poder; que fomente el sistema de partidos políticos; que combata la corrupción, y promueva el respeto irrestricto y el ejercicio pleno de los derechos humanos por todos los peruanos.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“fortaleceremos el Consejo Nacional del Trabajo, con asistencia técnica”
+</div>
+<span class="context">…Fortalecer el Consejo Nacional del Trabajo, con asistencia técnica a sus miembros para el desarrollo de sus funciones. Fortalecimiento del rol fiscalizador del MTPE por medio del aumento y mejora de las inspecciones laborales…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“Interpretaciones del Tribunal Constitucional en este sentido”
+</div>
+<span class="context">…Estas cláusulas no tienen valor jurídico y el Estado nacional tiene que retirarles cualquier valor en beneficio de los derechos de los consumidores. <mark>Interpretaciones del Tribunal Constitucional en este sentido</mark> y en defensa de los consumidores han sido arbitrariamente dejadas de lado por los organismos de regulación del mercado…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“la Constitución, y en ese sentido la política social que propone está orientada a garantizar el ejercicio de esos derechos”
+</div>
+<span class="context">…afirma un enfoque de derechos en el cual la persona es el fin, tal como lo señala <mark>la Constitución, y en ese sentido la política social que propone está orientada a garantizar el ejercicio de esos derechos</mark> por todos los ciudadanos y ciudadanas del Perú…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“la defensa de los derechos humanos, la defensa de la democracia, el derecho al desarrollo, el multilateralismo”
+</div>
+<span class="context">Aspiramos, por lo tanto, a que nuestro país tenga una voz cada vez más independiente en el concierto internacional en la defensa de principios fundamentales como los derechos humanos, la defensa de la democracia, el derecho al desarrollo, el multilateralismo, el comercio justo, la defensa del medio ambiente, la solución pacífica de las controversias y el respeto al derecho internacional y a sus instituciones.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“defensa de los derechos humanos”
+</div>
+<span class="context">…Nuestra política de seguridad democrática se basará en la Carta Democrática Interamericana, en la <mark>defensa de los derechos humanos</mark>, en el fortalecimiento de la Comisión y de la Corte Interamericana de DDHH, en la Corte Penal Internacional y en el respeto a los tratados internacionales de defensa de DDHH…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“separación de poderes”
+</div>
+<span class="context">La democracia debe garantizar <mark>separación de poderes</mark>, así como la vigencia plena de los derechos civiles, sociales, políticos y humanos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“democracia sólida, representativa y participativa”
+</div>
+<span class="context">Construiremos, por lo tanto, una <mark>democracia sólida, representativa y participativa</mark>, con presencia del Estado en las zonas pobres y desarticuladas; que fortalezca la participación ciudadana.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“democracia sólida, representativa y participativa”
+</div>
+<span class="context">Construiremos, por lo tanto, una <mark>democracia sólida, representativa y participativa</mark>, con presencia del Estado en las zonas pobres y desarticuladas; que fortalezca la participación ciudadana</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“garantía de ejercicio de derechos ciudadanos”
+</div>
+<span class="context">se construirá una amplia red de conectividad nacional, pública, de competencia interempresarial y de <mark>garantía de ejercicio de derechos ciudadanos</mark> como la prensa, expresión y difusión</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“Interpretaciones del Tribunal Constitucional”
+</div>
+<span class="context"><mark>Interpretaciones del Tribunal Constitucional</mark> en este sentido y en defensa de los consumidores han sido arbitrariamente dejadas de lado por los organismos de regulación</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“transformación democrática integral de la sociedad”
+</div>
+<span class="context">La Revolución Educativa será parte de un programa de <mark>transformación democrática integral de la sociedad</mark> peruana, llevado a la práctica por un movimiento ciudadano</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“profundización de la democracia y el desarrollo”
+</div>
+<span class="context">Garantizar la paz social en el país, sustentada en la <mark>profundización de la democracia y el desarrollo</mark> sostenible, promover la erradicación de los factores</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“defensa de los derechos humanos”
+</div>
+<span class="context">Nuestra política de seguridad democrática se basará en la Carta Democrática Interamericana, en la <mark>defensa de los derechos humanos</mark>, en el fortalecimiento de la Comisión</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“derechos en la igualdad de género, la libertad de expresión”
+</div>
+<span class="context">Afirmaremos los <mark>derechos en la igualdad de género, la libertad de expresión</mark>, la identidad de las personas</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“reconocimiento del Perú como país multicultural”
+</div>
+<span class="context">Un Estado pluricultural y descentralista implica: El <mark>reconocimiento del Perú como país multicultural</mark>, en el que viven y se desarrollan</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“respeto irrestricto y el ejercicio pleno de los derechos humanos”
+</div>
+<span class="context">combata la corrupción, y promueva el <mark>respeto irrestricto y el ejercicio pleno de los derechos humanos</mark> por todos los peruanos.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“igualdad de remuneración entre la mano de obra masculina y femenina”
+</div>
+<span class="context">normas son insuficientes para aplicar el principio de <mark>igualdad de remuneración entre la mano de obra masculina y femenina</mark> por un trabajo de igual valor</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“goce de la igualdad en el trato”
+</div>
+<span class="context">respetado en su dignidad, en sus intereses económicos, y en el <mark>goce de la igualdad en el trato</mark>, para así evitar cualquier</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“factores de discriminación y exclusión”
+</div>
+<span class="context">busca atender, con políticas específicas, los diferentes <mark>factores de discriminación y exclusión</mark> que afectan a nuestra sociedad.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 7</span>
+<div class="quote">
+“derechos humanos de las personas con diferente opción sexual”
+</div>
+<span class="context">Garantizar los <mark>derechos humanos de las personas con diferente opción sexual</mark> respetando su identidad</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“lucha contra el racismo”
+</div>
+<span class="context">defensa de los derechos humanos y la <mark>lucha contra el racismo</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Afirmaremos los derechos en la igualdad de género, la libertad de expresión, la identidad de las personas, el respeto al cuerpo, el reconocimiento de la diversidad cultural”
+</div>
+<span class="context"><mark>Afirmaremos los derechos en la igualdad de género, la libertad de expresión, la identidad de las personas, el respeto al cuerpo, el reconocimiento de la diversidad cultural</mark>, el acceso a Internet y la sociedad de la información.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“respeto por la particularidad de sus derechos, a la democracia peruana”
+</div>
+<span class="context">…Se debe asegurar la inclusión de los pueblos originarios, con <mark>respeto por la particularidad de sus derechos, a la democracia peruana</mark>…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“un país sin el racismo y la desigualdad social que nos separa”
+</div>
+<span class="context">Nuestro sueño es construir un país de todos con iguales derechos y deberes, hecho de productores y consumidores modernos con iguales oportunidades. Un país sin el racismo y la desigualdad social que nos separa, un país con estabilidad política, basada en reglas de austeridad en el ejercicio de la función pública.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“promover la ratificación de los convenios prioritarios”
+</div>
+<span class="context">…Reducir sustancialmente las observaciones efectuadas por la Comisión de Expertos de la OIT a los convenios internacionales ratificados por el Perú. Promover la ratificación de los convenios prioritarios que aún no han sido ratificados…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“evitar cualquier clase de discriminación”
+</div>
+<span class="context">…Debe ser prioridad del Estado asegurar que el consumidor sea respetado en su dignidad, en sus intereses económicos, y en el goce de la igualdad en el trato, para así <mark>evitar cualquier clase de discriminación</mark>. El Estado no puede ser «árbitro», observador de las relaciones de consumo…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“políticas para la equidad, dirigidas a sectores específicos”
+</div>
+<span class="context">…políticas sociales y <mark>políticas para la equidad, dirigidas a sectores específicos</mark>. 7.2 POR LOS DERECHOS FUNDAMENTALES 7.2.1 EDUCACIÓN DE CALIDAD PARA TODOS…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“garantizar el pleno ejercicio de los derechos sexuales y reproductivos de todas las mujeres; el acceso a métodos de planificación familiar y protección contra ETS”
+</div>
+<span class="context">Garantizar el pleno ejercicio de los derechos sexuales y reproductivos de todas las mujeres; el acceso a métodos de planificación familiar y protección contra ETS, incluyendo la AOE (Anticonceptivo Oral de Emergencia), así como el VHSIDA y la despenalización del aborto.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“respeto a la diversidad cultural, la defensa de los derechos humanos y la lucha contra el racismo”
+</div>
+<span class="context">…En el <mark>respeto a la diversidad cultural, la defensa de los derechos humanos y la lucha contra el racismo</mark>…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“derechos en la igualdad de género”
+</div>
+<span class="context">Afirmaremos los <mark>derechos en la igualdad de género</mark>, la libertad de expresión, la identidad de las personas, el respeto al cuerpo</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“sin exclusiones ni marginaciones de ningún tipo”
+</div>
+<span class="context">Se trata de organizar un nuevo Estado que incluya y represente a todos los peruanos, <mark>sin exclusiones ni marginaciones de ningún tipo</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“mujeres no sean acosadas ni discriminadas por su condición”
+</div>
+<span class="context">en que las <mark>mujeres no sean acosadas ni discriminadas por su condición</mark> de género, en que nuestros mayores vivan sus años con decencia y dignidad</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“discriminación por motivo de origen, raza, sexo”
+</div>
+<span class="context">Garantizar la aplicación del principio de igual remuneración por trabajo de igual valor, sin <mark>discriminación por motivo de origen, raza, sexo</mark>, idioma, credo, opinión, condición económica</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“evitar cualquier clase de discriminación”
+</div>
+<span class="context">para así <mark>evitar cualquier clase de discriminación</mark>. El Estado no puede ser «árbitro», observador de las relaciones de consumo</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“sin exclusiones de ninguna naturaleza”
+</div>
+<span class="context">atención de salud de calidad y gratuita, con enfoque de derecho humano -<mark>sin exclusiones de ninguna naturaleza</mark>- a través de un SISTEMA NACIONAL DE SALUD</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“derechos humanos de las personas con diferente opción sexual”
+</div>
+<span class="context">Garantizar los <mark>derechos humanos de las personas con diferente opción sexual</mark> respetando su identidad y opción. Penalizar los casos de violencia que se ejerce impunemente contra las personas de los grupos LGTB</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“respeto a la diversidad cultural”
+</div>
+<span class="context">En el <mark>respeto a la diversidad cultural</mark>, la defensa de los derechos humanos y la lucha contra el racismo.</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“La democracia debe garantizar separación de poderes”
+</div>
+<span class="context"><mark>La democracia debe garantizar separación de poderes</mark>, así como la vigencia plena de los derechos civiles</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“establecer mecanismos de participación y control democráticos”
+</div>
+<span class="context">brinde acceso a los ciudadanos, a sus representantes y establezca mecanismos de participación y control democráticos. Hay que separar las figuras</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“democracia sólida, representativa y participativa”
+</div>
+<span class="context">Construiremos, por lo tanto, una <mark>democracia sólida, representativa y participativa</mark>, con presencia del Estado</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“soberanía en la economía pluralista nacional de mercado”
+</div>
+<span class="context">desde una perspectiva de <mark>soberanía en la economía pluralista nacional de mercado</mark>, para que cumplan las funciones públicas</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“dejar de lado el modelo neoliberal”
+</div>
+<span class="context">profundo cambio para <mark>dejar de lado el modelo neoliberal</mark> y para llevar adelante una reestructuración total</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“participación de las empresas en el mercado de capitales”
+</div>
+<span class="context">Promoveremos la <mark>participación de las empresas en el mercado de capitales</mark> que ayudan al ordenamiento</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 7</span>
+<div class="quote">
+“garante de los derechos de los ciudadanos”
+</div>
+<span class="context">debe recuperarse al Estado como <mark>garante de los derechos de los ciudadanos</mark>, tanto de los derechos</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“defensa de los derechos humanos”
+</div>
+<span class="context">en la Carta Democrática Interamericana, en la <mark>defensa de los derechos humanos</mark>, en el fortalecimiento de la</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“La democracia debe garantizar separación de poderes, así como la vigencia plena de los derechos civiles, sociales, políticos y humanos”
+</div>
+<span class="context">Practicar una forma republicana de gobierno, con mecanismos explícitos de evaluación y control constitucional de los gobernantes. <mark>La democracia debe garantizar separación de poderes, así como la vigencia plena de los derechos civiles, sociales, políticos y humanos</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Estado constitucional, social y democrático, que sea descentralizado, laico, pluricultural y participativo”
+</div>
+<span class="context">…Definir el <mark>Estado constitucional, social y democrático, que sea descentralizado, laico, pluricultural y participativo</mark>. Un Estado activo y responsable del bienestar de las personas, contrario al Estado mínimo y socialmente irresponsable del texto de 1993…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“mercado de capitales en soles facilita el financiamiento de mediano y largo plazo”
+</div>
+<span class="context">Por ejemplo, el <mark>mercado de capitales en soles facilita el financiamiento de mediano y largo plazo</mark> de la inversión, pero también mejora la eficiencia de la política monetaria basada en metas explícitas de inflación con la tasa de interés como instrumento (regla de Taylor). Cuanto más profundo y líquido es este mercado, mayor es la competencia en el mercado financiero, donde hoy domina el oligopolio bancario.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Implementaremos una política de desarrollo y profundización del mercado de capitales en soles”
+</div>
+<span class="context">…<mark>Implementaremos una política de desarrollo y profundización del mercado de capitales en soles</mark>. Esta política se llevará a cabo a través del desarrollo del mercado de deuda pública en soles, con un mayor impulso y promoción del Programa de Creadores de Mercados…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“Interpretaciones del Tribunal Constitucional en este sentido”
+</div>
+<span class="context">…Estas cláusulas no tienen valor jurídico y el Estado nacional tiene que retirarles cualquier valor en beneficio de los derechos de los consumidores. <mark>Interpretaciones del Tribunal Constitucional en este sentido</mark> y en defensa de los consumidores han sido arbitrariamente dejadas de lado por los organismos de regulación del mercado…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“políticas para la equidad, dirigidas a sectores específicos”
+</div>
+<span class="context">…políticas sociales y <mark>políticas para la equidad, dirigidas a sectores específicos</mark>. 7.2 POR LOS DERECHOS FUNDAMENTALES 7.2.1 EDUCACIÓN DE CALIDAD PARA TODOS…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“la defensa de los derechos humanos, la defensa de la democracia, el derecho al desarrollo, el multilateralismo”
+</div>
+<span class="context">Aspiramos, por lo tanto, a que nuestro país tenga una voz cada vez más independiente en el concierto internacional en la defensa de principios fundamentales como los derechos humanos, la defensa de la democracia, el derecho al desarrollo, el multilateralismo, el comercio justo, la defensa del medio ambiente, la solución pacífica de las controversias y el respeto al derecho internacional y a sus instituciones.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“defensa de los derechos humanos”
+</div>
+<span class="context">…Nuestra política de seguridad democrática se basará en la Carta Democrática Interamericana, en la <mark>defensa de los derechos humanos</mark>, en el fortalecimiento de la Comisión y de la Corte Interamericana de DDHH, en la Corte Penal Internacional y en el respeto a los tratados internacionales de defensa de DDHH…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“regulador de la economía de mercado”
+</div>
+<span class="context">El Estado será promotor del desarrollo, <mark>regulador de la economía de mercado</mark> y proveedor de servicios sociales básicos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Estado constitucional, social y democrático”
+</div>
+<span class="context">Definir el <mark>Estado constitucional, social y democrático</mark>, que sea descentralizado, laico, pluricultural y participativo.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“Banco Central de Reserva autónomo e independiente”
+</div>
+<span class="context">Un <mark>Banco Central de Reserva autónomo e independiente</mark>, tanto de objetivo como de instrumento, que basa su gestión en fundamentos profesionales y técnicos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 4</span>
+<div class="quote">
+“mercado de capitales en soles”
+</div>
+<span class="context">Implementaremos una política de desarrollo y profundización del <mark>mercado de capitales en soles</mark>. Esta política se llevará a cabo a través del desarrollo del mercado de deuda pública en soles</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 5</span>
+<div class="quote">
+“recomponer la autoridad en los mercados”
+</div>
+<span class="context">Se trata de emprender una batalla para <mark>recomponer la autoridad en los mercados</mark> y asegurar que estos funcionen adecuadamente</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“enfoque de derechos en el cual la persona es el fin”
+</div>
+<span class="context">La propuesta de la Gran Transformación afirma un <mark>enfoque de derechos en el cual la persona es el fin</mark>, tal como lo señala la Constitución</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“defensa de la democracia, el derecho al desarrollo”
+</div>
+<span class="context">Aspiramos a que nuestro país tenga una voz cada vez más independiente en la defensa de principios fundamentales como los derechos humanos, la <mark>defensa de la democracia, el derecho al desarrollo</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 8</span>
+<div class="quote">
+“renovar las instituciones de Bretton Woods”
+</div>
+<span class="context">reducir la excesiva volatilidad de los flujos internacionales de capital de corto plazo, <mark>renovar las instituciones de Bretton Woods</mark>, fortalecer el G-20 y lograr una Organización Mundial del Comercio</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“intereses de las grandes empresas y de un reducido grupo de individuos que hoy maneja el país”
+</div>
+<span class="context">se ha concentrado casi exclusivamente en los circuitos por los que discurren los <mark>intereses de las grandes empresas y de un reducido grupo de individuos que hoy maneja el país</mark>. Las islas de eficiencia</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“secuestro de los aparatos económicos del Estado”
+</div>
+<span class="context">operación previa: el <mark>secuestro de los aparatos económicos del Estado</mark> en los que operan la cúspide del</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“intereses de minorías económicas que no han sido elegidas”
+</div>
+<span class="context">pero los elegidos gobiernan en función a los <mark>intereses de minorías económicas que no han sido elegidas</mark> por el voto popular.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“sucumben ante la «captura» de los grupos de poder económico”
+</div>
+<span class="context">que debieran vigilar el funcionamiento de los mercados y que hoy <mark>sucumben ante la «captura» de los grupos de poder económico</mark>. Es decir la SBS, INDECOPI, OSINERGMÍN</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“captura de los grupos de poder económico”
+</div>
+<span class="context">vigilar el funcionamiento de los mercados y que hoy sucumben ante la «captura» de los grupos de poder económico. Es decir la SBS</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“la estrategia de los globalizadores neoliberales”
+</div>
+<span class="context">Además, <mark>la estrategia de los globalizadores neoliberales</mark> de reducir los costos del trabajo para aumentar la</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“olvidado por los gobernantes en las últimas décadas”
+</div>
+<span class="context">pero este derecho ha sido <mark>olvidado por los gobernantes en las últimas décadas</mark>, la legislación y políticas</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 8</span>
+<div class="quote">
+“dogma neoliberal”
+</div>
+<span class="context">desarrollo que se adhieren a su <mark>dogma neoliberal</mark>. Los países industrializados no representan</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“la disputa política en el Perú actual no es entre demócratas y las fuerzas del cambio que hoy son motejadas de antisistemas. Es entre quienes utilizan la democracia para defender los intereses del gran capital nacional y transnacional”
+</div>
+<span class="context">No nos engañemos, <mark>la disputa política en el Perú actual no es entre demócratas y las fuerzas del cambio que hoy son motejadas de antisistemas. Es entre quienes utilizan la democracia para defender los intereses del gran capital nacional y transnacional</mark>, y los que creemos en una democracia republicana con desarrollo económico, social y político, que beneficie a todos los peruanos.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“golpe antioligárquico y antiaprista de 1962”
+</div>
+<span class="context">…las FF.AA. hicieron lo que el Apra pensó hacer y no hizo. Las FF.AA. pretendían, sin embargo, que las nuevas élites empresariales y políticas se colocaran a la cabeza de esas reformas. Ese es el sentido claro del <mark>golpe antioligárquico y antiaprista de 1962</mark> y el de la elección de Belaunde en 1963. Ante el fracaso de Belaunde…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“los grupos de poder económico obtienen rápidas ganancias”
+</div>
+<span class="context">Los grupos de poder económico obtienen rápidas ganancias, a costa de afectar el crecimiento sostenible del país. Encarecen los servicios públicos al elevar las tarifas a los usuarios; frustran el desarrollo regional descentralizado; detienen la generación de empleo digno e impiden la mejora de la calidad de vida de los peruanos.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“la captura de los grupos de poder económico”
+</div>
+<span class="context">…instituciones que debieran vigilar el funcionamiento de los mercados y que hoy sucumben ante <mark>la captura de los grupos de poder económico</mark>. Es decir la SBS, INDECOPI, OSINERGMÍN, OSITRÁN, SUNASS, OSIPTEL y la nueva SUNASA.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“captura» de los grupos de poder económico”
+</div>
+<span class="context">…instituciones que debieran vigilar el funcionamiento de los mercados y que hoy sucumben ante la «<mark>captura» de los grupos de poder económico</mark>. Es decir la SBS, INDECOPI, OSINERGMÍN, OSITRÁN, SUNASS, OSIPTEL y la nueva SUNASA. 4.5.2 EL ROL DEL ESTADO EN LA DEFENSA DE LOS CONSUMIDORES El Estado no puede desconocer su rol protector de los consumidores…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“la legislación y políticas neoliberales instauradas por Fujimori y mantenidas por Toledo y García, terminaron por precarizar las condiciones del empleo”
+</div>
+<span class="context">Todos tenemos derecho al trabajo decente, pero este derecho ha sido olvidado por los gobernantes en las últimas décadas, <mark>la legislación y políticas neoliberales instauradas por Fujimori y mantenidas por Toledo y García, terminaron por precarizar las condiciones del empleo</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 8</span>
+<div class="quote">
+“la falta de una regulación y control que ponga fin a la especulación al rentismo financiero”
+</div>
+<span class="context">…vulnerabilidad de los países en vías de desarrollo ante la inestabilidad de los mercados financieros globales y <mark>la falta de una regulación y control que ponga fin a la especulación al rentismo financiero</mark>. Si queremos construirnos como sociedades abiertas ante el mundo…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“élites a los que les importa poco o nada”
+</div>
+<span class="context">consecuencia de la indolencia de nuestro Estado y las <mark>élites a los que les importa poco o nada</mark> el futuro de sus compatriotas</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“élites económicas y políticas que capturan el Estado”
+</div>
+<span class="context">Este caudillismo es el núcleo del poder en el que confluyen <mark>élites económicas y políticas que capturan el Estado</mark> para ponerlo a su servicio.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“grupos de poder económico obtienen rápidas ganancias”
+</div>
+<span class="context">Los <mark>grupos de poder económico obtienen rápidas ganancias</mark>, a costa de afectar el crecimiento sostenible del país. Encarecen los servicios públicos al elevar las tarifas a los usuarios</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“grupos de poder económico que los tienen capturados”
+</div>
+<span class="context">en clara violación de la ley y favorecimiento a los <mark>grupos de poder económico que los tienen capturados</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“grupos de poder económico que los tienen capturados”
+</div>
+<span class="context">en clara violación de la ley y favorecimiento a los <mark>grupos de poder económico que los tienen capturados</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“Los globalizadores y neoliberales del país no entienden”
+</div>
+<span class="context">La ola globalizadora sesgó el énfasis de las políticas económicas. <mark>Los globalizadores y neoliberales del país no entienden</mark> que la productividad y cambio técnico es un fenómeno macroeconómico.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“legislación y políticas neoliberales instauradas por Fujimori”
+</div>
+<span class="context">los gobernantes en las últimas décadas, la <mark>legislación y políticas neoliberales instauradas por Fujimori</mark> y mantenidas por Toledo y García, terminaron por precarizar las condiciones del empleo</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“concentran más del 80% de la riqueza mundial”
+</div>
+<span class="context">Los países industrializados no representan sino el 15% de la población mundial, sin embargo, <mark>concentran más del 80% de la riqueza mundial</mark>. Grandes brechas y asimetrías persisten</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“los movimientos independientes de alcance regional y nacional se imponen sobre los partidos tradicionales. Los idearios y programas de estos partidos ya no están a tono con las exigencias de cambio”
+</div>
+<span class="context">Este sentimiento de cambio ocurre en medio de mutaciones políticas en las que <mark>los movimientos independientes de alcance regional y nacional se imponen sobre los partidos tradicionales. Los idearios y programas de estos partidos ya no están a tono con las exigencias de cambio</mark> del modo de crecer y generar riqueza impuesto por el neoliberalismo en las últimas dos décadas.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“neopopulismo elemental: reducir la pobreza con dádivas”
+</div>
+<span class="context">…Para los pobres se entregan las migajas del banquete a través de un <mark>neopopulismo elemental: reducir la pobreza con dádivas</mark>…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“construir un país de todos con iguales derechos y deberes”
+</div>
+<span class="context">Nuestro sueño es <mark>construir un país de todos con iguales derechos y deberes</mark>, hecho de productores y consumidores modernos con iguales oportunidades. Un país sin el racismo y la desigualdad social que nos separa, un país con estabilidad política, basada en reglas de austeridad en el ejercicio de la función pública.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“la integración del país y en la construcción de la nación”
+</div>
+<span class="context">…hará posible la expansión de mercados internos que ya existen y la creación de otros a lo largo y ancho del país. Con ello se avanzará en <mark>la integración del país y en la construcción de la nación</mark>, es decir, de una comunidad política nacional.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“El Estado no puede ser «árbitro», observador de las relaciones”
+</div>
+<span class="context">…<mark>El Estado no puede ser «árbitro», observador de las relaciones</mark> de consumo, cuando las reglas son injustas o abusivas; o lo que es peor, cuando son redactadas adrede para engañar y beneficiar a los proveedores. La presencia del Estado en las relaciones de consumo es de protección a la parte más débil de la relación económica…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“la participación efectiva y el dialogo permanente y la de los actores involucrados, en el marco de la diversidad étnico-culturales y el respeto irrestricto de los derechos humanos”
+</div>
+<span class="context">Atención y resolución oportuna, democrática y concertada de los conflictos sociales, con <mark>la participación efectiva y el dialogo permanente y la de los actores involucrados, en el marco de la diversidad étnico-culturales y el respeto irrestricto de los derechos humanos</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“buscaremos democratizar las relaciones internacionales”
+</div>
+<span class="context">…Buscaremos democratizar las relaciones internacionales y, especialmente, los organismos financieros como el FMI, el Banco Mundial, el BID y las organizaciones multilaterales de comercio como la OMC…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“fuerzas patrióticas, nacionalistas, de izquierda”
+</div>
+<span class="context">La ciudadanía, los movimientos sociales, las <mark>fuerzas patrióticas, nacionalistas, de izquierda</mark> y progresistas, reclamamos una gran transformación</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“construir una nación para todos”
+</div>
+<span class="context">transformar el Estado y <mark>construir una nación para todos</mark>, que ha sido la tarea negada de las últimas dos transiciones a la democracia.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“economía nacional de mercado, abierta al mundo”
+</div>
+<span class="context">la construcción de la nación será posible mediante el desarrollo de una <mark>economía nacional de mercado, abierta al mundo</mark>, que conecte e integre a los pueblos excluidos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“economía nacional de mercado”
+</div>
+<span class="context">Esta es la base de la construcción de una <mark>economía nacional de mercado</mark> que permitirá integrar al país</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“Economía Nacional de Mercado”
+</div>
+<span class="context">El objetivo principal de la regulación en una <mark>Economía Nacional de Mercado</mark> está centrado en recomponer el equilibrio</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“agenda de un crecimiento integrador del país”
+</div>
+<span class="context">La <mark>agenda de un crecimiento integrador del país</mark>, con un nuevo modo de crecer, generando mercados internos, aumentando el empleo</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“diálogo permanente y la de los actores”
+</div>
+<span class="context">Atención y resolución oportuna, democrática y concertada de los conflictos sociales, con la participación efectiva y el dialogo permanente y la de los actores involucrados</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 8</span>
+<div class="quote">
+“mundo multipolar”
+</div>
+<span class="context">No somos partidarios de la configuración de un mundo unipolar en el sistema internacional. Apoyaremos los esfuerzos de países como la Federación Rusa</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“un programa político de cambio radical de un modelo neoliberal que acentúa la desigualdad social”
+</div>
+<span class="context">Es, por lo tanto, <mark>un programa político de cambio radical de un modelo neoliberal que acentúa la desigualdad social</mark>, depreda los recursos naturales</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“rompa con el veto del gran capital”
+</div>
+<span class="context">logra a través de una mayoría progresista que <mark>rompa con el veto del gran capital</mark> y logre un nuevo contrato social favorable al</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“terminar con el modelo neoliberal desnacionalizador y excluyente”
+</div>
+<span class="context">Por eso debemos <mark>terminar con el modelo neoliberal desnacionalizador y excluyente</mark>. Es el modelo que ha</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“dejar de lado el modelo neoliberal”
+</div>
+<span class="context">Se llevará a cabo un profundo cambio para <mark>dejar de lado el modelo neoliberal</mark> y para llevar adelante una reestructuración total</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“dejar de lado el modelo neoliberal”
+</div>
+<span class="context">profundo cambio para <mark>dejar de lado el modelo neoliberal</mark> y para llevar adelante una reestructuración total</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“crecimiento económico con redistribución”
+</div>
+<span class="context">la mejor base para la política social es un <mark>crecimiento económico con redistribución</mark> (con énfasis en lo salarial)</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“favorece a los empleadores y en particular al gran capital”
+</div>
+<span class="context">poder entre trabajadores y empleadores, por el contrario claramente <mark>favorece a los empleadores y en particular al gran capital</mark> nacional y extranjero.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“especulación al rentismo financiero”
+</div>
+<span class="context">falta de una regulación y control que ponga fin a la <mark>especulación al rentismo financiero</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“el nacionalismo es una alternativa democrática a la actual modernización neoliberal excluyente y desnacionalizadora. Es, por lo tanto, un programa político de cambio radical de un modelo neoliberal que acentúa la desigualdad social”
+</div>
+<span class="context">Para nosotros, <mark>el nacionalismo es una alternativa democrática a la actual modernización neoliberal excluyente y desnacionalizadora. Es, por lo tanto, un programa político de cambio radical de un modelo neoliberal que acentúa la desigualdad social</mark>, depreda los recursos naturales, violenta la legalidad y la democracia, y no genera desarrollo.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“proyectos políticos imperantes asumieron un carácter populista de inclusión y de democratización”
+</div>
+<span class="context">…Los <mark>proyectos políticos imperantes asumieron un carácter populista de inclusión y de democratización</mark>. La atención a las demandas populares de mejores servicios estatales en forma de salud pública, educación pública y un marco de seguridad para la vida ciudadana estaba presente en los programas de muchos de los partidos del 30 y de los 50…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“restitución del impuesto a la herencia a partir de cierto nivel”
+</div>
+<span class="context">La reforma tributaria debe contribuir, además, con la generación de un circuito de demanda e ingresos centrado dentro del territorio nacional. … La <mark>restitución del impuesto a la herencia a partir de cierto nivel</mark> cuya fijación debe hacerse con criterios de equidad.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“recomponer la autoridad en los mercados y asegurar que estos funcionen adecuadamente”
+</div>
+<span class="context">…se trata de emprender una batalla para <mark>recomponer la autoridad en los mercados y asegurar que estos funcionen adecuadamente</mark>; que se combata toda práctica anticompetitiva (concertación, reparto de mercado, limitación de producción, especulación, acaparamiento, etc.) y el abuso de posición de dominio…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“modelo neoliberal y para llevar adelante una reestructuración total”
+</div>
+<span class="context">…Se llevará a cabo un profundo cambio para dejar de lado el <mark>modelo neoliberal y para llevar adelante una reestructuración total</mark> de todas las instituciones que debieran vigilar el funcionamiento de los mercados y que hoy sucumben ante la «captura» de los grupos de poder económico…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“la introducción del Sistema Privado de Pensiones (SPP) en la década de los noventa atentó directamente contra el carácter solidario y redistributivo”
+</div>
+<span class="context">En el Perú, <mark>la introducción del Sistema Privado de Pensiones (SPP) en la década de los noventa atentó directamente contra el carácter solidario y redistributivo</mark> sobre los cuales se sustenta cualquier esquema de seguridad social.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 8</span>
+<div class="quote">
+“luchar por relaciones justas y equitativas”
+</div>
+<span class="context">…Si queremos construirnos como sociedades abiertas ante el mundo debemos <mark>luchar por relaciones justas y equitativas</mark>. La simple apertura de la economía no genera desarrollo sostenido ni aumenta la productividad de las empresas…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“redistribución de los beneficios del crecimiento”
+</div>
+<span class="context">una efectiva oportunidad de <mark>redistribución de los beneficios del crecimiento</mark> y del desarrollo, se ha optado por programas sociales de emergencia</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“terminar con el modelo neoliberal desnacionalizador y excluyente”
+</div>
+<span class="context">Por eso debemos <mark>terminar con el modelo neoliberal desnacionalizador y excluyente</mark>. Es el modelo que ha reprimarizado nuestra economía, que la ha hecho más dependiente de los capitales y del mercado internacional.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“impuesto a las sobreutilidades para restablecer el principio”
+</div>
+<span class="context">Aplicaremos un <mark>impuesto a las sobreutilidades para restablecer el principio</mark> de justicia distributiva. El sesgo pro cíclico de la política fiscal será neutralizado</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Petroperú tendrá un rol rector”
+</div>
+<span class="context">Recién cuando esté cubierta la demanda nacional, los nuevos hallazgos de gas natural podrían justificar la exportación de los excedentes. <mark>Petroperú tendrá un rol rector</mark> en estos objetivos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“consumidores han sido explotados y obligados a financiar”
+</div>
+<span class="context">los <mark>consumidores han sido explotados y obligados a financiar</mark> con sus pagos excesivos la recuperación prácticamente inmediata de las inversiones realizadas por los privados</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“crecimiento económico con redistribución”
+</div>
+<span class="context">una estrategia nacional de desarrollo requiere acumulación interna en capitales humanos, físicos y financieros… la mejor base para la política social es un <mark>crecimiento económico con redistribución</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“carácter solidario y redistributivo”
+</div>
+<span class="context">la introducción del Sistema Privado de Pensiones (SPP) en la década de los noventa atentó directamente contra el <mark>carácter solidario y redistributivo</mark> sobre los cuales se sustenta cualquier esquema de seguridad social</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“dogma neoliberal”
+</div>
+<span class="context">países en vías de desarrollo que se adhieren a su <mark>dogma neoliberal</mark>. Los países industrializados no representan sino el 15% de la población mundial</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“un programa político de cambio radical de un modelo neoliberal que acentúa la desigualdad social”
+</div>
+<span class="context">Es, por lo tanto, <mark>un programa político de cambio radical de un modelo neoliberal que acentúa la desigualdad social</mark>, depreda los recursos naturales</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“rompa con el veto del gran capital”
+</div>
+<span class="context">logra a través de una mayoría progresista que <mark>rompa con el veto del gran capital</mark> y logre un nuevo contrato social favorable al</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“terminar con el modelo neoliberal desnacionalizador y excluyente”
+</div>
+<span class="context">Por eso debemos <mark>terminar con el modelo neoliberal desnacionalizador y excluyente</mark>. Es el modelo que ha</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“dejar de lado el modelo neoliberal”
+</div>
+<span class="context">Se llevará a cabo un profundo cambio para <mark>dejar de lado el modelo neoliberal</mark> y para llevar adelante una reestructuración total</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“dejar de lado el modelo neoliberal”
+</div>
+<span class="context">profundo cambio para <mark>dejar de lado el modelo neoliberal</mark> y para llevar adelante una reestructuración total</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“crecimiento económico con redistribución”
+</div>
+<span class="context">la mejor base para la política social es un <mark>crecimiento económico con redistribución</mark> (con énfasis en lo salarial)</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“favorece a los empleadores y en particular al gran capital”
+</div>
+<span class="context">poder entre trabajadores y empleadores, por el contrario claramente <mark>favorece a los empleadores y en particular al gran capital</mark> nacional y extranjero.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 8</span>
+<div class="quote">
+“especulación al rentismo financiero”
+</div>
+<span class="context">falta de una regulación y control que ponga fin a la <mark>especulación al rentismo financiero</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Para nosotros, el nacionalismo es una alternativa democrática a la actual modernización neoliberal excluyente y desnacionalizadora. Es, por lo tanto, un programa político de cambio radical de un modelo neoliberal”
+</div>
+<span class="context"><mark>Para nosotros, el nacionalismo es una alternativa democrática a la actual modernización neoliberal excluyente y desnacionalizadora. Es, por lo tanto, un programa político de cambio radical de un modelo neoliberal</mark> que acentúa la desigualdad social, depreda los recursos naturales, violenta la legalidad y la democracia, y no genera desarrollo.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“proyectos políticos imperantes asumieron un carácter populista de inclusión y de democratización”
+</div>
+<span class="context">…Los <mark>proyectos políticos imperantes asumieron un carácter populista de inclusión y de democratización</mark>. La atención a las demandas populares de mejores servicios estatales en forma de salud pública, educación pública y un marco de seguridad para la vida ciudadana estaba presente en los programas de muchos de los partidos del 30 y de los 50…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“los grupos de poder económico obtienen rápidas ganancias”
+</div>
+<span class="context">Los grupos de poder económico obtienen rápidas ganancias, a costa de afectar el crecimiento sostenible del país. Encarecen los servicios públicos al elevar las tarifas a los usuarios; frustran el desarrollo regional descentralizado; detienen la generación de empleo digno e impiden la mejora de la calidad de vida de los peruanos.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“la integración del país y en la construcción de la nación”
+</div>
+<span class="context">…hará posible la expansión de mercados internos que ya existen y la creación de otros a lo largo y ancho del país. Con ello se avanzará en <mark>la integración del país y en la construcción de la nación</mark>, es decir, de una comunidad política nacional.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“modelo neoliberal y para llevar adelante una reestructuración total”
+</div>
+<span class="context">…Se llevará a cabo un profundo cambio para dejar de lado el <mark>modelo neoliberal y para llevar adelante una reestructuración total</mark> de todas las instituciones que debieran vigilar el funcionamiento de los mercados y que hoy sucumben ante la «captura» de los grupos de poder económico…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“la introducción del Sistema Privado de Pensiones (SPP) en la década de los noventa atentó directamente contra el carácter solidario y redistributivo”
+</div>
+<span class="context">En el Perú, <mark>la introducción del Sistema Privado de Pensiones (SPP) en la década de los noventa atentó directamente contra el carácter solidario y redistributivo</mark> sobre los cuales se sustenta cualquier esquema de seguridad social.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 8</span>
+<div class="quote">
+“luchar por relaciones justas y equitativas”
+</div>
+<span class="context">…Si queremos construirnos como sociedades abiertas ante el mundo debemos <mark>luchar por relaciones justas y equitativas</mark>. La simple apertura de la economía no genera desarrollo sostenido ni aumenta la productividad de las empresas…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“programa político de cambio radical”
+</div>
+<span class="context">es un <mark>programa político de cambio radical</mark> de un modelo neoliberal que acentúa la desigualdad social, depreda los recursos naturales</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“régimen económico para la justicia social”
+</div>
+<span class="context">Segundo: Un <mark>régimen económico para la justicia social</mark>. Debemos abandonar la dictadura del modelo neoliberal plasmado en el capítulo económico del texto de 1993.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Nosotros, los nacionalistas, proponemos aumentar la productividad”
+</div>
+<span class="context"><mark>Nosotros, los nacionalistas, proponemos aumentar la productividad</mark> y la competencia de nuestra economía con el desarrollo de los mercados internos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Petroperú tendrá un rol rector”
+</div>
+<span class="context">Recién cuando esté cubierta la demanda nacional, los nuevos hallazgos de gas natural podrían justificar la exportación de los excedentes. <mark>Petroperú tendrá un rol rector</mark> en estos objetivos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“retirando a los defensores de la ideología neoliberal”
+</div>
+<span class="context">replantear sus objetivos, <mark>retirando a los defensores de la ideología neoliberal</mark>. Un controlador del funcionamiento del mercado</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“anti-corporativo, redistribución, exclusión social”
+</div>
+<span class="context">acentúa el conflicto distributivo y exacerba la exclusión y marginalidad social y económica. Esa estrategia no es el camino para construir relaciones internacionales armoniosas.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“anti-corporativa, redistribución, igualdad social”
+</div>
+<span class="context">Recuperar el carácter solidario y redistributivo inherente a un esquema de sistema de pensiones. Universalización del Sistema de Pensiones</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 8</span>
+<div class="quote">
+“distribución justa y equitativa de los beneficios”
+</div>
+<span class="context">Impulsaremos en las Naciones Unidas un régimen internacional para promover y salvaguardar la <mark>distribución justa y equitativa de los beneficios</mark> derivados de la utilización de los recursos genéticos</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“la propuesta neoliberal, en la práctica, impidió la creación de un bloque regional al no considerar que los espacios regionales, en especial el andino, sean para nosotros mercados internos ampliados”
+</div>
+<span class="context">La propuesta neoliberal, en la práctica, impidió la creación de un bloque regional al no considerar que los espacios regionales, en especial el andino, sean para nosotros mercados internos ampliados y verdaderas plataformas de lanzamiento para que nuestros productos manufacturados compitan en mejores condiciones en el mercado mundial.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Estado predatorio, neoliberal y cleptopatrimonialista”
+</div>
+<span class="context">…El Perú alberga hoy el caso típico (en Latinoamérica) de un Estado predatorio. Su Estado es neoliberal y cleptopatrimonialista, dados los altos niveles de corrupción que permite…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“superar las profundas asimetrías con Chile para lograr una relación equitativa”
+</div>
+<span class="context">Promoveremos la integración andina y sudamericana, al recuperar el posicionamiento estratégico para la salida al Pacífico de Sudamérica integrada, … <mark>superar las profundas asimetrías con Chile para lograr una relación equitativa</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“los pueblos más alejados de nuestro país tendrán las mismas oportunidades de desarrollo”
+</div>
+<span class="context">…permitirá la creación de polos de desarrollo fronterizo y contribuirá con la integración latinoamericana. Los pueblos más alejados de nuestro país tendrán las mismas oportunidades de desarrollo que cualquier ciudad capitalina con los servicios públicos indispensables…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“defender el mercado nacional frente a las importaciones subsidiadas”
+</div>
+<span class="context">…orientada a dotar de seguridad alimentaria a la población peruana; insumos para la agroindustria nacional que ubique a los pequeños productores organizados de las regiones naturales, en los mejores mercados nacionales e internacionales, en condiciones ventajosas, para revalorar al hombre del campo y a la actividad agraria… <mark>defender el mercado nacional frente a las importaciones subsidiadas</mark>…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 7</span>
+<div class="quote">
+“la defensa de nuestra soberanía, integridad territorial y de nuestros recursos naturales”
+</div>
+<span class="context">La nueva política exterior del Perú se basará en la promoción de nuestro desarrollo nacional, la paz y la defensa de la democracia, en el respeto a los tratados internacionales, a la integración andina y regional, en el respeto mutuo, la no injerencia en asuntos internos el pluralismo político, ideológico y económico; y en <mark>la defensa de nuestra soberanía, integridad territorial y de nuestros recursos naturales</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 8</span>
+<div class="quote">
+“la defensa del medio ambiente y de nuestra biodiversidad”
+</div>
+<span class="context">…Nuestras relaciones con EEUU se basaran en el respeto a nuestra independencia, en la reducción de las actuales asimetrías económicas, en la promoción de un comercio justo, en <mark>la defensa del medio ambiente y de nuestra biodiversidad</mark>, en una política de seguridad que parta de nuestros propios intereses nacionales…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“soberanía nacional”
+</div>
+<span class="context">defensor de la <mark>soberanía nacional</mark>. Esta es la herramienta para construir una nación para todos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“La subordinación de los intereses individuales y grupales a los intereses de la patria”
+</div>
+<span class="context">Un Estado pluricultural y descentralista implica: <mark>La subordinación de los intereses individuales y grupales a los intereses de la patria</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“recuperar el posicionamiento estratégico para la salida”
+</div>
+<span class="context">Promoveremos la integración andina y sudamericana, al <mark>recuperar el posicionamiento estratégico para la salida</mark> al Pacífico de Sudamérica integrada</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“soberanía marítimo-portuaria”
+</div>
+<span class="context">afirmar en la interfaz de los mismos su <mark>soberanía marítimo-portuaria</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“defenderá el mercado nacional frente a las importaciones”
+</div>
+<span class="context">se implementará una transformación radical del sector agropecuario y se <mark>defenderá el mercado nacional frente a las importaciones</mark> subsidiadas</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 6</span>
+<div class="quote">
+“sentido nacionalista y el amor al Perú”
+</div>
+<span class="context">para que las últimas promociones realicen viajes de promoción al interior del país, con la finalidad de acentuar el <mark>sentido nacionalista y el amor al Perú</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 7</span>
+<div class="quote">
+“respeto a nuestra independencia”
+</div>
+<span class="context">Nuestras relaciones con EEUU se basaran en el <mark>respeto a nuestra independencia</mark>, en la reducción de las actuales asimetrías económicas</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 8</span>
+<div class="quote">
+“soberanía de los países”
+</div>
+<span class="context">garantice la seguridad de las naciones, la <mark>soberanía de los países</mark>, promueva el desarrollo, defienda el medio ambiente y elimine la pobreza</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“los que defienden el pasado vergonzante y los que pugnan por el nacimiento de una patria nueva”
+</div>
+<span class="context">Es la disputa entre <mark>los que defienden el pasado vergonzante y los que pugnan por el nacimiento de una patria nueva</mark>, de una comunidad política</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“todas estas voracidades juntas han bloqueado”
+</div>
+<span class="context">élites políticas y la alta burocracia anhelaban parte del botín. Todas estas voracidades juntas han bloqueado y bloquean la posibilidad de orientar</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“grotesco «chorreo» que nunca llega de las mesas de los ricos”
+</div>
+<span class="context">excluir y marginar económica y socialmente a poblaciones enteras de la costa, sierra y selva de los beneficios de un <mark>grotesco «chorreo» que nunca llega de las mesas de los ricos</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“los consumidores han sido explotados”
+</div>
+<span class="context">En todos estos años, <mark>los consumidores han sido explotados</mark> y obligados a financiar con sus pagos excesivos</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“traicionen las competencias asignadas y actúen de espaldas”
+</div>
+<span class="context">de que estas entidades <mark>traicionen las competencias asignadas y actúen de espaldas</mark> a los consumidores. Se trata de emprender</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“el abandono de la educación por parte”
+</div>
+<span class="context">La causa de esta situación es <mark>el abandono de la educación por parte</mark> de quienes han gobernado históricamente al país.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“poderosos lobbies que buscan perpetuar”
+</div>
+<span class="context">aprobarse a pesar de los <mark>poderosos lobbies que buscan perpetuar</mark> el marco legal y</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“la disputa política en el Perú actual no es entre demócratas y las fuerzas del cambio que hoy son motejadas de antisistemas. Es entre quienes utilizan la democracia para defender los intereses del gran capital nacional y transnacional”
+</div>
+<span class="context">No nos engañemos, <mark>la disputa política en el Perú actual no es entre demócratas y las fuerzas del cambio que hoy son motejadas de antisistemas. Es entre quienes utilizan la democracia para defender los intereses del gran capital nacional y transnacional</mark>, y los que creemos en una democracia republicana con desarrollo económico, social y político, que beneficie a todos los peruanos.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · mixed · chunk 2</span>
+<div class="quote">
+“Estado predatorio ha institucionalizado la discriminación social”
+</div>
+<span class="context">…El <mark>Estado predatorio ha institucionalizado la discriminación social</mark> a través de la aplicación de políticas sociales (educación, salud y seguridad públicas) de pésima calidad y de un supuesto dominio de la ley que no llega a todos. Para los pobres se entregan las migajas del banquete a través de un neopopulismo elemental…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“la corrupción se ha hecho parte del actual sistema político”
+</div>
+<span class="context">Con el neoliberalismo <mark>la corrupción se ha hecho parte del actual sistema político</mark> y de gobierno. Pocos impuestos y mercado libre para los grupos de poder económico es parte de la ideología de este sistema. Los grupos de poder eluden su responsabilidad tributaria frente al Estado, y el Estado elude su responsabilidad de proporcionar servicios básicos de calidad a la mayoría de la población.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“la captura de los grupos de poder económico”
+</div>
+<span class="context">…instituciones que debieran vigilar el funcionamiento de los mercados y que hoy sucumben ante <mark>la captura de los grupos de poder económico</mark>. Es decir la SBS, INDECOPI, OSINERGMÍN, OSITRÁN, SUNASS, OSIPTEL y la nueva SUNASA.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“capturan los organismos de regulación del mercado”
+</div>
+<span class="context">…transformando la visión que los reguladores han exhibido hasta hoy de manera contumaz, en clara violación de la ley y favorecimiento a los grupos de poder económico que los tienen capturados. La publicidad que hoy se difunde en los medios de comunicación es engañosa y falsa; conlleva una estafa grosera a los consumidores que de buena fe y creyendo en la institucionalidad del mercado le prestan algún crédito…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 7</span>
+<div class="quote">
+“la violencia política asoló el país en las últimas décadas, los rezagos del conflicto y las secuelas persisten hasta la actualidad”
+</div>
+<span class="context">Garantizar la paz social en el país, sustentada en la profundización de la democracia y el desarrollo sostenible, promover la erradicación de los factores que favorecen el desarrollo de expresiones de violencia política y social y una cultura de paz sustentada en el reconocimiento del otro, el diálogo y la resolución participativa oportuna y concertada de conflictos, afirmando el rol del Estado de respeto irrestricto, defensa y promoción de los derechos humanos. La violencia política asoló el país en las últimas décadas, los rezagos del conflicto y las secuelas persisten hasta la actualidad profundizando las brechas estructurales, la injusticia y la exclusión en desmedro de por lo menos dos millones de población principalmente rural, comunera, originarios e indígenas de nuestra sierra y selva peruana.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 8</span>
+<div class="quote">
+“los países industrializados no representan sino el 15% de la población mundial, sin embargo, concentran más del 80% de la riqueza mundial”
+</div>
+<span class="context">…El proceso de globalización no reparte sus beneficios de manera equitativa entre los países desarrollados y los países en vías de desarrollo que se adhieren a su dogma neoliberal. Los países industrializados no representan sino el 15% de la población mundial, sin embargo, concentran más del 80% de la riqueza mundial…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“los que defienden el pasado vergonzante”
+</div>
+<span class="context">Es la disputa entre <mark>los que defienden el pasado vergonzante</mark> y los que pugnan por el nacimiento de una patria nueva</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Estado predatorio y cleptopatrimonialista”
+</div>
+<span class="context">Su Estado es neoliberal y cleptopatrimonialista, dados los altos niveles de corrupción que permite…El modelo neoliberal extremo y el Estado predatorio son hermanos mellizos.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“modelo neoliberal desnacionalizador y excluyente”
+</div>
+<span class="context">Por eso debemos terminar con el <mark>modelo neoliberal desnacionalizador y excluyente</mark>. Es el modelo que ha reprimarizado nuestra economía, que la ha hecho más dependiente</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“modelo neoliberal se ha encargado de hacer creer”
+</div>
+<span class="context">El <mark>modelo neoliberal se ha encargado de hacer creer</mark> que todos los mercados son mercados perfectos y libres</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“política neoliberal ha privilegiado a los intereses”
+</div>
+<span class="context">Hasta hoy la <mark>política neoliberal ha privilegiado a los intereses</mark> de los agentes inversionistas que prestan los servicios</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“legislación y políticas neoliberales instauradas por Fujimori”
+</div>
+<span class="context">la <mark>legislación y políticas neoliberales instauradas por Fujimori</mark> y mantenidas por Toledo y García, terminaron por precarizar las condiciones del empleo.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 7</span>
+<div class="quote">
+“poderosos lobbies que buscan perpetuar”
+</div>
+<span class="context">se requiere voluntad política del más alto nivel para que esta norma discutida y consensuada pueda aprobarse a pesar de los <mark>poderosos lobbies que buscan perpetuar</mark> el marco legal y situación existente</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 8</span>
+<div class="quote">
+“relaciones justas y equitativas”
+</div>
+<span class="context">Si queremos construirnos como sociedades abiertas ante el mundo debemos luchar por <mark>relaciones justas y equitativas</mark>. La simple apertura de la economía no genera desarrollo</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“el impulso creativo del pueblo peruano”
+</div>
+<span class="context">Desarrollar, basados en esta estrategia, <mark>el impulso creativo del pueblo peruano</mark>, que en todos estos años ha demostrado</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“la abrumadora mayoría social, el denominado sector”
+</div>
+<span class="context">su transformación radical. Se trata de organizar un nuevo Estado que incluya y represente a todos los peruanos, sin exclusiones ni marginaciones de ningún tipo. La abrumadora mayoría social, el denominado sector informal, es el Perú mestizo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“devolverle a la nación peruana y a sus hijos”
+</div>
+<span class="context">Esta situación tiene que cambiar, para <mark>devolverle a la nación peruana y a sus hijos</mark> los sentimientos de autoestima</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“de la mano del pueblo ruso”
+</div>
+<span class="context">cerros y bosques y a una temperatura de más de 20 grados bajo cero, <mark>de la mano del pueblo ruso</mark>, su Fuerza Armada y los presidiarios.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“mirar a cada peruano en su realidad”
+</div>
+<span class="context">inclusivo con el consumidor, lo que significa <mark>mirar a cada peruano en su realidad</mark> y territorio. Es importante descartar</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“no les interesado educar a las mayorías”
+</div>
+<span class="context">No les interesado educar a las mayorías porque no era necesario para los modelos económicos</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“resuelva las necesidades de la gente”
+</div>
+<span class="context">del emprendimiento sanitario que <mark>resuelva las necesidades de la gente</mark>. Mayor impulso a la</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 8</span>
+<div class="quote">
+“derechos del Estado y del pueblo peruano”
+</div>
+<span class="context">económica de respeto a los <mark>derechos del Estado y del pueblo peruano</mark> a ser los beneficiarios inmediatos</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“buscaremos soluciones compartidas con las poblaciones. Promoveremos el diálogo y no la represión. La autoridad y las leyes se impondrán contra los enemigos de la democracia”
+</div>
+<span class="context">En la forja del bien común <mark>buscaremos soluciones compartidas con las poblaciones. Promoveremos el diálogo y no la represión. La autoridad y las leyes se impondrán contra los enemigos de la democracia</mark>: el terrorismo, el narcotráfico y la corrupción.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“la abrumadora mayoría social, el denominado sector informal, es el Perú mestizo, cholo”
+</div>
+<span class="context">…<mark>la abrumadora mayoría social, el denominado sector informal, es el Perú mestizo, cholo</mark> de predominante raigambre andina, amplia mayoría demográfica, socio-cultural y económica en la sociedad, que reclama su participación política, en un nuevo Estado inclusivo, plural y democrático…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“construir un país de todos con iguales derechos y deberes”
+</div>
+<span class="context">Nuestro sueño es <mark>construir un país de todos con iguales derechos y deberes</mark>, hecho de productores y consumidores modernos con iguales oportunidades. Un país sin el racismo y la desigualdad social que nos separa, un país con estabilidad política, basada en reglas de austeridad en el ejercicio de la función pública.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“los pueblos del Perú no están integrados ni geográficamente”
+</div>
+<span class="context">…integrar al país, económica, social y políticamente. La historia del desarrollo de los países industrializados enseña que la integración geográfica, económica y social de los pueblos que conforman sus naciones y la industrialización que los sacó del atraso fueron posibles porque… <mark>los pueblos del Perú no están integrados ni geográficamente</mark>, ni social, ni política, ni económicamente.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“El consumidor es el centro del proceso productivo”
+</div>
+<span class="context">…El Estado no puede desconocer su rol protector de los consumidores en una economía de mercado y menos en un modelo de Economía Nacional de Mercado. <mark>El consumidor es el centro del proceso productivo</mark> y de intercambios y, en su condición de persona, es el fin supremo de cualquier modelo económico. El rol protector significa que…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“el derecho a la salud de todos los ciudadanos sin diferencia alguna de extracción social, étnica, edad, género, orientación sexual, discapacidad física y mental”
+</div>
+<span class="context">Recuperar el carácter integral y universal d<mark>el derecho a la salud de todos los ciudadanos sin diferencia alguna de extracción social, étnica, edad, género, orientación sexual, discapacidad física y mental</mark>, vivir con VIH, SIDA, TBC, u otras condiciones.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 8</span>
+<div class="quote">
+“luchar por relaciones justas y equitativas”
+</div>
+<span class="context">…Si queremos construirnos como sociedades abiertas ante el mundo debemos <mark>luchar por relaciones justas y equitativas</mark>. La simple apertura de la economía no genera desarrollo sostenido ni aumenta la productividad de las empresas…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“el impulso creativo del pueblo peruano”
+</div>
+<span class="context">Desarrollar, basados en esta estrategia, <mark>el impulso creativo del pueblo peruano</mark>, que en todos estos años ha demostrado un gran espíritu democrático</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“un nuevo Estado inclusivo, plural y democrático”
+</div>
+<span class="context">La abrumadora mayoría social, el denominado sector informal, es el Perú mestizo, cholo de predominante raigambre andina…que reclama su participación política, en <mark>un nuevo Estado inclusivo, plural y democrático</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“construir un país de todos con iguales derechos”
+</div>
+<span class="context">Nuestro sueño es <mark>construir un país de todos con iguales derechos</mark> y deberes, hecho de productores y consumidores modernos con iguales oportunidades.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“los pueblos del Perú no están integrados”
+</div>
+<span class="context">Los pueblos del Perú no están integrados ni geográfica, ni social, ni política, ni económicamente</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“El consumidor es el centro del proceso productivo”
+</div>
+<span class="context"><mark>El consumidor es el centro del proceso productivo</mark> y de intercambios y, en su condición de persona, es el fin supremo de cualquier modelo económico</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“bienestar para toda la población”
+</div>
+<span class="context">La propuesta de la Gran Transformación busca contribuir al desarrollo integral de nuestro país, con <mark>bienestar para toda la población</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“derecho democrático de la población”
+</div>
+<span class="context">La salud en el país no se asume como un <mark>derecho democrático de la población</mark> sino como una mercancía para los que pueden pagarla y una caridad para los más pobres</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 8</span>
+<div class="quote">
+“derechos del Estado y del pueblo peruano”
+</div>
+<span class="context">dentro de una política económica de respeto a los <mark>derechos del Estado y del pueblo peruano</mark> a ser los beneficiarios inmediatos de los recursos</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“los que defienden el pasado vergonzante y los que pugnan por el nacimiento de una patria nueva”
+</div>
+<span class="context">Es la disputa entre <mark>los que defienden el pasado vergonzante y los que pugnan por el nacimiento de una patria nueva</mark>, de una comunidad política</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“secuestro de los aparatos económicos del Estado”
+</div>
+<span class="context">operación previa: el <mark>secuestro de los aparatos económicos del Estado</mark> en los que operan la cúspide del</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“intereses de minorías económicas que no han sido elegidas”
+</div>
+<span class="context">pero los elegidos gobiernan en función a los <mark>intereses de minorías económicas que no han sido elegidas</mark> por el voto popular.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“sucumben ante la «captura» de los grupos de poder económico”
+</div>
+<span class="context">que debieran vigilar el funcionamiento de los mercados y que hoy <mark>sucumben ante la «captura» de los grupos de poder económico</mark>. Es decir la SBS, INDECOPI, OSINERGMÍN</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“captura de los grupos de poder económico”
+</div>
+<span class="context">vigilar el funcionamiento de los mercados y que hoy sucumben ante la «captura» de los grupos de poder económico. Es decir la SBS</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“el abandono de la educación por parte”
+</div>
+<span class="context">La causa de esta situación es <mark>el abandono de la educación por parte</mark> de quienes han gobernado históricamente al país.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“olvidado por los gobernantes en las últimas décadas”
+</div>
+<span class="context">pero este derecho ha sido <mark>olvidado por los gobernantes en las últimas décadas</mark>, la legislación y políticas</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 8</span>
+<div class="quote">
+“derechos del Estado y del pueblo peruano”
+</div>
+<span class="context">económica de respeto a los <mark>derechos del Estado y del pueblo peruano</mark> a ser los beneficiarios inmediatos</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“la disputa política en el Perú actual no es entre demócratas y las fuerzas del cambio que hoy son motejadas de antisistemas. Es entre quienes utilizan la democracia para defender los intereses del gran capital nacional y transnacional”
+</div>
+<span class="context">No nos engañemos, <mark>la disputa política en el Perú actual no es entre demócratas y las fuerzas del cambio que hoy son motejadas de antisistemas. Es entre quienes utilizan la democracia para defender los intereses del gran capital nacional y transnacional</mark>, y los que creemos en una democracia republicana con desarrollo económico, social y político, que beneficie a todos los peruanos.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“golpe antioligárquico y antiaprista de 1962”
+</div>
+<span class="context">…Las FF.AA. hicieron lo que el Apra pensó hacer y no hizo. Las FF.AA. pretendían, sin embargo, que las nuevas élites empresariales y políticas se colocaran a la cabeza de esas reformas. Ese es el sentido claro del <mark>golpe antioligárquico y antiaprista de 1962</mark> y el de la elección de Belaunde en 1963…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“los grupos de poder económico obtienen rápidas ganancias”
+</div>
+<span class="context">Los grupos de poder económico obtienen rápidas ganancias, a costa de afectar el crecimiento sostenible del país. Encarecen los servicios públicos al elevar las tarifas a los usuarios; frustran el desarrollo regional descentralizado; detienen la generación de empleo digno e impiden la mejora de la calidad de vida de los peruanos.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“la captura de los grupos de poder económico”
+</div>
+<span class="context">…instituciones que debieran vigilar el funcionamiento de los mercados y que hoy sucumben ante <mark>la captura de los grupos de poder económico</mark>. Es decir la SBS, INDECOPI, OSINERGMÍN, OSITRÁN, SUNASS, OSIPTEL y la nueva SUNASA.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“captura» de los grupos de poder económico”
+</div>
+<span class="context">…instituciones que debieran vigilar el funcionamiento de los mercados y que hoy sucumben ante la «<mark>captura» de los grupos de poder económico</mark>. Es decir la SBS, INDECOPI, OSINERGMÍN, OSITRÁN, SUNASS, OSIPTEL y la nueva SUNASA. 4.5.2 EL ROL DEL ESTADO EN LA DEFENSA DE LOS CONSUMIDORES El Estado no puede desconocer su rol protector de los consumidores…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“la legislación y políticas neoliberales instauradas por Fujimori y mantenidas por Toledo y García, terminaron por precarizar las condiciones del empleo”
+</div>
+<span class="context">Todos tenemos derecho al trabajo decente, pero este derecho ha sido olvidado por los gobernantes en las últimas décadas, <mark>la legislación y políticas neoliberales instauradas por Fujimori y mantenidas por Toledo y García, terminaron por precarizar las condiciones del empleo</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 8</span>
+<div class="quote">
+“luchar por relaciones justas y equitativas”
+</div>
+<span class="context">…Si queremos construirnos como sociedades abiertas ante el mundo debemos <mark>luchar por relaciones justas y equitativas</mark>. La simple apertura de la economía no genera desarrollo sostenido ni aumenta la productividad de las empresas…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“gran capital nacional y transnacional”
+</div>
+<span class="context">quienes utilizan la democracia para defender los intereses del <mark>gran capital nacional y transnacional</mark>, y los que creemos en una democracia republicana</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Como hace 180 años, el Estado funciona para una pequeña minoría”
+</div>
+<span class="context"><mark>Como hace 180 años, el Estado funciona para una pequeña minoría</mark>, excluye a la gran mayoría y continúa viviendo de espaldas al Perú.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“elegidos gobiernan en función a los intereses de minorías”
+</div>
+<span class="context">El pueblo legitima a sus gobernantes mediante su voto, pero los <mark>elegidos gobiernan en función a los intereses de minorías</mark> económicas que no han sido elegidas por el voto popular.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“grupos de poder económico que los tienen capturados”
+</div>
+<span class="context">en clara violación de la ley y favorecimiento a los <mark>grupos de poder económico que los tienen capturados</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“dejar de lado el modelo neoliberal”
+</div>
+<span class="context">Se llevará a cabo un profundo cambio para <mark>dejar de lado el modelo neoliberal</mark> y para llevar adelante una reestructuración total</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“globalizadores neoliberales de reducir los costos”
+</div>
+<span class="context">la estrategia de los <mark>globalizadores neoliberales de reducir los costos</mark> del trabajo para aumentar la productividad y competitividad acentúa el conflicto distributivo</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“neoliberalismo ha sido la destrucción”
+</div>
+<span class="context">Una de las consecuencias más importantes de estas décadas de <mark>neoliberalismo ha sido la destrucción</mark> de buena parte de los puestos de trabajo formalmente existente</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 8</span>
+<div class="quote">
+“Renunciamos a que únicamente el mercado decida”
+</div>
+<span class="context"><mark>Renunciamos a que únicamente el mercado decida</mark> en nombre de la sociedad peruana. Por otro lado, la falta de adquisición de conocimiento agrava las distancias</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="179021_201104_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

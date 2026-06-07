@@ -1,0 +1,2025 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>FAD (Panama, 2019) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/160221_201905_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">FAD (Panama, 2019)</h1>
+<p class="subtitle lead">manifesto_id 160221_201905</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Panama · <span class="item"><strong>Party</strong></span> FAD (Broad Front for Democracy) · <span class="item"><strong>Year</strong></span> 2019 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 20</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">9.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">9.0</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">9.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.8</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.7</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“congelarán los precios de los productos”
+</div>
+<span class="context">Se <mark>congelarán los precios de los productos</mark> sensitivos para la alimentación</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“políticas de control de precios en los productos básicos”
+</div>
+<span class="context">PROPUESTA PARA EL ACCESO DE LA POBLACIÓN A ALIMENTOS Políticas de control de precios en los productos básicos para satisfacer las necesidades de vida de la población.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“prohibir todo vestigio de externalización”
+</div>
+<span class="context">atención primaria como estrategia en distintas zonas del país. Prohibir todo vestigio de externalización, privatización de los servicios</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“renacionalización de las empresas privatizadas”
+</div>
+<span class="context">Nombrar una Comisión de Expertos para la <mark>renacionalización de las empresas privatizadas</mark>. Se debe fortalecer</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Un estado participativo y de control en la actividad económica”
+</div>
+<span class="context">…<mark>Un estado participativo y de control en la actividad económica</mark>. Iniciar y culminar en un proceso constituyente originario que represente los intereses de la mayoría del pueblo. Producir un desarrollo económico sostenible, en igualdad de oportunidades, armónico en su crecimiento económico sectorial, en equilibrio con la naturaleza. La planificación como instrumento macroeconómico y orientador de los planes y decisiones de la política económica…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“El modelo de crecimiento económico impuesto desde la década del setenta en Panamá, basado en una mayor apertura económica y la desregulación”
+</div>
+<span class="context"><mark>El modelo de crecimiento económico impuesto desde la década del setenta en Panamá, basado en una mayor apertura económica y la desregulación</mark>. Y la política fiscal regresiva del Estado, ha profundizado la situación de pobreza e inequidad social de la población panameña.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“la práctica especulativa de los promotores de vivienda que lucran de las necesidades de viviendas de los panameños”
+</div>
+<span class="context">La práctica especulativa de los promotores de vivienda que lucran de las necesidades de viviendas de los panameños, poniendo precios 4 y 5 veces por encima de los costos de construcción, lo cual afecta a los sectores medios y profesionales y los sectores populares.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“modelo económico basado en el consumismo y el derroche de energía”
+</div>
+<span class="context">…no menciona para nada, lo que a nuestro criterio es lo esencial: el <mark>modelo económico basado en el consumismo y el derroche de energía</mark>…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“Estado regulador de la actividad económica”
+</div>
+<span class="context">Aprobar la normativa legal que se requiera para hacer un <mark>Estado regulador de la actividad económica</mark>, optando por la planificación como instrumento esencial de gestión gubernamental.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Recuperación de las empresas estratégicas privatizadas”
+</div>
+<span class="context">Sistema Fiscal progresivo… <mark>Recuperación de las empresas estratégicas privatizadas</mark>. Estableciendo precios justos al consumidor de acuerdo a escala de consumo y políticas de incentivo a la actividad económica productiva.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“modelo económico consumista, concentrador, excluyente”
+</div>
+<span class="context">La situación habitacional solo expresa los estragos producidos por un <mark>modelo económico consumista, concentrador, excluyente</mark> y depredador de los recursos naturales</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“renacionalización de las empresas privatizadas”
+</div>
+<span class="context">Nombrar una Comisión de Expertos para la <mark>renacionalización de las empresas privatizadas</mark>. Se debe fortalecer institucionalmente a entidades</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“Regular la actividad de la banca”
+</div>
+<span class="context"><mark>Regular la actividad de la banca</mark> y de seguros para que</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Regular la actividad de la banca y de seguros”
+</div>
+<span class="context">Aseguraremos créditos a los pequeños y medianos productores agropecuarios e industriales mediante una política de finanzas articulada con la planificación económica. <mark>Regular la actividad de la banca y de seguros</mark> para que este en sintonía</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“programa de micro-finanzas con recursos nacionales y de la banca”
+</div>
+<span class="context">Crear, normar y activar <mark>programa de micro-finanzas con recursos nacionales y de la banca</mark> para la activación de estas empresas.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“El monto de dinero lavado en el sistema financiero internacional representaría entre el 2,1% al 4% del PIB mundial”
+</div>
+<span class="context">…<mark>El monto de dinero lavado en el sistema financiero internacional representaría entre el 2,1% al 4% del PIB mundial</mark> (1,6 billones de dólares). Datos de la NASA, los niveles de emisión de dióxido de carbono están llegando a máximos no registrados, desde hace más de 650.000 años. Estos resultados y efectos por la aplicación del modelo neoliberal es irreconciliables con un modelo económico orientado a la satisfacción de las necesidades fundamentales de la población en su totalidad…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Regular la actividad de la banca y de seguros para que este en sintonía con los objetivos económicos de desarrollo del plan de gobierno”
+</div>
+<span class="context"><mark>Regular la actividad de la banca y de seguros para que este en sintonía con los objetivos económicos de desarrollo del plan de gobierno</mark>, en los aspectos relacionados a las tasas crediticias, créditos para atender eficazmente las actividades agropecuarias como a las pequeñas y medianas empresas de productores y comerciantes.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“los grupos que quitan y ponen Presidentes en acuerdos con la Embajada de los Estados Unidos”
+</div>
+<span class="context">…han sido utilizados por los grupos de poder económico, de la partidocracia que controla los partidos políticos tradicionales, de <mark>los grupos que quitan y ponen Presidentes en acuerdos con la Embajada de los Estados Unidos</mark>…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“Regular la actividad de la banca y de seguros”
+</div>
+<span class="context"><mark>Regular la actividad de la banca y de seguros</mark> para que este en sintonía con los objetivos económicos de desarrollo del plan de gobierno, en los aspectos relacionados a las tasas crediticias.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Regular la actividad de la banca y de seguros”
+</div>
+<span class="context"><mark>Regular la actividad de la banca y de seguros</mark> para que este en sintonía con los objetivos económicos de desarrollo del plan de gobierno, en los aspectos relacionados a las tasas crediticias</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“privatizar los fondos de la CSS”
+</div>
+<span class="context">Convocar a un dialogo nacional con la propuesta popular de mantener el sistema solidario eliminando el segundo pilar de las pensiones actual… <mark>privatizar los fondos de la CSS</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“Instituciones Financieras Internacionales sin importar las consecuencias”
+</div>
+<span class="context">al Departamento de Estado de los Estados Unidos y las <mark>Instituciones Financieras Internacionales sin importar las consecuencias</mark> causantes a la población</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · mixed · chunk 1</span>
+<div class="quote">
+“independencia de los poderes del Estado”
+</div>
+<span class="context">la <mark>independencia de los poderes del Estado</mark>, un mito y el Estado</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“la independencia de otros poderes es esencial para su buen funcionamiento”
+</div>
+<span class="context">La Corte Suprema de Justicia es un órgano fundamental en un Estado de Derecho, y su independencia de otros poderes es esencial para su buen funcionamiento. Nuestro principal norte es tener</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“calidad de un ESTADO DE DERECHO”
+</div>
+<span class="context">herramienta judicial que le da la <mark>calidad de un ESTADO DE DERECHO</mark> a un país y la seguridad jurídica</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“La democracia política está restringida”
+</div>
+<span class="context">en la distribución de la riqueza <mark>La democracia política está restringida</mark> a procesos electorales que no son democráticos.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“la independencia de los poderes del Estado, un mito y el Estado de derecho desestimado”
+</div>
+<span class="context">…Estado en el que la institucionalidad es una gran farsa; <mark>la independencia de los poderes del Estado, un mito y el Estado de derecho desestimado</mark> si no se cuenta con influencias y dinero. Una minoría, que representa la oligarquía política y económica, mantiene el control del Estado, amparados por una Constitución antidemocrática y antipopular. Los partidos políticos tradicionales carecen de legitimidad; su práctica de gobierno no se corresponde con principios y programas propuestos de cara a las elecciones…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“la libertad de expresión, libertad de prensa, el derecho a la información veraz”
+</div>
+<span class="context">Las libertades, derechos constitucionales, son sujetos a acciones represivas al reclaman sus derechos, podemos señalar las murallas y dificultades que el sistema impone a los sectores populares en términos de <mark>la libertad de expresión, libertad de prensa, el derecho a la información veraz</mark> el derecho a la protesta, el derecho a la manifestación, el derecho a la organización de sectores consectarios al status quo.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“la administración de justicia, que no es más que aquella herramienta judicial que le da la calidad de un ESTADO DE DERECHO a un país”
+</div>
+<span class="context">En la actualidad la nación confronta una serie de problemas que se relacionan con <mark>la administración de justicia, que no es más que aquella herramienta judicial que le da la calidad de un ESTADO DE DERECHO a un país</mark> y la seguridad jurídica a los asociados que habitan o forman parte de esta nación.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“La democracia política está restringida a procesos electorales que no son democráticos”
+</div>
+<span class="context">…En lo político, en Panamá no hay democracia económica para la mayoría de los panameños que están marginados en la distribución de la riqueza <mark>La democracia política está restringida a procesos electorales que no son democráticos</mark>…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“democracia real, que sea participativa, protagónica”
+</div>
+<span class="context">Un Estado Democratizado, donde impere una <mark>democracia real, que sea participativa, protagónica</mark> y deliberativa, que responda y esté al servicio del pueblo como único y legitimo soberano.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Una Constituyente Originaria Autoconvocada, con plenos poderes”
+</div>
+<span class="context">Cambiar esto, hacer un ataque frontal a la corrupción, no se puede hacer con esta clase corrupta que nos ha gobernado siempre… <mark>Una Constituyente Originaria Autoconvocada, con plenos poderes</mark>, es la única solución.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“transformación estructural, a través de una Constituyente Originaria”
+</div>
+<span class="context">Nuestra propuesta se sustenta en: En una <mark>transformación estructural, a través de una Constituyente Originaria</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 4</span>
+<div class="quote">
+“democracia política está restringida a procesos electorales”
+</div>
+<span class="context">En Panamá no hay democracia económica para la mayoría de los panameños. La <mark>democracia política está restringida a procesos electorales</mark> que no son democráticos</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“derechos de los campesinos e indígenas”
+</div>
+<span class="context">El derecho a la tierra de los campesinos e indígenas. Salarios que cubran</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“víctimas de la discriminación social: Por causas raciales”
+</div>
+<span class="context">Personas y grupos humanos en el país son <mark>víctimas de la discriminación social: Por causas raciales</mark>. Por su condición de pobreza.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“respeto de los derechos fundamentales”
+</div>
+<span class="context">debe darse en un marco de <mark>respeto de los derechos fundamentales</mark> donde la persona es el objetivo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“reconocimiento pleno de los derechos de la mujer”
+</div>
+<span class="context">Propugnamos por la equidad de género y el <mark>reconocimiento pleno de los derechos de la mujer</mark> panameña.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“Respeto irrestricto a los derechos humanos soportados en una real base democrática participativa”
+</div>
+<span class="context">…<mark>Respeto irrestricto a los derechos humanos soportados en una real base democrática participativa</mark>. Una reforma del estado que garantice y asegure a todos los ciudadanos igualdad ante la ley, certeza del castigo a toda forma de corrupción y una institucionalidad honesta sujeta a la rendición de cuentas y revocatoria de los electos. Que los intereses del pueblo prevalezcan sobre los intereses de los que ostentan, dirigen y controlan la actividad económica por consiguiente el poder político…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Personas y grupos humanos en el país son víctimas de la discriminación social”
+</div>
+<span class="context"><mark>Personas y grupos humanos en el país son víctimas de la discriminación social</mark>: Por causas raciales. Por su condición de pobreza. Por enfermedades diversas. Por preferencias sexuales. Por ser mujer. Por condiciones laborales. Por cuestiones étnicas.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“violaciones de los derechos humanos a manos de agentes estatales y no estatales”
+</div>
+<span class="context">La propuesta del FAD contra la inseguridad, la violencia y la delincuencia tiene como base la lucha contra la desigualdad y la exclusión social. Impulsamos una política de seguridad ciudadana integral, que considere atender los riesgos sociales como la pobreza, la inequidad social, que combata las <mark>violaciones de los derechos humanos a manos de agentes estatales y no estatales</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“rechazando todo tipo de discriminación”
+</div>
+<span class="context">…Garantizar el cumplimiento de los derechos humanos de la mujer trabajadora, así como de las mujeres campesinas e indígenas; <mark>rechazando todo tipo de discriminación</mark>…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“irrestricto respeto de los derechos y la dignidad humana”
+</div>
+<span class="context">Una organización social solidaria en justicia y equidad, el <mark>irrestricto respeto de los derechos y la dignidad humana</mark> y la igualdad ante la ley.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“víctimas de la discriminación social: Por causas raciales”
+</div>
+<span class="context">Personas y grupos humanos en el país son <mark>víctimas de la discriminación social: Por causas raciales</mark>. Por su condición de pobreza. Por enfermedades diversas. Por preferencias sexuales. Por ser mujer.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“violencia contra los grupos que han sufrido tradicionalmente la discriminación”
+</div>
+<span class="context">políticas de seguridad ciudadana eficaces dirigidas a enfrentar la <mark>violencia contra los grupos que han sufrido tradicionalmente la discriminación</mark> y la marginación, como las mujeres; los niños, niñas y adolescentes; la población afrodescendiente e indígena</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“equidad de género y el reconocimiento pleno de los derechos”
+</div>
+<span class="context">Propugnamos por la <mark>equidad de género y el reconocimiento pleno de los derechos</mark> de la mujer panameña</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“congelarán los precios de los productos”
+</div>
+<span class="context">Se <mark>congelarán los precios de los productos</mark> sensitivos para la alimentación</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“la independencia de otros poderes es esencial para su buen funcionamiento”
+</div>
+<span class="context">La Corte Suprema de Justicia es un órgano fundamental en un Estado de Derecho, y su independencia de otros poderes es esencial para su buen funcionamiento. Nuestro principal norte es tener</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“calidad de un ESTADO DE DERECHO”
+</div>
+<span class="context">herramienta judicial que le da la <mark>calidad de un ESTADO DE DERECHO</mark> a un país y la seguridad jurídica</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“renacionalización de las empresas privatizadas”
+</div>
+<span class="context">Nombrar una Comisión de Expertos para la <mark>renacionalización de las empresas privatizadas</mark>. Se debe fortalecer</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Un estado participativo y de control en la actividad económica”
+</div>
+<span class="context">…<mark>Un estado participativo y de control en la actividad económica</mark>. Iniciar y culminar en un proceso constituyente originario que represente los intereses de la mayoría del pueblo. Producir un desarrollo económico sostenible, en igualdad de oportunidades, armónico en su crecimiento económico sectorial, en equilibrio con la naturaleza. La planificación como instrumento macroeconómico y orientador de los planes y decisiones de la política económica…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Regular la actividad de la banca y de seguros para que este en sintonía con los objetivos económicos de desarrollo del plan de gobierno”
+</div>
+<span class="context"><mark>Regular la actividad de la banca y de seguros para que este en sintonía con los objetivos económicos de desarrollo del plan de gobierno</mark>, en los aspectos relacionados a las tasas crediticias, créditos para atender eficazmente las actividades agropecuarias como a las pequeñas y medianas empresas de productores y comerciantes.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“la administración de justicia, que no es más que aquella herramienta judicial que le da la calidad de un ESTADO DE DERECHO a un país”
+</div>
+<span class="context">En la actualidad la nación confronta una serie de problemas que se relacionan con <mark>la administración de justicia, que no es más que aquella herramienta judicial que le da la calidad de un ESTADO DE DERECHO a un país</mark> y la seguridad jurídica a los asociados que habitan o forman parte de esta nación.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“La democracia política está restringida a procesos electorales que no son democráticos”
+</div>
+<span class="context">…En lo político, en Panamá no hay democracia económica para la mayoría de los panameños que están marginados en la distribución de la riqueza <mark>La democracia política está restringida a procesos electorales que no son democráticos</mark>…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“prevaleciendo el interés público sobre lo privado”
+</div>
+<span class="context">tendiente al bien común, <mark>prevaleciendo el interés público sobre lo privado</mark> y lo social sobre lo particular, siendo de imperante necesidad la construcción de un plan integral de desarrollo productivo.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“el modelo de crecimiento económico impuesto”
+</div>
+<span class="context">El modelo de crecimiento económico impuesto desde la década del setenta en Panamá, basado en una mayor apertura económica y la desregulación. Y la política fiscal regresiva del Estado, ha profundizado la situación de pobreza</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“Prohibir todo vestigio de externalización, privatización”
+</div>
+<span class="context"><mark>Prohibir todo vestigio de externalización, privatización</mark> de los servicios de salud.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 4</span>
+<div class="quote">
+“políticas públicas de corte neoliberal que afectan el acceso”
+</div>
+<span class="context">la implementación de <mark>políticas públicas de corte neoliberal que afectan el acceso</mark> a la salud, a la educación, al agua potable, a la vivienda</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“oligarquías políticas y económicas”
+</div>
+<span class="context">bajo el control de <mark>oligarquías políticas y económicas</mark> y amparado por una Constitución</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“luchas por superar el dominio de las clases dominantes”
+</div>
+<span class="context">conciencia social alcanzados como producto del desarrollo de la historia, la experiencia, las <mark>luchas por superar el dominio de las clases dominantes</mark> y las profundas aspiraciones por la paz verdadera</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“intereses de la clase dominante”
+</div>
+<span class="context">que históricamente han respondido a los <mark>intereses de la clase dominante</mark>, que salvaguardan su seguridad</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“la partidocracia, aliada al capital transnacional”
+</div>
+<span class="context">Para los grupos de poder económico, para <mark>la partidocracia, aliada al capital transnacional</mark>, la acumulación de sus ganancias</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Una minoría, que representa la oligarquía política y económica, mantiene el control del Estado”
+</div>
+<span class="context">…Estado en el que la institucionalidad es una gran farsa; la independencia de los poderes del Estado, un mito y el Estado de derecho desestimado si no se cuenta con influencias y dinero. <mark>Una minoría, que representa la oligarquía política y económica, mantiene el control del Estado</mark>, amparados por una Constitución antidemocrática y antipopular. Los partidos políticos tradicionales carecen de legitimidad;…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“la desigualdad social favorece y privilegia a sectores, minoritarios desde el punto de vista económico, político y social”
+</div>
+<span class="context">La mayoría de las personas en el país son víctimas de la discriminación social. Las discriminaciones sociales llevan a tratos preferenciales y favorables a sectores minoritarios y privilegiados desde el punto de vista económico, político y social.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“las leyes que regulan la administración de justicia provienen de Órganos del Estado que históricamente han respondido a los intereses de la clase dominante”
+</div>
+<span class="context">Las leyes que regulan la administración de justicia provienen de Órganos del Estado que históricamente han respondido a los intereses de la clase dominante, que salvaguardan su seguridad y entienden el Estado de Derecho en base a las leyes que les favorecen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“los grupos de poder económico, de la partidocracia”
+</div>
+<span class="context">…han sido utilizados por <mark>los grupos de poder económico, de la partidocracia</mark> que controla los partidos políticos tradicionales, de los grupos que quitan y ponen Presidentes en acuerdos con la Embajada de los Estados Unidos…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 10.0 · verified · chunk 1</span>
+<div class="quote">
+“oligarquía política y económica, mantiene el control del Estado”
+</div>
+<span class="context">Una minoría, que representa la <mark>oligarquía política y económica, mantiene el control del Estado</mark>, amparados por una Constitución antidemocrática y antipopular.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“gobiernos Elitistas, Militaristas, Empresariales o camuflados”
+</div>
+<span class="context">Desde la firma de la declaración Universal de los DH <mark>gobiernos Elitistas, Militaristas, Empresariales o camuflados</mark> de Nacionalistas, o Multiclasistas, así lo demuestra.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“intereses de la clase dominante”
+</div>
+<span class="context">Las leyes que regulan la administración de justicia provienen de Órganos del Estado que históricamente han respondido a los <mark>intereses de la clase dominante</mark>, que salvaguardan su seguridad</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“grupos de poder económico, para la partidocracia, aliada al capital transnacional”
+</div>
+<span class="context">Para los <mark>grupos de poder económico, para la partidocracia, aliada al capital transnacional</mark>, la acumulación de sus ganancias es el ‘desarrollo del país’</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Un Estado participativo y regulador de la actividad económica, tendiente al bien común”
+</div>
+<span class="context">…<mark>Un Estado participativo y regulador de la actividad económica, tendiente al bien común</mark>, prevaleciendo el interés público sobre lo privado y lo social sobre lo particular, siendo de imperante necesidad la construcción de un plan integral de desarrollo productivo y sostenible en el tiempo. Que la máxima no sea el mercado y la consecuente acumulación de riquezas y poder en unos pocos en perjuicio de los trabajadores, capas medias, grupos profesionales, de los sectores más vulnerables…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“la participación ciudadana mediante denuncias, cabildos populares, formación del tema es imprescindible”
+</div>
+<span class="context">La respuesta a la corrupción y su erradicación tiene como punto de partida la parte institucional… La participación ciudadana mediante denuncias, cabildos populares, formación del tema es imprescindible.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“participen diversos sectores de la población, facultades de Derecho, los gremios de abogados”
+</div>
+<span class="context">La escogencia de Magistrados de la Corte Suprema de Justicia y la de Procurador General de la Nación y de la Administración, debe ser efectuada por medio de una comisión que examine la idoneidad, capacidad y competencia de los candidatos a tales cargos, previo examen de que reúnen los requisitos mínimos que exigen la Constitución Nacional y las Leyes, para luego ser sometidos al escrutinio público en el que <mark>participen diversos sectores de la población, facultades de Derecho, los gremios de abogados</mark>, las Asociaciones de Jueces y Magistrados(as) del Órgano Judicial.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“tenemos una visión integral del desarrollo (sostenible)”
+</div>
+<span class="context">…El país son ellos. El resto de los panameños que <mark>tenemos una visión integral del desarrollo (sostenible)</mark>, somos obstáculos, personas “egoístas”, así como los compañeros ngobe buglé que luchan por defender sus recursos naturales…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“intereses del pueblo prevalezcan sobre los intereses”
+</div>
+<span class="context">Que los <mark>intereses del pueblo prevalezcan sobre los intereses</mark> de los que ostentan, dirigen y controlan la actividad económica por consiguiente el poder político.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Participaran con propuestas y acuerdos consensuados”
+</div>
+<span class="context"><mark>Participaran con propuestas y acuerdos consensuados</mark> entre el gobierno y todos los sectores y organizaciones del agro involucrados, tanto los pequeños y medianos productores</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“sin ligazones ni adeudos”
+</div>
+<span class="context">el Frente Amplio por la Democracia FAD, <mark>sin ligazones ni adeudos</mark> con los intereses de quienes han incumplido las responsabilidades irrenunciables del Estado</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“carácter nacional popular, democrático, patriótico”
+</div>
+<span class="context">política exterior en conformidad con el <mark>carácter nacional popular, democrático, patriótico</mark>, amplio, intercultural, pluralista, independiente</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“modelo económico neoliberal dominante”
+</div>
+<span class="context">El <mark>modelo económico neoliberal dominante</mark> a nivel mundial, se impone</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“la concentración de la riqueza se agrava con el modelo neoliberal”
+</div>
+<span class="context">Solo 17 balboas de cada 100 que se generan, corresponden a los trabajadores. Hace 4 años eran 22 balboas. La concentración de la riqueza se agrava con el modelo neoliberal. Mientras que el poder adquisitivo de los salarios disminuye</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“aplicación de medidas neoliberales”
+</div>
+<span class="context">Por otra parte, la <mark>aplicación de medidas neoliberales</mark> ha contribuido al deterioro del papel del Estado</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“modelo económico basado en el consumismo”
+</div>
+<span class="context">lo que a nuestro criterio es lo esencial: el <mark>modelo económico basado en el consumismo</mark> y el derroche de energía.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Producir los cambios estructurales necesarios en el ámbito económico, político y social”
+</div>
+<span class="context">…La posición política del FAD es concreta e impostergable, la de producir los cambios estructurales necesarios en el ámbito económico, político y social, lo que implica un proceso constante de trasformaciones, para tal fin son necesarios hombres y mujeres organizados y formados, con férrea voluntad y disciplina, comprometidos en la lucha por la vida, los derechos humanos, el bien común. Objetivos Orientadores Ser creíble, coherente y realista en sus enunciados de acciones a realizar y así cumplir con los objetivos estratégicos y tácticos…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Incrementar los ingresos de estado para gestar políticas de distribución de las riquezas”
+</div>
+<span class="context"><mark>Incrementar los ingresos de estado para gestar políticas de distribución de las riquezas</mark>. El que gane más dinero pagará más impuestos, revirtiendo la situación actual que es todo lo contrario.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“la lucha contra la desigualdad y la exclusión social”
+</div>
+<span class="context">La propuesta del FAD contra la inseguridad, la violencia y la delincuencia tiene como base <mark>la lucha contra la desigualdad y la exclusión social</mark>. Impulsamos una política de seguridad ciudadana integral, que considere atender los riesgos sociales como la pobreza, la inequidad social, que combata las violaciones de los derechos humanos a manos de agentes estatales y no estatales.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“modelo económico basado en el consumismo y el derroche de energía”
+</div>
+<span class="context">…no menciona para nada, lo que a nuestro criterio es lo esencial: el <mark>modelo económico basado en el consumismo y el derroche de energía</mark>…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 10.0 · verified · chunk 1</span>
+<div class="quote">
+“modelo económico neoliberal dominante”
+</div>
+<span class="context">El <mark>modelo económico neoliberal dominante</mark> a nivel mundial, se impone en nuestro país. Vende la promesa de lograr, garantizando el libre mercado una sociedad más justa, armoniosa y prospera.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“Sistema Fiscal progresivo”
+</div>
+<span class="context">El que gane más dinero pagará más impuestos, revirtiendo la situación actual que es todo lo contrario. <mark>Sistema Fiscal progresivo</mark>: Administración fiscal que permitan una efectiva recaudación y una reforma radical del régimen tributario</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“medidas neoliberales ha contribuido al deterioro”
+</div>
+<span class="context">la aplicación de <mark>medidas neoliberales ha contribuido al deterioro</mark> del papel del Estado como garante de los derechos de la sociedad</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“contrario al neoliberalismo”
+</div>
+<span class="context">considerando el nuevo modelo económico que propone el FAD, <mark>contrario al neoliberalismo</mark>. Se cancelarán aquellas concesiones que atenten contra la sostenibilidad</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“modelo económico neoliberal dominante”
+</div>
+<span class="context">El <mark>modelo económico neoliberal dominante</mark> a nivel mundial, se impone</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“la concentración de la riqueza se agrava con el modelo neoliberal”
+</div>
+<span class="context">Solo 17 balboas de cada 100 que se generan, corresponden a los trabajadores. Hace 4 años eran 22 balboas. La concentración de la riqueza se agrava con el modelo neoliberal. Mientras que el poder adquisitivo de los salarios disminuye</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“aplicación de medidas neoliberales”
+</div>
+<span class="context">Por otra parte, la <mark>aplicación de medidas neoliberales</mark> ha contribuido al deterioro del papel del Estado</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“esquema neoliberal que hasta ahora”
+</div>
+<span class="context">economía continuará creciendo bajo el mismo <mark>esquema neoliberal que hasta ahora</mark>. Ningún gobierno se ha planteado</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“La posición política del FAD es concreta e impostergable, la de producir los cambios estructurales”
+</div>
+<span class="context">…<mark>La posición política del FAD es concreta e impostergable, la de producir los cambios estructurales</mark> necesarios en el ámbito económico, político y social, lo que implica un proceso constante de trasformaciones, para tal fin son necesarios hombres y mujeres organizados y formados, con férrea voluntad y disciplina, comprometidos en la lucha por la vida, los derechos humanos, el bien común. Objetivos Orientadores Ser creíble, coherente y realista en sus enunciados de acciones a realizar y así cumplir con los objetivos estratégicos y tácticos…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Incrementar los ingresos de estado para gestar políticas de distribución de las riquezas”
+</div>
+<span class="context"><mark>Incrementar los ingresos de estado para gestar políticas de distribución de las riquezas</mark>. El que gane más dinero pagará más impuestos, revirtiendo la situación actual que es todo lo contrario.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“la lucha contra la desigualdad y la exclusión social”
+</div>
+<span class="context">La propuesta del FAD contra la inseguridad, la violencia y la delincuencia tiene como base <mark>la lucha contra la desigualdad y la exclusión social</mark>. Impulsamos una política de seguridad ciudadana integral, que considere atender los riesgos sociales como la pobreza, la inequidad social, que combata las violaciones de los derechos humanos a manos de agentes estatales y no estatales.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“modelo económico basado en el consumismo y el derroche de energía”
+</div>
+<span class="context">…no menciona para nada, lo que a nuestro criterio es lo esencial: el <mark>modelo económico basado en el consumismo y el derroche de energía</mark>…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 10.0 · verified · chunk 1</span>
+<div class="quote">
+“anti-corporativa, redistribución, explotación de seres humanos”
+</div>
+<span class="context">La realidad a nivel mundial revela la real razón de ser del sistema capitalista en su fase neoliberal: La explotación de seres humanos y la naturaleza.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“demoler el modelo neoliberal de mercado”
+</div>
+<span class="context">se articulen y aglutinen sus sectores para ser capaces de crear poder popular y <mark>demoler el modelo neoliberal de mercado</mark>, logrando el derrocamiento del poder existente.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“contrario al neoliberalismo, que prioriza la vida”
+</div>
+<span class="context">políticas que se entrecruzan… un modelo <mark>contrario al neoliberalismo, que prioriza la vida</mark> por encima de cualquier cosa</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“modelo excluyente neoliberal, que prioriza la máxima ganancia”
+</div>
+<span class="context">El <mark>modelo excluyente neoliberal, que prioriza la máxima ganancia</mark> en lugar de la realización integral de los seres humanos</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Relaciones exteriores en base a una política independiente, Anti-hegemónica”
+</div>
+<span class="context">…Promover la más amplia participación ciudadana en la toma de decisiones. <mark>Relaciones exteriores en base a una política independiente, Anti-hegemónica</mark>, fraterna, solidaria y respetuosa de la autodeterminación de todos los pueblos. La defensa irrestricta de todos los Derechos Humanos, desde una postura intransigentemente Ética. Alcanzar tan genuino propósito implica elevar el nivel de formación, conciencia, organización y acción del pueblo trabajador…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“la partidocracia que controla los partidos políticos tradicionales”
+</div>
+<span class="context">…han sido utilizados por los grupos de poder económico, de <mark>la partidocracia que controla los partidos políticos tradicionales</mark>, de los grupos que quitan y ponen Presidentes en acuerdos con la Embajada de los Estados Unidos…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“política independiente, Anti-hegemónica, fraterna, solidaria”
+</div>
+<span class="context">Relaciones exteriores en base a una <mark>política independiente, Anti-hegemónica, fraterna, solidaria</mark> y respetuosa de la autodeterminación de todos los pueblos.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“proteger el mercado interno”
+</div>
+<span class="context">estableciendo los márgenes del productor a la cadena de distribución y comercialización, para lo cual se debe <mark>proteger el mercado interno</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“Soberanía”
+</div>
+<span class="context">que responda a los intereses de la mayoría del pueblo panameño, respetuoso de los ecosistemas y forjador-fortalecedor de nuestra <mark>Soberanía</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“política migratoria que proteja el empleo de los nacionales”
+</div>
+<span class="context">Política migratoria que proteja el empleo de los nacionales y brinde atención a emigrantes sin xenofobia ni acoso</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“falsedades, engaños y mentiras”
+</div>
+<span class="context">con gruesa hojarasca con <mark>falsedades, engaños y mentiras</mark>, dominio ideológico y miedo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“hipocresía de quienes gobiernan en el ataque a la corrupción”
+</div>
+<span class="context">Por ello, lo que se observa es <mark>hipocresía de quienes gobiernan en el ataque a la corrupción</mark>. Este ataque es selectivo.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Al Dios dinero nada le importa”
+</div>
+<span class="context">moradores. <mark>Al Dios dinero nada le importa</mark> más que a él mismo, el dinero.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Al Dios dinero nada le importa”
+</div>
+<span class="context">protestas de los moradores. <mark>Al Dios dinero nada le importa</mark> más que a él mismo, el dinero.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Los que administran el Estado utilizan, la represión y violencia de la fuerza pública”
+</div>
+<span class="context">…Se utiliza la coacción, el clientelismo, prebendas, amenazas y mentiras, para manipular, engañar o comprar las conciencias de la población. Se ha estimulado y mantenido el clientelismo político como forma de lograr y mantener el poder y la farsa de la democracia representativa. <mark>Los que administran el Estado utilizan, la represión y violencia de la fuerza pública</mark> y organismos de seguridad de esa manera, imponer su decisión que por lo general atentan contra la democracia y el respeto de los derechos humanos en todos sus niveles, incluso la vida. Los grupos que siempre han gobernado…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“la corrupción es un fenómeno que nace en un medio social determinado”
+</div>
+<span class="context">La corrupción es un fenómeno que nace en un medio social determinado. En términos económico-políticos y sociales, esto significa un abuso del poder que emana de los sectores hegemónicos, que les permite tomar y ejecutar las decisiones finales de un país en función de sus mezquinos intereses.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“El Dios dinero nada le importa más que a él mismo, el dinero”
+</div>
+<span class="context">Al Dios dinero nada le importa más que a él mismo, el dinero. El FAD plantea una Política Energética que responda al modelo económico sostenible, que prioriza la satisfacción de las necesidades del pueblo panameño, que respete los ecosistemas y construya y fortalezca nuestra Soberanía.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Al Dios dinero nada le importa más que a él mismo, el dinero”
+</div>
+<span class="context">…Esto produjo enfrentamientos importantes entre estos dos grupos de alto poder económico. Se añaden otras plantas aún más contaminantes… <mark>Al Dios dinero nada le importa más que a él mismo, el dinero</mark>…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“la institucionalidad es una gran farsa”
+</div>
+<span class="context">Vivimos en un Estado en el que <mark>la institucionalidad es una gran farsa</mark>; la independencia de los poderes del Estado, un mito y el Estado de derecho desestimado si no se cuenta con influencias y dinero.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Impedir a toda costa que los de abajo se den cuenta”
+</div>
+<span class="context">Su efecto sobre el crecimiento económico es mínimo… <mark>Impedir a toda costa que los de abajo se den cuenta</mark> real de lo que hacen los de arriba y las causas que lo haga posible.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Al Dios dinero nada le importa”
+</div>
+<span class="context">Se añaden otras plantas aún más contaminantes a base de carbón… <mark>Al Dios dinero nada le importa</mark> más que a él mismo, el dinero.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Al Dios dinero nada le importa más que a él mismo”
+</div>
+<span class="context">pese a las protestas de los moradores. <mark>Al Dios dinero nada le importa más que a él mismo</mark>, el dinero. El FAD plantea una Política Energética</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“intereses de la mayoría del pueblo”
+</div>
+<span class="context">originario que represente los <mark>intereses de la mayoría del pueblo</mark>. Producir un desarrollo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“siendo el pueblo trabajador y sectores medios los más afectados”
+</div>
+<span class="context">seguridad y soberanía alimentaria el acceso a productos básicos de producción nacional. <mark>siendo el pueblo trabajador y sectores medios los más afectados</mark>. PROPUESTA DE SOBERANÍA ALIMENTARIA</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Deporte como un derecho del pueblo”
+</div>
+<span class="context">Frente Amplio por la Democracia reconoce el <mark>Deporte como un derecho del pueblo</mark>, el cual se traduce</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“satisfacción de las necesidades del pueblo panameño”
+</div>
+<span class="context">modelo económico sostenible, que prioriza la <mark>satisfacción de las necesidades del pueblo panameño</mark>, que respete los ecosistemas</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Que el pueblo sea el verdadero arquitecto de su destino”
+</div>
+<span class="context">…fortalecimiento de la representación de los sectores sociales, la cual en una constituyente originaria revestida de pleno poder, permitiría transformaciones estructurales que requiere la institucionalidad del Estado para garantizar las libertades democráticas, los derechos humanos, el bienestar e igualdad en la distribución de la riqueza, la no privatización de los servicios básicos de la población, igualmente asegurar con esta participación organizada que la nueva Constitución no represente beneficios para pocos con poder económicos; sino que garantice la calidad de la vida para todos los panameños. <mark>Que el pueblo sea el verdadero arquitecto de su destino</mark>. Se prioriza el crecimiento…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“el pueblo trabajador y sectores medios los más afectados”
+</div>
+<span class="context">industrial, sobre todo el pequeño y mediano productor, que debilita y pone en peligro la seguridad y soberanía alimentaria el acceso a productos básicos de producción nacional. siendo <mark>el pueblo trabajador y sectores medios los más afectados</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“participen diversos sectores de la población, facultades de Derecho, los gremios de abogados”
+</div>
+<span class="context">La escogencia de Magistrados de la Corte Suprema de Justicia y la de Procurador General de la Nación y de la Administración, debe ser efectuada por medio de una comisión que examine la idoneidad, capacidad y competencia de los candidatos a tales cargos, previo examen de que reúnen los requisitos mínimos que exigen la Constitución Nacional y las Leyes, para luego ser sometidos al escrutinio público en el que <mark>participen diversos sectores de la población, facultades de Derecho, los gremios de abogados</mark>, las Asociaciones de Jueces y Magistrados(as) del Órgano Judicial.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“tenemos una visión integral del desarrollo (sostenible)”
+</div>
+<span class="context">…El país son ellos. El resto de los panameños que <mark>tenemos una visión integral del desarrollo (sostenible)</mark>, somos obstáculos, personas “egoístas”, así como los compañeros ngobe buglé que luchan por defender sus recursos naturales…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 10.0 · verified · chunk 1</span>
+<div class="quote">
+“Que el pueblo sea el verdadero arquitecto de su destino”
+</div>
+<span class="context">Nuestro llamado a construir una sociedad integrada por todos, en la cual la existencia individual depende de la existencia de los otros. <mark>Que el pueblo sea el verdadero arquitecto de su destino</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“siendo el pueblo trabajador y sectores medios los más afectados”
+</div>
+<span class="context">que debilita y pone en peligro la seguridad y soberanía alimentaria el acceso a productos básicos de producción nacional. <mark>siendo el pueblo trabajador y sectores medios los más afectados</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“el derecho que tiene la población”
+</div>
+<span class="context">Por seguridad ciudadana entendemos <mark>el derecho que tiene la población</mark> a la seguridad frente al delito o a la violencia interpersonal o social</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“prioriza la satisfacción de las necesidades del pueblo panameño”
+</div>
+<span class="context">El FAD plantea una Política Energética que responda al modelo económico sostenible, que <mark>prioriza la satisfacción de las necesidades del pueblo panameño</mark></span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“oligarquías políticas y económicas”
+</div>
+<span class="context">bajo el control de <mark>oligarquías políticas y económicas</mark> y amparado por una Constitución</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“hipocresía de quienes gobiernan en el ataque a la corrupción”
+</div>
+<span class="context">Por ello, lo que se observa es <mark>hipocresía de quienes gobiernan en el ataque a la corrupción</mark>. Este ataque es selectivo.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“intereses de la clase dominante”
+</div>
+<span class="context">que históricamente han respondido a los <mark>intereses de la clase dominante</mark>, que salvaguardan su seguridad</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“la partidocracia que controla los partidos políticos tradicionales”
+</div>
+<span class="context">utilizados por los grupos de poder económico, de <mark>la partidocracia que controla los partidos políticos tradicionales</mark>, de los grupos</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Una minoría, que representa la oligarquía política y económica, mantiene el control del Estado”
+</div>
+<span class="context">…Estado en el que la institucionalidad es una gran farsa; la independencia de los poderes del Estado, un mito y el Estado de derecho desestimado si no se cuenta con influencias y dinero. <mark>Una minoría, que representa la oligarquía política y económica, mantiene el control del Estado</mark>, amparados por una Constitución antidemocrática y antipopular. Los partidos políticos tradicionales carecen de legitimidad; su práctica de gobierno no se corresponde con principios y programas propuestos de cara a las elecciones, prevaleciendo el engaño y la manipulación…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“la desigualdad social favorece y privilegia a sectores, minoritarios desde el punto de vista económico, político y social”
+</div>
+<span class="context">La mayoría de las personas en el país son víctimas de la discriminación social. Las discriminaciones sociales llevan a tratos preferenciales y favorables a sectores minoritarios y privilegiados desde el punto de vista económico, político y social.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“las leyes que regulan la administración de justicia provienen de Órganos del Estado que históricamente han respondido a los intereses de la clase dominante”
+</div>
+<span class="context">Las leyes que regulan la administración de justicia provienen de Órganos del Estado que históricamente han respondido a los intereses de la clase dominante, que salvaguardan su seguridad y entienden el Estado de Derecho en base a las leyes que les favorecen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“los grupos de poder económico, de la partidocracia”
+</div>
+<span class="context">…han sido utilizados por <mark>los grupos de poder económico, de la partidocracia</mark> que controla los partidos políticos tradicionales, de los grupos que quitan y ponen Presidentes en acuerdos con la Embajada de los Estados Unidos…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 10.0 · verified · chunk 1</span>
+<div class="quote">
+“los intereses del pueblo prevalezcan sobre los intereses”
+</div>
+<span class="context">Que <mark>los intereses del pueblo prevalezcan sobre los intereses</mark> de los que ostentan, dirigen y controlan la actividad económica por consiguiente el poder político.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“La concentración de la riqueza se agrava con el modelo neoliberal”
+</div>
+<span class="context">Solo 17 balboas de cada 100 que se generan, corresponden a los trabajadores. Hace 4 años eran 22 balboas. <mark>La concentración de la riqueza se agrava con el modelo neoliberal</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“partidocracia, aliada al capital transnacional”
+</div>
+<span class="context">los grupos de poder económico, de la partidocracia que controla los partidos políticos tradicionales… históricos aliados del capital transnacional</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“partidocracia que controla los partidos políticos tradicionales”
+</div>
+<span class="context">Estos argumentos siempre han sido utilizados por los grupos de poder económico, de la <mark>partidocracia que controla los partidos políticos tradicionales</mark></span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="160221_201905_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

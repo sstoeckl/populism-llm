@@ -1,0 +1,1696 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>PAN (Portugal, 2019) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/35120_201910_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">PAN (Portugal, 2019)</h1>
+<p class="subtitle lead">manifesto_id 35120_201910</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Portugal · <span class="item"><strong>Party</strong></span> PAN (People-Animals-Nature) · <span class="item"><strong>Year</strong></span> 2019 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 10</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.5</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-na">–</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-na">–</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-na">–</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">9.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“valores económicos continuam a sobrepor-se aos ambientais”
+</div>
+<span class="context">O fenómeno das alterações climáticas deixa evidente que apesar da teoria ser boa, esta tem-se materializado em muito pouco. Pelo contrário, a produção desenfreada acompanhada de um consumismo exagerado, provocado pelo modelo económico extractivista-produtivista, tem levado à delapidação dos recursos naturais, evidenciando uma total irresponsabilidade perante a permissividade ou até mesmo o incentivo dos governos, deixando claro que nos dias de hoje os <mark>valores económicos continuam a sobrepor-se aos ambientais</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“deliberada distorção de mercado”
+</div>
+<span class="context">Que preço estamos a pagar e até onde pretendemos ir no aproveitamento desta já <mark>deliberada distorção de mercado</mark>?</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“Rejeitar os acordos transnacionais, como têm sido assinados e negociados”
+</div>
+<span class="context"><mark>Rejeitar os acordos transnacionais, como têm sido assinados e negociados</mark>, nomeadamente o CETA e o Mercosul, sem esquecer os ainda não ratificados, como o TTIP, o TiSA e o JEFTA, garantindo que a sua aprovação passa pelos parlamentos nacionais</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“promover a transição energética na indústria, de fomentar o sequestro de carbono”
+</div>
+<span class="context">Para atingir a neutralidade carbónica são necessárias políticas ambiciosas e uma grande transformação em todos os sectores socioeconómicos. Precisamos de mudanças profundas na descarbonização dos sectores da produção de electricidade, do transporte de pessoas e bens, da agricultura, da produção animal e do sector residencial, de aumentar a eficiência energética em todos os sectores da economia, de descentralizar e democratizar a produção de energia, de <mark>promover a transição energética na indústria, de fomentar o sequestro de carbono</mark>, de abandonar o modelo económico linear, de reduzir e prevenir a produção de resíduos, de estimular a investigação e redireccionar apoios públicos para a neutralidade carbónica e de fazer da fiscalidade um instrumento de transição para uma economia de carbono zero.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“A contribuição dos imigrantes é essencial para o aumento da mão-de-obra”
+</div>
+<span class="context">4.10 IMIGRAÇÃO E INTERCULTURALISMO No mercado de trabalho, a contribuição dos imigrantes é essencial para o aumento da mão-de-obra, principalmente nos países com populações envelhecidas, como é o caso de Portugal.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“defender a revisão em baixa - para -0,5% do PIB - do objectivo de médio prazo (OMP) para as finanças públicas portuguesas”
+</div>
+<span class="context">Defender a revisão em baixa - para -0,5% do PIB - do objectivo de médio prazo (OMP) para as finanças públicas portuguesas Promover melhorias na gestão dos recursos públicos, ganhos de eficiência e implementa-ção de programas orçamentais Promover, pela Assembleia da República, a melhoria no acompanhamento e fiscalização da despesa pública e do desempenho orçamental do governo Criar mecanismos de participação da Assembleia da República na nomeação dos membros do conselho superior do conselho de finanças públicas Criar um projecto piloto de implementação de um Rendimento Básico Incondicional Criar regulamentação própria com vista à instalação da Banca Ética e das Finanças Solidárias em Portugal</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Reforçar os incentivos para conversão de estágios em contratos sem termo, através da celebração de um contrato sem termo após um estágio que será co-financiado nos primeiros seis meses”
+</div>
+<span class="context">…<mark>Reforçar os incentivos para conversão de estágios em contratos sem termo, através da celebração de um contrato sem termo após um estágio que será co-financiado nos primeiros seis meses</mark> (período experimental) a 40% e no segundo semestre a 60% com um nível de remuneração mensal máxima variável em função do nível de qualificação do trabalhador Reforçar os incentivos à contratação de jovens doutorados, designadamente, por via de um aumento significativo do valor das bolsas atribuídas a doutorados através da medida “estágios profissionais” levada a cabo pelo IEFP…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“modelo económico extractivista-produtivista”
+</div>
+<span class="context">a produção desenfreada acompanhada de um consumismo exagerado, provocado pelo <mark>modelo económico extractivista-produtivista</mark>, tem levado à delapidação dos recursos naturais</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“mercado de emprego e das novas tecnologias”
+</div>
+<span class="context">em função das necessidades decorrentes da evolução do <mark>mercado de emprego e das novas tecnologias</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 3</span>
+<div class="quote">
+“deliberada distorção de mercado”
+</div>
+<span class="context">até onde pretendemos ir no aproveitamento desta já <mark>deliberada distorção de mercado</mark>? Que papel vemos no Estado para lidar com este problema</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“Estabelecer o horário semanal de trabalho de 35 horas”
+</div>
+<span class="context"><mark>Estabelecer o horário semanal de trabalho de 35 horas</mark> para os trabalhadores da Administração Pública e do sector privado</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Carta de Compromisso para o Finan-ciamento Sustentável”
+</div>
+<span class="context">Implementar outros indicadores, para além do PIB, que avaliem o desempenho das políticas públicas ambientais, a qualidade de vida e a felicidade da população Monitorizar o cumprimento das medidas contidas na <mark>Carta de Compromisso para o Finan-ciamento Sustentável</mark> e publicitação das conclusões e reuniões do Grupo de Reflexão para o Financiamento Sustentável, numa lógica de transparência e genuíno compromisso de todos os signatários, cuja base se incentivará ao alargamento</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“Banca Ética e das Finanças Solidárias”
+</div>
+<span class="context">Criar regulamentação própria com vista à instalação da <mark>Banca Ética e das Finanças Solidárias</mark> em Portugal</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“concretização e conclusão de uma União Bancária”
+</div>
+<span class="context">Caminhar para uma União Económica e Monetária, garantindo de forma justa e equitativa a <mark>concretização e conclusão de uma União Bancária</mark>, nomeadamente com a implementação do sistema europeu de seguro de depósitos</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Monitorizar o cumprimento das medidas contidas na Carta de Compromisso para o Finan-ciamento Sustentável”
+</div>
+<span class="context"><mark>Monitorizar o cumprimento das medidas contidas na Carta de Compromisso para o Finan-ciamento Sustentável</mark> e publicitação das conclusões e reuniões do Grupo de Reflexão para o Financiamento Sustentável, numa lógica de transparência e genuíno compromisso de todos os signatários, cuja base se incentivará ao alargamento</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“Banca Ética e das Finanças Solidárias”
+</div>
+<span class="context">Criar regulamentação própria com vista à instalação da <mark>Banca Ética e das Finanças Solidárias</mark> em Portugal</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“conclusão de uma União Bancária”
+</div>
+<span class="context">Caminhar para uma União Económica e Monetária, garantindo de forma justa e equitativa a concretização e <mark>conclusão de uma União Bancária</mark>, nomeadamente com a implementação do sistema europeu de seguro de depósitos</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“democratização da escola permite um acesso”
+</div>
+<span class="context">escola fábrica apresentamos a escola das emoções, da natureza, do desporto e das expressões pelas artes, onde vigora a transdisciplinaridade, e a empatia surge como o maior facilitador da construção de relacionamentos sociais, promovendo a liderança natural. A <mark>democratização da escola permite um acesso</mark> a todas as pessoas, reduzindo os níveis de desigualdade social e económica. Mas o que precisa para o ser efectivamente? Está a escola ajustada às actuais necessidades?</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Estado de Direito Democrático”
+</div>
+<span class="context">Um <mark>Estado de Direito Democrático</mark> não é compatível com políticas nacionalistas</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“acompanhamento e fiscalização da despesa pública”
+</div>
+<span class="context">Promover, pela Assembleia da República, a melhoria no <mark>acompanhamento e fiscalização da despesa pública</mark> e do desempenho orçamental do governo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“papel absolutamente fundamental que ambos têm no Estado de Direito Democrático”
+</div>
+<span class="context">A aposta na Justiça terá de passar igualmente pela aposta nas forças de segurança e no sistema prisional português, justamente pelo <mark>papel absolutamente fundamental que ambos têm no Estado de Direito Democrático</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“democracia participativa e cidadania activa”
+</div>
+<span class="context">DEMOCRACIA. CIDADANIA E ORGANIZAÇÃO DO ESTADO 13011.1 Sistema político 13111.2 Administração Pública 13211.3 Poder local 13311.4 Democracia participativa e cidadania activa 13411.5 Sistema eleitoral 13511.6 Revisão Constitucional 135</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“A escola deverá ser, acima de tudo, um lugar de inclusão”
+</div>
+<span class="context">2.4 ESCOLA INCLUSIVA <mark>A escola deverá ser, acima de tudo, um lugar de inclusão</mark>, onde cada um e cada uma encontra o seu lugar, o seu espaço e a sua voz para desenvolver os seus talentos, dons ou potencialidades.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“a defesa dos serviços públicos compaginável com uma redução do peso da dívida”
+</div>
+<span class="context">Na legislatura passada o governo português negociou com a Comissão Europeia uma redução para o objectivo de médio prazo para o saldo orçamental estrutural de +0,25% do PIB para 0. A defesa dos serviços públicos compaginável com uma redução do peso da dívida passa por descer o OMP (Objectivo de Médio Prazo) para - 0,5% do produto, o que permitirá criar uma margem adicional de milhões de euros, quer para aumento de despesa em investimento público, sobretudo nas infraestruturas de transportes, na saúde e na melhoria de serviços públicos, quer para compensar a diminuição de receita fiscal associada a benefícios fiscais.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“Garantir o cumprimento do princípio constitucional da Administração Aberta, garantindo o acesso gratuito à informação administrativa”
+</div>
+<span class="context">…<mark>Garantir o cumprimento do princípio constitucional da Administração Aberta, garantindo o acesso gratuito à informação administrativa</mark> Tornar vinculativos os pareceres emitidos pela Comissão de Acesso aos Documentos Administrativos (CADA) Dotar a Comissão de Acesso aos Documentos Administrativos de mais meios humanos e materiais…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Democracia participativa e cidadania activa”
+</div>
+<span class="context">11.4 <mark>Democracia participativa e cidadania activa</mark> 13411.5 Sistema eleitoral 13511.6 Revisão Constitucional</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Estado de Direito Democrático”
+</div>
+<span class="context">Um <mark>Estado de Direito Democrático</mark> não é compatível com políticas nacionalistas, xenófobas, racistas, sexistas</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“fiscalização da despesa pública e do desempenho orçamental”
+</div>
+<span class="context">Promover, pela Assembleia da República, a melhoria no acompanhamento e <mark>fiscalização da despesa pública e do desempenho orçamental</mark> do governo</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“defesa do Estado de Direito e dos Direitos Humanos”
+</div>
+<span class="context">reforçar a influência da União Europeia na concretização de metas comuns mais ambiciosas para uma transição social e económica que priorize o combate às alterações climáticas, a preservação da biodiversidade, a <mark>defesa do Estado de Direito e dos Direitos Humanos</mark></span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Igualdade de Género 554.3 Violência Doméstica”
+</div>
+<span class="context">4 IGUALDADE. INCLUSÃO, RESPOSTAS SOCIAIS 544.1 Por uma Lei-Quadro da Inclusão 554.2 <mark>Igualdade de Género 554.3 Violência Doméstica</mark> 564.4 Pessoas com Deficiência 584.5 Pessoas em Situação de Sem-Abrigo 604.6 Pessoas em Situação de Pobreza 624.7 Pessoas LGBTI+ 634.8 Terceira Idade 644.9 Crianças e Jovens 654.Imigração e Interculturalismo 684.Discriminações Étnico-Raciais 694.Tráfico de Seres Humanos 704.Pessoas na Prostituição 71</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“valores da igualdade e da inclusão”
+</div>
+<span class="context">uma escola onde os <mark>valores da igualdade e da inclusão</mark> prevaleçam. Deste modo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“direitos sociais e da protecção social”
+</div>
+<span class="context">Promoção dos <mark>direitos sociais e da protecção social</mark>, designadamente em situação de desemprego, de discriminação, entre outras</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“defesa dos mais elementares direitos humanos de grupos sociais marginalizados”
+</div>
+<span class="context">As políticas de redução de riscos representam uma conquista civilizacional de que não podemos abdicar, pelo avanço que traduzem na <mark>defesa dos mais elementares direitos humanos de grupos sociais marginalizados</mark> e pela protecção crucial que fazem da saúde das comunidades onde estes estão inseridos.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Igualdade de Género 554.3 Violência Doméstica 564.4 Pessoas com Deficiência 584.5 Pessoas em Situação de Sem-Abrigo 604.6 Pessoas em Situação de Pobreza 624.7 Pessoas LGBTI+”
+</div>
+<span class="context">IGUALDADE. INCLUSÃO, RESPOSTAS SOCIAIS 544.1 Por uma Lei-Quadro da Inclusão 554.2 <mark>Igualdade de Género 554.3 Violência Doméstica 564.4 Pessoas com Deficiência 584.5 Pessoas em Situação de Sem-Abrigo 604.6 Pessoas em Situação de Pobreza 624.7 Pessoas LGBTI+</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“O Estado tem o dever de promover e proteger os direitos humanos e as liberdades de grupos ou indivíduos”
+</div>
+<span class="context">4 Igualdade, Inclusão, Respostas Sociais … <mark>O Estado tem o dever de promover e proteger os direitos humanos e as liberdades de grupos ou indivíduos</mark>, desenvolvendo políticas públicas justas e inclusivas.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“a dignidade dos animais não humanos, designadamente do seu direito à vida e à integridade física e emocional”
+</div>
+<span class="context">A dignidade dos animais não humanos, designadamente do seu direito à vida e à integridade física e emocional, constitui um facto incontestável e tem vindo a ser reconhecida de forma transversal na sociedade. Tal reconhecimento é fruto de diversos elementos, dos quais se podem destacar os laços afectivos existentes entre o ser humano e os animais de companhia, conforme reconhecido pela própria Convenção Europeia para a Protecção dos Animais de Companhia, a crescente desumanização e crueldade associada a métodos intensivos de criação, exposição e exploração animal, os movimentos filosóficos dos direitos dos animais que derrubaram as anteriores concepções que “coisificam” os animais e estudos científicos que comprovam de forma incontroversa que os animais não humanos são seres sencientes - isto é, são capazes de sentir dor, desconforto, stress, angústia e sofrimento - mas também, seres dotados de consciência.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Alterar os programas existentes, ao nível das medidas formativas e educativas, de modo a permitir uma melhor e mais rápida empregabilidade dos imigrantes, reduzindo os riscos de discriminação no acesso ao mercado de trabalho”
+</div>
+<span class="context">…<mark>Alterar os programas existentes, ao nível das medidas formativas e educativas, de modo a permitir uma melhor e mais rápida empregabilidade dos imigrantes, reduzindo os riscos de discriminação no acesso ao mercado de trabalho</mark> ou às profissões para as quais estes possuem competências e qualificações, nomeadamente: Adequar os programas e as medidas que se destinam a melhorar as competências dos trabalhadores estrangeiros; Promover medidas que visem eliminar e/ou atenuar os obstáculos que dificultam a inserção dos indivíduos provenientes de países terceiros no mercado de trabalho…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Igualdade de Género”
+</div>
+<span class="context">4.2 <mark>Igualdade de Género</mark> 554.3 Violência Doméstica 564.4 Pessoas com Deficiência 584.5 Pessoas em Situação de Sem-Abrigo</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“discriminação étnico-racial, orientação sexual”
+</div>
+<span class="context">Incluir a discriminação étnico-racial na Estratégia Nacional para a Igualdade e a Não-Discriminação</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“desigualdades: de género”
+</div>
+<span class="context">O sistema da prostituição está na intersecção de várias <mark>desigualdades: de género</mark> - a esmagadora maioria das pessoas na prostituição são mulheres</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“identidade de género, expressão de género e características sexuais”
+</div>
+<span class="context">Incluir a <mark>identidade de género, expressão de género e características sexuais</mark> no artigo 13° da Constituição da República Portuguesa</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“democratização da escola permite um acesso”
+</div>
+<span class="context">escola fábrica apresentamos a escola das emoções, da natureza, do desporto e das expressões pelas artes, onde vigora a transdisciplinaridade, e a empatia surge como o maior facilitador da construção de relacionamentos sociais, promovendo a liderança natural. A <mark>democratização da escola permite um acesso</mark> a todas as pessoas, reduzindo os níveis de desigualdade social e económica. Mas o que precisa para o ser efectivamente? Está a escola ajustada às actuais necessidades?</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“valores da igualdade e da inclusão”
+</div>
+<span class="context">uma escola onde os <mark>valores da igualdade e da inclusão</mark> prevaleçam. Deste modo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“direitos sociais e da protecção social”
+</div>
+<span class="context">Promoção dos <mark>direitos sociais e da protecção social</mark>, designadamente em situação de desemprego, de discriminação, entre outras</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“papel absolutamente fundamental que ambos têm no Estado de Direito Democrático”
+</div>
+<span class="context">A aposta na Justiça terá de passar igualmente pela aposta nas forças de segurança e no sistema prisional português, justamente pelo <mark>papel absolutamente fundamental que ambos têm no Estado de Direito Democrático</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“democracia participativa e cidadania activa”
+</div>
+<span class="context">DEMOCRACIA. CIDADANIA E ORGANIZAÇÃO DO ESTADO 13011.1 Sistema político 13111.2 Administração Pública 13211.3 Poder local 13311.4 Democracia participativa e cidadania activa 13411.5 Sistema eleitoral 13511.6 Revisão Constitucional 135</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“O Estado tem o dever de promover e proteger os direitos humanos e as liberdades de grupos ou indivíduos”
+</div>
+<span class="context">4 Igualdade, Inclusão, Respostas Sociais … <mark>O Estado tem o dever de promover e proteger os direitos humanos e as liberdades de grupos ou indivíduos</mark>, desenvolvendo políticas públicas justas e inclusivas.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“a defesa dos serviços públicos compaginável com uma redução do peso da dívida”
+</div>
+<span class="context">Na legislatura passada o governo português negociou com a Comissão Europeia uma redução para o objectivo de médio prazo para o saldo orçamental estrutural de +0,25% do PIB para 0. A defesa dos serviços públicos compaginável com uma redução do peso da dívida passa por descer o OMP (Objectivo de Médio Prazo) para - 0,5% do produto, o que permitirá criar uma margem adicional de milhões de euros, quer para aumento de despesa em investimento público, sobretudo nas infraestruturas de transportes, na saúde e na melhoria de serviços públicos, quer para compensar a diminuição de receita fiscal associada a benefícios fiscais.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Garantir o cumprimento do princípio constitucional da Administração Aberta, garantindo o acesso gratuito à informação administrativa”
+</div>
+<span class="context">…<mark>Garantir o cumprimento do princípio constitucional da Administração Aberta, garantindo o acesso gratuito à informação administrativa</mark> Tornar vinculativos os pareceres emitidos pela Comissão de Acesso aos Documentos Administrativos (CADA) Dotar a Comissão de Acesso aos Documentos Administrativos de mais meios humanos e materiais…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Igualdade de Género”
+</div>
+<span class="context">4.2 <mark>Igualdade de Género</mark> 554.3 Violência Doméstica 564.4 Pessoas com Deficiência</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Estado de Direito Democrático”
+</div>
+<span class="context">Um <mark>Estado de Direito Democrático</mark> não é compatível com políticas nacionalistas, xenófobas, racistas, sexistas</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“equidade fiscal, evitar a fraude, evasão e elisão fiscal”
+</div>
+<span class="context">garantir uma total <mark>equidade fiscal, evitar a fraude, evasão e elisão fiscal</mark>, todos os anos responsáveis pela sonegação de milhares de milhões de euros</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“defesa do Estado de Direito e dos Direitos Humanos”
+</div>
+<span class="context">reforçar a influência da União Europeia na concretização de metas comuns mais ambiciosas que priorize a <mark>defesa do Estado de Direito e dos Direitos Humanos</mark></span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“subjugadas a interesses há décadas instalados”
+</div>
+<span class="context">teimam, com a sua miopia ou cinismo político, em insistir nas mesmas fórmulas, <mark>subjugadas a interesses há décadas instalados</mark> e imunes a regimes políticos.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“evitar-se a existência de possíveis ligações promíscuas”
+</div>
+<span class="context">exclusividade dos deputados à Assembleia da República, em termos similares ao que existe atualmente quanto aos membros do Governo, de modo a assegurar-se a sua dedicação exclusiva à função representativa dos cidadãos e a <mark>evitar-se a existência de possíveis ligações promíscuas</mark> com interesses económicos</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“enfrentar, sem medos, os interesses corporativistas e económicos que colidem com os interesses ambientais”
+</div>
+<span class="context">Primeiro é necessário reconhecer que estamos perante uma crise ambiental para depois lhe conferir a dignidade merecida. É preciso <mark>enfrentar, sem medos, os interesses corporativistas e económicos que colidem com os interesses ambientais</mark>. Quem não cumpre a legislação deve ser responsabilizado.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“interesses corporativistas e económicos que colidem”
+</div>
+<span class="context">É preciso enfrentar, sem medos, os <mark>interesses corporativistas e económicos que colidem</mark> com os interesses ambientais.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“grandes grupos económicos”
+</div>
+<span class="context">editoras que não pertençam aos <mark>grandes grupos económicos</mark>, garantindo assim a bibliodiversidade</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 3</span>
+<div class="quote">
+“miopia ou cinismo político, em insistir nas mesmas fórmulas”
+</div>
+<span class="context">àqueles que teimam, com a sua <mark>miopia ou cinismo político, em insistir nas mesmas fórmulas</mark>, subjugadas a interesses há décadas instalados</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“crimes de colarinho branco”
+</div>
+<span class="context">as propostas reflectem o juízo de censura generalizado aos chamados “<mark>crimes de colarinho branco</mark>”, o qual tem respaldo nas palavras do Senhor Presidente da República</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“subjugadas a interesses há décadas instalados”
+</div>
+<span class="context">teimam, com a sua miopia ou cinismo político, em insistir nas mesmas fórmulas, <mark>subjugadas a interesses há décadas instalados</mark> e imunes a regimes políticos.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“mobilização e ao compromisso de todos para a transição e a mudança de paradigma”
+</div>
+<span class="context">Juntas e juntos, apelamos à <mark>mobilização e ao compromisso de todos para a transição e a mudança de paradigma</mark> na forma como nos relacionamos com os outros e com o planeta. AINDA VAMOS A TEMPO!</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“apelamos à mobilização e ao compromisso de todos”
+</div>
+<span class="context">Juntas e juntos, <mark>apelamos à mobilização e ao compromisso de todos</mark> para a transição e a mudança de paradigma</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“todos somos iguais perante a lei”
+</div>
+<span class="context">que garanta que <mark>todos somos iguais perante a lei</mark>, com mecanismos de equidade e reforço positivo</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“não tem voz para se defender”
+</div>
+<span class="context">com quem, consoante a sua condição ou nacionalidade, <mark>não tem voz para se defender</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“uma democracia mais participada”
+</div>
+<span class="context">porque queremos <mark>uma democracia mais participada</mark>, defenderemos o alargamento aos maiores de 16 anos do direito de sufrágio</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“combater a precariedade laboral”
+</div>
+<span class="context">DIREITOS LABORAIS E MAIS TEMPO PARA VIVER 1149.1 Combater a Precariedade Laboral 1159.2 Combater a precariedade do emprego jovem 1169.3 Compensação Justa pelo Trabalho Prestado 1169.4 Mais tempo para viver 1179.5 Igualdade no trabalho 1179.6 Ambientes de trabalho mais saudáveis</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Cessar os apoios públicos à produção de carne”
+</div>
+<span class="context"><mark>Cessar os apoios públicos à produção de carne</mark> e leite</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“desigualdade salarial”
+</div>
+<span class="context">combatendo a <mark>desigualdade salarial</mark> e adoptando medidas que permitam uma melhor conciliação entre a vida familiar e pessoal</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“redistribuição de meios financeiros”
+</div>
+<span class="context">tendo o Estado a incumbência de promover uma adequada <mark>redistribuição de meios financeiros</mark>, como forma a garantir uma sociedade justa e solidária</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“Aumentar gradualmente o Salário Mínimo Nacional”
+</div>
+<span class="context"><mark>Aumentar gradualmente o Salário Mínimo Nacional</mark> em 50 euros por ano, fixando-o em € 800 no termo da legislatura</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“subjugadas a interesses há décadas instalados”
+</div>
+<span class="context">teimam, com a sua miopia ou cinismo político, em insistir nas mesmas fórmulas, <mark>subjugadas a interesses há décadas instalados</mark> e imunes a regimes políticos.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“mobilização e ao compromisso de todos para a transição e a mudança de paradigma”
+</div>
+<span class="context">Juntas e juntos, apelamos à <mark>mobilização e ao compromisso de todos para a transição e a mudança de paradigma</mark> na forma como nos relacionamos com os outros e com o planeta. AINDA VAMOS A TEMPO!</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“interesses corporativistas e económicos que colidem”
+</div>
+<span class="context">É preciso enfrentar, sem medos, os <mark>interesses corporativistas e económicos que colidem</mark> com os interesses ambientais.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“desigualdade salarial”
+</div>
+<span class="context">combatendo a <mark>desigualdade salarial</mark> e adoptando medidas que permitam uma melhor conciliação entre a vida familiar e pessoal</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“sociedade justa e solidária”
+</div>
+<span class="context">promover uma adequada redistribuição de meios financeiros, como forma a garantir uma <mark>sociedade justa e solidária</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“Aumentar gradualmente o Salário Mínimo Nacional”
+</div>
+<span class="context"><mark>Aumentar gradualmente o Salário Mínimo Nacional</mark> em 50 euros por ano, fixando-o em € 800 no termo da legislatura</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“Soberania Alimentar”
+</div>
+<span class="context">1.4 Agricultura e <mark>Soberania Alimentar</mark> … SOBERANIA ALIMENTAR</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“políticas nacionalistas, xenófobas”
+</div>
+<span class="context">não é compatível com <mark>políticas nacionalistas, xenófobas</mark>, racistas, sexistas, capacitistas, homofóbicas</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“Rejeitar visões nacionalistas, xenófobas”
+</div>
+<span class="context"><mark>Rejeitar visões nacionalistas, xenófobas</mark>, racistas, sexistas, homofóbicas e transfóbicas na gestão de migrações</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“valores económicos continuam a sobrepor-se aos ambientais”
+</div>
+<span class="context">Pelo contrário, a produção desenfreada acompanhada de um consumismo exagerado, provocado pelo modelo económico extractivista-produtivista, tem levado à delapidação dos recursos naturais, evidenciando uma total irresponsabilidade perante a permissividade ou até mesmo o incentivo dos governos, deixando claro que nos dias de hoje os <mark>valores económicos continuam a sobrepor-se aos ambientais</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“valores económicos continuam a sobrepor-se aos ambientais”
+</div>
+<span class="context">deixando claro que nos dias de hoje os <mark>valores económicos continuam a sobrepor-se aos ambientais</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“falência do próprio planeta”
+</div>
+<span class="context">criar uma nova visão para o mundo que, perante a <mark>falência do próprio planeta</mark>, assim o exige</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“interesses há décadas instalados e imunes a regimes políticos”
+</div>
+<span class="context">insistir nas mesmas fórmulas, subjugadas a <mark>interesses há décadas instalados e imunes a regimes políticos</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“combate à corrupção está estagnado”
+</div>
+<span class="context">o Índice de Percepção da Corrupção relativo a 2018 conclui que o “<mark>combate à corrupção está estagnado</mark> em Portugal”</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“empoderamento das pessoas através da Educação e da Cultura enquanto ferramentas centrais”
+</div>
+<span class="context">um programa que faz uma aposta firme no <mark>empoderamento das pessoas através da Educação e da Cultura enquanto ferramentas centrais</mark> na construção de uma sociedade mais empática e consciente; que dignifica e protege todos, do indivíduo aos ecossistemas, com políticas responsáveis para a sustentabilidade, a acessibilidade e de justiça intergeracional em áreas tão importantes como a Saúde, a Habitação, o Emprego ou a Justiça.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“apelamos à mobilização e ao compromisso de todos”
+</div>
+<span class="context">Juntas e juntos, <mark>apelamos à mobilização e ao compromisso de todos</mark> para a transição e a mudança de paradigma</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“carácter colectivo de um povo”
+</div>
+<span class="context">A cultura é um elemento formador do <mark>carácter colectivo de um povo</mark> e essa circunstância atribui-lhe grande responsabilidade</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“a vida das gerações futuras”
+</div>
+<span class="context">em total desprezo com <mark>a vida das gerações futuras</mark> ou com quem, consoante a sua condição ou nacionalidade, não tem voz para se defender</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“empoderar os cidadãos e de propiciar”
+</div>
+<span class="context">as propostas do PAN vão no sentido de <mark>empoderar os cidadãos e de propiciar</mark> uma maior fiscalização das instituições democráticas</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“subjugadas a interesses há décadas instalados”
+</div>
+<span class="context">teimam, com a sua miopia ou cinismo político, em insistir nas mesmas fórmulas, <mark>subjugadas a interesses há décadas instalados</mark> e imunes a regimes políticos.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“evitar-se a existência de possíveis ligações promíscuas”
+</div>
+<span class="context">exclusividade dos deputados à Assembleia da República, em termos similares ao que existe atualmente quanto aos membros do Governo, de modo a assegurar-se a sua dedicação exclusiva à função representativa dos cidadãos e a <mark>evitar-se a existência de possíveis ligações promíscuas</mark> com interesses económicos</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“enfrentar, sem medos, os interesses corporativistas e económicos que colidem com os interesses ambientais”
+</div>
+<span class="context">Primeiro é necessário reconhecer que estamos perante uma crise ambiental para depois lhe conferir a dignidade merecida. É preciso <mark>enfrentar, sem medos, os interesses corporativistas e económicos que colidem com os interesses ambientais</mark>. Quem não cumpre a legislação deve ser responsabilizado.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“interesses corporativistas e económicos que colidem”
+</div>
+<span class="context">É preciso enfrentar, sem medos, os <mark>interesses corporativistas e económicos que colidem</mark> com os interesses ambientais.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“grandes grupos económicos”
+</div>
+<span class="context">editoras que não pertençam aos <mark>grandes grupos económicos</mark>, garantindo assim a bibliodiversidade</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“avidez de perpetuação do seu poder”
+</div>
+<span class="context">intimamente ligados a ciclos eleitorais e à sua <mark>avidez de perpetuação do seu poder</mark> e daqueles que os suportam, comodamente instalados</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“empoderar os cidadãos”
+</div>
+<span class="context">as propostas do PAN vão no sentido de <mark>empoderar os cidadãos</mark> e de propiciar uma maior fiscalização das instituições democráticas</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="35120_201910_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,1738 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>MERETZ (Israel, 2015) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/72326_201503_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">MERETZ (Israel, 2015)</h1>
+<p class="subtitle lead">manifesto_id 72326_201503</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Israel · <span class="item"><strong>Party</strong></span> MERETZ (Meretz) · <span class="item"><strong>Year</strong></span> 2015 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 30</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.3</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-na">–</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-na">–</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">9.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">9.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.0</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“הפרטה וצמצום המעורבות הממשלתית”
+</div>
+<span class="context">ריכוזיות השליטה במשק החריפה בשנים האחרונות בשל התרחבות ה<mark>הפרטה וצמצום המעורבות הממשלתית</mark> בשוק ההון</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“הקשחת התנאים להקמת מוסדות השכלה גבוהה פרטיים”
+</div>
+<span class="context">תוך הגדלת מספרן של המכללות הציבוריות וחיזוקן, חיזוק האוניברסיטאות ו<mark>הקשחת התנאים להקמת מוסדות השכלה גבוהה פרטיים</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“מרצ מתנגדת לכל הפרטה במערכת שמירת החוק”
+</div>
+<span class="context">מרצ מחויבת להגנה על עצמאותה של הרשות השופטת. <mark>מרצ מתנגדת לכל הפרטה במערכת שמירת החוק</mark>, ובכלל זה של מוסדות</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“מרצ מציעה מדיניות כלכלית הוגנת, צודקת ונקיה שמאמינה במדינת רווחה ובמגזר ציבורי חזק”
+</div>
+<span class="context"><mark>מרצ מציעה מדיניות כלכלית הוגנת, צודקת ונקיה שמאמינה במדינת רווחה ובמגזר ציבורי חזק</mark>, בצמצום האי-שוויון, וברגולציה ופיקוח שימנעו ניצול של עובדים ושל כספי ציבור. מרצ מאמינה שלא ניתן לנתק את הכלכלי מהמדיני והאזרחי.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“מרצ תפעל לקידום הנושאים הבאים: הפחתת שכר הלימוד עד להעמדתו על סכום סמלי”
+</div>
+<span class="context">…<mark>מרצ תפעל לקידום הנושאים הבאים: הפחתת שכר הלימוד עד להעמדתו על סכום סמלי</mark>, של דמי רצינות בלבד. לא יונהג שכר לימוד דיפרנציאלי בין חוגים שונים. הפעלת תכניות והקצאת משאבים הולמים למוסדות החינוך באזורי פריפריה ובקרב אוכלוסיות מוחלשות…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“הפעלת מדיניות אשר תבטיח את רווחיות החקלאות ומניעת התלות בגורמים חיצוניים”
+</div>
+<span class="context">מרצ רואה חשיבות רבה בקיומה של חקלאות, המהווה מרכיב ראשוני בכוחה של מדינה וביכולתה לדאוג לאזרחיה. החקלאות היא גם מרכיב חשוב בשמירה על האזורים הפתוחים והריאות הירוקות. לחקלאים עומדת הזכות להתפרנס מקרקעותיהם ולשמרן כקרקעות חקלאיות, לטובת המדינה כולה. מרצ תפעל לקידום הנושאים הבאים: <mark>הפעלת מדיניות אשר תבטיח את רווחיות החקלאות ומניעת התלות בגורמים חיצוניים</mark>, תוך קביעת התנאים המתאימים לייצור ולסחר, זאת מבלי לפגוע בזכויות העובדים המועסקים בתחום זה.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“עצירה מיידית של תהליכי הפרטה”
+</div>
+<span class="context"><mark>עצירה מיידית של תהליכי הפרטה</mark> ומיקור החוץ בשירותים החברתיים, בשירותי החינוך והבריאות</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 2</span>
+<div class="quote">
+“צריכת היתר היא חלק מתפיסת העולם הניאו-ליברלית”
+</div>
+<span class="context">המעגל המסתיים בהשלכת פסולת מתחיל בצריכה. <mark>צריכת היתר היא חלק מתפיסת העולם הניאו-ליברלית</mark>, והיא מנוגדת לאינטרס הציבורי.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 3</span>
+<div class="quote">
+“הפעלת מדיניות אשר תבטיח את רווחיות החקלאות”
+</div>
+<span class="context">מרצ תפעל לקידום הנושאים הבאים: <mark>הפעלת מדיניות אשר תבטיח את רווחיות החקלאות</mark> ומניעת התלות בגורמים חיצוניים, תוך קביעת התנאים המתאימים לייצור ולסחר</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“הנהגת מס על פעילויות פיננסיות”
+</div>
+<span class="context">השווה לשיעורי המס על עבודה. <mark>הנהגת מס על פעילויות פיננסיות</mark>, כפי שמתכוון לאמץ האיחוד האירופי</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“היעדר רגולציה על שוק ההון והשתלטות טייקונים על בתי השקעות וקרנות פנסיה מסכנים את החסכונות ארוכי הטווח של הציבור בישראל”
+</div>
+<span class="context">ריכוזיות השליטה במשק החריפה בשנים האחרונות בשל התרחבות ההפרטה וצמצום המעורבות הממשלתית בשוק ההון והפנסיה. <mark>היעדר רגולציה על שוק ההון והשתלטות טייקונים על בתי השקעות וקרנות פנסיה מסכנים את החסכונות ארוכי הטווח של הציבור בישראל</mark>, פוגעים בתשואות וביציבות, ובסופו של דבר גם בצמיחה. מרצ תומכת בחיזוק מנגנוני הרגולציה ובשינוי מבנה הבעלות על קרנות הפנסיה וקופות הגמל בישראל במטרה להפוך אותם לגופים בבעלות העמיתים.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“קביעת שיעורי מס מוגדלים לחברות העוסקות בניצול משאבי טבע, חקיקה שתכפיף את השיקולים הכלכליים של ניצול משאבי טבע לשיקולים ומגבלות סביבתיים”
+</div>
+<span class="context">…<mark>קביעת שיעורי מס מוגדלים לחברות העוסקות בניצול משאבי טבע, חקיקה שתכפיף את השיקולים הכלכליים של ניצול משאבי טבע לשיקולים ומגבלות סביבתיים</mark>. פיקוח על מחירי הגז הטבעי והגבלות על ייצוא. הבטחת מעורבות המדינה בקבלת החלטות כדי לייצר איזון בין הרצון לייצר רווחים כלכליים לבין אינטרסים של שימור משאבי טבע…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“הגברת השקיפות בעבודת השתדלנים בכנסת, ולפרסום ציבורי של המידע”
+</div>
+<span class="context">מרצ תפעל ל<mark>הגברת השקיפות בעבודת השתדלנים בכנסת, ולפרסום ציבורי של המידע</mark> אותו הם מעבירים לחברי הכנסת. יש להקים גוף שיפקח על ביצוע הקוד האתי של השתדלנים. יאסר על שתדלנים להשתתף בישיבות של ועדות הכנסת.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“הנהגת מס על פעילויות פיננסיות”
+</div>
+<span class="context"><mark>הנהגת מס על פעילויות פיננסיות</mark>, כפי שמתכוון לאמץ האיחוד האירופי</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“יבוטלו תאגידי המים ויוחזר ניהול המים אל המדינה”
+</div>
+<span class="context"><mark>יבוטלו תאגידי המים ויוחזר ניהול המים אל המדינה</mark>, כחלק בסיסי מתפקידה. התשלום עבור המים יעשה בלא מימון של מערכות נפרדות, בזבזניות ומפלות</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“צמצום הריכוזיות במשק, הפסקת ההשפעה של הגופים הגדולים”
+</div>
+<span class="context">עיקר המאבק בתחום זה הינו ב<mark>צמצום הריכוזיות במשק, הפסקת ההשפעה של הגופים הגדולים</mark> על קבלת ההחלטות ונקיטת צעדים קונקרטיים ביחס למימון בחירות</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“ישראל היא מדינה דמוקרטית”
+</div>
+<span class="context">זכויות האזרחים הערבים כמיעוט לאומי <mark>ישראל היא מדינה דמוקרטית</mark>, מדינת העם היהודי ומדינת כל אזרחיה</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“חופש ביטוי וחופש התארגנות פוליטית בכל”
+</div>
+<span class="context">מרצ תפעל לקידום הנושאים הבאים: <mark>חופש ביטוי וחופש התארגנות פוליטית בכל</mark> קמפוס המאושר על-ידי המועצה להשכלה גבוהה.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“הגנה על עצמאותה של הרשות השופטת”
+</div>
+<span class="context">שלטון החוק מרצ מחויבת ל<mark>הגנה על עצמאותה של הרשות השופטת</mark>. מרצ מתנגדת לכל הפרטה</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“ישראל היא מדינה דמוקרטית, מדינת העם היהודי ומדינת כל אזרחיה”
+</div>
+<span class="context">חברה לכולנו, מדינה לכולנו: שוויון לכל קבוצות החברה זכויות האזרחים הערבים כמיעוט לאומי <mark>ישראל היא מדינה דמוקרטית, מדינת העם היהודי ומדינת כל אזרחיה</mark>. מעמד כל אזרח ואזרחית ללא הבחנה על רקע לאום חייב להיות שווה.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“חופש ביטוי וחופש התארגנות פוליטית בכל קמפוס המאושר על-ידי המועצה להשכלה גבוהה”
+</div>
+<span class="context">…<mark>חופש ביטוי וחופש התארגנות פוליטית בכל קמפוס המאושר על-ידי המועצה להשכלה גבוהה</mark>. חופש לפעילות פוליטית באופן שגרתי ובמיקומים מרכזיים בקמפוסים. האוניברסיטאות הן הבסיס לחדשנות, לחשיבה עצמאית ולפלורליזם…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“המשטר הפרלמנטרי הוא אחד הנדבכים הבסיסיים בדמוקרטיה הישראלית”
+</div>
+<span class="context"><mark>המשטר הפרלמנטרי הוא אחד הנדבכים הבסיסיים בדמוקרטיה הישראלית</mark>. מרצ מתנגדת לכינון משטר נשיאותי בישראל, דבר המהווה איום של ממש על הדמוקרטיה הישראלית, ותומכת בשיטה הפרלמנטרית ובשיטת הבחירות היחסיות</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“ישראל היא מדינה דמוקרטית”
+</div>
+<span class="context"><mark>ישראל היא מדינה דמוקרטית</mark>, מדינת העם היהודי ומדינת כל אזרחיה. מעמד כל אזרח ואזרחית ללא הבחנה על רקע לאום חייב להיות שווה</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“חופש ביטוי וחופש התארגנות פוליטית בכל קמפוס”
+</div>
+<span class="context">מרצ תפעל לקידום הנושאים הבאים: <mark>חופש ביטוי וחופש התארגנות פוליטית בכל קמפוס</mark> המאושר על-ידי המועצה להשכלה גבוהה.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“המשטר הפרלמנטרי הוא אחד הנדבכים הבסיסיים בדמוקרטיה”
+</div>
+<span class="context">ממשל חיזוק המשטר הפרלמנטרי <mark>המשטר הפרלמנטרי הוא אחד הנדבכים הבסיסיים בדמוקרטיה</mark> הישראלית. מרצ מתנגדת לכינון משטר נשיאותי בישראל</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 10.0 · verified · chunk 1</span>
+<div class="quote">
+“שוויון לכל קבוצות החברה”
+</div>
+<span class="context">חברה לכולנו, מדינה לכולנו: <mark>שוויון לכל קבוצות החברה</mark> זכויות האזרחים הערבים כמיעוט לאומי</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 10.0 · verified · chunk 2</span>
+<div class="quote">
+“הכרה בזכויות אדם מבוססת על ריבונות”
+</div>
+<span class="context">זכויות אדם ה<mark>הכרה בזכויות אדם מבוססת על ריבונות</mark> האדם באשר הוא אדם ועל האמונה בשוויון</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“הגנה מלאה על כל זכויות האדם והאזרח”
+</div>
+<span class="context">השלמת תהליך כתיבת החוקה חייב לכלול <mark>הגנה מלאה על כל זכויות האדם והאזרח</mark> כולל חקיקת חוק יסוד</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“שוויון זכויות מלא - אישיות וקולקטיביות”
+</div>
+<span class="context">התשובה היחידה לגל הגזענות הגואה היא <mark>שוויון זכויות מלא - אישיות וקולקטיביות</mark>. מרצ תפעל לקידום הנושאים הבאים: תיקון אפליית האזרחים הערבים ופיתוח תכנית רחבת היקף להעדפה מתקנת של האוכלוסייה הערבית בכל תחומי החיים.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“הכרה בזכויות אדם מבוססת על ריבונות האדם באשר הוא אדם ועל האמונה בשוויון המהותי בין כל בני האדם”
+</div>
+<span class="context">…<mark>הכרה בזכויות אדם מבוססת על ריבונות האדם באשר הוא אדם ועל האמונה בשוויון המהותי בין כל בני האדם</mark>. תפישה זו מושתתת על המודעות לסבלו של הזולת, חותרת לשילוב בין חירות אישית וסולידריות חברתית… מרצ תפעל לקידום זכויות הילד, זכויות קולקטיביות, זכויות חברתיות…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“הגנה על זכויותיהם של אמנים לחופש ביטוי והבעת דעה”
+</div>
+<span class="context"><mark>הגנה על זכויותיהם של אמנים לחופש ביטוי והבעת דעה</mark>, בלא הגבלות צנזורה פוליטיות או דתיות. חקיקת חוק זכויות יוצרים חדש שיעניק ליוצרים הגנה על קניינם הרוחני וקבלת תמלוגים הולמים</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“שוויון זכויות מלא - אישיות וקולקטיביות”
+</div>
+<span class="context">התשובה היחידה לגל הגזענות הגואה היא <mark>שוויון זכויות מלא - אישיות וקולקטיביות</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“שוויון מעמדם של כל הזרמים הדתיים”
+</div>
+<span class="context">מרצ תפעל לביטול המונופול הדתי-אורתודוקסי המפלה לרעה נשים, יהודים חילוניים, ויהודים בעלי גישות דתיות פלורליסטיות ותבטיח את <mark>שוויון מעמדם של כל הזרמים הדתיים</mark> בכל תחומי החיים.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“קידום נשים, ערבים ואנשים עם מוגבלויות בשירות המדינה”
+</div>
+<span class="context"><mark>קידום נשים, ערבים ואנשים עם מוגבלויות בשירות המדינה</mark>. מקצועיות ויושרה ציבורית יובטחו באמצעות הכשרות והשתלמויות</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“ישראל היא מדינה דמוקרטית”
+</div>
+<span class="context">זכויות האזרחים הערבים כמיעוט לאומי <mark>ישראל היא מדינה דמוקרטית</mark>, מדינת העם היהודי ומדינת כל אזרחיה</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“הכרה בזכויות אדם מבוססת על ריבונות”
+</div>
+<span class="context">זכויות אדם ה<mark>הכרה בזכויות אדם מבוססת על ריבונות</mark> האדם באשר הוא אדם ועל האמונה בשוויון</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“הגנה מלאה על כל זכויות האדם והאזרח”
+</div>
+<span class="context">השלמת תהליך כתיבת החוקה חייב לכלול <mark>הגנה מלאה על כל זכויות האדם והאזרח</mark> כולל חקיקת חוק יסוד</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“מרצ מציעה מדיניות כלכלית הוגנת, צודקת ונקיה שמאמינה במדינת רווחה ובמגזר ציבורי חזק”
+</div>
+<span class="context"><mark>מרצ מציעה מדיניות כלכלית הוגנת, צודקת ונקיה שמאמינה במדינת רווחה ובמגזר ציבורי חזק</mark>, בצמצום האי-שוויון, וברגולציה ופיקוח שימנעו ניצול של עובדים ושל כספי ציבור. מרצ מאמינה שלא ניתן לנתק את הכלכלי מהמדיני והאזרחי.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“חופש ביטוי וחופש התארגנות פוליטית בכל קמפוס המאושר על-ידי המועצה להשכלה גבוהה”
+</div>
+<span class="context">…<mark>חופש ביטוי וחופש התארגנות פוליטית בכל קמפוס המאושר על-ידי המועצה להשכלה גבוהה</mark>. מרצ תפעל לקידום זכויות אדם, חינוך, שוויון, חופש דת, זכויות הילד, זכויות קולקטיביות, זכויות חברתיות, לצד קידום מדיניות סביבתית וכלכלית…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“המשטר הפרלמנטרי הוא אחד הנדבכים הבסיסיים בדמוקרטיה הישראלית”
+</div>
+<span class="context"><mark>המשטר הפרלמנטרי הוא אחד הנדבכים הבסיסיים בדמוקרטיה הישראלית</mark>. מרצ מתנגדת לכינון משטר נשיאותי בישראל, דבר המהווה איום של ממש על הדמוקרטיה הישראלית, ותומכת בשיטה הפרלמנטרית ובשיטת הבחירות היחסיות</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“חברה דמוקרטית, שוויונית ומצליחה”
+</div>
+<span class="context">מערכת החינוך היא המשאב החשוב ביותר לכינונה של <mark>חברה דמוקרטית, שוויונית ומצליחה</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“חופש דת ובחופש מדת”
+</div>
+<span class="context">מרצ דוגלת ב<mark>חופש דת ובחופש מדת</mark> ותמשיך במאמציה לפעול לחקיקת חוק יסוד: חופש הדת</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“המשטר הפרלמנטרי הוא אחד הנדבכים הבסיסיים בדמוקרטיה”
+</div>
+<span class="context">ממשל חיזוק המשטר הפרלמנטרי <mark>המשטר הפרלמנטרי הוא אחד הנדבכים הבסיסיים בדמוקרטיה</mark> הישראלית. מרצ מתנגדת לכינון משטר נשיאותי בישראל</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“התבטאויות של שרים וחברי כנסת”
+</div>
+<span class="context">לא ניתן עוד לדבר על עשבים שוטים בשולי החברה, מדובר ב<mark>התבטאויות של שרים וחברי כנסת</mark>, קריאות לפעולות גזעניות</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“הממשלה הנוכחית והעומד בראשותה פעלו בניגוד”
+</div>
+<span class="context">הציבור הישראלי מודע ופועל לקידום הצדק הסביבתי, אולם <mark>הממשלה הנוכחית והעומד בראשותה פעלו בניגוד</mark> למחויבויותיהם לציבור</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“הקרבה המסוכנת בין בעלי הון לנושאי משרות שלטוניות”
+</div>
+<span class="context">מנהל תקין הפרדת הון ושלטון <mark>הקרבה המסוכנת בין בעלי הון לנושאי משרות שלטוניות</mark>, אשר הפכה לתופעה בולטת בישראל</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“מערכת קשרי הון-שלטון המאיימת על הדמוקרטיה הישראלית”
+</div>
+<span class="context">תהליכי ההפרטה אף מתבצעים לרוב ללא הצגת רציונאל ברור לתהליך הפרטה ובהיעדר דיון ציבורי מהותי בעניינם. יש לפעול לעצירת תהליכי ההפרטה ולשינוי המגמה הקיימת: עצירה מיידית של תהליכי הפרטה ומיקור החוץ בשירותים החברתיים, בשירותי החינוך והבריאות. במקביל יש לפעול להחזרת האחריות על שירותים אלו למדינה ולהתוות תכנית ארוכת טווח להלאמתם. עצירת הפרטת שירותי הפיקוח על השירותים המופרטים: מערך הפיקוח, אשר אף הוא עובר הפרטה, יוחזר באופן מלא, בתוך שנה אחת, לאחריות המדינה ועובדיה. ביטול ועצירת הפרטת אוצרות ומשאבי הטבע בישראל ועצירת ההפרטה של מונופולים טבעיים, כולל בחינה מחודשת של הפרטת מפעלי ים המלח ומצבורי הגז. מאבק בריכוזיות במשק המשק הישראלי מאופיין בריכוזיות גבוהה, המתבטאת בשליטה של מספר מצומצם של קבוצות עסקיות על חלק עצום מהפעילות הכלכלית. המבנה הריכוזי מאפשר למעטים לצבור הון וכוח על חשבון הרבים, ומעמיק את הפערים הכלכליים. בנוסף, ריכוז ההון בידי מספר מצומצם של בעלי שליטה מביא לעליות מחירים מופרזות ולהכבדת הנטל על השכבות המוחלשות ועל מעמד הביניים. ריכוזיות השליטה במשק החריפה בשנים האחרונות בשל התרחבות ההפרטה וצמצום המעורבות הממשלתית בשוק ההון והפנסיה. היעדר רגולציה על שוק ההון והשתלטות טייקונים על בתי השקעות וקרנות פנסיה מסכנים את החסכונות ארוכי הטווח של הציבור בישראל, פוגעים בתשואות וביציבות, ובסופו של דבר גם בצמיחה. מרצ תומכת בחיזוק מנגנוני הרגולציה ובשינוי מבנה הבעלות על קרנות הפנסיה וקופות הגמל בישראל במטרה להפוך אותם לגופים בבעלות העמיתים.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“ממשלת נתניהו גורסת כי העימות הישראלי פלסטיני אינו בר פתרון”
+</div>
+<span class="context">…הבטחון השוטף פריך, עקב הזעזועים בתוככי סוריה. לאחרונה הידרדרות תלולה ביציבות הבטחונית כתוצאה מיוזמת-מנע בלתי זהירה בשטח סוריה, שהסתיימה באבדות בצמרת חזבאללה ומשמרות המהפכה האיראנית. במקביל, <mark>ממשלת נתניהו גורסת כי העימות הישראלי פלסטיני אינו בר פתרון</mark>. היא חותרת ״לנהל״ את הסכסוך ולהכילו כ״סטאטוס קוו״, גם במחיר הוקעת ישראל ובידודה, ותוך ערעור הדמוקרטיה הישראלית והתהוות משטר אפל בנוסח ״אפרטהייד״. נתניהו אמנם נכנע לכאורה ללחץ אמריקני לחידוש המו״מ…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“הקרבה המסוכנת בין בעלי הון לנושאי משרות שלטוניות”
+</div>
+<span class="context"><mark>הקרבה המסוכנת בין בעלי הון לנושאי משרות שלטוניות</mark>, אשר הפכה לתופעה בולטת בישראל, מהווה איום חמור על הדמוקרטיה הישראלית. עיקר המאבק בתחום זה הינו בצמצום הריכוזיות במשק, הפסקת ההשפעה של הגופים הגדולים על קבלת ההחלטות ונקיטת צעדים קונקרטיים ביחס למימון בחירות</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“חיזק את בעלי ההון, הרחיב את העוני”
+</div>
+<span class="context">ממשלות ישראל האחרונות פעלו במודע ובמתכוון באופן ש<mark>חיזק את בעלי ההון, הרחיב את העוני</mark> וריסק את מעמד הביניים והשכבות המוחלשות</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“המערכת הפוליטית פועלת באופן שטחי ונסחטת על-ידי גופים אינטרסנטיים”
+</div>
+<span class="context">הדיון בכנסת בסוגיית חלוקת רווחי הגז, הראה עד כמה <mark>המערכת הפוליטית פועלת באופן שטחי ונסחטת על-ידי גופים אינטרסנטיים</mark>, בניגוד לאינטרסים של כלל הציבור.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“הקרבה המסוכנת בין בעלי הון לנושאי משרות שלטוניות”
+</div>
+<span class="context">מנהל תקין הפרדת הון ושלטון <mark>הקרבה המסוכנת בין בעלי הון לנושאי משרות שלטוניות</mark>, אשר הפכה לתופעה בולטת בישראל, מהווה איום חמור על הדמוקרטיה הישראלית</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“ישראל היא מדינה דמוקרטית, מדינת העם היהודי ומדינת כל אזרחיה”
+</div>
+<span class="context">חברה לכולנו, מדינה לכולנו: שוויון לכל קבוצות החברה זכויות האזרחים הערבים כמיעוט לאומי <mark>ישראל היא מדינה דמוקרטית, מדינת העם היהודי ומדינת כל אזרחיה</mark>. מעמד כל אזרח ואזרחית ללא הבחנה על רקע לאום חייב להיות שווה.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“החברה הישראלית מאגדת בתוכה לאומים, עדות, דתות ותרבויות שונות”
+</div>
+<span class="context">…<mark>החברה הישראלית מאגדת בתוכה לאומים, עדות, דתות ותרבויות שונות</mark>. במציאות הרב תרבותית הישראלית חייבת להתפתח דינמיקה המושתתת על יצירת שיווי משקל חדש בין אחידות לבין שונות, כשזו אינה נתפסת כמאיימת וכקוראת תיגר אלא דווקא כמחזקת ומעשירה את צביון החברה…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“מדיניות שתחלק את המאמץ הדרוש למתן תשובה אנושית למצוקת מבקשי המקלט בין כל שכבות החברה”
+</div>
+<span class="context">על המדינה לנהל מדיניות שמושתתת על הזיכרון הלאומי של חוויית הפליטות, <mark>מדיניות שתחלק את המאמץ הדרוש למתן תשובה אנושית למצוקת מבקשי המקלט בין כל שכבות החברה</mark>. המדינה מנהלת מאבק במהגרי העבודה אך ממשיכה במקביל לגייס עובדים נוספים ברחבי העולם</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“מדיניות כלכלית הוגנת, צודקת ונקיה”
+</div>
+<span class="context">מרצ מציעה <mark>מדיניות כלכלית הוגנת, צודקת ונקיה</mark> שמאמינה במדינת רווחה ובמגזר ציבורי חזק</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“האינטרס הציבורי ולא על הפרטת קרקעות המדינה”
+</div>
+<span class="context">ישונו סדרי העדיפויות של רשות המקרקעין כך שיושם דגש על שיתוף הציבור, על שקיפות ועל האינטרס הלאומי ולא על הפרטת קרקעות המדינה.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“מרצ מחויבת להיאבק לצמצום השחיתות”
+</div>
+<span class="context"><mark>מרצ מחויבת להיאבק לצמצום השחיתות</mark> בלא לפגוע יתר על המידה ביכולתם של נבחרי הציבור למשול</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“מדינת רווחה ובמגזר ציבורי חזק”
+</div>
+<span class="context">מרצ מציעה מדיניות כלכלית הוגנת, צודקת ונקיה שמאמינה ב<mark>מדינת רווחה ובמגזר ציבורי חזק</mark>, בצמצום האי-שוויון</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“הפסקת פעילותן של עמותות, גופים עסקיים”
+</div>
+<span class="context">העלאת רמת ההשכלה של המורים ועידוד המורים לרכוש תואר שני. <mark>הפסקת פעילותן של עמותות, גופים עסקיים</mark> וארגוני מיקור חוץ, המעסיקים מורים</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“הקרבה המסוכנת בין בעלי הון לנושאי משרות שלטוניות”
+</div>
+<span class="context">מנהל תקין הפרדת הון ושלטון <mark>הקרבה המסוכנת בין בעלי הון לנושאי משרות שלטוניות</mark>, אשר הפכה לתופעה בולטת בישראל</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“מרצ מציעה מדיניות כלכלית הוגנת, צודקת ונקיה שמאמינה במדינת רווחה ובמגזר ציבורי חזק, בצמצום האי-שוויון, וברגולציה ופיקוח שימנעו ניצול של עובדים ושל כספי ציבור”
+</div>
+<span class="context"><mark>מרצ מציעה מדיניות כלכלית הוגנת, צודקת ונקיה שמאמינה במדינת רווחה ובמגזר ציבורי חזק, בצמצום האי-שוויון, וברגולציה ופיקוח שימנעו ניצול של עובדים ושל כספי ציבור</mark>. מרצ מאמינה שלא ניתן לנתק את הכלכלי מהמדיני והאזרחי. ולכן, היא גורסת שהסדר מדיני ארוך טווח חיוני לרווחה אמתית של אזרחי ישראל, לצמיחה בת-קיימא ולמיצוי הפוטנציאל הכלכלי המלא של ישראל.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“מרצ שותפה למאבק בתופעות מדאיגות של אנטישמיות וגזענות”
+</div>
+<span class="context">…<mark>מרצ שותפה למאבק בתופעות מדאיגות של אנטישמיות וגזענות</mark>, הקיימות ומתגברות ברחבי העולם. מרצ תפעל להידוק הקשרים עם הזרמים ההומניסטים והמתקדמים בקרב יהודי התפוצות על בסיס דיאלוג כן ומכבד. החברה הישראלית מאגדת בתוכה לאומים, עדות, דתות ותרבויות שונות…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“הקרבה המסוכנת בין בעלי הון לנושאי משרות שלטוניות”
+</div>
+<span class="context"><mark>הקרבה המסוכנת בין בעלי הון לנושאי משרות שלטוניות</mark>, אשר הפכה לתופעה בולטת בישראל, מהווה איום חמור על הדמוקרטיה הישראלית. עיקר המאבק בתחום זה הינו בצמצום הריכוזיות במשק, הפסקת ההשפעה של הגופים הגדולים על קבלת ההחלטות ונקיטת צעדים קונקרטיים ביחס למימון בחירות</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“מדינת רווחה ובמגזר ציבורי חזק”
+</div>
+<span class="context">מרצ מציעה מדיניות כלכלית הוגנת, צודקת ונקיה שמאמינה ב<mark>מדינת רווחה ובמגזר ציבורי חזק</mark>, בצמצום האי-שוויון</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“הפחתת שכר הלימוד עד להעמדתו על סכום סמלי”
+</div>
+<span class="context">מרצ תפעל לקידום הנושאים הבאים: <mark>הפחתת שכר הלימוד עד להעמדתו על סכום סמלי</mark>, של דמי רצינות בלבד.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“צמצום הריכוזיות במשק, הפסקת ההשפעה של הגופים הגדולים”
+</div>
+<span class="context">עיקר המאבק בתחום זה הינו ב<mark>צמצום הריכוזיות במשק, הפסקת ההשפעה של הגופים הגדולים</mark> על קבלת ההחלטות</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“מדינת רווחה ובמגזר ציבורי חזק”
+</div>
+<span class="context">מרצ מציעה מדיניות כלכלית הוגנת, צודקת ונקיה שמאמינה ב<mark>מדינת רווחה ובמגזר ציבורי חזק</mark>, בצמצום האי-שוויון</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“הפסקת פעילותן של עמותות, גופים עסקיים”
+</div>
+<span class="context">העלאת רמת ההשכלה של המורים ועידוד המורים לרכוש תואר שני. <mark>הפסקת פעילותן של עמותות, גופים עסקיים</mark> וארגוני מיקור חוץ, המעסיקים מורים</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“הקרבה המסוכנת בין בעלי הון לנושאי משרות שלטוניות”
+</div>
+<span class="context">מנהל תקין הפרדת הון ושלטון <mark>הקרבה המסוכנת בין בעלי הון לנושאי משרות שלטוניות</mark>, אשר הפכה לתופעה בולטת בישראל</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“מרצ מציעה מדיניות כלכלית הוגנת, צודקת ונקיה שמאמינה במדינת רווחה ובמגזר ציבורי חזק”
+</div>
+<span class="context"><mark>מרצ מציעה מדיניות כלכלית הוגנת, צודקת ונקיה שמאמינה במדינת רווחה ובמגזר ציבורי חזק</mark>, בצמצום האי-שוויון, וברגולציה ופיקוח שימנעו ניצול של עובדים ושל כספי ציבור. מרצ מאמינה שלא ניתן לנתק את הכלכלי מהמדיני והאזרחי. ולכן, היא גורסת שהסדר מדיני ארוך טווח חיוני לרווחה אמתית של אזרחי ישראל, לצמיחה בת-קיימא ולמיצוי הפוטנציאל הכלכלי המלא של ישראל.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“ממשלת נתניהו גורסת כי העימות הישראלי פלסטיני אינו בר פתרון”
+</div>
+<span class="context">…<mark>ממשלת נתניהו גורסת כי העימות הישראלי פלסטיני אינו בר פתרון</mark>. היא חותרת ״לנהל״ את הסכסוך ולהכילו כ״סטאטוס קוו״, גם במחיר הוקעת ישראל ובידודה, ותוך ערעור הדמוקרטיה הישראלית והתהוות משטר אפל בנוסח ״אפרטהייד״. החברה הישראלית מאגדת בתוכה לאומים, עדות, דתות ותרבויות שונות…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“הקרבה המסוכנת בין בעלי הון לנושאי משרות שלטוניות”
+</div>
+<span class="context"><mark>הקרבה המסוכנת בין בעלי הון לנושאי משרות שלטוניות</mark>, אשר הפכה לתופעה בולטת בישראל, מהווה איום חמור על הדמוקרטיה הישראלית. עיקר המאבק בתחום זה הינו בצמצום הריכוזיות במשק, הפסקת ההשפעה של הגופים הגדולים על קבלת ההחלטות ונקיטת צעדים קונקרטיים ביחס למימון בחירות</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“ריכוז ההון בידיים בודדות”
+</div>
+<span class="context">תהליכי ההפרטה הגורפים שעברו על המשק הישראלי בעשורים האחרונים לא הביאו לשיפור התחרות או ליעילות כלכלית, אלא ל<mark>ריכוז ההון בידיים בודדות</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“הפחתת שכר הלימוד עד להעמדתו על סכום סמלי”
+</div>
+<span class="context">מרצ תפעל לקידום הנושאים הבאים: <mark>הפחתת שכר הלימוד עד להעמדתו על סכום סמלי</mark>, של דמי רצינות בלבד.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“צמצום הריכוזיות במשק, הפסקת ההשפעה של הגופים הגדולים”
+</div>
+<span class="context">עיקר המאבק בתחום זה הינו ב<mark>צמצום הריכוזיות במשק, הפסקת ההשפעה של הגופים הגדולים</mark> על קבלת ההחלטות</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“מרצ תפעל נגד קבלת הצעות החוק הגזעניות, אשר הונחו על שולחן הכנסת בידי הממשלה וח”כים ממפלגות הימין”
+</div>
+<span class="context"><mark>מרצ תפעל נגד קבלת הצעות החוק הגזעניות, אשר הונחו על שולחן הכנסת בידי הממשלה וח”כים ממפלגות הימין</mark> דוגמת הצעת חוק הלאום, הצעת חוק להעדפת יוצאי צבא בתעסוקה, הצעת חוק להבחנה בין ערבים נוצרים למוסלמים ועוד, ותיאבק נגד הצעות חדשות, ברוח דומה, שוודאי יונחו על שולחן הכנסת הבאה.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“ממשלת נתניהו גורסת כי העימות הישראלי פלסטיני אינו בר פתרון”
+</div>
+<span class="context">…<mark>ממשלת נתניהו גורסת כי העימות הישראלי פלסטיני אינו בר פתרון</mark>. היא חותרת ״לנהל״ את הסכסוך ולהכילו כ״סטאטוס קוו״, גם במחיר הוקעת ישראל ובידודה, ותוך ערעור הדמוקרטיה הישראלית והתהוות משטר אפל בנוסח ״אפרטהייד״. נתניהו אמנם נכנע לכאורה ללחץ אמריקני לחידוש המו״מ…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“המדינה מנהלת מאבק במהגרי העבודה אך ממשיכה במקביל לגייס עובדים נוספים”
+</div>
+<span class="context">על המדינה לנהל מדיניות שמושתתת על הזיכרון הלאומי של חוויית הפליטות, מדיניות שתחלק את המאמץ הדרוש למתן תשובה אנושית למצוקת מבקשי המקלט בין כל שכבות החברה. <mark>המדינה מנהלת מאבק במהגרי העבודה אך ממשיכה במקביל לגייס עובדים נוספים</mark> ברחבי העולם אשר פעמים רבות מוצאים עצמם מנוצלים</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“איסור על שימוש בלאום הערבי כקריטריון”
+</div>
+<span class="context"><mark>איסור על שימוש בלאום הערבי כקריטריון</mark> לביצוע בדיקות ביטחוניות (“פרופיילינג”) בכלל, ובשדה התעופה בפרט</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“ישראל היא מדינת העם היהודי וכל אזרחיה”
+</div>
+<span class="context"><mark>ישראל היא מדינת העם היהודי וכל אזרחיה</mark>. על היחסים בין ישראל ליהודי התפוצות להתבסס על דיאלוג כן ומכבד.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“ישראל הוקמה כמדינה של פליטים”
+</div>
+<span class="context">פליטים, מבקשי מקלט ומהגרי עבודה <mark>ישראל הוקמה כמדינה של פליטים</mark>. נראה כי רוב חברי הכנסת שכחו עובדה זו</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“המאבק בגזענות בכנסת, בבתי המשפט וברחוב”
+</div>
+<span class="context">מרצ תמשיך לעמוד בראש המאבק נגד הגזענות בכנסת, בבתי המשפט וברחוב. מרצ תפעל לביטול החוקים הגזעניים שהתקבלו בשנים האחרונות, המכונים חוק הנכבה, חוק החרם וחוק ועדות הקבלה. מרצ תפעל נגד קבלת הצעות החוק הגזעניות, אשר הונחו על שולחן הכנסת בידי הממשלה וח”כים ממפלגות הימין דוגמת הצעת חוק הלאום, הצעת חוק להעדפת יוצאי צבא בתעסוקה, הצעת חוק להבחנה בין ערבים נוצרים למוסלמים ועוד, ותיאבק נגד הצעות חדשות, ברוח דומה, שוודאי יונחו על שולחן הכנסת הבאה.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“ממשלת נתניהו גורסת כי העימות הישראלי פלסטיני אינו בר פתרון”
+</div>
+<span class="context">…<mark>ממשלת נתניהו גורסת כי העימות הישראלי פלסטיני אינו בר פתרון</mark>. היא חותרת ״לנהל״ את הסכסוך ולהכילו כ״סטאטוס קוו״, גם במחיר הוקעת ישראל ובידודה, ותוך ערעור הדמוקרטיה הישראלית והתהוות משטר אפל בנוסח ״אפרטהייד״. נתניהו אמנם נכנע לכאורה ללחץ אמריקני לחידוש המו״מ…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“המדינה מנהלת מאבק במהגרי העבודה אך ממשיכה במקביל לגייס עובדים נוספים”
+</div>
+<span class="context">על המדינה לנהל מדיניות שמושתתת על הזיכרון הלאומי של חוויית הפליטות, מדיניות שתחלק את המאמץ הדרוש למתן תשובה אנושית למצוקת מבקשי המקלט בין כל שכבות החברה. <mark>המדינה מנהלת מאבק במהגרי העבודה אך ממשיכה במקביל לגייס עובדים נוספים</mark> ברחבי העולם אשר פעמים רבות מוצאים עצמם מנוצלים</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“מדיניות פושעת זו הביאה לעליית מחירי הדיור”
+</div>
+<span class="context"><mark>מדיניות פושעת זו הביאה לעליית מחירי הדיור</mark> ולמשבר רחב ההיקף בו אנו מצויים כיום</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“ממשלת נתניהו גורסת כי העימות הישראלי פלסטיני אינו בר פתרון”
+</div>
+<span class="context"><mark>ממשלת נתניהו גורסת כי העימות הישראלי פלסטיני אינו בר פתרון</mark>. היא חותרת ״לנהל״ את הסכסוך ולהכילו כ״סטאטוס קוו״, גם במחיר הוקעת ישראל ובידודה</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“הצמרת השלטונית בישראל מעורבת במעשי שחיתות”
+</div>
+<span class="context">מאבק בשחיתות בשנים האחרונות נוכחנו לגלות כי <mark>הצמרת השלטונית בישראל מעורבת במעשי שחיתות</mark>, ובכלל זה, ראש ממשלה לשעבר</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“חברה לכולנו, מדינה לכולנו: שוויון לכל קבוצות החברה זכויות האזרחים הערבים כמיעוט לאומי”
+</div>
+<span class="context"><mark>חברה לכולנו, מדינה לכולנו: שוויון לכל קבוצות החברה זכויות האזרחים הערבים כמיעוט לאומי</mark> ישראל היא מדינה דמוקרטית, מדינת העם היהודי ומדינת כל אזרחיה. מעמד כל אזרח ואזרחית ללא הבחנה על רקע לאום חייב להיות שווה. מלבד הבטחת שוויון מלא לכל אזרחי המדינה, ישראל תכיר במיעוט הערבי כמיעוט לאומי שלו זכויות קולקטיביות, ותאפשר לו לממש ולבטא את תרבותו הייחודית ולפעול בשפתו.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“החברה הישראלית מאגדת בתוכה לאומים, עדות, דתות ותרבויות שונות”
+</div>
+<span class="context">…<mark>החברה הישראלית מאגדת בתוכה לאומים, עדות, דתות ותרבויות שונות</mark>. במציאות הרב תרבותית הישראלית חייבת להתפתח דינמיקה המושתתת על יצירת שיווי משקל חדש בין אחידות לבין שונות, כשזו אינה נתפסת כמאיימת וכקוראת תיגר אלא דווקא כמחזקת ומעשירה את צביון החברה. כך ייהנו הקהילות והתרבויות השונות בחברה הישראלית מחופש רב יותר לעצב את ענייניהן…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“מדיניות שתחלק את המאמץ הדרוש למתן תשובה אנושית למצוקת מבקשי המקלט בין כל שכבות החברה”
+</div>
+<span class="context">על המדינה לנהל מדיניות שמושתתת על הזיכרון הלאומי של חוויית הפליטות, <mark>מדיניות שתחלק את המאמץ הדרוש למתן תשובה אנושית למצוקת מבקשי המקלט בין כל שכבות החברה</mark>. המדינה מנהלת מאבק במהגרי העבודה אך ממשיכה במקביל לגייס עובדים נוספים ברחבי העולם</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“חובת המדינה לפעול לטובת כל תושביה”
+</div>
+<span class="context">מרצ מאמינה, כי <mark>חובת המדינה לפעול לטובת כל תושביה</mark> על בסיס של שוויון מהותי</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“האינטרס הציבורי ושלמות המערכות האקולוגיות”
+</div>
+<span class="context">בבסיס חוק התכנון והבנייה המתוקן שתציע מרצ יעמדו <mark>האינטרס הציבורי ושלמות המערכות האקולוגיות</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“השירות הציבורי, הזרוע המבצעת של הממשלה, אמור להגן על הציבור”
+</div>
+<span class="context">רפורמה במינהל הציבורי <mark>השירות הציבורי, הזרוע המבצעת של הממשלה, אמור להגן על הציבור</mark> מפני השימוש לרעה בשררה</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“התבטאויות של שרים וחברי כנסת”
+</div>
+<span class="context">לא ניתן עוד לדבר על עשבים שוטים בשולי החברה, מדובר ב<mark>התבטאויות של שרים וחברי כנסת</mark>, קריאות לפעולות גזעניות</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“הממשלה הנוכחית והעומד בראשותה פעלו בניגוד”
+</div>
+<span class="context">הציבור הישראלי מודע ופועל לקידום הצדק הסביבתי, אולם <mark>הממשלה הנוכחית והעומד בראשותה פעלו בניגוד</mark> למחויבויותיהם לציבור</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“הקרבה המסוכנת בין בעלי הון לנושאי משרות שלטוניות”
+</div>
+<span class="context">מנהל תקין הפרדת הון ושלטון <mark>הקרבה המסוכנת בין בעלי הון לנושאי משרות שלטוניות</mark>, אשר הפכה לתופעה בולטת בישראל</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“מערכת קשרי הון-שלטון המאיימת על הדמוקרטיה הישראלית”
+</div>
+<span class="context">תהליכי ההפרטה אף מתבצעים לרוב ללא הצגת רציונאל ברור לתהליך הפרטה ובהיעדר דיון ציבורי מהותי בעניינם. יש לפעול לעצירת תהליכי ההפרטה ולשינוי המגמה הקיימת: עצירה מיידית של תהליכי הפרטה ומיקור החוץ בשירותים החברתיים, בשירותי החינוך והבריאות. במקביל יש לפעול להחזרת האחריות על שירותים אלו למדינה ולהתוות תכנית ארוכת טווח להלאמתם. עצירת הפרטת שירותי הפיקוח על השירותים המופרטים: מערך הפיקוח, אשר אף הוא עובר הפרטה, יוחזר באופן מלא, בתוך שנה אחת, לאחריות המדינה ועובדיה. ביטול ועצירת הפרטת אוצרות ומשאבי הטבע בישראל ועצירת ההפרטה של מונופולים טבעיים, כולל בחינה מחודשת של הפרטת מפעלי ים המלח ומצבורי הגז. מאבק בריכוזיות במשק המשק הישראלי מאופיין בריכוזיות גבוהה, המתבטאת בשליטה של מספר מצומצם של קבוצות עסקיות על חלק עצום מהפעילות הכלכלית. המבנה הריכוזי מאפשר למעטים לצבור הון וכוח על חשבון הרבים, ומעמיק את הפערים הכלכליים. בנוסף, ריכוז ההון בידי מספר מצומצם של בעלי שליטה מביא לעליות מחירים מופרזות ולהכבדת הנטל על השכבות המוחלשות ועל מעמד הביניים. ריכוזיות השליטה במשק החריפה בשנים האחרונות בשל התרחבות ההפרטה וצמצום המעורבות הממשלתית בשוק ההון והפנסיה. היעדר רגולציה על שוק ההון והשתלטות טייקונים על בתי השקעות וקרנות פנסיה מסכנים את החסכונות ארוכי הטווח של הציבור בישראל, פוגעים בתשואות וביציבות, ובסופו של דבר גם בצמיחה. מרצ תומכת בחיזוק מנגנוני הרגולציה ובשינוי מבנה הבעלות על קרנות הפנסיה וקופות הגמל בישראל במטרה להפוך אותם לגופים בבעלות העמיתים.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“ממשלת נתניהו גורסת כי העימות הישראלי פלסטיני אינו בר פתרון”
+</div>
+<span class="context">…<mark>ממשלת נתניהו גורסת כי העימות הישראלי פלסטיני אינו בר פתרון</mark>. היא חותרת ״לנהל״ את הסכסוך ולהכילו כ״סטאטוס קוו״, גם במחיר הוקעת ישראל ובידודה, ותוך ערעור הדמוקרטיה הישראלית והתהוות משטר אפל בנוסח ״אפרטהייד״. החברה הישראלית מאגדת בתוכה לאומים, עדות, דתות ותרבויות שונות. במציאות הרב תרבותית הישראלית חייבת להתפתח דינמיקה המושתתת על יצירת שיווי משקל חדש בין אחידות לבין שונות…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“הקרבה המסוכנת בין בעלי הון לנושאי משרות שלטוניות”
+</div>
+<span class="context"><mark>הקרבה המסוכנת בין בעלי הון לנושאי משרות שלטוניות</mark>, אשר הפכה לתופעה בולטת בישראל, מהווה איום חמור על הדמוקרטיה הישראלית. עיקר המאבק בתחום זה הינו בצמצום הריכוזיות במשק, הפסקת ההשפעה של הגופים הגדולים על קבלת ההחלטות ונקיטת צעדים קונקרטיים ביחס למימון בחירות</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“ניפחה את תקציב הביטחון”
+</div>
+<span class="context">הממשלה בראשותו של בנימין נתניהו קבעה סדר עדיפויות מעוות, <mark>ניפחה את תקציב הביטחון</mark> במקום לחשוב כיצד ניתן לקצצו</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“גופים אינטרסנטיים, בניגוד לאינטרסים של כלל הציבור”
+</div>
+<span class="context">הדיון בכנסת בסוגיית חלוקת רווחי הגז, הראה עד כמה המערכת הפוליטית פועלת באופן שטחי ונסחטת על-ידי <mark>גופים אינטרסנטיים, בניגוד לאינטרסים של כלל הציבור</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“הקרבה המסוכנת בין בעלי הון לנושאי משרות שלטוניות”
+</div>
+<span class="context">מנהל תקין הפרדת הון ושלטון <mark>הקרבה המסוכנת בין בעלי הון לנושאי משרות שלטוניות</mark>, אשר הפכה לתופעה בולטת בישראל, מהווה איום חמור על הדמוקרטיה הישראלית</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="72326_201503_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

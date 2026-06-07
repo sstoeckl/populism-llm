@@ -1,0 +1,1801 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>E14-PM (Hungary, 2018) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/86340_201804_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">E14-PM (Hungary, 2018)</h1>
+<p class="subtitle lead">manifesto_id 86340_201804</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Hungary · <span class="item"><strong>Party</strong></span> E14-PM (Together 2014 -Dialogue for Hungary Electoral Alliance) · <span class="item"><strong>Year</strong></span> 2018 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 20</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">9.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">9.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">9.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.3</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“szabad kereskedelem, piaci innováció és”
+</div>
+<span class="context">változtatni kell. Nekünk az Együttben meggyőződésünk: <mark>szabad kereskedelem, piaci innováció és</mark> törekvő polgárok nélkül nem lehet</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“nyitott, de szabályozott tankönyvpiacot hozunk”
+</div>
+<span class="context">hátrányos helyzetű gyerekek lemorzsolódását. 3. Az államosított tankönyvpiac helyett <mark>nyitott, de szabályozott tankönyvpiacot hozunk</mark> létre, hogy a pedagógusok kiválaszthassák</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“vásárlók kiszolgálásának javítása és a piaci verseny erősítése”
+</div>
+<span class="context">pénzforgalom átláthatóbbá tétele érdekében. 357. A <mark>vásárlók kiszolgálásának javítása és a piaci verseny erősítése</mark> érekében megszüntetjük a pláza-stopot és hatályon kívül</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Szigorú költségvetési fegyelmet érvényesítünk, az EU-tagságunkból következő maastrichti kritériumokat betartjuk”
+</div>
+<span class="context"><mark>Szigorú költségvetési fegyelmet érvényesítünk, az EU-tagságunkból következő maastrichti kritériumokat betartjuk</mark>, a költségvetési hiányt a 3 %-os szint alatt tartjuk, és csökkentjük az államadósságot az éves GDP 60 százalékát elérő szintig.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Támogatjuk a mezőgazdaság és az élelmiszeripar nemzetközi versenyképességének javítását”
+</div>
+<span class="context">311 <mark>Támogatjuk a mezőgazdaság és az élelmiszeripar nemzetközi versenyképességének javítását</mark>, 312 Felszámoljuk a Fidesz tisztességtelen birtokpolitikáját.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Megszüntetjük a büntető jellegű különadókat”
+</div>
+<span class="context">353. <mark>Megszüntetjük a büntető jellegű különadókat</mark>. 354. Nem járhat állami támogatás olyan külföldi befektetőnek, amely szakszervezet- és munkavállalói önszerveződés-ellenes politikát folytat a gyárában.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · mixed · chunk 1</span>
+<div class="quote">
+“szabad kereskedelem, piaci innováció és törekvő polgárok”
+</div>
+<span class="context">Vállalkozások section: meggyőződésünk: <mark>szabad kereskedelem, piaci innováció és törekvő polgárok</mark> nélkül nem lehet jólétet teremteni.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“nyitott, de szabályozott tankönyvpiacot hozunk”
+</div>
+<span class="context">Az államosított tankönyvpiac helyett <mark>nyitott, de szabályozott tankönyvpiacot hozunk</mark> létre, hogy a pedagógusok kiválaszthassák</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · mixed · chunk 3</span>
+<div class="quote">
+“piaci versenyt”
+</div>
+<span class="context">355. A banki költségek csökkentése érdekében erősítjük a <mark>piaci versenyt</mark>. 356. Aktív állami szerepvállalással ösztönözzük a bankkártya használatot</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“magánnyugdíj-pénztári tagságukat megtartók számára biztosítjuk”
+</div>
+<span class="context">támogatásokkal ösztönözzük, hogy jelentősen szélesítsük azok körét, akik maguknak is tudnak takarékoskodni idős napjaikra 235 A <mark>magánnyugdíj-pénztári tagságukat megtartók számára biztosítjuk</mark> annak lehetőségét, hogy megtakarításukat</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“szolgáltatók közötti verseny élénkítése és a költségek”
+</div>
+<span class="context">másik nyugdíjcélú megtakarítási formába átvigyék. 236. A <mark>szolgáltatók közötti verseny élénkítése és a költségek</mark> csökkentése érdekében átjárhatóbbá tesszük a különböző</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“szolgáltatók közötti verseny élénkítése és a költségek csökkentése”
+</div>
+<span class="context">megtakarítási formába átvigyék. 236. A <mark>szolgáltatók közötti verseny élénkítése és a költségek csökkentése</mark> érdekében átjárhatóbbá tesszük a különböző nyugdíjcélú megtakarítási</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Csatlakozunk az Európai Ügyészséghez az uniós források elköltésének hatékony felügyelete érdekében”
+</div>
+<span class="context">Intézményi garanciákat és érdemi szankciólehetőséget kell teremtenünk a közösségi szabályokat, különösen a szabadság és demokrácia, illetve a jogállamiság szabályait megsértő tagországokkal szemben. Csatlakozunk az Európai Ügyészséghez az uniós források elköltésének hatékony felügyelete és a jogbiztonság megerősítése érdekében.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“A befektetési teljesítmény javításának érdekében javítjuk az önkéntes nyugdíjpénztárak működésének szabályozását”
+</div>
+<span class="context">233. <mark>A befektetési teljesítmény javításának érdekében javítjuk az önkéntes nyugdíjpénztárak működésének szabályozását</mark>. 234. A cafeteria (a béren kívüli juttatások) rendszerében kiemelt adó- és járulékkedvezménnyel ösztönözzük a nyugdíjcélú munkáltatói hozzájárulásokat.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“A banki költségek csökkentése érdekében erősítjük a piaci versenyt”
+</div>
+<span class="context">355. <mark>A banki költségek csökkentése érdekében erősítjük a piaci versenyt</mark>. 356. Aktív állami szerepvállalással ösztönözzük a bankkártya használatot és a készpénzkímélő megoldásokat a korrupció csökkentése és a pénzforgalom átláthatóbbá tétele érdekében.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · mixed · chunk 1</span>
+<div class="quote">
+“Bevezetjük az eurót”
+</div>
+<span class="context">Gazdaság section: <mark>Bevezetjük az eurót</mark>. A reálbérek emelkedése és az elvándorlás csökkentése érdekében négy évre szóló bérmegállapodást kötünk.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Magyar Nemzeti Bank összes, a jegybanki”
+</div>
+<span class="context">Megszüntetjük a <mark>Magyar Nemzeti Bank összes, a jegybanki</mark> szabályokkal ellentétes alapítványát és intézményét.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“nagy pénzügyi intézmények spekulatív tőkemozgásainak”
+</div>
+<span class="context">364. Támogatjuk az európai szintű kezdeményezéseket a <mark>nagy pénzügyi intézmények spekulatív tőkemozgásainak</mark> a közteherviselés alá való bevonására.</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 10.0 · verified · chunk 1</span>
+<div class="quote">
+“liberális demokrácia helyreállítása érdekében megteremtjük”
+</div>
+<span class="context">szabad köztársaság programja, ahol újra liberális demokráciában élhetünk. 81 A <mark>liberális demokrácia helyreállítása érdekében megteremtjük</mark> a Negyedik Magyar Köztársaságot.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“helyreállítjuk a liberális alkotmányos demokrácia szabályait”
+</div>
+<span class="context">új alkotmányos rendszer formális kialakítása érdekében célzott módosításokkal <mark>helyreállítjuk a liberális alkotmányos demokrácia szabályait</mark> az Alaptörvény átalakítása révén.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“demokratikus intézmények hatékony monitorozását és közös európai értékeink betartását”
+</div>
+<span class="context">Alapjogi Chartát és aktívan segítenünk az olyan mechanizmusok létrejöttét, melyek lehetővé teszik a <mark>demokratikus intézmények hatékony monitorozását és közös európai értékeink betartását</mark>. 465. Intézményi garanciákat és érdemi szankció-lehetőséget</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Megerősítjük az Alapjogi Chartát, és segítjük olyan mechanizmusok létrejöttét”
+</div>
+<span class="context">Magyarország nemzeti érdekeivel összhangban támogatjuk az Európai Unió tagállamainak a korábbiaknál szorosabb együttműködését. <mark>Megerősítjük az Alapjogi Chartát, és segítjük olyan mechanizmusok létrejöttét</mark>, amelyek lehetővé teszik a demokratikus intézmények hatékony ellenőrzését és közös, európai értékeink betartását.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“A liberális demokrácia helyreállítása érdekében megteremtjük a Negyedik Magyar Köztársaságot”
+</div>
+<span class="context">SZABAD KÖZTÁRSASÁG - JOGÁLLAM 81. <mark>A liberális demokrácia helyreállítása érdekében megteremtjük a Negyedik Magyar Köztársaságot</mark>. 82. A magyar alkotmányos demokrácia 1989-90-es örökségéből megtartjuk és megerősítjük az alkotmányos szerkezetre és a végrehajtó hatalom kialakítására vonatkozó szabályokat.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Garantáljuk a nyugdíjak értékállóságát”
+</div>
+<span class="context">221. Igazságosabb, rugalmasabb és fenntarthatóbb nyugdíjrendszert teremtünk. Generációk viadala helyett valamennyi generáció érdekeit figyelembe vesszük a nyugdíjrendszerről hozott döntések során. 222. <mark>Garantáljuk a nyugdíjak értékállóságát</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“liberális demokrácia helyreállítása érdekében”
+</div>
+<span class="context">Jogállam section: A <mark>liberális demokrácia helyreállítása érdekében</mark> megteremtjük a Negyedik Magyar Köztársaságot.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“liberális demokrácia helyreállítása érdekében”
+</div>
+<span class="context">SZABAD KÖZTÁRSASÁG - JOGÁLLAM 81. A <mark>liberális demokrácia helyreállítása érdekében</mark> megteremtjük a Negyedik Magyar Köztársaságot.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“demokratikus intézmények hatékony monitorozását”
+</div>
+<span class="context">464. Meg kell erősítenünk az Alapjogi Chartát és aktívan segítenünk az olyan mechanizmusok létrejöttét, melyek lehetővé teszik a <mark>demokratikus intézmények hatékony monitorozását</mark> és közös európai értékeink betartását.</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 10.0 · verified · chunk 1</span>
+<div class="quote">
+“azonos neműek házasságának bevezetéséről”
+</div>
+<span class="context">garantáljuk. 217 Megkezdjük a társadalmi vitát az <mark>azonos neműek házasságának bevezetéséről</mark> annak érdekében, hogy öt éven belül</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“szexuális kisebbségek egyenlőségét aktív kormányzati”
+</div>
+<span class="context">bevezessük a házassági jogegyenlőséget, az örökbefogadást 218. A <mark>szexuális kisebbségek egyenlőségét aktív kormányzati</mark> erőfeszítésekkel támogatjuk, bővítjük a társadalmi</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“szexuális kisebbségek egyenlőségét aktív kormányzati erőfeszítésekkel támogatjuk”
+</div>
+<span class="context">mesterséges megtermékenyítést (IVF-beavatkozás) számukra is. 218. A <mark>szexuális kisebbségek egyenlőségét aktív kormányzati erőfeszítésekkel támogatjuk</mark>, bővítjük a társadalmi szemléletformálásra költött forrásokat.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Azonnali hatállyal ratifikáljuk és a magyar jogrendszer részeként érvényesítjük az Isztambuli Egyezményt”
+</div>
+<span class="context"><mark>Azonnali hatállyal ratifikáljuk és a magyar jogrendszer részeként érvényesítjük az Isztambuli Egyezményt</mark>, amelynek célja a nők és a családon belüli erőszak megelőzése és az ellene való küzdelem.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“A regisztrált élettársi kapcsolat jogegyenlőségét a házassággal minden állami és önkormányzati intézkedés szintjén garantáljuk”
+</div>
+<span class="context">216. <mark>A regisztrált élettársi kapcsolat jogegyenlőségét a házassággal minden állami és önkormányzati intézkedés szintjén garantáljuk</mark>, ezzel is elősegítve az azonos nemű avagy házasságot kötni nem akaró párok esélyegyenlőségét. 217. A fokozatos jogkiterjesztés részeként megkezdjük a társadalmi vitát az azonos neműek házasságának bevezetéséről.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“A szexuális kisebbségek egyenlőségét aktív kormányzati erőfeszítésekkel támogatjuk”
+</div>
+<span class="context">218. <mark>A szexuális kisebbségek egyenlőségét aktív kormányzati erőfeszítésekkel támogatjuk</mark>, bővítjük a társadalmi szemléletformálásra költött forrásokat. 219. Határozott rendészeti fellépéssel teszünk a gyűlölet-bűncselekmények megelőzéséért, az elkövetők szigorú elítéléséért.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“azonos neműek házasságának bevezetéséről”
+</div>
+<span class="context">Szociálpolitika section: Megkezdjük a társadalmi vitát az <mark>azonos neműek házasságának bevezetéséről</mark> annak érdekében, hogy öt éven belül bevezessük a házassági jogegyenlőséget.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“azonos neműek házasságának bevezetéséről”
+</div>
+<span class="context">megkezdjük a társadalmi vitát az <mark>azonos neműek házasságának bevezetéséről</mark> annak érdekében, hogy a vita sikeres lefolytatása után…bevezessük a házassági jogegyenlőséget</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“azonos nemű avagy házasságot kötni nem akaró párok esélyegyenlőségét”
+</div>
+<span class="context">216. A regisztrált élettársi kapcsolat jogegyenlőségét a házassággal minden állami és önkormányzati intézkedés szintjén garantáljuk, ezzel is elősegítve az <mark>azonos nemű avagy házasságot kötni nem akaró párok esélyegyenlőségét</mark>.</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“szabadság és a teljesítmény hívei”
+</div>
+<span class="context">titkosszolgálati aktái sem nyilvánosak még. A <mark>szabadság és a teljesítmény hívei</mark> liberális demokrataként nem engedhetik meg, hogy</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“helyreállítjuk a liberális alkotmányos demokrácia szabályait”
+</div>
+<span class="context">új alkotmányos rendszer formális kialakítása érdekében célzott módosításokkal <mark>helyreállítjuk a liberális alkotmányos demokrácia szabályait</mark> az Alaptörvény átalakítása révén.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“vásárlók kiszolgálásának javítása és a piaci verseny erősítése”
+</div>
+<span class="context">pénzforgalom átláthatóbbá tétele érdekében. 357. A <mark>vásárlók kiszolgálásának javítása és a piaci verseny erősítése</mark> érekében megszüntetjük a pláza-stopot és hatályon kívül</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Megerősítjük az Alapjogi Chartát, és segítjük olyan mechanizmusok létrejöttét”
+</div>
+<span class="context">Magyarország nemzeti érdekeivel összhangban támogatjuk az Európai Unió tagállamainak a korábbiaknál szorosabb együttműködését. <mark>Megerősítjük az Alapjogi Chartát, és segítjük olyan mechanizmusok létrejöttét</mark>, amelyek lehetővé teszik a demokratikus intézmények hatékony ellenőrzését és közös, európai értékeink betartását.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“A liberális demokrácia helyreállítása érdekében megteremtjük a Negyedik Magyar Köztársaságot”
+</div>
+<span class="context">SZABAD KÖZTÁRSASÁG - JOGÁLLAM 81. <mark>A liberális demokrácia helyreállítása érdekében megteremtjük a Negyedik Magyar Köztársaságot</mark>. 82. A magyar alkotmányos demokrácia 1989-90-es örökségéből megtartjuk és megerősítjük az alkotmányos szerkezetre és a végrehajtó hatalom kialakítására vonatkozó szabályokat.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Garantáljuk a nyugdíjak értékállóságát”
+</div>
+<span class="context">221. Igazságosabb, rugalmasabb és fenntarthatóbb nyugdíjrendszert teremtünk. Generációk viadala helyett valamennyi generáció érdekeit figyelembe vesszük a nyugdíjrendszerről hozott döntések során. 222. <mark>Garantáljuk a nyugdíjak értékállóságát</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“újra liberális demokráciában élhetünk”
+</div>
+<span class="context">Jogállam section: Programunk egy szabad köztársaság programja, ahol <mark>újra liberális demokráciában élhetünk</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“liberális alkotmányos demokrácia szabályait”
+</div>
+<span class="context">helyreállítjuk a <mark>liberális alkotmányos demokrácia szabályait</mark> az Alaptörvény átalakítása révén.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“azonos nemű avagy házasságot kötni nem akaró párok esélyegyenlőségét”
+</div>
+<span class="context">216. A regisztrált élettársi kapcsolat jogegyenlőségét a házassággal minden állami és önkormányzati intézkedés szintjén garantáljuk, ezzel is elősegítve az <mark>azonos nemű avagy házasságot kötni nem akaró párok esélyegyenlőségét</mark>.</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Orbán Viktor érdekkörének lopott vagyonát”
+</div>
+<span class="context">orvosok, ápolók kivándorlását. <mark>Orbán Viktor érdekkörének lopott vagyonát</mark> visszavesszük és kárpótlásra fordítjuk.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Tőled is sok földet lopott el a Fidesz”
+</div>
+<span class="context">MŰKÖDŐ ÁLLAM MEZŐGAZDASÁG <mark>Tőled is sok földet lopott el a Fidesz</mark> azzal, hogy korrupt módon eladta</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“kasszák online bekötése mögötti korrupt maffiarendszert”
+</div>
+<span class="context">programját. Az érintett vállalkozásokat és vállalkozókat új ösztönzőkkel támogatjuk a jelentkező bekötési többletköltség csökkentésében. 375. Megszüntetjük a <mark>kasszák online bekötése mögötti korrupt maffiarendszert</mark>. 376. Megszüntetjük a kaszinókoncessziókat</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Az Orbán Viktor érdekkörének lopott vagyonát visszavesszük”
+</div>
+<span class="context">Orbán Viktor érdekkörének lopott vagyonát visszavesszük és kárpótlásra fordítjuk. Bevezetjük az eurót, szorosan együttműködünk az Európai Unió országaival.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Tőled is sok földet lopott el a Fidesz”
+</div>
+<span class="context">MŰKÖDŐ ÁLLAM MEZŐGAZDASÁG <mark>Tőled is sok földet lopott el a Fidesz</mark> azzal, hogy korrupt módon eladta az állami tulajdonban levő területeket. Mi tisztességes mezőgazdaság-politikát szeretnénk hazánk számára.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 3</span>
+<div class="quote">
+“Felszámoljuk a Fidesz tisztességtelen birtokpolitikáját”
+</div>
+<span class="context">311. Támogatjuk a mezőgazdaság és az élelmiszeripar nemzetközi versenyképességének a javítását, a hatékony gazdálkodási formák és termelési rendszerek adaptálását és fejlesztését. 312. <mark>Felszámoljuk a Fidesz tisztességtelen birtokpolitikáját</mark>. Támogatjuk a valóban helyben élő gazdák lehetőségeit, az adórendszeren keresztül is ösztönözzük a földbirtoklás és földhasználat fedésbe hozását, és közben törekszünk a méretgazdaságossági szempontból fenntartható birtokméretek kialakítására.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Orbán Viktor érdekkörének lopott vagyonát visszavesszük”
+</div>
+<span class="context">Kulcsígéretek section: <mark>Orbán Viktor érdekkörének lopott vagyonát visszavesszük</mark> és kárpótlásra fordítjuk.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Tőled is sok földet lopott el a Fidesz”
+</div>
+<span class="context">MEZŐGAZDASÁG <mark>Tőled is sok földet lopott el a Fidesz</mark> azzal, hogy korrupt módon eladta az állami tulajdonban levő területeket.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“Felszámoljuk a Fidesz tisztességtelen birtokpolitikáját”
+</div>
+<span class="context">312. <mark>Felszámoljuk a Fidesz tisztességtelen birtokpolitikáját</mark>. Támogatjuk a valóban helyben élő gazdák lehetőségeit</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“szabadságunk felszámolása történik 2010”
+</div>
+<span class="context">Téged is fojtogat az Orbánrezsim levegője? Te is úgy érzed, <mark>szabadságunk felszámolása történik 2010</mark> óta? Mi az Együttben azt</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“Az Együtt a középúton jár”
+</div>
+<span class="context">tisztességes mezőgazdaság-politikát szeretnénk hazánk számára. <mark>Az Együtt a középúton jár</mark> az agrárium ügyeiben. Hiszünk abban,</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“kasszák online bekötése mögötti korrupt maffiarendszert”
+</div>
+<span class="context">programját. Az érintett vállalkozásokat és vállalkozókat új ösztönzőkkel támogatjuk a jelentkező bekötési többletköltség csökkentésében. 375. Megszüntetjük a <mark>kasszák online bekötése mögötti korrupt maffiarendszert</mark>. 376. Megszüntetjük a kaszinókoncessziókat</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“A magyar nemzeti kultúra nem a jobb- vagy a baloldalé, nem a liberálisoké vagy a konzervatívoké”
+</div>
+<span class="context"><mark>A magyar nemzeti kultúra nem a jobb- vagy a baloldalé, nem a liberálisoké vagy a konzervatívoké</mark>. Hanem mindannyiunké. Mi az Együttben abban hiszünk, hogy az államnak a minőségi kultúrát, a népművelést és közösségünk összetartozását kell erősítenie határainkon belül és kívül.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Az Együtt a középúton jár az agrárium ügyeiben”
+</div>
+<span class="context">MŰKÖDŐ ÁLLAM MEZŐGAZDASÁG <mark>Az Együtt a középúton jár az agrárium ügyeiben</mark>. Hiszünk abban, hogy az élelemiszer-ellátás biztonságához szükséges a nagyipari mezőgazdaság.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“Mindenkit magyarnak tekintünk, aki használja a magyar nyelvet”
+</div>
+<span class="context">455. A határon túli politikánk alapvető célja, hogy a külhoni magyarok és közösségeik magyar identitása és nyelve, valamint a magyar kultúrához való kötődése megmaradjon. 456. <mark>Mindenkit magyarnak tekintünk, aki használja a magyar nyelvet</mark> és kötődik a magyar kultúrához. Elismerjük a vegyes identitású életközösségeket a nemzetpolitikában és a támogatásoknál is.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Az Együtt a korrupcióellenes harc pártja”
+</div>
+<span class="context">Átláthatóság section: <mark>Az Együtt a korrupcióellenes harc pártja</mark>. Amikor győzünk, már csak a csökkenő korrupció miatt is azonnal boldogabb lesz az ország.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“Az Együtt a középúton jár az agrárium”
+</div>
+<span class="context"><mark>Az Együtt a középúton jár az agrárium</mark> ügyeiben. Hiszünk abban, hogy az élelemiszer-ellátás biztonságához szükséges a nagyipari mezőgazdaság.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“Szabadság és igazságosság”
+</div>
+<span class="context">Impresszum <mark>Szabadság és igazságosság</mark> Az Együtt választási programja Felelős kiadó: Együtt - A Korszakváltók Pártja</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“kizsákmányoló munkaerőkölcsönzést, szigorítjuk a”
+</div>
+<span class="context">közösségi szolgálat teljesítése. 57. oldal Betiltjuk a <mark>kizsákmányoló munkaerőkölcsönzést, szigorítjuk a</mark> munkaerőkölcsönző cégekre vonatkozó szabályok</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Fokozatosan bevezetjük a minimumjövedelmet,”
+</div>
+<span class="context">társadalombiztosítási és szociálpolitikai rendszer legyengítésére vagy megszüntetésére. 191. <mark>Fokozatosan bevezetjük a minimumjövedelmet,</mark> amely a jelenlegi segélyezési rendszer</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Pótoljuk a szociális ellátások és a nyugdíjminimum 10 éve elmaradt emelését”
+</div>
+<span class="context">Szakítunk azzal a gyakorlattal, amelyben gazdasági nehézségek esetén elsőként a szegények támogatását csökkentik. <mark>Pótoljuk a szociális ellátások és a nyugdíjminimum 10 éve elmaradt emelését</mark>, és garantált inflációkövetést vezetünk be ezekre az ellátásokra.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Felszámoljuk a Fidesz tisztességtelen birtokpolitikáját”
+</div>
+<span class="context">312 <mark>Felszámoljuk a Fidesz tisztességtelen birtokpolitikáját</mark>. Támogatjuk a valóban helyben élő gazdák lehetőségeit.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Felszámoljuk a Fidesz tisztességtelen birtokpolitikáját”
+</div>
+<span class="context">311. Támogatjuk a mezőgazdaság és az élelmiszeripar nemzetközi versenyképességének a javítását, a hatékony gazdálkodási formák és termelési rendszerek adaptálását és fejlesztését. 312. <mark>Felszámoljuk a Fidesz tisztességtelen birtokpolitikáját</mark>. Támogatjuk a valóban helyben élő gazdák lehetőségeit, az adórendszeren keresztül is ösztönözzük a földbirtoklás és földhasználat fedésbe hozását, és közben törekszünk a méretgazdaságossági szempontból fenntartható birtokméretek kialakítására.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Betiltjuk a kizsákmányoló munkaerőkölcsönzést”
+</div>
+<span class="context">Munkaügy section: <mark>Betiltjuk a kizsákmányoló munkaerőkölcsönzést</mark>, szigorítjuk a munkaerőkölcsönző cégekre vonatkozó szabályok betartatását.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“minimumjövedelmet, amely a jelenlegi segélyezési”
+</div>
+<span class="context">Fokozatosan bevezetjük a <mark>minimumjövedelmet, amely a jelenlegi segélyezési</mark> rendszer számos juttatását kiváltja.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Betiltjuk a kizsákmányoló munkaerőkölcsönzést”
+</div>
+<span class="context">336. <mark>Betiltjuk a kizsákmányoló munkaerőkölcsönzést</mark>, szigorítjuk a munkaerőkölcsönző cégekre vonatkozó szabályok betartatását.</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Orbán-rezsim minden jogfosztottja számára”
+</div>
+<span class="context">visszavesszük és kárpótlásra fordítjuk. 130 Az <mark>Orbán-rezsim minden jogfosztottja számára</mark> igazságot teszünk, és őket kárpótoljuk.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Felszámoljuk a Fidesz tisztességtelen birtokpolitikáját.”
+</div>
+<span class="context">nemzetközi versenyképességének javítását, 312 <mark>Felszámoljuk a Fidesz tisztességtelen birtokpolitikáját.</mark> Támogatjuk a valóban helyben élő</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“kasszák online bekötése mögötti korrupt maffiarendszert”
+</div>
+<span class="context">programját. Az érintett vállalkozásokat és vállalkozókat új ösztönzőkkel támogatjuk a jelentkező bekötési többletköltség csökkentésében. 375. Megszüntetjük a <mark>kasszák online bekötése mögötti korrupt maffiarendszert</mark>. 376. Megszüntetjük a kaszinókoncessziókat</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Pótoljuk a szociális ellátások és a nyugdíjminimum 10 éve elmaradt emelését”
+</div>
+<span class="context">Szakítunk azzal a gyakorlattal, amelyben gazdasági nehézségek esetén elsőként a szegények támogatását csökkentik. <mark>Pótoljuk a szociális ellátások és a nyugdíjminimum 10 éve elmaradt emelését</mark>, és garantált inflációkövetést vezetünk be ezekre az ellátásokra.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“Az Együtt a középúton jár az agrárium ügyeiben”
+</div>
+<span class="context">MŰKÖDŐ ÁLLAM MEZŐGAZDASÁG <mark>Az Együtt a középúton jár az agrárium ügyeiben</mark>. Hiszünk abban, hogy az élelemiszer-ellátás biztonságához szükséges a nagyipari mezőgazdaság.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“Felszámoljuk a Fidesz tisztességtelen birtokpolitikáját”
+</div>
+<span class="context">311. Támogatjuk a mezőgazdaság és az élelmiszeripar nemzetközi versenyképességének a javítását, a hatékony gazdálkodási formák és termelési rendszerek adaptálását és fejlesztését. 312. <mark>Felszámoljuk a Fidesz tisztességtelen birtokpolitikáját</mark>. Támogatjuk a valóban helyben élő gazdák lehetőségeit, az adórendszeren keresztül is ösztönözzük a földbirtoklás és földhasználat fedésbe hozását, és közben törekszünk a méretgazdaságossági szempontból fenntartható birtokméretek kialakítására.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“hisz a szociális piacgazdaságban”
+</div>
+<span class="context">Gazdaság section: Az Együtt hisz a szabályozott versenyben, <mark>hisz a szociális piacgazdaságban</mark>, hisz az állami beavatkozás jó megoldásaiban.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“középúton jár az agrárium ügyeiben”
+</div>
+<span class="context">Az Együtt a <mark>középúton jár az agrárium ügyeiben</mark>. Hiszünk abban, hogy az élelemiszer-ellátás biztonságához szükséges a nagyipari mezőgazdaság.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“Betiltjuk a kizsákmányoló munkaerőkölcsönzést”
+</div>
+<span class="context">336. <mark>Betiltjuk a kizsákmányoló munkaerőkölcsönzést</mark>, szigorítjuk a munkaerőkölcsönző cégekre vonatkozó szabályok betartatását.</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 1</span>
+<div class="quote">
+“szorosan együttműködünk az Európai Unió”
+</div>
+<span class="context">lopott vagyonát visszavesszük és kárpótlásra fordítjuk. Bevezetjük az eurót, <mark>szorosan együttműködünk az Európai Unió</mark> országaival. 10. oldal Ingyenessé</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Mindenkit magyarnak tekintünk, aki használja a magyar nyelvet és kötődik a magyar kultúrához”
+</div>
+<span class="context"><mark>Mindenkit magyarnak tekintünk, aki használja a magyar nyelvet és kötődik a magyar kultúrához</mark>. Elismerjük a vegyes identitású életközösségeket a nemzetpolitikában és a támogatásoknál is.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“A magyar nemzeti kultúra nem a jobb- vagy a baloldalé”
+</div>
+<span class="context">NYITOTT NEMZET KULTÚRA ÉS EMLÉKEZETPOLITIKA <mark>A magyar nemzeti kultúra nem a jobb- vagy a baloldalé</mark>, nem a liberálisoké vagy a konzervatívoké. Hanem mindannyiunké.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“Megteremtjük a határőrizet és a határrendészet összehangolt irányításának kormányzati feltételeit”
+</div>
+<span class="context">419. A magyar polgárok védelmének megerősítése érdekében új szervezetet hozunk létre a nemzetbiztonsági intézményrendszeren belül a külföldi hibrid-hadviselés és ennek részeként a kommunikációs-technológiai befolyásolás megelőzésére és kivédésére. 420. Hosszú távú és stabil megoldásokkal védjük meg a magyar határt. <mark>Megteremtjük a határőrizet és a határrendészet összehangolt irányításának kormányzati feltételeit</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“Mindenkit magyarnak tekintünk, aki használja a magyar nyelvet”
+</div>
+<span class="context">Nemzetpolitika section: <mark>Mindenkit magyarnak tekintünk, aki használja a magyar nyelvet</mark> és kötődik a magyar kultúrához.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“NATO tagállamként a világ legfontosabb katonai”
+</div>
+<span class="context"><mark>NATO tagállamként a világ legfontosabb katonai</mark> szövetségének lehetünk tagjai. Ez az együttműködés biztonságunk záloga.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“Hosszú távú és stabil megoldásokkal védjük meg a magyar határt”
+</div>
+<span class="context">420. <mark>Hosszú távú és stabil megoldásokkal védjük meg a magyar határt</mark>. Megteremtjük a határőrizet és a határrendészet összehangolt irányításának kormányzati feltételeit.</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“mindenkitől legalább 1,2 millió forintot”
+</div>
+<span class="context">Tőled mennyit lopott el Orbán Viktor és a Fidesz 7 év alatt? Szerintünk <mark>mindenkitől legalább 1,2 millió forintot</mark>, egy négytagú családtól</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“korrupt módon eladta az állami tulajdonban”
+</div>
+<span class="context">sok földet lopott el a Fidesz azzal, hogy <mark>korrupt módon eladta az állami tulajdonban</mark> levő területeket. Mi tisztességes</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Nem szabad engedni, hogy trükkös szerződésekkel törvényesítsék a lopást”
+</div>
+<span class="context"><mark>Nem szabad engedni, hogy trükkös szerződésekkel törvényesítsék a lopást</mark>, és hogy ne ismerhessük meg saját közelmúltunkat. Mert ha ezt engedjük, akkor tőled is bármit el lehet lopni a jövőben is, és nem lesz tekintélye soha az igazi teljesítménynek.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“Orbán Viktorhoz kötődő korrupt személyi kör”
+</div>
+<span class="context">MEGÚJULÓ KÖZÉLET - IGAZSÁGTÉTEL 129. Az <mark>Orbán Viktorhoz kötődő korrupt személyi kör</mark>, családtagok és strómanok 2010 után állami befolyással szerzett vagyonát kártalanítás nélkül visszavesszük és kárpótlásra fordítjuk.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · mixed · chunk 3</span>
+<div class="quote">
+“Felszámoljuk a Fidesz tisztességtelen birtokpolitikáját”
+</div>
+<span class="context">311. Támogatjuk a mezőgazdaság és az élelmiszeripar nemzetközi versenyképességének a javítását, a hatékony gazdálkodási formák és termelési rendszerek adaptálását és fejlesztését. 312. <mark>Felszámoljuk a Fidesz tisztességtelen birtokpolitikáját</mark>. Támogatjuk a valóban helyben élő gazdák lehetőségeit, az adórendszeren keresztül is ösztönözzük a földbirtoklás és földhasználat fedésbe hozását, és közben törekszünk a méretgazdaságossági szempontból fenntartható birtokméretek kialakítására.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Tőled mennyit lopott el Orbán Viktor”
+</div>
+<span class="context">Átláthatóság section: <mark>Tőled mennyit lopott el Orbán Viktor</mark> és a Fidesz 7 év alatt?</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“az elnyomó Orbán-rendszerrel kollaborálva”
+</div>
+<span class="context">Jóvátételi adót vetünk ki azon vállalkozásokra, amelyek <mark>az elnyomó Orbán-rendszerrel kollaborálva</mark> anyagi haszonélvezői voltak</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“korrupt maffiarendszert”
+</div>
+<span class="context">375. Megszüntetjük a kasszák online bekötése mögötti <mark>korrupt maffiarendszert</mark>.</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“minden gyerek egyformán számít”
+</div>
+<span class="context">KULCSÍGÉRETEINK Igazságos családtámogatást vezetünk be, mert nekünk <mark>minden gyerek egyformán számít</mark>. Önálló gondolkodásra nevelünk</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“minden magyar polgár és minden szövetségesünk”
+</div>
+<span class="context">Ez az együttműködés biztonságunk záloga. Minden magyar polgár és minden szövetségesünk biztonsága a mi közös felelősségünk.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Mi az Együttben egy olyan Magyarországon akarunk élni, ahol nem kell tömegeknek rettegniük attól, hogy mi lesz holnap.”
+</div>
+<span class="context">Sok dolgozó ember számára is nehézséget jelent a megélhetés, és esélyük sincs arra, hogy egyről a kettőre jussanak. Ma 10-ből 4 magyar ember szegénységben él. A szegénység ráadásul beteggé tesz, a szegények sokkal rövidebb ideig élnek. Azok a gyermekek, akik ma Magyarországon szegény családokba születnek, szinte hogy biztosan szegénységben fogják leélni felnőtt életüket is. <mark>Mi az Együttben egy olyan Magyarországon akarunk élni, ahol nem kell tömegeknek rettegniük attól, hogy mi lesz holnap.</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“A magyar nemzeti kultúra nem a jobb- vagy a baloldalé”
+</div>
+<span class="context">NYITOTT NEMZET KULTÚRA ÉS EMLÉKEZETPOLITIKA <mark>A magyar nemzeti kultúra nem a jobb- vagy a baloldalé</mark>, nem a liberálisoké vagy a konzervatívoké. Hanem mindannyiunké.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · mixed · chunk 3</span>
+<div class="quote">
+“Mindenkit magyarnak tekintünk, aki használja a magyar nyelvet”
+</div>
+<span class="context">455. A határon túli politikánk alapvető célja, hogy a külhoni magyarok és közösségeik magyar identitása és nyelve, valamint a magyar kultúrához való kötődése megmaradjon. 456. <mark>Mindenkit magyarnak tekintünk, aki használja a magyar nyelvet</mark> és kötődik a magyar kultúrához. Elismerjük a vegyes identitású életközösségeket a nemzetpolitikában és a támogatásoknál is.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Neked is az az érdeked, hogy a magyar állam”
+</div>
+<span class="context">Családpolitika section: <mark>Neked is az az érdeked, hogy a magyar állam</mark> számára minden család egyenlő legyen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“A te biztonságodat is a mi politikánk”
+</div>
+<span class="context">Minden magyar polgár és minden szövetségesünk biztonsága a mi közös felelősségünk. <mark>A te biztonságodat is a mi politikánk</mark> tudja a legjobban garantálni.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“minden gyermek biztonságban nőhessen fel”
+</div>
+<span class="context">237. Nem teszünk különbséget gyermek és gyermek, család és család között. Mindenki maga választhatja meg… Mi abban segítünk, hogy <mark>minden gyermek biztonságban nőhessen fel</mark>.</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Orbán Viktorhoz kötődő korrupt családtagok”
+</div>
+<span class="context">várólistáit lerövidítjük, a rendelőintézeti előjegyzési listákat maximum egy hetesre csökkentjük. 42. oldal Az <mark>Orbán Viktorhoz kötődő korrupt családtagok</mark> és strómanok 2010 után</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Felszámoljuk a Fidesz tisztességtelen birtokpolitikáját.”
+</div>
+<span class="context">nemzetközi versenyképességének javítását, 312 <mark>Felszámoljuk a Fidesz tisztességtelen birtokpolitikáját.</mark> Támogatjuk a valóban helyben élő</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“kasszák online bekötése mögötti korrupt maffiarendszert”
+</div>
+<span class="context">programját. Az érintett vállalkozásokat és vállalkozókat új ösztönzőkkel támogatjuk a jelentkező bekötési többletköltség csökkentésében. 375. Megszüntetjük a <mark>kasszák online bekötése mögötti korrupt maffiarendszert</mark>. 376. Megszüntetjük a kaszinókoncessziókat</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Az Orbán Viktor érdekkörének lopott vagyonát visszavesszük”
+</div>
+<span class="context">Orbán Viktor érdekkörének lopott vagyonát visszavesszük és kárpótlásra fordítjuk. Bevezetjük az eurót, szorosan együttműködünk az Európai Unió országaival.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“Tőled is sok földet lopott el a Fidesz”
+</div>
+<span class="context">MŰKÖDŐ ÁLLAM MEZŐGAZDASÁG <mark>Tőled is sok földet lopott el a Fidesz</mark> azzal, hogy korrupt módon eladta az állami tulajdonban levő területeket. Mi tisztességes mezőgazdaság-politikát szeretnénk hazánk számára.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · mixed · chunk 3</span>
+<div class="quote">
+“Felszámoljuk a Fidesz tisztességtelen birtokpolitikáját”
+</div>
+<span class="context">311. Támogatjuk a mezőgazdaság és az élelmiszeripar nemzetközi versenyképességének a javítását, a hatékony gazdálkodási formák és termelési rendszerek adaptálását és fejlesztését. 312. <mark>Felszámoljuk a Fidesz tisztességtelen birtokpolitikáját</mark>. Támogatjuk a valóban helyben élő gazdák lehetőségeit, az adórendszeren keresztül is ösztönözzük a földbirtoklás és földhasználat fedésbe hozását, és közben törekszünk a méretgazdaságossági szempontból fenntartható birtokméretek kialakítására.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“felszámoljuk a magyarországi rendszerszintű korrupciót”
+</div>
+<span class="context">Az Együtt a korrupcióellenes harc pártja… <mark>felszámoljuk a magyarországi rendszerszintű korrupciót</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“korrupt módon eladta az állami tulajdonban”
+</div>
+<span class="context">Tőled is sok földet lopott el a Fidesz azzal, hogy <mark>korrupt módon eladta az állami tulajdonban</mark> levő területeket.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“Felszámoljuk a Fidesz tisztességtelen birtokpolitikáját”
+</div>
+<span class="context">312. <mark>Felszámoljuk a Fidesz tisztességtelen birtokpolitikáját</mark>. Támogatjuk a valóban helyben élő gazdák lehetőségeit</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="86340_201804_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

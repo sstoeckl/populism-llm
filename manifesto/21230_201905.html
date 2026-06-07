@@ -1,0 +1,3320 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>PTB/PVDA (Belgium, 2019) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/21230_201905_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">PTB/PVDA (Belgium, 2019)</h1>
+<p class="subtitle lead">manifesto_id 21230_201905</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Belgium · <span class="item"><strong>Party</strong></span> PTB/PVDA (Workers’ Party of Belgium) · <span class="item"><strong>Year</strong></span> 2019 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 20</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.6</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.9</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.1</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.1</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.1</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.1</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“We zetten de markt buitenspel”
+</div>
+<span class="context">voldoende financiële middelen voor hebben. <mark>We zetten de markt buitenspel</mark> en investeren in een publieke gezondheidszorg</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“wijzen elke commercialisering of vermarkting van sociaal werk af”
+</div>
+<span class="context">We sluiten langetermijn convenanten met het sociale middenveld en <mark>wijzen elke commercialisering of vermarkting van sociaal werk af</mark>. We zetten in op structurele financiering.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“vervangen we de emissiehandel door bindende normen”
+</div>
+<span class="context">verlammende concurrentielogica te overwinnen. Daarom <mark>vervangen we de emissiehandel door bindende normen</mark>, met een helder pad</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“bepaalde basisproducten, zoals melk en vlees, leggen we minimumprijzen vast”
+</div>
+<span class="context">Voor <mark>bepaalde basisproducten, zoals melk en vlees, leggen we minimumprijzen vast</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 5</span>
+<div class="quote">
+“Geen vermarkting van de zorg”
+</div>
+<span class="context">financiering van de zorg blijft bij de zorgorganisaties en de betaling van opvangplaatsen. <mark>Geen vermarkting van de zorg</mark>. TWEE. AANGEPAST</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“verbieden we de app van Uber”
+</div>
+<span class="context">Net als in veel andere steden in de wereld <mark>verbieden we de app van Uber</mark>. We zetten valse zelfstandigencontracten</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“de vermarkting van het jeugdwerk bedreigt de onafhankelijkheid”
+</div>
+<span class="context">te bouwen aan langdurige projecten. De vermarkting van het jeugdwerk bedreigt de onafhankelijkheid ervan. Het jeugdwerk kraakt onder de werkdruk</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 8</span>
+<div class="quote">
+“Europese verdragen duwen richting liberalisering en privatisering”
+</div>
+<span class="context">Maar de <mark>Europese verdragen duwen richting liberalisering en privatisering</mark> ervan.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 9</span>
+<div class="quote">
+“overheidsmonopolies om de sleutelsectoren te beschermen”
+</div>
+<span class="context">Een Europa met een centrale rol voor openbare sectoren. Met <mark>overheidsmonopolies om de sleutelsectoren te beschermen</mark> tegen de haaien</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“We stoppen de sociale afbraak en verhogen de koopkracht”
+</div>
+<span class="context">Wij komen op voor vast werk en volwaardige lonen. <mark>We stoppen de sociale afbraak en verhogen de koopkracht</mark>. We maken korte metten met flexi-jobs en nul-uurcontracten en beschermen werknemers tegen dolgedraaide flexibiliteit en banenverlies.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“We scheppen 20.000 nieuwe, volwaardige jobs in de sociale economie en werken zo de wachtlijsten weg.”
+</div>
+<span class="context">DRIE. VAST EN VOLWAARDIG WERK, OOK VOOR MENSEN IN EEN KWETSBARE POSITIE … <mark>We scheppen 20.000 nieuwe, volwaardige jobs in de sociale economie en werken zo de wachtlijsten weg.</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“We vervangen de emissiehandel door bindende normen”
+</div>
+<span class="context">Daarom vervangen we de emissiehandel door bindende normen, met een helder pad naar negatieve emissies in 2050. Zo wordt de industrie genoodzaakt drastische energiebesparende maatregelen te nemen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“progressieve fiscaliteit op vastgoed”
+</div>
+<span class="context">We organiseren een <mark>progressieve fiscaliteit op vastgoed</mark>. Die houdt rekening met de waarde van het vastgoed, het aantal woningen in iemands bezit en het totale inkomen en vermogen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“We beëindigen ook het nefaste beleid van publiek-private samenwerking”
+</div>
+<span class="context"><mark>We beëindigen ook het nefaste beleid van publiek-private samenwerking</mark> (pps) bij de bouw van scholen, zwembaden, wegen en spoorlijnen. De pps-projecten staan voor private winsten en publieke risico’s.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 6</span>
+<div class="quote">
+“de federale en gewestelijke overheden laten de innovatie van nieuwe apps en technologieën over aan de vrije markt”
+</div>
+<span class="context">De federale en gewestelijke overheden laten de innovatie van nieuwe apps en technologieën over aan de vrije markt en aan private investeerders. Projecten met snel geldgewin als opzet sluiten haast vanzelf minder bemiddelden uit. En maar heel weinig sociale digitale projecten komen van de grond.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“We zorgen voor genoeg sociale voorzieningen zodat we wedijver tussen mensen die het moeilijk hebben, voorkomen”
+</div>
+<span class="context"><mark>We zorgen voor genoeg sociale voorzieningen zodat we wedijver tussen mensen die het moeilijk hebben, voorkomen</mark>. We streven naar een arbeidsmarkt met voldoende kwaliteitsbanen om zo de concurrentie voor schaarse vacatures uit te schakelen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 8</span>
+<div class="quote">
+“Wij verzetten ons tegen de privatisering van het recht waarbij staten en volkeren aan rechten inboeten”
+</div>
+<span class="context"><mark>Wij verzetten ons tegen de privatisering van het recht waarbij staten en volkeren aan rechten inboeten</mark> in het voordeel van multinationale ondernemingen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 9</span>
+<div class="quote">
+“Vermarkting, concurrentie en besparingen zijn de Europese ordewoorden”
+</div>
+<span class="context">Want vandaag draait alles krom. <mark>Vermarkting, concurrentie en besparingen zijn de Europese ordewoorden</mark>. Openbare diensten worden kapot bespaard. Vermarkten is immers: de openbare sector terugdringen en alles overleveren aan de winstlogica. De concurrentieen besparingsdynamiek maakt Europa kapot.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“markt buitenspel en investeren in een publieke gezondheidszorg”
+</div>
+<span class="context">We zetten de <mark>markt buitenspel en investeren in een publieke gezondheidszorg</mark> van kwaliteit en op mensenmaat</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“de vrijmaking van de energiemarkt”
+</div>
+<span class="context">De vrijmaking van de energiemarkt, het emissiehandelssysteem, de eeuwige nadruk op de individuele verantwoordelijkheid… het is allemaal nefast geweest.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“liberalisering van de markt, de daling van de landbouwprijzen”
+</div>
+<span class="context">Door de <mark>liberalisering van de markt, de daling van de landbouwprijzen</mark> en het grotere beslag op die prijzen door toeleveranciers en afnemers, zijn de boeren in een dolle wedren naar competitiviteit terechtgekomen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“minimumprijzen vast”
+</div>
+<span class="context">Voor bepaalde basisproducten, zoals melk en vlees, leggen we <mark>minimumprijzen vast</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“handelsvrijheid verstoren en de concurrentie vervalsen”
+</div>
+<span class="context">investeren van overheidsgeld in cultuur zou de <mark>handelsvrijheid verstoren en de concurrentie vervalsen</mark>. Intussen wordt de greep van de cultuurmonopolies almaar verstikkender.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“innovatie van nieuwe apps en technologieën over aan de vrije markt”
+</div>
+<span class="context">De federale en gewestelijke overheden laten de <mark>innovatie van nieuwe apps en technologieën over aan de vrije markt</mark> en aan private investeerders. Projecten met snel geldgewin als opzet sluiten haast vanzelf minder bemiddelden uit.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“België een van de meest liberale landen”
+</div>
+<span class="context">Op het vlak van ontslag is <mark>België een van de meest liberale landen</mark>. Anders dan in Duitsland, Frankrijk en Nederland kan een werkgever bij ons altijd overgaan tot ontslag, zelfs als hij daar geen reden voor heeft.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 8</span>
+<div class="quote">
+“richting liberalisering en privatisering”
+</div>
+<span class="context">Wij willen kwaliteitsvolle openbare diensten en het recht bepaalde sectoren te vermaatschappelijken. Maar de Europese verdragen duwen <mark>richting liberalisering en privatisering</mark> ervan.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 9</span>
+<div class="quote">
+“De privatiseringen, in al hun vormen, zijn mislukt”
+</div>
+<span class="context">De basisfunctie van een openbare dienst is: diensten verlenen aan de gemeenschap. <mark>De privatiseringen, in al hun vormen, zijn mislukt</mark>. We weigeren nog meer openbare diensten te privatiseren.</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“willen een doorgedreven controle op de hele kredietsector”
+</div>
+<span class="context">Overal lokt en lonkt het gemakkelijke krediet. We zien vaak leugenachtige aanbiedingen, de kredietwaardigheid wordt dikwijls slecht gecontroleerd. We <mark>willen een doorgedreven controle op de hele kredietsector</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“richten we een openbare landbouwbank op”
+</div>
+<span class="context">ondersteuning nodig. Daarom <mark>richten we een openbare landbouwbank op</mark>, als een filiaal van de openbare bank</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“richten we een openbare landbouwbank op”
+</div>
+<span class="context">Ze hebben ondersteuning nodig. Daarom <mark>richten we een openbare landbouwbank op</mark>, als een filiaal van de openbare bank.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 5</span>
+<div class="quote">
+“oprichting van een nieuwe grote openbare bank”
+</div>
+<span class="context">We beginnen eraan met de <mark>oprichting van een nieuwe grote openbare bank</mark> 4.0. Een bank die een</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 6</span>
+<div class="quote">
+“schaffen het bankgeheim af”
+</div>
+<span class="context">We <mark>schaffen het bankgeheim af</mark> en verplichten de banken aan de fiscus het saldo mee te delen</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 7</span>
+<div class="quote">
+“industriële en financiële mastodonten controleren de economische sectoren”
+</div>
+<span class="context">DEMOCRATISCHE RECHTEN Het is een wereldfenomeen: <mark>industriële en financiële mastodonten controleren de economische sectoren</mark> en staten helpen hen die controle te behouden</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 8</span>
+<div class="quote">
+“We verbieden hedgefondsen en gestructureerde financiële producten”
+</div>
+<span class="context"><mark>We verbieden hedgefondsen en gestructureerde financiële producten</mark> (derivaten), evenals kortetermijnspeculatie en short selling.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 9</span>
+<div class="quote">
+“We verbieden hedgefondsen en gestructureerde financiële producten”
+</div>
+<span class="context">ten nadele van particuliere banken. <mark>We verbieden hedgefondsen en gestructureerde financiële producten</mark> (derivaten), evenals kortetermijnspeculatie</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“We vorderen alle overheidssteun, subsidies en belastingkortingen terug”
+</div>
+<span class="context"><mark>We vorderen alle overheidssteun, subsidies en belastingkortingen terug</mark> van winstgevende bedrijven die toch afdanken. We verplichten bedrijven die collectief willen afdanken eerst alternatieven uit te werken: arbeidsduurvermindering, een reconversieplan …</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“We richten een Energiefonds op om zware energieschulden gedeeltelijk kwijt te schelden wanneer volledige schuldaflossing niet realistisch is.”
+</div>
+<span class="context">VIJF. ENERGIE EN WATER ZIJN MENSENRECHTEN … <mark>We richten een Energiefonds op om zware energieschulden gedeeltelijk kwijt te schelden wanneer volledige schuldaflossing niet realistisch is.</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“De overheidssteun per inwoner is voor de twee omroepen nu bij de laagste van Europa”
+</div>
+<span class="context">De openbare omroepen voor radio, televisie en nieuwe media – VRT en RTBF – moeten het opnemen tegen grote multimediaconglomeraten die hen naar de marge willen duwen. Tegelijk liggen ze onder het bezuinigingsvuur van het beleid. <mark>De overheidssteun per inwoner is voor de twee omroepen nu bij de laagste van Europa</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“We schaffen het bankgeheim af en verplichten de banken aan de fiscus het saldo mee te delen”
+</div>
+<span class="context">We richten een aparte cel “grote vermogens” bij het ministerie van Financiën. <mark>We schaffen het bankgeheim af en verplichten de banken aan de fiscus het saldo mee te delen</mark> en jaarlijks een synthese te geven van de transacties met bankrekeningen en met rekeningen van buitenlandse dochtermaatschappijen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 8</span>
+<div class="quote">
+“Wij heffen het bankgeheim op en geven meer middelen aan de inspectiediensten van Financiën”
+</div>
+<span class="context">Met de middelen die door de afschafng van het verbod op cannabis bij Justitie vrijkomen, pakken we de strijd tegen de grote dealers aan. We zorgen voor een versteviging van de douanediensten in de haven van Antwerpen. We heffen het bankgeheim op en geven meer middelen aan de inspectiediensten van Financiën.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 9</span>
+<div class="quote">
+“We verbieden hedgefondsen en gestructureerde financiële producten”
+</div>
+<span class="context">We doen een burgeraudit van de overheidsschuld en organiseren een Europese conferentie die leidt tot moratoria, lagere interestvoeten, schuldherschikkingen en gedeeltelijke schuldannuleringen ten nadele van particuliere banken. We willen rechtvaardige fiscaliteit voorrang geven op het vrije verkeer van kapitaal. Wij leggen de Tobintaks weer op tafel. <mark>We verbieden hedgefondsen en gestructureerde financiële producten</mark> (derivaten), evenals kortetermijnspeculatie en short selling.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“intense controle op de hele kredietsector”
+</div>
+<span class="context">We voorkomen het ophopen van schulden en doen daarom een <mark>intense controle op de hele kredietsector</mark> met daarbij consequente, strenge sancties</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“doorgedreven controle op de hele kredietsector”
+</div>
+<span class="context">We willen een <mark>doorgedreven controle op de hele kredietsector</mark>. Met consequente en strenge sancties.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“Speculatie op landbouwen voedingsproducten is verboden”
+</div>
+<span class="context">We reguleren de gemeenschappelijke markt van de belangrijkste landbouwproducten. <mark>Speculatie op landbouwen voedingsproducten is verboden</mark> en wordt streng bestraft.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“openbare landbouwbank op, als een filiaal”
+</div>
+<span class="context">Daarom richten we een <mark>openbare landbouwbank op, als een filiaal</mark> van de openbare bank.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“verboden uit te lenen aan financieringsfondsen”
+</div>
+<span class="context">Anders dan bij private banken is het voor deze bank <mark>verboden uit te lenen aan financieringsfondsen</mark> zoals hedge funds of mutual funds.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“taks op financiële transacties invoeren: de Tobin-taks”
+</div>
+<span class="context">Wij willen een belasting op financiële transacties invoeren: de Tobin-taks. Tien lidstaten van de Europese Unie, waaronder België, buigen zich al jaren over het invoeren van deze Tobin-taks</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“financiële mastodonten controleren de economische sectoren”
+</div>
+<span class="context">Het is een wereldfenomeen: industriële en <mark>financiële mastodonten controleren de economische sectoren</mark> en staten helpen hen die controle te behouden.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 8</span>
+<div class="quote">
+“Wij leggen de Tobintaks weer op tafel”
+</div>
+<span class="context">Wij willen rechtvaardige fiscaliteit voorrang geven op het vrije verkeer van kapitaal. <mark>Wij leggen de Tobintaks weer op tafel</mark>. We verbieden hedgefondsen en gestructureerde financiële producten</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 0.0 · verified · chunk 9</span>
+<div class="quote">
+“verbieden hedgefondsen en gestructureerde financiële producten”
+</div>
+<span class="context">We <mark>verbieden hedgefondsen en gestructureerde financiële producten</mark> (derivaten), evenals kortetermijnspeculatie en short selling.</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“volksvertegenwoordiger Raoul Hedebouw van de”
+</div>
+<span class="context">sociale beweging is zich blijven verzetten. Volksvertegenwoordiger Raoul Hedebouw van de PVDA verzette zich vijf jaar</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“zo versterkt sociaal werk het democratische gehalte”
+</div>
+<span class="context">Sociaal werk heeft de taak de stem van de mensen die onbeschermd zijn, hoorbaar te maken. Zo versterkt sociaal werk het democratische gehalte van onze samenleving.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“recht op water op in artikel 23 van de Grondwet”
+</div>
+<span class="context">EEN. GEGARANDEERD RECHT OP WATER VOOR IEDEREEN We nemen het <mark>recht op water op in artikel 23 van de Grondwet</mark>. Water wordt toegevoegd</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“waardigheid daarom vast in de Belgische Grondwet”
+</div>
+<span class="context">welzijn van dieren als gevoelige wezens met eigen belangen en <mark>waardigheid daarom vast in de Belgische Grondwet</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“verstevigen de academische vrijheid”
+</div>
+<span class="context">Wij verdedigen en <mark>verstevigen de academische vrijheid</mark>. Die is de laatste jaren herhaalde malen</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“de Universele Verklaring voor de Rechten”
+</div>
+<span class="context">We stellen <mark>de Universele Verklaring voor de Rechten</mark> van de Mens centraal in ons engagement</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“de klassieke grondrechten zoals het recht op vrije meningsuiting”
+</div>
+<span class="context">de eerste generatie mensenrechten: <mark>de klassieke grondrechten zoals het recht op vrije meningsuiting</mark> en de vrijheid van vereniging. Deze rechten worden</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“de scheiding der machten is een pijler van de rechtsstaat”
+</div>
+<span class="context">De scheiding der machten is een pijler van de rechtsstaat. De rechterlijke macht moet bescherming bieden</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 9</span>
+<div class="quote">
+“democratische vrijheden en mensenrechten”
+</div>
+<span class="context">Big Brother gaat bij ons de deur uit. We garanderen de <mark>democratische vrijheden en mensenrechten</mark> tegen massadatabanken</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“We tekenen Conventie 158 van de Internationale Arbeidsorganisatie”
+</div>
+<span class="context">Wij versterken die bescherming. <mark>We tekenen Conventie 158 van de Internationale Arbeidsorganisatie</mark>. Die verplicht de werkgevers elk ontslag te motiveren. Werknemers krijgen de kans om zich te verdedigen, met bijstand van de vakbond en hebben het recht in beroep te gaan bij de arbeidsrechtbank.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“We versterken de stem van mensen in armoede en laten hen mee het armoedebeleid uittekenen.”
+</div>
+<span class="context">ZES. GEEF MENSEN IN ARMOEDE HET WOORD <mark>We versterken de stem van mensen in armoede en laten hen mee het armoedebeleid uittekenen.</mark> We investeren in de opleidingen voor ervaringsdeskundigen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“We nemen het recht op water op in artikel 23 van de Grondwet”
+</div>
+<span class="context"><mark>We nemen het recht op water op in artikel 23 van de Grondwet</mark>. Water wordt toegevoegd aan de lijst van goederen waarop geen beslag gelegd mag worden, volgens artikel 1408 van het Gerechtelijk Wetboek.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“recht op wonen staat in de Belgische Grondwet”
+</div>
+<span class="context">Het recht op behoorlijke huisvesting staat in de Belgische Grondwet en ook in de Universele Verklaring van de Rechten van de Mens. Maar dat recht is dode letter.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“artikel 23 van de Grondwet waar: “Iedereen heeft recht op culturele ontplooiing””
+</div>
+<span class="context">Dan maken we <mark>artikel 23 van de Grondwet waar: “Iedereen heeft recht op culturele ontplooiing”</mark>. Wij streven naar deelname van allen, met toegang voor allen. Tegenover de grote ‘creatieve industrieën’ opteren we voor een rijk kunsten cultuurleven van onderuit dat mensen actief en weerbaar maakt en hen energie geeft om hun leven en de samenleving aan te pakken.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“We beschermen de vrijheid van vereniging en het recht op vrije meningsuiting”
+</div>
+<span class="context"><mark>We beschermen de vrijheid van vereniging en het recht op vrije meningsuiting</mark> via betogingen, flyers, acties, sociale media … Wetten en reglementen mogen deze rechten niet uithollen. We stellen de Universele Verklaring voor de Rechten van de Mens centraal in ons engagement voor een menselijke samenleving.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“Wij verdedigen de eerste generatie mensenrechten: de klassieke grondrechten zoals het recht op vrije meningsuiting en de vrijheid van vereniging”
+</div>
+<span class="context">Voor ons is het essentieel dat deze grondrechten gewaarborgd blijven. We verdedigen de eerste generatie mensenrechten: de klassieke grondrechten zoals het recht op vrije meningsuiting en de vrijheid van vereniging.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“Wij versterken het mandaat van de onderzoeksrechter”
+</div>
+<span class="context"><mark>Wij versterken het mandaat van de onderzoeksrechter</mark>. Een gerechtelijk onderzoek onder leiding van een onderzoeksrechter is efficiënt en geeft de nodige garanties voor verdachten en slachtoffers.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 9</span>
+<div class="quote">
+“We garanderen de democratische vrijheden en mensenrechten”
+</div>
+<span class="context"><mark>We garanderen de democratische vrijheden en mensenrechten</mark> tegen massadatabanken, passagiersregisters en digitale vingerafdrukken. Klokkenluiders beschermen we.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“ondemocratische verhoging van de pensioenleeftijd”
+</div>
+<span class="context">Raoul Hedebouw van de PVDA verzette zich vijf jaar in het parlement tegen de <mark>ondemocratische verhoging van de pensioenleeftijd</mark> tot 67 jaar</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“ecologische, democratische en sociale planning”
+</div>
+<span class="context">Met een kaderwet leggen we de basis voor een <mark>ecologische, democratische en sociale planning</mark> op alle beleidsniveaus om de uitstoot van broeikasgassen tegen 2050 tot nul te herleiden.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“controle door burgers en het middenveld”
+</div>
+<span class="context">Overheidsbedrijven in de watersector moeten transparant werken, met <mark>controle door burgers en het middenveld</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“in de Belgische Grondwet”
+</div>
+<span class="context">We nemen het principe van het welzijn van dieren als gevoelige wezens met eigen belangen en waardigheid op <mark>in de Belgische Grondwet</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“academische vrijheid”
+</div>
+<span class="context">Wij verdedigen en verstevigen de <mark>academische vrijheid</mark>. Die is de laatste jaren herhaalde malen in het gedrang gekomen bij disciplinaire maatregelen tegen onderzoekers</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · mixed · chunk 6</span>
+<div class="quote">
+“bindend burgerreferendum in”
+</div>
+<span class="context">We voeren een <mark>bindend burgerreferendum in</mark>. Als 1% van het betrokken kiezerskorps dat vraagt wordt een voorstel of een beslissing voorgelegd aan de bevolking.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“bindend burgerreferendum”
+</div>
+<span class="context">Daarin past het <mark>bindend burgerreferendum</mark>. Als 1% van het betrokken kiezerskorps dat vraagt, wordt een voorstel of een beslissing voorgelegd aan de bevolking.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 8</span>
+<div class="quote">
+“democratische controle op de werking”
+</div>
+<span class="context">Wij vergroten de parlementaire en <mark>democratische controle op de werking</mark> van het Comité P en het Comité I.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 9</span>
+<div class="quote">
+“We garanderen de democratische vrijheden en mensenrechten”
+</div>
+<span class="context">Big Brother gaat bij ons de deur uit. <mark>We garanderen de democratische vrijheden en mensenrechten</mark> tegen massadatabanken, passagiersregisters en digitale vingerafdrukken.</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“nultolerantie tegen racisme en discriminatie”
+</div>
+<span class="context">diploma en we voeren een beleid van <mark>nultolerantie tegen racisme en discriminatie</mark>. Zo creëren we extra tewerkstellingskansen.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“nultolerantiebeleid inzake van racisme en discriminatie”
+</div>
+<span class="context">We geven ervaring en competenties evenveel erkenning als een diploma en voeren een <mark>nultolerantiebeleid inzake van racisme en discriminatie</mark>. Zo creëren we extra tewerkstellingskansen.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“toegankelijk maken voor mensen met een beperking”
+</div>
+<span class="context">tegen 2024 alle stations <mark>toegankelijk maken voor mensen met een beperking</mark>. Om dit Routeplan 2030</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“mensen met een beperking zijn mensen met rechten”
+</div>
+<span class="context">Mensen met een beperking zijn mensen met rechten, net als ieder ander mens.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 5</span>
+<div class="quote">
+“rechten van personen met een beperking”
+</div>
+<span class="context">Om die rechten te verzekeren is er het VN-Verdrag over de <mark>rechten van personen met een beperking</mark> van 13 december</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“de klassieke grondrechten zoals het recht”
+</div>
+<span class="context">We verdedigen de eerste generatie mensenrechten: <mark>de klassieke grondrechten zoals het recht</mark> op vrije meningsuiting en de vrijheid van vereniging.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 7</span>
+<div class="quote">
+“een regenboogmaatschappij zonder discriminatie van LGBT+’ers”
+</div>
+<span class="context">KOM OP VOOR DE HELE REGENBOOG 31.EEN REGENBOOGMAATSCHAPPIJ ZONDER DISCRIMINATIE VAN LGBT+’ERS STANDPUNT Waar mensen ook vandaan komen, welke</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 8</span>
+<div class="quote">
+“een samenleving die op de rechten van de mens gebaseerd is”
+</div>
+<span class="context">Want het is onaanvaardbaar dat in <mark>een samenleving die op de rechten van de mens gebaseerd is</mark>, nog zoveel LGBT+’ers het slachtoffer zijn</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 9</span>
+<div class="quote">
+“asielrecht en het beperken van de basisrechten”
+</div>
+<span class="context">De aanvallen op het <mark>asielrecht en het beperken van de basisrechten</mark> van vluchtelingen vormen een gevaar voor iedereen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“We investeren in bijkomende tolk-uren”
+</div>
+<span class="context"><mark>We investeren in bijkomende tolk-uren</mark>. Dat verbetert de kwaliteit van de hulpverlening. We zorgen dat sociale rechten zoveel mogelijk automatisch toegekend worden. Daarnaast is een rechtenverkenning van belang: voor iedereen nagaan op welke rechten en sociale tegemoetkomingen hij of zij recht heeft.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“We voeren een beleid van nultolerantie tegen racisme en discriminatie.”
+</div>
+<span class="context">DRIE. VAST EN VOLWAARDIG WERK, OOK VOOR MENSEN IN EEN KWETSBARE POSITIE … <mark>We voeren een beleid van nultolerantie tegen racisme en discriminatie.</mark> Zo creëren we extra tewerkstellingskansen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“We verbieden dat men om financiële redenen water bij mensen afsluit”
+</div>
+<span class="context"><mark>We verbieden dat men om financiële redenen water bij mensen afsluit</mark> of beperkt. Bij achterstallige betalingen dient een schuldbemiddelingsdienst mensen te begeleiden.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“gelijke kansen voor hen allemaal”
+</div>
+<span class="context">Zou het niet mooi zijn: een sterk onderwijs waarin alle leerlingen slagen? Daarvoor hebben we kwaliteitsscholen nodig die de sociale ongelijkheid tegengaan, toegankelijke scholen met <mark>gelijke kansen voor hen allemaal</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 5</span>
+<div class="quote">
+“We bestraffen discriminatie tegenover mensen met een beperking”
+</div>
+<span class="context">We passen meer sociale woningen aan voor mensen met een beperkte mobiliteit. <mark>We bestraffen discriminatie tegenover mensen met een beperking</mark> op de private woonmarkt.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“het recht op vrije meningsuiting en de vrijheid van vereniging”
+</div>
+<span class="context">Voor ons zijn de mensenrechten universeel en ondeelbaar. De opstellers van de Universele Verklaring van de Rechten van de Mens noemden de verklaring heel bewust “universeel”. De mensenrechten komen toe aan alle leden van de mensengemeenschap. We verdedigen de eerste generatie mensenrechten: de klassieke grondrechten zoals <mark>het recht op vrije meningsuiting en de vrijheid van vereniging</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“Wij ijveren ervoor dat ze dat worden. Voor ons zijn de mensenrechten universeel en ondeelbaar”
+</div>
+<span class="context">Veel van deze rechten zijn vastgelegd in de Belgische Grondwet, in artikel 23 bijvoorbeeld, maar ze zijn meestal niet afdwingbaar. We ijveren ervoor dat ze dat worden. Voor ons zijn de mensenrechten universeel en ondeelbaar.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 8</span>
+<div class="quote">
+“Het is onaanvaardbaar dat in een samenleving die op de rechten van de mens gebaseerd is”
+</div>
+<span class="context">Want het is onaanvaardbaar dat in een samenleving die op de rechten van de mens gebaseerd is, nog zoveel LGBT+’ers het slachtoffer zijn van beledigingen op straat, van pestgedrag op het werk, van fysieke agressie en haatmisdrijven.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 9</span>
+<div class="quote">
+“We garanderen democratische vrijheden en mensenrechten”
+</div>
+<span class="context"><mark>We garanderen democratische vrijheden en mensenrechten</mark> tegen massadatabanken, passagiersregisters en digitale vingerafdrukken. Klokkenluiders zoals Antoine Deltour, die het LuxLeaks-schandaal mee naar buiten bracht, beschermen we.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“nultolerantie tegen racisme en discriminatie”
+</div>
+<span class="context">We voeren een beleid van <mark>nultolerantie tegen racisme en discriminatie</mark>. Zo creëren we extra tewerkstellingskansen</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“nultolerantie tegen racisme en discriminatie”
+</div>
+<span class="context">we voeren een beleid van <mark>nultolerantie tegen racisme en discriminatie</mark>. Zo creëren we extra tewerkstellingskansen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Een stad waar bewoners elkaar”
+</div>
+<span class="context"><mark>Een stad waar bewoners elkaar</mark> (leren) kennen en in alle diversiteit samenwerken.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“mensen met een beperking zijn mensen met rechten”
+</div>
+<span class="context">Mensen met een beperking zijn mensen met rechten, net als ieder ander mens. Iedere persoon moet zich kunnen ontplooien</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“vrouwenrechten en de positie van de flexwerkers”
+</div>
+<span class="context">Met strikte arbeidsreglementen, vertrouwenspersonen en meldpunten verbeteren we de <mark>vrouwenrechten en de positie van de flexwerkers</mark> in de sector.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“vrijheid van vereniging en het recht op vrije meningsuiting”
+</div>
+<span class="context">We beschermen de <mark>vrijheid van vereniging en het recht op vrije meningsuiting</mark> via betogingen, flyers, acties, sociale media … Wetten en reglementen mogen deze rechten niet uithollen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“elke vorm van discriminatie bestrijdt”
+</div>
+<span class="context">We stellen een coherent federaal actieplan op, dat elke vorm van discriminatie (racisme, seksisme, homofobie, discriminatie op grond van sociale afkomst, een handicap, taal, godsdienstige of politieke overtuiging, leeftijd enzovoort) bestrijdt.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 8</span>
+<div class="quote">
+“discriminatie van LGBT+’ers”
+</div>
+<span class="context">Elke school moet vanaf het begin van het lager onderwijs tot aan het einde van het secundair op aangepaste wijze discriminatie ter sprake brengen, meer bepaald de <mark>discriminatie van LGBT+’ers</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 9</span>
+<div class="quote">
+“Gegarandeerde mensenrechten”
+</div>
+<span class="context">VIER. GEGARANDEERDE MENSENRECHTEN Kinderen gaan vóór alles. Wij verzetten ons tegen het opsluiten van kinderen. Wat hun statuut ook is, kinderen hebben recht op onderwijs.</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“We zetten de markt buitenspel”
+</div>
+<span class="context">voldoende financiële middelen voor hebben. <mark>We zetten de markt buitenspel</mark> en investeren in een publieke gezondheidszorg</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“wijzen elke commercialisering of vermarkting van sociaal werk af”
+</div>
+<span class="context">We sluiten langetermijn convenanten met het sociale middenveld en <mark>wijzen elke commercialisering of vermarkting van sociaal werk af</mark>. We zetten in op structurele financiering.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“vervangen we de emissiehandel door bindende normen”
+</div>
+<span class="context">verlammende concurrentielogica te overwinnen. Daarom <mark>vervangen we de emissiehandel door bindende normen</mark>, met een helder pad</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“mensen met een beperking zijn mensen met rechten”
+</div>
+<span class="context">Mensen met een beperking zijn mensen met rechten, net als ieder ander mens.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“rechten van personen met een beperking”
+</div>
+<span class="context">Om die rechten te verzekeren is er het VN-Verdrag over de <mark>rechten van personen met een beperking</mark> van 13 december</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“de klassieke grondrechten zoals het recht”
+</div>
+<span class="context">We verdedigen de eerste generatie mensenrechten: <mark>de klassieke grondrechten zoals het recht</mark> op vrije meningsuiting en de vrijheid van vereniging.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 7</span>
+<div class="quote">
+“de klassieke grondrechten zoals het recht op vrije meningsuiting”
+</div>
+<span class="context">de eerste generatie mensenrechten: <mark>de klassieke grondrechten zoals het recht op vrije meningsuiting</mark> en de vrijheid van vereniging. Deze rechten worden</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 8</span>
+<div class="quote">
+“de scheiding der machten is een pijler van de rechtsstaat”
+</div>
+<span class="context">De scheiding der machten is een pijler van de rechtsstaat. De rechterlijke macht moet bescherming bieden</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 9</span>
+<div class="quote">
+“democratische vrijheden en mensenrechten”
+</div>
+<span class="context">Big Brother gaat bij ons de deur uit. We garanderen de <mark>democratische vrijheden en mensenrechten</mark> tegen massadatabanken</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“We tekenen Conventie 158 van de Internationale Arbeidsorganisatie”
+</div>
+<span class="context">Wij versterken die bescherming. <mark>We tekenen Conventie 158 van de Internationale Arbeidsorganisatie</mark>. Die verplicht de werkgevers elk ontslag te motiveren. Werknemers krijgen de kans om zich te verdedigen, met bijstand van de vakbond en hebben het recht in beroep te gaan bij de arbeidsrechtbank.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“We versterken de stem van mensen in armoede en laten hen mee het armoedebeleid uittekenen.”
+</div>
+<span class="context">ZES. GEEF MENSEN IN ARMOEDE HET WOORD <mark>We versterken de stem van mensen in armoede en laten hen mee het armoedebeleid uittekenen.</mark> We investeren in de opleidingen voor ervaringsdeskundigen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“We nemen het recht op water op in artikel 23 van de Grondwet”
+</div>
+<span class="context"><mark>We nemen het recht op water op in artikel 23 van de Grondwet</mark>. Water wordt toegevoegd aan de lijst van goederen waarop geen beslag gelegd mag worden, volgens artikel 1408 van het Gerechtelijk Wetboek.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“recht op behoorlijke huisvesting staat in de Belgische Grondwet”
+</div>
+<span class="context">Het <mark>recht op behoorlijke huisvesting staat in de Belgische Grondwet</mark> en ook in de Universele Verklaring van de Rechten van de Mens. Maar dat recht is dode letter.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“We beëindigen ook het nefaste beleid van publiek-private samenwerking”
+</div>
+<span class="context"><mark>We beëindigen ook het nefaste beleid van publiek-private samenwerking</mark> (pps) bij de bouw van scholen, zwembaden, wegen en spoorlijnen. De pps-projecten staan voor private winsten en publieke risico’s.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“We beschermen de vrijheid van vereniging en het recht op vrije meningsuiting”
+</div>
+<span class="context"><mark>We beschermen de vrijheid van vereniging en het recht op vrije meningsuiting</mark> via betogingen, flyers, acties, sociale media … Wetten en reglementen mogen deze rechten niet uithollen. We stellen de Universele Verklaring voor de Rechten van de Mens centraal in ons engagement voor een menselijke samenleving.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“Wij verdedigen de eerste generatie mensenrechten: de klassieke grondrechten zoals het recht op vrije meningsuiting en de vrijheid van vereniging”
+</div>
+<span class="context">Voor ons is het essentieel dat deze grondrechten gewaarborgd blijven. We verdedigen de eerste generatie mensenrechten: de klassieke grondrechten zoals het recht op vrije meningsuiting en de vrijheid van vereniging.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“Wij versterken het mandaat van de onderzoeksrechter”
+</div>
+<span class="context"><mark>Wij versterken het mandaat van de onderzoeksrechter</mark>. Een gerechtelijk onderzoek onder leiding van een onderzoeksrechter is efficiënt en geeft de nodige garanties voor verdachten en slachtoffers.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 9</span>
+<div class="quote">
+“We doen een burgeraudit van de overheidsschuld”
+</div>
+<span class="context"><mark>We doen een burgeraudit van de overheidsschuld</mark> en organiseren een Europese conferentie die leidt tot moratoria, lagere interestvoeten, schuldherschikkingen en gedeeltelijke schuldannuleringen ten nadele van particuliere banken. We willen rechtvaardige fiscaliteit voorrang geven op het vrije verkeer van kapitaal. Wij leggen de Tobintaks weer op tafel.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“markt buitenspel en investeren in een publieke gezondheidszorg”
+</div>
+<span class="context">We zetten de <mark>markt buitenspel en investeren in een publieke gezondheidszorg</mark> van kwaliteit en op mensenmaat</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“kapitalisme met zijn kortetermijndenken, zijn concurrentielogica”
+</div>
+<span class="context">de kern van het probleem ligt bij de verhoudingen in de maatschappelijke productie en consumptie, bij het <mark>kapitalisme met zijn kortetermijndenken, zijn concurrentielogica</mark>, zijn winst als mammon.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“privatisering van het spoor in de NMBS”
+</div>
+<span class="context">Overal waar het geprivatiseerd of geliberaliseerd werd, ging de dienstverlening erop achteruit en schoten de prijzen de lucht in.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“vrije markt ongeremd de plak”
+</div>
+<span class="context">Maar ook daar zwaait de <mark>vrije markt ongeremd de plak</mark>. Het aantal sociale huurwoningen is veel te beperkt.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“openbare bank 4.0 ten dienste van de samenleving”
+</div>
+<span class="context">We richten een overheidsbank 4.0 op met het kapitaal van de huidige Belfius Bank. Deze openbare bank geeft een staatsgarantie op bankrekeningen</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 6</span>
+<div class="quote">
+“netneutraliteit op in de grondwet”
+</div>
+<span class="context">Wij verdedigen integendeel de gelijkheid van toegang tot het internet en nemen de <mark>netneutraliteit op in de grondwet</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 7</span>
+<div class="quote">
+“mensenrechten universeel en ondeelbaar”
+</div>
+<span class="context">Voor ons zijn de <mark>mensenrechten universeel en ondeelbaar</mark>. De opstellers van de Universele Verklaring van de Rechten van de Mens (UVRM) noemden de verklaring heel bewust “universeel”.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 8</span>
+<div class="quote">
+“rechtvaardige fiscaliteit voorrang geven op het vrije verkeer van kapitaal”
+</div>
+<span class="context">Wij willen <mark>rechtvaardige fiscaliteit voorrang geven op het vrije verkeer van kapitaal</mark>. Wij leggen de Tobintaks weer op tafel.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 9</span>
+<div class="quote">
+“rechtvaardige fiscaliteit voorrang geven op het vrije verkeer van kapitaal”
+</div>
+<span class="context">We willen <mark>rechtvaardige fiscaliteit voorrang geven op het vrije verkeer van kapitaal</mark>. Wij leggen de Tobintaks weer op tafel.</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“privileges voor de politieke elite”
+</div>
+<span class="context">onaanvaardbaar. Die <mark>privileges voor de politieke elite</mark> vinden wij onaanvaardbaar.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Vandaag vinden ministers dat armoede je eigen schuld is”
+</div>
+<span class="context">Wie komaf wil maken met armoede moet die onrechtvaardigheid aanpakken. <mark>Vandaag vinden ministers dat armoede je eigen schuld is</mark>: je moet maar beter je best doen. Dat verhaal klopt niet.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“onder druk van de asbestmaffia”
+</div>
+<span class="context">leiden. Toch duurde het <mark>onder druk van de asbestmaffia</mark> van Eternit, SVK en co tot 1998</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“op geld beluste concerns in de chemie”
+</div>
+<span class="context">ggo’s zich in de handen bevinden van <mark>op geld beluste concerns in de chemie</mark> en de zaaigoedindustrie</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“cadeaus voor het grootbedrijf”
+</div>
+<span class="context">Waarom nog langer zoveel verloren geld besteden aan <mark>cadeaus voor het grootbedrijf</mark>? Dat levert uiteindelijk alleen maar dividenden op</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“de privileges van de politieke kaste”
+</div>
+<span class="context">V. DEMOCRATIE 25.DE PRIVILEGES VAN DE POLITIEKE KASTE AFSCHAFFEN STANDPUNT Dat is gemakkelijk</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“het politiek establishment het niet naast zich kan neerleggen”
+</div>
+<span class="context">meerderheid haalt, <mark>het politiek establishment het niet naast zich kan neerleggen</mark>. We zorgen er wel voor dat er geen voorstellen</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“enkel projecten die passen in het kraam van de politieke wereld”
+</div>
+<span class="context">Dat is kortzichtig en dient ervoor dat <mark>enkel projecten die passen in het kraam van de politieke wereld</mark>, kunnen worden uitgevoerd.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 9</span>
+<div class="quote">
+“geheel ten dienste van deze lobby’s”
+</div>
+<span class="context">Enkel de Europese Commissie heeft het recht wetten voor te stellen en zij staat <mark>geheel ten dienste van deze lobby’s</mark>. Het kan niet dat zij wetten schrijven</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Graaikapitalisme”
+</div>
+<span class="context">In 2010 besliste AB InBev 800 jobs te schrappen terwijl de aandeelhouders voor een miljard euro dividenden uitgekeerd kregen. <mark>Graaikapitalisme</mark>. De PVDA diende in het parlement een voorstel in voor de “wet-InBev”. Daarmee verbieden we collectieve ontslagen in bedrijven die winst maken of dividenden uitkeren.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Wie miljoenen bezit wordt gemakkelijk rijker, maar wie in armoede opgroeit geraakt daar erg moeilijk uit.”
+</div>
+<span class="context">Tegelijk stijgt het aantal miljonairs in ons land. <mark>Wie miljoenen bezit wordt gemakkelijk rijker, maar wie in armoede opgroeit geraakt daar erg moeilijk uit.</mark> Wie komaf wil maken met armoede moet die onrechtvaardigheid aanpakken.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“de emissiehandel door bindende normen”
+</div>
+<span class="context">Daarom vervangen we <mark>de emissiehandel door bindende normen</mark>, met een helder pad naar negatieve emissies in 2050. Zo wordt de industrie genoodzaakt drastische energiebesparende maatregelen te nemen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“kapitalistische voedingsindustrie”
+</div>
+<span class="context">Op wereldschaal zorgt de <mark>kapitalistische voedingsindustrie</mark> voor de grootste uitstoot van broeikasgassen. In België stoot de landbouw 10% van de broeikasgassen uit en die uitstoot is in deze eeuw nog maar lichtjes gedaald.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“de rijkdom van ons land creëren”
+</div>
+<span class="context">Na tien jaar van economische stagnatie, van toenemende ongelijkheid en armoede, moet het roer om. We keren dat oude beleid de rug toe, weg van de berusting en moedeloosheid. We zetten de dingen in het teken van de hoop. Hoop van de werknemers, die <mark>de rijkdom van ons land creëren</mark>, hoop van de jongeren die aan de toekomst willen werken.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“de politieke kaste heel even aandacht voor het bevolkingsdeel dat 1.000 of 2.000 euro verdient”
+</div>
+<span class="context">Dat is gemakkelijk: maatregelen nemen die de burger treffen als je daar zelf niets van voelt omdat je zoveel meer verdient! Wanneer het op verkozen worden aankomt, heeft <mark>de politieke kaste heel even aandacht voor het bevolkingsdeel dat 1.000 of 2.000 euro verdient</mark>, maar de rest van haar tijd leeft die kaste tussen mensen met 10.000 euro per maand en meer.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“de Europese Commissie de volmacht gegeven over alle grote sociale en economische beslissingen”
+</div>
+<span class="context">Toen zij het Europese Begrotingspact ratificeerden, hebben onze volksvertegenwoordigers <mark>de Europese Commissie de volmacht gegeven over alle grote sociale en economische beslissingen</mark>. Aan die beslissingen gaat altijd succesvol lobbywerk vooraf van het grootbedrijf.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“de maffia, de generaals van de drugsen mensenhandel”
+</div>
+<span class="context">We geven prioriteit aan de bestrijding van financiële delinquentie, <mark>de maffia, de generaals van de drugsen mensenhandel</mark> en aan grote oplichterij en fraude.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 9</span>
+<div class="quote">
+“tegen de fiscale paradijzen”
+</div>
+<span class="context">We leggen de Tobintaks weer op tafel. We hebben een hoog belastingtarief nodig voor het grootbedrijf in de Europese Unie. We willen voor de vennootschapsbelasting een effectief minimumtarief van 25% in alle lidstaten, zonder uitzondering. Alle multinationals dienen hun activiteiten per lidstaat volledig publiek maken en belastingen betalen waar ze winst maken. Zolang er binnen de Europese Unie belastingparadijzen zijn, moet het mogelijk zijn vrij verkeer van kapitaal aan te vechten. Artikel 64 van het Werkingsverdrag van de Europese Unie vermeldt als mogelijk gerechtvaardigde redenen om dat te doen: maatregelen tegen inbreuken op de belastingwetgeving en maatregelen uit hoofde van de openbare orde of de openbare veiligheid. De vernietiging van openbare diensten en pensioenen door het stelen van belastinggeld moet een van deze redenen zijn. We verbieden transacties met belastingparadijzen en strijden voor een echte Europese zwarte lijst van belastingparadijzen, inclusief EU-lidstaten.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Graaikapitalisme”
+</div>
+<span class="context">dividenden uitgekeerd kregen. <mark>Graaikapitalisme</mark>. De PVDA diende in het parlement een voorstel in voor de “wet-InBev”</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“energiemultinationals willen we een publieke energiesector”
+</div>
+<span class="context">In plaats van Engie, EDF en andere <mark>energiemultinationals willen we een publieke energiesector</mark>, in handen van de samenleving en onder democratische controle.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“het grootbedrijf resoluut in de verkeerde richting”
+</div>
+<span class="context">Terwijl de gevolgen van klimaatverandering alsmaar zichtbaarder worden, gaat <mark>het grootbedrijf resoluut in de verkeerde richting</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“kapitalistische agro-industrie de bevolking geen gezond”
+</div>
+<span class="context">Allerlei schandalen brachten aan het licht dat de <mark>kapitalistische agro-industrie de bevolking geen gezond</mark>, betaalbaar en milieuvriendelijk voedsel kan verzekeren.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“grote pseudomecenassen nu eens gewoon zouden vragen”
+</div>
+<span class="context">Als we die <mark>grote pseudomecenassen nu eens gewoon zouden vragen</mark> hun geld rechtstreeks aan de overheid door te storten in de vorm van belastingen</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“de politieke kaste samen met de rijke klasse regeert”
+</div>
+<span class="context">Of hoe <mark>de politieke kaste samen met de rijke klasse regeert</mark> en liefst niet te veel democratie wil. We moeten komaf maken met zo’n politiek die afgesneden is van de realiteit</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“democratische proces in het hele tijdsbestek”
+</div>
+<span class="context">Aan die beslissingen gaat altijd succesvol lobbywerk vooraf van het grootbedrijf. En zo wordt het <mark>democratische proces in het hele tijdsbestek</mark> tussen twee verkiezingen geconfisqueerd.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“klaarstaat om die van het establishment te verdedigen”
+</div>
+<span class="context">Van oudsher kent België een dure rechtspraak die niet bij machte is de belangen van gewone burgers te beschermen, maar <mark>klaarstaat om die van het establishment te verdedigen</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 9</span>
+<div class="quote">
+“stoppen de draaideuren tussen de Europese instellingen en het grootbedrijf”
+</div>
+<span class="context">We <mark>stoppen de draaideuren tussen de Europese instellingen en het grootbedrijf</mark>. Tot vijf jaar na hun mandaat mogen Europese Commissarissen</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 9</span>
+<div class="quote">
+“We laten de mensen beslissen”
+</div>
+<span class="context">VIER. CRUCIALE DEBATTEN DOOR DE MENSEN LATEN BESLISSEN <mark>We laten de mensen beslissen</mark>: via een bindend volksinitiatief</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Wij verdedigen sterke interprofessionele akkoorden”
+</div>
+<span class="context"><mark>Wij verdedigen sterke interprofessionele akkoorden</mark> waarin in alle vrijheid loonsverhogingen afgesproken worden voor iedereen. Daarvoor moet de loonwet van 1996, die een bindende “loonnorm” oplegt, weg.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“We versterken de stem van mensen in armoede en laten hen mee het armoedebeleid uittekenen.”
+</div>
+<span class="context">ZES. GEEF MENSEN IN ARMOEDE HET WOORD <mark>We versterken de stem van mensen in armoede en laten hen mee het armoedebeleid uittekenen.</mark> We investeren in de opleidingen voor ervaringsdeskundigen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“We maken een nieuwe beweging richting stad”
+</div>
+<span class="context">Minder in de file staan, meer groene ruimte, betaalbaar wonen, een bloeiende middenstand: het begint allemaal bij een slimme ruimtelijke ordening. <mark>We maken een nieuwe beweging richting stad</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Iedereen voldoende kwaliteitsvoedsel garanderen”
+</div>
+<span class="context"><mark>Iedereen voldoende kwaliteitsvoedsel garanderen</mark>: dát moet het vertrekpunt zijn van een landbouwbeleid. Als het winstoogmerk van de zakenwereld of de voedingsindustrie het vertrekpunt is, zit het fout.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“iedereen heeft recht op culturele ontplooiing”
+</div>
+<span class="context">Dan maken we artikel 23 van de Grondwet waar: “Iedereen heeft recht op culturele ontplooiing”. Wij streven naar deelname van allen, met toegang voor allen. Tegenover de grote ‘creatieve industrieën’ opteren we voor een rijk kunsten cultuurleven van onderuit dat mensen actief en weerbaar maakt en hen energie geeft om hun leven en de samenleving aan te pakken.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“de politieke kaste leeft in Graailand”
+</div>
+<span class="context">De politiek is ziek van de privileges, van koning geld en van de heimelijke verstandhouding met de haute finance. Ze moet in dienst van de samenleving gaan staan, niet in dienst van zichzelf of van het grote geld. De kaste leeft in Graailand.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“Wij pleiten voor een democratie van onderuit, die direct is en dynamisch”
+</div>
+<span class="context"><mark>Wij pleiten voor een democratie van onderuit, die direct is en dynamisch</mark>, die op participatie is gericht. Het gaat erom de macht te laten “dragen” door de bevolking, ook na de verkiezingen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 8</span>
+<div class="quote">
+“Wij stimuleren initiatieven die de grenzen van taal en cultuur overstijgen”
+</div>
+<span class="context"><mark>Wij stimuleren initiatieven die de grenzen van taal en cultuur overstijgen</mark> en brengen gemeenschappen dichter bij elkaar.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Jobs, jobs, jobs”
+</div>
+<span class="context">“<mark>Jobs, jobs, jobs</mark>!” Zo kennen we premier Michel. Maar je gaat straks wel drie jobs nodig hebben om rond te komen</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Geef mensen in armoede het woord”
+</div>
+<span class="context">ZES. GEEF MENSEN IN ARMOEDE HET WOORD We versterken de stem van mensen in armoede en laten hen mee het armoedebeleid uittekenen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“politici van het hele politieke spectrum”
+</div>
+<span class="context">kozen <mark>politici van het hele politieke spectrum</mark> voor een neoliberale politiek van prestigeprojecten</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“dát moet het vertrekpunt zijn”
+</div>
+<span class="context">Iedereen voldoende kwaliteitsvoedsel garanderen: <mark>dát moet het vertrekpunt zijn</mark> van een landbouwbeleid.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“achterkamertjespolitiek”
+</div>
+<span class="context">Als alternatief voor de <mark>achterkamertjespolitiek</mark> gebruiken we de nieuwe technologieën om de ramen van de Wetstraat wijd open te zetten.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 6</span>
+<div class="quote">
+“democratiseren we de toegang tot politieke mandaten”
+</div>
+<span class="context">We maken het voor iedere verkozene mogelijk politiek verlof te nemen zonder risico op verlies van zijn of haar job. Zo <mark>democratiseren we de toegang tot politieke mandaten</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“democratie van onderuit, die direct is”
+</div>
+<span class="context">Wij pleiten voor een <mark>democratie van onderuit, die direct is</mark> en dynamisch, die op participatie is gericht.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 8</span>
+<div class="quote">
+“de gewone man en vrouw”
+</div>
+<span class="context">We verbeteren de toegang tot het recht voor <mark>de gewone man en vrouw</mark>. De griffierechten gaan omlaag</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 9</span>
+<div class="quote">
+“Via een bindend volksinitiatief kunnen een miljoen mensen”
+</div>
+<span class="context">We laten de mensen beslissen. <mark>Via een bindend volksinitiatief kunnen een miljoen mensen</mark> uit zeven lidstaten een wetgevend initiatief opleggen</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“miljardentransfer van de werknemers naar”
+</div>
+<span class="context">aandeel van de winsten navenant is gestegen. Een <mark>miljardentransfer van de werknemers naar</mark> de grote aandeelhouders. Het</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“bij het kapitalisme met zijn kortetermijndenken, zijn concurrentielogica”
+</div>
+<span class="context">Vergeet CO2 en steenkoolcentrales: de kern van het probleem ligt bij de verhoudingen in de maatschappelijke productie en consumptie, <mark>bij het kapitalisme met zijn kortetermijndenken, zijn concurrentielogica</mark>, zijn winst als mammon.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“winsten van vastgoedspeculanten plaatst”
+</div>
+<span class="context">kwaliteitsvol wonen boven de <mark>winsten van vastgoedspeculanten plaatst</mark>. Met een goed openbaar vervoer</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“kapitalistische voedingsindustrie voor de grootste uitstoot”
+</div>
+<span class="context">Op wereldschaal zorgt de <mark>kapitalistische voedingsindustrie voor de grootste uitstoot</mark> van broeikasgassen.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“Geen vermarkting van de zorg”
+</div>
+<span class="context">financiering van de zorg blijft bij de zorgorganisaties en de betaling van opvangplaatsen. <mark>Geen vermarkting van de zorg</mark>. TWEE. AANGEPAST</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“de rijkdommen die de werkers genereren”
+</div>
+<span class="context">Nooit heeft de samenleving zoveel rijkdom voortgebracht. Maar <mark>de rijkdommen die de werkers genereren</mark>, zijn almaar oneerlijker verdeeld.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 7</span>
+<div class="quote">
+“industriële en financiële mastodonten controleren de economische sectoren”
+</div>
+<span class="context">DEMOCRATISCHE RECHTEN Het is een wereldfenomeen: <mark>industriële en financiële mastodonten controleren de economische sectoren</mark> en staten helpen hen die controle te behouden</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“tegenover de almacht van het Europese grootbedrijf”
+</div>
+<span class="context">Tegenover de almacht van het Europese grootbedrijf wil de PVDA mee een tegenmacht creëren.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 9</span>
+<div class="quote">
+“almacht van het Europese grootbedrijf”
+</div>
+<span class="context">Tegenover de <mark>almacht van het Europese grootbedrijf</mark> wil de PVDA mee een tegenmacht creëren.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“We stoppen de sociale afbraak en verhogen de koopkracht”
+</div>
+<span class="context">Wij willen respect voor ieder die werkt. Zonder werkvolk geen welvaart. We komen op voor vast werk en volwaardige lonen. <mark>We stoppen de sociale afbraak en verhogen de koopkracht</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“Wij willen alle uitkeringen, leeflonen en pensioenen optrekken minstens tot aan het referentiebudget voor een menswaardig inkomen”
+</div>
+<span class="context">EEN. GARANDEER IEDEREEN EEN INKOMEN BOVEN DE ARMOEDEGRENS <mark>Wij willen alle uitkeringen, leeflonen en pensioenen optrekken minstens tot aan het referentiebudget voor een menswaardig inkomen</mark> (wat overeenkomt met de Europese armoedegrens).</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Wij willen dat de industrie tegen 2050 geen broeikasgassen meer uitstoot”
+</div>
+<span class="context"><mark>Wij willen dat de industrie tegen 2050 geen broeikasgassen meer uitstoot</mark>, maar opneemt. Daar is een heuse omwenteling voor nodig en die zal niet spontaan van het grootbedrijf zelf komen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“kapitalistische voedingsindustrie”
+</div>
+<span class="context">Op wereldschaal zorgt de <mark>kapitalistische voedingsindustrie</mark> voor de grootste uitstoot van broeikasgassen. In België stoot de landbouw 10% van de broeikasgassen uit en die uitstoot is in deze eeuw nog maar lichtjes gedaald.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“progressieve kunst en cultuur roepen basisvragen op”
+</div>
+<span class="context">Progressieve kunst en cultuur roepen basisvragen op. Ze kunnen ons begrip van de wereld, de samenleving en onszelf verruimen en verdiepen. Ze kunnen deuren openen naar de ander. Ze kunnen de menselijke sensibiliteit en luciditeit ontplooien.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“faire fiscaliteit die de sterkste schouders de zwaarste lasten laat dragen”
+</div>
+<span class="context">Het is tijd om een beetje van de rijkdom terug te halen die van ons is afgenomen. Met een miljonairstaks, door de fiscale niches voor het grootbedrijf af te schaffen, door achter de grote belastingfraude aan te gaan. Met een <mark>faire fiscaliteit die de sterkste schouders de zwaarste lasten laat dragen</mark>. En niet andersom, zoals vandaag.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“Alles is leugen en schijn. Met de heilige overtuiging waarmee ze kort tevoren…”
+</div>
+<span class="context">Alles is leugen en schijn. Met de heilige overtuiging waarmee ze kort tevoren, in de weken voor de verkiezingen, het tegenovergestelde beweerden, beslisten de nog maar net verkozen ministers van de regering-Michel de pensioenleeftijd te verhogen tot 67 jaar.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“Wij verzetten ons tegen de privatisering van het recht waarbij staten en volkeren aan rechten inboeten”
+</div>
+<span class="context"><mark>Wij verzetten ons tegen de privatisering van het recht waarbij staten en volkeren aan rechten inboeten</mark> in het voordeel van multinationale ondernemingen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 9</span>
+<div class="quote">
+“We voeren het non-regressie beginsel in”
+</div>
+<span class="context">STERKEN IN PLAATS VAN ONTMANTELEN <mark>We voeren het non-regressie beginsel in</mark>: er komen alleen Europese maatregelen die voor sociale, democratische of ecologische vooruitgang zorgen. We willen gelijk loon voor gelijk werk. Voor elke werknemer geldt het loon en het socialezekerheidstarief van het land waar hij of zij effectief werkt en dat wordt daadwerkelijk gecontroleerd, tegen de sociale dumping.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“miljardentransfer van de werknemers naar de grote aandeelhouders”
+</div>
+<span class="context">Een <mark>miljardentransfer van de werknemers naar de grote aandeelhouders</mark>. Het ondermijnt de koopkracht van de bevolking</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“scheppen 20.000 nieuwe, volwaardige jobs in de sociale economie”
+</div>
+<span class="context">We <mark>scheppen 20.000 nieuwe, volwaardige jobs in de sociale economie</mark> en werken zo de wachtlijsten weg.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Speculatie op landbouwen voedingsproducten is verboden”
+</div>
+<span class="context">We reguleren de gemeenschappelijke markt van de belangrijkste landbouwproducten op basis van de interne vraag. <mark>Speculatie op landbouwen voedingsproducten is verboden</mark> en wordt streng bestraft.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“kapitalistische voedingsindustrie voor de grootste uitstoot”
+</div>
+<span class="context">Op wereldschaal zorgt de <mark>kapitalistische voedingsindustrie voor de grootste uitstoot</mark> van broeikasgassen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“miljonairstaks”
+</div>
+<span class="context">De middelen voor de betaling van de schulden die we met deze investeringen maken… Die middelen zijn voorhanden. Met een <mark>miljonairstaks</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“miljonairstaks op netto-vermogens van meer dan een miljoen euro”
+</div>
+<span class="context">We voeren een miljonairstaks in op netto-vermogens van meer dan een miljoen euro. De belastingvoeten bedragen 1% boven 1 miljoen euro, 2% boven twee miljoen euro</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 7</span>
+<div class="quote">
+“industriële en financiële mastodonten controleren”
+</div>
+<span class="context">Het is een wereldfenomeen: <mark>industriële en financiële mastodonten controleren</mark> de economische sectoren en staten helpen hen die controle te behouden.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“sociale dumping”
+</div>
+<span class="context">Voor elke werknemer geldt het loon en het socialezekerheidstarief van het land waar hij of zij effectief werkt en dat wordt daadwerkelijk gecontroleerd, tegen de <mark>sociale dumping</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 9</span>
+<div class="quote">
+“verbieden hedgefondsen en gestructureerde financiële producten”
+</div>
+<span class="context">We <mark>verbieden hedgefondsen en gestructureerde financiële producten</mark> (derivaten), evenals kortetermijnspeculatie en short selling. We willen een effectief minimumtarief</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“miljardentransfer van de werknemers naar”
+</div>
+<span class="context">aandeel van de winsten navenant is gestegen. Een <mark>miljardentransfer van de werknemers naar</mark> de grote aandeelhouders. Het</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“bij het kapitalisme met zijn kortetermijndenken, zijn concurrentielogica”
+</div>
+<span class="context">Vergeet CO2 en steenkoolcentrales: de kern van het probleem ligt bij de verhoudingen in de maatschappelijke productie en consumptie, <mark>bij het kapitalisme met zijn kortetermijndenken, zijn concurrentielogica</mark>, zijn winst als mammon.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“winsten van vastgoedspeculanten plaatst”
+</div>
+<span class="context">kwaliteitsvol wonen boven de <mark>winsten van vastgoedspeculanten plaatst</mark>. Met een goed openbaar vervoer</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“kapitalistische agro-industrie de bevolking geen gezond”
+</div>
+<span class="context">schandalen brachten aan het licht dat de <mark>kapitalistische agro-industrie de bevolking geen gezond</mark>, betaalbaar en milieuvriendelijk voedsel kan verzekeren.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“Geen vermarkting van de zorg”
+</div>
+<span class="context">financiering van de zorg blijft bij de zorgorganisaties en de betaling van opvangplaatsen. <mark>Geen vermarkting van de zorg</mark>. TWEE. AANGEPAST</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“de rijkdommen die de werkers genereren”
+</div>
+<span class="context">Nooit heeft de samenleving zoveel rijkdom voortgebracht. Maar <mark>de rijkdommen die de werkers genereren</mark>, zijn almaar oneerlijker verdeeld.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 7</span>
+<div class="quote">
+“industriële en financiële mastodonten controleren de economische sectoren”
+</div>
+<span class="context">DEMOCRATISCHE RECHTEN Het is een wereldfenomeen: <mark>industriële en financiële mastodonten controleren de economische sectoren</mark> en staten helpen hen die controle te behouden</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“tegenover de almacht van het Europese grootbedrijf”
+</div>
+<span class="context">Tegenover de almacht van het Europese grootbedrijf wil de PVDA mee een tegenmacht creëren.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 9</span>
+<div class="quote">
+“almacht van het Europese grootbedrijf”
+</div>
+<span class="context">Tegenover de <mark>almacht van het Europese grootbedrijf</mark> wil de PVDA mee een tegenmacht creëren.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Graaikapitalisme”
+</div>
+<span class="context">In 2010 besliste AB InBev 800 jobs te schrappen terwijl de aandeelhouders voor een miljard euro dividenden uitgekeerd kregen. <mark>Graaikapitalisme</mark>. De PVDA diende in het parlement een voorstel in voor de “wet-InBev”. Daarmee verbieden we collectieve ontslagen in bedrijven die winst maken of dividenden uitkeren.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Wie miljoenen bezit wordt gemakkelijk rijker, maar wie in armoede opgroeit geraakt daar erg moeilijk uit.”
+</div>
+<span class="context">Tegelijk stijgt het aantal miljonairs in ons land. <mark>Wie miljoenen bezit wordt gemakkelijk rijker, maar wie in armoede opgroeit geraakt daar erg moeilijk uit.</mark> Wie komaf wil maken met armoede moet die onrechtvaardigheid aanpakken.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Wij willen dat de industrie tegen 2050 geen broeikasgassen meer uitstoot”
+</div>
+<span class="context"><mark>Wij willen dat de industrie tegen 2050 geen broeikasgassen meer uitstoot</mark>, maar opneemt. Daar is een heuse omwenteling voor nodig en die zal niet spontaan van het grootbedrijf zelf komen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“kapitalistische voedingsindustrie”
+</div>
+<span class="context">Op wereldschaal zorgt de <mark>kapitalistische voedingsindustrie</mark> voor de grootste uitstoot van broeikasgassen. In België stoot de landbouw 10% van de broeikasgassen uit en die uitstoot is in deze eeuw nog maar lichtjes gedaald.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“iedereen heeft recht op culturele ontplooiing”
+</div>
+<span class="context">Dan maken we artikel 23 van de Grondwet waar: “Iedereen heeft recht op culturele ontplooiing”. Wij streven naar deelname van allen, met toegang voor allen. Tegenover de grote ‘creatieve industrieën’ opteren we voor een rijk kunsten cultuurleven van onderuit dat mensen actief en weerbaar maakt en hen energie geeft om hun leven en de samenleving aan te pakken.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“faire fiscaliteit die de sterkste schouders de zwaarste lasten laat dragen”
+</div>
+<span class="context">Het is tijd om een beetje van de rijkdom terug te halen die van ons is afgenomen. Met een miljonairstaks, door de fiscale niches voor het grootbedrijf af te schaffen, door achter de grote belastingfraude aan te gaan. Met een <mark>faire fiscaliteit die de sterkste schouders de zwaarste lasten laat dragen</mark>. En niet andersom, zoals vandaag.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“Wij pleiten voor een democratie van onderuit, die direct is en dynamisch”
+</div>
+<span class="context"><mark>Wij pleiten voor een democratie van onderuit, die direct is en dynamisch</mark>, die op participatie is gericht. Het gaat erom de macht te laten “dragen” door de bevolking, ook na de verkiezingen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 8</span>
+<div class="quote">
+“De samenleving gelijker maken is een belangrijke opgave”
+</div>
+<span class="context"><mark>De samenleving gelijker maken is een belangrijke opgave</mark> voor meer veiligheid. Wij gaan het gevecht aan tegen terrorisme.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 9</span>
+<div class="quote">
+“We voeren het non-regressie beginsel in”
+</div>
+<span class="context">STERKEN IN PLAATS VAN ONTMANTELEN <mark>We voeren het non-regressie beginsel in</mark>: er komen alleen Europese maatregelen die voor sociale, democratische of ecologische vooruitgang zorgen. We willen gelijk loon voor gelijk werk. Voor elke werknemer geldt het loon en het socialezekerheidstarief van het land waar hij of zij effectief werkt en dat wordt daadwerkelijk gecontroleerd, tegen de sociale dumping.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“miljardentransfer van de werknemers naar de grote aandeelhouders”
+</div>
+<span class="context">Een <mark>miljardentransfer van de werknemers naar de grote aandeelhouders</mark>. Het ondermijnt de koopkracht van de bevolking</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“kapitalisme met zijn kortetermijndenken, zijn concurrentielogica”
+</div>
+<span class="context">de kern van het probleem ligt bij de verhoudingen in de maatschappelijke productie en consumptie, bij het <mark>kapitalisme met zijn kortetermijndenken, zijn concurrentielogica</mark>, zijn winst als mammon.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“kapitalistische voedingsindustrie voor de grootste uitstoot”
+</div>
+<span class="context">Op wereldschaal zorgt de <mark>kapitalistische voedingsindustrie voor de grootste uitstoot</mark> van broeikasgassen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“op geld beluste concerns in de chemie”
+</div>
+<span class="context">omdat deze ggo’s zich in de handen bevinden van <mark>op geld beluste concerns in de chemie</mark> en de zaaigoedindustrie, vormen ze een gevaar.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“anti-corporatief, redistributief, sociaal”
+</div>
+<span class="context">We beëindigen ook het nefaste beleid van publiek-private samenwerking… De pps-projecten staan voor private winsten en publieke risico’s.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“leegroof van de schatkist en van de kassen van de Sociale Zekerheid door het grootbedrijf”
+</div>
+<span class="context">We komen op voor een sociaal en fiscaal programma dat een einde maakt aan de <mark>leegroof van de schatkist en van de kassen van de Sociale Zekerheid door het grootbedrijf</mark>, ten nadele van de werknemers en kmo’s.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 7</span>
+<div class="quote">
+“strijd voor sociale rechtvaardigheid”
+</div>
+<span class="context">Vakbondsrechten zijn mensenrechten. Ze zijn essentieel in de <mark>strijd voor sociale rechtvaardigheid</mark>. Deze democratische kracht is een doorn in het oog van het establishment.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“arbeidersbeweging behaalde haar belangrijkste successen”
+</div>
+<span class="context">De <mark>arbeidersbeweging behaalde haar belangrijkste successen</mark> wanneer ze de verdeeldheid wist te verslaan en voor eenheid van het hele land koos.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 9</span>
+<div class="quote">
+“anti-corporatieve elite, herverdeling, sociale gelijkheid”
+</div>
+<span class="context">We willen rechtvaardige fiscaliteit voorrang geven op het vrije verkeer van kapitaal. Wij leggen de Tobintaks weer op tafel.</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 7</span>
+<div class="quote">
+“In het discours tegen vluchtelingen en migranten worden mensen ontmenselijkt”
+</div>
+<span class="context">gelijkheidsdenken. Dat staat zwaar onder druk. <mark>In het discours tegen vluchtelingen en migranten worden mensen ontmenselijkt</mark>. Het idee van de universele mensenrechten</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 8</span>
+<div class="quote">
+“zowel die van jihadi-terroristen als die van extreemrechts”
+</div>
+<span class="context">Wij bestrijden alle vormen van hatespeech die bevolkingsgroepen tegen elkaar opzet, <mark>zowel die van jihadi-terroristen als die van extreemrechts</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 9</span>
+<div class="quote">
+“solidaire spreiding van asielzoekers”
+</div>
+<span class="context">Wij stellen een systeem in van <mark>solidaire spreiding van asielzoekers</mark> in alle landen van Europa.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“We voeren een armoedetoets in voor alle beleidsbeslissingen.”
+</div>
+<span class="context">ACHT. MAAK VAN DE STRIJD TEGEN ARMOEDE EEN TOPPRIORITEIT <mark>We voeren een armoedetoets in voor alle beleidsbeslissingen.</mark> We sluiten langetermijn convenanten met het sociale middenveld en wijzen elke commercialisering of vermarkting van sociaal werk af.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“We beschermen de landbouwgronden”
+</div>
+<span class="context"><mark>We beschermen de landbouwgronden</mark>. We stoppen het ruimtebeslag erop. Behalve in specifieke gevallen van omvorming tot natuurgebied, offeren we geen landbouwgrond meer op.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“tegen het vernietigen van “overtollige” proefdieren”
+</div>
+<span class="context">We zijn <mark>tegen het vernietigen van “overtollige” proefdieren</mark>. We versterken de dienst Dierenwelzijn om grondige, onaangekondigde controles te kunnen verrichten op de naleving van de wetgeving inzake proefdieren.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“in het discours tegen vluchtelingen en migranten worden mensen ontmenselijkt”
+</div>
+<span class="context">Van Donald Trump in de VS, Jair Bolsonaro in Brazilië, Matteo Salvini in Italië tot Theo Francken bij ons beleven we de opleving van een politieke stroming die het gelijkheidsdenken en de universaliteit van de UVRM in vraag stellen. In het discours tegen vluchtelingen en migranten worden mensen ontmenselijkt.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“Van Donald Trump in de VS, Jair Bolsonaro in Brazilië, Matteo Salvini in Italië tot Theo Francken bij ons”
+</div>
+<span class="context"><mark>Van Donald Trump in de VS, Jair Bolsonaro in Brazilië, Matteo Salvini in Italië tot Theo Francken bij ons</mark> beleven we de opleving van een politieke stroming die het gelijkheidsdenken en de universaliteit van de UVRM in vraag stellen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 8</span>
+<div class="quote">
+“De War on Drugs van Bart De Wever is mislukt”
+</div>
+<span class="context"><mark>De War on Drugs van Bart De Wever is mislukt</mark> zowel vanuit het oogpunt van de volksgezondheid als vanuit dat van de veiligheid.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 9</span>
+<div class="quote">
+“oude nationalistische tendensen”
+</div>
+<span class="context">Die logica moet weg. Zoniet zal Europa ofwel een continent van autoritarisme worden, ofwel uiteenspatten door de wedergeboorte van <mark>oude nationalistische tendensen</mark>. Tegenover de almacht van het Europese grootbedrijf wil de PVDA mee een tegenmacht creëren.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“gelijk loon voor gelijk werk”
+</div>
+<span class="context">Gelijk loon voor gelijk werk. We zorgen ervoor dat werknemers die in België in dienst zijn, volgens de Belgische loon- en arbeidsvoorwaarden betaald worden</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“mensen met een migratieachtergrond”
+</div>
+<span class="context">met ook kortgeschoolden, mensen met een beperking, jongeren, <mark>mensen met een migratieachtergrond</mark>. We stoppen het uitbesteden van jobs voor kortgeschoolden.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“nieuwkomers uit de migratie hun stek”
+</div>
+<span class="context">in de verpauperde volkswijken vonden <mark>nieuwkomers uit de migratie hun stek</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“onafhankelijke voedselvoorziening”
+</div>
+<span class="context">STEUNEND OP LOKALE LANDBOUW STREVEN WE NAAR EEN ONAFHANKELIJKE VOEDSELVOORZIENING</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 5</span>
+<div class="quote">
+“multiculturele initiatieven”
+</div>
+<span class="context">We ondersteunen taalgemengde en <mark>multiculturele initiatieven</mark>. Initiatieven die de grenzen van taal en cultuur overstijgen</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 7</span>
+<div class="quote">
+“universele mensenrechten wordt ingeruild”
+</div>
+<span class="context">Het idee van de <mark>universele mensenrechten wordt ingeruild</mark> voor een primitief “ieder voor zich”. Het is een gevaarlijke ontwikkeling waarin de democratie dreigt weg te zinken in uitsluiting en brutaliteit.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 8</span>
+<div class="quote">
+“Asielzoekers zijn vaak hun land ontvlucht”
+</div>
+<span class="context"><mark>Asielzoekers zijn vaak hun land ontvlucht</mark> als slachtoffer van vervolging omwille van hun seksuele geaardheid of hun genderidentiteit. Zij dienen opvang te krijgen in degelijke, kleinschalige structuren</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 9</span>
+<div class="quote">
+“geen democratie tegen de Europese verdragen”
+</div>
+<span class="context">Commissievoorzitter Juncker vatte het volmaakt samen: <mark>geen democratie tegen de Europese verdragen</mark>. De financiële markten moeten de mensen leren</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“kiezersbedrog plegen als met de”
+</div>
+<span class="context">volgende regering gaat dat opnieuw proberen, hetzelfde <mark>kiezersbedrog plegen als met de</mark> 67 jaar. Het puntenpensioen</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“de regering opent de jacht op langdurig zieken”
+</div>
+<span class="context">SOCIALE BESCHERMING 6. SOCIALE BESCHERMING STANDPUNT De regering opent de jacht op langdurig zieken en werklozen, een beleid dat het slachtoffer de schuld geeft.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“winsten van vastgoedspeculanten plaatst”
+</div>
+<span class="context">kwaliteitsvol wonen boven de <mark>winsten van vastgoedspeculanten plaatst</mark>. Met een goed openbaar vervoer</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“winstoogmerk van de zakenwereld of de voedingsindustrie”
+</div>
+<span class="context">garanderen: dát moet het vertrekpunt zijn van een landbouwbeleid. Als het <mark>winstoogmerk van de zakenwereld of de voedingsindustrie</mark> het vertrekpunt is, zit het fout.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“entree voor uitbuiting 4.0”
+</div>
+<span class="context">voor wie industrie 4.0 een bron van emancipatie had kunnen zijn, wordt ze eerder een <mark>entree voor uitbuiting 4.0</mark> met flexibilisering</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“De kaste leeft in Graailand”
+</div>
+<span class="context">bevolkingsdeel dat 1.000 of 2.000 euro verdient, maar de rest van haar tijd leeft die kaste tussen mensen met 10.000 euro per maand en meer. <mark>De kaste leeft in Graailand</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“Alles is leugen en schijn”
+</div>
+<span class="context">democratie “van lage intensiteit” die nog verder verzwakt door de crisis. <mark>Alles is leugen en schijn</mark>. Met de heilige overtuiging waarmee ze kort tevoren</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 8</span>
+<div class="quote">
+“de haaien van de markt en de beursspeculanten”
+</div>
+<span class="context">Met overheidsmonopolies om de sleutelsectoren te beschermen tegen <mark>de haaien van de markt en de beursspeculanten</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 9</span>
+<div class="quote">
+“haaien van de markt”
+</div>
+<span class="context">Met overheidsmonopolies om de sleutelsectoren te beschermen tegen de <mark>haaien van de markt</mark> en de beursspeculanten.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Filexi-contracten zijn jojo-contracten”
+</div>
+<span class="context">“<mark>Filexi-contracten zijn jojo-contracten</mark>”, zei Raoul Hedebouw in het Parlement. “Als werknemer hang je voortdurend aan het touwtje dat de werkgever op en neer laat gaan op het ritme van het bedrijf, de productie en de markt.”</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“De regering opent de jacht op langdurig zieken en werklozen, een beleid dat het slachtoffer de schuld geeft.”
+</div>
+<span class="context">SOCIALE BESCHERMING 6. SOCIALE BESCHERMING STANDPUNT <mark>De regering opent de jacht op langdurig zieken en werklozen, een beleid dat het slachtoffer de schuld geeft.</mark> Wij geven zieken zekerheid.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 3</span>
+<div class="quote">
+“de asbestmaffia van Eternit, SVK en co”
+</div>
+<span class="context">Jarenlang was ons land een van de grootste verbruikers van asbestplaten. Toch duurde het onder druk van <mark>de asbestmaffia van Eternit, SVK en co</mark> tot 1998 alvorens er een algemeen verbod kwam op het verwerken van asbest in materialen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Winstbejag en het recht op voldoende, gezond en evenwichtig voedsel voor de bevolking gaan niet samen”
+</div>
+<span class="context">Het vleesschandaal met Veviba, de lasagne met paardenvlees, de fipronil-crisis in de eierensector… al deze schandalen wijzen uit dat de kwaliteit en traceerbaarheid van ons voedsel niet gegarandeerd is. <mark>Winstbejag en het recht op voldoende, gezond en evenwichtig voedsel voor de bevolking gaan niet samen</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 5</span>
+<div class="quote">
+“oude beleid de rug toe, weg van de berusting en moedeloosheid”
+</div>
+<span class="context">Na tien jaar van economische stagnatie, van toenemende ongelijkheid en armoede, moet het roer om. We keren dat <mark>oude beleid de rug toe, weg van de berusting en moedeloosheid</mark>. We zetten de dingen in het teken van de hoop.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“de politieke kaste leeft in Graailand”
+</div>
+<span class="context">De politiek is ziek van de privileges, van koning geld en van de heimelijke verstandhouding met de haute finance. Ze moet in dienst van de samenleving gaan staan, niet in dienst van zichzelf of van het grote geld. De kaste leeft in Graailand. Wij willen dat de politiek vertrekt vanuit een engagement voor de samenleving.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“Alles is leugen en schijn. Met de heilige overtuiging waarmee ze kort tevoren…”
+</div>
+<span class="context">Op die manier wordt het een democratie “van lage intensiteit” die nog verder verzwakt door de crisis. Alles is leugen en schijn. Met de heilige overtuiging waarmee ze kort tevoren, in de weken voor de verkiezingen, het tegenovergestelde beweerden, beslisten de nog maar net verkozen ministers van de regering-Michel de pensioenleeftijd te verhogen tot 67 jaar.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 8</span>
+<div class="quote">
+“Wij bestrijden alle vormen van hatespeech die bevolkingsgroepen tegen elkaar opzet”
+</div>
+<span class="context"><mark>Wij bestrijden alle vormen van hatespeech die bevolkingsgroepen tegen elkaar opzet</mark>, zowel die van jihadi-terroristen als die van extreemrechts.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 9</span>
+<div class="quote">
+“Tenzij men het eigen programma wil begraven”
+</div>
+<span class="context">Of het nu over klimaat gaat of over openbare dienstverlening, authentiek links zal de Europese verdragen, verordeningen en richtlijnen in vraag moeten stellen. <mark>Tenzij men het eigen programma wil begraven</mark>. Want de Europese instellingen hebben tanden. Commissievoorzitter Juncker vatte het volmaakt samen: geen democratie tegen de Europese verdragen. De financiële markten moeten de mensen leren “juist” te stemmen, vertelde zijn collega-commissaris Oettinger.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“platformkapitalisten van Uber en Deliveroo”
+</div>
+<span class="context">Michel heeft ook de agressieve <mark>platformkapitalisten van Uber en Deliveroo</mark> ongemoeid gelaten die hun werknemers in de rol van schijnzelfstandige dwingen</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“de jacht op langdurig zieken en werklozen”
+</div>
+<span class="context">De regering opent <mark>de jacht op langdurig zieken en werklozen</mark>, een beleid dat het slachtoffer de schuld geeft.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“asbestmaffia van Eternit, SVK en co”
+</div>
+<span class="context">Toch duurde het onder druk van de <mark>asbestmaffia van Eternit, SVK en co</mark> tot 1998 alvorens er een algemeen verbod kwam</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Winstbejag en het recht op voldoende, gezond”
+</div>
+<span class="context"><mark>Winstbejag en het recht op voldoende, gezond</mark> en evenwichtig voedsel voor de bevolking gaan niet samen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“private winsten en publieke risico’s”
+</div>
+<span class="context">De pps-projecten staan voor <mark>private winsten en publieke risico’s</mark>. Ze kopen publieke zaken op voor een appel en een ei</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“De rijksten rijker, de arbeiders armer”
+</div>
+<span class="context">EEN. EEN MILJONAIRSTAKS INVOEREN EN DE FISCALE VOORDELEN VOOR GROTE BEDRIJVEN AFSCHAFFEN <mark>De rijksten rijker, de arbeiders armer</mark>. Dat is geen slogan, maar de realiteit in ons land.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“democratische kracht is een doorn in het oog”
+</div>
+<span class="context">Vakbondsrechten zijn mensenrechten. Ze zijn essentieel in de strijd voor sociale rechtvaardigheid. Deze <mark>democratische kracht is een doorn in het oog</mark> van het establishment.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“de haaien van de markt en de beursspeculanten”
+</div>
+<span class="context">Met overheidsmonopolies om de sleutelsectoren te beschermen tegen <mark>de haaien van de markt en de beursspeculanten</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 9</span>
+<div class="quote">
+“Een kwarteeuw autoritair besparingsbeleid, een kwarteeuw sociale afbraak”
+</div>
+<span class="context">Dat is de balans van 25 jaar Merkel en Hollande, Juncker en Macron. <mark>Een kwarteeuw autoritair besparingsbeleid, een kwarteeuw sociale afbraak</mark>, een kwarteeuw vermarkting</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Werknemers doen de samenleving draaien”
+</div>
+<span class="context">I. WERK EN SOCIALE BESCHERMING 1.VAST WERK MET EEN VOLWAARDIG LOON STANDPUNT <mark>Werknemers doen de samenleving draaien</mark>. Van bouwvakkers tot verplegers</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“We versterken de stem van mensen in armoede”
+</div>
+<span class="context">ZES. GEEF MENSEN IN ARMOEDE HET WOORD <mark>We versterken de stem van mensen in armoede</mark> en laten hen mee het armoedebeleid uittekenen.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“recht op water, voor iedereen”
+</div>
+<span class="context">12. RECHT OP WATER, VOOR IEDEREEN STANDPUNT Drinkwater is een basisbehoefte</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“gezond en evenwichtig voedsel voor de bevolking”
+</div>
+<span class="context">Winstbejag en het recht op voldoende, <mark>gezond en evenwichtig voedsel voor de bevolking</mark> gaan niet samen.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“ten dienste van de mensen”
+</div>
+<span class="context">Nieuwe technologie moet ten dienste staan van de mensen. Ze moet het werk verlichten in plaats van</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“regering van het volk, door het volk”
+</div>
+<span class="context">effectief ook maar iets in de praktijk brengen van Abraham Lincolns woorden: “<mark>regering van het volk, door het volk</mark> en voor het volk”.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“de inspraak van het volk te vergroten”
+</div>
+<span class="context">kan dat bij ons dan niet? Een ander kanaal om <mark>de inspraak van het volk te vergroten</mark> is doorheen een actief middenveld. Hun kritische rol</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“In België geniet de bevolking van heel wat rechten”
+</div>
+<span class="context">TWEE. EEN STERK MIDDENVELD <mark>In België geniet de bevolking van heel wat rechten</mark>. Die zijn het resultaat van de strijd</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 9</span>
+<div class="quote">
+“We laten de mensen beslissen”
+</div>
+<span class="context">VIER. CRUCIALE DEBATTEN DOOR DE MENSEN LATEN BESLISSEN <mark>We laten de mensen beslissen</mark>: via een bindend volksinitiatief</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Werknemers doen de samenleving draaien”
+</div>
+<span class="context"><mark>Werknemers doen de samenleving draaien</mark>. Van bouwvakkers tot verplegers, van kassabedienden tot kunstenaars: wij willen respect voor ieder die werkt. Zonder werkvolk geen welvaart.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“We versterken de stem van mensen in armoede en laten hen mee het armoedebeleid uittekenen.”
+</div>
+<span class="context">ZES. GEEF MENSEN IN ARMOEDE HET WOORD <mark>We versterken de stem van mensen in armoede en laten hen mee het armoedebeleid uittekenen.</mark> We investeren in de opleidingen voor ervaringsdeskundigen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Wij willen dat de industrie tegen 2050 geen broeikasgassen meer uitstoot”
+</div>
+<span class="context"><mark>Wij willen dat de industrie tegen 2050 geen broeikasgassen meer uitstoot</mark>, maar opneemt. Daar is een heuse omwenteling voor nodig en die zal niet spontaan van het grootbedrijf zelf komen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Iedereen voldoende kwaliteitsvoedsel garanderen”
+</div>
+<span class="context"><mark>Iedereen voldoende kwaliteitsvoedsel garanderen</mark>: dát moet het vertrekpunt zijn van een landbouwbeleid. Als het winstoogmerk van de zakenwereld of de voedingsindustrie het vertrekpunt is, zit het fout.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“iedereen heeft recht op culturele ontplooiing”
+</div>
+<span class="context">Dan maken we artikel 23 van de Grondwet waar: “Iedereen heeft recht op culturele ontplooiing”. Wij streven naar deelname van allen, met toegang voor allen. Tegenover de grote ‘creatieve industrieën’ opteren we voor een rijk kunsten cultuurleven van onderuit dat mensen actief en weerbaar maakt en hen energie geeft om hun leven en de samenleving aan te pakken.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“We laten niemand aan de zijlijn staan”
+</div>
+<span class="context">Dat doen we door het contact met de burgers te diversifiëren en door ervoor te zorgen dat de kwaliteit van onlinediensten voor technologiegebruikers en de kwaliteit van offline diensten identiek is. <mark>We laten niemand aan de zijlijn staan</mark>. DRIE. WERKEN AAN EEN SOCIALE DIGITALE MAATSCHAPPIJ De federale en gewestelijke overheden laten de innovatie van nieuwe apps en technologieën over aan de vrije markt en aan private investeerders.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“Wij pleiten voor een democratie van onderuit, die direct is en dynamisch”
+</div>
+<span class="context"><mark>Wij pleiten voor een democratie van onderuit, die direct is en dynamisch</mark>, die op participatie is gericht. Het gaat erom de macht te laten “dragen” door de bevolking, ook na de verkiezingen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“De samenleving gelijker maken is een belangrijke opgave”
+</div>
+<span class="context"><mark>De samenleving gelijker maken is een belangrijke opgave</mark> voor meer veiligheid. Wij gaan het gevecht aan tegen terrorisme.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 9</span>
+<div class="quote">
+“We laten de mensen beslissen”
+</div>
+<span class="context"><mark>We laten de mensen beslissen</mark>: via een bindend volksinitiatief kunnen een miljoen mensen uit zeven lidstaten een wetgevend initiatief opleggen aan instellingen of een asociale maatregel blokkeren. Fundamentele beslissingen over de toekomst van de EU worden in iedere lidstaat bij referendum voorgelegd. De onderhandelingen en vergaderingen van de Europese Raad, de Eurogroep, het Europees Stabiliteitsmechanisme en Ecofin moeten openbaar zijn, via livestream en officiële openbare verslagen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Werknemers doen de samenleving draaien”
+</div>
+<span class="context">STANDPUNT <mark>Werknemers doen de samenleving draaien</mark>. Van bouwvakkers tot verplegers, van kassabedienden tot kunstenaars</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Power to the people. We nemen onze energie in eigen handen”
+</div>
+<span class="context"><mark>Power to the people. We nemen onze energie in eigen handen</mark>. In plaats van Engie, EDF en andere energiemultinationals willen we een publieke energiesector</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“garanderen we de leefbaarheid van de Belgische industrie”
+</div>
+<span class="context">Op die manier <mark>garanderen we de leefbaarheid van de Belgische industrie</mark> op de lange termijn en creëren we nieuwe, groene banen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Iedereen voldoende kwaliteitsvoedsel garanderen”
+</div>
+<span class="context"><mark>Iedereen voldoende kwaliteitsvoedsel garanderen</mark>: dát moet het vertrekpunt zijn van een landbouwbeleid.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“hoop van de werknemers, die de rijkdom”
+</div>
+<span class="context">Hoop van de werknemers, die de rijkdom van ons land creëren, hoop van de jongeren die aan de toekomst willen werken.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“regering van het volk, door het volk en voor het volk”
+</div>
+<span class="context">willen we effectief ook maar iets in de praktijk brengen van Abraham Lincolns woorden: “<mark>regering van het volk, door het volk en voor het volk</mark>”</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“de macht te laten”dragen” door de bevolking”
+</div>
+<span class="context">Wij pleiten voor een democratie van onderuit, die direct is en dynamisch, die op participatie is gericht. Het gaat erom <mark>de macht te laten “dragen” door de bevolking</mark>, ook na de verkiezingen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“Veilig wonen, kunnen buitenspelen”
+</div>
+<span class="context"><mark>Veilig wonen, kunnen buitenspelen</mark>, veilig naar de winkel kunnen gaan en een praatje kunnen slaan met de buren: dat is een basisrecht.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 9</span>
+<div class="quote">
+“We laten de mensen beslissen”
+</div>
+<span class="context">VIER. CRUCIALE DEBATTEN DOOR DE MENSEN LATEN BESLISSEN <mark>We laten de mensen beslissen</mark>: via een bindend volksinitiatief kunnen een miljoen mensen</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“privileges voor de politieke elite”
+</div>
+<span class="context">onaanvaardbaar. Die <mark>privileges voor de politieke elite</mark> vinden wij onaanvaardbaar.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“de regering opent de jacht op langdurig zieken”
+</div>
+<span class="context">SOCIALE BESCHERMING 6. SOCIALE BESCHERMING STANDPUNT De regering opent de jacht op langdurig zieken en werklozen, een beleid dat het slachtoffer de schuld geeft.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“onder druk van de asbestmaffia”
+</div>
+<span class="context">leiden. Toch duurde het <mark>onder druk van de asbestmaffia</mark> van Eternit, SVK en co tot 1998</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“winstlogica vrij spel heeft”
+</div>
+<span class="context">Maar omdat de <mark>winstlogica vrij spel heeft</mark> en de distributie de winstmarges voor de landbouwers kleiner maakt</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“cadeaus voor het grootbedrijf”
+</div>
+<span class="context">Waarom nog langer zoveel verloren geld besteden aan <mark>cadeaus voor het grootbedrijf</mark>? Dat levert</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“de privileges van de politieke kaste”
+</div>
+<span class="context">V. DEMOCRATIE 25.DE PRIVILEGES VAN DE POLITIEKE KASTE AFSCHAFFEN STANDPUNT Dat is gemakkelijk</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“het politiek establishment het niet naast zich kan neerleggen”
+</div>
+<span class="context">meerderheid haalt, <mark>het politiek establishment het niet naast zich kan neerleggen</mark>. We zorgen er wel voor dat er geen voorstellen</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“enkel projecten die passen in het kraam van de politieke wereld”
+</div>
+<span class="context">Dat is kortzichtig en dient ervoor dat <mark>enkel projecten die passen in het kraam van de politieke wereld</mark>, kunnen worden uitgevoerd.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 9</span>
+<div class="quote">
+“We laten de mensen beslissen”
+</div>
+<span class="context">VIER. CRUCIALE DEBATTEN DOOR DE MENSEN LATEN BESLISSEN <mark>We laten de mensen beslissen</mark>: via een bindend volksinitiatief</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Graaikapitalisme”
+</div>
+<span class="context">In 2010 besliste AB InBev 800 jobs te schrappen terwijl de aandeelhouders voor een miljard euro dividenden uitgekeerd kregen. <mark>Graaikapitalisme</mark>. De PVDA diende in het parlement een voorstel in voor de “wet-InBev”. Daarmee verbieden we collectieve ontslagen in bedrijven die winst maken of dividenden uitkeren.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Wie miljoenen bezit wordt gemakkelijk rijker, maar wie in armoede opgroeit geraakt daar erg moeilijk uit.”
+</div>
+<span class="context">Tegelijk stijgt het aantal miljonairs in ons land. <mark>Wie miljoenen bezit wordt gemakkelijk rijker, maar wie in armoede opgroeit geraakt daar erg moeilijk uit.</mark> Wie komaf wil maken met armoede moet die onrechtvaardigheid aanpakken.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“de emissiehandel door bindende normen”
+</div>
+<span class="context">Daarom vervangen we <mark>de emissiehandel door bindende normen</mark>, met een helder pad naar negatieve emissies in 2050. Zo wordt de industrie genoodzaakt drastische energiebesparende maatregelen te nemen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“kapitalistische voedingsindustrie”
+</div>
+<span class="context">Op wereldschaal zorgt de <mark>kapitalistische voedingsindustrie</mark> voor de grootste uitstoot van broeikasgassen. In België stoot de landbouw 10% van de broeikasgassen uit en die uitstoot is in deze eeuw nog maar lichtjes gedaald.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“de rijkdom van ons land creëren”
+</div>
+<span class="context">Na tien jaar van economische stagnatie, van toenemende ongelijkheid en armoede, moet het roer om. We keren dat oude beleid de rug toe, weg van de berusting en moedeloosheid. We zetten de dingen in het teken van de hoop. Hoop van de werknemers, die <mark>de rijkdom van ons land creëren</mark>, hoop van de jongeren die aan de toekomst willen werken.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“de politieke kaste heel even aandacht voor het bevolkingsdeel dat 1.000 of 2.000 euro verdient”
+</div>
+<span class="context">Dat is gemakkelijk: maatregelen nemen die de burger treffen als je daar zelf niets van voelt omdat je zoveel meer verdient! Wanneer het op verkozen worden aankomt, heeft <mark>de politieke kaste heel even aandacht voor het bevolkingsdeel dat 1.000 of 2.000 euro verdient</mark>, maar de rest van haar tijd leeft die kaste tussen mensen met 10.000 euro per maand en meer.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“Wij pleiten voor een democratie van onderuit, die direct is en dynamisch”
+</div>
+<span class="context"><mark>Wij pleiten voor een democratie van onderuit, die direct is en dynamisch</mark>, die op participatie is gericht. Het gaat erom de macht te laten “dragen” door de bevolking, ook na de verkiezingen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“De samenleving gelijker maken is een belangrijke opgave”
+</div>
+<span class="context"><mark>De samenleving gelijker maken is een belangrijke opgave</mark> voor meer veiligheid. Wij gaan het gevecht aan tegen terrorisme.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 9</span>
+<div class="quote">
+“We laten de mensen beslissen”
+</div>
+<span class="context"><mark>We laten de mensen beslissen</mark>: via een bindend volksinitiatief kunnen een miljoen mensen uit zeven lidstaten een wetgevend initiatief opleggen aan instellingen of een asociale maatregel blokkeren. Fundamentele beslissingen over de toekomst van de EU worden in iedere lidstaat bij referendum voorgelegd. De onderhandelingen en vergaderingen van de Europese Raad, de Eurogroep, het Europees Stabiliteitsmechanisme en Ecofin moeten openbaar zijn, via livestream en officiële openbare verslagen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Graaikapitalisme”
+</div>
+<span class="context">dividenden uitgekeerd kregen. <mark>Graaikapitalisme</mark>. De PVDA diende in het parlement een voorstel in voor de “wet-InBev”</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“energiemultinationals willen we een publieke energiesector”
+</div>
+<span class="context">In plaats van Engie, EDF en andere <mark>energiemultinationals willen we een publieke energiesector</mark>, in handen van de samenleving en onder democratische controle.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“de verlammende concurrentielogica te overwinnen”
+</div>
+<span class="context">Het is hoog tijd voor een stevige duw in de rug om <mark>de verlammende concurrentielogica te overwinnen</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“winsten van de aandeelhouders”
+</div>
+<span class="context">Dierenwelzijn, werkomstandigheden en volksgezondheid horen op de eerste plaats te komen, niet de <mark>winsten van de aandeelhouders</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“cadeaus voor het grootbedrijf”
+</div>
+<span class="context">Waarom nog langer zoveel verloren geld besteden aan <mark>cadeaus voor het grootbedrijf</mark>? Dat levert uiteindelijk alleen maar dividenden op die als slapend kapitaal bij de rijkste aandeelhouders blijven liggen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“establishment, deze financiële en politieke kaste, controleert”
+</div>
+<span class="context">Het <mark>establishment, deze financiële en politieke kaste, controleert</mark> en oriënteert de grote beslissingen en probeert een tegenmacht van onderuit klein te houden.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“lobbywerk vooraf van het grootbedrijf”
+</div>
+<span class="context">Aan die beslissingen gaat altijd succesvol <mark>lobbywerk vooraf van het grootbedrijf</mark>. En zo wordt het democratische proces in het hele tijdsbestek tussen twee verkiezingen geconfisqueerd.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“klaarstaat om die van het establishment te verdedigen”
+</div>
+<span class="context">Van oudsher kent België een dure rechtspraak die niet bij machte is de belangen van gewone burgers te beschermen, maar <mark>klaarstaat om die van het establishment te verdedigen</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 9</span>
+<div class="quote">
+“Tegenover de almacht van het Europese grootbedrijf”
+</div>
+<span class="context"><mark>Tegenover de almacht van het Europese grootbedrijf</mark> wil de PVDA mee een tegenmacht creëren. Die strijd aangaan begint met het kader te weigeren.</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="21230_201905_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

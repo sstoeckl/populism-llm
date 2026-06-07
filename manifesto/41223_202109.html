@@ -1,0 +1,2823 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>LINKE (Germany, 2021) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/41223_202109_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">LINKE (Germany, 2021)</h1>
+<p class="subtitle lead">manifesto_id 41223_202109</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Germany · <span class="item"><strong>Party</strong></span> LINKE (The Left) · <span class="item"><strong>Year</strong></span> 2021 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 20</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.6</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.1</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.9</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.1</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.9</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.1</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.9</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.2</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“kapitalistische Wirtschaftsweise mit Ressourcenverbrauch”
+</div>
+<span class="context">beschleunigt darauf hin, dass die <mark>kapitalistische Wirtschaftsweise mit Ressourcenverbrauch</mark> und Schadstoffemissionen, mit nachhaltiger Erwärmung</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“Wohnungen komplett dem Markt entziehen”
+</div>
+<span class="context">Modell Wien zeigt: Günstiger Wohnraum in gutem Zustand und mit hoher Wohnqualität für die Mehrheit der Menschen ist möglich. Perspektivisch wollen wir den Wohnungsbestand komplett dem Markt entziehen. Der Kündigungsschutz für Gewerbemietverträge muss</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“Unter den Bedingungen des »freien« Weltmarkts”
+</div>
+<span class="context">Belastbarkeitsgrenzen, die nicht überschritten werden dürfen. <mark>Unter den Bedingungen des »freien« Weltmarkts</mark> ist Nachhaltigkeit auf Dauer nicht möglich.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“Gegen die Dominanz marktwirtschaftlicher Verwertungs- und Effizienzlogik”
+</div>
+<span class="context">Der Osten soll nicht mehr die verlängerte Werkbank westdeutscher Großkonzerne sein. DIE LINKE setzt auf gemeinwohlorientierte und genossenschaftliche Wirtschaftskonzepte. <mark>Gegen die Dominanz marktwirtschaftlicher Verwertungs- und Effizienzlogik</mark> setzen wir uns für eine gute Versorgung</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 5</span>
+<div class="quote">
+“Überwindung des Kapitalismus”
+</div>
+<span class="context">Aufwertung von Frauen und ihrer Arbeit auch für die <mark>Überwindung des Kapitalismus</mark> als systematisierten Sexismus.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 6</span>
+<div class="quote">
+“Privatisierung von öffentlichen Dienstleistungen ebenso gestoppt”
+</div>
+<span class="context">Deshalb fordert DIE LINKE seit Jahren, dass Volksinitiativen, Volksbegehren und Volksentscheide auch auf Bundesebene möglich sein müssen. Wir wollen, dass die <mark>Privatisierung von öffentlichen Dienstleistungen ebenso gestoppt</mark> wird</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 7</span>
+<div class="quote">
+“Krankenhäuser und Pflegeeinrichtungen gehören flächendeckend wieder in öffentliche”
+</div>
+<span class="context">endlich eine bessere Bezahlung, mehr Personal und eine gesetzliche bedarfsorientierte Personalbemessung. <mark>Krankenhäuser und Pflegeeinrichtungen gehören flächendeckend wieder in öffentliche</mark> und gemein- wohlorientierte Hand.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Wir wollen mit einem Investitionsprogramm die Ausstattung von Bildung, Erziehung, Gesundheit und Pflege deutlich ausbauen und mehr Personal einstellen.”
+</div>
+<span class="context">Wir wollen staatliche Unterstützung an Garantien für Arbeitsplätze und Tarifverträge binden – und zugleich Weichen für eine bessere Zukunft stellen, für sichere Arbeitsplätze und eine funktionierende öffentliche Infrastruktur. <mark>Wir wollen mit einem Investitionsprogramm die Ausstattung von Bildung, Erziehung, Gesundheit und Pflege deutlich ausbauen und mehr Personal einstellen.</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir wollen den sozialen Wohnungsbau retten, den kommunalen und genossenschaftlichen Wohnungsbau ankurbeln…”
+</div>
+<span class="context">…Mit 15 Milliarden Euro im Jahr wollen wir dagegenhalten – indem wir den sozialen Wohnungsbau retten, den kommunalen und genossenschaftlichen Wohnungsbau ankurbeln, den vorhandenen Wohnungsbestand energetisch und demografiefest umbauen, über Förderung und Belegungsrechte die soziale Wohnraumversorgung stärker nutzbar machen und einen nicht profitorientierten Wohnungssektor aufbauen…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Wir wollen mit Investitionen Einstiege schaffen in ein neues, sozial gerechtes, klimagerechtes und geschlechtergerechtes Wohlstandsmodell”
+</div>
+<span class="context"><mark>Wir wollen mit Investitionen Einstiege schaffen in ein neues, sozial gerechtes, klimagerechtes und geschlechtergerechtes Wohlstandsmodell</mark> mit einer gerechten Verteilung von Arbeit und Reichtum.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Wir wollen natur- und umweltzerstörende Subventionen abbauen”
+</div>
+<span class="context">DIE LINKE steht für eine schnellstmögliche Kehrtwende. Das geht nicht ohne klare Regeln für Unternehmen und Gesellschaft. <mark>Wir wollen natur- und umweltzerstörende Subventionen abbauen</mark> und die frei werdenden Gelder in Naturund Umweltprogramme investieren. Naturschutz- und Biodiversitätsziele müssen verbindlich in andere Politikbereiche integriert werden, um den Erhalt von Natur und Biodiversität zu gewährleisten.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“Innovative Finanztechnologieunternehmen müssen mit ihren Finanzdienstleistungen denselben Regeln und Gesetzen unterworfen sein”
+</div>
+<span class="context">Innovative Finanztechnologieunternehmen (Fintech) bzw. ihre Plattformen müssen mit ihren Finanzdienstleistungen denselben Regeln und Gesetzen unterworfen sein, wie sie heute für konventionelle Finanzdienstleister gelten.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“Wir wollen die Privatisierung von öffentlichen Dienstleistungen ebenso stoppen wie alle öffentlich-privaten Partnerschaften”
+</div>
+<span class="context">Deshalb fordert DIE LINKE seit Jahren, dass Volksinitiativen, Volksbegehren und Volksentscheide auch auf Bundesebene möglich sein müssen. Wir wollen, dass die Privatisierung von öffentlichen Dienstleistungen ebenso gestoppt wird wie alle öffentlich-privaten Partnerschaften (ÖPP).</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“Wir wollen eine gerechte und gemeinsame europäische Wirtschaft aufbauen, statt den Konkurrenzkampf fortzuführen.”
+</div>
+<span class="context">Ohne Ausgleichsmaßnahmen verstärkt der Euro als gemeinsame Währung von stark unterschiedlichen Wirtschaftsräumen die Schieflage zwischen den reichen Staaten in Nord- und Westeuropa gegenüber den Staaten in Südeuropa. Wir müssen eine gerechte und gemeinsame europäische Wirtschaft aufbauen, statt den Konkurrenzkampf fortzuführen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Privatisierungen der Daseinsvorsorge”
+</div>
+<span class="context">An einer Regierung, die <mark>Privatisierungen der Daseinsvorsorge</mark> oder Sozialabbau betreibt, deren Politik die Aufgabenerfüllung des öffentlichen Dienstes verschlechtert, werden wir uns nicht beteiligen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Privatisierungen müssen gestoppt und rückgängig gemacht werden”
+</div>
+<span class="context">Das Bildungssystem ist Teil der öffentlichen Daseinsvorsorge und muss ausreichend vom Staat finanziert werden. Privatisierungen – auch von öffentlichen Bildungseinrichtungen – müssen gestoppt und rückgängig gemacht werden.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“Statt Privatisierungen und öffentlich-private »Partnerschaften«”
+</div>
+<span class="context"><mark>Statt Privatisierungen und öffentlich-private »Partnerschaften«</mark>, die sich nach dem Profit weniger richten, wollen wir Investitionen so gestalten, dass die verwendeten Steuergelder allen zugutekommen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“Gegen die Dominanz marktwirtschaftlicher Verwertungs- und Effizienzlogik”
+</div>
+<span class="context">DIE LINKE setzt auf gemeinwohlorientierte und genossenschaftliche Wirtschaftskonzepte. <mark>Gegen die Dominanz marktwirtschaftlicher Verwertungs- und Effizienzlogik</mark> setzen wir uns für eine gute Versorgung, öffentliche Daseinsvorsorge und den Stopp der Privatisierung von öffentlichem Eigentum ein.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“jenseits von Markt und Profitmacherei”
+</div>
+<span class="context">überführen Krankenhäuser und Pflegeheime wieder in gemeinnützige Hand, <mark>jenseits von Markt und Profitmacherei</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“Privatisierung von öffentlichen Dienstleistungen ebenso gestoppt wird”
+</div>
+<span class="context">Wir wollen, dass die <mark>Privatisierung von öffentlichen Dienstleistungen ebenso gestoppt wird</mark> wie alle öffentlich-privaten Partnerschaften (ÖPP).</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“weg von Kürzungen, Freihandelsabkommen und Marktradikalismus”
+</div>
+<span class="context">Wir brauchen einen Paradigmenwechsel, <mark>weg von Kürzungen, Freihandelsabkommen und Marktradikalismus</mark>, hin zu öffentlichen Investitionen</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“Macht der Banken und Finanzmärkte brechen”
+</div>
+<span class="context">Einkommensteuer gerecht reformieren88 Die <mark>Macht der Banken und Finanzmärkte brechen</mark>89 Finanzkriminalität stoppen!90 Für eine</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“Immobilien- und Hedgefonds wollen wir die Zulassung entziehen”
+</div>
+<span class="context">Wohnraum darf kein Spekulationsobjekt an der Börse mehr sein, <mark>Immobilien- und Hedgefonds wollen wir die Zulassung entziehen</mark>. Spekulationen mit Bauland wollen wir stoppen.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“Unternehmen der Daseinsvorsorge, Banken und Versicherungen”
+</div>
+<span class="context">DIE LINKE kämpft dafür, <mark>Unternehmen der Daseinsvorsorge, Banken und Versicherungen</mark>, Energiekonzerne, Unternehmen der Pharma- und</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“Schattenbanken, außerbilanzielle Zweckgesellschaften, Derivate, Hedgefonds und Private Equity Gesellschaften müssen aufgelöst”
+</div>
+<span class="context">Kurzfristig ausgerichtetes Investmentbanking – das nur in Betriebe investiert, um schnell hohe Renditen zu erzielen – wollen wir als Geschäftsfeld abwickeln. <mark>Schattenbanken, außerbilanzielle Zweckgesellschaften, Derivate, Hedgefonds und Private Equity Gesellschaften müssen aufgelöst</mark> oder streng reguliert werden.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“schleichende Privatisierung lehnen wir ab”
+</div>
+<span class="context">Geld und Währung müssen Teil staatlicher Souveränität bleiben, eine <mark>schleichende Privatisierung lehnen wir ab</mark>. Innovative Finanztechnologieunternehmen</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 7</span>
+<div class="quote">
+“Banken, die in Steueroasen operieren, werden wir die Lizenz entziehen”
+</div>
+<span class="context">große Vermögen kaum besteuert. Steuervermeidung und Steueroasen boomen. Das Ergebnis: Während gerade in der Coronakrise die Reichen immer reicher werden, wächst die Armut der Mehrheit der Menschen. Schluss damit! Es braucht einen EU-weiten Mindest­steuersatz für Unternehmen mit breiten und einheitlichen Bemessungsgrundlagen. Wir fordern gemeinsame Mindest­standards für die Besteuerung großer Vermögen und Spitzeneinkommen. Der Kampf gegen Steuerflucht muss verschärft werden. <mark>Banken, die in Steueroasen operieren, werden wir die Lizenz entziehen</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Die Macht der Banken und Finanzmärkte brechen”
+</div>
+<span class="context">Mit Steuern umsteuern85 Einkommensteuer gerecht reformieren88 <mark>Die Macht der Banken und Finanzmärkte brechen</mark>89 Finanzkriminalität stoppen!90 Für eine Digitalisierung, die den Menschen nützt92 Beschäftigte und ihre Rechte stärken92 Die Macht der Internetkonzerne und Plattformen begrenzen93 Digitale Infrastruktur für alle ausbauen93 Datensicherheit und Datenschutz95 Grundrechte schützen96 Digitale Zahlungssysteme regulieren97 Öffentliche Verwaltung demokratisch und digital97 Schule und Lernen digital unterstützen98 Digitalisierung im Gesundheitswesen99 Nachhaltige Digitalisierung: ökologisch und sozial100 Für Gerechtigkeit, Selbstbestimmung und Vielfalt der Geschlechter101</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 2</span>
+<div class="quote">
+“Wir fordern eine transparente, gesetzliche Regelung über Zuwendungen der Pharmaindustrie an Mediziner*innen und Heilberufe.”
+</div>
+<span class="context">…Wir wollen den Einfluss der Pharmakonzerne zurückdrängen. Das betrifft Werbung und Beeinflussung von Ärzt<em>innen, Wissenschaft und Patientenorganisationen. <mark>Wir fordern eine transparente, gesetzliche Regelung über Zuwendungen der Pharmaindustrie an Mediziner</mark></em>innen und Heilberufe. Wir wollen Korruption im Gesundheitswesen bekämpfen…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Wir wollen den Finanzsektor auf eine dienende Funktion für Gesellschaft und Realwirtschaft zurückführen”
+</div>
+<span class="context">Mehr als zehn Jahre nach der Finanz- und Weltwirtschaftskrise sind deren Ursachen nicht überwunden. Die Regierung hat es versäumt, das Finanzsystem grundlegend zu verändern und auf die Interessen der Mehrheit der Bevölkerung auszurichten. Dafür braucht es den Mut, sich mit den Großbanken, Hedgefonds und den Multimilliardären anzulegen. Wir wollen die Gesellschaft und die Demokratie aus dem Würgegriff der Finanzkonzerne befreien: Aus kapitalgedeckter Altersvorsorge fließen den Finanzmärkten Milliardenbeträge zu. <mark>Wir wollen den Finanzsektor auf eine dienende Funktion für Gesellschaft und Realwirtschaft zurückführen</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“Digitale Zahlungssysteme regulieren Internetkonzerne entwickeln für ihre Hard- und Softwareprodukte eigene Bezahlsysteme”
+</div>
+<span class="context"><mark>Digitale Zahlungssysteme regulieren Internetkonzerne entwickeln für ihre Hard- und Softwareprodukte eigene Bezahlsysteme</mark> (zum Beispiel ApplePay, AmazonPay, PayPal) oder denken über die Etablierung eigener Parallelwährungen nach.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“Wir wollen ein verbindliches, maschinenlesbares und transparentes Lobbyregister einführen”
+</div>
+<span class="context"><mark>Wir wollen ein verbindliches, maschinenlesbares und transparentes Lobbyregister einführen</mark> und treten für ein Beschäftigungsverbot von Lobbyisten in Bundesministerien und – bei Vollzeitparlamenten – von Abgeordneten als bezahlte Interessenvertreter für Dritte ein.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“Wir fordern gemeinsame Mindeststandards für die Besteuerung großer Vermögen und Spitzeneinkommen.”
+</div>
+<span class="context">Steuervermeidung und Steueroasen boomen. Das Ergebnis: Während gerade in der Coronakrise die Reichen immer reicher werden, wächst die Armut der Mehrheit der Menschen. Schluss damit! Es braucht einen EU-weiten Mindest­steuersatz für Unternehmen mit breiten und einheitlichen Bemessungsgrundlagen. <mark>Wir fordern gemeinsame Mindeststandards für die Besteuerung großer Vermögen und Spitzeneinkommen.</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Macht der Banken und Finanzmärkte brechen”
+</div>
+<span class="context">Mit Steuern umsteuern Einkommensteuer gerecht reformieren Die <mark>Macht der Banken und Finanzmärkte brechen</mark> Finanzkriminalität stoppen!</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Immobilien- und Hedgefonds wollen wir die Zulassung entziehen”
+</div>
+<span class="context">Wohnraum darf kein Spekulationsobjekt an der Börse mehr sein, <mark>Immobilien- und Hedgefonds wollen wir die Zulassung entziehen</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“Banken und Versicherungen … in öffentliche … Hand … zu überführen”
+</div>
+<span class="context">DIE LINKE kämpft dafür, Unternehmen der Daseinsvorsorge, Banken und Versicherungen, Energiekonzerne … in öffentliche (oder genossenschaftliche) Hand … zu überführen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“Die Finanzmärkte sollen entschleunigt und im Volumen geschrumpft werden”
+</div>
+<span class="context">DIE LINKE will den Finanzsektor deshalb auf eine dienende Funktion für Gesellschaft und Realwirtschaft zurückführen. <mark>Die Finanzmärkte sollen entschleunigt und im Volumen geschrumpft werden</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“schleichende Privatisierung lehnen wir ab”
+</div>
+<span class="context">Geld und Währung müssen Teil staatlicher Souveränität bleiben, eine <mark>schleichende Privatisierung lehnen wir ab</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“Es braucht ein gerechtes internationales Steuersystem mit einer Finanztransaktionssteuer”
+</div>
+<span class="context">Reiche und Konzerne müssen an den globalen Kosten von Krisen und Klimawandel beteiligt werden. <mark>Es braucht ein gerechtes internationales Steuersystem mit einer Finanztransaktionssteuer</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“Finanztransaktionssteuer”
+</div>
+<span class="context">Es braucht europäische Eigenmittel, etwa aus einer <mark>Finanztransaktionssteuer</mark>. Digitalkonzerne wie Google und Amazon machen Milliardengewinne</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“parlamentarischen Rechte müssen gestärkt werden”
+</div>
+<span class="context">Krisenbewältigung mit mehr und nicht mit weniger Demokratie. Die <mark>parlamentarischen Rechte müssen gestärkt werden</mark>. Alle Einschränkungen müssen demokratisch entschieden</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Das Bundesverfassungsgericht hat mit seinem Urteil”
+</div>
+<span class="context">Existenzminimums, müssen ausgeschlossen werden. <mark>Das Bundesverfassungsgericht hat mit seinem Urteil</mark> vom 5. November 2019 bereits eine</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Entscheidungen müssen im Parlament getroffen werden”
+</div>
+<span class="context">Wir wollen die Demokratisierung des Tierschutzes: <mark>Entscheidungen müssen im Parlament getroffen werden</mark> und nicht über Verordnungen.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Entscheidungen müssen im Parlament getroffen werden”
+</div>
+<span class="context">Wir wollen die Demokratisierung des Tierschutzes: <mark>Entscheidungen müssen im Parlament getroffen werden</mark> und nicht über Verordnungen. Wir brauchen höhere Standards</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“Recht auf Privatsphäre, sichere Kommunikation”
+</div>
+<span class="context">Staatstrojaner) müssen verboten werden. Wir wollen das <mark>Recht auf Privatsphäre, sichere Kommunikation</mark> und Verschlüsselung gesetzlich verankern.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“Bürgerrechte sind systemrelevant! Es darf keine Entmachtung der Parlamente”
+</div>
+<span class="context">Gerade in Krisenzeiten: Kein Lockdown für die Demokratie – <mark>Bürgerrechte sind systemrelevant! Es darf keine Entmachtung der Parlamente</mark> geben, keine (Selbst-)Ermächtigung der Exekutive.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“Stärkung und Demokratisierung der UN! Die Generalversammlung”
+</div>
+<span class="context">die EU-Blocking-Regulation von 1996 konsequent umsetzt. <mark>Stärkung und Demokratisierung der UN! Die Generalversammlung</mark> muss gegenüber dem Sicherheitsrat gestärkt werden.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Die parlamentarischen Rechte müssen gestärkt werden. Alle Einschränkungen müssen demokratisch entschieden, kontrolliert, transparent und regelmäßig überprüft werden.”
+</div>
+<span class="context">Die Coronakrise hat auf allen Ebenen die Defizite der bestehenden parlamentarischen Demokratie aufgezeigt. Wir wollen eine Krisenbewältigung mit mehr und nicht mit weniger Demokratie. <mark>Die parlamentarischen Rechte müssen gestärkt werden. Alle Einschränkungen müssen demokratisch entschieden, kontrolliert, transparent und regelmäßig überprüft werden.</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir wollen Demokratie, Selbstverwaltung der Schulen und insbesondere die Mitbestimmungsrechte der Schüler*innen an den Schulen stärken.”
+</div>
+<span class="context">…Lernende, Lehrende und Eltern sollen über Schule mitentscheiden können. <mark>Wir wollen Demokratie, Selbstverwaltung der Schulen und insbesondere die Mitbestimmungsrechte der Schüler*innen an den Schulen stärken.</mark> Die Schulreinigung wollen wir flächendeckend wieder in die öffentliche Hand bringen – für saubere Schulen und gute Arbeitsbedingungen…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Wir wollen, dass Umwelt- und Klimaschutz als Erweiterung der Grundrechte in die Verfassung aufgenommen werden”
+</div>
+<span class="context"><mark>Wir wollen, dass Umwelt- und Klimaschutz als Erweiterung der Grundrechte in die Verfassung aufgenommen werden</mark>. Alle Entscheidungen der Politik und die Verfügung über Eigentum müssen am Gemeinwohl ausgerichtet werden.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Wir wollen die Demokratisierung des Tierschutzes: Entscheidungen müssen im Parlament getroffen werden”
+</div>
+<span class="context">Wir setzen uns für eine umfassende Reformierung des Tierschutzgesetzes im Sinne des im Grundgesetz verankerten Staatsziels Tierschutz und für die Beseitigung des Vollzugsproblems und für seine Durchsetzung ein. <mark>Wir wollen die Demokratisierung des Tierschutzes: Entscheidungen müssen im Parlament getroffen werden</mark> und nicht über Verordnungen. Wir brauchen höhere Standards ohne Schlupflöcher, mehr Transparenz in der Tierindustrie.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“Das Informationsfreiheitsgesetz wollen wir zu einem Transparenzgesetz ausbauen”
+</div>
+<span class="context"><mark>Das Informationsfreiheitsgesetz wollen wir zu einem Transparenzgesetz ausbauen</mark>. Mit öffentlichen Mitteln erstellte Informationen müssen im Sinne von Open Data kostenlos öffentlich zugänglich sein.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“Demokratie braucht Meinungs- und Pressefreiheit, Versammlungs- und Vereinigungsfreiheit”
+</div>
+<span class="context"><mark>Demokratie braucht Meinungs- und Pressefreiheit, Versammlungs- und Vereinigungsfreiheit</mark> und die Freiheit der Bürger*innen von staatlicher Ausspähung (vgl. »Kapitel Datensicherheit und Datenschutz«). Wir wollen Volksinitiativen, Volksbegehren und Volksentscheide auf Bundesebene einführen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“Wir brauchen mehr Demokratie in Europa. Viele Menschen haben sich in den letzten Jahren enttäuscht von der EU abgewandt.”
+</div>
+<span class="context"><mark>Wir brauchen mehr Demokratie in Europa. Viele Menschen haben sich in den letzten Jahren enttäuscht von der EU abgewandt.</mark> Es fehlt an Vertrauen, für viele Menschen ist die EU weit weg. Denn Demokratie ist mehr als eine Wahl alle fünf Jahre.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Die Demokratie demokratisieren!”
+</div>
+<span class="context">Unabhängigkeit der Politik sichern <mark>Die Demokratie demokratisieren!</mark> Bürgerschaftliches Engagement besser unterstützen</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“Kinderrechte im Grundgesetz verankern”
+</div>
+<span class="context">Im Sorge- und Umgangsrecht muss das Kindeswohl im Mittelpunkt stehen und weiterhin im Einzelfall geprüft werden. Wir wollen <mark>Kinderrechte im Grundgesetz verankern</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“demokratisch wirkmächtige Fachschaften”
+</div>
+<span class="context">Wir wollen ausfinanzierte und <mark>demokratisch wirkmächtige Fachschaften</mark>, die die Studierendenschaft organisieren.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 4</span>
+<div class="quote">
+“Wir wollen die Demokratisierung des Tierschutzes”
+</div>
+<span class="context"><mark>Wir wollen die Demokratisierung des Tierschutzes</mark>: Entscheidungen müssen im Parlament getroffen werden und nicht über Verordnungen. Wir brauchen höhere Standards ohne Schlupflöcher</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“Kein Lockdown für die Demokratie”
+</div>
+<span class="context">Gerade in Krisenzeiten: <mark>Kein Lockdown für die Demokratie</mark> – Bürgerrechte sind systemrelevant!</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“Kein Lockdown für die Demokratie – Bürgerrechte sind systemrelevant”
+</div>
+<span class="context">Gerade in Krisenzeiten: <mark>Kein Lockdown für die Demokratie – Bürgerrechte sind systemrelevant</mark>! Es darf keine Entmachtung der Parlamente geben.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“starkes Europaparlament und umfassende Beteiligungsmöglichkeiten”
+</div>
+<span class="context">Das bedeutet ein <mark>starkes Europaparlament und umfassende Beteiligungsmöglichkeiten</mark>. Deshalb wollen wir eine neue Verfassung für Europa</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Gegen Armut und soziale Ausgrenzung”
+</div>
+<span class="context">Queere Communitys stärken: Rettungsschirm gegen die Coronafolgen107 <mark>Gegen Armut und soziale Ausgrenzung</mark>107 Diskriminierung bekämpfen108 Selbstbestimmt</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“unabhängig der Herkunft, sexuellen Orientierung”
+</div>
+<span class="context">ein gutes, planbares Leben ohne Zukunftsangst zu ermöglichen – für alle Familienformen, <mark>unabhängig der Herkunft, sexuellen Orientierung</mark> und geschlechtlichen Identität (vgl. Kapitel »Reproduktive</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“geschlechtersensible Bildung und indem Bereiche aufgewertet”
+</div>
+<span class="context">Dem wollen wir entgegenwirken: durch <mark>geschlechtersensible Bildung und indem Bereiche aufgewertet</mark> werden, in denen die Löhne niedrig sind</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“mehr Frauen, mehr Ostdeutsche, mehr Migrant*innen in die Führungsetagen”
+</div>
+<span class="context">Führungspositionen müssen Spiegelbild einer Gesellschaft sein, sonst verletzen sie den demokratischen Grundsatz der Gleichwertigkeit aller. Das bedeutet <mark>mehr Frauen, mehr Ostdeutsche, mehr Migrant*innen in die Führungsetagen</mark> bundesweit!</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 5</span>
+<div class="quote">
+“Gleichstellung aller Lebensweisen”
+</div>
+<span class="context">Für körperliche und sexuelle Selbstbestimmung und <mark>Gleichstellung aller Lebensweisen</mark> Wir wollen, dass die vielfältigen</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 10.0 · verified · chunk 6</span>
+<div class="quote">
+“Sinti<em>zze und Rom</em>nja zu schützen und zu fördern”
+</div>
+<span class="context">Wir setzen uns dafür ein, die <mark>Sinti<em>zze und Rom</em>nja zu schützen und zu fördern</mark>. Wir setzen uns für die Fortsetzung der gesellschaftlichen Aufarbeitung</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 7</span>
+<div class="quote">
+“Frauen­ und Mädchenrechte stärken – Gesundheit und Bildung”
+</div>
+<span class="context">Unser Plan für eine solidarische Entwicklungsarbeit: <mark>Frauen­ und Mädchenrechte stärken – Gesundheit und Bildung</mark> für alle weltweit! Wir wollen den universellen Zugang</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Wir setzen Ausgrenzung, Diskriminierung und Gewalt unser Modell einer inklusiven und sozialistischen Gesellschaft entgegen.”
+</div>
+<span class="context">Menschlichkeit ist für uns unteilbar: Viele Menschen werden wegen ihrer körperlichen Verfassung, ihrer Herkunft ihrer Armut, ihres Geschlechts, ihres Alters, Glaubens oder ihrer sexuellen Orientierung diskriminiert, von sozialer und politischer Teilhabe ausgegrenzt. Oft sind sie psychischer und körperliche Gewalt ausgesetzt. Wir aber wollen ein Land, in dem alle gleichberechtigt zusammenleben und an den demokratischen Entscheidungen beteiligt werden. <mark>Wir setzen Ausgrenzung, Diskriminierung und Gewalt unser Modell einer inklusiven und sozialistischen Gesellschaft entgegen.</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir wollen Kinderrechte im Grundgesetz verankern.”
+</div>
+<span class="context">…Im Sorge- und Umgangsrecht muss das Kindeswohl im Mittelpunkt stehen und weiterhin im Einzelfall geprüft werden. <mark>Wir wollen Kinderrechte im Grundgesetz verankern.</mark> Mehr Personal in Jugendämtern: Eltern benötigen fachkundige Beratung und Begleitung…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Wir setzen uns für lebenslanges, lebensbegleitendes Lernen ein: als Angebot, nicht als Pflicht zur Selbstoptimierung”
+</div>
+<span class="context"><mark>Wir setzen uns für lebenslanges, lebensbegleitendes Lernen ein: als Angebot, nicht als Pflicht zur Selbstoptimierung</mark>. Die allgemeine, kulturelle, politische und berufliche Weiterbildung ist ein wichtiger Teil davon.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“Wir setzen uns für eine umfassende Reformierung des Tierschutzgesetzes”
+</div>
+<span class="context">Tiere sind unserem Handeln unterworfen, deshalb tragen wir die Verantwortung, ihr Leid zu vermindern und zu vermeiden. Die aktuelle Politik und die bestehenden Gesetze entsprechen weder den Wünschen der Bevölkerung noch den wissenschaftlichen Erkenntnissen über die Empfindungsfähigkeit von Tieren. <mark>Wir setzen uns für eine umfassende Reformierung des Tierschutzgesetzes</mark> im Sinne des im Grundgesetz verankerten Staatsziels Tierschutz und für die Beseitigung des Vollzugsproblems und für seine Durchsetzung ein.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 5</span>
+<div class="quote">
+“Wir wollen, dass LSBTIQA* als selbstverständlicher Teil gesellschaftlicher Realität anerkannt”
+</div>
+<span class="context"><mark>Wir wollen, dass LSBTIQA* als selbstverständlicher Teil gesellschaftlicher Realität anerkannt</mark> im Alter. Deshalb wollen wir mehr queere Bildungsangebote in allen gesellschaftlichen Bereichen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“Wir fordern bundespolitische Grundsätze zur Wahrung und Weiterentwicklung der Identität, Sprache und Kultur der ethnischen Minderheiten”
+</div>
+<span class="context"><mark>Wir fordern bundespolitische Grundsätze zur Wahrung und Weiterentwicklung der Identität, Sprache und Kultur der ethnischen Minderheiten</mark> sowie Minderheitenschutz im Grundgesetz. Bei der Strukturförderung von Regionen sind die Bedürfnisse der ethnischen Minderheiten angemessen zu berücksichtigen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 7</span>
+<div class="quote">
+“Wir wollen die Kräfte für Demokratie, Gleichberechtigung und soziale Gerechtigkeit fördern, statt Deals mit Diktatoren zu schließen!”
+</div>
+<span class="context"><mark>Wir wollen die Kräfte für Demokratie, Gleichberechtigung und soziale Gerechtigkeit fördern, statt Deals mit Diktatoren zu schließen!</mark> Deswegen unterstützen wir die fortschrittlichen sozialen Bewegungen von Kurdistan über die Westsahara bis nach Kolumbien in ihrem Kampf.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Offensiv und sozial für LSBTIQA*“
+</div>
+<span class="context">Für körperliche und sexuelle Selbstbestimmung und Gleichstellung aller Lebensweisen <mark>Offensiv und sozial für LSBTIQA*</mark> Queere Communitys stärken</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“unabhängig der Herkunft, sexuellen Orientierung und geschlechtlichen Identität”
+</div>
+<span class="context">LINKE Familienpolitik zielt darauf ab, allen Menschen ein gutes, planbares Leben ohne Zukunftsangst zu ermöglichen – für alle Familienformen, <mark>unabhängig der Herkunft, sexuellen Orientierung und geschlechtlichen Identität</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“geschlechtersensible Bildung”
+</div>
+<span class="context">Dem wollen wir entgegenwirken: durch <mark>geschlechtersensible Bildung</mark> und indem Bereiche aufgewertet werden, in denen die Löhne niedrig sind und viele Frauen arbeiten.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“mehr Frauen, mehr Ostdeutsche, mehr Migrant*innen”
+</div>
+<span class="context">Das bedeutet <mark>mehr Frauen, mehr Ostdeutsche, mehr Migrant*innen</mark> in die Führungsetagen bundesweit! Es ist Zeit für politisch gesteuerte Verfahren, die die Benachteiligung beenden</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 5</span>
+<div class="quote">
+“Rechte von lesbischen, schwulen, bisexuellen”
+</div>
+<span class="context">Die <mark>Rechte von lesbischen, schwulen, bisexuellen</mark>, trans<em>, intergeschlechtlichen, queeren und asexuellen Personen (LSBTIQA</em>) sind für uns nicht verhandelbar</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“Strukturelle Benachteiligung aufgrund der sozialen und ethnischen Herkunft”
+</div>
+<span class="context"><mark>Strukturelle Benachteiligung aufgrund der sozialen und ethnischen Herkunft</mark>, der Klasse, des Geschlechts, der sexuellen Identität, einer Behinderung, einer Religion oder Weltanschauung muss abgebaut werden.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“Frauen­ und Mädchenrechte stärken”
+</div>
+<span class="context">Unser Plan für eine solidarische Entwicklungsarbeit: <mark>Frauen­ und Mädchenrechte stärken</mark> – Gesundheit und Bildung für alle weltweit!</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“parlamentarischen Rechte müssen gestärkt werden”
+</div>
+<span class="context">Krisenbewältigung mit mehr und nicht mit weniger Demokratie. Die <mark>parlamentarischen Rechte müssen gestärkt werden</mark>. Alle Einschränkungen müssen demokratisch entschieden</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“Das Bundesverfassungsgericht hat mit seinem Urteil”
+</div>
+<span class="context">Existenzminimums, müssen ausgeschlossen werden. <mark>Das Bundesverfassungsgericht hat mit seinem Urteil</mark> vom 5. November 2019 bereits eine</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“Unter den Bedingungen des »freien« Weltmarkts”
+</div>
+<span class="context">Belastbarkeitsgrenzen, die nicht überschritten werden dürfen. <mark>Unter den Bedingungen des »freien« Weltmarkts</mark> ist Nachhaltigkeit auf Dauer nicht möglich.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“Gegen die Dominanz marktwirtschaftlicher Verwertungs- und Effizienzlogik”
+</div>
+<span class="context">Der Osten soll nicht mehr die verlängerte Werkbank westdeutscher Großkonzerne sein. DIE LINKE setzt auf gemeinwohlorientierte und genossenschaftliche Wirtschaftskonzepte. <mark>Gegen die Dominanz marktwirtschaftlicher Verwertungs- und Effizienzlogik</mark> setzen wir uns für eine gute Versorgung</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“Recht auf Privatsphäre, sichere Kommunikation”
+</div>
+<span class="context">Staatstrojaner) müssen verboten werden. Wir wollen das <mark>Recht auf Privatsphäre, sichere Kommunikation</mark> und Verschlüsselung gesetzlich verankern.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“Bürgerrechte sind systemrelevant! Es darf keine Entmachtung der Parlamente”
+</div>
+<span class="context">Gerade in Krisenzeiten: Kein Lockdown für die Demokratie – <mark>Bürgerrechte sind systemrelevant! Es darf keine Entmachtung der Parlamente</mark> geben, keine (Selbst-)Ermächtigung der Exekutive.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 7</span>
+<div class="quote">
+“Stärkung und Demokratisierung der UN! Die Generalversammlung”
+</div>
+<span class="context">die EU-Blocking-Regulation von 1996 konsequent umsetzt. <mark>Stärkung und Demokratisierung der UN! Die Generalversammlung</mark> muss gegenüber dem Sicherheitsrat gestärkt werden.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Die parlamentarischen Rechte müssen gestärkt werden. Alle Einschränkungen müssen demokratisch entschieden, kontrolliert, transparent und regelmäßig überprüft werden.”
+</div>
+<span class="context">Die Coronakrise hat auf allen Ebenen die Defizite der bestehenden parlamentarischen Demokratie aufgezeigt. Wir wollen eine Krisenbewältigung mit mehr und nicht mit weniger Demokratie. <mark>Die parlamentarischen Rechte müssen gestärkt werden. Alle Einschränkungen müssen demokratisch entschieden, kontrolliert, transparent und regelmäßig überprüft werden.</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir wollen Demokratie, Selbstverwaltung der Schulen und insbesondere die Mitbestimmungsrechte der Schüler*innen an den Schulen stärken.”
+</div>
+<span class="context">…Lernende, Lehrende und Eltern sollen über Schule mitentscheiden können. <mark>Wir wollen Demokratie, Selbstverwaltung der Schulen und insbesondere die Mitbestimmungsrechte der Schüler*innen an den Schulen stärken.</mark> Die Schulreinigung wollen wir flächendeckend wieder in die öffentliche Hand bringen – für saubere Schulen und gute Arbeitsbedingungen…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Wir wollen, dass Umwelt- und Klimaschutz als Erweiterung der Grundrechte in die Verfassung aufgenommen werden”
+</div>
+<span class="context"><mark>Wir wollen, dass Umwelt- und Klimaschutz als Erweiterung der Grundrechte in die Verfassung aufgenommen werden</mark>. Alle Entscheidungen der Politik und die Verfügung über Eigentum müssen am Gemeinwohl ausgerichtet werden.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Wir wollen die Demokratisierung des Tierschutzes: Entscheidungen müssen im Parlament getroffen werden”
+</div>
+<span class="context">Wir setzen uns für eine umfassende Reformierung des Tierschutzgesetzes im Sinne des im Grundgesetz verankerten Staatsziels Tierschutz und für die Beseitigung des Vollzugsproblems und für seine Durchsetzung ein. <mark>Wir wollen die Demokratisierung des Tierschutzes: Entscheidungen müssen im Parlament getroffen werden</mark> und nicht über Verordnungen. Wir brauchen höhere Standards ohne Schlupflöcher, mehr Transparenz in der Tierindustrie.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“Das Informationsfreiheitsgesetz wollen wir zu einem Transparenzgesetz ausbauen”
+</div>
+<span class="context"><mark>Das Informationsfreiheitsgesetz wollen wir zu einem Transparenzgesetz ausbauen</mark>. Mit öffentlichen Mitteln erstellte Informationen müssen im Sinne von Open Data kostenlos öffentlich zugänglich sein.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“Demokratie braucht Meinungs- und Pressefreiheit, Versammlungs- und Vereinigungsfreiheit”
+</div>
+<span class="context"><mark>Demokratie braucht Meinungs- und Pressefreiheit, Versammlungs- und Vereinigungsfreiheit</mark> und die Freiheit der Bürger*innen von staatlicher Ausspähung (vgl. »Kapitel Datensicherheit und Datenschutz«). Wir wollen Volksinitiativen, Volksbegehren und Volksentscheide auf Bundesebene einführen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“Wir brauchen mehr Demokratie in Europa. Viele Menschen haben sich in den letzten Jahren enttäuscht von der EU abgewandt.”
+</div>
+<span class="context"><mark>Wir brauchen mehr Demokratie in Europa. Viele Menschen haben sich in den letzten Jahren enttäuscht von der EU abgewandt.</mark> Es fehlt an Vertrauen, für viele Menschen ist die EU weit weg. Denn Demokratie ist mehr als eine Wahl alle fünf Jahre.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“Demokratie stärken”
+</div>
+<span class="context">Für mehr Demokratie streiten: Die Coronakrise hat auf allen Ebenen die Defizite der bestehenden parlamentarischen Demokratie aufgezeigt. Wir wollen eine Krisenbewältigung mit mehr und nicht mit weniger Demokratie.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“Recht auf Wohnen wollen wir ins Grundgesetz aufnehmen”
+</div>
+<span class="context">Räumung in die Wohnungslosigkeit wollen wir grundsätzlich verbieten, das <mark>Recht auf Wohnen wollen wir ins Grundgesetz aufnehmen</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“Emissionshandel als Leitinstrument im Klimaschutz lehnen wir ab”
+</div>
+<span class="context">Den <mark>Emissionshandel als Leitinstrument im Klimaschutz lehnen wir ab</mark>. Primär müssen verbindliche Klimaziele und Emissionsgrenzen den Konzernen klare Vorgaben machen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 4</span>
+<div class="quote">
+“Schattenbanken, außerbilanzielle Zweckgesellschaften, Derivate, Hedgefonds”
+</div>
+<span class="context"><mark>Schattenbanken, außerbilanzielle Zweckgesellschaften, Derivate, Hedgefonds</mark> und Private­Equity­ Gesellschaften müssen aufgelöst oder streng reguliert werden. In diesem Sinne muss Banking wieder langweilig werden.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“Recht auf informationelle Selbstbestimmung sichern”
+</div>
+<span class="context">Wir wollen das <mark>Recht auf informationelle Selbstbestimmung sichern</mark>: gegen Vorratsdatenspeicherung</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“Demokratie braucht Meinungs- und Pressefreiheit”
+</div>
+<span class="context"><mark>Demokratie braucht Meinungs- und Pressefreiheit</mark>, Versammlungs- und Vereinigungsfreiheit und die Freiheit der Bürger*innen von staatlicher Ausspähung.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 7</span>
+<div class="quote">
+“Demokratie darf nicht mehr den Finanzmärkten untergeordnet werden”
+</div>
+<span class="context">Die <mark>Demokratie darf nicht mehr den Finanzmärkten untergeordnet werden</mark>. Wir weisen alle Angriffe auf die Demokratie in Europa zurück.</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“bereit, uns mit den Profiteur*innen anzulegen”
+</div>
+<span class="context">musssten, steigerten große Konzerne ihre Gewinne. Wir finden uns nicht mit diesen Verhältnissen ab und sind <mark>bereit, uns mit den Profiteur*innen anzulegen</mark>. Wir alle können gemeinsam Deutschland</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Alle bisherigen Bundesregierungen haben gezielt kleingerechnet”
+</div>
+<span class="context">entgeltfreien öffentlichen Nahverkehr für alle. <mark>Alle bisherigen Bundesregierungen haben gezielt kleingerechnet</mark>, was die Menschen zum Leben brauchen. Damit muss</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“im Interesse von Konzernen die Klima-”
+</div>
+<span class="context">aber die Regierung verzögert mit falschen Weichenstellungen <mark>im Interesse von Konzernen die Klima-</mark>, Energie- und Verkehrswende.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Häufig stehen kurzfristige Interessen von Unternehmen und ihrer Lobby dem entgegen”
+</div>
+<span class="context">Es geht um die Wiederherstellung, die Entwicklung und den Schutz der Ökosysteme des Planeten. <mark>Häufig stehen kurzfristige Interessen von Unternehmen und ihrer Lobby dem entgegen</mark>. Das haben die Auseinandersetzungen um den Hambacher</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“die Großen lässt man laufen”
+</div>
+<span class="context">und Steuerhinterziehung werden hingegen heruntergefahren – <mark>die Großen lässt man laufen</mark>. Für viele Menschen bedeutet</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“Genützt hat das vor allem dem Machtstreben der Konservativen”
+</div>
+<span class="context">Diese Sicherheitspolitik verwaltet die Probleme, anstatt sie zu lösen. <mark>Genützt hat das vor allem dem Machtstreben der Konservativen</mark> und den Profiten der Sicherheitsbranche.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“Interessen der Vielen gegen die Profitinteressen der Wenigen”
+</div>
+<span class="context">Geben Sie der LINKEN Ihre Stimme: Gemeinsam sind wir stark, um die <mark>Interessen der Vielen gegen die Profitinteressen der Wenigen</mark> durchzusetzen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Wir finden uns nicht mit diesen Verhältnissen ab und sind bereit, uns mit den Profiteur*innen anzulegen.”
+</div>
+<span class="context">Die Coronakrise hat die Ungerechtigkeiten des Kapitalismus deutlich zutage treten lassen: während die einen um ihren Arbeitsplatz, die Bildung ihrer Kinder und die Gesundheit bangen mussten, steigerten große Konzerne ihre Gewinne. <mark>Wir finden uns nicht mit diesen Verhältnissen ab und sind bereit, uns mit den Profiteur*innen anzulegen.</mark> Wir alle können gemeinsam Deutschland demokratischer und sozial gerechter machen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Die Politik der Bundesregierungen, die dafür sorgt, dass private Konzerne und Investoren mit unseren Versicherungsbeiträgen, Zuzahlungen, Eigenanteilen und der Ausbeutung der Beschäftigten im Gesundheitswesen das große Geld machen können, gefährdet unsere Gesundheit!”
+</div>
+<span class="context">…Pflegenotstand, und teilweise wurde gegen Grundrechte der Menschen mit Pflegebedarf verstoßen. Die Bundesregierung hätte es nach dem Frühjahr besser wissen können. Doch sie hat das Personal in Krankenhaus und Pflege nicht aufgestockt, sie hat den Pharmakonzernen keine klaren Vorgaben für die Produktion des Impfstoffs gemacht. Schon vor Corona war Normalzustand in deutschen Krankenhäusern: kaum Zeit für Zuwendung, mangelnde Hygiene, mehr Unfälle und vermeidbare Todesfälle. Die Bundesregierung hat keine Strategie vorgelegt, wie der Pflegenotstand in den Krankenhäusern und Pflegeeinrichtungen gestoppt werden kann. <mark>Die Politik der Bundesregierungen, die dafür sorgt, dass private Konzerne und Investoren mit unseren Versicherungsbeiträgen, Zuzahlungen, Eigenanteilen und der Ausbeutung der Beschäftigten im Gesundheitswesen das große Geld machen können, gefährdet unsere Gesundheit!</mark> Damit muss Schluss sein! Wir alle sind potenzielle Patient*innen und Menschen mit Pflegebedarf…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 3</span>
+<div class="quote">
+“Die Bundesregierung schaut zu, wie Arbeitsplätze in Deutschland vernichtet werden”
+</div>
+<span class="context"><mark>Die Bundesregierung schaut zu, wie Arbeitsplätze in Deutschland vernichtet werden</mark>. Mit Klimapolitik hat das nichts zu tun, umso mehr mit Renditen der Aktionäre der Konzerne.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Häufig stehen kurzfristige Interessen von Unternehmen und ihrer Lobby dem entgegen”
+</div>
+<span class="context">Biologische Vielfalt, Tiere und Ressourcen schützen Die Vielfalt der Ökosysteme der Erde scheint schier endlos. Sie bilden die Grundlage für alles Leben auf unserem Planeten und sind deshalb entschlossen und wirksam zu schützen. Es geht schon längst nicht mehr nur um den Schutz von einzelnen Biotopen und Arten. Es geht um die Wiederherstellung, die Entwicklung und den Schutz der Ökosysteme des Planeten. <mark>Häufig stehen kurzfristige Interessen von Unternehmen und ihrer Lobby dem entgegen</mark>. Das haben die Auseinandersetzungen um den Hambacher und Dannenröder Forst prominent gezeigt.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Die Zustimmung zu rechter Politik baut auf Rassismus”
+</div>
+<span class="context"><mark>Die Zustimmung zu rechter Politik baut auf Rassismus</mark> und der Erfahrung auf, dass Interessen nur gegen andere durchgesetzt werden können.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“Gesetze dürfen nicht von denen geschrieben werden, die davon profitieren”
+</div>
+<span class="context">Der Einfluss des Lobbyismus auf die gesamte Politik muss zurückgedrängt werden. <mark>Gesetze dürfen nicht von denen geschrieben werden, die davon profitieren</mark>. Korruption und Bestechung, Vorteilsgewährung und Vorteilsnahme, Intransparenz und Parteiensponsoring dürfen nicht die Politik bestimmen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“Die bisherige Entwicklungspolitik ist nicht einfach gescheitert. Sie ist ein Instrument (post-)kolonialer Unterdrückung und Ausbeutung.”
+</div>
+<span class="context"><mark>Die bisherige Entwicklungspolitik ist nicht einfach gescheitert. Sie ist ein Instrument (post-)kolonialer Unterdrückung und Ausbeutung.</mark> Entwicklungszusammenarbeit muss endlich Würde und Solidarität in den Mittelpunkt stellen, nicht eigene wirtschaftliche Interessen, – und die zerstörerische Dynamik der grenzenlosen Kapitalverwertung durchbrechen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Kapitalinteressen zurückzudrängen”
+</div>
+<span class="context">Wir wollen mit dir dafür streiten, das Gemeinwohl zu stärken und die <mark>Kapitalinteressen zurückzudrängen</mark>. Wir kämpfen für ein neues Wirtschafts-</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“private Konzerne und Investoren mit unseren Versicherungsbeiträgen”
+</div>
+<span class="context">Die Politik der Bundesregierungen, die dafür sorgt, dass <mark>private Konzerne und Investoren mit unseren Versicherungsbeiträgen</mark>, Zuzahlungen, Eigenanteilen und der Ausbeutung der Beschäftigten im Gesundheitswesen das große Geld machen können, gefährdet unsere Gesundheit!</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Renditen für Aktionäre auf Kosten der Belegschaften”
+</div>
+<span class="context">Eine massive gesellschaftliche Richtungsauseinandersetzung ist längst im Gange: <mark>Renditen für Aktionäre auf Kosten der Belegschaften</mark> und der Zukunft unserer Kinder und Enkelkinder</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Profitinteressen westdeutscher Konzerne standen über dem Schicksal von Millionen”
+</div>
+<span class="context">Tausende derjenigen, die in Leipzig 1989 auf der Straße alles riskierten, standen bereits 1991 wieder auf dem Leipziger Augustusplatz. <mark>Profitinteressen westdeutscher Konzerne standen über dem Schicksal von Millionen</mark>. Diese Enttäuschung wirkt im Osten bis heute fort.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“Profitinteressen von Unternehmen werden”
+</div>
+<span class="context">Digitalisierung in der Bildung darf jedoch nicht zum Einfallstor der <mark>Profitinteressen von Unternehmen werden</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“Genützt hat das vor allem dem Machtstreben der Konservativen”
+</div>
+<span class="context">Diese Sicherheitspolitik verwaltet die Probleme, anstatt sie zu lösen. <mark>Genützt hat das vor allem dem Machtstreben der Konservativen</mark> und den Profiten der Sicherheitsbranche.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 7</span>
+<div class="quote">
+“Interessen der Vielen gegen die Profitinteressen der Wenigen”
+</div>
+<span class="context">Geben Sie der LINKEN Ihre Stimme: Gemeinsam sind wir stark, um die <mark>Interessen der Vielen gegen die Profitinteressen der Wenigen</mark> durchzusetzen.</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Eine neue Politik für alle”
+</div>
+<span class="context"><mark>Eine neue Politik für alle</mark>, die sie längst verdient haben9 Mut zur</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“was die Menschen zum Leben brauchen”
+</div>
+<span class="context">Alle bisherigen Bundesregierungen haben gezielt kleingerechnet, <mark>was die Menschen zum Leben brauchen</mark>. Damit muss Schluss sein. Da sind wir uns</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 5</span>
+<div class="quote">
+“Bürger*innen bei der Benutzung zu unterstützen”
+</div>
+<span class="context">um die digitalen Systeme zu warten, <mark>Bürger*innen bei der Benutzung zu unterstützen</mark> und die persönliche Ansprechbarkeit</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“Interessen der Vielen gegen die Profitinteressen”
+</div>
+<span class="context">Geben Sie der LINKEN Ihre Stimme: Gemeinsam sind wir stark, um die <mark>Interessen der Vielen gegen die Profitinteressen</mark> der Wenigen durchzusetzen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Wir setzen deshalb auf gesellschaftliche Bündnisse und Bewegungen. Wir vertrauen auf mehr Demokratie durch offenen Dialog mit zivilgesellschaftlichen Initiativen und Bürger*innenräten.”
+</div>
+<span class="context">Wandel braucht Experimente. Wir setzen auf eine neue Kultur im politischen Handeln. Wer immer meint, allein recht zu haben, kann die Welt nicht verändern. Das gilt für demokratische Parteien und für progressive Mehrheiten besonders. <mark>Wir setzen deshalb auf gesellschaftliche Bündnisse und Bewegungen. Wir vertrauen auf mehr Demokratie durch offenen Dialog mit zivilgesellschaftlichen Initiativen und Bürger*innenräten.</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir alle sind potenzielle Patient*innen und Menschen mit Pflegebedarf.”
+</div>
+<span class="context">…Gefährdet unsere Gesundheit! Damit muss Schluss sein! <mark>Wir alle sind potenzielle Patient*innen und Menschen mit Pflegebedarf.</mark> Wir erwarten, dass wir in Pflegeheimen, Krankenhäusern und im ambulanten Bereich gut versorgt werden. DIE LINKE steht an der Seite der Beschäftigten, die seit Jahren für diese Ziele kämpfen…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“Wir sind die Stimme des Ostens”
+</div>
+<span class="context">Viele kennen das Gefühl, dass die eigenen Fähigkeiten und Leistungen – oder die der Eltern – nicht anerkannt werden. Fast jede*r Zweite im Osten fühlt sich in seiner oder ihrer Arbeit nicht wertgeschätzt. DIE LINKE ist den Erfahrungen und den Kämpfen der Menschen in Ostdeutschland verbunden. <mark>Wir sind die Stimme des Ostens</mark>. In den Bundesländern, in denen wir Regierungsverantwortung tragen, setzen wir das um.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“Demokratie ist mehr, als alle vier Jahre seine Stimme abzugeben”
+</div>
+<span class="context"><mark>Demokratie ist mehr, als alle vier Jahre seine Stimme abzugeben</mark>. Dafür müssen auf allen Ebenen und in allen Bereichen – von der europäischen, internationalen wie kommunalen Ebene bis hin zum Betrieb, zur Wirtschaft – mehr Mitbestimmung und Beteiligung geschaffen werden.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 7</span>
+<div class="quote">
+“Wir wollen eine EU, die sich für ein System der internationalen Zusammenarbeit auf Augenhöhe einsetzt.”
+</div>
+<span class="context">Dieser Politikwechsel muss in Berlin beginnen. <mark>Wir wollen eine EU, die sich für ein System der internationalen Zusammenarbeit auf Augenhöhe einsetzt.</mark> Wir wollen eine EU, deren Außenpolitik von friedlicher Kooperation geprägt ist und nicht von der gewalttätigen Durchsetzung wirtschaftlicher Interessen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“linkes Programm vor”
+</div>
+<span class="context">Wir schlagen ein <mark>linkes Programm vor</mark>, das niemanden zurücklässt: einen Plan für den Neustart aus der Pandemie heraus.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“Demokratisierung der Gesellschaft vorantreiben”
+</div>
+<span class="context">Armut und Niedriglöhne überwinden, die extreme Rechte zurückdrängen, die <mark>Demokratisierung der Gesellschaft vorantreiben</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“DIE LINKE ist die Friedenspartei”
+</div>
+<span class="context"><mark>DIE LINKE ist die Friedenspartei</mark> und verlässliche Stimme der Friedensbewegung im Bundestag.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“rebellischer Teil einer Mitte-links-Regierung”
+</div>
+<span class="context">Diese Veränderung werden wir als <mark>rebellischer Teil einer Mitte-links-Regierung</mark> vorantreiben oder aus der Opposition heraus</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“ökologischer und demokratischer Sozialismus”
+</div>
+<span class="context">Wir kämpfen für ein neues Wirtschafts- und Gesellschaftsmodell. Unsere Alternative ist der <mark>ökologischer und demokratischer Sozialismus</mark>. Eine neue Politik für alle</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“Immobilienkonzerne an die Kette legen”
+</div>
+<span class="context">Sonderabgabe auf Immobilienerträge, die vor allem große Konzerne mit mehr als 3.000 Wohnungen treffen soll. <mark>Immobilienkonzerne an die Kette legen</mark>! Großen Wohnungskonzernen wie Vonovia und Deutsche</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Renditen für Aktionäre auf Kosten der Belegschaften”
+</div>
+<span class="context">Eine massive gesellschaftliche Richtungsauseinandersetzung ist längst im Gange: <mark>Renditen für Aktionäre auf Kosten der Belegschaften</mark> und der Zukunft unserer Kinder</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“Unternehmen, Banken und Konzerne sitzen gegenüber Verbraucher*innen am längeren Hebel”
+</div>
+<span class="context">Mehr Rechte für Verbraucher<em>innen <mark>Unternehmen, Banken und Konzerne sitzen gegenüber Verbraucher</mark></em>innen am längeren Hebel und nutzen ihre Macht oft zum Nachteil der Verbraucher*innen aus.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“Überwindung des Kapitalismus als systematisierten Sexismus”
+</div>
+<span class="context">Aufwertung von Frauen und ihrer Arbeit auch für die <mark>Überwindung des Kapitalismus als systematisierten Sexismus</mark>. (Sorge-)Arbeit und Zeit</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“neoliberalen Kapitalismus, der von Deregulierung, Privatisierung und Sozialabbau”
+</div>
+<span class="context">Niemand ist sicher, bevor nicht alle sicher sind. Den <mark>neoliberalen Kapitalismus, der von Deregulierung, Privatisierung und Sozialabbau</mark> gekennzeichnet ist, wollen wir überwinden.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 7</span>
+<div class="quote">
+“Ohne eine Besteuerung der Millionär*innen gibt es keinen Politikwechsel”
+</div>
+<span class="context">Hartz IV muss armuts- und sanktionsfrei sein. <mark>Ohne eine Besteuerung der Millionär*innen gibt es keinen Politikwechsel</mark>. Ohne eine Vermö­gensteuer lassen sich</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Wir kämpfen für ein neues Wirtschafts- und Gesellschaftsmodell. Unsere Alternative ist der ökologische und demokratische Sozialismus.”
+</div>
+<span class="context">Wir mit dir zusammen. Wir wollen mit dir dafür streiten, das Gemeinwohl zu stärken und die Kapitalinteressen zurückzudrängen. <mark>Wir kämpfen für ein neues Wirtschafts- und Gesellschaftsmodell. Unsere Alternative ist der ökologische und demokratische Sozialismus.</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir fordern eine Solidarische Gesundheitsvollversicherung. Alle zahlen ein, Beiträge werden auf alle Einkommen erhoben…”
+</div>
+<span class="context">…Wir brauchen eine Solidarische Gesundheitsvollversicherung. Alle zahlen ein, Beiträge werden auf alle Einkommen erhoben, alle werden gut versorgt. Zuzahlungen und Eigenanteile fallen in Zukunft weg. Mit der Abschaffung der Beitragsbemessungsgrenze sinkt der Beitrag für die Krankenversicherung von circa 15 Prozent auf etwa 12 Prozent des Bruttolohns…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Wir wollen mit Investitionen Einstiege schaffen in ein neues, sozial gerechtes, klimagerechtes und geschlechtergerechtes Wohlstandsmodell”
+</div>
+<span class="context"><mark>Wir wollen mit Investitionen Einstiege schaffen in ein neues, sozial gerechtes, klimagerechtes und geschlechtergerechtes Wohlstandsmodell</mark> mit einer gerechten Verteilung von Arbeit und Reichtum.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Wir wollen natur- und umweltzerstörende Subventionen abbauen”
+</div>
+<span class="context">DIE LINKE steht für eine schnellstmögliche Kehrtwende. Das geht nicht ohne klare Regeln für Unternehmen und Gesellschaft. <mark>Wir wollen natur- und umweltzerstörende Subventionen abbauen</mark> und die frei werdenden Gelder in Naturund Umweltprogramme investieren. Naturschutz- und Biodiversitätsziele müssen verbindlich in andere Politikbereiche integriert werden, um den Erhalt von Natur und Biodiversität zu gewährleisten.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“Wir wollen eine Gesellschaft, in der alle frei, sicher und selbstbestimmt leben können”
+</div>
+<span class="context"><mark>Wir wollen eine Gesellschaft, in der alle frei, sicher und selbstbestimmt leben können</mark>, Zeit für Familie und Freund*innen haben und gleichzeitig einer sinnvollen und gut bezahlten Arbeit nachgehen können.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“Wir wollen soziale Gerechtigkeit – weltweit! Wir wollen die Krise nicht nur für Deutschland oder Europa überwinden, sondern global”
+</div>
+<span class="context"><mark>Wir wollen soziale Gerechtigkeit – weltweit! Wir wollen die Krise nicht nur für Deutschland oder Europa überwinden, sondern global</mark>. Niemand ist sicher, bevor nicht alle sicher sind. Den neoliberalen Kapitalismus, der von Deregulierung, Privatisierung und Sozialabbau gekennzeichnet ist, wollen wir überwinden.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“Wir wollen Umverteilung des Reichtums, für Geschlechtergerechtigkeit und Demokratie, für eine neue Industriestrategie und eine tragfähige öffentliche Infrastruktur in Europa”
+</div>
+<span class="context">Wir streiten für Umverteilung des Reichtums, für Geschlechtergerechtigkeit und Demokratie, für eine neue Industriestrategie und eine tragfähige öffentliche Infrastruktur in Europa – für eine gute Zukunft für alle.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“demokratischen Sozialismus”
+</div>
+<span class="context">Wir kämpfen für ein neues Wirtschafts- und Gesellschaftsmodell. Unsere Alternative ist der ökologische und demokratische Sozialismus.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Wohnungen in öffentliches Eigentum zu überführen”
+</div>
+<span class="context">Mit einem Vergesellschaftungsgesetz wollen wir die Möglichkeit verbessern, Wohnungen, Grund und Boden großer Wohnungsgesellschaften in öffentliches Eigentum zu überführen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“Banken und Versicherungen, Energiekonzerne”
+</div>
+<span class="context">DIE LINKE kämpft dafür, Unternehmen der Daseinsvorsorge, <mark>Banken und Versicherungen, Energiekonzerne</mark> … in öffentliche (oder genossenschaftliche) Hand … zu überführen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“Hohe Vermögen und Einkommen, Erbschaften und Gewinne aus Kapital und Aktien müssen stärker besteuert werden”
+</div>
+<span class="context">Mehr Gerechtigkeit und eine starke öffentliche Daseinsvorsorge gibt es nur, wenn die Unteren entlastet werden – und die Oberen stärker belastet. <mark>Hohe Vermögen und Einkommen, Erbschaften und Gewinne aus Kapital und Aktien müssen stärker besteuert werden</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“Niedriglohnsektor schaffen wir ab”
+</div>
+<span class="context">Den <mark>Niedriglohnsektor schaffen wir ab</mark>, sodass alle von ihrer Arbeit leben können</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“Etwa ein Prozent der Menschheit besitzt 45 Prozent”
+</div>
+<span class="context">Soziale Ungleichheit nimmt weltweit zu. <mark>Etwa ein Prozent der Menschheit besitzt 45 Prozent</mark> des globalen Vermögens.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 7</span>
+<div class="quote">
+“Umverteilung des Reichtums, für Geschlechtergerechtigkeit und Demokratie”
+</div>
+<span class="context">Wir streiten für <mark>Umverteilung des Reichtums, für Geschlechtergerechtigkeit und Demokratie</mark>, für eine neue Industriestrategie</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“ökologischer und demokratischer Sozialismus”
+</div>
+<span class="context">Wir kämpfen für ein neues Wirtschafts- und Gesellschaftsmodell. Unsere Alternative ist der <mark>ökologischer und demokratischer Sozialismus</mark>. Eine neue Politik für alle</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Immobilienkonzerne an die Kette legen”
+</div>
+<span class="context">Sonderabgabe auf Immobilienerträge, die vor allem große Konzerne mit mehr als 3.000 Wohnungen treffen soll. <mark>Immobilienkonzerne an die Kette legen</mark>! Großen Wohnungskonzernen wie Vonovia und Deutsche</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Renditen für Aktionäre auf Kosten der Belegschaften”
+</div>
+<span class="context">Eine massive gesellschaftliche Richtungsauseinandersetzung ist längst im Gange: <mark>Renditen für Aktionäre auf Kosten der Belegschaften</mark> und der Zukunft unserer Kinder</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“Unternehmen, Banken und Konzerne sitzen gegenüber Verbraucher*innen am längeren Hebel”
+</div>
+<span class="context">Mehr Rechte für Verbraucher<em>innen <mark>Unternehmen, Banken und Konzerne sitzen gegenüber Verbraucher</mark></em>innen am längeren Hebel und nutzen ihre Macht oft zum Nachteil der Verbraucher*innen aus.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“Überwindung des Kapitalismus als systematisierten Sexismus”
+</div>
+<span class="context">Aufwertung von Frauen und ihrer Arbeit auch für die <mark>Überwindung des Kapitalismus als systematisierten Sexismus</mark>. (Sorge-)Arbeit und Zeit</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“neoliberalen Kapitalismus, der von Deregulierung, Privatisierung und Sozialabbau”
+</div>
+<span class="context">Niemand ist sicher, bevor nicht alle sicher sind. Den <mark>neoliberalen Kapitalismus, der von Deregulierung, Privatisierung und Sozialabbau</mark> gekennzeichnet ist, wollen wir überwinden.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 7</span>
+<div class="quote">
+“Ohne eine Besteuerung der Millionär*innen gibt es keinen Politikwechsel”
+</div>
+<span class="context">Hartz IV muss armuts- und sanktionsfrei sein. <mark>Ohne eine Besteuerung der Millionär*innen gibt es keinen Politikwechsel</mark>. Ohne eine Vermö­gensteuer lassen sich</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Wir kämpfen für ein neues Wirtschafts- und Gesellschaftsmodell. Unsere Alternative ist der ökologische und demokratische Sozialismus.”
+</div>
+<span class="context">Wir mit dir zusammen. Wir wollen mit dir dafür streiten, das Gemeinwohl zu stärken und die Kapitalinteressen zurückzudrängen. <mark>Wir kämpfen für ein neues Wirtschafts- und Gesellschaftsmodell. Unsere Alternative ist der ökologische und demokratische Sozialismus.</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir alle sind potenzielle Patient*innen und Menschen mit Pflegebedarf.”
+</div>
+<span class="context">…Gefährdet unsere Gesundheit! Damit muss Schluss sein! <mark>Wir alle sind potenzielle Patient*innen und Menschen mit Pflegebedarf.</mark> Wir erwarten, dass wir in Pflegeheimen, Krankenhäusern und im ambulanten Bereich gut versorgt werden. DIE LINKE steht an der Seite der Beschäftigten, die seit Jahren für diese Ziele kämpfen…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 3</span>
+<div class="quote">
+“Die Bundesregierung schaut zu, wie Arbeitsplätze in Deutschland vernichtet werden”
+</div>
+<span class="context"><mark>Die Bundesregierung schaut zu, wie Arbeitsplätze in Deutschland vernichtet werden</mark>. Mit Klimapolitik hat das nichts zu tun, umso mehr mit Renditen der Aktionäre der Konzerne.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Wir sind die Stimme des Ostens”
+</div>
+<span class="context">Viele kennen das Gefühl, dass die eigenen Fähigkeiten und Leistungen – oder die der Eltern – nicht anerkannt werden. Fast jede*r Zweite im Osten fühlt sich in seiner oder ihrer Arbeit nicht wertgeschätzt. DIE LINKE ist den Erfahrungen und den Kämpfen der Menschen in Ostdeutschland verbunden. <mark>Wir sind die Stimme des Ostens</mark>. In den Bundesländern, in denen wir Regierungsverantwortung tragen, setzen wir das um.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“Die Zustimmung zu rechter Politik baut auf Rassismus”
+</div>
+<span class="context"><mark>Die Zustimmung zu rechter Politik baut auf Rassismus</mark> und der Erfahrung auf, dass Interessen nur gegen andere durchgesetzt werden können.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“Wir wollen soziale Gerechtigkeit – weltweit! Wir wollen die Krise nicht nur für Deutschland oder Europa überwinden, sondern global”
+</div>
+<span class="context"><mark>Wir wollen soziale Gerechtigkeit – weltweit! Wir wollen die Krise nicht nur für Deutschland oder Europa überwinden, sondern global</mark>. Niemand ist sicher, bevor nicht alle sicher sind. Den neoliberalen Kapitalismus, der von Deregulierung, Privatisierung und Sozialabbau gekennzeichnet ist, wollen wir überwinden.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“Wir kämpfen für soziale Gerechtigkeit und Frieden, wir streiten für einen Umbau von Wirtschaft und Gesellschaft, der die Menschen überall auf dieser Welt in den Mittelpunkt stellt”
+</div>
+<span class="context">Wie wir das Land verändern DIE LINKE kämpft für soziale Gerechtigkeit und Frieden, wir streiten für einen Umbau von Wirtschaft und Gesellschaft, der die Menschen überall auf dieser Welt in den Mittelpunkt stellt: die Beschäftigten, Rentner*innen, die Erwerbslosen – und die Menschen von morgen, unsere Kinder und Enkel.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“ökologische und demokratische Sozialismus”
+</div>
+<span class="context">Wir kämpfen für ein neues Wirtschafts- und Gesellschaftsmodell. Unsere Alternative ist der <mark>ökologische und demokratische Sozialismus</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Rekommunalisierungsfonds aufsetzen”
+</div>
+<span class="context">Dazu wollen wir einen <mark>Rekommunalisierungsfonds aufsetzen</mark>. Mit einer neuen Wohnungswirtschaftsgesetzgebung wollen wir das Geschäftsmodell von Immobilienfonds beenden</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“statt einer Wirtschaft, die für Profite arbeitet”
+</div>
+<span class="context">Statt einer Wirtschaft, die für Profite arbeitet, brauchen wir eine Wirtschaft, die klaren sozialen und ökologischen Zielen folgt</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“anti-kapitalistische Umverteilung und Rekommunalisierung”
+</div>
+<span class="context">DIE LINKE setzt auf gemeinwohlorientierte und genossenschaftliche Wirtschaftskonzepte. Gegen die Dominanz marktwirtschaftlicher Verwertungs- und Effizienzlogik setzen wir uns für eine gute Versorgung, öffentliche Daseinsvorsorge und den Stopp der Privatisierung von öffentlichem Eigentum ein.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“sozialökologischen Systemwechsel”
+</div>
+<span class="context">Wir treten für einen <mark>sozialökologischen Systemwechsel</mark> ein</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“Wir kämpfen für einen Systemwechsel”
+</div>
+<span class="context">Wir wollen die gesellschaftlichen Kräfteverhältnisse verändern. <mark>Wir kämpfen für einen Systemwechsel</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 7</span>
+<div class="quote">
+“sozialökologischen Systemwechsel voranbringen”
+</div>
+<span class="context">Wir wollen Europa gerechter machen und einen <mark>sozialökologischen Systemwechsel voranbringen</mark>.</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 1</span>
+<div class="quote">
+“Gegen alte und neue Nazis”
+</div>
+<span class="context">Reaktivierung öffentlicher Infrastruktur83 <mark>Gegen alte und neue Nazis</mark>84 Starke Kommunen, gute Lebensqualität</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 2</span>
+<div class="quote">
+“unabhängig der Herkunft, sexuellen Orientierung”
+</div>
+<span class="context">ein gutes, planbares Leben ohne Zukunftsangst zu ermöglichen – für alle Familienformen, <mark>unabhängig der Herkunft, sexuellen Orientierung</mark> und geschlechtlichen Identität (vgl. Kapitel »Reproduktive</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 5</span>
+<div class="quote">
+“Einwanderung ist keine Bedrohung, sondern Alltag”
+</div>
+<span class="context">Eine solidarische Einwanderungsgesellschaft <mark>Einwanderung ist keine Bedrohung, sondern Alltag</mark> für viele, Bestandteil unserer</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 6</span>
+<div class="quote">
+“Wir stellen uns gegen rechte Kampagnen”
+</div>
+<span class="context">Es braucht ein bundesweit wirksames Antidiskriminierungsrecht, das sich am Berliner Antidiskriminierungsgesetz orientiert. <mark>Wir stellen uns gegen rechte Kampagnen</mark>, die Minderheiten zu kriminalisieren versuchen</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 7</span>
+<div class="quote">
+“Wir werden die Fluchtursachen, nicht die Geflüchteten bekämpfen”
+</div>
+<span class="context">Rüstungsexporte gestoppt und die Auslandseinsätze der Bundeswehr beendet werden. <mark>Wir werden die Fluchtursachen, nicht die Geflüchteten bekämpfen</mark>. Alle Menschen, die</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Wir zeigen unmissverständlich Haltung gegen Rassismus, Antisemitismus, Antiziganismus und jede Form von Menschenfeindlichkeit, gegen Hetze und Gewalt von rechts.”
+</div>
+<span class="context">Wir stehen an der Seite von Gewerkschaften, sozialen Bewegungen, Mieter*inneninitiativen, Fridays for Future, Black Lives Matter, Seebrücke, Antifagruppen, queeren Initiativen, von Sozialverbänden und den Friedensbewegungen. <mark>Wir zeigen unmissverständlich Haltung gegen Rassismus, Antisemitismus, Antiziganismus und jede Form von Menschenfeindlichkeit, gegen Hetze und Gewalt von rechts.</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“Gegen alte und neue Nazis”
+</div>
+<span class="context">Der Vereinigungsprozess hat eine Schattenseite, über die endlich mehr gesprochen wird. Vieles ist noch immer nicht aufgearbeitet oder einer breiten Öffentlichkeit bekannt: Befreit von der Repression in der DDR entlud sich rechte Gewalt in den 1990er-Jahren in einem zuvor nicht gekannten Ausmaß. Verbündete in Geist und Tat fanden sich schnell, hüben wie drüben: Rostock-Lichtenhagen, Mölln, Solingen, die Mordserie des NSU-tödliche Gewalt überzog das Land.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 1.0 · verified · chunk 5</span>
+<div class="quote">
+“Wir stellen uns gegen jede Form von Menschenfeindlichkeit”
+</div>
+<span class="context"><mark>Wir stellen uns gegen jede Form von Menschenfeindlichkeit</mark>, egal ob vom rechten Rand oder aus der vermeintlich seriösen Mitte der Gesellschaft.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“Wir stellen uns gegen rechte Kampagnen, die Minderheiten zu kriminalisieren versuchen”
+</div>
+<span class="context"><mark>Wir stellen uns gegen rechte Kampagnen, die Minderheiten zu kriminalisieren versuchen</mark> und soziale Probleme in ethnische bzw. kulturelle Konflikte umdeuten wollen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“Wir lehnen die Pläne zu einer europäischen Verteidigungsunion und einer Kooperation von EU und NATO ab.”
+</div>
+<span class="context"><mark>Wir lehnen die Pläne zu einer europäischen Verteidigungsunion und einer Kooperation von EU und NATO ab.</mark> Der Ausbau einer »Verteidigungsunion« oder »Militärunion« mit eigenständiger Militärpolitik, eine europäische Armee und andere Vorhaben der Militarisierung führen nicht zu mehr Sicherheit für die Menschen in Europa, sondern sichern nur Konzerninteressen militärisch ab.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“Menschenrechte statt Festung Europa”
+</div>
+<span class="context">Demokratie statt Herrschaft der Lobbyisten <mark>Menschenrechte statt Festung Europa</mark> Wie wir das Land verändern</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“Wichtig ist, dass Angebote zur sprachlichen Förderung von Zugewanderten”
+</div>
+<span class="context"><mark>Wichtig ist, dass Angebote zur sprachlichen Förderung von Zugewanderten</mark> erbracht werden können.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“mehr Migrant*innen in die Führungsetagen bundesweit”
+</div>
+<span class="context">Das bedeutet mehr Frauen, mehr Ostdeutsche, <mark>mehr Migrant*innen in die Führungsetagen bundesweit</mark>! Es ist Zeit für politisch gesteuerte Verfahren, die die Benachteiligung beenden</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 5</span>
+<div class="quote">
+“Einwanderung ist keine Bedrohung”
+</div>
+<span class="context"><mark>Einwanderung ist keine Bedrohung</mark>, sondern Alltag für viele, Bestandteil unserer Gesellschaft</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 6</span>
+<div class="quote">
+“wenden wir uns insbesondere gegen jede Präsenz deutscher Soldaten”
+</div>
+<span class="context">Vor dem Hintergrund der deutschen Geschichte <mark>wenden wir uns insbesondere gegen jede Präsenz deutscher Soldaten</mark> östlich der Oder-Neiße-Grenze.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 7</span>
+<div class="quote">
+“Fluchtursachen, nicht die Geflüchteten bekämpfen”
+</div>
+<span class="context">Wir werden die <mark>Fluchtursachen, nicht die Geflüchteten bekämpfen</mark>. Alle Menschen, die dauerhaft hier leben, sollen die gleichen sozialen Rechte erhalten.</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Solidarität, die diesen Namen verdient, statt Bereicherung und Korruption”
+</div>
+<span class="context">Aufbruch nach der Pandemie – nach Jahren der Kürzungspolitik und Jahrzehnten ökologischer Zerstörung: Gemeinwohl vor Profite. <mark>Solidarität, die diesen Namen verdient, statt Bereicherung und Korruption</mark>. Wir brauchen einen gesellschaftlichen Aufbruch.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“auf Kosten der Vielen bereichern”
+</div>
+<span class="context">Den Spekulationskreislauf, an dem sich wenige <mark>auf Kosten der Vielen bereichern</mark>, wollen wir mit einem Anti-Spekulations- Gesetz</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Umwelt, Natur und Klima werden weltweit den Profiten geopfert”
+</div>
+<span class="context">Hambacher und Dannenröder Forst prominent gezeigt. Wälder werden zerstört, und das mitten in der Klimakatastrophe. <mark>Umwelt, Natur und Klima werden weltweit den Profiten geopfert</mark>, mit drastischen Folgen.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Umwelt, Natur und Klima werden weltweit den Profiten geopfert”
+</div>
+<span class="context">Das haben die Auseinandersetzungen um den Hambacher und Dannenröder Forst prominent gezeigt. Wälder werden zerstört, und das mitten in der Klimakatastrophe. <mark>Umwelt, Natur und Klima werden weltweit den Profiten geopfert</mark>, mit drastischen Folgen.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“Einfallstor der Profitinteressen von Unternehmen”
+</div>
+<span class="context">Digitalisierung in der Bildung darf jedoch nicht zum <mark>Einfallstor der Profitinteressen von Unternehmen</mark> werden (vgl. Kapitel</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“die Großen lässt man laufen”
+</div>
+<span class="context">Kontrollen von Wirtschaftskriminalität und Steuerhinterziehung werden hingegen heruntergefahren – <mark>die Großen lässt man laufen</mark>. Für viele Menschen bedeutet die Einschränkung von Grundrechten</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“zerstörerische Dynamik der grenzenlosen Kapitalverwertung”
+</div>
+<span class="context">Solidarität in den Mittelpunkt stellen, nicht eigene wirtschaftliche Interessen, – und die <mark>zerstörerische Dynamik der grenzenlosen Kapitalverwertung</mark> durchbrechen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Solidarität, die diesen Namen verdient, statt Bereicherung und Korruption.”
+</div>
+<span class="context">Wir stehen für einen gesellschaftlichen Aufbruch nach der Pandemie – nach Jahren der Kürzungspolitik und Jahrzehnten ökologischer Zerstörung: Gemeinwohl vor Profite. <mark>Solidarität, die diesen Namen verdient, statt Bereicherung und Korruption.</mark> Wir brauchen einen gesellschaftlichen Aufbruch.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Damit muss Schluss sein!”
+</div>
+<span class="context">…Gefährdet unsere Gesundheit! <mark>Damit muss Schluss sein!</mark> Wir alle sind potenzielle Patient*innen und Menschen mit Pflegebedarf. Wir erwarten, dass wir in Pflegeheimen, Krankenhäusern und im ambulanten Bereich gut versorgt werden. DIE LINKE steht an der Seite der Beschäftigten, die seit Jahren für diese Ziele kämpfen…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · mixed · chunk 3</span>
+<div class="quote">
+“Renditen für Aktionäre auf Kosten der Belegschaften und der Zukunft unserer Kinder”
+</div>
+<span class="context"><mark>Renditen für Aktionäre auf Kosten der Belegschaften und der Zukunft unserer Kinder</mark> und Enkelkinder – oder eine »soziale, ökologische und demokratische Transformation« (so die IG Metall).</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Umwelt, Natur und Klima werden weltweit den Profiten geopfert”
+</div>
+<span class="context">Wälder werden zerstört, und das mitten in der Klimakatastrophe. <mark>Umwelt, Natur und Klima werden weltweit den Profiten geopfert</mark>, mit drastischen Folgen. Etwa 150 Tier- und Pflanzenarten sterben täglich aus. Durch Wildtierhandel und das unkontrollierte Vordringen des Menschen in natürliche Lebensräume erhöhen wir das Risiko, dass Viren von Tieren auf den Menschen überspringen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Schluss damit! Statt uns gegeneinander ausspielen zu lassen”
+</div>
+<span class="context"><mark>Schluss damit! Statt uns gegeneinander ausspielen zu lassen</mark>, wollen wir gemeinsam für Gerechtigkeit eintreten: die Menschen retten, soziale Gerechtigkeit globalisieren und Fluchtursachen – nicht die Geflüchteten – tatsächlich bekämpfen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 6</span>
+<div class="quote">
+“Die herrschende Sicherheitspolitik ist ungerecht. Sie trifft Menschen mit wenig Geld und ohne Lobby härter”
+</div>
+<span class="context"><mark>Die herrschende Sicherheitspolitik ist ungerecht. Sie trifft Menschen mit wenig Geld und ohne Lobby härter</mark>. Ersatzfreiheitsstrafen für kleine Delikte wie Fahren ohne Fahrschein bringen jedes Jahr Tausende Menschen ins Gefängnis. Kontrollen von Wirtschaftskriminalität und Steuerhinterziehung werden hingegen heruntergefahren – die Großen lässt man laufen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“Die Reichen müssen zur Verantwortung gezogen werden.”
+</div>
+<span class="context">Damit muss Schluss sein: <mark>Die Reichen müssen zur Verantwortung gezogen werden.</mark> Wir brauchen einen Kurswechsel in der Handelspolitik und beim Rohstoffverbrauch. Das Pariser Klimaabkommen war ein Minimalkonsens zwischen den Staaten.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Profiteur*innen anzulegen”
+</div>
+<span class="context">steigerten große Konzerne ihre Gewinne. Wir finden uns nicht mit diesen Verhältnissen ab und sind bereit, uns mit den <mark>Profiteur*innen anzulegen</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Spekulationskreislauf, an dem sich wenige auf Kosten der Vielen”
+</div>
+<span class="context">Den <mark>Spekulationskreislauf, an dem sich wenige auf Kosten der Vielen</mark> bereichern, wollen wir mit einem Anti-Spekulations-Gesetz durchbrechen</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Umwelt, Natur und Klima werden weltweit den Profiten geopfert”
+</div>
+<span class="context"><mark>Umwelt, Natur und Klima werden weltweit den Profiten geopfert</mark>, mit drastischen Folgen. Etwa 150 Tier- und Pflanzenarten sterben täglich aus.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Gesellschaft und die Demokratie aus dem Würgegriff der Finanzkonzerne befreien”
+</div>
+<span class="context">Wir wollen die <mark>Gesellschaft und die Demokratie aus dem Würgegriff der Finanzkonzerne befreien</mark>: Aus kapitalgedeckter Altersvorsorge fließen den Finanzmärkten Milliardenbeträge zu.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“Kapitalismus ist mit der einhergehenden Entwertung”
+</div>
+<span class="context">Der <mark>Kapitalismus ist mit der einhergehenden Entwertung</mark> unbezahlter (Care-)Arbeit eine maßgebliche Stütze des Patriarchats</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“Den neoliberalen Kapitalismus… wollen wir überwinden”
+</div>
+<span class="context">Den neoliberalen Kapitalismus, der von Deregulierung, Privatisierung und Sozialabbau gekennzeichnet ist, wollen wir überwinden.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“frei von Konzern- und Lobbyinteressen ist”
+</div>
+<span class="context">Wir sind die Adresse im Parlament, die <mark>frei von Konzern- und Lobbyinteressen ist</mark>. Wir geben denen eine Stimme, die von den anderen Parteien überhört werden.</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Es kommt auf uns alle an”
+</div>
+<span class="context">Einführung <mark>Es kommt auf uns alle an</mark>. Es kommt auf dich an Die Bundestagswahl</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“was die Menschen zum Leben brauchen”
+</div>
+<span class="context">Alle bisherigen Bundesregierungen haben gezielt kleingerechnet, <mark>was die Menschen zum Leben brauchen</mark>. Damit muss Schluss sein. Da sind wir uns</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“für die Bedürfnisse der Menschen arbeitet”
+</div>
+<span class="context">Ressourcen haushalten kann und die <mark>für die Bedürfnisse der Menschen arbeitet</mark>. Alle Erfahrungen der letzten Jahrzehnte</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“DIE LINKE ist den Erfahrungen und den Kämpfen der Menschen in Ostdeutschland verbunden”
+</div>
+<span class="context">Sie kämpfen für die eigenen Rechte, den Eigensinn des Ostens und einen Aufbruch Ost. <mark>DIE LINKE ist den Erfahrungen und den Kämpfen der Menschen in Ostdeutschland verbunden</mark>. Wir sind die Stimme des Ostens.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“Bürger*innen bei der Benutzung zu unterstützen”
+</div>
+<span class="context">um die digitalen Systeme zu warten, <mark>Bürger*innen bei der Benutzung zu unterstützen</mark> und die persönliche Ansprechbarkeit</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“zufällig geloste Menschen aus der Mitte der Gesellschaft”
+</div>
+<span class="context">Das von der Zivilgesellschaft entwickelte Instrument der Bürger*innenräte, wonach <mark>zufällig geloste Menschen aus der Mitte der Gesellschaft</mark> Lösungen und Fragestellungen entwerfen, wollen wir unterstützen und fördern.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“Interessen der Vielen gegen die Profitinteressen”
+</div>
+<span class="context">Geben Sie der LINKEN Ihre Stimme: Gemeinsam sind wir stark, um die <mark>Interessen der Vielen gegen die Profitinteressen</mark> der Wenigen durchzusetzen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Wir alle können gemeinsam Deutschland demokratischer und sozial gerechter machen.”
+</div>
+<span class="context">Wir finden uns nicht mit diesen Verhältnissen ab und sind bereit, uns mit den Profiteur*innen anzulegen. <mark>Wir alle können gemeinsam Deutschland demokratischer und sozial gerechter machen.</mark> Wir haben es zusammen in der Hand.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir alle sind potenzielle Patient*innen und Menschen mit Pflegebedarf.”
+</div>
+<span class="context">…Gefährdet unsere Gesundheit! Damit muss Schluss sein! <mark>Wir alle sind potenzielle Patient*innen und Menschen mit Pflegebedarf.</mark> Wir erwarten, dass wir in Pflegeheimen, Krankenhäusern und im ambulanten Bereich gut versorgt werden. DIE LINKE steht an der Seite der Beschäftigten, die seit Jahren für diese Ziele kämpfen…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · mixed · chunk 3</span>
+<div class="quote">
+“Die Menschen, die die Gesellschaft am Laufen halten, werden besser bezahlt”
+</div>
+<span class="context"><mark>Die Menschen, die die Gesellschaft am Laufen halten, werden besser bezahlt</mark>. Damit geht die Aufwertung der sozialen Berufe einher.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Viele Ostdeutsche wünschen sich, auf andere Weise sichtbar zu sein”
+</div>
+<span class="context">Der alte Grenzverlauf zwischen West- und Ostdeutschland tritt weiterhin hervor. <mark>Viele Ostdeutsche wünschen sich, auf andere Weise sichtbar zu sein</mark>. Mit dem, was sie erarbeitet und geleistet haben, sowohl in der vergangenen DDR als auch in den dreißig Jahren danach. Ostdeutschland steht für den Lebensmut verschiedener Generationen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“Wir leben, lieben und arbeiten zusammen”
+</div>
+<span class="context">Deutschland ist Heimat für Menschen aus verschiedensten Orten, mit unterschiedlichen Geschichten und so vielfältig wie noch nie. <mark>Wir leben, lieben und arbeiten zusammen</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“Demokratie ist mehr, als alle vier Jahre seine Stimme abzugeben”
+</div>
+<span class="context"><mark>Demokratie ist mehr, als alle vier Jahre seine Stimme abzugeben</mark>. Dafür müssen auf allen Ebenen und in allen Bereichen – von der europäischen, internationalen wie kommunalen Ebene bis hin zum Betrieb, zur Wirtschaft – mehr Mitbestimmung und Beteiligung geschaffen werden.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“Wir kämpfen für soziale Gerechtigkeit und Frieden, wir streiten für einen Umbau von Wirtschaft und Gesellschaft, der die Menschen überall auf dieser Welt in den Mittelpunkt stellt”
+</div>
+<span class="context">Wie wir das Land verändern DIE LINKE kämpft für soziale Gerechtigkeit und Frieden, wir streiten für einen Umbau von Wirtschaft und Gesellschaft, der die Menschen überall auf dieser Welt in den Mittelpunkt stellt: die Beschäftigten, Rentner*innen, die Erwerbslosen – und die Menschen von morgen, unsere Kinder und Enkel.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Es kommt auf uns alle an”
+</div>
+<span class="context">Einführung <mark>Es kommt auf uns alle an</mark>. Es kommt auf dich an Die Bundestagswahl entscheidet darüber, wie unser aller Weg</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir alle sind potenzielle Patient*innen”
+</div>
+<span class="context"><mark>Wir alle sind potenzielle Patient*innen</mark> und Menschen mit Pflegebedarf. Wir erwarten, dass wir in Pflegeheimen, Krankenhäusern und im ambulanten Bereich gut versorgt werden.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Es geht um Anerkennung für diejenigen, die die Gesellschaft am Laufen halten”
+</div>
+<span class="context"><mark>Es geht um Anerkennung für diejenigen, die die Gesellschaft am Laufen halten</mark> – und um ein besseres Leben für alle.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Wir sind die Stimme des Ostens”
+</div>
+<span class="context">DIE LINKE ist den Erfahrungen und den Kämpfen der Menschen in Ostdeutschland verbunden. <mark>Wir sind die Stimme des Ostens</mark>. In den Bundesländern, in denen wir Regierungsverantwortung tragen, setzen wir das um</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“Wir wollen eine Gesellschaft, in der alle frei”
+</div>
+<span class="context"><mark>Wir wollen eine Gesellschaft, in der alle frei</mark>, sicher und selbstbestimmt leben können</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“Sie trifft Menschen mit wenig Geld und ohne Lobby härter”
+</div>
+<span class="context">Die herrschende Sicherheitspolitik ist ungerecht. <mark>Sie trifft Menschen mit wenig Geld und ohne Lobby härter</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“die Menschen überall auf dieser Welt in den Mittelpunkt stellt”
+</div>
+<span class="context">wir streiten für einen Umbau von Wirtschaft und Gesellschaft, der <mark>die Menschen überall auf dieser Welt in den Mittelpunkt stellt</mark></span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“bereit, uns mit den Profiteur*innen anzulegen”
+</div>
+<span class="context">musssten, steigerten große Konzerne ihre Gewinne. Wir finden uns nicht mit diesen Verhältnissen ab und sind <mark>bereit, uns mit den Profiteur*innen anzulegen</mark>. Wir alle können gemeinsam Deutschland</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“auf Kosten der Vielen bereichern”
+</div>
+<span class="context">Den Spekulationskreislauf, an dem sich wenige <mark>auf Kosten der Vielen bereichern</mark>, wollen wir mit einem Anti-Spekulations- Gesetz</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“im Interesse von Konzernen die Klima-”
+</div>
+<span class="context">aber die Regierung verzögert mit falschen Weichenstellungen <mark>im Interesse von Konzernen die Klima-</mark>, Energie- und Verkehrswende.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Umwelt, Natur und Klima werden weltweit den Profiten geopfert”
+</div>
+<span class="context">Das haben die Auseinandersetzungen um den Hambacher und Dannenröder Forst prominent gezeigt. Wälder werden zerstört, und das mitten in der Klimakatastrophe. <mark>Umwelt, Natur und Klima werden weltweit den Profiten geopfert</mark>, mit drastischen Folgen.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“die Großen lässt man laufen”
+</div>
+<span class="context">und Steuerhinterziehung werden hingegen heruntergefahren – <mark>die Großen lässt man laufen</mark>. Für viele Menschen bedeutet</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“Genützt hat das vor allem dem Machtstreben der Konservativen”
+</div>
+<span class="context">Diese Sicherheitspolitik verwaltet die Probleme, anstatt sie zu lösen. <mark>Genützt hat das vor allem dem Machtstreben der Konservativen</mark> und den Profiten der Sicherheitsbranche.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“Interessen der Vielen gegen die Profitinteressen der Wenigen”
+</div>
+<span class="context">Geben Sie der LINKEN Ihre Stimme: Gemeinsam sind wir stark, um die <mark>Interessen der Vielen gegen die Profitinteressen der Wenigen</mark> durchzusetzen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Wir finden uns nicht mit diesen Verhältnissen ab und sind bereit, uns mit den Profiteur*innen anzulegen.”
+</div>
+<span class="context">Die Coronakrise hat die Ungerechtigkeiten des Kapitalismus deutlich zutage treten lassen: während die einen um ihren Arbeitsplatz, die Bildung ihrer Kinder und die Gesundheit bangen mussten, steigerten große Konzerne ihre Gewinne. <mark>Wir finden uns nicht mit diesen Verhältnissen ab und sind bereit, uns mit den Profiteur*innen anzulegen.</mark> Wir alle können gemeinsam Deutschland demokratischer und sozial gerechter machen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Die Politik der Bundesregierungen, die dafür sorgt, dass private Konzerne und Investoren mit unseren Versicherungsbeiträgen… gefährdet unsere Gesundheit!”
+</div>
+<span class="context">…Pflegenotstand, und teilweise wurde gegen Grundrechte der Menschen mit Pflegebedarf verstoßen. Die Bundesregierung hätte es nach dem Frühjahr besser wissen können. Doch sie hat das Personal in Krankenhaus und Pflege nicht aufgestockt, sie hat den Pharmakonzernen keine klaren Vorgaben für die Produktion des Impfstoffs gemacht. Schon vor Corona war Normalzustand in deutschen Krankenhäusern: kaum Zeit für Zuwendung, mangelnde Hygiene, mehr Unfälle und vermeidbare Todesfälle. Die Bundesregierung hat keine Strategie vorgelegt, wie der Pflegenotstand in den Krankenhäusern und Pflegeeinrichtungen gestoppt werden kann. Die Politik der Bundesregierungen, die dafür sorgt, dass private Konzerne und Investoren mit unseren Versicherungsbeiträgen, Zuzahlungen, Eigenanteilen und der Ausbeutung der Beschäftigten im Gesundheitswesen das große Geld machen können, gefährdet unsere Gesundheit! Damit muss Schluss sein! Wir alle sind potenzielle Patient*innen und Menschen mit Pflegebedarf…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · mixed · chunk 3</span>
+<div class="quote">
+“Die Bundesregierung schaut zu, wie Arbeitsplätze in Deutschland vernichtet werden”
+</div>
+<span class="context"><mark>Die Bundesregierung schaut zu, wie Arbeitsplätze in Deutschland vernichtet werden</mark>. Mit Klimapolitik hat das nichts zu tun, umso mehr mit Renditen der Aktionäre der Konzerne.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Häufig stehen kurzfristige Interessen von Unternehmen und ihrer Lobby dem entgegen”
+</div>
+<span class="context">Biologische Vielfalt, Tiere und Ressourcen schützen Die Vielfalt der Ökosysteme der Erde scheint schier endlos. Sie bilden die Grundlage für alles Leben auf unserem Planeten und sind deshalb entschlossen und wirksam zu schützen. Es geht schon längst nicht mehr nur um den Schutz von einzelnen Biotopen und Arten. Es geht um die Wiederherstellung, die Entwicklung und den Schutz der Ökosysteme des Planeten. <mark>Häufig stehen kurzfristige Interessen von Unternehmen und ihrer Lobby dem entgegen</mark>. Das haben die Auseinandersetzungen um den Hambacher und Dannenröder Forst prominent gezeigt.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Die Zustimmung zu rechter Politik baut auf Rassismus”
+</div>
+<span class="context"><mark>Die Zustimmung zu rechter Politik baut auf Rassismus</mark> und der Erfahrung auf, dass Interessen nur gegen andere durchgesetzt werden können.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“Gesetze dürfen nicht von denen geschrieben werden, die davon profitieren”
+</div>
+<span class="context">Der Einfluss des Lobbyismus auf die gesamte Politik muss zurückgedrängt werden. <mark>Gesetze dürfen nicht von denen geschrieben werden, die davon profitieren</mark>. Korruption und Bestechung, Vorteilsgewährung und Vorteilsnahme, Intransparenz und Parteiensponsoring dürfen nicht die Politik bestimmen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“Die bisherige Entwicklungspolitik ist nicht einfach gescheitert. Sie ist ein Instrument (post-)kolonialer Unterdrückung und Ausbeutung.”
+</div>
+<span class="context"><mark>Die bisherige Entwicklungspolitik ist nicht einfach gescheitert. Sie ist ein Instrument (post-)kolonialer Unterdrückung und Ausbeutung.</mark> Entwicklungszusammenarbeit muss endlich Würde und Solidarität in den Mittelpunkt stellen, nicht eigene wirtschaftliche Interessen, – und die zerstörerische Dynamik der grenzenlosen Kapitalverwertung durchbrechen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Gemeinwohl vor Profite”
+</div>
+<span class="context">Wir stehen für einen gesellschaftlichen Aufbruch nach der Pandemie – nach Jahren der Kürzungspolitik: <mark>Gemeinwohl vor Profite</mark>. Solidarität, die diesen Namen verdient</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Damit muss Schluss sein!”
+</div>
+<span class="context">Die Politik der Bundesregierungen…gefährdet unsere Gesundheit! <mark>Damit muss Schluss sein!</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“die großen Konzerne entmachten”
+</div>
+<span class="context">Dafür wollen wir <mark>die großen Konzerne entmachten</mark> und die Produktion an sozialen und ökologischen Zielen ausrichten.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Die Reichen haben viele Verbündete in der Politik”
+</div>
+<span class="context">Noch nie war die Armutsgefahr so hoch: Mehr als jede*r Sechste im reichen Deutschland ist arm oder von Armut bedroht. <mark>Die Reichen haben viele Verbündete in der Politik</mark>. Sie können ihrer Stimme mehr Gewicht verleihen. Wir halten dagegen!</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“Überwindung des Kapitalismus als systematisierten Sexismus”
+</div>
+<span class="context">kämpfen wir neben unseren kurz- und mittelfristigen Forderungen für die Aufwertung von Frauen und ihrer Arbeit auch für die <mark>Überwindung des Kapitalismus als systematisierten Sexismus</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“die Großen lässt man laufen”
+</div>
+<span class="context">Kontrollen von Wirtschaftskriminalität und Steuerhinterziehung werden hingegen heruntergefahren – <mark>die Großen lässt man laufen</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“Interessen der Vielen gegen die Profitinteressen der Wenigen”
+</div>
+<span class="context">Gemeinsam sind wir stark, um die <mark>Interessen der Vielen gegen die Profitinteressen der Wenigen</mark> durchzusetzen.</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="41223_202109_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

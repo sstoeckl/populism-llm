@@ -1,0 +1,3152 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>C’s (Spain, 2015) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/33420_201512_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">C’s (Spain, 2015)</h1>
+<p class="subtitle lead">manifesto_id 33420_201512</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Spain · <span class="item"><strong>Party</strong></span> C’s (Citizens - Party of the Citizens) · <span class="item"><strong>Year</strong></span> 2015 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 40</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.1</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.5</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.1</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.4</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.1</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.6</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.9</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.1</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.1</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.6</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.1</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.4</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“garantice la igualdad de oportunidades”
+</div>
+<span class="context">crecimiento de las empresas en un mercado transparente, que <mark>garantice la igualdad de oportunidades</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“La libre empresa y la iniciativa privada son los pilares”
+</div>
+<span class="context"><mark>La libre empresa y la iniciativa privada son los pilares</mark> de la riqueza de las naciones y del bienestar de los ciudadanos; pero hay que evitar que una economía de mercado degenere en el “capitalismo de amiguetes”</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“incrementar la competencia entre operadores”
+</div>
+<span class="context">Pondremos en marcha una actuación decidida para <mark>incrementar la competencia entre operadores</mark>. Obligaremos a los operadores existentes a vender a operadores extranjeros</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“necesidades reales de nuesfras empresas”
+</div>
+<span class="context">de forma desordenada y sin recursos, dándole la espalda a las <mark>necesidades reales de nuesfras empresas</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“normas sanitarias y de competencia”
+</div>
+<span class="context">Eso significa respetar y cumplir las <mark>normas sanitarias y de competencia</mark> españolas y europeas e Implica</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“promoviendo el espíritu emprendedor y el talento”
+</div>
+<span class="context">la inmigración de forma explícita desde un planteamiento proactivo, <mark>promoviendo el espíritu emprendedor y el talento</mark>, sin que el permiso</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 7</span>
+<div class="quote">
+“dejar el máximo espacio posible a la iniciativa privada”
+</div>
+<span class="context">Para que el mercado funcione, es necesario <mark>dejar el máximo espacio posible a la iniciativa privada</mark>, pero dentro de unas reglas de juego</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“acuerdo de libre comercio”
+</div>
+<span class="context">partidarios a cualquier costa del Tratado y los que se oponen únicamente por tratarse de un <mark>acuerdo de libre comercio</mark>. De hecho, el Parlamento Europeo, con especial</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 9</span>
+<div class="quote">
+“favorecer la competencia entre entidades”
+</div>
+<span class="context">ficheros de solvencia positivos para <mark>favorecer la competencia entre entidades</mark>. Las personas en especiales circunstancias</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 10</span>
+<div class="quote">
+“colaboración público-privada en servicios auxiliares”
+</div>
+<span class="context">funciones de ámbito policial, impulsandomecanismos de <mark>colaboración público-privada en servicios auxiliares</mark> para laoptimización del cuerpo policial</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“el mercado debe estar al servicio de los ciudadanos y de los consumidores”
+</div>
+<span class="context">El mercado debe estar al servicio de los ciudadanos y de los consumidores. Haremos las reformas necesarias para asegurar la competencia en los mercados, destruiremos los cárteles y acabaremos con el capitalismo de amiguetes.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“libre empresa y la iniciativa privada son los pilares”
+</div>
+<span class="context">…La <mark>libre empresa y la iniciativa privada son los pilares</mark> de la riqueza de las naciones y del bienestar de los ciudadanos; pero hay que evitar que una economía de mercado degenere en el “capitalismo de amiguetes”…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“crecimiento económico”
+</div>
+<span class="context">…todo nuestro programa económico está diseñado para asegurar un <mark>crecimiento económico</mark> (aumento del PIB, el denominador) de calidad, con mejores instituciones y basado en la innovación y el capital humano. En primer lugar, las mejoras en el mercado laboral, enmarcadas en nuestra primera tanda de propuestas, aumentarán la inversión en capital humano de empresarios y trabajadores y disminuirán la rotación, lo que contribuirá a la creación de empleo.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“libre competencia, financiación por objetivos, becas de excelencia”
+</div>
+<span class="context">Las universidades se financiarán a través de: Tasas universitarias, reguladas por las CCAA en coordinación con el Estado, siguiendo el principio de que cualquier Incremento de tasas debe Ir acompañado de un Incremento de becas que garantice la Igualdad de oportunidades a quienes se lo merezcan y las aprovechen. Contribución adicional a través de un programa de becarios de excelencia matriculados. Financiación por objetivos, basada en su especialización y en una evaluación externa y objetivable de la universidad y sus centros.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“financiación por objetivos, basada en su especialización y en una evaluación externa y objetivable de la universidad”
+</div>
+<span class="context">Financiación por objetivos, basada en su especlallzaclón y en una evaluación externa y objetlvable de la universidad y sus centros. Financiación adicional basada en el Impacto Internacional de la Investigación de sus centros o departamentos (que debe ser mayorltarlamente destinada a ellos). Otras formas de financiación externa: fondos competitivos (overheads); contratos de colaboración (regulados), etc.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“Disminuiremos la precariedad laboral mediante la introducción de un contrato único (o unificado) indefinido”
+</div>
+<span class="context"><mark>Disminuiremos la precariedad laboral mediante la introducción de un contrato único (o unificado) indefinido</mark>. La característica clave de este contrato es el aumento gradual de las indemnizaciones por despido procedente o improcedente.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“libre empresa y la iniciativa privada son los pilares de la riqueza”
+</div>
+<span class="context">La <mark>libre empresa y la iniciativa privada son los pilares de la riqueza</mark> de las naciones y del bienestar de los ciudadanos; pero hay que evitar que una economía de mercado degenere en el “capitalismo de amiguetes”</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“la competitividad y la creación de empleo”
+</div>
+<span class="context">Ciudadanos se compromete a impulsar iniciativas en el ámbito europeo conducentes a la lucha contra la desigualdad y la pobreza, y la creación de empleo de calidad. Propuestas:Promover el aumento de la coordinación fiscal y macroeconómica en el seno del Eurogrupo, que se ha de responsabilizar de la supervisión de los presupuestos nacionales en favor de los equilibrios presupuestarios y de las políticas fiscales y macroeconómicas responsables para el mantenimiento de nuestro sistema de bienestar.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 9</span>
+<div class="quote">
+“promoción de la investigación en esta materia en centros de investigación, universidades y tejido empresarial”
+</div>
+<span class="context">Impulsaremos el l+D+i en el sector de las infraestructuras y transportes. Se efectuará la <mark>promoción de la investigación en esta materia en centros de investigación, universidades y tejido empresarial</mark>, mediante un programa nacional específico de financiación público-privada orientado a la transferencia tecnológica y a la gestión del conocimiento en el sector,</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 10</span>
+<div class="quote">
+“Reforma Fiscal Verde solicitada por la OCDE”
+</div>
+<span class="context">…solicitaremos que se acometa la <mark>Reforma Fiscal Verde solicitada por la OCDE</mark>, en la que se perfeccione el “uso de los impuestos relacionados con el medio ambiente…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“asegurar la competencia en los mercados”
+</div>
+<span class="context">El mercado debe estar al servicio de los ciudadanos y de los consumidores. Haremos las reformas necesarias para <mark>asegurar la competencia en los mercados</mark>, destruiremos los cárteles y acabaremos con el capitalismo de amiguetes.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“libre empresa y la iniciativa privada”
+</div>
+<span class="context">La <mark>libre empresa y la iniciativa privada</mark> son los pilares de la riqueza de las naciones y del bienestar de los ciudadanos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“incrementar la competencia entre operadores”
+</div>
+<span class="context">Pondremos en marcha una actuación decidida para <mark>incrementar la competencia entre operadores</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“régimen de módulos solo para las empresas cuyos clientes principales sean consumidores finales”
+</div>
+<span class="context">conservaremos el <mark>régimen de módulos solo para las empresas cuyos clientes principales sean consumidores finales</mark>. En particular restringiremos el régimen de módulos a aquellos pequeños empresarios que facturan como mínimo un 75% de sus operaciones a consumidor final</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“desgravaciones fiscales, junto con acciones complementarias”
+</div>
+<span class="context">Estimular la cooperación científica y técnica en l+D entre el sector empresarial con los entes públicos, mediante <mark>desgravaciones fiscales, junto con acciones complementarias</mark> de financiación</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“favorecer la iniciativa individual y una economía sana”
+</div>
+<span class="context">Y también, un buen gobierno, debe <mark>favorecer la iniciativa individual y una economía sana</mark> y dinámica. Esos son los pilares del buen gobierno que queremos (re)construir.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“libre empresa y la iniciativa privada”
+</div>
+<span class="context">su firme defensa de la economía de mercado, la libertad de empresa y la iniciativa privada a través de sus diputados y representantes políticos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“apertura del mercado estadounidense”
+</div>
+<span class="context">servicios financieros, jurídicos o de telecomunicaciones se verían favorecidos por la <mark>apertura del mercado estadounidense</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 9</span>
+<div class="quote">
+“Liberalización y competencia”
+</div>
+<span class="context"><mark>Liberalización y competencia</mark>. Impedir que las empresas de generación, distribución y comercialización, provenientes de los antiguos monopolios, continúen formando parte de un mismo grupo empresarial</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 10</span>
+<div class="quote">
+“Reforma Fiscal Verde solicitada por la OCDE”
+</div>
+<span class="context">solicitaremos que se acometa la <mark>Reforma Fiscal Verde solicitada por la OCDE</mark>, en la que se perfeccione el uso de los impuestos relacionados con el medio ambiente</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“el que mayor dinero tiene para Capital Riesgo”
+</div>
+<span class="context">Es el país con mayor número de empresas en el NASDAQ americano fuera de EEUU, <mark>el que mayor dinero tiene para Capital Riesgo</mark> como proporción del PIB, el que más gasta en Investigación y desarrollo3.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“ofrecer productos opacos en territorios offshore”
+</div>
+<span class="context">Tipificaremos como delito autónomo el diseño específico en el mercado de productos, especialmente financieros, diseñados para defraudar, así como la actividad comercial de <mark>ofrecer productos opacos en territorios offshore</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“productos, especialmente financieros, diseñados para defraudar”
+</div>
+<span class="context">Tipificaremos como delito autónomo el diseño específico en el mercado de <mark>productos, especialmente financieros, diseñados para defraudar</mark></span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“concesión de microcréditos por parte de estas entidades”
+</div>
+<span class="context">inyección de fondos públicos para impulsar la <mark>concesión de microcréditos por parte de estas entidades</mark> a autónomos y proyectos</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“expropiación forzosa a la entidad financiera”
+</div>
+<span class="context">emergencia social podrán ser beneficiarías de la <mark>expropiación forzosa a la entidad financiera</mark> del uso de la vivienda duranfe un plazo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“convertir la Comisión Nacional del Mercado de Valores”
+</div>
+<span class="context">supervisión de los mercados financieros, adoptar el modelo de “doble vértice” (twin peaks) y <mark>convertir la Comisión Nacional del Mercado de Valores</mark> (CNMV) en una</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“servicios financieros, jurídicos o de telecomunicaciones”
+</div>
+<span class="context">agroalimentación, textil, <mark>servicios financieros, jurídicos o de telecomunicaciones</mark> se verían favorecidos por la apertura del mercado</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 9</span>
+<div class="quote">
+“riesgos que el mercado financiero privado”
+</div>
+<span class="context">rentabilidad económica a corto plazo, asumiendo <mark>riesgos que el mercado financiero privado</mark> no está dispuesto a asumir.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“reforzar la aplicación de la Ley Orgánica 2/2012, de 27 de abril, de Estabilidad Presupuestaria”
+</div>
+<span class="context">Reforzar la aplicación de la Ley Orgánica 2/2012, de 27 de abril, de Estabilidad Presupuestaria y Sostenibilidad Financiera. Su aplicación no puede quedar en manos de la discrecionalidad política del Gobierno. La estabilidad es un objetivo constitucional que cuenta con una autoridad, la Autoridad Independiente de Responsabilidad Fiscal,</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Agencia Tributaria”
+</div>
+<span class="context">…Devolveremos su independencia, profesionalidad, y calidad a la agencia tributaria e incrementando sustancialmente sus recursos: duplicaremos el número de funcionarios: inspectores, técnicos y personal de apoyo, una medida que no solo no costará dinero sino que generará nuevos recursos: en 2013 la <mark>Agencia Tributaria</mark> tuvo un presupuesto de 1313 millones de euros. Con este presupuesto, en lucha contra el fraude la Agencia Tributaria consiguió 10.91 millones de euros. Esto supone una rentabilidad directa de 8 euros por cada euro invertido, además del efecto inducido.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“introducción de un nivel de tasas y matrículas diferencial y elevado para estudiantes de fuera de la UE”
+</div>
+<span class="context">Para cubrir los costes más elevados de los estudiantes extra— europeos, y dar Incentivos a las universidades para que desarrollen servicios especializados para estos estudiantes, es necesario Introducir un nivel de tasas y matrículas diferencial y elevado para estudiantes de fuera de la UE, como existe por ejemplo en el Reino Unido.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“Impulsar convenios entre las Administraciones públicas y las entidades financieras que han recibido inyección de fondos públicos”
+</div>
+<span class="context">Crearemos un programa específico de apoyo a los jóvenes emprendedores y empresarios. <mark>Impulsar convenios entre las Administraciones públicas y las entidades financieras que han recibido inyección de fondos públicos</mark> para impulsar la concesión de microcréditos.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“Convertir la Comisión Nacional del Mercado de Valores (CNMV) en una Comisión Nacional de los Mercados Financieros”
+</div>
+<span class="context"><mark>Convertir la Comisión Nacional del Mercado de Valores (CNMV) en una Comisión Nacional de los Mercados Financieros</mark> (CNMF] Otros países —como los Estados Unidos o el Reino Unido— no vivieron episodios tan graves de comercialización inadecuada de productos financieros (mis-selling) como los ocurridos en España, pero han sacado de la crisis financiera una conclusión inequívoca: hay que atribuir a dos instituciones distintas la supervisión de la solvencia de las entidades financieras y la protección de los consumidores financieros e integridad de los mercados, para evitar los conflictos de interés que puede suscitar que una misma institución pública sea responsable de ambas funciones.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“la promoción de profesionales en puestos de responsabilidad”
+</div>
+<span class="context">Establecer un plan de acción para mejorar la influencia española en los organismos multilaterales financieros a través de <mark>la promoción de profesionales en puestos de responsabilidad</mark> y el desarrollo de una estrategia de actuación consensuada y coherente con los objetivos españoles en dichas instituciones.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“los bancos del norte prestaron de forma excesiva”
+</div>
+<span class="context">Los bancos del norte prestaron de forma excesiva sin preocuparse demasiado de que sus créditos fueran devueltos. Ahora es responsabilidad de todos responder al legado de la crisis.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“fondos de inversión públicos de match funding”
+</div>
+<span class="context">Creación de <mark>fondos de inversión públicos de match funding</mark> para sectores estratégicos. Fondos que coinviertan con capital especializado</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“apertura de las SICAV”
+</div>
+<span class="context">Devolveremos el control fiscal de las SICAV a la Inspección de Hacienda y promoveremos la <mark>apertura de las SICAV</mark>, de tal forma que cualquier ciudadano pueda invertir</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Tipificaremos como delito autónomo el diseño específico en el mercado de productos, especialmente financieros, diseñados para defraudar”
+</div>
+<span class="context"><mark>Tipificaremos como delito autónomo el diseño específico en el mercado de productos, especialmente financieros, diseñados para defraudar</mark>, así como la actividad comercial de ofrecer productos opacos en territorios offshore.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“microcréditos por parte de estas entidades a autónomos”
+</div>
+<span class="context">Impulsar convenios entre las Administraciones públicas y las entidades financieras que han recibido inyección de fondos públicos para impulsar la concesión de <mark>microcréditos por parte de estas entidades a autónomos</mark> y proyectos empresariales de jóvenes</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“Eliminar la cláusula suelo en los contratos”
+</div>
+<span class="context">Ciudadanos está en contra de las clausulas suelo en los contratos de préstamos porque son abusivas y suponen un beneficio adicional para los bancos y un perjuicio para los clientes</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“supervisión de los mercados financieros”
+</div>
+<span class="context">En materia de <mark>supervisión de los mercados financieros</mark>, adoptar el modelo de “doble vértice” (twin peaks) y convertir la Comisión Nacional del Mercado de Valores</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“servicios financieros”
+</div>
+<span class="context">Sectores como energía, construcción, infraestructuras, transporte, agroalimentación, textil, <mark>servicios financieros</mark>, jurídicos o de telecomunicaciones se verían favorecidos por la apertura del mercado estadounidense</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 9</span>
+<div class="quote">
+“ficheros de solvencia positivos para favorecer la competencia”
+</div>
+<span class="context">Se regularán de manera efectiva los <mark>ficheros de solvencia positivos para favorecer la competencia</mark> entre entidades</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“asentó firmemente un Estado democrático de derecho”
+</div>
+<span class="context">la Constitución de 1978 ha sido un indudable éxito son evidentes y sobradamente conocidas: <mark>asentó firmemente un Estado democrático de derecho</mark> tras años de</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Sin instituciones fuertes e independientes, cualquier cambio legislativo será puro papel mojado”
+</div>
+<span class="context">Acabar con el capitalismo de amiguetes requiere importantes cambios legislativos y regulatorios. Pero requiere también un cambio radical de valores y actitudes en nuestras clases dirigentes y en nuestra opinión pública que haga que las instituciones encargadas de velar por el cumplimiento de la ley funcione. <mark>Sin instituciones fuertes e independientes, cualquier cambio legislativo será puro papel mojado</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“defender el Estado de derecho”
+</div>
+<span class="context">Las funciones básicas de nuestro Estado del bienestar deben ser asegurar la seguridad externa e interna, <mark>defender el Estado de derecho</mark> y el acceso de todos</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“derechos y deberes constitucionales”
+</div>
+<span class="context">Dar una especial Importancia al estudio de los <mark>derechos y deberes constitucionales</mark> cuyo estudio entendemos que debería ser obligatorio</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“mecanismos de control democrático”
+</div>
+<span class="context">la detección del error son claves a la hora de entender los <mark>mecanismos de control democrático</mark>. Según recientes encuestas</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“valores sociales, democráticos y de convivencia”
+</div>
+<span class="context">nuestros niños y adolescentes en valores mediante una educación que potencie personas en plenitud y con <mark>valores sociales, democráticos y de convivencia</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 7</span>
+<div class="quote">
+“reforzar la independencia judicial, despolitizando y profesionalizando su funcionamiento”
+</div>
+<span class="context">La mejora de justicia en España pasa sin duda por <mark>reforzar la independencia judicial, despolitizando y profesionalizando su funcionamiento</mark>. Para C’s es fundamental</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“principios de democracia y respeto a los derechos humanos”
+</div>
+<span class="context">de la UE no puede impedir una acción exterior coherente con los <mark>principios de democracia y respeto a los derechos humanos</mark> en el mundo. Tampoco la falta de mecanismos</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 9</span>
+<div class="quote">
+“derecho fundamental en todo ordenamiento democrático”
+</div>
+<span class="context">La seguridad es un <mark>derecho fundamental en todo ordenamiento democrático</mark>. La falta de seguridad pone en riesgo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 10</span>
+<div class="quote">
+“un sistema democrático y de derecho”
+</div>
+<span class="context">obligación primordial para cualquier gobierno en <mark>un sistema democrático y de derecho</mark>. La seguridad es imprescindible para gozar</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“un Estado democrático de derecho tras años de dictadura”
+</div>
+<span class="context">Las razones por las que la Constitución de 1978 ha sido un indudable éxito son evidentes y sobradamente conocidas: asentó firmemente <mark>un Estado democrático de derecho tras años de dictadura</mark>, permitió que en el nuevo marco jurídico que establecía se reformara toda la legislación interna para adecuarla a sus principios y reglas,</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“instituciones encargadas de velar por el cumplimiento de la ley”
+</div>
+<span class="context">…Sin instituciones fuertes e independientes, cualquier cambio legislativo será puro papel mojado.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“democracia”
+</div>
+<span class="context">…asegurar la sostenibilidad de los pilares básicos del estado de bienestar: sanidad, educación y pensiones. Las propuestas que presentamos en educación e instituciones, también estarán destinadas a aumentar el crecimiento a largo plazo de nuestra economía. Priorizar el gasto: se trata de invertir mejor, pensando en el futuro, no simplemente de gastar. No podemos determinar cuál tiene que ser el nivel de ingresos necesario sin empezar por saber qué gasto es necesario y cuál es superfluo ¿Cuál es el nivel de gasto público que queremos y podemos permitirnos? ¿Cuáles son las partidas en las que se pueden aplicar recortes del gasto por duplicidades y deficiencias?</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“derechos y libertades fundamentales”
+</div>
+<span class="context">De acuerdo con el artículo 27.2 de la Constitución Española “La educación tendrá por objeto el pleno desarrollo de la personalidad humana en el respeto a los principios democráticos de convivencia y a los <mark>derechos y libertades fundamentales</mark>”.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“la epistemología científica y la detección del error son claves a la hora de entender los mecanismos de control democrático”
+</div>
+<span class="context">la ciencia, en su objetivo de búsqueda de la verdad, se sitúa en el extremo opuesto a los dogmatismos y a la corrupción, además de que <mark>la epistemología científica y la detección del error son claves a la hora de entender los mecanismos de control democrático</mark>. Según recientes encuestas realizadas en nuestro país, un 20% de los españoles piensa que el Sol gira alrededor de la Tierra y un porcentaje todavía superior consulta a “videntes” o siguen el tarot.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“Consagrar el derecho de acceso a la información pública como un derecho fundamental”
+</div>
+<span class="context">La Ley de Transparencia y Buen Gobierno Estatal son sólo un primer paso en esta dirección pero se quedan muy cortas. <mark>Consagrar el derecho de acceso a la información pública como un derecho fundamental</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“la democracia interna, la transparencia financiera y la rendición de cuentas”
+</div>
+<span class="context">Se propone una reforma de la legislación sobre Partidos Políticos para garantizar <mark>la democracia interna, la transparencia financiera y la rendición de cuentas</mark>: Funcionamiento interno democrático Sistema de primarias para la elección de los candidatos que garantice la igualdad entre los mismos, sin excesivo número de avales u otras trabas orgánicas.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 8</span>
+<div class="quote">
+“la difusión de valores democráticos y de convivencia”
+</div>
+<span class="context">RTVE debería trabajar por la vertebración del país, <mark>la difusión de valores democráticos y de convivencia</mark>: garantizar la expresión de toda nuestra diversidad cultural, colaborar en el desarrollo del pensamiento críticos de la audiencia haciendo una información independiente; programar un entretenimiento equilibrado, en especial para niños y jóvenes que promueva la motivación para el estudio, el acercamiento a la cultura y la solidaridad; estrechar lazos de hermanamiento con la comunidad hispana global; liderar la innovación en contenidos audiovisuales y ser el motor de la industria audiovisual del país</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 9</span>
+<div class="quote">
+“la legislación vigente, mediante medidas de uso de tecnologías de información y comunicación”
+</div>
+<span class="context">Se reforzará lo dispuesto en <mark>la legislación vigente, mediante medidas de uso de tecnologías de información y comunicación</mark> [TIC], donde se dará máxima accesibilidad a la información de estas acciones, realizando propuestas entendibles para el público en general, mediante infografías e imágenes en 3D.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 10</span>
+<div class="quote">
+“la transparencia, acceso a la información pública y del buen gobierno”
+</div>
+<span class="context">…de transparencia, acceso a la información pública y del buen gobierno. Revisaremos la adecuación de los procesos de ascenso y promoción Interna…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“asentó firmemente un Estado democrático de derecho”
+</div>
+<span class="context">Las razones por las que la Constitución de 1978 ha sido un indudable éxito son evidentes: <mark>asentó firmemente un Estado democrático de derecho</mark> tras años de dictadura, permitió que en el nuevo marco jurídico que establecía se reformara toda la legislación interna</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“instituciones fuertes e independientes”
+</div>
+<span class="context">Sin <mark>instituciones fuertes e independientes</mark>, cualquier cambio legislativo será puro papel mojado</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“independencia de la Autoridad Independiente de Responsabilidad Fiscal”
+</div>
+<span class="context">Aseguraremos la total <mark>independencia de la Autoridad Independiente de Responsabilidad Fiscal</mark> (AIREF), que vigila las políticas fiscales</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“respeto a los principios democráticos de convivencia y a los derechos y libertades fundamentales”
+</div>
+<span class="context">De acuerdo con el artículo 27.2 de la Constitución Española ‘La educación tendrá por objeto el pleno desarrollo de la personalidad humana en el <mark>respeto a los principios democráticos de convivencia y a los derechos y libertades fundamentales</mark>’</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“principios constitucionales de Igualdad, mérito y capacidad”
+</div>
+<span class="context">elegirán mediante un procedimiento público, abierto y transparente con participación de representantes sociales y garantizando los <mark>principios constitucionales de Igualdad, mérito y capacidad</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“democracia interna, la transparencia financiera”
+</div>
+<span class="context">Se propone una reforma de la legislación sobre Partidos Políticos para garantizar la <mark>democracia interna, la transparencia financiera</mark> y la rendición de cuentas</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“independencia del Poder Judicial”
+</div>
+<span class="context">la mejora de justicia en España pasa sin duda por reforzar la independencia judicial, despolitizando y profesionalizando su funcionamiento</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“difusión de valores democráticos y de convivencia”
+</div>
+<span class="context">La RTVE debería trabajar por la vertebración del país, la <mark>difusión de valores democráticos y de convivencia</mark>: garantizar la expresión de toda nuestra diversidad cultural</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 9</span>
+<div class="quote">
+“independencia a las grandes empresas del estado”
+</div>
+<span class="context">Se deberá, de forma complementaria, dotar de <mark>independencia a las grandes empresas del estado</mark> en el sector, despolitizando sus órganos de decisión</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 10</span>
+<div class="quote">
+“La seguridad es un derecho fundamental en todo ordenamiento democrático”
+</div>
+<span class="context">La falta de seguridad pone en riesgo otros derechos fundamentales, como la libertad e incluso la propia vida</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“eliminar la preferencia del varón sobre la mujer”
+</div>
+<span class="context">Reforma del artículo 57 CE para <mark>eliminar la preferencia del varón sobre la mujer</mark> en la sucesión en el trono.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“reforzar la cohesión social y la igualdad de oportunidades”
+</div>
+<span class="context">Fomentando políticas de bienestar para evitar la despoblación, proporcionando los necesarios servicios (sanitarios, educativos, etc.) y mejorando las infraestructuras agrarias, para <mark>reforzar la cohesión social y la igualdad de oportunidades</mark> en el mundo rural que eviten el despoblamiento</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“asegurar la igualdad de oportunidades”
+</div>
+<span class="context">Invertir para <mark>asegurar la igualdad de oportunidades</mark> y que nadie se queda atrás por razón de su origen social, garantizar el acceso a educación temprana</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“combatir el racismo y la xenofobia”
+</div>
+<span class="context">El desarrollo de estrategias más eficaces para <mark>combatir el racismo y la xenofobia</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“derecho a la Igualdad de oportunidades”
+</div>
+<span class="context">otorga a cada niño el <mark>derecho a la Igualdad de oportunidades</mark> y a recibir una educación de calidad</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“prevención de cualquier tipo de discriminación”
+</div>
+<span class="context">respeto a la persona, la tolerancia, el valor de la diversidad y la <mark>prevención de cualquier tipo de discriminación</mark> por motivos de sexo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“igualdad de género y la Inclusión social”
+</div>
+<span class="context">fomenten los comportamientos y valores positivos, la ¡nterculturalldad. Igualdad de género y la Inclusión social, promoviendo el deporte como elemento Inclusivo para</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 9</span>
+<div class="quote">
+“derecho social a la vivienda”
+</div>
+<span class="context">En Cs proponemos - Derecho social a la vivienda. El desarrollo legal del derecho a la vivienda</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 10</span>
+<div class="quote">
+“derechos de ciudadanía reconocidos en nuestro”
+</div>
+<span class="context">gozar en libertad de la plenitud de <mark>derechos de ciudadanía reconocidos en nuestro</mark> ordenamiento democrático. Son muchas las amenazas</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“derechos sociales en la Constitución”
+</div>
+<span class="context">Nuevo sección de <mark>derechos sociales en la Constitución</mark>. Inclusión de una sección, la tercera, en el capítulo II del Título I de la Constitución, consagrada a los derechos sociales que contuviese los siguientes: derecho a la salud (hoy en el artículo 43 CE); derecho a los servicios sociales (no recogido en la CE); derecho a la vivienda (artículo 47 CE); derecho y deber de protección ambiental (artículo 45 CE); derechos de los consumidores y usuarios (artículo 51 CE);</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“equidad y la igualdad de oportunidades”
+</div>
+<span class="context">…Nuestro modelo educativo se basará en una apuesta más ambiciosa por la <mark>equidad y la igualdad de oportunidades</mark> pero también por un mayor desarrollo del talento y las capacidades propias de cada estudiante para que pueda llegar tan lejos como se proponga.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“igualdad de oportunidades”
+</div>
+<span class="context">…Invertir para asegurar la <mark>igualdad de oportunidades</mark> y que nadie se queda atrás por razón de su origen social, garantizar el acceso a educación temprana y sistemas de refuerzo y/o extraescolares para aquellos alumnos que lo necesiten, especialmente en las primeras etapas formativas.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“luchar contra el racismo y la xenofobia”
+</div>
+<span class="context">El aprendizaje para contribuir a un entorno seguro. El desarrollo de estrategias más eficaces para combatir el racismo y la xenofobia.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“la igualdad de oportunidades a quienes se lo merezcan y las aprovechen”
+</div>
+<span class="context">las CCAA en coordinación con el Estado, siguiendo el principio de que cualquier Incremento de tasas debe Ir acompañado de un Incremento de becas que garantice la Igualdad de oportunidades a quienes se lo merezcan y las aprovechen. Contribución adicional a través de un programa de becarios de excelencia matriculados.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“Garantizaremos la formación y sensibilización adecuada sobre los temas de diversidad”
+</div>
+<span class="context">Garantizar la formación y sensibilización adecuada sobre los temas de diversidad, de los profesionales que realizan tareas de prevención, detección, atención, asistencia y recuperación en los ámbitos de la salud, la educación, el mundo laboral, los servicios sociales, la justicia y los cuerpos de seguridad.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“fortalecimiento de la sociedad civil, de las organizaciones empresariales y sindicales”
+</div>
+<span class="context">El <mark>fortalecimiento de la sociedad civil, de las organizaciones empresariales y sindicales</mark> y de los medios de comunicación social Evitar la ocupación política de organizaciones empresariales y sindicatos y de la sociedad civil, así como de los medios de comunicación social y fortalecer el asociacionismo de carácter privado.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“la igualdad efectiva entre mujeres y hombres”
+</div>
+<span class="context">Promocionaremos el deporte en el ámbito laboral, el deporte universitario, el deporte para personas mayores, y el deporte para <mark>la igualdad efectiva entre mujeres y hombres</mark>. Fomentaremos planes y programas en colaboración con las autoridades sanitarias y con los centros de atención primaria, dirigidos a la prevención y recuperación de patologías</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 9</span>
+<div class="quote">
+“protección de los ciudadanos. Aire y agua limpios. Control de los residuos. Prevención del ruido.”
+</div>
+<span class="context">Salud y bienestar: <mark>protección de los ciudadanos. Aire y agua limpios. Control de los residuos. Prevención del ruido.</mark> Protección de los espacios verdes y ecosistemas.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 10</span>
+<div class="quote">
+“protección y apoyo social a los militares y sus familias”
+</div>
+<span class="context">…políticas activas de <mark>protección y apoyo social a los militares y sus familias</mark> que permitan mitigar las disfunciones y deficiencias que se producen…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“eliminar la preferencia del varón sobre la mujer”
+</div>
+<span class="context">Propuesta 3. Reforma del artículo 57 CE para <mark>eliminar la preferencia del varón sobre la mujer</mark> en la sucesión en el trono.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“igualdad de oportunidades en el mundo rural”
+</div>
+<span class="context">proporcionando los necesarios servicios (sanitarios, educativos, etc.) y mejorando las infraestructuras agrarias, para reforzar la cohesión social y la <mark>igualdad de oportunidades en el mundo rural</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“igualdad de oportunidades”
+</div>
+<span class="context">Invertir para asegurar la <mark>igualdad de oportunidades</mark> y que nadie se queda atrás por razón de su origen social</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“independientemente de su origen social o regional, género o país de origen”
+</div>
+<span class="context">Las políticas públicas en educación deben de garantizar que todos, <mark>independientemente de su origen social o regional, género o país de origen</mark> lleguen tan lejos como deseen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“La salud es un derecho”
+</div>
+<span class="context"><mark>La salud es un derecho</mark> y el acceso a la Sanidad no deben estar condicionada por edad, sexo, raza, clase social, domicilio o comunidad autónoma</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“discriminación por razón de sexo, nivel social”
+</div>
+<span class="context">prevención de cualquier tipo de discriminación por motivos de sexo, nivel social, lengua materna, orientación sexual, origen, ideología política, etc.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“derechos de los ciudadanos sin recursos”
+</div>
+<span class="context">El Turno de oficio es esencial para la garantía de los <mark>derechos de los ciudadanos sin recursos</mark> para litigar</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“Igualdad de género y la Inclusión social”
+</div>
+<span class="context">fomenten los comportamientos y valores positivos, la interculturalidad. <mark>Igualdad de género y la Inclusión social</mark>, promoviendo el deporte como elemento Inclusivo para todas las personas</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 9</span>
+<div class="quote">
+“Derecho social a la vivienda”
+</div>
+<span class="context">En Cs proponemos - <mark>Derecho social a la vivienda</mark>. El desarrollo legal del derecho a la vivienda ha de establecer, siguiendo el modelo del Derecho comparado</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 10</span>
+<div class="quote">
+“combatir las redes de explotación sexual y liberar a las víctimas”
+</div>
+<span class="context">Con el objetivo de <mark>combatir las redes de explotación sexual y liberar a las víctimas</mark> de la Indignidad y la vulneración de sus derechos</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“asentó firmemente un Estado democrático de derecho”
+</div>
+<span class="context">la Constitución de 1978 ha sido un indudable éxito son evidentes y sobradamente conocidas: <mark>asentó firmemente un Estado democrático de derecho</mark> tras años de</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“La libre empresa y la iniciativa privada son los pilares”
+</div>
+<span class="context"><mark>La libre empresa y la iniciativa privada son los pilares</mark> de la riqueza de las naciones y del bienestar de los ciudadanos; pero hay que evitar que una economía de mercado degenere en el “capitalismo de amiguetes”</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“defender el Estado de derecho”
+</div>
+<span class="context">Las funciones básicas de nuestro Estado del bienestar deben ser asegurar la seguridad externa e interna, <mark>defender el Estado de derecho</mark> y el acceso de todos</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“derechos y deberes constitucionales”
+</div>
+<span class="context">Dar una especial Importancia al estudio de los <mark>derechos y deberes constitucionales</mark> cuyo estudio entendemos que debería ser obligatorio</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“mecanismos de control democrático”
+</div>
+<span class="context">la detección del error son claves a la hora de entender los <mark>mecanismos de control democrático</mark>. Según recientes encuestas</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“valores sociales, democráticos y de convivencia”
+</div>
+<span class="context">nuestros niños y adolescentes en valores mediante una educación que potencie personas en plenitud y con <mark>valores sociales, democráticos y de convivencia</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 7</span>
+<div class="quote">
+“dejar el máximo espacio posible a la iniciativa privada”
+</div>
+<span class="context">Para que el mercado funcione, es necesario <mark>dejar el máximo espacio posible a la iniciativa privada</mark>, pero dentro de unas reglas de juego</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“principios de democracia y respeto a los derechos humanos”
+</div>
+<span class="context">de la UE no puede impedir una acción exterior coherente con los <mark>principios de democracia y respeto a los derechos humanos</mark> en el mundo. Tampoco la falta de mecanismos</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 9</span>
+<div class="quote">
+“favorecer la competencia entre entidades”
+</div>
+<span class="context">ficheros de solvencia positivos para <mark>favorecer la competencia entre entidades</mark>. Las personas en especiales circunstancias</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 10</span>
+<div class="quote">
+“un sistema democrático y de derecho”
+</div>
+<span class="context">obligación primordial para cualquier gobierno en <mark>un sistema democrático y de derecho</mark>. La seguridad es imprescindible para gozar</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“un Estado democrático de derecho tras años de dictadura”
+</div>
+<span class="context">Las razones por las que la Constitución de 1978 ha sido un indudable éxito son evidentes y sobradamente conocidas: asentó firmemente <mark>un Estado democrático de derecho tras años de dictadura</mark>, permitió que en el nuevo marco jurídico que establecía se reformara toda la legislación interna para adecuarla a sus principios y reglas,</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“instituciones encargadas de velar por el cumplimiento de la ley”
+</div>
+<span class="context">…Sin instituciones fuertes e independientes, cualquier cambio legislativo será puro papel mojado.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“crecimiento económico”
+</div>
+<span class="context">…todo nuestro programa económico está diseñado para asegurar un <mark>crecimiento económico</mark> (aumento del PIB, el denominador) de calidad, con mejores instituciones y basado en la innovación y el capital humano. En primer lugar, las mejoras en el mercado laboral, enmarcadas en nuestra primera tanda de propuestas, aumentarán la inversión en capital humano de empresarios y trabajadores y disminuirán la rotación, lo que contribuirá a la creación de empleo.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“derechos y libertades fundamentales”
+</div>
+<span class="context">De acuerdo con el artículo 27.2 de la Constitución Española “La educación tendrá por objeto el pleno desarrollo de la personalidad humana en el respeto a los principios democráticos de convivencia y a los <mark>derechos y libertades fundamentales</mark>”.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“la epistemología científica y la detección del error son claves a la hora de entender los mecanismos de control democrático”
+</div>
+<span class="context">la ciencia, en su objetivo de búsqueda de la verdad, se sitúa en el extremo opuesto a los dogmatismos y a la corrupción, además de que <mark>la epistemología científica y la detección del error son claves a la hora de entender los mecanismos de control democrático</mark>. Según recientes encuestas realizadas en nuestro país, un 20% de los españoles piensa que el Sol gira alrededor de la Tierra y un porcentaje todavía superior consulta a “videntes” o siguen el tarot.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“Consagrar el derecho de acceso a la información pública como un derecho fundamental”
+</div>
+<span class="context">La Ley de Transparencia y Buen Gobierno Estatal son sólo un primer paso en esta dirección pero se quedan muy cortas. <mark>Consagrar el derecho de acceso a la información pública como un derecho fundamental</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“la democracia interna, la transparencia financiera y la rendición de cuentas”
+</div>
+<span class="context">Se propone una reforma de la legislación sobre Partidos Políticos para garantizar <mark>la democracia interna, la transparencia financiera y la rendición de cuentas</mark>: Funcionamiento interno democrático Sistema de primarias para la elección de los candidatos que garantice la igualdad entre los mismos, sin excesivo número de avales u otras trabas orgánicas.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 8</span>
+<div class="quote">
+“la difusión de valores democráticos y de convivencia”
+</div>
+<span class="context">RTVE debería trabajar por la vertebración del país, <mark>la difusión de valores democráticos y de convivencia</mark>: garantizar la expresión de toda nuestra diversidad cultural, colaborar en el desarrollo del pensamiento críticos de la audiencia haciendo una información independiente; programar un entretenimiento equilibrado, en especial para niños y jóvenes que promueva la motivación para el estudio, el acercamiento a la cultura y la solidaridad; estrechar lazos de hermanamiento con la comunidad hispana global; liderar la innovación en contenidos audiovisuales y ser el motor de la industria audiovisual del país</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 9</span>
+<div class="quote">
+“protección de los ciudadanos. Aire y agua limpios. Control de los residuos. Prevención del ruido.”
+</div>
+<span class="context">Salud y bienestar: <mark>protección de los ciudadanos. Aire y agua limpios. Control de los residuos. Prevención del ruido.</mark> Protección de los espacios verdes y ecosistemas.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 10</span>
+<div class="quote">
+“Reforma Fiscal Verde solicitada por la OCDE”
+</div>
+<span class="context">…solicitaremos que se acometa la <mark>Reforma Fiscal Verde solicitada por la OCDE</mark>, en la que se perfeccione el “uso de los impuestos relacionados con el medio ambiente…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“un Estado democrático de derecho”
+</div>
+<span class="context">Las razones por las que la Constitución de 1978 ha sido un indudable éxito son evidentes: asentó firmemente <mark>un Estado democrático de derecho</mark> tras años de dictadura</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“libre empresa y la iniciativa privada”
+</div>
+<span class="context">La <mark>libre empresa y la iniciativa privada</mark> son los pilares de la riqueza de las naciones y del bienestar de los ciudadanos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“sostenibilidad y eficiencia de las finanzas públicas”
+</div>
+<span class="context">Nuestro objetivo es asegurar la <mark>sostenibilidad y eficiencia de las finanzas públicas</mark>: control del gasto público, eficiencia y equidad</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“derechos y libertades fundamentales”
+</div>
+<span class="context">el pleno desarrollo de la personalidad humana en el respeto a los principios democráticos de convivencia y a los <mark>derechos y libertades fundamentales</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“principios constitucionales de Igualdad, mérito y capacidad”
+</div>
+<span class="context">elegirán mediante un procedimiento público, abierto y transparente con participación de representantes sociales y garantizando los <mark>principios constitucionales de Igualdad, mérito y capacidad</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“igualdad de oportunidades, capacidad y mérito”
+</div>
+<span class="context">Defendemos el principio de <mark>igualdad de oportunidades, capacidad y mérito</mark> como las mejores herramientas para combatir la discriminación entre las personas.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“economía de mercado, la libertad de empresa”
+</div>
+<span class="context">su firme defensa de la <mark>economía de mercado, la libertad de empresa</mark> y la iniciativa privada a través de sus diputados y representantes políticos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“democracias liberales puedan tener una influencia decisiva”
+</div>
+<span class="context">acuerdo que actualmente negocia la Unión Europea con Estados Unidos, y que es una oportunidad para que las <mark>democracias liberales puedan tener una influencia decisiva</mark> en gobernanza global</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 9</span>
+<div class="quote">
+“Liberalización y competencia”
+</div>
+<span class="context"><mark>Liberalización y competencia</mark>. Impedir que las empresas de generación, distribución y comercialización continúen formando parte de un mismo grupo empresarial</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 10</span>
+<div class="quote">
+“La seguridad es un derecho fundamental en todo ordenamiento democrático”
+</div>
+<span class="context">La falta de seguridad pone en riesgo otros derechos fundamentales, como la libertad e incluso la propia vida</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“la partitocracia como degeneración de la democracia”
+</div>
+<span class="context">los hemos agrupado os agruparlos en dos grandes grupos: primero, <mark>la partitocracia como degeneración de la democracia</mark>, y, segundo, una organización</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“evitar que una economía de mercado degenere en el”capitalismo de amiguetes”“
+</div>
+<span class="context">libre empresa y la iniciativa privada son los pilares de la riqueza de las naciones y del bienestar de los ciudadanos; pero hay que <mark>evitar que una economía de mercado degenere en el “capitalismo de amiguetes”</mark>, corroído por los pactos colusorios entre empresarios, o por sus oscuros acuerdos o tejemanejes con los políticos</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“nido de corrupción sin control democrático”
+</div>
+<span class="context">eliminación de las diputaciones provinciales, de dudosa utilidad y que además han sido un <mark>nido de corrupción sin control democrático</mark>. Además fusionaremos</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“incompetencia de muchos gestores seleccionados”
+</div>
+<span class="context">la miopía del corto plazo, la <mark>incompetencia de muchos gestores seleccionados</mark> a menudo más por motivos políticos que de mérito</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“eviten todo tipo de Injerencia improcedente”
+</div>
+<span class="context">dar participación a la sociedad civil, pero con medidas (“anti Cajas de Ahorro”) que <mark>eviten todo tipo de Injerencia improcedente</mark>: “la pertenencia al Consejo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“desmontar este modelo clientelar”
+</div>
+<span class="context">recoger se recogen no es otro que el de contribuir a <mark>desmontar este modelo clientelar</mark> que se ha ido asentando en las distintas instituciones</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“evitando las ventajas informativas e incluso”posición dominante” del Gobierno”
+</div>
+<span class="context">revitalizar la función del Parlamento, a mitigar las ventajas informativas e incluso “posición dominante” del Gobierno y a facilitar el diálogo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 8</span>
+<div class="quote">
+“captura de los instrumentos de acción exterior por intereses partidistas”
+</div>
+<span class="context">ausente en la política exterior de los últimos años: el consenso. La <mark>captura de los instrumentos de acción exterior por intereses partidistas</mark> y la falta de implicación del Congreso de los Diputados</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“la partitocracia como degeneración de la democracia”
+</div>
+<span class="context">los principales problemas los hemos agrupado os agruparlos en dos grandes grupos: primero, <mark>la partitocracia como degeneración de la democracia</mark>, y, segundo, una organización política y territorial poco funcional.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“capitalismo de amiguetes”
+</div>
+<span class="context">…la libre empresa y la iniciativa privada son los pilares de la riqueza de las naciones y del bienestar de los ciudadanos; pero hay que evitar que una economía de mercado degenere en el “<mark>capitalismo de amiguetes</mark>”, corroído por los pactos colusorios entre empresarios, o por sus oscuros acuerdos o tejemanejes con los políticos y gobernantes que contratan sus servicios o regulan su actividad.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“los poderes públicos”
+</div>
+<span class="context">…que se aplica por Igual a todos. Una cuestión que hace un enorme daño a la conciencia fiscal es la amnistía fiscal. Mediante este procedimiento, 31.484 defraudadores regularizaron unos 40.000 millones de euros (estimación del Ministerio de Hacienda) pagando 1.193 millones de euros un tipo Inferior al 3%. Con Independencia de que todo esto constituyó una enorme vergüenza, de la que se beneficiaron corruptos muy cercanos al Gobierno del PP (Incluyendo el tesorero del partido), la norma de aprobación, el Real Decreto-Ley 12/2012, preveía un tipo del 10% sin excepciones al Importe de los bienes aflorados. Mediante un Informe de la Dirección General de Tributos, sin firma y que no fue publicado en el BOE, se dejó fuera de tributación el 70% de las rentas afloradas. La opinión generalizada entre los expertos, como los Inspectores de Hacienda, es que el Informe es ¡legal. Por lo tanto, procederemos a anular el Informe y exigir los Importes no Ingresados por los defraudadores acogidos a la amnistía fiscal, antes de que transcurran cuatro años desde que presentaron la declaración. Por este sistema, obtendremos 2.800 millones de euros en 2016. Evidentemente, antes de exigir Impuestos a los contribuyentes cumplidores, que son la inmensa mayoría, hay que exigirles el estricto cumplimiento de las leyes a los defraudadores que se beneficiaron de una tribufación absolufamenfe privilegiada.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“antes de continuar exigiendo más impuestos a los que ya pagan hay que cobrar a los delincuentes”
+</div>
+<span class="context">Obviamente, no tiene sentido que si un contribuyente deja de ingresar una parte del IRPF, o no paga una multa esté embargado en pocos meses, y se tarde una década en cobrar a los delincuentes fiscales. Antes de continuar exigiendo más impuestos a los que ya pagan hay que cobrar a los delincuentes.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“la falta de imparcialidad de los gobernantes: en gran medida se dedicaron a defender sus intereses en detrimento de los de la gran mayoría”
+</div>
+<span class="context">En el núcleo del problema del mal gobierno Español está <mark>la falta de imparcialidad de los gobernantes: en gran medida se dedicaron a defender sus intereses en detrimento de los de la gran mayoría</mark>. Ahora bien, avanzar hacia ese ideal de buen gobierno al que todas las naciones aspiran no es una tarea nada fácil.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“lucha por los intereses generales, contra”el negocio del conflicto de intereses”“
+</div>
+<span class="context">La <mark>lucha por los intereses generales, contra “el negocio del conflicto de intereses”</mark> y las puertas giratorias Defender los Intereses generales luchando contra el desvío del ejercicio del poder en beneficio de intereses particulares, evitando en particular los conflictos de Intereses</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“la partitocracia como degeneración de la democracia”
+</div>
+<span class="context">En Ciudadanos los principales problemas los hemos agrupado os agruparlos en dos grandes grupos: primero, <mark>la partitocracia como degeneración de la democracia</mark>, y, segundo, una organización política y territorial poco funcional.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“capitalismo de amiguetes”
+</div>
+<span class="context">hay que evitar que una economía de mercado degenere en el “<mark>capitalismo de amiguetes</mark>”, corroído por los pactos colusorios entre empresarios, o por sus oscuros acuerdos o tejemanejes con los políticos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“grupos de interés”
+</div>
+<span class="context">excepciones hechas a la medida de unos u otros <mark>grupos de interés</mark>. Hay que reformar el sistema impositivo</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“incompetencia de muchos gestores seleccionados a menudo más por motivos políticos”
+</div>
+<span class="context">la falta de un proyecto ambicioso de futuro que permita salir de la miopía del corto plazo, la <mark>incompetencia de muchos gestores seleccionados a menudo más por motivos políticos</mark> que de mérito, y la prevalencia de los intereses partidistas y gremiales en contra de los del interés general</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“sin ninguna explicación) sus compromisos”
+</div>
+<span class="context">el gobierno español ha empezado a desatender (<mark>sin ninguna explicación) sus compromisos</mark> con organismos, consorcios e instituciones científicas internacionales</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“se dedicaron a defender sus intereses en detrimento”
+</div>
+<span class="context">En el núcleo del problema del mal gobierno Español está la falta de imparcialidad de los gobernantes: en gran medida <mark>se dedicaron a defender sus intereses en detrimento</mark> de los de la gran mayoría.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 7</span>
+<div class="quote">
+“capitalismo de amiguetes”
+</div>
+<span class="context">Contra el <mark>capitalismo de amiguetes</mark>: buena regulación y fomento de la competencia. El capitalismo español se rige por una peculiar “ley del embudo”, que favorece a la bien conectada empresa</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 8</span>
+<div class="quote">
+“uso descarado de la potestad para nombrar políticos”
+</div>
+<span class="context">los últimos gobiernos han hecho <mark>uso descarado de la potestad para nombrar políticos</mark> en embajadas o utilizar puestos relevantes del Estado para los intereses y aspiraciones personales de nuestros ex ministros</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 9</span>
+<div class="quote">
+“lobbies tecnológicos”
+</div>
+<span class="context">superando los planteamientos de las “Smart Cities” (compra de tecnología a empresas y <mark>lobbies tecnológicos</mark>) y centrándose en el talento ciudadano</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 10</span>
+<div class="quote">
+“Velaremos por el fomento y el cumplimiento estricto de los principios de mérito y capacidad”
+</div>
+<span class="context">en todos los procesos de Ingreso y ascenso en las FFCCSS del Estado, con criterios de transparencia y participación</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“los ciudadanos son el centro de nuestra actuación”
+</div>
+<span class="context">estatistas de la regeneración que España necesita, en nuestra visión <mark>los ciudadanos son el centro de nuestra actuación</mark>. Queremos que los ciudadanos</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“evitar que una economía de mercado degenere en el”capitalismo de amiguetes”“
+</div>
+<span class="context">libre empresa y la iniciativa privada son los pilares de la riqueza de las naciones y del bienestar de los ciudadanos; pero hay que <mark>evitar que una economía de mercado degenere en el “capitalismo de amiguetes”</mark>, corroído por los pactos colusorios entre empresarios, o por sus oscuros acuerdos o tejemanejes con los políticos</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“reconstruir la clase media trabajadora”
+</div>
+<span class="context">prioridad de todas nuestras propuestas es la puesta en marcha de un modelo de crecimiento sostenido que permita reducir el paro y mejorar nuestras finanzas públicas de forma permanente, así como <mark>reconstruir la clase media trabajadora</mark>. Existe la percepción</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“al servicio de los ciudadanos”
+</div>
+<span class="context">poniendo la Administración, también la tributaria, <mark>al servicio de los ciudadanos</mark>, que son la mayoría</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“eviten todo tipo de Injerencia improcedente”
+</div>
+<span class="context">dar participación a la sociedad civil, pero con medidas (“anti Cajas de Ahorro”) que <mark>eviten todo tipo de Injerencia improcedente</mark>: “la pertenencia al Consejo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“desmontar este modelo clientelar”
+</div>
+<span class="context">recoger se recogen no es otro que el de contribuir a <mark>desmontar este modelo clientelar</mark> que se ha ido asentando en las distintas instituciones</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“evitar que una economía de mercado degenere en el”capitalismo de amiguetes”“
+</div>
+<span class="context">bienestar de los ciudadanos; pero hay que <mark>evitar que una economía de mercado degenere en el “capitalismo de amiguetes”</mark>, corroído por los pactos colusorios</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 8</span>
+<div class="quote">
+“intereses partidistas y la falta de implicación”
+</div>
+<span class="context">exterior de los últimos años: el consenso. La captura de los instrumentos de acción exterior por <mark>intereses partidistas y la falta de implicación</mark> del Congreso de los Diputados</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“consenso constitucional está basado en la idea misma de Constitución”
+</div>
+<span class="context">el <mark>consenso constitucional está basado en la idea misma de Constitución</mark>, en su carácter de norma estable producto de un acuerdo básico entre fuerzas políticas representativas de amplias mayorías de ciudadanos, y también de significativas minorías, así como de los ciudadanos mismos</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“la libre empresa y la iniciativa privada son los pilares”
+</div>
+<span class="context">…La libre empresa y la iniciativa privada son los pilares de la riqueza de las naciones y del bienestar de los ciudadanos; pero hay que evitar que una economía de mercado degenere en el “capitalismo de amiguetes”…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“reforma fiscal”
+</div>
+<span class="context">…Nuestra reforma empezará por aumentar la bases impositivas para al mismo tiempo reducir y simplificar los tipos. Esto incrementará la eficiencia y reducirá las distorsiones del sistema impositivo. Además de los aumentos en la eficiencia que planteamos, nuestra <mark>reforma fiscal</mark> va a reducir sustancialmente la presión fiscal, a través de una caída de la imposición directa y un importante complemento salarial.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“poniendo la Administración, también la tributaria, al servicio de los ciudadanos, que son la mayoría”
+</div>
+<span class="context">Ciudadanos propondrá un estatuto del Contribuyente, a través de una Ley de Derechos y Garantías que potencie los derechos de los contribuyentes, <mark>poniendo la Administración, también la tributaria, al servicio de los ciudadanos, que son la mayoría</mark>, que quieren cumplir con sus obligaciones fiscales.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“la cultura de servicio a los Intereses generales definidos en la norma como los fines a los que debe servir cada institución”
+</div>
+<span class="context">Una institución no es solo un conjunto de normas y de personas, sino que es también una cultura de servicio a los Intereses generales definidos en la norma como los fines a los que debe servir cada institución.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“Defender los Intereses generales luchando contra el desvío del ejercicio del poder”
+</div>
+<span class="context">La lucha por los intereses generales, contra “el negocio del conflicto de intereses” y las puertas giratorias <mark>Defender los Intereses generales luchando contra el desvío del ejercicio del poder</mark> en beneficio de intereses particulares, evitando en particular los conflictos de Intereses</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“los ciudadanos son el centro de nuestra actuación”
+</div>
+<span class="context">Frente a visiones colectivistas y estatistas de la regeneración que España necesita, en nuestra visión <mark>los ciudadanos son el centro de nuestra actuación</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“rechaza tanto el inmovilismo derrotista”
+</div>
+<span class="context">Ciudadanos <mark>rechaza tanto el inmovilismo derrotista</mark> de la derecha como el dirigismo de la izquierda</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“eficiencia y equidad de la recaudación”
+</div>
+<span class="context">sostenibilidad y eficiencia de las finanzas públicas: control del gasto público, <mark>eficiencia y equidad de la recaudación</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“ciudadano en su relación con la Administración Tributaria también tiene que tener derechos”
+</div>
+<span class="context">creemos que el <mark>ciudadano en su relación con la Administración Tributaria también tiene que tener derechos</mark>, porque si no, no es ciudadano sino súbdito</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“Gran Pacto Nacional para el Avance de la Ciencia”
+</div>
+<span class="context">propone a la sociedad civil en general, así como al resto de las fuerzas políticas y sociales, un <mark>Gran Pacto Nacional para el Avance de la Ciencia</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“buen gobierno, la transparencia, la rendición de cuentas”
+</div>
+<span class="context">Todas nuestras propuestas tienen como objetivo instaurar el <mark>buen gobierno, la transparencia, la rendición de cuentas</mark> y la responsabilidad</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 7</span>
+<div class="quote">
+“Defender los Intereses generales”
+</div>
+<span class="context"><mark>Defender los Intereses generales</mark> luchando contra el desvío del ejercicio del poder en beneficio de intereses particulares</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 8</span>
+<div class="quote">
+“consenso con todas las fuerzas políticas”
+</div>
+<span class="context">Esta estrategia ha de ser una auténtica política de estado que busque el <mark>consenso con todas las fuerzas políticas</mark>, la participación de todas las comunidades autónomas</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 9</span>
+<div class="quote">
+“basado en el consenso”
+</div>
+<span class="context">Estableceremos un pacto para los nuevos Planes Nacionales de Desarrollo Estratégico de Infraestructuras y Transportes <mark>basado en el consenso</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 10</span>
+<div class="quote">
+“criterios de transparencia y participación”
+</div>
+<span class="context">Velaremos por el fomento y el cumplimiento estricto de los principios de mérito y capacidad en todos los procesos de Ingreso y ascenso en las FFCCSS del Estado, con <mark>criterios de transparencia y participación</mark></span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“luchar contra la desigualdad, la pobreza y la exclusión”
+</div>
+<span class="context">Priorizaremos la lucha contra la desigualdad, la pobreza y la exclusión y aseguraremos que todos los ciudadanos reciben un salario digno por un trabajo digno. La crisis ha golpeado duramente a los más necesitados y las desigualdades han aumentado.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“bajos salarios y precariedad”
+</div>
+<span class="context">…Esta opción supone competir a base de <mark>bajos salarios y precariedad</mark>, y, como el bajísimo crecimiento de las cotizaciones a la seguridad social de este año muestra, supone poner en peligro la sostenibilidad del estado del bienestar.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“reconstruir la clase media trabajadora”
+</div>
+<span class="context">…permitir reducir el paro y mejorar nuestras finanzas públicas de forma permanente, así como <mark>reconstruir la clase media trabajadora</mark>. Existe la percepción de que pagamos demasiados impuestos. ¿Por qué? En primer lugar, porque nuestros impuestos están muy mal diseñados: pagamos tipos más elevados pero recogemos menos ingresos porque existen un sin número de exenciones y deducciones, a menudo no justificadas ni por razones de eficiencia, ni por razones de equidad.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“fraude fiscal no es admisible, aunque sea de pequeña cuantía”
+</div>
+<span class="context">Ciudadanos cree que todos deben contribuir a financiar el gasto público, y que el <mark>fraude fiscal no es admisible, aunque sea de pequeña cuantía</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“Disminuiremos la precariedad laboral mediante la introducción de un contrato único (o unificado) indefinido”
+</div>
+<span class="context"><mark>Disminuiremos la precariedad laboral mediante la introducción de un contrato único (o unificado) indefinido</mark>. La característica clave de este contrato es el aumento gradual de las indemnizaciones por despido procedente o improcedente.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“lucha por los intereses generales, contra”el negocio del conflicto de intereses”“
+</div>
+<span class="context">La <mark>lucha por los intereses generales, contra “el negocio del conflicto de intereses”</mark> y las puertas giratorias Defender los Intereses generales luchando contra el desvío del ejercicio del poder en beneficio de intereses particulares, evitando en particular los conflictos de Intereses</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“luchar contra la desigualdad, la pobreza y la exclusión”
+</div>
+<span class="context">Priorizaremos la lucha contra la desigualdad, la pobreza y la exclusión y aseguraremos que todos los ciudadanos reciben un salario digno por un trabajo digno.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“sostenibilidad del estado del bienestar”
+</div>
+<span class="context">supone competir a base de bajos salarios y precariedad, y supone poner en peligro la <mark>sostenibilidad del estado del bienestar</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“complemento salarial para las rentas más bajas”
+</div>
+<span class="context">una caída muy sustancial de la imposición directa y de un <mark>complemento salarial para las rentas más bajas</mark> que producirá una diferencia</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“igualdad de oportunidades y que nadie se queda atrás por razón de su origen social”
+</div>
+<span class="context">Invertir para asegurar la <mark>igualdad de oportunidades y que nadie se queda atrás por razón de su origen social</mark>, garantizar el acceso a educación temprana y sistemas de refuerzo</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“sistema sanitario público y universal, solidario, equitativo”
+</div>
+<span class="context">Ciudadanos defiende un <mark>sistema sanitario público y universal, solidario, equitativo</mark> para todos los ciudadanos, sin diferenciales sociales o geográficas</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“Reduciremos y erradicaremos la pobreza infantil”
+</div>
+<span class="context"><mark>Reduciremos y erradicaremos la pobreza infantil</mark> y el riesgo de exclusión social. Reforzaremos las redes familiares, sociales y comunitarias.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“cláusula suelo en los contratos”
+</div>
+<span class="context">Ciudadanos está en contra de las clausulas suelo en los contratos de préstamos porque son abusivas y suponen un beneficio adicional para los bancos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 8</span>
+<div class="quote">
+“lucha contra la desigualdad y la pobreza”
+</div>
+<span class="context">Ciudadanos se compromete a impulsar iniciativas en el ámbito europeo conducentes a la <mark>lucha contra la desigualdad y la pobreza</mark>, y la creación de empleo de calidad</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 9</span>
+<div class="quote">
+“sectores de población más vulnerables”
+</div>
+<span class="context">el acceso a la vivienda de los <mark>sectores de población más vulnerables</mark> y afectados por la crisis, los desahucios</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 10</span>
+<div class="quote">
+“rentas dignas en el campo”
+</div>
+<span class="context">Fomentar una política agroalimentaria respetuosa con el medio ambiente, que asegure la conservación del paisaje y <mark>rentas dignas en el campo</mark></span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“los ciudadanos son el centro de nuestra actuación”
+</div>
+<span class="context">estatistas de la regeneración que España necesita, en nuestra visión <mark>los ciudadanos son el centro de nuestra actuación</mark>. Queremos que los ciudadanos</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“evitar que una economía de mercado degenere en el”capitalismo de amiguetes”“
+</div>
+<span class="context">libre empresa y la iniciativa privada son los pilares de la riqueza de las naciones y del bienestar de los ciudadanos; pero hay que <mark>evitar que una economía de mercado degenere en el “capitalismo de amiguetes”</mark>, corroído por los pactos colusorios entre empresarios, o por sus oscuros acuerdos o tejemanejes con los políticos</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“reconstruir la clase media trabajadora”
+</div>
+<span class="context">prioridad de todas nuestras propuestas es la puesta en marcha de un modelo de crecimiento sostenido que permita reducir el paro y mejorar nuestras finanzas públicas de forma permanente, así como <mark>reconstruir la clase media trabajadora</mark>. Existe la percepción</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“al servicio de los ciudadanos”
+</div>
+<span class="context">poniendo la Administración, también la tributaria, <mark>al servicio de los ciudadanos</mark>, que son la mayoría</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“eviten todo tipo de Injerencia improcedente”
+</div>
+<span class="context">dar participación a la sociedad civil, pero con medidas (“anti Cajas de Ahorro”) que <mark>eviten todo tipo de Injerencia improcedente</mark>: “la pertenencia al Consejo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“desmontar este modelo clientelar”
+</div>
+<span class="context">recoger se recogen no es otro que el de contribuir a <mark>desmontar este modelo clientelar</mark> que se ha ido asentando en las distintas instituciones</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“evitar que una economía de mercado degenere en el”capitalismo de amiguetes”“
+</div>
+<span class="context">bienestar de los ciudadanos; pero hay que <mark>evitar que una economía de mercado degenere en el “capitalismo de amiguetes”</mark>, corroído por los pactos colusorios</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 8</span>
+<div class="quote">
+“intereses partidistas y la falta de implicación”
+</div>
+<span class="context">exterior de los últimos años: el consenso. La captura de los instrumentos de acción exterior por <mark>intereses partidistas y la falta de implicación</mark> del Congreso de los Diputados</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“la partitocracia como degeneración de la democracia”
+</div>
+<span class="context">los principales problemas los hemos agrupado os agruparlos en dos grandes grupos: primero, <mark>la partitocracia como degeneración de la democracia</mark>, y, segundo, una organización política y territorial poco funcional.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“capitalismo de amiguetes”
+</div>
+<span class="context">…pero hay que evitar que una economía de mercado degenere en el “<mark>capitalismo de amiguetes</mark>”, corroído por los pactos colusorios entre empresarios, o por sus oscuros acuerdos o tejemanejes con los políticos y gobernantes que contratan sus servicios o regulan su actividad.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“reforma fiscal”
+</div>
+<span class="context">…Nuestra reforma empezará por aumentar la bases impositivas para al mismo tiempo reducir y simplificar los tipos. Esto incrementará la eficiencia y reducirá las distorsiones del sistema impositivo. Además de los aumentos en la eficiencia que planteamos, nuestra <mark>reforma fiscal</mark> va a reducir sustancialmente la presión fiscal, a través de una caída de la imposición directa y un importante complemento salarial.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“antes de continuar exigiendo más impuestos a los que ya pagan hay que cobrar a los delincuentes”
+</div>
+<span class="context">Obviamente, no tiene sentido que si un contribuyente deja de ingresar una parte del IRPF, o no paga una multa esté embargado en pocos meses, y se tarde una década en cobrar a los delincuentes fiscales. Antes de continuar exigiendo más impuestos a los que ya pagan hay que cobrar a los delincuentes.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“Disminuiremos la precariedad laboral mediante la introducción de un contrato único (o unificado) indefinido”
+</div>
+<span class="context"><mark>Disminuiremos la precariedad laboral mediante la introducción de un contrato único (o unificado) indefinido</mark>. La característica clave de este contrato es el aumento gradual de las indemnizaciones por despido procedente o improcedente.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“lucha por los intereses generales, contra”el negocio del conflicto de intereses”“
+</div>
+<span class="context">La <mark>lucha por los intereses generales, contra “el negocio del conflicto de intereses”</mark> y las puertas giratorias Defender los Intereses generales luchando contra el desvío del ejercicio del poder en beneficio de intereses particulares, evitando en particular los conflictos de Intereses</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“acabar con el capitalismo de amiguetes”
+</div>
+<span class="context">Esto requiere <mark>acabar con el capitalismo de amiguetes</mark>, con la corrupción, y preparar a nuestros jóvenes para competir en la economía global del conocimiento.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“capitalismo de amiguetes”
+</div>
+<span class="context">hay que evitar que una economía de mercado degenere en el “<mark>capitalismo de amiguetes</mark>”, corroído por los pactos colusorios entre empresarios</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“reconstruir la clase media trabajadora”
+</div>
+<span class="context">es una prioridad absoluta de nuestro programa <mark>reconstruir la clase media trabajadora</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“incompetencia de muchos gestores seleccionados a menudo más por motivos políticos”
+</div>
+<span class="context">la <mark>incompetencia de muchos gestores seleccionados a menudo más por motivos políticos</mark> que de mérito, y la prevalencia de los intereses partidistas y gremiales en contra de los del interés general</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“Gran Pacto Nacional para el Avance de la Ciencia”
+</div>
+<span class="context">propone a la sociedad civil en general, así como al resto de las fuerzas políticas y sociales, un <mark>Gran Pacto Nacional para el Avance de la Ciencia</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“se dedicaron a defender sus intereses en detrimento”
+</div>
+<span class="context">En el núcleo del problema del mal gobierno Español está la falta de imparcialidad de los gobernantes: en gran medida <mark>se dedicaron a defender sus intereses en detrimento</mark> de los de la gran mayoría.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 7</span>
+<div class="quote">
+“capitalismo de amiguetes”
+</div>
+<span class="context">Contra el <mark>capitalismo de amiguetes</mark>: buena regulación y fomento de la competencia</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 8</span>
+<div class="quote">
+“consenso con todas las fuerzas políticas”
+</div>
+<span class="context">Esta estrategia ha de ser una auténtica política de estado que busque el <mark>consenso con todas las fuerzas políticas</mark>, la participación de todas las comunidades autónomas</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 9</span>
+<div class="quote">
+“lobbies tecnológicos”
+</div>
+<span class="context">superando los planteamientos de las “Smart Cities” (compra de tecnología a empresas y <mark>lobbies tecnológicos</mark>) y centrándose en el talento ciudadano</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 10</span>
+<div class="quote">
+“proporcionar a los ciudadanos un nivel adecuado de seguridad”
+</div>
+<span class="context">es una obligación primordial para cualquier gobierno en un sistema democrático y de derecho</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“rechazamos desigualdades territoriales en relación con los tributos”
+</div>
+<span class="context">Rechazamos desigualdades territoriales en relación con los tributos. Al igual que rechazamos los paraísos fiscales que aún existen en Europa, así como las “trampas” que algunos Estados ha implementado para establecer “dumping” tributarios que rompen la solidaridad y la justicia.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“competencia equitativas para los agentes económicos de la UE”
+</div>
+<span class="context">…Fomentar condiciones de <mark>competencia equitativas para los agentes económicos de la UE</mark> a través de la explotación de sus ventajas competitivas. se debe exigir que lo producido en países terceros tengan las mismas exigencias ambientales, sociales o incluso de sanidad animal que lo producido en la UE.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“necesidad de creación de una agencia europea de empleo que fomente la libre circulación de trabajadores”
+</div>
+<span class="context">Creemos en la <mark>necesidad de creación de una agencia europea de empleo que fomente la libre circulación de trabajadores</mark> a través de un mercado de trabajo común y transparente.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“la igualdad básica de los españoles”
+</div>
+<span class="context">España ciudadana está organizada territorialmente en Comunidades y Municipios para que el ejercicio del poder sirva más y mejor a los ciudadanos… sin romper, al contrario, <mark>la igualdad básica de los españoles</mark> en derechos y deberes.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“políticas de inmigración estratégicas”
+</div>
+<span class="context">desde el sector público no se han llevado a cabo <mark>políticas de inmigración estratégicas</mark> que ofrezcan incentivos a gente con talento dispuesta a abrir negocios</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“consumo de proximidad”
+</div>
+<span class="context">se fomentará el <mark>consumo de proximidad</mark>, al objeto de reducir el consumo energético en el transporte</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“Educar a nuestros hijos en un solo idioma (sea español o catalán o euskera a gallego) es educarles en un modelo desfasado”
+</div>
+<span class="context">Ciudadanos se comprometa a trabajar para que todos los estudiantes tengan acceso a un sistema de enseñanza plurilingüe. <mark>Educar a nuestros hijos en un solo idioma (sea español o catalán o euskera a gallego) es educarles en un modelo desfasado</mark> que les deja en clara desventaja</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 5</span>
+<div class="quote">
+“tasas y matrículas diferencial y elevado para estudiantes de fuera de la UE”
+</div>
+<span class="context">es necesario introducir un nivel de <mark>tasas y matrículas diferencial y elevado para estudiantes de fuera de la UE</mark>, como existe por ejemplo en el Reino Unido</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 6</span>
+<div class="quote">
+“fronteras impermeables especialmente en áreas sensibles”
+</div>
+<span class="context">necesitemos <mark>fronteras impermeables especialmente en áreas sensibles</mark> para la seguridad nacional como en Ceuta y Melilla</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 8</span>
+<div class="quote">
+“exportar la marca España”
+</div>
+<span class="context">tiene capacidad para fortalecer la cohesión de nuestra sociedad y <mark>exportar la marca España</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 9</span>
+<div class="quote">
+“seguridad es un derecho fundamental”
+</div>
+<span class="context">La <mark>seguridad es un derecho fundamental</mark> en todo ordenamiento democrático. La falta de seguridad pone en riesgo otros derechos fundamentales</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 10</span>
+<div class="quote">
+“lucha contra ETA y el yihadismo”
+</div>
+<span class="context">Dar todo el apoyo y medios a las fuerzas de seguridad para que sigan luchando contra ETA y el yihadismo</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“capitalismo de maletín y de”amiguetes.”“
+</div>
+<span class="context">de pelotazos, de corrupción, de <mark>capitalismo de maletín y de “amiguetes.”</mark> No hay indicador más claro de este cambio</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“perjudica a los defraudadores”
+</div>
+<span class="context">Esto facilita y da más seguridad al contribuyente cumplidor y <mark>perjudica a los defraudadores</mark>, permitiendo también</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 7</span>
+<div class="quote">
+“evitar que se produzca un”pago de favores”“
+</div>
+<span class="context">en relación con los intereses de dicha empresa, el contenido al detalle de sus decisiones, qué retribuciones ha percibido, etc. Se trata de <mark>evitar que se produzca un “pago de favores”</mark> a costa de los Intereses generales.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“la corrupción es la muestra quinta esencial de la ruptura de los equilibrios”
+</div>
+<span class="context">La corrupción es la muestra quinta esencial de la ruptura de los equilibrios. Cuando el poder se convierte en una mercancía, es porque no hay controles efectivos que lo evite y persiga a los responsables.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“ocupar con sus amigos y aliados todos los cargos independientes”
+</div>
+<span class="context">…Pero hace falta algo más y aún más importante. Todo esto no puede funcionar si los partidos en el poder persisten en su actual actitud de “ocupar” con sus amigos y aliados todos los cargos independientes. Acabar con el capitalismo de amiguetes requiere importantes cambios legislativos y regulatorios.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“corrupción”
+</div>
+<span class="context">…racionalizar el gasto público acabando con el despilfarro y los gastos suntuarios. Además hay que perseguir enérgicamente la <mark>corrupción</mark>. Por último, el ciudadano debe tener claro que las leyes fiscales se aplican por Igual a todos. Una cuestión que hace un enorme daño a la conciencia fiscal es la amnistía fiscal. Mediante este procedimiento, 31.484 defraudadores regularizaron unos 40.000 millones de euros (estimación del Ministerio de Hacienda) pagando 1.193 millones de euros un tipo Inferior al 3%. Con Independencia de que todo esto constituyó una enorme vergüenza, de la que se beneficiaron corruptos muy cercanos al Gobierno del PP (Incluyendo el tesorero del partido)… </span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“delitos más graves, los cometidos utilizando paraísos fiscales, testaferros u organizaciones para delinquir”
+</div>
+<span class="context">Endureceremos las penas de los <mark>delitos más graves, los cometidos utilizando paraísos fiscales, testaferros u organizaciones para delinquir</mark> para que la condena implique penas efectivas de prisión, y esto no se pueda evitar, como ocurre actualmente, pagando después de que se haya iniciado la acción penal contra el presunto delincuente.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“lucha por los intereses generales, contra”el negocio del conflicto de intereses”“
+</div>
+<span class="context">La <mark>lucha por los intereses generales, contra “el negocio del conflicto de intereses”</mark> y las puertas giratorias Defender los Intereses generales luchando contra el desvío del ejercicio del poder en beneficio de intereses particulares, evitando en particular los conflictos de Intereses</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“capitalismo de maletín y de”amiguetes”“
+</div>
+<span class="context">El euro permitió unos años de dinero fácil, de gasto suntuario en ciudades de las artes y la cultura, de pelotazos, de corrupción, de capitalismo de maletín y de “amiguetes.”</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“inmovilismo derrotista de la derecha”
+</div>
+<span class="context">Ciudadanos rechaza tanto el <mark>inmovilismo derrotista de la derecha</mark> (“somos así, que le vamos a hacer”) como el dirigismo de la izquierda</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“enorme vergüenza, de la que se beneficiaron corruptos”
+</div>
+<span class="context">todo esto constituyó una <mark>enorme vergüenza, de la que se beneficiaron corruptos</mark> muy cercanos al Gobierno del PP</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“Antes de continuar exigiendo más impuestos a los que ya pagan hay que cobrar a los delincuentes”
+</div>
+<span class="context">Obviamente, no tiene sentido que si un contribuyente deja de ingresar una parte del IRPF, o no paga una multa esté embargado en pocos meses, y se tarde una década en cobrar a los delincuentes fiscales. <mark>Antes de continuar exigiendo más impuestos a los que ya pagan hay que cobrar a los delincuentes</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 5</span>
+<div class="quote">
+“la ciencia se sitúa en el extremo opuesto a los dogmatismos”
+</div>
+<span class="context">la ciencia, en su objetivo de búsqueda de la verdad, se sitúa en el extremo opuesto a los dogmatismos y a la corrupción</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“dramático incremento de la corrupción política”
+</div>
+<span class="context">El resultado fue un <mark>dramático incremento de la corrupción política</mark>, un deterioro del Estado de Derecho y un empeoramiento significativo de las políticas públicas.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 7</span>
+<div class="quote">
+“oscuros acuerdos o tejemanejes con los políticos”
+</div>
+<span class="context">por sus <mark>oscuros acuerdos o tejemanejes con los políticos</mark> y gobernantes que contratan sus servicios o regulan su actividad</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 8</span>
+<div class="quote">
+“intereses partidistas y la falta de implicación”
+</div>
+<span class="context">La captura de los instrumentos de acción exterior por <mark>intereses partidistas y la falta de implicación</mark> del Congreso de los Diputados ha vaciado del necesario consenso</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 9</span>
+<div class="quote">
+“abusos que se están produciendo”
+</div>
+<span class="context">con la finalidad de evitar los <mark>abusos que se están produciendo</mark> en la actualidad, el deudor podrá solicitar una nueva tasación</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 10</span>
+<div class="quote">
+“A ningún ciudadano, empresa o institución le debe resultar rentable atentar contra el medioambiente”
+</div>
+<span class="context">El deseo de una gran parte de la sociedad de conservar y proteger el medioambiente debe estar respaldado por una normativa clara</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“los ciudadanos son el centro de nuestra actuación”
+</div>
+<span class="context">estatistas de la regeneración que España necesita, en nuestra visión <mark>los ciudadanos son el centro de nuestra actuación</mark>. Queremos que los ciudadanos</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“reconstruir la clase media trabajadora”
+</div>
+<span class="context">prioridad de todas nuestras propuestas es la puesta en marcha de un modelo de crecimiento sostenido que permita reducir el paro y mejorar nuestras finanzas públicas de forma permanente, así como <mark>reconstruir la clase media trabajadora</mark>. Existe la percepción</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“al servicio de los ciudadanos”
+</div>
+<span class="context">poniendo la Administración, también la tributaria, <mark>al servicio de los ciudadanos</mark>, que son la mayoría</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 7</span>
+<div class="quote">
+“representantes de los ciudadanos”
+</div>
+<span class="context">Poder Legislativo y de los diputados como <mark>representantes de los ciudadanos</mark> En una democracia de calidad</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 8</span>
+<div class="quote">
+“Acercar el teatro a la gente”
+</div>
+<span class="context">creación de nuevos públicos. <mark>Acercar el teatro a la gente</mark> y llevar a la gente al teatro tiene que ser</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“España ciudadana en una Europa ciudadana”
+</div>
+<span class="context">Europa y más Europa <mark>España ciudadana en una Europa ciudadana</mark>. El artículo 2 del Tratado de la Unión Europea dispone que “La Unión se fundamenta en los valores de respeto de la dignidad humana, libertad, democracia, igualdad.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“los verdaderos emprendedores”
+</div>
+<span class="context">…que favorece a la bien conectada empresa y ofrece el camino más estrecho y lleno de espinas a <mark>los verdaderos emprendedores</mark>. La libre empresa y la iniciativa privada son los pilares de la riqueza de las naciones y del bienestar de los ciudadanos; pero hay que evitar que una economía de mercado degenere en el “capitalismo de amiguetes”…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“los ciudadanos”
+</div>
+<span class="context">…que el fraude fiscal no es admisible, aunque sea de pequeña cuantía. No obstante, creemos que el ciudadano en su relación con la Administración Tributaria también tiene derechos, porque si no, no es ciudadano sino súbdito. Las últimas reformas, tanto de los gobiernos del PP como del PSOE han recortado derechos de los pequeños contribuyentes que quieren cumplir con Hacienda, aunque en algún momento tengan una discrepancia con Hacienda.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“poniendo la Administración, también la tributaria, al servicio de los ciudadanos, que son la mayoría”
+</div>
+<span class="context">Ciudadanos propondrá un estatuto del Contribuyente, a través de una Ley de Derechos y Garantías que potencie los derechos de los contribuyentes, <mark>poniendo la Administración, también la tributaria, al servicio de los ciudadanos, que son la mayoría</mark>, que quieren cumplir con sus obligaciones fiscales.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“la cultura de servicio a los Intereses generales definidos en la norma como los fines a los que debe servir cada institución”
+</div>
+<span class="context">Una institución no es solo un conjunto de normas y de personas, sino que es también una cultura de servicio a los Intereses generales definidos en la norma como los fines a los que debe servir cada institución. Se trata, sencillamente, de conseguir que las leyes se cumplan efectivamente.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 7</span>
+<div class="quote">
+“Defender los Intereses generales luchando contra el desvío del ejercicio del poder”
+</div>
+<span class="context">La lucha por los intereses generales, contra “el negocio del conflicto de intereses” y las puertas giratorias <mark>Defender los Intereses generales luchando contra el desvío del ejercicio del poder</mark> en beneficio de intereses particulares, evitando en particular los conflictos de Intereses</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“los ciudadanos son el centro de nuestra actuación”
+</div>
+<span class="context">Frente a visiones colectivistas y estatistas de la regeneración que España necesita, en nuestra visión <mark>los ciudadanos son el centro de nuestra actuación</mark>. Queremos que los ciudadanos tomen sus propias decisiones</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“preparar a los españoles para competir”
+</div>
+<span class="context">Se trata de <mark>preparar a los españoles para competir</mark> con los mejores, y darles las herramientas para hacerlo para que luego sean nuestros emprendedores y nuestras empresas las que elijan</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“reconstruir la clase media trabajadora”
+</div>
+<span class="context">es una prioridad absoluta de nuestro programa <mark>reconstruir la clase media trabajadora</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“poniendo la Administración, también la tributaria, al servicio de los ciudadanos”
+</div>
+<span class="context">Ciudadanos propondrá un estatuto del Contribuyente, a través de una Ley de Derechos y Garantías que potencie los derechos de los contribuyentes, <mark>poniendo la Administración, también la tributaria, al servicio de los ciudadanos</mark>, que son la mayoría, que quieren cumplir con sus obligaciones fiscales</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“derecho a los servicios sociales como un derecho fundamental”
+</div>
+<span class="context">Ciudadanos establecerá el <mark>derecho a los servicios sociales como un derecho fundamental</mark> en la reforma constitucional que proponemos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“los intereses generales definidos en la norma”
+</div>
+<span class="context">sino que es también una cultura de servicio a los Intereses generales definidos en la norma como los fines a los que debe servir cada institución.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 7</span>
+<div class="quote">
+“los intereses generales”
+</div>
+<span class="context">Defender los Intereses generales luchando contra el desvío del ejercicio del poder en beneficio de intereses particulares</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 8</span>
+<div class="quote">
+“Satisfacer las necesidades reales de los ciudadanos”
+</div>
+<span class="context">faciliten planificar, proyectar, construir y ofrecer condiciones de servicio para: <mark>Satisfacer las necesidades reales de los ciudadanos</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 9</span>
+<div class="quote">
+“centrándose en el talento ciudadano”
+</div>
+<span class="context">superando los planteamientos de las “Smart Cities” y <mark>centrándose en el talento ciudadano</mark>, las comunidades y redes de espacios “maker”</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 10</span>
+<div class="quote">
+“proporcionar a los ciudadanos un nivel adecuado de seguridad”
+</div>
+<span class="context">es una obligación primordial para cualquier gobierno en un sistema democrático y de derecho</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“la partitocracia como degeneración de la democracia”
+</div>
+<span class="context">los hemos agrupado os agruparlos en dos grandes grupos: primero, <mark>la partitocracia como degeneración de la democracia</mark>, y, segundo, una organización</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“evitar que una economía de mercado degenere en el”capitalismo de amiguetes”“
+</div>
+<span class="context">libre empresa y la iniciativa privada son los pilares de la riqueza de las naciones y del bienestar de los ciudadanos; pero hay que <mark>evitar que una economía de mercado degenere en el “capitalismo de amiguetes”</mark>, corroído por los pactos colusorios entre empresarios, o por sus oscuros acuerdos o tejemanejes con los políticos</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“reconstruir la clase media trabajadora”
+</div>
+<span class="context">prioridad de todas nuestras propuestas es la puesta en marcha de un modelo de crecimiento sostenido que permita reducir el paro y mejorar nuestras finanzas públicas de forma permanente, así como <mark>reconstruir la clase media trabajadora</mark>. Existe la percepción</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“al servicio de los ciudadanos”
+</div>
+<span class="context">poniendo la Administración, también la tributaria, <mark>al servicio de los ciudadanos</mark>, que son la mayoría</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“eviten todo tipo de Injerencia improcedente”
+</div>
+<span class="context">dar participación a la sociedad civil, pero con medidas (“anti Cajas de Ahorro”) que <mark>eviten todo tipo de Injerencia improcedente</mark>: “la pertenencia al Consejo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“desmontar este modelo clientelar”
+</div>
+<span class="context">recoger se recogen no es otro que el de contribuir a <mark>desmontar este modelo clientelar</mark> que se ha ido asentando en las distintas instituciones</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 7</span>
+<div class="quote">
+“evitar que se produzca un”pago de favores”“
+</div>
+<span class="context">en relación con los intereses de dicha empresa, el contenido al detalle de sus decisiones, qué retribuciones ha percibido, etc. Se trata de <mark>evitar que se produzca un “pago de favores”</mark> a costa de los Intereses generales.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 8</span>
+<div class="quote">
+“captura de los instrumentos de acción exterior por intereses partidistas”
+</div>
+<span class="context">ausente en la política exterior de los últimos años: el consenso. La <mark>captura de los instrumentos de acción exterior por intereses partidistas</mark> y la falta de implicación del Congreso de los Diputados</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“la partitocracia como degeneración de la democracia”
+</div>
+<span class="context">los principales problemas los hemos agrupado os agruparlos en dos grandes grupos: primero, <mark>la partitocracia como degeneración de la democracia</mark>, y, segundo, una organización política y territorial poco funcional.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“capitalismo de amiguetes”
+</div>
+<span class="context">…la libre empresa y la iniciativa privada son los pilares de la riqueza de las naciones y del bienestar de los ciudadanos; pero hay que evitar que una economía de mercado degenere en el “<mark>capitalismo de amiguetes</mark>”, corroído por los pactos colusorios entre empresarios, o por sus oscuros acuerdos o tejemanejes con los políticos y gobernantes que contratan sus servicios o regulan su actividad.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“corrupción”
+</div>
+<span class="context">…racionalizar el gasto público acabando con el despilfarro y los gastos suntuarios. Además hay que perseguir enérgicamente la <mark>corrupción</mark>. Por último, el ciudadano debe tener claro que las leyes fiscales se aplican por Igual a todos. Una cuestión que hace un enorme daño a la conciencia fiscal es la amnistía fiscal. Mediante este procedimiento, 31.484 defraudadores regularizaron unos 40.000 millones de euros (estimación del Ministerio de Hacienda) pagando 1.193 millones de euros un tipo Inferior al 3%. Con Independencia de que todo esto constituyó una enorme vergüenza, de la que se beneficiaron corruptos muy cercanos al Gobierno del PP (Incluyendo el tesorero del partido)… </span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“antes de continuar exigiendo más impuestos a los que ya pagan hay que cobrar a los delincuentes”
+</div>
+<span class="context">Obviamente, no tiene sentido que si un contribuyente deja de ingresar una parte del IRPF, o no paga una multa esté embargado en pocos meses, y se tarde una década en cobrar a los delincuentes fiscales. Antes de continuar exigiendo más impuestos a los que ya pagan hay que cobrar a los delincuentes.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“la falta de imparcialidad de los gobernantes: en gran medida se dedicaron a defender sus intereses en detrimento de los de la gran mayoría”
+</div>
+<span class="context">En el núcleo del problema del mal gobierno Español está <mark>la falta de imparcialidad de los gobernantes: en gran medida se dedicaron a defender sus intereses en detrimento de los de la gran mayoría</mark>. Ahora bien, avanzar hacia ese ideal de buen gobierno al que todas las naciones aspiran no es una tarea nada fácil.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“lucha por los intereses generales, contra”el negocio del conflicto de intereses”“
+</div>
+<span class="context">La <mark>lucha por los intereses generales, contra “el negocio del conflicto de intereses”</mark> y las puertas giratorias Defender los Intereses generales luchando contra el desvío del ejercicio del poder en beneficio de intereses particulares, evitando en particular los conflictos de Intereses</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“la partitocracia como degeneración de la democracia”
+</div>
+<span class="context">En Ciudadanos los principales problemas los hemos agrupado os agruparlos en dos grandes grupos: primero, <mark>la partitocracia como degeneración de la democracia</mark>, y, segundo, una organización política y territorial poco funcional.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“capitalismo de amiguetes”
+</div>
+<span class="context">hay que evitar que una economía de mercado degenere en el “<mark>capitalismo de amiguetes</mark>”, corroído por los pactos colusorios entre empresarios</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“solo pagan los que no tienen más remedio”
+</div>
+<span class="context">España tiene unos elevados impuestos, y una reducida recaudación fiscal. Desgraciadamente, <mark>solo pagan los que no tienen más remedio</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“prevalencia de los intereses partidistas y gremiales en contra de los del interés general”
+</div>
+<span class="context">la incompetencia de muchos gestores seleccionados a menudo más por motivos políticos que de mérito, y la <mark>prevalencia de los intereses partidistas y gremiales en contra de los del interés general</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“sin ninguna explicación) sus compromisos”
+</div>
+<span class="context">el gobierno español ha empezado a desatender (<mark>sin ninguna explicación) sus compromisos</mark> con organismos, consorcios e instituciones científicas internacionales</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“acabar con la patrimonialización de lo público”
+</div>
+<span class="context">Todas nuestras propuestas tienen como objetivo instaurar el buen gobierno, la transparencia, la rendición de cuentas y la responsabilidad y acabar con la patrlmonlalizaclón de lo público, la corrupción y el despilfarro.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 7</span>
+<div class="quote">
+“capitalismo de amiguetes”
+</div>
+<span class="context">Contra el <mark>capitalismo de amiguetes</mark>: buena regulación y fomento de la competencia. El capitalismo español se rige por una peculiar “ley del embudo”</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 8</span>
+<div class="quote">
+“intereses partidistas y la falta de implicación”
+</div>
+<span class="context">La captura de los instrumentos de acción exterior por <mark>intereses partidistas y la falta de implicación</mark> del Congreso de los Diputados ha vaciado del necesario consenso</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 9</span>
+<div class="quote">
+“lobbies tecnológicos”
+</div>
+<span class="context">superando los planteamientos de las “Smart Cities” (compra de tecnología a empresas y <mark>lobbies tecnológicos</mark>) y centrándose en el talento ciudadano</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 10</span>
+<div class="quote">
+“proporcionar a los ciudadanos un nivel adecuado de seguridad”
+</div>
+<span class="context">es una obligación primordial para cualquier gobierno en un sistema democrático y de derecho</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="33420_201512_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

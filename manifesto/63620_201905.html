@@ -1,0 +1,2396 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>LPA (Australia, 2019) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/63620_201905_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">LPA (Australia, 2019)</h1>
+<p class="subtitle lead">manifesto_id 63620_201905</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Australia · <span class="item"><strong>Party</strong></span> LPA (Liberal Party of Australia) · <span class="item"><strong>Year</strong></span> 2019 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 60</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.8</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.8</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“lower taxes for small, medium and family businesses”
+</div>
+<span class="context">We backing small business to invest, employ more workers and grow their business. We will <mark>lower taxes for small, medium and family businesses</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“new free trade agreements opening up new market opportunities”
+</div>
+<span class="context">protecting market access with $20 million to tackle fruit fly, <mark>new free trade agreements opening up new market opportunities</mark> for Tasmanian produce, and a range of regional economic</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“legislate reforms to competition policy”
+</div>
+<span class="context">Government fought hard to <mark>legislate reforms to competition policy</mark> (Section 46) to prevent big business</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“lower taxes so that you can keep more”
+</div>
+<span class="context">By contrast, the Morrison Government has a plan for <mark>lower taxes so that you can keep more</mark> of the money you earn. We have a comprehensive plan</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“deregulating pricing where appropriate”
+</div>
+<span class="context">More improvements to NDIS pricing, including <mark>deregulating pricing where appropriate</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“delivering more free trade agreements”
+</div>
+<span class="context">Growing exports by Australian manufacturers including by <mark>delivering more free trade agreements</mark> and supporting an Australian Made export campaign</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“The Morrison Government will build an even stronger economy based on individual enterprise and aspiration”
+</div>
+<span class="context"><mark>The Morrison Government will build an even stronger economy based on individual enterprise and aspiration</mark> while looking after Australians who need a helping hand.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“lower taxes for small, medium and family businesses”
+</div>
+<span class="context">The Morrison Government has already provided lower taxes to around 3.4 million small, medium and family businesses employing over 7 million workers. We have fast-tracked small and medium businesses moving to a lower corporate tax rate: reducing the rate from 30 per cent to 27.5 per cent. It will be cut further to 25 per cent by 2021-22 – five years earlier than previously planned.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“The business tax rate for small and medium-sized companies has been reduced from 30 per cent to 27.5 per cent”
+</div>
+<span class="context">Small and family businesses in Central Queensland can trust the Morrison Government to back them with other announced measures, including streamlining red tape and simplifying tax reporting; helping them to expand by increasing access to finance with the $2 billion Australian Business Securitisation Fund and ensuring they get paid on time by government and big business.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“The Morrison Government has a plan for lower taxes so that you can keep more of the money you earn”
+</div>
+<span class="context">By contrast the Morrison Government has a plan for lower taxes so that you can keep more of the money you earn. There will only be one outcome for Western Sydney under Labor – a weaker economy, fewer jobs and higher taxes.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“The Morrison Government has a plan to lift Agriculture, Fisheries and Forestry to a $100 billion industry by 2030”
+</div>
+<span class="context">…Our plan to help the agriculture, fisheries and forestry sector reach its potential is focused on:Tackling barriers to growth and production. Providing the water needed for growth and drought proofing. Tackling intergenerational land transfer and encouraging new farmers. Expanding exports and improving market access. Getting the balance right for the fisheries and forestry industries…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“We have concluded free trade agreements with China, Japan, Korea, the 10 economies of the Trans-Pacific Partnership (TPP-11) and the 10 countries of the Pacific Agreement on Closer Economic Relations (PACER Plus)”
+</div>
+<span class="context">In just five years, the Liberal Nationals Government has embedded Australia with the economic engines of our region. <mark>We have concluded free trade agreements with China, Japan, Korea, the 10 economies of the Trans-Pacific Partnership (TPP-11) and the 10 countries of the Pacific Agreement on Closer Economic Relations (PACER Plus)</mark>, as well as Indonesia, Peru and Hong Kong.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“lower taxes and more jobs”
+</div>
+<span class="context">The Morrison Government will build an even stronger and more competitive economy, with <mark>lower taxes and more jobs</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“new free trade agreements opening up new market”
+</div>
+<span class="context"><mark>new free trade agreements opening up new market</mark> opportunities for Tasmanian produce, and a range of regional economic development projects like Devonport’s Living City project</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“lowering taxes for small businesses”
+</div>
+<span class="context">Our record includes backing major infrastructure projects, awarding Indigenous owned businesses more Commonwealth contracts, <mark>lowering taxes for small businesses</mark>, and opening up new industry.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“lower taxes so that you can keep more”
+</div>
+<span class="context">By contrast, the Morrison Government has a plan for <mark>lower taxes so that you can keep more</mark> of the money you earn.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“free trade agreement with the European Union”
+</div>
+<span class="context">A re-elected Morrison Government will prioritise the conclusion of a <mark>free trade agreement with the European Union</mark>, the implementation of the India Economic Strategy</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“delivering more free trade agreements”
+</div>
+<span class="context">Growing exports by Australian manufacturers including by <mark>delivering more free trade agreements</mark> and supporting an Australian Made export campaign to give our manufacturers a bigger edge in overseas markets.</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“improving access to finance”
+</div>
+<span class="context">Strengthen small and medium businesses by lowering business tax, <mark>improving access to finance</mark>, ensuring small business is paid on time</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“increasing access to finance with the $2 billion Australian Business Securitisation Fund”
+</div>
+<span class="context">streamlining red tape and simplifying tax reporting; <mark>increasing access to finance with the $2 billion Australian Business Securitisation Fund</mark>; and ensuring they get paid on time by government</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Australian Business Securitisation Fund”
+</div>
+<span class="context">increasing access to finance with the $2 billion <mark>Australian Business Securitisation Fund</mark> and ensuring they get paid</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Australian Business Securitisation Fund”
+</div>
+<span class="context">increasing access to finance with the $2 billion <mark>Australian Business Securitisation Fund</mark> and the $100 million Small Business Growth Fund</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“Clean Energy Finance Corporation”
+</div>
+<span class="context">investments ($853 million so far) through the <mark>Clean Energy Finance Corporation</mark> to encourage agricultural businesses</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“Australian Business Securitisation Fund”
+</div>
+<span class="context">increase access to finance with a new $2 billion <mark>Australian Business Securitisation Fund</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“We will increase access to more competitive finance following analysis that small to medium enterprises did not have access to the finance they need”
+</div>
+<span class="context">The $2 billion Australian Business Securitisation Fund will increase access to more competitive finance following analysis that small to medium enterprises did not have access to the finance they need to start or grow their businesses.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Australian Business Securitisation Fund will start on July 1 this year”
+</div>
+<span class="context">With access to finance a critical issue, the new $2 billion <mark>Australian Business Securitisation Fund will start on July 1 this year</mark>. This fund increases small business access to competitive finance by providing more funding for small banks and non-bank lenders.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Increasing access to finance with the $2 billion Australian Business Securitisation Fund”
+</div>
+<span class="context">Small and family businesses in Central Queensland can trust the Morrison Government to back them with other announced measures, including streamlining red tape and simplifying tax reporting; helping them to expand by increasing access to finance with the $2 billion Australian Business Securitisation Fund and ensuring they get paid on time by government and big business.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“The Morrison Government has launched the 2019 Defence Policy for Industry Participation”
+</div>
+<span class="context"><mark>The Morrison Government has launched the 2019 Defence Policy for Industry Participation</mark>, providing further opportunities for Australian companies to compete for work and drive the long-term development of Australia’s sovereign defence industry.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“The Morrison Government will make it easier for aspiring and existing small and medium businesses – including manufacturers – to start and expand”
+</div>
+<span class="context"><mark>The Morrison Government will make it easier for aspiring and existing small and medium businesses – including manufacturers – to start and expand</mark>. We understand that small businesses find it difficult to obtain finance other than on a secured basis.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“access to more competitive finance”
+</div>
+<span class="context">The $2 billion Australian Business Securitisation Fund will increase <mark>access to more competitive finance</mark> following analysis that small to medium enterprises did not have access to the finance they need</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“increasing access to finance”
+</div>
+<span class="context">streamlining red tape and simplifying tax reporting; <mark>increasing access to finance</mark> with the $2 billion Australian Business Securitisation Fund; and ensuring they get paid on time</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“increasing access to finance”
+</div>
+<span class="context">Small and family businesses in the NT can trust the Morrison Government to back them with other announced measures, including streamlining red tape and simplifying tax reporting; <mark>increasing access to finance</mark>; and ensuring they get paid on time.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“$2 billion Australian Business Securitisation Fund”
+</div>
+<span class="context">helping them to expand by increasing access to finance with the <mark>$2 billion Australian Business Securitisation Fund</mark> and the $100 million Small Business Growth Fund</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“review of the southern Basin water market”
+</div>
+<span class="context">Request the Australian Competition and Consumer Commission to undertake a <mark>review of the southern Basin water market</mark> and its operation since 2012.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“new $2 billion Australian Business Securitisation Fund”
+</div>
+<span class="context">the <mark>new $2 billion Australian Business Securitisation Fund</mark> will start on July 1 this year. This fund increases small business access to competitive finance by providing more funding for small banks and non-bank lenders.</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“the rule of law”
+</div>
+<span class="context">Policy based on envy rather than aspiration. Union muscle rather than <mark>the rule of law</mark>. Mr Shorten will take Australia in a very</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“commitment to tolerance and the rule of law”
+</div>
+<span class="context">preserving our economic strength, social cohesion and security. We believe in equal opportunity in a fair and compassionate society irrespective of someone’s race, religion or ethnic background. We will defend Australia’s democratic freedoms and its longstanding <mark>commitment to tolerance and the rule of law</mark>. A re-elected Morrison Government will ensure Australia remains</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“first role of Government is to keep Australia”
+</div>
+<span class="context">Stronger Defence and Defence Industries Key Points The <mark>first role of Government is to keep Australia</mark> and Australians safe. We are investing more than $200</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“passed through the Parliament”
+</div>
+<span class="context">prevented from travelling overseas under laws we proposed that <mark>passed through the Parliament</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“independent statutory review of the Act”
+</div>
+<span class="context">the Morrison Government will consult widely on an <mark>independent statutory review of the Act</mark>. Consultation will begin later this year</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“We will make road safety a standing item at all meetings of the COAG Transport and Infrastructure Ministerial Council”
+</div>
+<span class="context"><mark>We will make road safety a standing item at all meetings of the COAG Transport and Infrastructure Ministerial Council</mark> meetings and improve linkages with other COAG Councils with an interest such as health, education and policing.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“We will defend Australia’s democratic freedoms and its longstanding commitment to tolerance and the rule of law”
+</div>
+<span class="context">We believe in equal opportunity in a fair and compassionate society irrespective of someone’s race, religion or ethnic background. <mark>We will defend Australia’s democratic freedoms and its longstanding commitment to tolerance and the rule of law</mark>. A re-elected Morrison Government will ensure Australia remains a cohesive and prosperous society where those who have a go get a fair go.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Our Government’s strong fiscal management means that it can deliver surpluses”
+</div>
+<span class="context"><mark>Our Government’s strong fiscal management means that it can deliver surpluses</mark> while also rewarding hard-working Australians and easing cost of living pressures.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Funding for NSW public hospitals will increase from $4.3 billion in 2012-13 to $6.8 billion in 2019-20”
+</div>
+<span class="context">Strengthening the health system The Morrison Government’s health plan for Western Sydney will protect lives, improve lives and save lives. <mark>Funding for NSW public hospitals will increase from $4.3 billion in 2012-13 to $6.8 billion in 2019-20</mark> and is on track to increase to $8.8 billion under a new hospitals agreement.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“The Morrison Government is prioritising support for mental health services with overall funding exceeding $4.8 billion per year”
+</div>
+<span class="context">…We are also investing significantly to support the mental health of individuals and families dealing with addiction and abuse. <mark>The Morrison Government is prioritising support for mental health services with overall funding exceeding $4.8 billion per year</mark>. We will deliver a $375 million expansion of headspace services and new residential centres for treating eating disorders. We will trial eight new adult mental health centres as an alternative to Emergency Departments…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“The Environment Protection and Biodiversity Conservation Act 1999 (EPBC Act) was introduced by the Liberal Nationals in 1999 and it remains the cornerstone of Australian environmental regulation”
+</div>
+<span class="context"><mark>The Environment Protection and Biodiversity Conservation Act 1999 (EPBC Act) was introduced by the Liberal Nationals in 1999 and it remains the cornerstone of Australian environmental regulation</mark>. To ensure the EPBC Act remains best-practice, the Morrison Government will consult widely on an independent statutory review of the Act.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“rule of law”
+</div>
+<span class="context">Union muscle rather than the <mark>rule of law</mark>. Mr Shorten will take Australia in a very different direction.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“defend Australia’s democratic freedoms”
+</div>
+<span class="context">We believe in equal opportunity in a fair and compassionate society irrespective of someone’s race, religion or ethnic background. We will <mark>defend Australia’s democratic freedoms</mark> and its longstanding commitment to tolerance and the rule of law.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“strong borders”
+</div>
+<span class="context">The Government has maintained <mark>strong borders</mark> – we stopped the boats, stopped the deaths at sea, removed children from immigration detention, and have cancelled the visas of thousands of criminals.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“strong economic management”
+</div>
+<span class="context">The Coalition Government’s <mark>strong economic management</mark> underpins the investments needed to defend Australia and protect our borders.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“independent statutory body with strong investigation and regulatory powers”
+</div>
+<span class="context">The NDIS Commission is an <mark>independent statutory body with strong investigation and regulatory powers</mark>. It can take tough action including banning orders and substantial civil penalties</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“independent statutory review of the Act”
+</div>
+<span class="context">the Morrison Government will consult widely on an <mark>independent statutory review of the Act</mark>. Consultation will begin later this year and include feedback from business groups, environmental organisations, farmers and other land users.</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“prevent Indigenous youth suicide”
+</div>
+<span class="context">To strengthen Indigenous youth suicide prevention, we will invest $34.1 million, including support for Indigenous leadership</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“irrespective of someone’s race, religion or ethnic background”
+</div>
+<span class="context">preserving our economic strength, social cohesion and security. We believe in equal opportunity in a fair and compassionate society <mark>irrespective of someone’s race, religion or ethnic background</mark>. We will defend Australia’s democratic freedoms and its</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“violence against women and children”
+</div>
+<span class="context">and abuse. Helping women and families to prevent and reduce <mark>violence against women and children</mark> The Liberal and Nationals Government is leading the development of</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“Aboriginal and Torres Strait Islander”
+</div>
+<span class="context">support and prevention strategies for <mark>Aboriginal and Torres Strait Islander</mark> communities.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“Aboriginal and Torres Strait Islander women”
+</div>
+<span class="context">work with and assist <mark>Aboriginal and Torres Strait Islander women</mark> in communities across Australia to identify, report and protect</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“We are investing in mental health telehealth services funded through the MBS”
+</div>
+<span class="context">For Australians living in rural and regional areas we are establishing more than 20 new headspace sites in these areas and we are providing new mental health telehealth services funded through the MBS.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“improving accessibility to 1800RESPECT for people from vulnerable and diverse cohorts”
+</div>
+<span class="context">As part of our $328 million plan to tackle domestic violence we are <mark>improving accessibility to 1800RESPECT for people from vulnerable and diverse cohorts</mark>, including from CALD backgrounds, to ensure they have access to high quality and culturally appropriate counselling and support.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Supporting even more Indigenous businesses through government procurement”
+</div>
+<span class="context">The Morrison Government will also: Boost Indigenous tourism, with $40 million over four years for tourism planning work with Indigenous communities and individuals interested in pursuing tourism opportunities. <mark>Supporting even more Indigenous businesses through government procurement</mark> building on our highly successful Indigenous Procurement Policy.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“The Morrison Government is prioritising support for mental health services with overall funding exceeding $4.8 billion per year”
+</div>
+<span class="context">We are also investing significantly to support the mental health of individuals and families dealing with addiction and abuse. <mark>The Morrison Government is prioritising support for mental health services with overall funding exceeding $4.8 billion per year</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“The Liberal and Nationals Government is leading the development of the Fourth Action Plan of the National Plan to Reduce Violence against Women and their Children”
+</div>
+<span class="context">…Helping women and families to prevent and reduce violence against women and children <mark>The Liberal and Nationals Government is leading the development of the Fourth Action Plan of the National Plan to Reduce Violence against Women and their Children</mark>, with $328 million for prevention measures and frontline services. This brings the total invested by our Government to more than $840 million since 2013…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“We have appointed Australia’s first Threatened Species Commissioner in 2014 and launched the Threatened Species Strategy in 2015”
+</div>
+<span class="context">The Liberal Nationals Government has been working hard to protect our threatened plants and animals. We appointed Australia’s first Threatened Species Commissioner in 2014 and launched the Threatened Species Strategy in 2015.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“gender pay gap is at its lowest level”
+</div>
+<span class="context">Not only are there more women in work than ever before, the <mark>gender pay gap is at its lowest level</mark> on record at 14.2 per cent</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“equal opportunity in a fair and compassionate society”
+</div>
+<span class="context">We believe in <mark>equal opportunity in a fair and compassionate society</mark> irrespective of someone’s race, religion or ethnic background. We will defend Australia’s democratic freedoms</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“protect schools, religious institutions and other sites from religious and racial intolerance”
+</div>
+<span class="context">Support local councils and community organisations to undertake crime prevention activities as well as <mark>protect schools, religious institutions and other sites from religious and racial intolerance</mark> through CCTV cameras, security lighting, alarm systems.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“reduce Violence against Women”
+</div>
+<span class="context">National Plan to Reduce Violence against Women and their Children, with $328 million for prevention measures and frontline services.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“violence, abuse, neglect and exploitation of people with disability”
+</div>
+<span class="context">The Morrison Government believes all forms of <mark>violence, abuse, neglect and exploitation of people with disability</mark> are abhorrent and have no place in society.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“assist Aboriginal and Torres Strait Islander women”
+</div>
+<span class="context">Provide up to $2.5 million for the Office of the eSafety Commissioner to work with and <mark>assist Aboriginal and Torres Strait Islander women</mark> in communities across Australia to identify, report and protect themselves.</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“lower taxes for small, medium and family businesses”
+</div>
+<span class="context">We backing small business to invest, employ more workers and grow their business. We will <mark>lower taxes for small, medium and family businesses</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“commitment to tolerance and the rule of law”
+</div>
+<span class="context">preserving our economic strength, social cohesion and security. We believe in equal opportunity in a fair and compassionate society irrespective of someone’s race, religion or ethnic background. We will defend Australia’s democratic freedoms and its longstanding <mark>commitment to tolerance and the rule of law</mark>. A re-elected Morrison Government will ensure Australia remains</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“legislate reforms to competition policy”
+</div>
+<span class="context">Government fought hard to <mark>legislate reforms to competition policy</mark> (Section 46) to prevent big business</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“lower taxes so that you can keep more”
+</div>
+<span class="context">By contrast, the Morrison Government has a plan for <mark>lower taxes so that you can keep more</mark> of the money you earn. We have a comprehensive plan</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“deregulating pricing where appropriate”
+</div>
+<span class="context">More improvements to NDIS pricing, including <mark>deregulating pricing where appropriate</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“delivering more free trade agreements”
+</div>
+<span class="context">Growing exports by Australian manufacturers including by <mark>delivering more free trade agreements</mark> and supporting an Australian Made export campaign</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“The Morrison Government will build an even stronger economy based on individual enterprise and aspiration”
+</div>
+<span class="context"><mark>The Morrison Government will build an even stronger economy based on individual enterprise and aspiration</mark> while looking after Australians who need a helping hand.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“lower taxes for small, medium and family businesses”
+</div>
+<span class="context">The Morrison Government has already provided lower taxes to around 3.4 million small, medium and family businesses employing over 7 million workers. We have fast-tracked small and medium businesses moving to a lower corporate tax rate: reducing the rate from 30 per cent to 27.5 per cent. It will be cut further to 25 per cent by 2021-22 – five years earlier than previously planned.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Our Government’s strong fiscal management means that it can deliver surpluses”
+</div>
+<span class="context"><mark>Our Government’s strong fiscal management means that it can deliver surpluses</mark> while also rewarding hard-working Australians and easing cost of living pressures.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Funding for NSW public hospitals will increase from $4.3 billion in 2012-13 to $6.8 billion in 2019-20”
+</div>
+<span class="context">Strengthening the health system The Morrison Government’s health plan for Western Sydney will protect lives, improve lives and save lives. <mark>Funding for NSW public hospitals will increase from $4.3 billion in 2012-13 to $6.8 billion in 2019-20</mark> and is on track to increase to $8.8 billion under a new hospitals agreement.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“The Morrison Government has a plan to lift Agriculture, Fisheries and Forestry to a $100 billion industry by 2030”
+</div>
+<span class="context">…Our plan to help the agriculture, fisheries and forestry sector reach its potential is focused on:Tackling barriers to growth and production. Providing the water needed for growth and drought proofing. Tackling intergenerational land transfer and encouraging new farmers. Expanding exports and improving market access. Getting the balance right for the fisheries and forestry industries…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“The Environment Protection and Biodiversity Conservation Act 1999 (EPBC Act) was introduced by the Liberal Nationals in 1999 and it remains the cornerstone of Australian environmental regulation”
+</div>
+<span class="context"><mark>The Environment Protection and Biodiversity Conservation Act 1999 (EPBC Act) was introduced by the Liberal Nationals in 1999 and it remains the cornerstone of Australian environmental regulation</mark>. To ensure the EPBC Act remains best-practice, the Morrison Government will consult widely on an independent statutory review of the Act.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“building a strong economy, creating jobs and repairing the budget”
+</div>
+<span class="context">Today, the Coalition is <mark>building a strong economy, creating jobs and repairing the budget</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“new free trade agreements opening up new market”
+</div>
+<span class="context"><mark>new free trade agreements opening up new market</mark> opportunities for Tasmanian produce, and a range of regional economic development projects like Devonport’s Living City project</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“lower taxes and an increase in the instant asset tax write-off”
+</div>
+<span class="context">Back small and family businesses, with <mark>lower taxes and an increase in the instant asset tax write-off</mark> to $30,000 now expanded to medium-sized businesses.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“lower taxes so that you can keep more”
+</div>
+<span class="context">By contrast, the Morrison Government has a plan for <mark>lower taxes so that you can keep more</mark> of the money you earn.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“deregulating pricing where appropriate”
+</div>
+<span class="context">More improvements to NDIS pricing, including <mark>deregulating pricing where appropriate</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“reduction in the business tax rate to 25 per cent”
+</div>
+<span class="context">These businesses will benefit from the Morrison Government’s tax reforms, including a <mark>reduction in the business tax rate to 25 per cent</mark>, an increase in the threshold for the instant asset write-off from $25,000 to $30,000.</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Militant union bosses will use old-style industrial muscle”
+</div>
+<span class="context">Under Labor, trade deals will stall. <mark>Militant union bosses will use old-style industrial muscle</mark> to disrupt workplaces and make unsustainable demands</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“preferring to back big businesses and big unions”
+</div>
+<span class="context">opposed these reforms, <mark>preferring to back big businesses and big unions</mark> over the interests of small business</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“union domination of industry needs”
+</div>
+<span class="context">On the other hand, Labor will put access to workers at risk with prohibitive penalty rates and <mark>union domination of industry needs</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“union-led restrictions on working holiday-makers”
+</div>
+<span class="context">disposable income of over 900,000 Australians while their <mark>union-led restrictions on working holiday-makers</mark> would hurt the regions.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Labor thrives on conflict, including policies to turn retirees against pensioners”
+</div>
+<span class="context"><mark>Labor thrives on conflict, including policies to turn retirees against pensioners</mark>. Their devastating Retiree Tax is a $57 billion tax grab that would hit over 1 million Australians.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Labor can’t manage money and they can’t manage the economy”
+</div>
+<span class="context">Tasmania cannot afford to go back to the bad days of Labor, when there were fewer jobs, less opportunities and choice and more people on welfare. <mark>Labor can’t manage money and they can’t manage the economy</mark>. When Labor can’t manage money, they come after yours.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“Labor has a plan to impose $387 billion of higher taxes”
+</div>
+<span class="context">Labor’s plan for higher taxes The Morrison Government has a clear plan to lower taxes for small business. In contrast, <mark>Labor has a plan to impose $387 billion of higher taxes</mark> – each and every one of which are bad for business.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“Labor can’t manage money and they can’t manage the economy”
+</div>
+<span class="context"><mark>Labor can’t manage money and they can’t manage the economy</mark>. When Labor can’t manage money, they come after yours. Labor plans to hit Australians with $387 billion in big new taxes which will hurt Central Queenslanders</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“Labor oppose mandatory minimum sentences for child sex offenders”
+</div>
+<span class="context">…<mark>Labor oppose mandatory minimum sentences for child sex offenders</mark>, meaning predators may not even spend a day behind bars. Labor wants to water down laws that are helping our law enforcement agencies detect paedophiles and terrorists now. The Liberal National Government cancelled more visas and deported more criminals in 2018 than Labor did in six years of government…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“Labor can’t be trusted to invest in the environment when they can’t run the economy and they can’t manage money”
+</div>
+<span class="context"><mark>Labor can’t be trusted to invest in the environment when they can’t run the economy and they can’t manage money</mark>. They can’t even cost the impact their emissions plan will have on the economy.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · mixed · chunk 1</span>
+<div class="quote">
+“militant union bosses will use old-style industrial muscle”
+</div>
+<span class="context">Under Labor, trade deals will stall. Militant union bosses will use old-style industrial muscle to disrupt workplaces and make unsustainable demands on business</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Labor can’t manage money”
+</div>
+<span class="context">Tasmania cannot afford to go back to the bad days of Labor, when there were fewer jobs, less opportunities and choice and more people on welfare. <mark>Labor can’t manage money</mark> and they can’t manage the economy.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · mixed · chunk 3</span>
+<div class="quote">
+“preferring to back big businesses and big unions”
+</div>
+<span class="context">Labor did not support a level playing field and opposed these reforms, <mark>preferring to back big businesses and big unions</mark> over the interests of small business and consumers.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · mixed · chunk 4</span>
+<div class="quote">
+“Labor can’t manage money”
+</div>
+<span class="context">A choice between a Government that is fixing the Budget and a Labor Party that can’t manage money. <mark>Labor can’t manage money</mark> and they can’t manage the economy.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Labor simply raided the accounts of our law enforcement”
+</div>
+<span class="context">Rather than invest in the protection of Australians, the former Labor Government simply raided the accounts of our law enforcement agencies to prop up its Budget bottom line.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“Labor’s only plan is to offer taxpayer-funded subsidies”
+</div>
+<span class="context">While manufacturing has a bright future under the Morrison Government, <mark>Labor’s only plan is to offer taxpayer-funded subsidies</mark> to compensate for the damage they will do to the sector.</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“preferring to back big businesses and big unions”
+</div>
+<span class="context">opposed these reforms, <mark>preferring to back big businesses and big unions</mark> over the interests of small business</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“When you work hard, build your business and invest in your community you are having a go”
+</div>
+<span class="context"><mark>When you work hard, build your business and invest in your community you are having a go</mark>. And you will get a go under the Morrison Government.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“A re-elected Morrison Government will ensure Australia remains a cohesive and prosperous society”
+</div>
+<span class="context">We believe in equal opportunity in a fair and compassionate society irrespective of someone’s race, religion or ethnic background. We will defend Australia’s democratic freedoms and its longstanding commitment to tolerance and the rule of law. <mark>A re-elected Morrison Government will ensure Australia remains a cohesive and prosperous society</mark> where those who have a go get a fair go.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“There is a clear choice. A choice between a Government that is delivering a strong economy or a Labor Party that would weaken our economy.”
+</div>
+<span class="context">There is a lot at stake at this election. And there is a clear choice. A choice between a Government that is delivering a strong economy or a Labor Party that would weaken our economy. A choice between a Government that is fixing the budget or a Labor Party that can’t manage money.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“A choice between a Government that is delivering a stronger economy and a Labor Party that would weaken our economy”
+</div>
+<span class="context">There is a lot at stake at this election. And there is a clear choice. <mark>A choice between a Government that is delivering a stronger economy and a Labor Party that would weaken our economy</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Only the Morrison Government can be trusted to ensure the safety and security of Australians”
+</div>
+<span class="context">…<mark>Only the Morrison Government can be trusted to ensure the safety and security of Australians</mark>, their families and communities. Cost The Coalition Government will provide an additional $24.1 million to expand our programs to create Safer Communities. Our Plan to Support People with Disability Key Points The Morrison Government is backing Australians with disability, their families and carers…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“working in partnership with the community, Landcare groups, small and large businesses, Indigenous communities, farmers and scientists”
+</div>
+<span class="context">We will do this by <mark>working in partnership with the community, Landcare groups, small and large businesses, Indigenous communities, farmers and scientists</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“hard-working Australians”
+</div>
+<span class="context">We are delivering lower taxes for <mark>hard-working Australians</mark> because we want Australians to earn more and keep more of what they earn.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“hard-working Australians”
+</div>
+<span class="context">Our tax system must be fair for all Australians. Our Personal Income Tax Plan delivers lower taxes for Tasmanians, ensuring they keep more of what they earn.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“hard-working Australians and easing cost of living pressures”
+</div>
+<span class="context">The Government’s strong fiscal management means that it can deliver surpluses while also rewarding <mark>hard-working Australians and easing cost of living pressures</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“Labor can’t manage money”
+</div>
+<span class="context">A choice between a Government that is fixing the Budget and a Labor Party that can’t manage money. <mark>Labor can’t manage money</mark> and they can’t manage the economy.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“safety and security of Australians”
+</div>
+<span class="context">Only the Morrison Government can be trusted to ensure the <mark>safety and security of Australians</mark>, their families and communities.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“practical and meaningful environmental action”
+</div>
+<span class="context">The Morrison Government will continue the Liberal Nationals’ strong record of supporting <mark>practical and meaningful environmental action</mark> that gets results.</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Labor’s $387 billion of higher taxes are bad for business”
+</div>
+<span class="context">Labor do not believe in enterprise and aspiration. <mark>Labor’s $387 billion of higher taxes are bad for business</mark>. A Shorten Labor Government would be the highest taxing government in Australia’s history.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“Labor’s plans will increase the pressure on Tasmanian households”
+</div>
+<span class="context">There will only be one outcome for Tasmania under Labor – a weaker economy, fewer jobs and higher taxes. If Labor can’t be trusted to run the economy and manage the budget, they can’t be trusted to invest in the services Tasmanians rely on, including health, education and aged care. Cost The Coalition will invest an additional $25.6 million in healthcare for north and north-west Tasmania.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“Labor has a plan to impose $387 billion of higher taxes”
+</div>
+<span class="context">Labor’s plan for higher taxes The Morrison Government has a clear plan to lower taxes for small business. In contrast, <mark>Labor has a plan to impose $387 billion of higher taxes</mark> – each and every one of which are bad for business.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“Labor plans to hit Australians with $387 billion in big new taxes”
+</div>
+<span class="context"><mark>Labor plans to hit Australians with $387 billion in big new taxes</mark> which will hurt Central Queenslanders:Labor’s retiree tax will punish older Australians who have worked hard and saved for retirement</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“Labor oppose mandatory minimum sentences for child sex offenders”
+</div>
+<span class="context">…<mark>Labor oppose mandatory minimum sentences for child sex offenders</mark>, meaning predators may not even spend a day behind bars. Labor wants to water down laws that are helping our law enforcement agencies detect paedophiles and terrorists now. The Liberal National Government cancelled more visas and deported more criminals in 2018 than Labor did in six years of government…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“Labor inflicted six long years of neglect and anti-agricultural policies on Australian farmers to appease the Greens”
+</div>
+<span class="context">When last in office <mark>Labor inflicted six long years of neglect and anti-agricultural policies on Australian farmers to appease the Greens</mark>. Between 2007 and 2013, Labor’s agriculture funding was slashed from $3.8 billion to $1.7 billion.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“lower taxes for small, medium and family businesses”
+</div>
+<span class="context">The Morrison Government is already delivering <mark>lower taxes for small, medium and family businesses</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“lower taxes for small business”
+</div>
+<span class="context">We are delivering lower taxes for small, medium and family businesses so business owners can reinvest in their business and create more jobs.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 5</span>
+<div class="quote">
+“investing over $720 million over four years”
+</div>
+<span class="context">we are <mark>investing over $720 million over four years</mark> from 2018-19 in specific health initiatives to reduce the impact of drug and alcohol misuse</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 6</span>
+<div class="quote">
+“reducing taxes so businesses can grow”
+</div>
+<span class="context">We are <mark>reducing taxes so businesses can grow</mark> and employ more Australians. We have fast-tracked tax cuts for around 3.3 million small and medium-sized Australian businesses.</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“preferring to back big businesses and big unions”
+</div>
+<span class="context">opposed these reforms, <mark>preferring to back big businesses and big unions</mark> over the interests of small business</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“revoked the Australian citizenship”
+</div>
+<span class="context">law Motor Cycle Gang members and <mark>revoked the Australian citizenship</mark> of 28 dual national criminals.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“union-led restrictions on working holiday-makers”
+</div>
+<span class="context">disposable income of over 900,000 Australians while their <mark>union-led restrictions on working holiday-makers</mark> would hurt the regions.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“The choice is clear. A choice between a Government that is delivering a strong economy or a Labor Party that would weaken our economy”
+</div>
+<span class="context"><mark>The choice is clear. A choice between a Government that is delivering a strong economy or a Labor Party that would weaken our economy</mark>. A choice between a Government that is fixing the Budget or a Labor Party that can’t manage money.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Labor can’t manage money and they can’t manage the economy”
+</div>
+<span class="context">Tasmania cannot afford to go back to the bad days of Labor, when there were fewer jobs, less opportunities and choice and more people on welfare. <mark>Labor can’t manage money and they can’t manage the economy</mark>. When Labor can’t manage money, they come after yours.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“There is a clear choice. A choice between a Government that is delivering a strong economy or a Labor Party that would weaken our economy.”
+</div>
+<span class="context">There is a lot at stake at this election. And there is a clear choice. A choice between a Government that is delivering a strong economy or a Labor Party that would weaken our economy. A choice between a Government that is fixing the budget or a Labor Party that can’t manage money.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“Labor can’t manage money and they can’t manage the economy”
+</div>
+<span class="context"><mark>Labor can’t manage money and they can’t manage the economy</mark>. When Labor can’t manage money, they come after yours. Labor plans to hit Australians with $387 billion in big new taxes which will hurt Central Queenslanders</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Only the Morrison Government can be trusted to ensure the safety and security of Australians”
+</div>
+<span class="context">…<mark>Only the Morrison Government can be trusted to ensure the safety and security of Australians</mark>, their families and communities. Cost The Coalition Government will provide an additional $24.1 million to expand our programs to create Safer Communities. Our Plan to Support People with Disability Key Points The Morrison Government is backing Australians with disability, their families and carers…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“Labor can’t be trusted to invest in the environment when they can’t run the economy and they can’t manage money”
+</div>
+<span class="context"><mark>Labor can’t be trusted to invest in the environment when they can’t run the economy and they can’t manage money</mark>. They can’t even cost the impact their emissions plan will have on the economy.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“individual enterprise and aspiration”
+</div>
+<span class="context">The Morrison Government will build an even stronger economy based on <mark>individual enterprise and aspiration</mark> while looking after Australians who need a helping hand.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“we stopped the boats”
+</div>
+<span class="context">The Liberal National government has also maintained strong borders – <mark>we stopped the boats</mark>, stopped the deaths at sea, removed children from detention</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“Labor plans to hit Australians with $387 billion in big new taxes”
+</div>
+<span class="context"><mark>Labor plans to hit Australians with $387 billion in big new taxes</mark> which will hurt the people of the NT.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“secured our borders and is keeping Australians safe”
+</div>
+<span class="context">A choice between a Government that has <mark>secured our borders and is keeping Australians safe</mark> or a Labor Party that has learned nothing from its border security failures.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Labor does not have the track record”
+</div>
+<span class="context">After racking up $240 billion in deficits over six years when last in government, <mark>Labor does not have the track record</mark> to invest in keeping us safe.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“Labor’s economy-wrecking emissions reduction targets”
+</div>
+<span class="context">Labor wants to punish manufacturing and other traditional industries with their economy-wrecking emissions reduction targets that would drive up energy prices and reduce manufacturing production.</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“revoked the Australian citizenship”
+</div>
+<span class="context">law Motor Cycle Gang members and <mark>revoked the Australian citizenship</mark> of 28 dual national criminals.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“union-led restrictions on working holiday-makers”
+</div>
+<span class="context">disposable income of over 900,000 Australians while their <mark>union-led restrictions on working holiday-makers</mark> would hurt the regions.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“We have maintained strong borders – we stopped the boats, stopped the deaths at sea”
+</div>
+<span class="context"><mark>We have maintained strong borders – we stopped the boats, stopped the deaths at sea</mark>, removed children from detention, and cancelled the visas of thousands of criminals across the country, including 15 in Tasmania.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“maintained strong borders – we stopped the boats, stopped the deaths at sea”
+</div>
+<span class="context">The Liberal National government has also <mark>maintained strong borders – we stopped the boats, stopped the deaths at sea</mark>, removed children from detention, and cancelled the visas of thousands of criminals across the country, including 15 in Tasmania.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“Labor’s car tax will increase the cost of vehicles by over $4,800 and mandate electric vehicles”
+</div>
+<span class="context"><mark>Labor’s car tax will increase the cost of vehicles by over $4,800 and mandate electric vehicles</mark> for half of all new car sales. Seventeen of the top 20 vehicles sold in Australia don’t have models which meet Labor’s new carbon standard.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“A Government that has secured our borders and is keeping Australians safe”
+</div>
+<span class="context">A choice between a Government that has secured our borders and is keeping Australians safe or a Labor Party that has learned nothing from its border security failures.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“We will legislate to make it an offence to use a carriage service, such as the internet, to disclose personal information to incite trespass on agricultural land”
+</div>
+<span class="context">…<mark>We will legislate to make it an offence to use a carriage service, such as the internet, to disclose personal information to incite trespass on agricultural land</mark> where that could cause commercial detriment. We will pass new laws to ensure that what Aussie Farms is doing is illegal and punishable by up to 12 months jail. Exemptions will apply for bona-fide journalists and whistle-blowers, where the release of information shows a law being broken such as animal cruelty…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“Labor’s plans will also lock out recreational fishers from over a third of marine parks”
+</div>
+<span class="context"><mark>Labor’s plans will also lock out recreational fishers from over a third of marine parks</mark>. Australians have a choice between the Morrison Government that supports the forestry sector as one of the most renewable resources of the 21st century – or a Labor/Greens Government seeking to take us back to the dark days of forest lock-ups.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“secured our borders and is keeping Australians safe”
+</div>
+<span class="context">A choice between a Government that has <mark>secured our borders and is keeping Australians safe</mark> or a Labor Party that has learned nothing from its border security failures.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“we stopped the boats”
+</div>
+<span class="context">The Liberal National government has also maintained strong borders – <mark>we stopped the boats</mark>, stopped the deaths at sea, removed children from detention</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“we stopped the boats, stopped the deaths at sea”
+</div>
+<span class="context">The Government has maintained strong borders – <mark>we stopped the boats, stopped the deaths at sea</mark>, removed children from immigration detention, and have cancelled the visas of thousands of criminals.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“secured our borders and is keeping Australians safe”
+</div>
+<span class="context">A choice between a Government that has <mark>secured our borders and is keeping Australians safe</mark> or a Labor Party that has learned nothing from its border security failures.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“revoked the Australian citizenship of 28 dual national criminals”
+</div>
+<span class="context">law Motor Cycle Gang members and <mark>revoked the Australian citizenship of 28 dual national criminals</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“union-led restrictions on working holiday-makers”
+</div>
+<span class="context">Labor’s Retiree Tax would reduce the disposable income of over 900,000 Australians while their <mark>union-led restrictions on working holiday-makers</mark> would hurt the regions.</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Labor risks it all”
+</div>
+<span class="context"><mark>Labor risks it all</mark>. Under Labor, farm production will be hit.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“The choice is clear. A choice between a Government that is delivering a strong economy or a Labor Party that would weaken our economy”
+</div>
+<span class="context"><mark>The choice is clear. A choice between a Government that is delivering a strong economy or a Labor Party that would weaken our economy</mark>. A choice between a Government that is fixing the Budget or a Labor Party that can’t manage money.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Labor’s plans will increase the pressure on Tasmanian households”
+</div>
+<span class="context">There will only be one outcome for Tasmania under Labor – a weaker economy, fewer jobs and higher taxes. If Labor can’t be trusted to run the economy and manage the budget, they can’t be trusted to invest in the services Tasmanians rely on, including health, education and aged care. Cost The Coalition will invest an additional $25.6 million in healthcare for north and north-west Tasmania.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“There is a clear choice. A choice between a Government that is delivering a strong economy or a Labor Party that would weaken our economy.”
+</div>
+<span class="context">There is a lot at stake at this election. And there is a clear choice. A choice between a Government that is delivering a strong economy or a Labor Party that would weaken our economy. A choice between a Government that is fixing the budget or a Labor Party that can’t manage money.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“Labor can’t be trusted to run the economy and manage the Budget”
+</div>
+<span class="context">There will be only one outcome for Central Queensland under Labor – a weaker economy, fewer jobs and higher taxes. <mark>Labor can’t be trusted to run the economy and manage the Budget</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Labor oppose mandatory minimum sentences for child sex offenders”
+</div>
+<span class="context">…<mark>Labor oppose mandatory minimum sentences for child sex offenders</mark>, meaning predators may not even spend a day behind bars. Labor wants to water down laws that are helping our law enforcement agencies detect paedophiles and terrorists now. The Liberal National Government cancelled more visas and deported more criminals in 2018 than Labor did in six years of government…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“Labor’s plans will also lock out recreational fishers from over a third of marine parks”
+</div>
+<span class="context"><mark>Labor’s plans will also lock out recreational fishers from over a third of marine parks</mark>. Australians have a choice between the Morrison Government that supports the forestry sector as one of the most renewable resources of the 21st century – or a Labor/Greens Government seeking to take us back to the dark days of forest lock-ups.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“economic leap in the dark”
+</div>
+<span class="context">Mr Shorten will take Australia in a very different direction. It will be an <mark>economic leap in the dark</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“a clear choice”
+</div>
+<span class="context">There is a lot at stake at this election. And there is <mark>a clear choice</mark>. A choice between a Government that is delivering a strong economy or a Labor Party that would weaken our economy.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“A choice between a Government that is delivering a strong economy or a Labor Party that would weaken our economy”
+</div>
+<span class="context">There is a lot at stake at this election. And there is a clear choice. <mark>A choice between a Government that is delivering a strong economy or a Labor Party that would weaken our economy</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“Labor can’t be trusted”
+</div>
+<span class="context"><mark>Labor can’t be trusted</mark> to run the economy and manage the Budget. And they can’t be trusted to invest in services that Central Queenslanders rely on.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Labor does not have the track record”
+</div>
+<span class="context">After racking up $240 billion in deficits over six years when last in government, <mark>Labor does not have the track record</mark> to invest in keeping us safe.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“Labor’s economy-wrecking plans”
+</div>
+<span class="context">Australia’s environment cannot be supported under <mark>Labor’s economy-wrecking plans</mark>. If you can’t manage the economy and the Budget, then you can’t invest in the environment.</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“backing Australians with disability”
+</div>
+<span class="context">The Morrison Government is <mark>backing Australians with disability</mark>, their families and carers.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“When you work hard, build your business and invest in your community you are having a go”
+</div>
+<span class="context"><mark>When you work hard, build your business and invest in your community you are having a go</mark>. And you will get a go under the Morrison Government.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Tasmania as a cohesive and prosperous society where those who have a go get a fair go”
+</div>
+<span class="context">We believe in equal opportunity in a fair and compassionate society irrespective of someone’s race, religion or ethnic background. We will defend Australia’s democratic freedoms and its longstanding commitment to tolerance and the rule of law. A re-elected Morrison Government will ensure Australia remains a cohesive and prosperous society where those who have a go get a fair go.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“Small and family businesses are at the centre of the Morrison Government’s economic plan”
+</div>
+<span class="context"><mark>Small and family businesses are at the centre of the Morrison Government’s economic plan</mark> for Australia and the NT. They are the engine room of our economy, with the NT’s 19,000 small and medium-sized businesses employing around 62,000 workers.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“Central Queensland cannot afford Labor governments at both the federal and state levels”
+</div>
+<span class="context"><mark>Central Queensland cannot afford Labor governments at both the federal and state levels</mark>. Labor can’t manage money and they can’t manage the economy.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Only the Morrison Government can be trusted to ensure the safety and security of Australians”
+</div>
+<span class="context">…<mark>Only the Morrison Government can be trusted to ensure the safety and security of Australians</mark>, their families and communities. Cost The Coalition Government will provide an additional $24.1 million to expand our programs to create Safer Communities. Our Plan to Support People with Disability Key Points The Morrison Government is backing Australians with disability, their families and carers…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“working in partnership with the community, Landcare groups, small and large businesses, Indigenous communities, farmers and scientists”
+</div>
+<span class="context">We will do this by <mark>working in partnership with the community, Landcare groups, small and large businesses, Indigenous communities, farmers and scientists</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“hard-working Australian families”
+</div>
+<span class="context">making life easier for families by lowering taxes or a Labor Party that will put more strain on households… <mark>hard-working Australian families</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“hard-working Tasmanians”
+</div>
+<span class="context">provided tax relief to <mark>hard-working Tasmanians</mark>, ensured Tasmania gets its fair share of GST, and provided a direct link between Tasmania and the world</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“small businesses are healthy, all Australians are better off”
+</div>
+<span class="context">When <mark>small businesses are healthy, all Australians are better off</mark>. It means more jobs, more choice, better living standards and more vibrant and connected communities.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“keeping Australians safe”
+</div>
+<span class="context">A choice between a Government that has secured our borders and is <mark>keeping Australians safe</mark> or a Labor Party that has learned nothing from its border security failures.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“keeping our communities safer”
+</div>
+<span class="context">By keeping the economy strong and returning the Budget to surplus, the Morrison Government is helping to make our communities safer.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“working in partnership with the community”
+</div>
+<span class="context">We believe that protecting and restoring the environment is best achieved by <mark>working in partnership with the community</mark>, Landcare groups, small and large businesses, Indigenous communities, farmers and scientists.</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Militant union bosses will use old-style industrial muscle”
+</div>
+<span class="context">Under Labor, trade deals will stall. <mark>Militant union bosses will use old-style industrial muscle</mark> to disrupt workplaces and make unsustainable demands</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“preferring to back big businesses and big unions”
+</div>
+<span class="context">opposed these reforms, <mark>preferring to back big businesses and big unions</mark> over the interests of small business</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Labor risks it all”
+</div>
+<span class="context"><mark>Labor risks it all</mark>. Under Labor, farm production will be hit.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“union-led restrictions on working holiday-makers”
+</div>
+<span class="context">disposable income of over 900,000 Australians while their <mark>union-led restrictions on working holiday-makers</mark> would hurt the regions.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“The choice is clear. A choice between a Government that is delivering a strong economy or a Labor Party that would weaken our economy”
+</div>
+<span class="context"><mark>The choice is clear. A choice between a Government that is delivering a strong economy or a Labor Party that would weaken our economy</mark>. A choice between a Government that is fixing the Budget or a Labor Party that can’t manage money.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Labor can’t manage money and they can’t manage the economy”
+</div>
+<span class="context">Tasmania cannot afford to go back to the bad days of Labor, when there were fewer jobs, less opportunities and choice and more people on welfare. <mark>Labor can’t manage money and they can’t manage the economy</mark>. When Labor can’t manage money, they come after yours.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“There is a clear choice. A choice between a Government that is delivering a strong economy or a Labor Party that would weaken our economy.”
+</div>
+<span class="context">There is a lot at stake at this election. And there is a clear choice. A choice between a Government that is delivering a strong economy or a Labor Party that would weaken our economy. A choice between a Government that is fixing the budget or a Labor Party that can’t manage money.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“Labor can’t manage money and they can’t manage the economy”
+</div>
+<span class="context"><mark>Labor can’t manage money and they can’t manage the economy</mark>. When Labor can’t manage money, they come after yours. Labor plans to hit Australians with $387 billion in big new taxes which will hurt Central Queenslanders</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Only the Morrison Government can be trusted to ensure the safety and security of Australians”
+</div>
+<span class="context">…<mark>Only the Morrison Government can be trusted to ensure the safety and security of Australians</mark>, their families and communities. Cost The Coalition Government will provide an additional $24.1 million to expand our programs to create Safer Communities. Our Plan to Support People with Disability Key Points The Morrison Government is backing Australians with disability, their families and carers…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“Labor can’t be trusted to invest in the environment when they can’t run the economy and they can’t manage money”
+</div>
+<span class="context"><mark>Labor can’t be trusted to invest in the environment when they can’t run the economy and they can’t manage money</mark>. They can’t even cost the impact their emissions plan will have on the economy.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Labor runs out of money they come after yours”
+</div>
+<span class="context">A Shorten Labor Government would be the highest taxing government in the nation’s history. And when <mark>Labor runs out of money they come after yours</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Labor can’t manage money”
+</div>
+<span class="context">Tasmania cannot afford to go back to the bad days of Labor, when there were fewer jobs, less opportunities and choice and more people on welfare. <mark>Labor can’t manage money</mark> and they can’t manage the economy.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“Labor can’t manage money and they can’t manage the economy”
+</div>
+<span class="context"><mark>Labor can’t manage money and they can’t manage the economy</mark>. When Labor can’t manage money, they come after yours.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“Labor can’t manage money”
+</div>
+<span class="context"><mark>Labor can’t manage money</mark> and they can’t manage the economy. When Labor can’t manage money, they come after yours.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Only the Morrison Government can be trusted”
+</div>
+<span class="context"><mark>Only the Morrison Government can be trusted</mark> to ensure the safety and security of Australians, their families and communities.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“Labor’s economy-wrecking emissions reduction targets”
+</div>
+<span class="context">Labor wants to punish manufacturing and other traditional industries with their economy-wrecking emissions reduction targets that would drive up energy prices and reduce manufacturing production.</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="63620_201905_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

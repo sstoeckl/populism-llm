@@ -1,0 +1,1906 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>PRI (Mexico, 2015) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/171301_201506_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">PRI (Mexico, 2015)</h1>
+<p class="subtitle lead">manifesto_id 171301_201506</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Mexico · <span class="item"><strong>Party</strong></span> PRI (Institutional Revolutionary Party) · <span class="item"><strong>Year</strong></span> 2015 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 30</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.5</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-na">–</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.8</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.8</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.8</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“fomentar la competencia en el mercado”
+</div>
+<span class="context">crecimiento, que debe ser sostenido, sustentable e incluyente; basado en una mayor productividad y el mejoramiento de la competencia en el mercado interno y la competitividad</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Combatir las prácticas monopólicas y oligopólicas”
+</div>
+<span class="context">Estrategia 2: <mark>Combatir las prácticas monopólicas y oligopólicas</mark> en todos los sectores de la economía</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“apertura de mercados, así como”
+</div>
+<span class="context">competitividad y a la <mark>apertura de mercados, así como</mark> la consolidación de la paz</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“competitividad regional, a través de capacitaciones”
+</div>
+<span class="context">Incrementar la productividad de las pequeñas y medianas empresas, así como la <mark>competitividad regional, a través de capacitaciones</mark> con un enfoque de desarrollo en sectores estratégicos.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“una economía abierta, competitiva y moderna”
+</div>
+<span class="context">México tiene <mark>una economía abierta, competitiva y moderna</mark>. Los tratados de libre comercio que se han firmado en los últimos años han logrado la apertura de la economía nacional y han permitido que los productos mexicanos tengan acceso preferencial en 45 países que representan 59% del PIB mundial. En los últimos 20 años, el sector exportador ha crecido a una tasa promedio de 10.9%, lo que es una muestra de su dinamismo.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Combatir las prácticas monopólicas y oligopólicas en todos los sectores de la economía”
+</div>
+<span class="context">Estrategia 2: <mark>Combatir las prácticas monopólicas y oligopólicas en todos los sectores de la economía</mark> Línea de acción 1 Garantizar la autonomía y fortaleza de la Comisión Federal de Competencia Económica, para que pueda ejercer en plenitud sus facultades de regulación y sanciones.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“la política exterior se vuelve una herramienta clave para maximizar los beneficios que de ellas derivaremos, a fin de fortalecer la competitividad de la economía nacional”
+</div>
+<span class="context">Una vez aprobadas las reformas estructurales, <mark>la política exterior se vuelve una herramienta clave para maximizar los beneficios que de ellas derivaremos, a fin de fortalecer la competitividad de la economía nacional</mark> en el exterior, reducir la desigualdad y promover la inclusión y la cohesión social, así como fortalecer el Estado de Derecho.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“promover la inversión multianual, que fortalezca el desarrollo regional y nacional”
+</div>
+<span class="context">El impulso al desarrollo regional requiere planes, programas y acciones concertadas, coherentes y complementarias, sustentadas en un orden jurídico renovado en el que se promueva la inversión multianual, que fortalezca el desarrollo regional y nacional, con equidad, atendiendo el bienestar de las familias y al crecimiento económico con empleo e ingreso remunerativo,</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“competencia efectiva en todos los segmentos”
+</div>
+<span class="context">La reforma en telecomunicaciones permite la <mark>competencia efectiva en todos los segmentos</mark> de las telecomunicaciones</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Combatir las prácticas monopólicas y oligopólicas”
+</div>
+<span class="context">Estrategia 2: <mark>Combatir las prácticas monopólicas y oligopólicas</mark> en todos los sectores de la economía</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“apertura de mercados”
+</div>
+<span class="context">los desafíos regionales -como el fortalecimiento del Estado de Derecho, el impulso a la competitividad y a la <mark>apertura de mercados</mark>, así como la consolidación de la paz y la seguridad-requieren de una labor diplomática rigurosa y profesional</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“apertura comercial, así como mejores oportunidades”
+</div>
+<span class="context">Queremos un México con una transformada visión industrial, que denote la estabilidad macroeconómica y la <mark>apertura comercial, así como mejores oportunidades</mark> para las empresas mexicanas</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“propicia la competencia en la banca”
+</div>
+<span class="context">La reforma financiera, <mark>propicia la competencia en la banca</mark> comercial y busca una mayor penetración financiera.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Promover una mayor competencia del sistema financiero”
+</div>
+<span class="context">Línea de acción 2 <mark>Promover una mayor competencia del sistema financiero</mark>, asegurador y de pensiones, incorporando</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“desarrollar, con la banca comercial, productos financieros”
+</div>
+<span class="context">crear empresas. Línea de acción 5 Desarrollar, con la banca comercial, productos financieros en condiciones que permitan a las</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“dotación de créditos blandos e insumos”
+</div>
+<span class="context">Promover la instrumentación de programas de apoyo y asesoría técnica, de <mark>dotación de créditos blandos e insumos</mark> productivos y de precios de garantía</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“El sistema bancario del país es sólido y solvente”
+</div>
+<span class="context"><mark>El sistema bancario del país es sólido y solvente</mark>. El índice de capitalización de la banca múltiple es de 15.9%, lo que la pone por arriba de los niveles previstos en la regulación internacional y el índice de morosidad es de tan sólo el 3%. Estas cifras nos hablan de un sistema bancario listo para enfrentar los retos de financiamiento que necesita el país.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Consolidar un sistema financiero eficiente y competitivo”
+</div>
+<span class="context">Estrategia 1: Impulsar el financiamiento público y privado Línea de acción 4 <mark>Consolidar un sistema financiero eficiente y competitivo</mark>, en el que se limiten los cobros excesivos por los servicios, mediante la aplicación de la reforma financiera o, en su caso, las modificaciones a la misma que se consideren pertinentes.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Continuar construyendo la nueva arquitectura financiera internacional a través de una activa participación en el G20 así como en organismos internacionales como el Fondo Monetario Internacional o el Banco Mundial”
+</div>
+<span class="context">Estrategia 3 Contribuir a la estabilidad del sistema internacional para coadyuvar al control y combate de amenazas globales Línea de acción 1 <mark>Continuar construyendo la nueva arquitectura financiera internacional a través de una activa participación en el G20 así como en organismos internacionales como el Fondo Monetario Internacional o el Banco Mundial</mark>. Línea de acción 2 Asegurar que las epidemias no se conviertan en pandemias y contribuir a combatir y erradicar enfermedades de transmisión como el ébola a través de nuestra participación en organismos internacionales como la Organización Mundial de la Salud.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“la reforma en materia de telecomunicaciones, recientemente aprobada, incentiva una mayor competencia económica”
+</div>
+<span class="context">La reforma en materia de telecomunicaciones, recientemente aprobada, incentiva una mayor competencia económica para que todos los mexicanos tengan acceso a productos y servicios de calidad y a mejores precios; para llevar cobertura a comunidades rurales y lugares de difícil acceso en todo el país,</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“competencia en la banca comercial”
+</div>
+<span class="context">La reforma financiera, propicia la <mark>competencia en la banca comercial</mark> y busca una mayor penetración financiera. Facilita el otorgamiento y la ejecución de garantías</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“mayor competencia del sistema financiero”
+</div>
+<span class="context">Promover una <mark>mayor competencia del sistema financiero</mark>, asegurador y de pensiones, incorporando a nuevos jugadores al mercado</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“nueva arquitectura financiera internacional”
+</div>
+<span class="context">Continuar construyendo la <mark>nueva arquitectura financiera internacional</mark> a través de una activa participación en el G20 así como en organismos internacionales como el Fondo Monetario Internacional o el Banco Mundial.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“créditos blandos e insumos productivos y de precios”
+</div>
+<span class="context">Promover la instrumentación de programas de apoyo y asesoría técnica, de dotación de <mark>créditos blandos e insumos productivos y de precios</mark> de garantía, que permita que los jóvenes rurales desarrollen su potencial productivo</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Poder judicial autónomo, imparcial”
+</div>
+<span class="context">Objetivo 5: Procuración de justicia garantista y efectiva Objetivo 6: <mark>Poder judicial autónomo, imparcial</mark> y expedito Objetivo 7: Sistema penitenciario</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Garantizar el Estado de derecho en las distintas”
+</div>
+<span class="context">Estrategia 4: <mark>Garantizar el Estado de derecho en las distintas</mark> áreas de la actividad económica del país</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“valores de la democracia, el respeto”
+</div>
+<span class="context">educativos y comunicativos los <mark>valores de la democracia, el respeto</mark>, la pluralidad y la inclusión.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“fortalecimiento de su Estado de Derecho”
+</div>
+<span class="context">México ha evolucionado en el <mark>fortalecimiento de su Estado de Derecho</mark>, se han creado instituciones jurídicas, se ha modificado la Constitución y se han concretado reformas legales</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“la vigencia plena del Estado de derecho”
+</div>
+<span class="context">queremos vivir en un México en paz, con vigencia plena del Estado de derecho, seguridad pública sea garante de la convivencia social y del desarrollo de las potencialidades individuales y colectivas, en donde las leyes propicien el desarrollo y se apliquen con justicia, firmeza y sin distingos. Un México que combata con eficacia la corrupción, la impunidad y la inseguridad.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“garantizar el Estado de derecho en las distintas áreas de la actividad económica del país”
+</div>
+<span class="context">Objetivo 1: Productividad para crecer y prosperar Estrategia 4: Garantizar el Estado de derecho en las distintas áreas de la actividad económica del país Línea de acción 1 Realizar todas las acciones necesarias, incluyendo la provisión de recursos suficientes, para garantizar la seguridad en torno a la propiedad privada, particularmente en estados con altos índices de inseguridad.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“la política exterior debe ser consistente con los objeticos de la política interna; esto es, contribuir a respetar el Estado de derecho”
+</div>
+<span class="context">“Para el Partido Revolucionario Institucional, <mark>la política exterior debe ser consistente con los objeticos de la política interna; esto es, contribuir a respetar el Estado de derecho</mark>, mejorar la seguridad pública y la procuración de justicia, lograr un crecimiento económico sustentable, mitigar la pobreza extrema, generar una conciencia ambiental y aumentar la inversión en investigación y desarrollo y convertir a México en un protagonista mundial en beneficio de los mexicanos”. Artículo 360 del Programa de Acción del Partido Revolucionario Institucional 6. México: protagonista internacional responsable Diagnóstico La proyección internacional es la piedra angular de un México como protagonista internacional responsable.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“La transparencia y rendición de cuentas son principios básicos del Estado de Derecho”
+</div>
+<span class="context">“<mark>La transparencia y rendición de cuentas son principios básicos del Estado de Derecho</mark> y el régimen democrático. (…). El gobierno, en sus tres órdenes, tiene el deber de socializar la información pública, mejorar su calidad y propiciar las bases de veracidad para la evaluación, fiscalización y rendición de cuentas de los asuntos públicos” Artículo 40 del Programa de Acción del Partido Revolucionario Institucional.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“democracia de resultados y que democratice”
+</div>
+<span class="context">queremos un México que consolide una <mark>democracia de resultados y que democratice</mark> las oportunidades de desarrollo, donde la fortaleza de las instituciones públicas genere confianza</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Garantizar el Estado de derecho”
+</div>
+<span class="context">Estrategia 4: <mark>Garantizar el Estado de derecho</mark> en las distintas áreas de la actividad económica del país</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“la consolidación de la democracia y la realización de la justicia social”
+</div>
+<span class="context">hemos aprendido que los acuerdos se construyen a través de un liderazgo que dialoga, escucha y consensa con todos los actores; incluso aquellos que no piensan o no creen en nuestra filosofía de trabajo basada en <mark>la consolidación de la democracia y la realización de la justicia social</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“consolidación de la democracia y la realización”
+</div>
+<span class="context">incluso aquellos que no piensan o no creen en nuestra filosofía de trabajo basada en la <mark>consolidación de la democracia y la realización</mark> de la justicia social</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Respeto pleno a los derechos humanos”
+</div>
+<span class="context">Objetivo 7: Sistema penitenciario eficaz para la readaptación social Objetivo 8: <mark>Respeto pleno a los derechos humanos</mark> Objetivo 9: Seguridad nacional del Estado</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“ejerzan plenamente sus derechos humanos”
+</div>
+<span class="context">vulnerables y todas las minorías, <mark>ejerzan plenamente sus derechos humanos</mark>.” Artículo 213 del Programa de Acción</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“igualdad entre los géneros”
+</div>
+<span class="context">luchando por la libertad y la <mark>igualdad entre los géneros</mark>, lo que significa el goce</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“erradicar la violencia de género en México”
+</div>
+<span class="context">Estrategias y líneas de acción Estrategia 1 Prevenir, disminuir y <mark>erradicar la violencia de género en México</mark> Línea de acción 1 Consolidar acciones integrales</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Igualdad de oportunidades para las mujeres”
+</div>
+<span class="context">8. Igualdad de oportunidades para las Mujeres DiagnósticoObjetivo 1: Liderazgo político de las mujeres para una igualdad efectiva Objetivo 2: Igualdad de oportunidades de educación Objetivo 3: Mujeres y el derecho a la salud Objetivo 4: Participación de las mujeres en el mercado laboral Objetivo 5: Mujeres y emprendedurismo Objetivo 6: México contra la violencia hacia las mujeres Objetivo 7: Transversalidad en las acciones del gobierno con perspectiva de género</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“el Partido reitera su convicción de que es necesario crear las condiciones mínimas a que todo mexicano debe tener acceso”
+</div>
+<span class="context">“El PRI ratifica su compromiso con la defensa de las conquistas sociales. Y más aún, <mark>el Partido reitera su convicción de que es necesario crear las condiciones mínimas a que todo mexicano debe tener acceso</mark>, sin restricciones. Esta protección es fundamental tanto para los hogares en pobreza como para los de ingresos medios.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“la defensa de los derechos humanos, principio de la política exterior de México”
+</div>
+<span class="context">Estrategia 6 Apuntalar <mark>la defensa de los derechos humanos, principio de la política exterior de México</mark> Línea de acción 1 Renovar la imagen de México en el exterior, particularmente en materia de derechos humanos. Línea de acción 2 Continuar los esfuerzos para proteger los derechos fundamentales de los migrantes.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“fomentar el respeto por la diversidad étnica”
+</div>
+<span class="context">Línea de acción 1 Promover, proteger y <mark>fomentar el respeto por la diversidad étnica</mark>. Línea de acción 2 Crear conciencia, difundir y ampliar el conocimiento sobre la diversidad. Línea de acción 3 Promover y fortalecer la diversidad de expresiones culturales.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Respeto pleno a los derechos humanos”
+</div>
+<span class="context">Objetivo 8: <mark>Respeto pleno a los derechos humanos</mark>. Visión: Hacer efectivos los derechos humanos en todo el territorio nacional</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“todas las minorías, ejerzan plenamente sus derechos humanos”
+</div>
+<span class="context">indígenas, mujeres en situación de riesgo, adultos mayores, personas con discapacidad, jóvenes, migrantes, grupos vulnerables y <mark>todas las minorías, ejerzan plenamente sus derechos humanos</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“igualdad entre mujeres y hombres”
+</div>
+<span class="context">Reconocemos que se han dado importantes avances hacia la <mark>igualdad entre mujeres y hombres</mark> en las últimas décadas. Cada vez hay una mayor presencia de las mujeres en actividades que tradicionalmente son consideradas propias de los hombres.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“renuncia a las descalificaciones de raza, género, diversidad sexual”
+</div>
+<span class="context">Estamos a favor de una ciudadanía en plenitud, basada en la tolerancia, que <mark>renuncia a las descalificaciones de raza, género, diversidad sexual</mark>, edad, cultura, religión, condición de discapacidad</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“fomentar la competencia en el mercado”
+</div>
+<span class="context">crecimiento, que debe ser sostenido, sustentable e incluyente; basado en una mayor productividad y el mejoramiento de la competencia en el mercado interno y la competitividad</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Combatir las prácticas monopólicas y oligopólicas”
+</div>
+<span class="context">Estrategia 2: <mark>Combatir las prácticas monopólicas y oligopólicas</mark> en todos los sectores de la economía</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“valores de la democracia, el respeto”
+</div>
+<span class="context">educativos y comunicativos los <mark>valores de la democracia, el respeto</mark>, la pluralidad y la inclusión.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“fortalecimiento de su Estado de Derecho”
+</div>
+<span class="context">México ha evolucionado en el <mark>fortalecimiento de su Estado de Derecho</mark>, se han creado instituciones jurídicas, se ha modificado la Constitución y se han concretado reformas legales</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“una economía abierta, competitiva y moderna”
+</div>
+<span class="context">México tiene <mark>una economía abierta, competitiva y moderna</mark>. Los tratados de libre comercio que se han firmado en los últimos años han logrado la apertura de la economía nacional y han permitido que los productos mexicanos tengan acceso preferencial en 45 países que representan 59% del PIB mundial. En los últimos 20 años, el sector exportador ha crecido a una tasa promedio de 10.9%, lo que es una muestra de su dinamismo.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Combatir las prácticas monopólicas y oligopólicas en todos los sectores de la economía”
+</div>
+<span class="context">Estrategia 2: <mark>Combatir las prácticas monopólicas y oligopólicas en todos los sectores de la economía</mark> Línea de acción 1 Garantizar la autonomía y fortaleza de la Comisión Federal de Competencia Económica, para que pueda ejercer en plenitud sus facultades de regulación y sanciones.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“la política exterior debe ser consistente con los objeticos de la política interna; esto es, contribuir a respetar el Estado de derecho”
+</div>
+<span class="context">“Para el Partido Revolucionario Institucional, <mark>la política exterior debe ser consistente con los objeticos de la política interna; esto es, contribuir a respetar el Estado de derecho</mark>, mejorar la seguridad pública y la procuración de justicia, lograr un crecimiento económico sustentable, mitigar la pobreza extrema, generar una conciencia ambiental y aumentar la inversión en investigación y desarrollo y convertir a México en un protagonista mundial en beneficio de los mexicanos”. Artículo 360 del Programa de Acción del Partido Revolucionario Institucional 6. México: protagonista internacional responsable Diagnóstico La proyección internacional es la piedra angular de un México como protagonista internacional responsable.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“La transparencia y rendición de cuentas son principios básicos del Estado de Derecho”
+</div>
+<span class="context">“<mark>La transparencia y rendición de cuentas son principios básicos del Estado de Derecho</mark> y el régimen democrático. (…). El gobierno, en sus tres órdenes, tiene el deber de socializar la información pública, mejorar su calidad y propiciar las bases de veracidad para la evaluación, fiscalización y rendición de cuentas de los asuntos públicos” Artículo 40 del Programa de Acción del Partido Revolucionario Institucional.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“economía abierta, competitiva y moderna”
+</div>
+<span class="context">México tiene una <mark>economía abierta, competitiva y moderna</mark>. Los tratados de libre comercio que se han firmado en los últimos años han logrado la apertura de la economía nacional</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“mercados competitivos y un entorno”
+</div>
+<span class="context">todos los mexicanos tengan acceso a ella, a través de oportunidades de educación, <mark>mercados competitivos y un entorno</mark> en el que los mexicanos y sus empresas se puedan desarrollar</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“fortalecer el Estado de Derecho”
+</div>
+<span class="context">la política exterior se vuelve una herramienta clave para maximizar los beneficios que de ellas derivaremos, a fin de fortalecer la competitividad de la economía nacional en el exterior, reducir la desigualdad y promover la inclusión y la cohesión social, así como <mark>fortalecer el Estado de Derecho</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“renuncia a las descalificaciones de raza, género, diversidad sexual”
+</div>
+<span class="context">Estamos a favor de una ciudadanía en plenitud, basada en la tolerancia, que <mark>renuncia a las descalificaciones de raza, género, diversidad sexual</mark>, edad, cultura, religión, condición de discapacidad</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“fomentaron, durante muchos años, una cultura clientelar”
+</div>
+<span class="context">plazas docentes a nivel básico y secundario <mark>fomentaron, durante muchos años, una cultura clientelar</mark> entre un amplio sector del profesorado</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“desencanto de la sociedad con la política”
+</div>
+<span class="context">Durante la competencia política abundan ejemplos que han contribuido al <mark>desencanto de la sociedad con la política</mark> y sus políticos; toda vez que se han ausentado del quehacer político, la honestidad</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“la creciente distancia representativa entre la ciudadanía y el sistema de partidos vigente”
+</div>
+<span class="context">existe áreas de oportunidad de la mayor relevancia y urgencia, entre ellas destacan cuatro: el desarrollo social de México, a todas luces insuficiente, en particular respecto de las oportunidades de empleo con salario remunerador, educación y capacitación; el crecimiento de la economía nacional que exige una mayor y más contundente atención del mercado interno; la escasa eficacia de las instituciones para elevar la calidad de la política y restituir el vigor de la República, en particular respecto de <mark>la creciente distancia representativa entre la ciudadanía y el sistema de partidos vigente</mark>, así como en la menguada cercanía entre las esferas de gobierno y gobernados, en los tres órdenes y en los tres poderes;</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“la concentración del financiamiento en algunos bancos”
+</div>
+<span class="context">Entre otros factores que impiden la democratización de los servicios financieros, se destaca <mark>la concentración del financiamiento en algunos bancos</mark>, los bajos niveles de captación y al papel sumamente cauto que asumió la Banca de Desarrollo en las pasadas administraciones.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“la impunidad, violencia e inseguridad tienen su origen en la corrupción”
+</div>
+<span class="context">Para la sociedad <mark>la impunidad, violencia e inseguridad tienen su origen en la corrupción</mark> y señala entre otros factores, ciertas debilidades del sistema político mexicano, por tanto se ha manifestado la indignación popular ante los diversos eventos que han alterado la paz ciudadana.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“distancia representativa entre la ciudadanía y el sistema de partidos”
+</div>
+<span class="context">la creciente <mark>distancia representativa entre la ciudadanía y el sistema de partidos</mark> vigente, así como en la menguada cercanía entre las esferas de gobierno y gobernados</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“intereses ajenos al interés superior”
+</div>
+<span class="context">doce años en las que las políticas educativas fueron rehenes de <mark>intereses ajenos al interés superior</mark> de los niños y jóvenes mexicanos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · mixed · chunk 3</span>
+<div class="quote">
+“el 37 por ciento dice que los partidos son deshonestos”
+</div>
+<span class="context">Según la Encuesta Nacional de Valores 2012, al 90 por ciento de los jóvenes les interesa poco o nada la política. El 37 por ciento dice que los partidos son deshonestos y el 23 por ciento menciona que no le entiende a la política.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“el 37 por ciento dice que los partidos son deshonestos”
+</div>
+<span class="context">Según la Encuesta Nacional de Valores 2012, al 90 por ciento de los jóvenes les interesa poco o nada la política. El 37 por ciento dice que los partidos son deshonestos y el 23 por ciento menciona que no le entiende a la política.</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“próximo a los ciudadanos”
+</div>
+<span class="context">ejercicio político sólo es efectivo cuando es participativo, cuando está <mark>próximo a los ciudadanos</mark> y junto con ellos aborda los problemas</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“fomentaron, durante muchos años, una cultura clientelar”
+</div>
+<span class="context">plazas docentes a nivel básico y secundario <mark>fomentaron, durante muchos años, una cultura clientelar</mark> entre un amplio sector del profesorado</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“cercanía con los grandes sectores sociales”
+</div>
+<span class="context">El Partido Revolucionario Institucional por su naturaleza original de extracción popular, identidad nacional, receptor e intérprete de las necesidades sociales tiene como meta irrenunciable robustecer su <mark>cercanía con los grandes sectores sociales</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“el diálogo y la construcción de acuerdos son indispensables para la conducción del país”
+</div>
+<span class="context">la transición democrática es causa y consecuencia de un pluralismo por el cual ninguna fuerza política puede gobernar sola. El diálogo y la construcción de acuerdos son indispensables para la conducción del país y, en ese contexto, resulta necesario hacer más funcional nuestro régimen político en el actual contexto democrático” Artículo 10 del Programa de Acción Partido Revolucionario Institucional 1. Gobernabilidad y democracia de resultados Diagnóstico</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“México es un mosaico de realidades que se amalgaman para conformar a la gran nación mexicana”
+</div>
+<span class="context"><mark>México es un mosaico de realidades que se amalgaman para conformar a la gran nación mexicana</mark>. Destaca su ubicación estratégica tanto a nivel geográfico como comercial; somos una nación multicultural que aglutina diversidad de ideologías y creencias que convergen y se enmarcan todas en un ámbito de respeto y tolerancia, valores propios de las sociedades democráticas.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“los acuerdos se construyen a través de un liderazgo que dialoga, escucha y consensa con todos los actores”
+</div>
+<span class="context">La gestión del Presidente Enrique Peña Nieto marca un antes y un después sobre la forma de hacer política; en este periodo hemos aprendido que <mark>los acuerdos se construyen a través de un liderazgo que dialoga, escucha y consensa con todos los actores</mark>; incluso aquellos que no piensan o no creen en nuestra filosofía de trabajo basada en la consolidación de la democracia y la realización de la justicia social.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Prosperidad para todos es el gran objetivo”
+</div>
+<span class="context"><mark>Prosperidad para todos es el gran objetivo</mark> de la presente Plataforma Electoral 2015-2018. Esta es producto de las aspiraciones de los mexicanos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“México debe ser un país de iguales”
+</div>
+<span class="context">Esta protección es fundamental tanto para los hogares en pobreza como para los de ingresos medios. <mark>México debe ser un país de iguales</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“en beneficio de los mexicanos”
+</div>
+<span class="context">contribuir a respetar el Estado de derecho, mejorar la seguridad pública y la procuración de justicia, lograr un crecimiento económico sustentable, mitigar la pobreza extrema, generar una conciencia ambiental… <mark>en beneficio de los mexicanos</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“los acuerdos se construyen a través de un liderazgo”
+</div>
+<span class="context">hemos aprendido que <mark>los acuerdos se construyen a través de un liderazgo</mark> que dialoga, escucha y consensa con todos los actores</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“la progresividad al sistema tributario, es decir, logró que paguen más quienes tienen más”
+</div>
+<span class="context">La reforma hacendaria cumplió con la demanda ciudadana de eliminar impuestos y de disminuir la carga fiscal de Pemex. Asimismo, dio una mayor progresividad al sistema tributario, es decir, logró que paguen más quienes tienen más, y fijó límites al gasto corriente. La reforma laboral fue aprobada con el objetivo de impulsar el empleo formal al dar mayor flexibilidad para la contratación de los trabajadores.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“política fiscal en favor del desarrollo económico y del bienestar de los que más lo necesitan”
+</div>
+<span class="context">Estrategia 1: Mantener una <mark>política fiscal en favor del desarrollo económico y del bienestar de los que más lo necesitan</mark> Línea de acción 1 No establecer nuevos impuestos, ni al ingreso ni al consumo. Línea de acción 2 Revisar la legislación fiscal, para favorecer el crecimiento económico, manteniendo los principios de transparencia, equidad, eficiencia y progresividad del sistema tributario, en un marco de manejo responsable de la hacienda pública.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“desterrar la impunidad, la violencia y la corrupción”
+</div>
+<span class="context">Así el Partido y sus candidatos transitarán de la normatividad a la normalidad conductual democrática, tanto interna como externa, consolidando una generación que lleve a la práctica el anhelo social de <mark>desterrar la impunidad, la violencia y la corrupción</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“justicia social”
+</div>
+<span class="context">El Partido Revolucionario Institucional siempre ha pugnado por el progreso y la <mark>justicia social</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“distribución equitativa del ingreso”
+</div>
+<span class="context">desarrollo económico, que tiene como condiciones necesarias un crecimiento sostenido y una <mark>distribución equitativa del ingreso</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“reducir la desigualdad y promover la inclusión”
+</div>
+<span class="context">la política exterior se vuelve una herramienta clave para maximizar los beneficios que de ellas derivaremos, a fin de fortalecer la competitividad de la economía nacional en el exterior, <mark>reducir la desigualdad y promover la inclusión</mark> y la cohesión social</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“Más del 45 por ciento de los mexicanos viven en situación de pobreza”
+</div>
+<span class="context">Los índices de desempleo indican que el 53.2 por ciento de los desocupados en el país se encuentran en el lapso de edad entre 14 y 29 años. <mark>Más del 45 por ciento de los mexicanos viven en situación de pobreza</mark>.</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“próximo a los ciudadanos”
+</div>
+<span class="context">ejercicio político sólo es efectivo cuando es participativo, cuando está <mark>próximo a los ciudadanos</mark> y junto con ellos aborda los problemas</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“fomentaron, durante muchos años, una cultura clientelar”
+</div>
+<span class="context">plazas docentes a nivel básico y secundario <mark>fomentaron, durante muchos años, una cultura clientelar</mark> entre un amplio sector del profesorado</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“cercanía con los grandes sectores sociales”
+</div>
+<span class="context">El Partido Revolucionario Institucional por su naturaleza original de extracción popular, identidad nacional, receptor e intérprete de las necesidades sociales tiene como meta irrenunciable robustecer su <mark>cercanía con los grandes sectores sociales</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“el diálogo y la construcción de acuerdos son indispensables para la conducción del país”
+</div>
+<span class="context">la transición democrática es causa y consecuencia de un pluralismo por el cual ninguna fuerza política puede gobernar sola. El diálogo y la construcción de acuerdos son indispensables para la conducción del país y, en ese contexto, resulta necesario hacer más funcional nuestro régimen político en el actual contexto democrático” Artículo 10 del Programa de Acción Partido Revolucionario Institucional 1. Gobernabilidad y democracia de resultados Diagnóstico</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“México debe ser un país de iguales”
+</div>
+<span class="context"><mark>México debe ser un país de iguales</mark>, donde todas y todos: indígenas, mujeres en situación de riesgo, adultos mayores, personas con discapacidad, jóvenes, migrantes, grupos vulnerables y todas las minorías, ejerzan plenamente sus derechos humanos.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“los acuerdos se construyen a través de un liderazgo que dialoga, escucha y consensa con todos los actores”
+</div>
+<span class="context">La gestión del Presidente Enrique Peña Nieto marca un antes y un después sobre la forma de hacer política; en este periodo hemos aprendido que <mark>los acuerdos se construyen a través de un liderazgo que dialoga, escucha y consensa con todos los actores</mark>; incluso aquellos que no piensan o no creen en nuestra filosofía de trabajo basada en la consolidación de la democracia y la realización de la justicia social.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“progreso y la justicia social”
+</div>
+<span class="context">El Partido Revolucionario Institucional siempre ha pugnado por el <mark>progreso y la justicia social</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“distribución equitativa del ingreso”
+</div>
+<span class="context">crecimiento sostenido y una <mark>distribución equitativa del ingreso</mark>, requiere de mayores niveles de productividad</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“reducir la desigualdad y promover la inclusión”
+</div>
+<span class="context">la política exterior se vuelve una herramienta clave para maximizar los beneficios que de ellas derivaremos, a fin de fortalecer la competitividad de la economía nacional en el exterior, <mark>reducir la desigualdad y promover la inclusión</mark> y la cohesión social</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“extracción popular, identidad nacional, receptor e intérprete”
+</div>
+<span class="context">El Partido Revolucionario Institucional por su naturaleza original de <mark>extracción popular, identidad nacional, receptor e intérprete</mark> de las necesidades sociales</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“una sociedad orgullosa de su identidad nacional es la que puede integrarse a la sociedad global”
+</div>
+<span class="context">El PRI de hoy, tiene la convicción que la respuesta a los grandes retos del país se construye desde la solución y el reconocimiento a los retos regionales y el respeto a la identidad nacional y local, ya que <mark>una sociedad orgullosa de su identidad nacional es la que puede integrarse a la sociedad global</mark>. Los partidos políticos como instituciones de interés público no deben rehuir cuando se presentan problemas que atañen a todo un país,</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Garantizar una oportuna acción de las autoridades mexicanas en casos de proteccionismo por parte de Estados Unidos”
+</div>
+<span class="context">Estrategia 2: Consolidar las exportaciones a Estados Unidos y diversificar mercados Línea de acción 2 <mark>Garantizar una oportuna acción de las autoridades mexicanas en casos de proteccionismo por parte de Estados Unidos</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“promover la inversión multianual, que fortalezca el desarrollo regional y nacional”
+</div>
+<span class="context">El impulso al desarrollo regional requiere planes, programas y acciones concertadas, coherentes y complementarias, sustentadas en un orden jurídico renovado en el que se promueva la inversión multianual, que fortalezca el desarrollo regional y nacional, con equidad, atendiendo el bienestar de las familias y al crecimiento económico con empleo e ingreso remunerativo,</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“Defensa de los derechos de los migrantes”
+</div>
+<span class="context">Objetivo 5: <mark>Defensa de los derechos de los migrantes</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“industria dedicada al tráfico ilegal de migrantes”
+</div>
+<span class="context">existe incluso una <mark>industria dedicada al tráfico ilegal de migrantes</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“acuerdo migratorio favorable a nuestros connacionales”
+</div>
+<span class="context">fortalecer los lazos con los mexicanos que viven en el exterior, además de avanzar cada día más en el establecimiento de un <mark>acuerdo migratorio favorable a nuestros connacionales</mark></span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“la oposición de grupos delictivos que buscan insertarse en las esferas de gobierno para su provecho”
+</div>
+<span class="context">fortalecimiento de la cultura de los derechos humanos, México y el mundo han tenido que padecer el fenómeno creciente de la delincuencia organizada; frente a los esfuerzos por promover la transparencia y la rendición de cuentas, el embate de los intereses mezquinos que conlleva la corrupción; ante el avance de la democracia, <mark>la oposición de grupos delictivos que buscan insertarse en las esferas de gobierno para su provecho</mark>. El PRI reconoce que el ciudadano mexicano, en el ámbito de la seguridad pública,</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“problema de la migración ilícita, que en México se ha intensificado”
+</div>
+<span class="context">Por otra parte, por cada 10 mil residentes, 29 se van a vivir a otro país, por lo que el saldo neto migratorio resulta negativo. Sin embargo, es importante resaltar el <mark>problema de la migración ilícita, que en México se ha intensificado</mark> de tal manera que existe incluso una industria dedicada al tráfico ilegal de migrantes.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“la impunidad, violencia e inseguridad tienen su origen en la corrupción”
+</div>
+<span class="context">Para la sociedad <mark>la impunidad, violencia e inseguridad tienen su origen en la corrupción</mark> y señala entre otros factores, ciertas debilidades del sistema político mexicano, por tanto se ha manifestado la indignación popular ante los diversos eventos que han alterado la paz ciudadana.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“colusión con el crimen organizado”
+</div>
+<span class="context">de la peor manera posible: con su <mark>colusión con el crimen organizado</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“totalmente exento de la corrupción”
+</div>
+<span class="context">garantizar que éste realmente genere crecimiento económico y esté <mark>totalmente exento de la corrupción</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“desterrar la impunidad, la violencia y la corrupción”
+</div>
+<span class="context">consolidando una generación que lleve a la práctica el anhelo social de <mark>desterrar la impunidad, la violencia y la corrupción</mark></span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“próximo a los ciudadanos”
+</div>
+<span class="context">ejercicio político sólo es efectivo cuando es participativo, cuando está <mark>próximo a los ciudadanos</mark> y junto con ellos aborda los problemas</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“cercanía con los grandes sectores sociales”
+</div>
+<span class="context">El Partido Revolucionario Institucional por su naturaleza original de extracción popular, identidad nacional, receptor e intérprete de las necesidades sociales tiene como meta irrenunciable robustecer su <mark>cercanía con los grandes sectores sociales</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“la participación ciudadana en la construcción de las soluciones a problemas comunes”
+</div>
+<span class="context">fortaleza de las instituciones públicas genere confianza en los ciudadanos, les permita el acceso igualitario a las oportunidades de desarrollo y garantice la participación social organizada en la construcción de las soluciones a problemas comunes. 2) Sociedad segura y de leyes: queremos vivir en un México en paz, con vigencia plena del Estado de derecho, seguridad pública sea garante de la convivencia social y del desarrollo de las potencialidades individuales y colectivas,</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“México debe ser un país de iguales”
+</div>
+<span class="context">“El PRI ratifica su compromiso con la defensa de las conquistas sociales. Y más aún, el Partido reitera su convicción de que es necesario crear las condiciones mínimas a que todo mexicano debe tener acceso, sin restricciones. Esta protección es fundamental tanto para los hogares en pobreza como para los de ingresos medios. <mark>México debe ser un país de iguales</mark>, donde todas y todos: indígenas, mujeres en situación de riesgo, adultos mayores, personas con discapacidad, jóvenes, migrantes, grupos vulnerables y todas las minorías, ejerzan plenamente sus derechos humanos.”</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“El Partido Revolucionario Institucional por su naturaleza original de extracción popular”
+</div>
+<span class="context">La brecha de distanciamiento ciudadano-partido, es tan grande que deja a ambos sin identidad y daña la relación teniendo como consecuencia la falta de un desenvolvimiento conjunto y armonioso. <mark>El Partido Revolucionario Institucional por su naturaleza original de extracción popular</mark>, identidad nacional, receptor e intérprete de las necesidades sociales tiene como meta irrenunciable robustecer su cercanía con los grandes sectores sociales,</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“prosperidad para todos los mexicanos”
+</div>
+<span class="context">sólo una economía competitiva y con altos índices de productividad puede generar <mark>prosperidad para todos los mexicanos</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“todos los mexicanos tengan acceso”
+</div>
+<span class="context">es necesario crear las condiciones mínimas a que todo mexicano debe tener acceso, sin restricciones</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“en beneficio de la sociedad mexicana en su conjunto”
+</div>
+<span class="context">México deberá seguir implementando una política exterior constructiva y activa que defienda y promueva el interés nacional a través de una interacción estratégica e inteligente que nos permita sacar el mayor beneficio de nuestras relaciones con el exterior… <mark>en beneficio de la sociedad mexicana en su conjunto</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“extracción popular, identidad nacional, receptor e intérprete”
+</div>
+<span class="context">El Partido Revolucionario Institucional por su naturaleza original de <mark>extracción popular, identidad nacional, receptor e intérprete</mark> de las necesidades sociales tiene como meta irrenunciable robustecer su cercanía con los grandes sectores sociales</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“próximo a los ciudadanos”
+</div>
+<span class="context">ejercicio político sólo es efectivo cuando es participativo, cuando está <mark>próximo a los ciudadanos</mark> y junto con ellos aborda los problemas</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“fomentaron, durante muchos años, una cultura clientelar”
+</div>
+<span class="context">plazas docentes a nivel básico y secundario <mark>fomentaron, durante muchos años, una cultura clientelar</mark> entre un amplio sector del profesorado</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“desencanto de la sociedad con la política”
+</div>
+<span class="context">Durante la competencia política abundan ejemplos que han contribuido al <mark>desencanto de la sociedad con la política</mark> y sus políticos; toda vez que se han ausentado del quehacer político, la honestidad</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“la creciente distancia representativa entre la ciudadanía y el sistema de partidos vigente”
+</div>
+<span class="context">existe áreas de oportunidad de la mayor relevancia y urgencia, entre ellas destacan cuatro: el desarrollo social de México, a todas luces insuficiente, en particular respecto de las oportunidades de empleo con salario remunerador, educación y capacitación; el crecimiento de la economía nacional que exige una mayor y más contundente atención del mercado interno; la escasa eficacia de las instituciones para elevar la calidad de la política y restituir el vigor de la República, en particular respecto de <mark>la creciente distancia representativa entre la ciudadanía y el sistema de partidos vigente</mark>, así como en la menguada cercanía entre las esferas de gobierno y gobernados, en los tres órdenes y en los tres poderes;</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“México debe ser un país de iguales”
+</div>
+<span class="context">Esta protección es fundamental tanto para los hogares en pobreza como para los de ingresos medios. <mark>México debe ser un país de iguales</mark>, donde todas y todos: indígenas, mujeres en situación de riesgo, adultos mayores, personas con discapacidad, jóvenes, migrantes, grupos vulnerables y todas las minorías, ejerzan plenamente sus derechos humanos.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“la impunidad, violencia e inseguridad tienen su origen en la corrupción”
+</div>
+<span class="context">Para la sociedad <mark>la impunidad, violencia e inseguridad tienen su origen en la corrupción</mark> y señala entre otros factores, ciertas debilidades del sistema político mexicano, por tanto se ha manifestado la indignación popular ante los diversos eventos que han alterado la paz ciudadana.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“prosperidad para todos”
+</div>
+<span class="context">Prosperidad para todos es el gran objetivo de la presente Plataforma Electoral 2015-2018</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“intereses ajenos al interés superior”
+</div>
+<span class="context">políticas educativas fueron rehenes de <mark>intereses ajenos al interés superior</mark> de los niños y jóvenes mexicanos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · mixed · chunk 3</span>
+<div class="quote">
+“el 37 por ciento dice que los partidos son deshonestos”
+</div>
+<span class="context">Según la Encuesta Nacional de Valores 2012, al 90 por ciento de los jóvenes les interesa poco o nada la política. El 37 por ciento dice que los partidos son deshonestos y el 23 por ciento menciona que no le entiende a la política.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“extracción popular, identidad nacional, receptor e intérprete”
+</div>
+<span class="context">El Partido Revolucionario Institucional por su naturaleza original de <mark>extracción popular, identidad nacional, receptor e intérprete</mark> de las necesidades sociales tiene como meta irrenunciable robustecer su cercanía con los grandes sectores sociales</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="171301_201506_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

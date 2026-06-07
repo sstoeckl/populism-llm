@@ -1,0 +1,2291 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>NPS (Chile, 2021) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/155030_202111_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">NPS (Chile, 2021)</h1>
+<p class="subtitle lead">manifesto_id 155030_202111</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Chile · <span class="item"><strong>Party</strong></span> NPS (New Social Pact) · <span class="item"><strong>Year</strong></span> 2021 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 30</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.5</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.2</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.8</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.6</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Estado dejará de ser un ente subsidiario”
+</div>
+<span class="context">Aquí el <mark>Estado dejará de ser un ente subsidiario</mark> para desempeñar un papel activo en el fomento</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“sistema de libre competencia funcione”
+</div>
+<span class="context">Para que un <mark>sistema de libre competencia funcione</mark> de manera adecuada, se requiere</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · mixed · chunk 3</span>
+<div class="quote">
+“alianza público-privada un programa de aprovechamiento”
+</div>
+<span class="context">Impulsaremos en una <mark>alianza público-privada un programa de aprovechamiento</mark> y reutilización de depósitos</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · mixed · chunk 4</span>
+<div class="quote">
+“alianza público-privada en el desarrollo”
+</div>
+<span class="context">Esto permite perpetuar una <mark>alianza público-privada en el desarrollo</mark> de viviendas sociales</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“impulsaremos una reforma tributaria”
+</div>
+<span class="context">En concreto, <mark>impulsaremos una reforma tributaria</mark> que, sobre la base de la experiencia comparada</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“mercados en que se compita en base al mérito, la innovación y la productividad”
+</div>
+<span class="context">Debemos perseverar en su perfeccionamiento para sancionar severamente a quienes defraudan la confianza de los consumidores y, a su vez, contar con <mark>mercados en que se compita en base al mérito, la innovación y la productividad</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Dotaremos de mayores recursos a la Fiscalía Nacional Económica, para potenciar sus divisiones de investigación de carteles, de control de operaciones de concentración”
+</div>
+<span class="context"><mark>Dotaremos de mayores recursos a la Fiscalía Nacional Económica, para potenciar sus divisiones de investigación de carteles, de control de operaciones de concentración</mark>, de estudios para la evolución competitiva de los mercados y de litigios por infracciones anticompetitivas. El financiamiento del referido aumento será mediante una tasa que deberán pagar quienes notifiquen operaciones de concentración para que la Fiscalía las evalúe conforme a la Ley.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“promoviendo cambios tecnológicos para proteger y regenerar los ecosistemas”
+</div>
+<span class="context">Pero ello es insuficiente; es el momento de pasar a la siguiente etapa del desarrollo minero, donde junto con producir más cobre y otros minerales, debemos exportar minería y conocimiento, <mark>promoviendo cambios tecnológicos para proteger y regenerar los ecosistemas</mark> y el medio ambiente, trabajando codo a codo con las comunidades y empresas locales.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“impulsaremos un rol de regulador del mercado para mejorar la disponibilidad de suelos”
+</div>
+<span class="context">Los sectores medios también deben ser apoyados: ejerceremos un rol de regulador del mercado para mejorar la disponibilidad de suelos. Propiciaremos la eliminación de las discriminaciones en el otorgamiento de créditos hipotecarios en razón de la edad.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“impulsaremos una transformación de nuestro sistema tributario que propicie una carga fiscal más robusta y progresiva”
+</div>
+<span class="context">De ahí que <mark>impulsaremos una transformación de nuestro sistema tributario que propicie una carga fiscal más robusta y progresiva</mark> que, garantizando la sostenibilidad fiscal, provea los recursos suficientes para el desarrollo social y productivo que el país requiere.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“política de inversión en agroecología, turismo y energías renovables”
+</div>
+<span class="context">Promoveremos de igual modo una <mark>política de inversión en agroecología, turismo y energías renovables</mark> no convencionales en tierras indígenas; la innovación mediante la vinculación con las universidades, centros de formación técnica y las empresas regionales y el desarrollo con pertinencia cultural y territorial, modificando las políticas de fomento desde CORFO y otras instituciones y facilitando la creación de empresas indígenas, la asociatividad tradicional y que los territorios sean los ejes de las políticas de gobierno.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“más competencia para mejores mercados”
+</div>
+<span class="context">1.3.4. Un Nuevo Modelo de Desarrollo con <mark>más competencia para mejores mercados</mark>. Todos los mercados tienden a la concentración económica</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · mixed · chunk 2</span>
+<div class="quote">
+“liberar las fuerzas del emprendimiento”
+</div>
+<span class="context">Se requiere <mark>liberar las fuerzas del emprendimiento</mark>, llevar la prosperidad a las Pymes y democratizar los mercados.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 3</span>
+<div class="quote">
+“competitividad de la pesca artesanal”
+</div>
+<span class="context">con iniciativas que mejoren la <mark>competitividad de la pesca artesanal</mark>, dándoles mayor valor agregado, incentivando el consumo interno</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“superar el mero juego de la oferta y la demanda”
+</div>
+<span class="context">Esto implica, <mark>superar el mero juego de la oferta y la demanda</mark>, y avanzar hacia un Estado más activo en la gestión de los planes de vivienda social</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 5</span>
+<div class="quote">
+“reforma tributaria que, sobre la base de la experiencia comparada”
+</div>
+<span class="context">impulsaremos una <mark>reforma tributaria que, sobre la base de la experiencia comparada</mark> y un diálogo amplio y transversal</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“facilitando la creación de empresas indígenas”
+</div>
+<span class="context">modificando las políticas de fomento desde CORFO y otras instituciones y <mark>facilitando la creación de empresas indígenas</mark>, la asociatividad tradicional</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“competencia en el mercado financiero”
+</div>
+<span class="context">1.5.5.Mayor <mark>competencia en el mercado financiero</mark>44 1.5.6.Transformación Digital44</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“acceso a la infraestructura financiera”
+</div>
+<span class="context">Revisaremos la autorregulación y condiciones de <mark>acceso a la infraestructura financiera</mark> de propiedad de los bancos</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“no busque negocio bancario”
+</div>
+<span class="context">un sistema de aporte solidario diferido, que <mark>no busque negocio bancario</mark>, y que entregue oportunidades</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“créditos hipotecarios lleguen oportuna y competitivamente”
+</div>
+<span class="context">Necesitamos que los <mark>créditos hipotecarios lleguen oportuna y competitivamente</mark> a las familias.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“estudiaremos la aplicación de un impuesto patrimonial”
+</div>
+<span class="context">evasión y elusión observados en materia de impuestos a la renta, <mark>estudiaremos la aplicación de un impuesto patrimonial</mark> que grave el patrimonio</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“supervisión de la Comisión para el Mercado Financiero (CMF)”
+</div>
+<span class="context">Estableceremos cuotas de género en los directorios de empresas sujetas a la <mark>supervisión de la Comisión para el Mercado Financiero (CMF)</mark>, para que tengan la misma proporción de hombres y mujeres.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Revisaremos la autorregulación y condiciones de acceso a la infraestructura financiera de propiedad de los bancos, en el entendido que es un elemento crucial para incrementar la competencia”
+</div>
+<span class="context">Fortaleceremos la Protección al Consumidor. Para que un sistema de libre competencia funcione de manera adecuada, se requiere que los consumidores puedan relacionarse con las empresas en un entorno libre de abusos. Para resguardar ello fortaleceremos la institucionalidad e independencia de la autoridad encargada de la protección al consumidor (SERNAC), perfeccionando su gobierno corporativo y ampliando sus facultades preventivas (monitoreo y estudios de mercado, publicidad, valiéndose de herramientas digitales; indicadores de precio, calidad, sistema de atención, entre otros), fiscalizadoras, regulatorias y sancionatorias. <mark>Revisaremos la autorregulación y condiciones de acceso a la infraestructura financiera de propiedad de los bancos, en el entendido que es un elemento crucial para incrementar la competencia</mark>, dada la escala de una economía pequeña como la nuestra.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“Mayor competencia en el mercado financiero”
+</div>
+<span class="context">1.5.5. <mark>Mayor competencia en el mercado financiero</mark>. Revisaremos la autorregulación y condiciones de acceso a la infraestructura financiera de propiedad de los bancos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“mayor competencia en el mercado financiero”
+</div>
+<span class="context">1.5.5 Mayor competencia en el mercado financiero. Mejoraremos a la actual ley de portabilidad crediticia, que permitan aumentar la oferta crediticia a las Pymes.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“no lucrará con los ahorros de las y los trabajadores”
+</div>
+<span class="context">Esta entidad estatal dará garantías de transparencia, gobernabilidad y que <mark>no lucrará con los ahorros de las y los trabajadores</mark>/as, respetando en su inversión la diversificación</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“Actualizaremos la regulación de transacciones financieras”
+</div>
+<span class="context"><mark>Actualizaremos la regulación de transacciones financieras</mark>, el movimiento de capitales, el lavado de dinero, y los delitos informáticos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“fondos de inversión privada pasen a ser contribuyentes”
+</div>
+<span class="context">Estableceremos que los <mark>fondos de inversión privada pasen a ser contribuyentes</mark>, habida cuenta que se trata de vehículos de inversión utilizados principalmente por grandes patrimonios.</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“respeto al Estado de Derecho”
+</div>
+<span class="context">ofreciéndole al país paz social y <mark>respeto al Estado de Derecho</mark>. Debemos garantizar, en consecuencia, gobernabilidad</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Nueva Constitución Política”
+</div>
+<span class="context">necesaria para adaptarse a una <mark>Nueva Constitución Política</mark>. Nuestro compromiso es duplicar</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“cohesionada, base de la gobernabilidad democrática”
+</div>
+<span class="context">reducir la desigualdad. Solo así podremos avanzar hacia la construcción de una sociedad <mark>cohesionada, base de la gobernabilidad democrática</mark>. Por eso el sistema</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“reflejo de una sociedad democrática”
+</div>
+<span class="context">Las policías deben ser el <mark>reflejo de una sociedad democrática</mark>, diversa, plural, multicultural, justa e igualitaria.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“respeto a la democracia y los derechos humanos”
+</div>
+<span class="context">vocación histórica de Chile por la paz y la seguridad internacionales, el <mark>respeto a la democracia y los derechos humanos</mark>, el derecho internacional</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“imperativo ético como Estado democrático y de derecho”
+</div>
+<span class="context">exclusión, el atropello y la discriminación, y constituye, además, un <mark>imperativo ético como Estado democrático y de derecho</mark>. La plurinacionalidad es una forma de profundizar</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“un Nuevo Chile más democrático, que complemente los espacios de representación”
+</div>
+<span class="context">Un Nuevo Chile más democrático, que complemente los espacios de representación con mecanismos de democracia participativa; que permita una mayor incidencia de la ciudadanía en las decisiones que la afectan.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Fortaleceremos la institucionalidad e independencia de la autoridad encargada de la protección al consumidor (SERNAC), perfeccionando su gobierno corporativo y ampliando sus facultades preventivas”
+</div>
+<span class="context">Fortaleceremos la Protección al Consumidor. Para que un sistema de libre competencia funcione de manera adecuada, se requiere que los consumidores puedan relacionarse con las empresas en un entorno libre de abusos. Para resguardar ello fortaleceremos la institucionalidad e independencia de la autoridad encargada de la protección al consumidor (SERNAC), perfeccionando su gobierno corporativo y ampliando sus facultades preventivas (monitoreo y estudios de mercado, publicidad, valiéndose de herramientas digitales; indicadores de precio, calidad, sistema de atención, entre otros), fiscalizadoras, regulatorias y sancionatorias.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“gobierno corporativo colegiado, altamente calificado, que goce de la debida autonomía institucional”
+</div>
+<span class="context">Sistema de Pensiones Público. Para el nuevo sistema de seguridad social que impulsaremos, se requiere también una nueva institucionalidad. Una de carácter público, que contará con un <mark>gobierno corporativo colegiado, altamente calificado, que goce de la debida autonomía institucional</mark>, mediante el establecimiento de mecanismos idóneos y objetivos de nombramiento y cesación del cargo; con una duración que esté desacoplada del ciclo político y sujeto a un robusto régimen de transparencia y prevención de conflictos de intereses.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“la igualdad ante la ley como la columna vertebral de esta agenda”
+</div>
+<span class="context">Bajo un prisma progresista, en la noción de la seguridad, conjugamos la dignidad, la paz social y el bienestar de la comunidad, situando a la persona al centro para que todos vivamos una vida libre de amenaza, y considerando a <mark>la igualdad ante la ley como la columna vertebral de esta agenda</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 5</span>
+<div class="quote">
+“la probidad y transparencia de su accionar sean claves”
+</div>
+<span class="context">La efectividad del Estado está dada por la confianza y legitimidad de sus instituciones, de ahí que <mark>la probidad y transparencia de su accionar sean claves</mark>. Si bien en este ámbito pueden constatarse importantes avances, resulta clave contar con más y mejores herramientas para combatir cualquier atisbo de corrupción, garantizando la debida protección a la democracia.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“Estado democrático y de derecho”
+</div>
+<span class="context">Reconocer la plurinacionalidad es un acto de justicia reparativa a pueblos marcados por la exclusión, el atropello y la discriminación, y constituye, además, un imperativo ético como <mark>Estado democrático y de derecho</mark>. La plurinacionalidad es una forma de profundizar la democracia en una organización política conformada por varias naciones existentes dentro de un mismo Estado, con un gobierno representativo, regido por una Constitución Política u orden Constitucional plurinacional.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“más democrático, que complemente los espacios de representación”
+</div>
+<span class="context">Un Nuevo Chile <mark>más democrático, que complemente los espacios de representación</mark> con mecanismos de democracia participativa</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“participación ciudadana incidente y rendición de cuentas”
+</div>
+<span class="context">Daremos una estructura permanente a los Consejos de Recuperación Ambiental y Social, asegurando una <mark>participación ciudadana incidente y rendición de cuentas</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“participación efectiva de la ciudadanía”
+</div>
+<span class="context">la asignación equitativa de los recursos de inversión pública en las regiones y a la <mark>participación efectiva de la ciudadanía</mark> en la definición de los proyectos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“sistema de inteligencia sea eficiente, democrático”
+</div>
+<span class="context">Es totalmente posible que un <mark>sistema de inteligencia sea eficiente, democrático</mark> y a la vez transparente</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“garantizando la debida protección a la democracia”
+</div>
+<span class="context">resulta clave contar con más y mejores herramientas para combatir cualquier atisbo de corrupción, <mark>garantizando la debida protección a la democracia</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“escaños reservados en cargos de elección popular”
+</div>
+<span class="context">mediante la fórmula de <mark>escaños reservados en cargos de elección popular</mark> (Congreso, municipios, gobernaciones y otras instancias)</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“garantice los derechos de quienes sufren discriminación”
+</div>
+<span class="context">Impulsaremos una transformación que <mark>garantice los derechos de quienes sufren discriminación</mark> por género, orientación sexual, clase social</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“eliminar la segregación vertical y horizontal de género”
+</div>
+<span class="context">acciones afirmativas destinadas a <mark>eliminar la segregación vertical y horizontal de género</mark>; la formación y capacitación</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“paridad de género y efectiva inclusión”
+</div>
+<span class="context">Fomentaremos la <mark>paridad de género y efectiva inclusión</mark> de las diversidades y a la minería.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“irrestricto respeto y observancia de los Derechos Humanos”
+</div>
+<span class="context">Nuestro compromiso es y será siempre en el <mark>irrestricto respeto y observancia de los Derechos Humanos</mark> en toda circunstancia</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 5</span>
+<div class="quote">
+“garantizando los derechos de todos los animales”
+</div>
+<span class="context">respeto por la familia multi especie y el antiespecismo, <mark>garantizando los derechos de todos los animales</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“derechos de filiación para parejas del mismo sexo”
+</div>
+<span class="context">Modificaciones a la Ley Antidiscriminación j)Derechos de filiación para parejas del mismo sexo k)Matrimonio igualitario l)Modificación a la ley</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“garantice los derechos de quienes sufren discriminación por género, orien- tación sexual, clase social, edad, origen étnico y discapacidad”
+</div>
+<span class="context">Impulsaremos una transformación que <mark>garantice los derechos de quienes sufren discriminación por género, orien- tación sexual, clase social, edad, origen étnico y discapacidad</mark>, y que dé paso a la verdadera diversidad y a los talentos de nuestro país en toda su riqueza, incluyendo a las personas procedentes de pueblos indígenas y del fenómeno de la migración.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Fortaleceremos la política de género en CTI, para asegurar el acceso, el desarrollo de carrera, la retención y el liderazgo de mujeres”
+</div>
+<span class="context"><mark>Fortaleceremos la política de género en CTI, para asegurar el acceso, el desarrollo de carrera, la retención y el liderazgo de mujeres</mark>. Para fomentar este cambio la política de género del MinCTCI será fortalecida en tres ejes: (i) fomento de una cultura de trato igualitario en las organizaciones y empresas intensivas en conocimiento, (ii) gestión de personas por competencia y género, y (iii) gestión del conocimiento con perspectiva de género, especialmente en relación a las disciplinas que abordan el cambio social y cultural.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“fomentaremos la paridad de género y efectiva inclusión de las diversidades”
+</div>
+<span class="context">Fomentaremos la paridad de género y efectiva inclusión de las diversidades y a la minería. Para ello instaremos a que las empresas adecuen la infraestructura de las faenas mineras, y desarrollen buenas prácticas previniendo situaciones de discriminación y acoso.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“perspectiva de equidad de género, social y territorial”
+</div>
+<span class="context">Trabajaremos para que la Justicia esté al alcance de todos los habitantes del país. Por ello nos comprometemos muy especialmente a que el acceso a la justicia lo sea con criterios de inclusión, y en particular con <mark>perspectiva de equidad de género, social y territorial</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 5</span>
+<div class="quote">
+“promover y garantizará la libertad de culto, la igualdad entre las distintas organizaciones”
+</div>
+<span class="context">Reconocemos la importancia de un estado laico, como también la necesidad de proteger la libertad de ejercer una religión, sin discriminaciones ni limitaciones. De ahí que nuestro Gobierno promoverá y garantizará la libertad de culto, la igualdad entre las distintas organizaciones y sensibilidades religiosas, y la neutralidad entre creyentes y no creyentes.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“discriminación y violencia de género”
+</div>
+<span class="context">Por Un Nuevo Chile sin Discriminación y Violencia hacia las Mujeres y Disidencias. Por Un Nuevo Chile con Nosotras Las mujeres tienen un 28% menos de probabilidades que los hombres de tener igualdad de oportunidades de acuerdo con el Índice Global de la Brecha de Género 2021. En este mismo ranking, que evalúa la situación de igualdad entre hombres y mujeres en 156 países, Chile retrocedió del puesto 57 al 70. El movimiento feminista chileno ha sido reconocido como uno de los más vanguardistas a nivel mundial. A través de la protesta social y la ocupación de las calles, las chilenas han plasmado de manera institucionalmente efectiva sus demandas. Al calor de la revuelta social de octubre de 2019 se convirtieron en la fuente de uno de los himnos feministas más poderosos del mundo: Un violador en tu camino. Pero los cambios han sido lentos. El Servicio Nacional de la Mujer, creado en 1991, recién desde 2016 Ministerio de la Mujer y la Equidad de Género, ha sido incapaz de frenar la discriminación y erradicar la violencia de género.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“derechos de quienes sufren discriminación por género”
+</div>
+<span class="context">garantice los <mark>derechos de quienes sufren discriminación por género</mark>, orientación sexual, clase social, edad, origen étnico y discapacidad</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“eliminar brechas de género”
+</div>
+<span class="context">Su asignación considerará criterios de descentralización e inclusión; establecerá fórmulas para <mark>eliminar brechas de género</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“inclusión de estudiantes mujeres, pueblos originarios, migrantes, diversidad sexual”
+</div>
+<span class="context">criterios e indicadores relacionados con <mark>inclusión de estudiantes mujeres, pueblos originarios, migrantes, diversidad sexual</mark>, y en situación de discapacidad</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“cuota de género en la asignación de subsidios”
+</div>
+<span class="context">Debe existir <mark>cuota de género en la asignación de subsidios</mark>, en base a los porcentajes de jefas de hogar</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“Fundación Presidencial para la Promoción y Desarrollo de la inclusión de la Población LGTBIQ+”
+</div>
+<span class="context">Crearemos una <mark>Fundación Presidencial para la Promoción y Desarrollo de la inclusión de la Población LGTBIQ+</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“Matrimonio igualitario”
+</div>
+<span class="context">j) Derechos de filiación para parejas del mismo sexo k) <mark>Matrimonio igualitario</mark> l) Modificación a la ley actual del VIH-SIDA</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“respeto al Estado de Derecho”
+</div>
+<span class="context">ofreciéndole al país paz social y <mark>respeto al Estado de Derecho</mark>. Debemos garantizar, en consecuencia, gobernabilidad</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“sistema de libre competencia funcione”
+</div>
+<span class="context">Para que un <mark>sistema de libre competencia funcione</mark> de manera adecuada, se requiere</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“cohesionada, base de la gobernabilidad democrática”
+</div>
+<span class="context">reducir la desigualdad. Solo así podremos avanzar hacia la construcción de una sociedad <mark>cohesionada, base de la gobernabilidad democrática</mark>. Por eso el sistema</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“reflejo de una sociedad democrática”
+</div>
+<span class="context">Las policías deben ser el <mark>reflejo de una sociedad democrática</mark>, diversa, plural, multicultural, justa e igualitaria.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“respeto a la democracia y los derechos humanos”
+</div>
+<span class="context">vocación histórica de Chile por la paz y la seguridad internacionales, el <mark>respeto a la democracia y los derechos humanos</mark>, el derecho internacional</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 6</span>
+<div class="quote">
+“derechos de filiación para parejas del mismo sexo”
+</div>
+<span class="context">Modificaciones a la Ley Antidiscriminación j)Derechos de filiación para parejas del mismo sexo k)Matrimonio igualitario l)Modificación a la ley</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Un Nuevo Chile más democrático, que complemente los espacios de representación”
+</div>
+<span class="context"><mark>Un Nuevo Chile más democrático, que complemente los espacios de representación</mark> con mecanismos de democracia participativa; que permita una mayor incidencia de la ciudadanía en las decisiones que la afectan.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Fortaleceremos la institucionalidad e independencia de la autoridad encargada de la protección al consumidor (SERNAC), perfeccionando su gobierno corporativo y ampliando sus facultades preventivas”
+</div>
+<span class="context">Fortaleceremos la Protección al Consumidor. Para que un sistema de libre competencia funcione de manera adecuada, se requiere que los consumidores puedan relacionarse con las empresas en un entorno libre de abusos. Para resguardar ello fortaleceremos la institucionalidad e independencia de la autoridad encargada de la protección al consumidor (SERNAC), perfeccionando su gobierno corporativo y ampliando sus facultades preventivas (monitoreo y estudios de mercado, publicidad, valiéndose de herramientas digitales; indicadores de precio, calidad, sistema de atención, entre otros), fiscalizadoras, regulatorias y sancionatorias.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“gobierno corporativo colegiado, altamente calificado, que goce de la debida autonomía institucional”
+</div>
+<span class="context">Sistema de Pensiones Público. Para el nuevo sistema de seguridad social que impulsaremos, se requiere también una nueva institucionalidad. Una de carácter público, que contará con un <mark>gobierno corporativo colegiado, altamente calificado, que goce de la debida autonomía institucional</mark>, mediante el establecimiento de mecanismos idóneos y objetivos de nombramiento y cesación del cargo; con una duración que esté desacoplada del ciclo político y sujeto a un robusto régimen de transparencia y prevención de conflictos de intereses.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“perspectiva de equidad de género, social y territorial”
+</div>
+<span class="context">Trabajaremos para que la Justicia esté al alcance de todos los habitantes del país. Por ello nos comprometemos muy especialmente a que el acceso a la justicia lo sea con criterios de inclusión, y en particular con <mark>perspectiva de equidad de género, social y territorial</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 5</span>
+<div class="quote">
+“la probidad y transparencia de su accionar sean claves”
+</div>
+<span class="context">La efectividad del Estado está dada por la confianza y legitimidad de sus instituciones, de ahí que <mark>la probidad y transparencia de su accionar sean claves</mark>. Si bien en este ámbito pueden constatarse importantes avances, resulta clave contar con más y mejores herramientas para combatir cualquier atisbo de corrupción, garantizando la debida protección a la democracia.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 6</span>
+<div class="quote">
+“Estado democrático y de derecho”
+</div>
+<span class="context">Reconocer la plurinacionalidad es un acto de justicia reparativa a pueblos marcados por la exclusión, el atropello y la discriminación, y constituye, además, un imperativo ético como <mark>Estado democrático y de derecho</mark>. La plurinacionalidad es una forma de profundizar la democracia en una organización política conformada por varias naciones existentes dentro de un mismo Estado, con un gobierno representativo, regido por una Constitución Política u orden Constitucional plurinacional.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“respeto al Estado de Derecho”
+</div>
+<span class="context">ofreciéndole al país paz social y <mark>respeto al Estado de Derecho</mark>. Debemos garantizar, en consecuencia, gobernabilidad y cambios reales</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“mercados en que se compita en base al mérito”
+</div>
+<span class="context">contar con <mark>mercados en que se compita en base al mérito</mark>, la innovación y la productividad.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“participación efectiva de la ciudadanía”
+</div>
+<span class="context">la asignación equitativa de los recursos de inversión pública en las regiones y a la <mark>participación efectiva de la ciudadanía</mark> en la definición de los proyectos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“irrestricto respeto y observancia de los Derechos Humanos”
+</div>
+<span class="context">Nuestro compromiso es y será siempre en el <mark>irrestricto respeto y observancia de los Derechos Humanos</mark> en toda circunstancia</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“garantizando la debida protección a la democracia”
+</div>
+<span class="context">resulta clave contar con más y mejores herramientas para combatir cualquier atisbo de corrupción, <mark>garantizando la debida protección a la democracia</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“igualdad de derechos y la dignidad humana”
+</div>
+<span class="context">el diálogo entre culturas exprese y promueva su valoración, la <mark>igualdad de derechos y la dignidad humana</mark>. Tenemos la convicción de que es posible convivir</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“concentración crónica de la riqueza y del poder político”
+</div>
+<span class="context">Esta crisis se origina en la <mark>concentración crónica de la riqueza y del poder político</mark>; en la desigualdad económica</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“colusión y los abusos”
+</div>
+<span class="context">afectado a los consumidores. La <mark>colusión y los abusos</mark> que se han descubierto durante el último tiempo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“sistema de AFP, heredado de la dictadura”
+</div>
+<span class="context">El actual <mark>sistema de AFP, heredado de la dictadura</mark>, ha fracasado rotundamente en la provisión</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“populismo de la mano dura”
+</div>
+<span class="context">la lógica de guerra contra las drogas, el <mark>populismo de la mano dura</mark> y la obsesión del castigo hacia los sectores</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“la concentración crónica de la riqueza y del poder político”
+</div>
+<span class="context">Vivimos tiempos de enormes desafíos. Estamos enfrentados a una crisis económica, política, social y ambiental. Esta crisis se origina en <mark>la concentración crónica de la riqueza y del poder político</mark>; en la desigualdad económica, territorial, de género y de oportunidades; en la falta de confianza e incluso rechazo a todas las instituciones, y, en los limitados espacios de participación; en el ensanchamiento de las brechas sociales; en el cambio climático y en el malestar generalizado de los sectores medios, vulnerables y en situación de pobreza.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“La colusión y los abusos que se han descubierto durante el último tiempo han tenido un impacto relevante en la vida diaria de chilenas y chilenos, generando indignación y desconfianza”
+</div>
+<span class="context">Los oligopolios han sido barreras para la innovación productiva pero también ha afectado a los consumidores. <mark>La colusión y los abusos que se han descubierto durante el último tiempo han tenido un impacto relevante en la vida diaria de chilenas y chilenos, generando indignación y desconfianza</mark>. Si bien la institucionalidad que el país ha generado en la materia es la que ha permitido detectar y perseguir estas conductas, debemos perseverar en su perfeccionamiento para sancionar severamente a quienes defraudan la confianza de los consumidores</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“altísima concentración y especulación, impidiendo la diversificación de actores”
+</div>
+<span class="context">El sistema actual de propiedad minera (concesiones) es por la vía judicial, sin participación de la autoridad, entregando concesiones plenas a perpetuidad. Esto ha permitido una <mark>altísima concentración y especulación, impidiendo la diversificación de actores</mark> y también el desarrollo del sector de explotación minera, y con ello, el descubrimiento de potenciales nuevos yacimientos mineros.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“la lógica de hacer de la seguridad un show mediático”
+</div>
+<span class="context">No podemos continuar con <mark>la lógica de hacer de la seguridad un show mediático</mark> de nulos resultados. 3.5.2.Reducción de Crímenes y Delitos Violentos Es fundamental contar con un plan de desarme e intervención en zonas críticas.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“concentración crónica de la riqueza y del poder político”
+</div>
+<span class="context">Esta crisis se origina en la <mark>concentración crónica de la riqueza y del poder político</mark>; en la desigualdad económica, territorial, de género</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“casos de colusión y uso de información privilegiada”
+</div>
+<span class="context">Vivimos un modelo basado en la competencia… Casos de colusión y uso de información privilegiada han generado un sentimiento de mucha impotencia en las personas.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“sistema de AFP, heredado de la dictadura”
+</div>
+<span class="context">El actual <mark>sistema de AFP, heredado de la dictadura</mark>, ha fracasado rotundamente en la provisión de pensiones</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“el populismo de la mano dura”
+</div>
+<span class="context">la lógica de guerra contra las drogas, <mark>el populismo de la mano dura</mark> y la obsesión del castigo hacia los sectores más vulnerables, han resultado ser un fracaso</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · mixed · chunk 5</span>
+<div class="quote">
+“grandes grupos económicos, son los que ejercen mayor influencia”
+</div>
+<span class="context">ya que los <mark>grandes grupos económicos, son los que ejercen mayor influencia</mark>. Por último, debería perfeccionarse el mecanismo de solicitud de audiencias.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“han sido por larga data invisibilizadas”
+</div>
+<span class="context">Las personas mayores, al igual que otros grupos sociales, <mark>han sido por larga data invisibilizadas</mark>, o bien sus problemáticas abordadas desde la óptica de personas que requieren asistencia</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“un Nuevo Chile que se fundará en el paradigma de la colaboración”
+</div>
+<span class="context">Soy optimista y estoy esperanzada que el Nuevo Chile que estamos llamados a co-construir, entre todas y todos, es un país en el que generaremos nuevamente sentido de pertenencia y cohesión social. Un Nuevo Chile que se fundará en el paradigma de la colaboración, con dignidad, solidaridad, paridad de género, inclusión, descentralización, sustentabilidad, sostenibilidad, participación incidente y, reconocimiento de los históricamente excluidos como nuestros pueblos originarios y las disidencias sexuales.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“La ciudadanía debe participar no solo de los beneficios de una investigación que es suya, sino también en la producción y gestión colectiva del conocimiento”
+</div>
+<span class="context">La mayor riqueza de Chile es la capacidad creadora de todas y todos, su capacidad de comprender nuestro mundo, anticiparse, enfrentar y resolver grandes desafíos, planteando soluciones innovadoras. Para acoplar ese enorme potencial al desarrollo nacional, necesitamos transformar a la ciencia, la tecnología, el conocimiento y la innovación (CTCI) en un aspecto central de nuestro modelo de desarrollo, de nuestra economía y de nuestra cultura, al servicio de las personas y el Buen Vivir. <mark>La ciudadanía debe participar no solo de los beneficios de una investigación que es suya, sino también en la producción y gestión colectiva del conocimiento</mark>, que nos permita enfrentar los problemas del presente y anticipar los desafíos del futuro.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“trabajando codo a codo con las comunidades y empresas locales”
+</div>
+<span class="context">Pero ello es insuficiente; es el momento de pasar a la siguiente etapa del desarrollo minero, donde junto con producir más cobre y otros minerales, debemos exportar minería y conocimiento, promoviendo cambios tecnológicos para proteger y regenerar los ecosistemas y el medio ambiente, <mark>trabajando codo a codo con las comunidades y empresas locales</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“situando a la persona al centro para que todos vivamos una vida libre de amenaza”
+</div>
+<span class="context">Bajo un prisma progresista, en la noción de la seguridad, conjugamos la dignidad, la paz social y el bienestar de la comunidad, <mark>situando a la persona al centro para que todos vivamos una vida libre de amenaza</mark>, y considerando a la igualdad ante la ley como la columna vertebral de esta agenda.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“aporte democrático, enriquecedor y progresivo”
+</div>
+<span class="context">Un proceso abierto al <mark>aporte democrático, enriquecedor y progresivo</mark> de las futuras administraciones.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“democratizar los mercados”
+</div>
+<span class="context">Se requiere liberar las fuerzas del emprendimiento, llevar la prosperidad a las Pymes y <mark>democratizar los mercados</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“alianza público-privada un programa”
+</div>
+<span class="context">Impulsaremos en una <mark>alianza público-privada un programa</mark> de aprovechamiento y reutilización de depósitos de relaves abandonados</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“la persona al centro para que todos”
+</div>
+<span class="context">situando a <mark>la persona al centro para que todos</mark> vivamos una vida libre de amenaza</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“diálogo amplio y transversal”
+</div>
+<span class="context">sobre la base de la experiencia comparada y un <mark>diálogo amplio y transversal</mark> en el que estén representadas todas las visiones</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“diálogo político y democrático”
+</div>
+<span class="context">Nuestro gobierno dará prioridad a la tarea política y social de resolver las tensiones existentes mediante mecanismos de <mark>diálogo político y democrático</mark>.</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“superar la mercantilización de los derechos sociales”
+</div>
+<span class="context">Para ello, ahora, requerimos <mark>superar la mercantilización de los derechos sociales</mark> tales como: la salud, educación y seguridad</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“superar la gran concentración económica”
+</div>
+<span class="context">como señalamos anteriormente, <mark>superar la gran concentración económica</mark> existente en nuestro país.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“elevar la carga tributaria y progresividad”
+</div>
+<span class="context">por lo tanto, el llamado es a <mark>elevar la carga tributaria y progresividad</mark> de los impuestos, pero, muy especialmente, a elevar las transferencias</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“encarcelar la pobreza, dejando impunes”
+</div>
+<span class="context">pesca de arrastre que termina por <mark>encarcelar la pobreza, dejando impunes</mark> a los grandes narcotraficantes.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“una reforma tributaria orientada a aumentar la carga efectiva de las rentas del capital”
+</div>
+<span class="context">Aquí el Estado dejará de ser un ente subsidiario para desempeñar un papel activo en el fomento del desarrollo productivo del país y en la provisión de bienes a las personas y hogares de Chile. Para ello precisamos hacer <mark>una reforma tributaria orientada a aumentar la carga efectiva de las rentas del capital</mark>, y un sistema tributario cuya progresividad financie bienes públicos productivos y transferencias sociales.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Chile requiere fortalecer un tejido económico que genere valor y lo distribuya equitativamente”
+</div>
+<span class="context">Las pequeñas y medianas empresas son fundamentales en la generación de empleo y motores del crecimiento económico. En Chile alrededor de la mitad de los empleos formales provienen de ellas y han sufrido fuertemente los embates de la pandemia. Si bien estamos por apoyarlas decididamente en estos momentos difíciles, no creemos en una visión meramente asistencialista de ellas: estamos por empoderarlas. Apoyaremos a las Pymes para que sean competitivas, puedan crecer e internacionalizarse, diversificando sus fuentes de financiamiento y facilitando el acceso al mismo, apoyando la adopción tecnológica de punta y digitalización que les permita enfrentar los desafíos de la nueva economía. <mark>Chile requiere fortalecer un tejido económico que genere valor y lo distribuya equitativamente</mark>. Las diferencias de tamaños entre empresas no debieran vincularse, como hoy sucede en nuestro país, a un acceso desigual a las cadenas de valor o a los espacios de rentabilidad existentes.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“redistribución de beneficios desde una lógica transaccional”
+</div>
+<span class="context">Chile es líder mundial en la minería del cobre y litio, teniendo relevancia en varios otros minerales, y hoy se presenta la ventana de oportunidad para convertir a nuestra minería en el líder en la producción global de cobre verde, que impulsa encadenamientos productivos y que se inserta en los territorios aportando en la creación de valor sostenible, yendo más allá de la simple <mark>redistribución de beneficios desde una lógica transaccional</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“la cárcel refleja esta realidad y se ha transformado en una extensión de la pobreza”
+</div>
+<span class="context">El impacto de esta lógica ha permitido que los cabecillas de las organizaciones criminales y particularmente del narcotráfico terminen operando en determinados espacios con altos grados de impunidad. En el camino, nuestro sistema de inteligencia no se ha adaptado a las necesidades actuales; la prevención delictual se ha tornado ineficiente y el sistema de penas ha sido regresivo.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“reforma tributaria orientada a aumentar la carga efectiva”
+</div>
+<span class="context">precisamos hacer una <mark>reforma tributaria orientada a aumentar la carga efectiva</mark> de las rentas del capital, y un sistema tributario cuya progresividad</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“redistribución de ingresos, y de corrección de desigualdades”
+</div>
+<span class="context">como instrumento de diversificación económica, de <mark>redistribución de ingresos, y de corrección de desigualdades</mark>, para así propiciar un crecimiento sustentable</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“nuevo royalty a la actividad minera”
+</div>
+<span class="context">Impulsaremos un <mark>nuevo royalty a la actividad minera</mark> que permita asegurar el justo pago por los recursos no renovables que se exportan</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“un Estado más activo en la gestión”
+</div>
+<span class="context">avanzar hacia <mark>un Estado más activo en la gestión</mark> de los planes de vivienda social</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“Incrementar la progresividad del sistema tributario”
+</div>
+<span class="context"><mark>Incrementar la progresividad del sistema tributario</mark>, a fin de lograr que el mayor peso de la carga tributaria recaiga sobre los contribuyentes de mayores ingresos.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“redistribución de las responsabilidades del cuidado”
+</div>
+<span class="context">Estrategia para la conciliación la vida laboral y familiar y la <mark>redistribución de las responsabilidades del cuidado</mark> de manera más equitativa</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“superar la mercantilización de los derechos sociales”
+</div>
+<span class="context">Para ello, ahora, requerimos <mark>superar la mercantilización de los derechos sociales</mark> tales como: la salud, educación y seguridad</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“superar la gran concentración económica”
+</div>
+<span class="context">como señalamos anteriormente, <mark>superar la gran concentración económica</mark> existente en nuestro país.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“elevar la carga tributaria y progresividad”
+</div>
+<span class="context">por lo tanto, el llamado es a <mark>elevar la carga tributaria y progresividad</mark> de los impuestos, pero, muy especialmente, a elevar las transferencias</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“encarcelar la pobreza, dejando impunes”
+</div>
+<span class="context">pesca de arrastre que termina por <mark>encarcelar la pobreza, dejando impunes</mark> a los grandes narcotraficantes.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“la concentración crónica de la riqueza y del poder político”
+</div>
+<span class="context">Vivimos tiempos de enormes desafíos. Estamos enfrentados a una crisis económica, política, social y ambiental. Esta crisis se origina en <mark>la concentración crónica de la riqueza y del poder político</mark>; en la desigualdad económica, territorial, de género y de oportunidades; en la falta de confianza e incluso rechazo a todas las instituciones, y, en los limitados espacios de participación; en el ensanchamiento de las brechas sociales; en el cambio climático y en el malestar generalizado de los sectores medios, vulnerables y en situación de pobreza.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“Chile requiere fortalecer un tejido económico que genere valor y lo distribuya equitativamente”
+</div>
+<span class="context">Las pequeñas y medianas empresas son fundamentales en la generación de empleo y motores del crecimiento económico. En Chile alrededor de la mitad de los empleos formales provienen de ellas y han sufrido fuertemente los embates de la pandemia. Si bien estamos por apoyarlas decididamente en estos momentos difíciles, no creemos en una visión meramente asistencialista de ellas: estamos por empoderarlas. Apoyaremos a las Pymes para que sean competitivas, puedan crecer e internacionalizarse, diversificando sus fuentes de financiamiento y facilitando el acceso al mismo, apoyando la adopción tecnológica de punta y digitalización que les permita enfrentar los desafíos de la nueva economía. <mark>Chile requiere fortalecer un tejido económico que genere valor y lo distribuya equitativamente</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“redistribución de beneficios desde una lógica transaccional”
+</div>
+<span class="context">Chile es líder mundial en la minería del cobre y litio, teniendo relevancia en varios otros minerales, y hoy se presenta la ventana de oportunidad para convertir a nuestra minería en el líder en la producción global de cobre verde, que impulsa encadenamientos productivos y que se inserta en los territorios aportando en la creación de valor sostenible, yendo más allá de la simple <mark>redistribución de beneficios desde una lógica transaccional</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“la lógica de hacer de la seguridad un show mediático”
+</div>
+<span class="context">No podemos continuar con <mark>la lógica de hacer de la seguridad un show mediático</mark> de nulos resultados. 3.5.2.Reducción de Crímenes y Delitos Violentos Es fundamental contar con un plan de desarme e intervención en zonas críticas.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Estado de Bienestar, que reconoce y garantiza derechos sociales”
+</div>
+<span class="context">construiremos sobre la base de un <mark>Estado de Bienestar, que reconoce y garantiza derechos sociales</mark> y una arquitectura tributaria que haga posible su financiamiento</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“redistribución de ingresos, y de corrección de desigualdades”
+</div>
+<span class="context">como instrumento de diversificación económica, de <mark>redistribución de ingresos, y de corrección de desigualdades</mark>, para así propiciar un crecimiento sustentable</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“nuevo royalty a la actividad minera”
+</div>
+<span class="context">Impulsaremos un <mark>nuevo royalty a la actividad minera</mark> que permita asegurar el justo pago por los recursos no renovables que se exportan</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“un Estado más activo en la gestión”
+</div>
+<span class="context">avanzar hacia <mark>un Estado más activo en la gestión</mark> de los planes de vivienda social</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Incrementar la progresividad del sistema tributario”
+</div>
+<span class="context"><mark>Incrementar la progresividad del sistema tributario</mark>, a fin de lograr que el mayor peso de la carga tributaria recaiga sobre los contribuyentes de mayores ingresos.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“justicia reparativa a pueblos marcados”
+</div>
+<span class="context">Reconocer la plurinacionalidad es un acto de <mark>justicia reparativa a pueblos marcados</mark> por la exclusión, el atropello y la discriminación</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“reconocidos y respetados por un Estado plurinacional”
+</div>
+<span class="context">Aspiramos a una sociedad inclusiva, donde los niños, niñas, adolescentes y jóvenes sean prioridad. Donde la vejez pueda ser vivida con humanidad y apoyo, y los pueblos originarios puedan ser <mark>reconocidos y respetados por un Estado plurinacional</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“paridad de género y efectiva inclusión de las diversidades y a la minería”
+</div>
+<span class="context">Fomentaremos la <mark>paridad de género y efectiva inclusión de las diversidades y a la minería</mark>. Para ello instaremos a que las empresas adecuen la infraestructura de las faenas mineras, y desarrollen buenas prácticas previniendo situaciones de discriminación y acoso.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“Iniciaremos la prohibición selectiva y total de armas en manos de civiles”
+</div>
+<span class="context">Impulsaremos un Plan Nacional de Desarme. Traspasaremos la supervigilancia y control de armas, explosivos, fuegos artificiales y otros establecidos en la Ley Nº 17.798, que actualmente es resorte de la Dirección General de Movilización Nacional (DGMN), al nuevo Ministerio de Seguridad Pública. <mark>Iniciaremos la prohibición selectiva y total de armas en manos de civiles</mark> para fines de defensa personal (permitiendo usos deportivos limitados).</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“fenómeno de la migración”
+</div>
+<span class="context">incluyendo a las personas procedentes de pueblos indígenas y del <mark>fenómeno de la migración</mark>. Lo que nos proponemos es iniciar un nuevo ciclo histórico.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“ventajas en producción sustentable”
+</div>
+<span class="context">Nuestros sectores exportadores como la minería, el forestal, agropecuario, acuícola-pesquero y de alimentos deben diferenciarse por sus <mark>ventajas en producción sustentable</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“regularizar de los pasivos ambientales mineros”
+</div>
+<span class="context">puedan hacerse cargo de manejar y <mark>regularizar de los pasivos ambientales mineros</mark> más críticos cercanos a ellos</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“recuperación de los territorios más afectados”
+</div>
+<span class="context">centrada en la <mark>recuperación de los territorios más afectados</mark> y de las personas atrapadas por el mercado del tráfico</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 5</span>
+<div class="quote">
+“respuesta realista, unitaria y con perspectiva gradual”
+</div>
+<span class="context">La crisis humanitaria generada en la macrozona norte del país por masivo ingreso irregular es un reto que requiere una <mark>respuesta realista, unitaria y con perspectiva gradual</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 6</span>
+<div class="quote">
+“pertinencia cultural y territorial”
+</div>
+<span class="context">adecuando materialidad y diseño, conforme a la <mark>pertinencia cultural y territorial</mark> en coordinación con las autoridades ancestrales de los PPII</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“solidaridad del egoísmo institucionalizado”
+</div>
+<span class="context">El buen vivir en comunidad fija la frontera que separa la <mark>solidaridad del egoísmo institucionalizado</mark>. El buen vivir no es solo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“sancionar severamente a quienes defraudan”
+</div>
+<span class="context">perseverar en su perfeccionamiento para <mark>sancionar severamente a quienes defraudan</mark> la confianza de los consumidores</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“la falsa creencia de hallarnos en presencia de un vacío de poder”
+</div>
+<span class="context">La crisis multidimensional que afecta a la estructura social de Chile podría alimentar <mark>la falsa creencia de hallarnos en presencia de un vacío de poder</mark> y de gobierno, sin alternativas y sin salida. Atrapados en una especie de laberinto que nos conduce, una y otra vez, pese a nuestros esfuerzos, a las puertas de una espiral invertida y deprimente.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“conflictividad con las comunidades y visiones antagónicas sobre los proyectos mineros”
+</div>
+<span class="context">A pesar del relativo éxito de los últimos años, la industria presenta desafíos de gobernanza y de insumos estratégicos que deben ser abordados. Al mismo tiempo, los importantes ingresos del sector no guardan relación con el mejoramiento de las condiciones de vida, la infraestructura social y cultural en las zonas en que se desarrolla. Esto tiene como consecuencia una mayor <mark>conflictividad con las comunidades y visiones antagónicas sobre los proyectos mineros</mark>. Más aún, las fuerzas que impulsaron el crecimiento y la creación y retención de valor del sector en el pasado se han ido debilitando en el tiempo, por lo que deben ser complementadas a través de políticas activas que impulsen la innovación, el aprendizaje y el fortalecimiento de capacidades locales para participar en el abordaje de los nuevos desafíos de productividad y de sostenibilidad ambiental y social.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“la lógica de guerra contra las drogas, el populismo de la mano dura”
+</div>
+<span class="context">Además, surgen de la constatación que <mark>la lógica de guerra contra las drogas, el populismo de la mano dura</mark> y la obsesión del castigo hacia los sectores más vulnerables, han resultado ser un fracaso. Bajo un prisma progresista, en la noción de la seguridad, conjugamos la dignidad, la paz social y el bienestar de la comunidad,</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“la solidaridad del egoísmo institucionalizado”
+</div>
+<span class="context">El buen vivir en comunidad fija la frontera que separa <mark>la solidaridad del egoísmo institucionalizado</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“este modelo no puede seguir”
+</div>
+<span class="context">Esto sumado a la concentración económica ha concebido la exigencia de que <mark>este modelo no puede seguir</mark>, debiendo, por una parte, ser corregido</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“ha fracasado rotundamente en la provisión”
+</div>
+<span class="context">El actual sistema de AFP, heredado de la dictadura, <mark>ha fracasado rotundamente en la provisión</mark> de pensiones que permitan a los adultos mayores superar la angustia</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“una justicia para pobres y otra para ricos”
+</div>
+<span class="context">asentándose con fuerza la idea de que existe <mark>una justicia para pobres y otra para ricos</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“pesada mochila fiscal”
+</div>
+<span class="context">tendremos que hacernos cago de una <mark>pesada mochila fiscal</mark>, de ahí que resulte clave iniciar, tal como la ha sugerido el Consejo Fiscal Autónomo</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“violencia estructural tiende a ser ignorada”
+</div>
+<span class="context">casos de discriminación, abandono y maltrato sistemático. A pesar de su gravedad, esta <mark>violencia estructural tiende a ser ignorada</mark> por el resto de la sociedad.</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“cristalización de muchas voces que han hablado”
+</div>
+<span class="context">Pero sobre todo es la <mark>cristalización de muchas voces que han hablado</mark> en el último tiempo, desde todos los rincones</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“al servicio de las personas”
+</div>
+<span class="context">nuestro modelo de desarrollo, de nuestra economía y de nuestra cultura, <mark>al servicio de las personas</mark> y el Buen Vivir.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“demandas que nos ha hecho presente la ciudadanía”
+</div>
+<span class="context">entregar una respuesta acorde al nivel de desarrollo que tiene Chile, permitiéndonos hacernos cargo de las <mark>demandas que nos ha hecho presente la ciudadanía</mark>. Enfatizaremos políticas de ayuda</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“situando a la persona al centro”
+</div>
+<span class="context">la dignidad, la paz social y el bienestar de la comunidad, <mark>situando a la persona al centro</mark> para que todos vivamos</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“reencontrarnos, reconocernos y respetarnos como iguales”
+</div>
+<span class="context">Necesitamos reconstruirnos como sociedad sobre la base de <mark>reencontrarnos, reconocernos y respetarnos como iguales</mark>. Iguales en dignidad y derechos. Iguales en trato, promoviendo la horizontalidad de las relaciones sociales. En este sentido, la oportunidad que abre el proceso constituyente es única y debemos cuidarla, acompañarla y potenciarla desde el futuro Gobierno.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“participen plenamente en la creación de valor”
+</div>
+<span class="context">Impulsaremos una minería carbono-neutral al 2040 generando además círculos virtuosos. Mientras que la reducción de emisiones de gases de efecto invernadero asociadas al suministro eléctrico del sector va bien encaminada gracias al incremento en la generación eléctrica renovable, las emisiones relacionadas a los procesos térmicos y del transporte del sector son aún un gran desafío. Por ello, en el corto plazo, impulsaremos la electrificación del trasporte y de otros procesos productivos, y paralelamente, incentivaremos una alianza entre los productores de hidrógeno verde y el sector minero. El gran poder traccionador del sector minero, junto a las señales de precio adecuadas para el hidrógeno verde, permitirán que esta tecnología transite debidamente por su curva de desarrollo tecnológico, convirtiéndolo así no sólo en una solución para lograr una minería verde, sino también posicionar a Chile como un sector exportador de este combustible. Chile impulsará que la flota de camiones de alto tonelaje de la minería sea carbono neutral, transformándose en un productor y exportador global de hidrógeno que no sólo descarboniza su minería sino a todo su sector productivo, habilitando así la exportación de sostenibilidad. Profundizaremos los sistemas de protección del medio ambiente del sector, cuidando los activos naturales y sistemas hídricos, para contar con cuencas sostenibles, con una pérdida de biodiversidad neta cero al 2040. Todas las empresas contarán con planes de mitigación, adaptación al cambio climático y las capacidades técnicas y de gobernanza adecuadas para su plena implementación. Incentivaremos el uso de agua de mar en la minería junto con otros usos, mediante plantas desaladoras multipropósito, impulsadas por energías renovables, normando y ordenando el uso del borde costero, aprovechando las economías de escala y asegurando el desarrollo de tecnologías que minimizan su impacto en los ecosistemas marinos. Paralelamente, incentivaremos, alineados con los plazos comprometidos en la Política Minera 2050, a la gran minería a dejar de usar las aguas continentales en zonas de escasez, con el propósito de asegurar los caudales ecológicos, recuperación de los acuíferos y el uso prioritario por parte de las comunidades originarias. Mantendremos la fiscalización de Comisión Chilena del Cobre (COCHILCO) sobre las Empresas Mineras del Estado, ampliando su rol de verificar el valor de las exportaciones a todos minerales metálicos y no metálicos. Asimismo, se reforzará la capacidad de Aduanas para verificar en terreno la cantidad y calidad de las exportaciones, evitando la transferencia de valor sin el debido tributo, así como la del Servicio de Impuestos Internos para garantizar mayor transparencia y minimizar riesgos de subdeclaración. Proponemos que el Servicio Nacional de Geología y Minería (SERNAGIOMIN) continúe trabajando para aumentar el valor de la base geológica de todo el territorio nacional, a una escala adecuada y útil para la exploración. Reimpulsaremos el proyecto de ENAMI para una nueva fundición polimetálica en Copiapó, congelada por el gobierno vigente, que permitirá eliminar los impactos de la actual fundición, modernizar su infraestructura y aumentar su capacidad. Con ello daremos un salto tecnológico y apoyaremos decididamente a la pequeña y mediana minería, permitiendo además una mejora sustancial en la calidad de aire de la zona. Analizaremos la pertinencia de una nueva fundición y complejo metalúrgico de clase mundial para poder resolver los problemas de contaminación y altos costos operativos que enfrentan las fundiciones. Continuaremos con los programas de fomento de servicios de clase mundial en la minería, aprovechando la experiencia de los proveedores nacionales, incentivando la exportación de servicios. Ello permitirá exportar no solo minerales, sino también conocimiento minero, partiendo por la región, transformándonos en un “hub” de minerales verdes y de soluciones para una minería verde, capitalizando así las décadas de experiencia en esta materia de nuestro país. Un clúster minero hoy debe ir más allá de los límites geográficos, y podríamos hablar de un Clúster Minero Andino inserto en las cadenas de valor globales. Impulsaremos en una alianza público–privada un programa de aprovechamiento y reutilización de depósitos de relaves abandonados, obteniendo el valor de los minerales contenidos en ellos, y al mismo tiempo, hacernos cargo del pasivo ambiental. Se incorporará a ENAMI en este proceso, adaptando criterios y procedimientos de compra de minerales, que incentiven la re-minería. Paralelamente, se trabajará para que los nuevos proyectos mineros, como parte de sus compromisos y compensaciones, puedan hacerse cargo de manejar y regularizar de los pasivos ambientales mineros más críticos cercanos a ellos. Fomentaremos la paridad de género y efectiva inclusión de las diversidades y a la minería. Para ello instaremos a que las empresas adecuen la infraestructura de las faenas mineras, y desarrollen buenas prácticas previniendo situaciones de discriminación y acoso.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“situando a la persona al centro para que todos vivamos una vida libre de amenaza”
+</div>
+<span class="context">Bajo un prisma progresista, en la noción de la seguridad, conjugamos la dignidad, la paz social y el bienestar de la comunidad, <mark>situando a la persona al centro para que todos vivamos una vida libre de amenaza</mark>, y considerando a la igualdad ante la ley como la columna vertebral de esta agenda.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“las personas y los territorios, estén al centro”
+</div>
+<span class="context">un Nuevo Chile más justo, cohesionado, colaborativo, inclusivo, donde <mark>las personas y los territorios, estén al centro</mark>; pensando no solo en el hoy</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“con las personas en el centro”
+</div>
+<span class="context">es necesario definir políticas transversales multisectoriales y de largo plazo, <mark>con las personas en el centro</mark>, para no improvisar respecto de las medidas necesarias</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“poner al centro las necesidades de los adultos mayores”
+</div>
+<span class="context">se funda en <mark>poner al centro las necesidades de los adultos mayores</mark>, a fin de permitirles que, independiente de su capacidad económica</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“situando a la persona al centro”
+</div>
+<span class="context">conjugamos la dignidad, la paz social y el bienestar de la comunidad, <mark>situando a la persona al centro</mark> para que todos vivamos una vida libre de amenaza</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“las personas al centro del quehacer estatal”
+</div>
+<span class="context">4.2Por un mejor y más transparente estado y gasto público para un nuevo chile. <mark>las personas al centro del quehacer estatal</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“sujetos de derechos, garantizando su ejercicio”
+</div>
+<span class="context">El reconocimiento de niños, niñas y adolescentes como <mark>sujetos de derechos, garantizando su ejercicio</mark>. La universalización de las prestaciones y servicios</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“concentración crónica de la riqueza y del poder político”
+</div>
+<span class="context">Esta crisis se origina en la <mark>concentración crónica de la riqueza y del poder político</mark>; en la desigualdad económica</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“colusión y los abusos”
+</div>
+<span class="context">afectado a los consumidores. La <mark>colusión y los abusos</mark> que se han descubierto durante el último tiempo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“sistema de AFP, heredado de la dictadura”
+</div>
+<span class="context">El actual <mark>sistema de AFP, heredado de la dictadura</mark>, ha fracasado rotundamente en la provisión</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“populismo de la mano dura”
+</div>
+<span class="context">la lógica de guerra contra las drogas, el <mark>populismo de la mano dura</mark> y la obsesión del castigo hacia los sectores</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“la concentración crónica de la riqueza y del poder político”
+</div>
+<span class="context">Vivimos tiempos de enormes desafíos. Estamos enfrentados a una crisis económica, política, social y ambiental. Esta crisis se origina en <mark>la concentración crónica de la riqueza y del poder político</mark>; en la desigualdad económica, territorial, de género y de oportunidades; en la falta de confianza e incluso rechazo a todas las instituciones, y, en los limitados espacios de participación; en el ensanchamiento de las brechas sociales; en el cambio climático y en el malestar generalizado de los sectores medios, vulnerables y en situación de pobreza.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“La colusión y los abusos que se han descubierto durante el último tiempo han tenido un impacto relevante en la vida diaria de chilenas y chilenos, generando indignación y desconfianza”
+</div>
+<span class="context">Los oligopolios han sido barreras para la innovación productiva pero también ha afectado a los consumidores. <mark>La colusión y los abusos que se han descubierto durante el último tiempo han tenido un impacto relevante en la vida diaria de chilenas y chilenos, generando indignación y desconfianza</mark>. Si bien la institucionalidad que el país ha generado en la materia es la que ha permitido detectar y perseguir estas conductas, debemos perseverar en su perfeccionamiento para sancionar severamente a quienes defraudan la confianza de los consumidores</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“altísima concentración y especulación, impidiendo la diversificación de actores”
+</div>
+<span class="context">El sistema actual de propiedad minera (concesiones) es por la vía judicial, sin participación de la autoridad, entregando concesiones plenas a perpetuidad. Esto ha permitido una <mark>altísima concentración y especulación, impidiendo la diversificación de actores</mark> y también el desarrollo del sector de explotación minera, y con ello, el descubrimiento de potenciales nuevos yacimientos mineros.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“la lógica de hacer de la seguridad un show mediático”
+</div>
+<span class="context">No podemos continuar con <mark>la lógica de hacer de la seguridad un show mediático</mark> de nulos resultados. 3.5.2.Reducción de Crímenes y Delitos Violentos Es fundamental contar con un plan de desarme e intervención en zonas críticas.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“superar la mercantilización de los derechos sociales”
+</div>
+<span class="context">requerimos <mark>superar la mercantilización de los derechos sociales</mark> tales como: la salud, educación y seguridad social, entre otros</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“concentración económica existente en nuestro país”
+</div>
+<span class="context">Debemos, como señalamos anteriormente, superar la gran <mark>concentración económica existente en nuestro país</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“sistema de AFP, heredado de la dictadura”
+</div>
+<span class="context">El actual <mark>sistema de AFP, heredado de la dictadura</mark>, ha fracasado rotundamente en la provisión de pensiones</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“el populismo de la mano dura”
+</div>
+<span class="context">la lógica de guerra contra las drogas, <mark>el populismo de la mano dura</mark> y la obsesión del castigo hacia los sectores más vulnerables, han resultado ser un fracaso</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“grandes grupos económicos, son los que ejercen mayor influencia”
+</div>
+<span class="context">ya que los <mark>grandes grupos económicos, son los que ejercen mayor influencia</mark>. Por último, debería perfeccionarse el mecanismo de solicitud de audiencias.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“negación de derechos, despojos y discriminación”
+</div>
+<span class="context">la que ha estado marcada por desencuentros, subordinación, <mark>negación de derechos, despojos y discriminación</mark>. Desde el retorno a la democracia</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="155030_202111_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

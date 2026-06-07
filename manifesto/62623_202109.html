@@ -1,0 +1,2032 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>CP (Canada, 2021) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/62623_202109_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">CP (Canada, 2021)</h1>
+<p class="subtitle lead">manifesto_id 62623_202109</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Canada · <span class="item"><strong>Party</strong></span> CP (Conservative Party of Canada) · <span class="item"><strong>Year</strong></span> 2021 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 60</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.8</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.5</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“supporting free markets and supporting consumers”
+</div>
+<span class="context">Canada’s Conservatives do not confuse <mark>supporting free markets and supporting consumers</mark> with doing favours for big businesses, as the Trudeau Liberals have.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“promote competition by: Allowing foreign telecommunications”
+</div>
+<span class="context">practices that hurt consumers. Competition: We will <mark>promote competition by: Allowing foreign telecommunications</mark> companies to provide services to</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“promoting the development of rules of free and open digital trade”
+</div>
+<span class="context">Trade and Technology, including <mark>promoting the development of rules of free and open digital trade</mark>, advancing economic</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“reducing interprovincial trade barriers”
+</div>
+<span class="context">Conservatives estimate that regulatory reform and <mark>reducing interprovincial trade barriers</mark> will boost Canada’s GDP</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“free markets, competition, free enterprise, deregulation”
+</div>
+<span class="context">Canada’s Conservatives will stand up to corporate Canada and reject mergers that substantially reduce competition and lead to layoffs and higher prices. Cut Red Tape - Every year it gets harder to build and grow a business and create jobs because the government puts more and more barriers in the way. It is important to regularly review regulations to eliminate any that are not serving the public interest.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Promote competition by allowing foreign telecommunications companies to provide services”
+</div>
+<span class="context">We will promote competition by: Allowing foreign telecommunications companies to provide services to Canadian customers, provided that the same treatment is reciprocated for Canadian companies in that company’s country.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Foster greater economic cooperation among democratic member countries of the OIF”
+</div>
+<span class="context">We will: <mark>Foster greater economic cooperation among democratic member countries of the OIF</mark> to help this multilateral organization contribute to the realignment of global trade patterns following the COVID-19 crisis.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“free enterprise, tax fairness, and economic growth”
+</div>
+<span class="context">Canada’s Conservatives will ensure that the burden of getting our economy back on track and delivering essential public services does not fall upon those who have been hurt the most. We will provide more funding to the Canada Revenue Agency, increasing to $750 million per year, to fund stronger enforcement of taxation for multinational firms, taxation of large corporations, international taxation, and other tax evasion.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Making Canada the best place to invest”
+</div>
+<span class="context"><mark>Making Canada the best place to invest</mark> and build a business: The Liberals, NDP, and Greens have actively driven investment out of Canada</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · mixed · chunk 2</span>
+<div class="quote">
+“promote competition by: Allowing foreign telecommunications companies”
+</div>
+<span class="context">Competition: We will <mark>promote competition by: Allowing foreign telecommunications companies</mark> to provide services to Canadian customers, provided that the same treatment is reciprocated</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“promoting the development of rules of free and open digital trade”
+</div>
+<span class="context">Trade and Technology, including <mark>promoting the development of rules of free and open digital trade</mark>, advancing economic opportunities with trusted partners, and removing barriers for Canadian companies.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“secure a level playing field for Canadian media”
+</div>
+<span class="context">Instead, we will <mark>secure a level playing field for Canadian media</mark>, ensuring that Canadians are paid fairly for the content they create while encouraging the creation of more Canadian media</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“legislation on open banking so that Canadians can connect with fintech”
+</div>
+<span class="context">Canada’s Conservatives will ensure that Canadians get the banking services they need at a price they can afford by: Bringing in <mark>legislation on open banking so that Canadians can connect with fintech</mark> companies that can give provide a better offer</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“legislation on open banking so that Canadians”
+</div>
+<span class="context">price they can afford by: Bringing in <mark>legislation on open banking so that Canadians</mark> can connect with fintech companies</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“greater use of market-based financing vehicles”
+</div>
+<span class="context">scaling the development impact of remittances, and the <mark>greater use of market-based financing vehicles</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Bring manufacturing of critical equipment like PPE and pharmaceuticals back to Canada”
+</div>
+<span class="context">Canada’s Conservatives will: Only pursue free trade agreements with free countries that respect workers’ rights and maintain high environmental standards. <mark>Bring manufacturing of critical equipment like PPE and pharmaceuticals back to Canada</mark> by ensuring that government and government-funded procurement of these essential products favours Canadian producers. Rebuild our domestic vaccine manufacturing capacity.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Requiring more transparency for investment management fees”
+</div>
+<span class="context"><mark>Requiring more transparency for investment management fees</mark> so that seniors and savers don’t get ripped off. This will include requiring the banks to show investment returns net of fees.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Canada’s Conservatives will increase funding to the Canada Revenue Agency for stronger enforcement”
+</div>
+<span class="context">Canada’s Conservatives will ensure that the burden of getting our economy back on track and delivering essential public services does not fall upon those who have been hurt the most. We will provide more funding to the Canada Revenue Agency, increasing to $750 million per year, to fund stronger enforcement of taxation for multinational firms, taxation of large corporations, international taxation, and other tax evasion.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Digital Services Tax representing 3% of gross revenue in Canada”
+</div>
+<span class="context">Introduce a <mark>Digital Services Tax representing 3% of gross revenue in Canada</mark> to make web giants pay their fair share. Significantly reduce the amount of money the government is spending on advertising with big foreign tech companies like Twitter and instead direct federal ad dollars to Canadian media.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“legislation on open banking”
+</div>
+<span class="context">Bringing in <mark>legislation on open banking</mark> so that Canadians can connect with fintech companies that can give provide a better offer for banking services</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“legislation on open banking so that Canadians can connect with fintech”
+</div>
+<span class="context">Bringing in <mark>legislation on open banking so that Canadians can connect with fintech</mark> companies that can give provide a better offer for banking services such as a mortgage, line of credit or credit card.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“greater use of market-based financing vehicles”
+</div>
+<span class="context">This will involve scaling the development impact of remittances, and the <mark>greater use of market-based financing vehicles</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“digital services tax representing 3% of gross revenue”
+</div>
+<span class="context">Introduce a Digital Services Tax representing 3% of gross revenue in Canada to make web giants pay their fair share.</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“toughest accountability and transparency laws in Canada’s history”
+</div>
+<span class="context">Canada’s Conservatives will put the country first, by enacting the <mark>toughest accountability and transparency laws in Canada’s history</mark>. Toughen the Conflict of Interest Act and impose higher penalties</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“safeguard our democracy against the whims”
+</div>
+<span class="context">shield illegal behaviour. These measures will <mark>safeguard our democracy against the whims</mark> of unscrupulous politicians. Fix Access</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“democracy, human rights, and the rule of law”
+</div>
+<span class="context"><mark>democracy, human rights, and the rule of law</mark>. We will: Work with our allies</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Free speech, freedom of expression, and a free press”
+</div>
+<span class="context">What we do not support are restrictions on legitimate freedom of speech. <mark>Free speech, freedom of expression, and a free press</mark> are fundamental tenets of Canadian law</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“enacting the toughest accountability and transparency laws in Canada’s history”
+</div>
+<span class="context">SECURE ACCOUNTABILITY BY ENACTING A NEW ANTI-CORRUPTION LAW TO CLEAN UP THE MESS IN OTTAWA. Canada’s Conservatives will put the country first, by <mark>enacting the toughest accountability and transparency laws in Canada’s history</mark>. Toughen the Conflict of Interest Act and impose higher penalties; Toughen the Lobbying Act to end abuse by Liberal insiders; and Increase transparency to end Liberal cover-ups.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Canada’s Conservatives will pass an Anti-Corruption Act to strengthen our legislation on ethics, lobbying, and transparency”
+</div>
+<span class="context">We need stricter laws to require ethics in government, prevent cover-ups, and ensure that lobbying is adequately regulated. <mark>Canada’s Conservatives will pass an Anti-Corruption Act to strengthen our legislation on ethics, lobbying, and transparency</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“democracy, human rights, and the rule of law”
+</div>
+<span class="context"><mark>democracy, human rights, and the rule of law</mark>. We will: Work with our allies to address efforts by China, Russia, Iran, and others actively undermining democratic norms, institutions, and the rule of law.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Free speech, freedom of expression, and a free press are fundamental”
+</div>
+<span class="context">What we do not support are restrictions on legitimate freedom of speech. <mark>Free speech, freedom of expression, and a free press are fundamental</mark> tenets of Canadian law and Canadian democracy.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“toughest accountability and transparency laws”
+</div>
+<span class="context">Canada’s Conservatives will put the country first, by enacting the <mark>toughest accountability and transparency laws</mark> in Canada’s history.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“These measures will safeguard our democracy”
+</div>
+<span class="context">Cabinet confidence is meant to ensure good government, not shield illegal behaviour. <mark>These measures will safeguard our democracy</mark> against the whims of unscrupulous politicians.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“democracy, human rights, and the rule of law”
+</div>
+<span class="context">Work with our allies to address efforts by China, Russia, Iran, and others actively undermining democratic norms, institutions, and the rule of law.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Free speech, freedom of expression, and a free press”
+</div>
+<span class="context"><mark>Free speech, freedom of expression, and a free press</mark> are fundamental tenets of Canadian law and Canadian democracy. We will oppose government censorship</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“combat gender inequality”
+</div>
+<span class="context">Our policies - including our Canada Job Surge Plan and our support for the tourism and hospitality sectors - will get women back to work and help <mark>combat gender inequality</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“equal access to adoption for all children”
+</div>
+<span class="context">work with the provinces to ensure <mark>equal access to adoption for all children</mark>. This will include: Supporting international</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“inalienable human dignity of LGBTQ people”
+</div>
+<span class="context">speak clearly and confidently for the <mark>inalienable human dignity of LGBTQ people</mark> and deploy resources</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Securing opportunity for women”
+</div>
+<span class="context">Supporting small business . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21 d.&nbsp;<mark>Securing opportunity for women</mark> . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Supporting Indigenous communities and empowering Indigenous Peoples”
+</div>
+<span class="context">Canada’s Conservatives are committed to putting a stop to federal paternalism and instead partnering with Indigenous communities and empowering Indigenous Peoples with the autonomy to meet their own housing needs.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“Restore Canadian leadership in advocating for persecuted sexual minorities in the face of repression”
+</div>
+<span class="context"><mark>Restore Canadian leadership in advocating for persecuted sexual minorities in the face of repression</mark>. The Trudeau government has dispensed with standing as strong allies of LGBTQ advocates, bowing before authoritarians.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“combat the growing presence of online sexual exploitation, human trafficking”
+</div>
+<span class="context">Canada’s Conservatives will <mark>combat the growing presence of online sexual exploitation, human trafficking</mark>, and extremist groups. We believe that this can best be done by using the Criminal Code and our criminal justice system.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Securing Equality, Health and Safety for Canadian Women”
+</div>
+<span class="context">a. <mark>Securing Equality, Health and Safety for Canadian Women</mark> . . . b. Breaking Down Barriers for Disabled Canadians</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Restore Canadian leadership in advocating for persecuted sexual minorities”
+</div>
+<span class="context"><mark>Restore Canadian leadership in advocating for persecuted sexual minorities</mark> in the face of repression. A Conservative government will speak clearly and confidently for the inalienable human dignity of LGBTQ people</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Restore Canadian leadership in advocating for persecuted sexual minorities”
+</div>
+<span class="context"><mark>Restore Canadian leadership in advocating for persecuted sexual minorities</mark> in the face of repression. A Conservative government will speak clearly and confidently for the inalienable human dignity of LGBTQ people</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · mixed · chunk 4</span>
+<div class="quote">
+“Fight online incitement and hatred by clearly criminalizing”
+</div>
+<span class="context"><mark>Fight online incitement and hatred by clearly criminalizing</mark> statements that encourage acts of violence against other people or identifiable groups. Conservatives will also protect forms of speech</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“supporting free markets and supporting consumers”
+</div>
+<span class="context">Canada’s Conservatives do not confuse <mark>supporting free markets and supporting consumers</mark> with doing favours for big businesses, as the Trudeau Liberals have.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“promote competition by: Allowing foreign telecommunications”
+</div>
+<span class="context">practices that hurt consumers. Competition: We will <mark>promote competition by: Allowing foreign telecommunications</mark> companies to provide services to</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“democracy, human rights, and the rule of law”
+</div>
+<span class="context"><mark>democracy, human rights, and the rule of law</mark>. We will: Work with our allies</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Free speech, freedom of expression, and a free press”
+</div>
+<span class="context">What we do not support are restrictions on legitimate freedom of speech. <mark>Free speech, freedom of expression, and a free press</mark> are fundamental tenets of Canadian law</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“enacting the toughest accountability and transparency laws in Canada’s history”
+</div>
+<span class="context">SECURE ACCOUNTABILITY BY ENACTING A NEW ANTI-CORRUPTION LAW TO CLEAN UP THE MESS IN OTTAWA. Canada’s Conservatives will put the country first, by <mark>enacting the toughest accountability and transparency laws in Canada’s history</mark>. Toughen the Conflict of Interest Act and impose higher penalties; Toughen the Lobbying Act to end abuse by Liberal insiders; and Increase transparency to end Liberal cover-ups.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Canada’s Conservatives will pass an Anti-Corruption Act to strengthen our legislation on ethics, lobbying, and transparency”
+</div>
+<span class="context">We need stricter laws to require ethics in government, prevent cover-ups, and ensure that lobbying is adequately regulated. <mark>Canada’s Conservatives will pass an Anti-Corruption Act to strengthen our legislation on ethics, lobbying, and transparency</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“democracy, human rights, and the rule of law”
+</div>
+<span class="context"><mark>democracy, human rights, and the rule of law</mark>. We will: Work with our allies to address efforts by China, Russia, Iran, and others actively undermining democratic norms, institutions, and the rule of law.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Free speech, freedom of expression, and a free press are fundamental”
+</div>
+<span class="context">What we do not support are restrictions on legitimate freedom of speech. <mark>Free speech, freedom of expression, and a free press are fundamental</mark> tenets of Canadian law and Canadian democracy.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Making Canada the best place to invest”
+</div>
+<span class="context"><mark>Making Canada the best place to invest</mark> and build a business: The Liberals, NDP, and Greens have actively driven investment out of Canada</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“safeguard our democracy against the whims”
+</div>
+<span class="context">These measures will <mark>safeguard our democracy against the whims</mark> of unscrupulous politicians. Fix Access to Information by giving the Commissioner of Information the power to make orders</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“free and open digital trade”
+</div>
+<span class="context">promoting the development of rules of <mark>free and open digital trade</mark>, advancing economic opportunities with trusted partners, and removing barriers for Canadian companies.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Free speech, freedom of expression, and a free press”
+</div>
+<span class="context"><mark>Free speech, freedom of expression, and a free press</mark> are fundamental tenets of Canadian law and Canadian democracy. We will oppose government censorship</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“toughen the Lobbying Act to end abuse by Liberal insiders”
+</div>
+<span class="context">transparency laws in Canada’s history. Toughen the Conflict of Interest Act and impose higher penalties; Toughen the Lobbying Act to end abuse by Liberal insiders; and Increase transparency to end Liberal cover-ups.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“A few giant companies have too much power”
+</div>
+<span class="context">on their mobile phones. <mark>A few giant companies have too much power</mark>, and Canadians are suffering for it.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“pensioners have priority over corporate elites”
+</div>
+<span class="context">ensure that <mark>pensioners have priority over corporate elites</mark> in bankruptcy or restructuring.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“ignoring those rich enough to pay”
+</div>
+<span class="context">continues to go after small businesses while <mark>ignoring those rich enough to pay</mark> for expensive lawyers and accountants.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“enacting the toughest accountability and transparency laws in Canada’s history”
+</div>
+<span class="context">SECURE ACCOUNTABILITY BY ENACTING A NEW ANTI-CORRUPTION LAW TO CLEAN UP THE MESS IN OTTAWA. Canada’s Conservatives will put the country first, by <mark>enacting the toughest accountability and transparency laws in Canada’s history</mark>. Toughen the Conflict of Interest Act and impose higher penalties; Toughen the Lobbying Act to end abuse by Liberal insiders; and Increase transparency to end Liberal cover-ups.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“A few giant companies have too much power”
+</div>
+<span class="context">Canadians continue to pay some of the highest prices in the world for accessing the internet – both at home and on their mobile phones. <mark>A few giant companies have too much power</mark>, and Canadians are suffering for it. It’s time for a government that takes the side of consumers.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“Trudeau’s China policy has primarily been more concerned with improving business relations for well-connected Liberals”
+</div>
+<span class="context">The Liberals, NDP, and Greens don’t take these threats seriously. <mark>Trudeau’s China policy has primarily been more concerned with improving business relations for well-connected Liberals</mark> than with defending Canada’s interests and values.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“stand up for those who don’t have a voice today”
+</div>
+<span class="context">The wealthy, big U.S. tech companies, and large multinationals will always have a voice. Canada’s Conservatives will <mark>stand up for those who don’t have a voice today</mark>: working and middle-class Canadians, New Canadians, small businesspersons have been hit doubly hard by the COVID crisis.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“clean up the mess in Ottawa”
+</div>
+<span class="context">SECURE ACCOUNTABILITY BY ENACTING A NEW ANTI-CORRUPTION LAW TO CLEAN UP THE MESS IN OTTAWA. Canada’s Conservatives will put the country first</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“A few giant companies have too much power”
+</div>
+<span class="context">Canadians continue to pay some of the highest prices in the world for accessing the internet. <mark>A few giant companies have too much power</mark>, and Canadians are suffering for it.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“pander to the priorities of dictators and despots”
+</div>
+<span class="context">Canada’s Conservatives will prioritize Canadian interests and values at the United Nations, not <mark>pander to the priorities of dictators and despots</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“wealthy, big U.S. tech companies, and large multinationals will always have a voice”
+</div>
+<span class="context">A Detailed Plan to Secure Tax Fairness The <mark>wealthy, big U.S. tech companies, and large multinationals will always have a voice</mark>. Canada’s Conservatives will stand up for those who don’t have a voice today</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“working and middle-class Canadians”
+</div>
+<span class="context">stand up for those who don’t have a voice today: <mark>working and middle-class Canadians</mark>, New Canadians, small businesspersons</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“Canada is a community. Our goal is the common good of all Canadians”
+</div>
+<span class="context"><mark>Canada is a community. Our goal is the common good of all Canadians</mark>: a society where everyone can fulfill his or her potential. Our goal is to release the human spirit and potential of individual people, families and groups. To nurture, mobilize, and encourage generosity, individual talent, patriotism, and sense of community.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“It’s time for a government that takes the side of consumers”
+</div>
+<span class="context">Canadians continue to pay some of the highest prices in the world for accessing the internet – both at home and on their mobile phones. A few giant companies have too much power, and Canadians are suffering for it. <mark>It’s time for a government that takes the side of consumers</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Canada’s Conservatives are the party that ended racial discrimination in Canadian immigration”
+</div>
+<span class="context"><mark>Canada’s Conservatives are the party that ended racial discrimination in Canadian immigration</mark>, the party that streamlined processes for refugees and persecuted minorities, and the party that ensured that those who arrive on our shores have the greatest chance to succeed.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“stand up for those who don’t have a voice today”
+</div>
+<span class="context">The wealthy, big U.S. tech companies, and large multinationals will always have a voice. Canada’s Conservatives will <mark>stand up for those who don’t have a voice today</mark>: working and middle-class Canadians, New Canadians, small businesspersons have been hit doubly hard by the COVID crisis.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“a recovery for all Canadians”
+</div>
+<span class="context">We need <mark>a recovery for all Canadians</mark> in every sector, which our plan will deliver.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“It’s time for a government that takes the side of consumers”
+</div>
+<span class="context">A few giant companies have too much power, and Canadians are suffering for it. <mark>It’s time for a government that takes the side of consumers</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“govern for all Canadians”
+</div>
+<span class="context">Canada’s Conservatives will <mark>govern for all Canadians</mark>, which means treating Alberta, Saskatchewan, Manitoba, and British Columbia with respect.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“working and middle-class Canadians, New Canadians, small businesspersons”
+</div>
+<span class="context">Canada’s Conservatives will stand up for those who don’t have a voice today: <mark>working and middle-class Canadians, New Canadians, small businesspersons</mark> have been hit doubly hard</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“time for Conservatives to take inequality seriously”
+</div>
+<span class="context">puts working Canadians at the front of the recovery. You’ll probably notice ideas that you haven’t heard from Conservatives like me before. It’s <mark>time for Conservatives to take inequality seriously</mark>, because that’s becoming more of a problem</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“taking inequality seriously, because that’s becoming more of a problem”
+</div>
+<span class="context">You’ll probably notice ideas that you haven’t heard from Conservatives like me before. It’s time for Conservatives to take inequality seriously, because that’s becoming more of a problem in our country. At heart, I’m an optimist.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Increasing the maximum fine for price-fixing from $24 million to $100 million”
+</div>
+<span class="context">Canada’s Conservatives will ensure that Canadians pay lower prices for food by: <mark>Increasing the maximum fine for price-fixing from $24 million to $100 million</mark> and introduce criminal penalties for executives for price-fixing.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“Canada’s Conservatives will double the Disability Supplement in the Canada Workers Benefit”
+</div>
+<span class="context"><mark>Canada’s Conservatives will double the Disability Supplement in the Canada Workers Benefit</mark> from $713 to $1,500, providing a major boost to lower-income disabled Canadians on top of our increase in the Canada Workers Benefit.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“take inequality seriously”
+</div>
+<span class="context">It’s time for Conservatives to <mark>take inequality seriously</mark>, because that’s becoming more of a problem in our country.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“reject mergers that substantially reduce competition”
+</div>
+<span class="context">We will also stand up to corporate Canada and <mark>reject mergers that substantially reduce competition</mark> and lead to layoffs and higher prices.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“make foreign tech companies pay their fair share”
+</div>
+<span class="context">Canada’s Conservatives will <mark>make foreign tech companies pay their fair share</mark> of taxes including sales tax and a digital services tax</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“wealthy pay their fair share”
+</div>
+<span class="context">Canada’s Conservatives will fix this program and ensure that the <mark>wealthy pay their fair share</mark>. Making Foreign Multinationals and Big Tech Companies Pay Their Fair Share</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“time for Conservatives to take inequality seriously”
+</div>
+<span class="context">puts working Canadians at the front of the recovery. You’ll probably notice ideas that you haven’t heard from Conservatives like me before. It’s <mark>time for Conservatives to take inequality seriously</mark>, because that’s becoming more of a problem</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“housing in Canada is truly for Canadian citizens”
+</div>
+<span class="context">housing market, we will ensure that <mark>housing in Canada is truly for Canadian citizens</mark> and residents first. The Liberals</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“stand up to the Communist government”
+</div>
+<span class="context">Standing Up to China’s Aggression We must <mark>stand up to the Communist government</mark> of China.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“working and middle-class Canadians”
+</div>
+<span class="context">stand up for those who don’t have a voice today: <mark>working and middle-class Canadians</mark>, New Canadians, small businesspersons</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“enacting the toughest accountability and transparency laws in Canada’s history”
+</div>
+<span class="context">SECURE ACCOUNTABILITY BY ENACTING A NEW ANTI-CORRUPTION LAW TO CLEAN UP THE MESS IN OTTAWA. Canada’s Conservatives will put the country first, by <mark>enacting the toughest accountability and transparency laws in Canada’s history</mark>. Toughen the Conflict of Interest Act and impose higher penalties; Toughen the Lobbying Act to end abuse by Liberal insiders; and Increase transparency to end Liberal cover-ups.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“A few giant companies have too much power”
+</div>
+<span class="context">Canadians continue to pay some of the highest prices in the world for accessing the internet – both at home and on their mobile phones. <mark>A few giant companies have too much power</mark>, and Canadians are suffering for it. It’s time for a government that takes the side of consumers.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Canada’s Conservatives are the party that ended racial discrimination in Canadian immigration”
+</div>
+<span class="context"><mark>Canada’s Conservatives are the party that ended racial discrimination in Canadian immigration</mark>, the party that streamlined processes for refugees and persecuted minorities, and the party that ensured that those who arrive on our shores have the greatest chance to succeed.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“stand up for those who don’t have a voice today”
+</div>
+<span class="context">The wealthy, big U.S. tech companies, and large multinationals will always have a voice. Canada’s Conservatives will <mark>stand up for those who don’t have a voice today</mark>: working and middle-class Canadians, New Canadians, small businesspersons have been hit doubly hard by the COVID crisis.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Liberals, NDP, and Greens have ruined”
+</div>
+<span class="context">The <mark>Liberals, NDP, and Greens have ruined</mark> the once-enviable finances of Canada with very little to show for it.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“Canadians are suffering for it”
+</div>
+<span class="context">A few giant companies have too much power, and <mark>Canadians are suffering for it</mark>. It’s time for a government that takes the side of consumers.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“stand up to the Communist government of China”
+</div>
+<span class="context">We must <mark>stand up to the Communist government of China</mark>. Our quarrel is not with the people of China</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“stand up for those who don’t have a voice today”
+</div>
+<span class="context">Canada’s Conservatives will <mark>stand up for those who don’t have a voice today</mark>: working and middle-class Canadians, New Canadians, small businesspersons</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“reduce our reliance on foreign countries like China”
+</div>
+<span class="context">We must never again be caught as unprepared as we were when COVID hit last year. Canada’s Conservatives will make Canada more resilient, <mark>reduce our reliance on foreign countries like China</mark>, and take seriously our responsibility to protect</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Ban foreign investors not living in”
+</div>
+<span class="context">We will: <mark>Ban foreign investors not living in</mark> or moving to Canada from buying homes</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“stand up to the Communist government”
+</div>
+<span class="context">Standing Up to China’s Aggression We must <mark>stand up to the Communist government</mark> of China.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Protecting Jobs and National Security”
+</div>
+<span class="context">Canada’s Conservatives will: Reform Canada’s procurement rules to create a vital national interest category that must be sourced in Canada; Create a strategy to repatriate and diversify supply chains to move them away from China. Protect Canadian intellectual property with a strengthened Investment Canada Act that includes: A presumption against allowing the takeover of Canadian companies by China’s designated state-owned entities; A reformed “net benefits” test to better account for the potential effects of a transaction on the broader innovation ecosystem with a particular focus on protecting intellectual property and human capital; Automatic review of transactions involving sensitive sectors such as defence, artificial intelligence, and rare earth minerals; and A mandatory national security review.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Ban foreign investors not living in or moving to Canada from buying homes here for a two year period”
+</div>
+<span class="context">To arrest and reverse the inflationary impacts of foreign buyers and speculation in the housing market, we will ensure that housing in Canada is truly for Canadian citizens and residents first. We will: <mark>Ban foreign investors not living in or moving to Canada from buying homes here for a two year period</mark> after which it will be reviewed.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“We must stand up to the Communist government of China. Our quarrel is not with the people of China”
+</div>
+<span class="context"><mark>We must stand up to the Communist government of China. Our quarrel is not with the people of China</mark> – part of an ancient civilization that has contributed much to humanity. We stand especially with Chinese Canadians whose contributions to Canada are immeasurable and who are enduring an appalling rise in anti-Asian hate and discrimination.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“opposed Justin Trudeau’s attempt to create a national speech regulator”
+</div>
+<span class="context">We will oppose government censorship of material that is not criminal in nature merely because some may find it to be offensive. Consequently, we have <mark>opposed Justin Trudeau’s attempt to create a national speech regulator</mark> for social media. Unlike the Liberals, we will not use the power of government to censor those we disagree with.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“reduce our reliance on foreign countries like China”
+</div>
+<span class="context">Canada’s Conservatives will make Canada more resilient, <mark>reduce our reliance on foreign countries like China</mark>, and take seriously our responsibility</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“Ban foreign investors not living in or moving to Canada”
+</div>
+<span class="context">We will: <mark>Ban foreign investors not living in or moving to Canada</mark> from buying homes here for a two year period after which it will be reviewed.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“end illegal border crossings and unofficial points of entry”
+</div>
+<span class="context">Canada’s Conservatives will <mark>end illegal border crossings and unofficial points of entry</mark> like Roxham Road.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“Canadians and Canadians alone determine our nation’s domestic tax policy”
+</div>
+<span class="context">But that doesn’t mean giving up sovereignty over our tax system. <mark>Canadians and Canadians alone determine our nation’s domestic tax policy</mark> and rates.</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“to end Liberal cover-ups”
+</div>
+<span class="context">Toughen the Conflict of Interest Act and impose higher penalties; Toughen the Lobbying Act to end abuse by Liberal insiders; and Increase transparency <mark>to end Liberal cover-ups</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“shield government insiders from criminal investigation”
+</div>
+<span class="context">ensure that Cabinet Confidence can no longer be used to <mark>shield government insiders from criminal investigation</mark>. Where the government does not</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“pander to the priorities of dictators”
+</div>
+<span class="context">interests and values at the United Nations, not <mark>pander to the priorities of dictators</mark> and despots.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“end Liberal cover-ups”
+</div>
+<span class="context">Toughen the Lobbying Act to end abuse by Liberal insiders; and Increase transparency to <mark>end Liberal cover-ups</mark>. SECURE MENTAL HEALTH THROUGH OUR CANADA MENTAL HEALTH ACTION PLAN. The last year has made clear the mental health crisis we face.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“The Liberals are on record stating, “we’re a very safe market for foreign investment but we’re not a great market for Canadians”
+</div>
+<span class="context">To arrest and reverse the inflationary impacts of foreign buyers and speculation in the housing market, we will ensure that housing in Canada is truly for Canadian citizens and residents first. <mark>The Liberals are on record stating, “we’re a very safe market for foreign investment but we’re not a great market for Canadians</mark> looking for choices around housing.” This must change.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Oppose the world’s dictators, advocate for the most marginalized, and be a powerful voice for universal values”
+</div>
+<span class="context">Canada’s Conservatives will prioritize Canadian interests and values at the United Nations, not pander to the priorities of dictators and despots. We will: <mark>Oppose the world’s dictators, advocate for the most marginalized, and be a powerful voice for universal values</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 4</span>
+<div class="quote">
+“Justin Trudeau’s attempt to create a national speech regulator”
+</div>
+<span class="context">We will oppose government censorship of material that is not criminal in nature merely because some may find it to be offensive. Consequently, we have opposed <mark>Justin Trudeau’s attempt to create a national speech regulator</mark> for social media. Unlike the Liberals, we will not use the power of government to censor those we disagree with.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Liberals, NDP, and Greens have ruined”
+</div>
+<span class="context">The <mark>Liberals, NDP, and Greens have ruined</mark> the once-enviable finances of Canada with very little to show for it.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“They don’t believe the rules apply to them”
+</div>
+<span class="context">They interfered in the judicial process to help their well-connected friends. <mark>They don’t believe the rules apply to them</mark>. We need stricter laws to require ethics in government</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“Liberals prioritize politics over nation-building”
+</div>
+<span class="context">The <mark>Liberals prioritize politics over nation-building</mark>. Their words have not matched their deeds, and their failures are shown by the absence of meaningful results.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“path of failure and soaring debt with a Liberal government”
+</div>
+<span class="context">to continue down the <mark>path of failure and soaring debt with a Liberal government</mark> that will spend and spend without a plan for growth. Or Canadians can choose a Conservative Government</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“puts working Canadians at the front of the recovery”
+</div>
+<span class="context">So, while the plan is detailed, the priorities are actually quite simple. Next, it’s a plan for all Canadians. It’s one that <mark>puts working Canadians at the front of the recovery</mark>. You’ll probably notice ideas that you haven’t heard</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“serves the interests of everyday Canadians”
+</div>
+<span class="context">We need a real estate market that <mark>serves the interests of everyday Canadians</mark>: the young family who needs</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“working and middle-class Canadians”
+</div>
+<span class="context">stand up for those who don’t have a voice today: <mark>working and middle-class Canadians</mark>, New Canadians</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“stand up for those who don’t have a voice”
+</div>
+<span class="context">Canada’s Conservatives will <mark>stand up for those who don’t have a voice</mark> today: working and middle-class Canadians</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Canada is a community. Our goal is the common good of all Canadians”
+</div>
+<span class="context"><mark>Canada is a community. Our goal is the common good of all Canadians</mark>: a society where everyone can fulfill his or her potential. Our goal is to release the human spirit and potential of individual people, families and groups. To nurture, mobilize, and encourage generosity, individual talent, patriotism, and sense of community.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Canadians pay some of the highest prices”
+</div>
+<span class="context">Canadians continue to pay some of the highest prices in the world for accessing the internet – both at home and on their mobile phones. A few giant companies have too much power, and Canadians are suffering for it.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“Canada remains a beacon of the best humanity has to offer, providing safety and opportunity to all”
+</div>
+<span class="context">Nowhere on earth is there more equality of opportunity, embrace of diversity, or success for newcomers than Canada. <mark>Canada remains a beacon of the best humanity has to offer, providing safety and opportunity to all</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“working and middle-class Canadians, New Canadians, small businesspersons”
+</div>
+<span class="context">Canada’s Conservatives will stand up for those who don’t have a voice today: <mark>working and middle-class Canadians, New Canadians, small businesspersons</mark> have been hit doubly hard by the COVID crisis. They’ve suffered disproportionately, far more than those with greater means.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“puts working Canadians at the front”
+</div>
+<span class="context">It’s one that <mark>puts working Canadians at the front</mark> of the recovery. You’ll probably notice ideas that you haven’t heard from Conservatives like me before.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“real estate market that serves the interests of everyday Canadians”
+</div>
+<span class="context">We need a <mark>real estate market that serves the interests of everyday Canadians</mark>: the young family who needs more space for their kids, the recent university grad trying to find an apartment</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“stand up for those who don’t have a voice today”
+</div>
+<span class="context">Canada’s Conservatives will <mark>stand up for those who don’t have a voice today</mark>: working and middle-class Canadians, New Canadians, small businesspersons</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“stand up for those who don’t have a voice today”
+</div>
+<span class="context">Canada’s Conservatives will <mark>stand up for those who don’t have a voice today</mark>: working and middle-class Canadians, New Canadians, small businesspersons</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“puts working Canadians at the front of the recovery”
+</div>
+<span class="context">So, while the plan is detailed, the priorities are actually quite simple. Next, it’s a plan for all Canadians. It’s one that <mark>puts working Canadians at the front of the recovery</mark>. You’ll probably notice ideas that you haven’t heard</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“takes the side of consumers”
+</div>
+<span class="context">It’s time for a government that <mark>takes the side of consumers</mark>. Canada’s Conservatives will take real action</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“pensioners have priority over corporate elites”
+</div>
+<span class="context">ensure that <mark>pensioners have priority over corporate elites</mark> in bankruptcy or restructuring.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“stand up for those who don’t have a voice”
+</div>
+<span class="context">Canada’s Conservatives will <mark>stand up for those who don’t have a voice</mark> today: working and middle-class Canadians</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“enacting the toughest accountability and transparency laws in Canada’s history”
+</div>
+<span class="context">SECURE ACCOUNTABILITY BY ENACTING A NEW ANTI-CORRUPTION LAW TO CLEAN UP THE MESS IN OTTAWA. Canada’s Conservatives will put the country first, by <mark>enacting the toughest accountability and transparency laws in Canada’s history</mark>. Toughen the Conflict of Interest Act and impose higher penalties; Toughen the Lobbying Act to end abuse by Liberal insiders; and Increase transparency to end Liberal cover-ups.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“A few giant companies have too much power”
+</div>
+<span class="context">Canadians continue to pay some of the highest prices in the world for accessing the internet – both at home and on their mobile phones. <mark>A few giant companies have too much power</mark>, and Canadians are suffering for it. It’s time for a government that takes the side of consumers.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“Trudeau’s China policy has primarily been more concerned with improving business relations for well-connected Liberals”
+</div>
+<span class="context">The Liberals, NDP, and Greens don’t take these threats seriously. <mark>Trudeau’s China policy has primarily been more concerned with improving business relations for well-connected Liberals</mark> than with defending Canada’s interests and values.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“stand up for those who don’t have a voice today”
+</div>
+<span class="context">The wealthy, big U.S. tech companies, and large multinationals will always have a voice. Canada’s Conservatives will <mark>stand up for those who don’t have a voice today</mark>: working and middle-class Canadians, New Canadians, small businesspersons have been hit doubly hard by the COVID crisis.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“clean up the mess in Ottawa”
+</div>
+<span class="context">SECURE ACCOUNTABILITY BY ENACTING A NEW ANTI-CORRUPTION LAW TO CLEAN UP THE MESS IN OTTAWA. Canada’s Conservatives will put the country first</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“stand up to corporate Canada”
+</div>
+<span class="context">We will also <mark>stand up to corporate Canada</mark> and reject mergers that substantially reduce competition and lead to layoffs and higher prices.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“Trudeau’s China policy has primarily been more concerned”
+</div>
+<span class="context"><mark>Trudeau’s China policy has primarily been more concerned</mark> with improving business relations for well-connected Liberals than with defending Canada’s interests and values.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“wealthy, big U.S. tech companies, and large multinationals will always have a voice”
+</div>
+<span class="context">A Detailed Plan to Secure Tax Fairness The <mark>wealthy, big U.S. tech companies, and large multinationals will always have a voice</mark>. Canada’s Conservatives will stand up for those who don’t have a voice today</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="62623_202109_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

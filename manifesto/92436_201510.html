@@ -1,0 +1,2809 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>PiS (Poland, 2015) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/92436_201510_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">PiS (Poland, 2015)</h1>
+<p class="subtitle lead">manifesto_id 92436_201510</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Poland · <span class="item"><strong>Party</strong></span> PiS (Law and Justice) · <span class="item"><strong>Year</strong></span> 2015 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 70</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.1</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.8</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.1</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.6</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.6</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.6</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.8</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.1</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.4</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.6</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.5</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“dążenie do wyprzedaży majątku narodowego”
+</div>
+<span class="context">Drugi – <mark>dążenie do wyprzedaży majątku narodowego</mark>, która stała się niemal manią</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“wolny rynek (silne państwo jest przyjacielem rynku)”
+</div>
+<span class="context">Mocne państwo i związany z nim <mark>wolny rynek (silne państwo jest przyjacielem rynku)</mark>, sprawnie działające</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“Finanse publiczne muszą być instrumentem rozwoju”
+</div>
+<span class="context">Rolę Ministerstwa Finansów ograniczymy do strategicznego planowania finansowego… <mark>Finanse publiczne muszą być instrumentem rozwoju</mark> gospodarczego</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“koncepcja nowoczesnego interwencjonizmu państwowego”
+</div>
+<span class="context">Jest to <mark>koncepcja nowoczesnego interwencjonizmu państwowego</mark>, bez którego nasze państwo może jedynie</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 5</span>
+<div class="quote">
+“Nie dopuścimy do prywatyzacji Poczty Polskiej”
+</div>
+<span class="context">Zadowalająca rentowność narodowego operatora pocztowego powinna być osiągana nie przez podnoszenie cen usług. <mark>Nie dopuścimy do prywatyzacji Poczty Polskiej</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“odrzucamy twierdzenie, że mechanizmy rynkowe”
+</div>
+<span class="context">bezpieczeństwo zdrowotne należy traktować jak cywilizacyjną zdobycz współczesnego świata. Odrzucamy twierdzenie, że mechanizmy rynkowe mogą być podstawą funkcjonowania</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“Cofniemy przepisy umożliwiające przekazywanie szkół”
+</div>
+<span class="context"><mark>Cofniemy przepisy umożliwiające przekazywanie szkół</mark> przez jednostki samorządu terytorialnego osobom fizycznym i prywatnym osobom prawnym, np. fundacjom.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“wspólny rynek, swoboda przepływu”
+</div>
+<span class="context">najważniejszymi zdobyczami Unii są: <mark>wspólny rynek, swoboda przepływu</mark> osób, dóbr</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“odrzucamy etatyzm, tj. dążenie do upaństwowienia szerokiej sfery życia społecznego”
+</div>
+<span class="context">Właśnie dlatego zdecydowanie odrzucając etatyzm, tj. dążenie do upaństwowienia szerokiej sfery życia społecznego, odrzucamy niezdolność państwa do podejmowania działań koniecznych dla obrony interesów wspólnoty, dobra obywateli, wreszcie dla obrony samego siebie.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“marnuje te środki”
+</div>
+<span class="context">…PO <mark>marnuje te środki</mark>. Jedną z przyczyn jest głęboko osadzona kulturowa niezdolność do sprawnego rządzenia, symetryczna do zdolności łamania wszelkich norm kulturowych, a drugą przyczyną – korupcja.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“finanse publiczne muszą być instrumentem rozwoju gospodarczego”
+</div>
+<span class="context">Rolę Ministerstwa Finansów ograniczymy do strategicznego planowania finansowego oraz prowadzenia księgowości budżetowej państwa. Finanse publiczne muszą być instrumentem rozwoju gospodarczego i społecznego, a nie celem samym w sobie.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“przebudowie systemu podatkowego, która pozwoli na zwiększenie dochodów budżetu”
+</div>
+<span class="context">…Zmiana systemu finansowego w państwie będzie oparta na <mark>przebudowie systemu podatkowego, która pozwoli na zwiększenie dochodów budżetu</mark> państwa, uwolnienie rezerw podatkowych i realizację zasad solidarności i sprawiedliwości społecznej…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“Wprowadzimy jasne i zachęcające ulgi podatkowe dla przedsiębiorstw realizujących działalność B&amp;R”
+</div>
+<span class="context"><mark>Wprowadzimy jasne i zachęcające ulgi podatkowe dla przedsiębiorstw realizujących działalność B&amp;R</mark>, jakie istnieją np. w Norwegii, gdzie przedsiębiorstwa zatrudniające powyżej 250 pracowników mogą odpisać 18% sumy wydatków poniesionych na B&amp;R.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“Podniesiony z 7% na 23% VAT na ubranka i obuwie dziecięce zwiększa koszty utrzymania dzieci.”
+</div>
+<span class="context">Zerowa stawka VAT na ubranka dziecięce Polska powinna dążyć do wprowadzenia zerowej stawki podatku od towarów i usług na ubranka dziecięce. Uważamy, że mamy szanse naprawić błąd popełniony w negocjacjach akcesyjnych. <mark>Podniesiony z 7% na 23% VAT na ubranka i obuwie dziecięce zwiększa koszty utrzymania dzieci.</mark> Jest to zmiana szczególnie niekorzystna dla rodzin polskich rolników, którym wzrostu cen artykułów dla dzieci nie zrekompensuje żadna ulga w podatku dochodowym.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“Dyplomacja ekonomiczna i promocja Polski będzie służyć ekspansji gospodarczej polskiego kapitału”
+</div>
+<span class="context"><mark>Dyplomacja ekonomiczna i promocja Polski będzie służyć ekspansji gospodarczej polskiego kapitału</mark> i przyciąganiu inwestycji służących rozwojowi przemysłowemu i technologicznemu kraju.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“zdecydowanie odrzucając etatyzm, tj. dążenie do upaństwowienia”
+</div>
+<span class="context">Właśnie dlatego <mark>zdecydowanie odrzucając etatyzm, tj. dążenie do upaństwowienia</mark> szerokiej sfery życia społecznego, odrzucamy niezdolność państwa do podejmowania działań koniecznych dla obrony interesów wspólnoty</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“wolny rynek (silne państwo jest przyjacielem rynku)”
+</div>
+<span class="context">Mocne państwo i związany z nim <mark>wolny rynek (silne państwo jest przyjacielem rynku)</mark>, sprawnie działające, zapewniające dostęp do informacji mechanizmy demokratyczne</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“korzystanie z drogich usług sektora prywatnego”
+</div>
+<span class="context">skazują ich na <mark>korzystanie z drogich usług sektora prywatnego</mark>, wypełniającego lukę powstającą wskutek wycofywania się instytucji publicznych</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 4</span>
+<div class="quote">
+“deregulacja w aspekcie wewnętrznym i europejskim”
+</div>
+<span class="context">Pierwszy to <mark>deregulacja w aspekcie wewnętrznym i europejskim</mark>. Polska przestrzeń prawna jest zbyt „zabudowana” i nieprzejrzysta</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Nie dopuścimy do prywatyzacji Poczty Polskiej”
+</div>
+<span class="context"><mark>Nie dopuścimy do prywatyzacji Poczty Polskiej</mark>. Do rozważenia jest najwyżej niezbędne dokapitalizowanie przez giełdę, ale z zachowaniem większościowego pakietu akcji w ręku Skarbu Państwa.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 6</span>
+<div class="quote">
+“Odrzucamy twierdzenie, że mechanizmy rynkowe”
+</div>
+<span class="context"><mark>Odrzucamy twierdzenie, że mechanizmy rynkowe</mark> mogą być podstawą funkcjonowania głównej części systemu, a zdrowie to taki towar jak każdy inny.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 7</span>
+<div class="quote">
+“Ani nadmierna regulacja, ani komercjalizacja”
+</div>
+<span class="context"><mark>Ani nadmierna regulacja, ani komercjalizacja</mark>, ani biurokratyzacja, ani powielanie rozwiązań z importu nie przyniosło efektów zadowalających</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“swoboda przepływu osób, dóbr, kapitału i usług”
+</div>
+<span class="context">najważniejszymi zdobyczami Unii są: wspólny rynek, <mark>swoboda przepływu osób, dóbr, kapitału i usług</mark>, wolność i równość</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“mechanizmów ekonomicznych, finansowych i społecznych”
+</div>
+<span class="context">należy koniecznie napiętnować istnienie <mark>mechanizmów ekonomicznych, finansowych i społecznych</mark>, które, chociaż</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“udomowienie banków zwiększy zaangażowanie polskiego”
+</div>
+<span class="context">Udomowienie banków zwiększy zaangażowanie polskiego sektora finansowego w rozwój gospodarczy</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“odsetki od obligacji emitowanych przez kasy nie będą podlegać podatkowi”
+</div>
+<span class="context">Kasy będą dysponowały ułatwieniami w pozyskiwaniu i organizowaniu finansowania na cele mieszkaniowe – <mark>odsetki od obligacji emitowanych przez kasy nie będą podlegać podatkowi</mark> od zysków kapitałowych.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“część składki przekazywać do OFE”
+</div>
+<span class="context">czy chce należeć do drugiego filaru i <mark>część składki przekazywać do OFE</mark>, czy całą składkę pozostawić w ZUS.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“brak poważnej reakcji i interwencji w sprawie opcji walutowych”
+</div>
+<span class="context">Doskonałym przykładem może być <mark>brak poważnej reakcji i interwencji w sprawie opcji walutowych</mark>, które doprowadziły do poważnego pogorszenia się sytuacji ekonomicznej wielu małych i średnich przedsiębiorstw.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“Zwiększymy możliwości gwarancyjne BGK”
+</div>
+<span class="context">…Wzmocnienie możliwości gwarancyjnych polskiego BGK w granicach od 65 do 100 mld zł w latach 2015–2021 będzie rozwiązaniem bezpiecznym, niewymagającym nakładów ze strony państwa i neutralnym dla budżetu…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 4</span>
+<div class="quote">
+“podatek od instytucji finansowych”
+</div>
+<span class="context">Ustanowimy <mark>podatek od instytucji finansowych</mark> oraz sklepów wielkopowierzchniowych, co przyniesie dodatkowo około 7 mld złotych wpływów do budżetu rocznie</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“podatku od zysków kapitałowych na fundusze inwestycyjne”
+</div>
+<span class="context">Osoby fizyczne będą miały możliwość przekazywania środków należnych fiskusowi z tytułu <mark>podatku od zysków kapitałowych na fundusze inwestycyjne</mark> typu research and development</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“prywatni właściciele Funduszy mają zapewnione korzyści”
+</div>
+<span class="context">Dzisiaj już wiemy, że jedna strona, czyli <mark>prywatni właściciele Funduszy mają zapewnione korzyści</mark>, a druga strona, czyli płatnicy przymusowych składek, ponoszą ryzyko</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 8</span>
+<div class="quote">
+“utrzymania złotego i jego podmiotowości”
+</div>
+<span class="context">Dotyczy to w szczególności trzech zagadnień: <mark>utrzymania złotego i jego podmiotowości</mark> jako polskiej waluty narodowej</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“państwo suwerenne, demokratyczne, praworządne”
+</div>
+<span class="context"><mark>państwo suwerenne, demokratyczne, praworządne</mark>, ale jednocześnie sprawne. Warto, aby</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“naruszaniem w „systemie Tuska” z jednej strony podstawowych praw konstytucyjnych”
+</div>
+<span class="context">Mamy do czynienia z <mark>naruszaniem w „systemie Tuska” z jednej strony podstawowych praw konstytucyjnych</mark> i wręcz jednego</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · mixed · chunk 3</span>
+<div class="quote">
+“Szanując niezawisłość sędziowską i niezależność sądów”
+</div>
+<span class="context">Sądownictwo i prokuratura w naszym kraju wymagają zasadniczej naprawy… <mark>Szanując niezawisłość sędziowską i niezależność sądów</mark> od innych władz</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · mixed · chunk 4</span>
+<div class="quote">
+“Rada jest zdominowana przez środowisko sędziowskie”
+</div>
+<span class="context">W składzie określonym w obowiązującej Konstytucji, który w tym punkcie wymaga nowelizacji, <mark>Rada jest zdominowana przez środowisko sędziowskie</mark>, co sprzyja jego zamykaniu</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“prokuratura, w naszej wizji państwa podległa rządowi”
+</div>
+<span class="context">Aparat państwowy, w tym zwłaszcza <mark>prokuratura, w naszej wizji państwa podległa rządowi</mark>, zapewni skutecznie ściganie oszustów</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“Wyrok Trybunału Konstytucyjnego uznał działanie”
+</div>
+<span class="context">zostali pozbawieni opieki. <mark>Wyrok Trybunału Konstytucyjnego uznał działanie</mark> rządu za bezprawne. Przywrócimy opiekunom</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · mixed · chunk 7</span>
+<div class="quote">
+“konstytucyjną wolność jednostki Ustawę „O Systemie”
+</div>
+<span class="context">Z wielką determinacją i bez zbędnej zwłoki zmienimy inwigilującą i naruszającą <mark>konstytucyjną wolność jednostki Ustawę „O Systemie</mark> Informacji Oświatowej”.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 8</span>
+<div class="quote">
+“demokratycznej Rzeczypospolitej”
+</div>
+<span class="context">będą wiernie służyć wolnej i <mark>demokratycznej Rzeczypospolitej</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“demokracja, jak wskazują na to historyczne doświadczenie”
+</div>
+<span class="context">Tylko demokracja zapewnia jednostce podmiotowość, czyli bycie obywatelem, tylko w demokracji można budować równowagę sił społecznych, która umożliwia sprawiedliwą politykę i jest też warunkiem praworządności.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“„system Tuska” jest wypaczeniem istoty demokracji”
+</div>
+<span class="context">…„System Tuska” jest wypaczeniem istoty demokracji zarówno w odniesieniu do jej treści, jak również procedur i mechanizmów charakteryzujących ten ustrój polityczny.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“niezależność sądów”
+</div>
+<span class="context">Szanując niezawisłość sędziowską i <mark>niezależność sądów</mark> od innych władz, Prawo i Sprawiedliwość po wygraniu wyborów zainicjuje rozwiązania ustawowe i organizacyjne prowadzące do usprawnienia sądownictwa i usunięcia narastających w nim patologii.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Rzecznik Praw Obywatelskich Urząd Rzecznika otrzyma nowe uprawnienia”
+</div>
+<span class="context">…<mark>Rzecznik Praw Obywatelskich Urząd Rzecznika otrzyma nowe uprawnienia</mark> w celu obrony praw i wolności obywatelskich w relacjach z aparatem państwowym, w zakresie procedur administracyjnych i sądowych oraz odpowiedzialności dyscyplinarnej sędziów…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“Będziemy wspierać rodzinę w budowaniu jej bezpiecznego bytu”
+</div>
+<span class="context"><mark>Będziemy wspierać rodzinę w budowaniu jej bezpiecznego bytu</mark>, co oznacza stworzenie systemu zachęt do posiadania potomstwa objęcie macierzyństwa i rodzicielstwa szczególną opieką ze strony państwa.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“Państwo w sposób oczywisty musi więc być tym podmiotem, który za jakość i kształt edukacji ponosi szczególną odpowiedzialność.”
+</div>
+<span class="context">Edukacja jest sprawą o znaczeniu podstawowym dla nas wszystkich, a jej skutki ujawniają się i trwają wiele dziesięcioleci. <mark>Państwo w sposób oczywisty musi więc być tym podmiotem, który za jakość i kształt edukacji ponosi szczególną odpowiedzialność.</mark> Wolna i suwerenna Polska zależy od istnienia wolnych i suwerennych Polaków, a więc od takich Polaków, których umysły zostały do wolności i suwerenności odpowiednio przygotowane przez formację edukacyjną.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“realne zapewnienie wszystkim obywatelom konstytucyjnej wolności słowa i pluralizmu”
+</div>
+<span class="context">Prawo i Sprawiedliwość postuluje przeprowadzenie reformy debaty publicznej obejmującej: 1) <mark>realne zapewnienie wszystkim obywatelom konstytucyjnej wolności słowa i pluralizmu</mark>; 2) zapewnienie sprawiedliwego dostępu obywateli i opozycji politycznej do mediów i wprowadzenie cywilizowanych zasad funkcjonowania mediów</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“Demokracja to także prawo obywateli i ich reprezentantów do dysponowania pieniądzem publicznym”
+</div>
+<span class="context">Nie ma naszej zgody na to, aby polski budżet był poddany kontroli unijnych urzędników – nie wiadomo skąd, przez kogo powoływanych, w ramach procedury tzw. rekomendacji krajowych. <mark>Demokracja to także prawo obywateli i ich reprezentantów do dysponowania pieniądzem publicznym</mark> zebranym z podatków. Nie damy sobie tego prawa odebrać.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Tylko demokracja zapewnia jednostce podmiotowość”
+</div>
+<span class="context"><mark>Tylko demokracja zapewnia jednostce podmiotowość</mark>, czyli bycie obywatelem, tylko w demokracji można budować równowagę sił społecznych, która umożliwia sprawiedliwą politykę i jest też warunkiem praworządności.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“psucie publicznej debaty i demokratycznych obyczajów”
+</div>
+<span class="context">Póki rzecz dzieje się jedynie w sferze słów, można mówić o psuciu publicznej debaty i demokratycznych obyczajów, gdyby jednak doszło do czynów – sięgnięcia po te środki – to mielibyśmy już do czynienia z zupełnie nową jakością</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 3</span>
+<div class="quote">
+“niezawisłość sędziowską i niezależność sądów”
+</div>
+<span class="context">Szanując <mark>niezawisłość sędziowską i niezależność sądów</mark> od innych władz, Prawo i Sprawiedliwość po wygraniu wyborów zainicjuje rozwiązania ustawowe</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“niezależność NIK jako najważniejszego organu kontrolnego”
+</div>
+<span class="context">Przywrócimy rzeczywistą <mark>niezależność NIK jako najważniejszego organu kontrolnego</mark> w państwie</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“groźnych dla demokracji i dla dobra wspólnoty”
+</div>
+<span class="context">Niektóre gminy wiejskie zdominowane przez PSL są coraz bardziej oplatane siecią lokalnych grup interesu, <mark>groźnych dla demokracji i dla dobra wspólnoty</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“walczyli o wolność, demokrację naszej ojczyzny”
+</div>
+<span class="context">Jest niedopuszczalne, aby ludzie, którzy <mark>walczyli o wolność, demokrację naszej ojczyzny</mark> nie mieli dzisiaj środków do życia.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · mixed · chunk 7</span>
+<div class="quote">
+“wolność słowa i pluralizmu”
+</div>
+<span class="context">realne zapewnienie wszystkim obywatelom konstytucyjnej wolności słowa i pluralizmu; zapewnienie sprawiedliwego dostępu obywateli i opozycji politycznej do mediów</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 8</span>
+<div class="quote">
+“Unia demokracji, a demokracja jest organizowana”
+</div>
+<span class="context"><mark>Unia demokracji, a demokracja jest organizowana</mark> w państwach członkowskich, bowiem w tych państwach istnieje realny lud obywatelski</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“szerzenie się ideologii gender”
+</div>
+<span class="context">Groźne dla rodziny i rodzicielstwa w Polsce jest też <mark>szerzenie się ideologii gender</mark>. Jej rozpowszechnianie</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“akceptacja dla ideologii gender oraz innych”
+</div>
+<span class="context">a z drugiej jest to <mark>akceptacja dla ideologii gender oraz innych</mark> przemian kulturowych</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“poszanowanie praw rodziców i autonomii”
+</div>
+<span class="context">skutecznego wsparcia ubogiej rodziny z dziećmi. Zasadą polityki rodzinnej jest <mark>poszanowanie praw rodziców i autonomii</mark> rodziny. Celem jest budowanie spójnego</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 8</span>
+<div class="quote">
+“ryzykownych kulturowych eksperymentów”
+</div>
+<span class="context">ponadnarodowego zaprowadzania <mark>ryzykownych kulturowych eksperymentów</mark>, które nie są</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“postulaty sprawiedliwości i równości”
+</div>
+<span class="context">Postulaty sprawiedliwości i równości traktujemy jako ważną przesłankę konstruowania ładu społecznego i środowiska międzynarodowego w taki sposób, aby dawały w możliwie wysokim stopniu równość szans w osiąganiu społecznej pozycji oraz dóbr materialnych.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“wspierane są lewackie periodyki; w rożnego rodzaju finansowanych przez państwo przekazach kulturowych atakuje się patriotyzm i narodowe wartości”
+</div>
+<span class="context">…Preferencja dla twórczości godzącej w polskie wartości jest wyraźna. Wspierane są lewackie periodyki; w rożnego rodzaju finansowanych przez państwo przekazach kulturowych atakuje się patriotyzm i narodowe wartości.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“zero tolerancji dla patologii”
+</div>
+<span class="context">Zero tolerancji dla patologii w wymiarze sprawiedliwości. Wymiar sprawiedliwości powinien być sferą działalności państwa całkowicie wolną od korupcji, nepotyzmu, układów towarzysko-biznesowych.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“organizacja społeczna specjalizująca się w problematyce praw człowieka”
+</div>
+<span class="context">…Prawo do zaskarżenia wyroku lub postanowienia w trybie rewizji nadzwyczajnej będzie przysługiwać Ministrowi Sprawiedliwości i Rzecznikowi Praw Obywatelskich. Jeżeli o skorzystanie z tego środka zaskarżenia wystąpi <mark>organizacja społeczna specjalizująca się w problematyce praw człowieka</mark>…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“Prawa i dobro rodziny zgodnie z Konstytucją”
+</div>
+<span class="context">Wszystkie reformy wprowadzające zmiany polityczne, ekonomiczne i społeczne muszą uwzględniać dobro i prawa rodziny. Prawo i Sprawiedliwość będzie przestrzegać zasady, aby w całym procesie stanowienia prawa były respektowane, zgodnie z Konstytucją, prawa i dobro rodziny.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“Zasadą polityki rodzinnej jest poszanowanie praw rodziców i autonomii rodziny.”
+</div>
+<span class="context">W obronie praw rodziców Skończymy z nasilającą się praktyką zabierania dzieci z domów z powodu ubóstwa rodziców. Wprowadzimy ograniczenia prawne, by takie działania były wykluczone. Pomoc społeczna będzie zobowiązana do skutecznego wsparcia ubogiej rodziny z dziećmi. <mark>Zasadą polityki rodzinnej jest poszanowanie praw rodziców i autonomii rodziny.</mark></span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“powszechny dostęp do tanich (bezpłatnych) usług prawnych”
+</div>
+<span class="context">(1)Wprowadzenie państwowego systemu formalnej i nieformalnej edukacji obywatelskiej i wychowania patriotycznego, realizowanego przy współudziale sektora obywatelskie-go i z racjonalnym wykorzystaniem istniejącej infrastruktury edukacyjno-kulturalnej (szkoły, przedszkola, biblioteki, domy kultury itp.). Edukacja powinna obejmować ró-wnież kwestię świadomości prawnej, także poprzez <mark>powszechny dostęp do tanich (bezpłatnych) usług prawnych</mark> (nauka przez doświadczenie)</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“Będziemy skutecznie bronić polskiej tożsamości narodowej, tradycji, kultury oraz polskiego modelu życia i obyczajów”
+</div>
+<span class="context"><mark>Będziemy skutecznie bronić polskiej tożsamości narodowej, tradycji, kultury oraz polskiego modelu życia i obyczajów</mark> przed pojawiającymi się tendencjami do ponadnarodowego zaprowadzania ryzykownych kulturowych eksperymentów, które nie są akceptowane przez większość społeczeństwa.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“ideologii gender. Jej rozpowszechnianie ma charakter sztuczny”
+</div>
+<span class="context">Groźne dla rodziny i rodzicielstwa w Polsce jest też szerzenie się <mark>ideologii gender. Jej rozpowszechnianie ma charakter sztuczny</mark>, warunkowany przede wszystkim przez strumienie środków finansowych, w znacznej mierze zewnętrznych.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“akceptacja dla ideologii gender oraz innych przemian”
+</div>
+<span class="context">z drugiej jest to <mark>akceptacja dla ideologii gender oraz innych przemian</mark> kulturowych i obyczajowych, z jakimi mamy dziś do czynienia w Europie — framed negatively as political correctness pressure</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“konstytucyjnie zagwarantowanych praw i wolności obywatelskich”
+</div>
+<span class="context">aby nie dochodziło do naruszania <mark>konstytucyjnie zagwarantowanych praw i wolności obywatelskich</mark>, z czym mamy do czynienia w czasie rządów koalicji PO-PSL</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“obrony praw i wolności obywatelskich”
+</div>
+<span class="context">Urząd Rzecznika otrzyma nowe uprawnienia w celu <mark>obrony praw i wolności obywatelskich</mark> w relacjach z aparatem państwowym</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“politykę równych szans dla ludzi żyjących na wsi”
+</div>
+<span class="context">Prawo i Sprawiedliwość będzie prowadzić <mark>politykę równych szans dla ludzi żyjących na wsi</mark>, zarówno rolników, jak i niebędących rolnikami.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“Pełna integracja społeczna osób niepełnosprawnych”
+</div>
+<span class="context"><mark>Pełna integracja społeczna osób niepełnosprawnych</mark> zwiększa dostęp do uprawiania różnych dyscyplin sportowych.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 7</span>
+<div class="quote">
+“ochrona dzieci i młodzieży przed przemocą i demoralizacją”
+</div>
+<span class="context">Ważnym ich zadaniem stanie się <mark>ochrona dzieci i młodzieży przed przemocą i demoralizacją</mark>. Media publiczne powinny także pełnić ważną rolę edukacyjną</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 8</span>
+<div class="quote">
+“ryzykownych kulturowych eksperymentów, które nie są akceptowane”
+</div>
+<span class="context">Będziemy skutecznie bronić polskiej tożsamości narodowej, tradycji, kultury oraz polskiego modelu życia i obyczajów przed pojawiającymi się tendencjami do ponadnarodowego zaprowadzania <mark>ryzykownych kulturowych eksperymentów, które nie są akceptowane</mark> przez większość społeczeństwa</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“państwo suwerenne, demokratyczne, praworządne”
+</div>
+<span class="context"><mark>państwo suwerenne, demokratyczne, praworządne</mark>, ale jednocześnie sprawne. Warto, aby</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“wolny rynek (silne państwo jest przyjacielem rynku)”
+</div>
+<span class="context">Mocne państwo i związany z nim <mark>wolny rynek (silne państwo jest przyjacielem rynku)</mark>, sprawnie działające</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“Szanując niezawisłość sędziowską i niezależność sądów”
+</div>
+<span class="context">Sądownictwo i prokuratura w naszym kraju wymagają zasadniczej naprawy… <mark>Szanując niezawisłość sędziowską i niezależność sądów</mark> od innych władz</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“koncepcja nowoczesnego interwencjonizmu państwowego”
+</div>
+<span class="context">Jest to <mark>koncepcja nowoczesnego interwencjonizmu państwowego</mark>, bez którego nasze państwo może jedynie</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Nie dopuścimy do prywatyzacji Poczty Polskiej”
+</div>
+<span class="context">Zadowalająca rentowność narodowego operatora pocztowego powinna być osiągana nie przez podnoszenie cen usług. <mark>Nie dopuścimy do prywatyzacji Poczty Polskiej</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“odrzucamy twierdzenie, że mechanizmy rynkowe”
+</div>
+<span class="context">bezpieczeństwo zdrowotne należy traktować jak cywilizacyjną zdobycz współczesnego świata. Odrzucamy twierdzenie, że mechanizmy rynkowe mogą być podstawą funkcjonowania</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 7</span>
+<div class="quote">
+“Cofniemy przepisy umożliwiające przekazywanie szkół”
+</div>
+<span class="context"><mark>Cofniemy przepisy umożliwiające przekazywanie szkół</mark> przez jednostki samorządu terytorialnego osobom fizycznym i prywatnym osobom prawnym, np. fundacjom.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 8</span>
+<div class="quote">
+“wspólny rynek, swoboda przepływu”
+</div>
+<span class="context">najważniejszymi zdobyczami Unii są: <mark>wspólny rynek, swoboda przepływu</mark> osób, dóbr</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“demokracja, jak wskazują na to historyczne doświadczenie”
+</div>
+<span class="context">Tylko demokracja zapewnia jednostce podmiotowość, czyli bycie obywatelem, tylko w demokracji można budować równowagę sił społecznych, która umożliwia sprawiedliwą politykę i jest też warunkiem praworządności.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“„system Tuska” jest wypaczeniem istoty demokracji”
+</div>
+<span class="context">…„System Tuska” jest wypaczeniem istoty demokracji zarówno w odniesieniu do jej treści, jak również procedur i mechanizmów charakteryzujących ten ustrój polityczny.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“Finanse publiczne muszą być instrumentem rozwoju gospodarczego”
+</div>
+<span class="context">Rolę Ministerstwa Finansów ograniczymy do strategicznego planowania finansowego oraz prowadzenia księgowości budżetowej państwa. <mark>Finanse publiczne muszą być instrumentem rozwoju gospodarczego</mark> i społecznego, a nie celem samym w sobie.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“Rzecznik Praw Obywatelskich Urząd Rzecznika otrzyma nowe uprawnienia”
+</div>
+<span class="context">…<mark>Rzecznik Praw Obywatelskich Urząd Rzecznika otrzyma nowe uprawnienia</mark> w celu obrony praw i wolności obywatelskich w relacjach z aparatem państwowym, w zakresie procedur administracyjnych i sądowych oraz odpowiedzialności dyscyplinarnej sędziów…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“Będziemy wspierać rodzinę w budowaniu jej bezpiecznego bytu”
+</div>
+<span class="context"><mark>Będziemy wspierać rodzinę w budowaniu jej bezpiecznego bytu</mark>, co oznacza stworzenie systemu zachęt do posiadania potomstwa objęcie macierzyństwa i rodzicielstwa szczególną opieką ze strony państwa.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“Podniesiony z 7% na 23% VAT na ubranka i obuwie dziecięce zwiększa koszty utrzymania dzieci.”
+</div>
+<span class="context">Zerowa stawka VAT na ubranka dziecięce Polska powinna dążyć do wprowadzenia zerowej stawki podatku od towarów i usług na ubranka dziecięce. Uważamy, że mamy szanse naprawić błąd popełniony w negocjacjach akcesyjnych. <mark>Podniesiony z 7% na 23% VAT na ubranka i obuwie dziecięce zwiększa koszty utrzymania dzieci.</mark> Jest to zmiana szczególnie niekorzystna dla rodzin polskich rolników, którym wzrostu cen artykułów dla dzieci nie zrekompensuje żadna ulga w podatku dochodowym.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 7</span>
+<div class="quote">
+“realne zapewnienie wszystkim obywatelom konstytucyjnej wolności słowa i pluralizmu”
+</div>
+<span class="context">Prawo i Sprawiedliwość postuluje przeprowadzenie reformy debaty publicznej obejmującej: 1) <mark>realne zapewnienie wszystkim obywatelom konstytucyjnej wolności słowa i pluralizmu</mark>; 2) zapewnienie sprawiedliwego dostępu obywateli i opozycji politycznej do mediów i wprowadzenie cywilizowanych zasad funkcjonowania mediów</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“Demokracja to także prawo obywateli i ich reprezentantów do dysponowania pieniądzem publicznym”
+</div>
+<span class="context">Nie ma naszej zgody na to, aby polski budżet był poddany kontroli unijnych urzędników – nie wiadomo skąd, przez kogo powoływanych, w ramach procedury tzw. rekomendacji krajowych. <mark>Demokracja to także prawo obywateli i ich reprezentantów do dysponowania pieniądzem publicznym</mark> zebranym z podatków. Nie damy sobie tego prawa odebrać.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“ekspansją ideologii liberalnej, która w praktyce przybierała formy”
+</div>
+<span class="context">Najważniejszy z nich łączył się z <mark>ekspansją ideologii liberalnej, która w praktyce przybierała formy</mark> czegoś w rodzaju darwinizmu społecznego maskowanego hasłami wolności jednostki.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 3</span>
+<div class="quote">
+“prokuratura musi stać się na powrót ogniwem władzy wykonawczej”
+</div>
+<span class="context"><mark>prokuratura musi stać się na powrót ogniwem władzy wykonawczej</mark> na czele z Ministrem Sprawiedliwości – Prokuratorem Generalnym</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 4</span>
+<div class="quote">
+“deregulacja w aspekcie wewnętrznym i europejskim”
+</div>
+<span class="context">Pierwszy to <mark>deregulacja w aspekcie wewnętrznym i europejskim</mark>. Polska przestrzeń prawna jest zbyt „zabudowana” i nieprzejrzysta</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“Nie dopuścimy do prywatyzacji Poczty Polskiej”
+</div>
+<span class="context"><mark>Nie dopuścimy do prywatyzacji Poczty Polskiej</mark>. Do rozważenia jest najwyżej niezbędne dokapitalizowanie przez giełdę, ale z zachowaniem większościowego pakietu akcji w ręku Skarbu Państwa.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 6</span>
+<div class="quote">
+“każdy świadomie, dobrowolnie na własne ryzyko podejmował decyzję”
+</div>
+<span class="context">Jesteśmy za tym aby <mark>każdy świadomie, dobrowolnie na własne ryzyko podejmował decyzję</mark> czy chce należeć do drugiego filaru i część składki przekazywać do OFE</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 7</span>
+<div class="quote">
+“wolność badań naukowych powinna być zagwarantowana”
+</div>
+<span class="context"><mark>wolność badań naukowych powinna być zagwarantowana</mark> nie tylko przed ingerencją polityczną, ale także przed ingerencją środowiskową</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 8</span>
+<div class="quote">
+“wspólny rynek, swoboda przepływu osób”
+</div>
+<span class="context">najważniejszymi zdobyczami Unii są: <mark>wspólny rynek, swoboda przepływu osób</mark>, dóbr, kapitału i usług, wolność i równość</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“rezygnacja znacznej części elity z lojalności”
+</div>
+<span class="context"><mark>rezygnacja znacznej części elity z lojalności</mark> wobec państwa polskiego jest bez wątpienia</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“interesy establishmentu wyłonionego w procesie”
+</div>
+<span class="context">Chodzi konkretnie o <mark>interesy establishmentu wyłonionego w procesie</mark> tzw. transformacji.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“ekipy Donalda Tuska”
+</div>
+<span class="context">wizerunkowych, odwracających uwagę od realnych problemów i nieskuteczności rządzących, w czym wyspecjalizowały się kolejne <mark>ekipy Donalda Tuska</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“unieszkodliwianie instytucji szeroko rozumianej kontroli”
+</div>
+<span class="context">charakterystycznych rysów sprawowania władzy przez ekipę Donalda Tuska należy „unieszkodliwianie” instytucji szeroko rozumianej kontroli, które mogą wskazywać</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“rząd PO-PSL świadomie wyraził zgodę”
+</div>
+<span class="context">przez obecny rząd PO-PSL jest oszukiwana i lekceważona. Obecna koalicja systematycznie zmniejsza nakłady na rolnictwo. Przede wszystkim jednak <mark>rząd PO-PSL świadomie wyraził zgodę</mark> na rażącą i bezprawną dyskryminację</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“Rząd Tuska pozbawił praw nabytych”
+</div>
+<span class="context">ogranicza jednak możliwości zatrudnienia osobom sprawującym opiekę. <mark>Rząd Tuska pozbawił praw nabytych</mark> sporą część opiekunów osób przewlekle chorych.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“utrata, z winy rządzących, narzędzi”
+</div>
+<span class="context">Podstawowym problemem, jaki dotyka dziś Polskę w zakresie polityki międzynarodowej, jest <mark>utrata, z winy rządzących, narzędzi</mark> do samodzielnej realizacji interesów narodowych.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 8</span>
+<div class="quote">
+“centralną biurokrację unijną”
+</div>
+<span class="context">przez <mark>centralną biurokrację unijną</mark>. Tendencja do tego, by wprowadzić</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“lekceważeniem merytorycznych racji społeczeństwa jako całości”
+</div>
+<span class="context">Idzie to w parze z <mark>lekceważeniem merytorycznych racji społeczeństwa jako całości</mark> oraz wielkich grup społecznych, a także z ignorowaniem ich interesów.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“nowa nomenklatura”
+</div>
+<span class="context">…ma on także swoją dynamikę polityczną. Po 1989 roku sformułowano projekt jednej partii związanej z komitetami obywatelskimi. Po 2007 roku przyjęto zasadę zdominowania całej sfery władzy przez ludzi z rządzącej partii. Sytuacja taka musi się także przekładać na wysoki stopień wpływów w sferze prywatnej gospodarki i innych prywatnych instytucji. Niezależnie od tego, jaki wpływ na sposób funkcjonowania PO miały pomysły polityczne Jana Rokity czy też powstałe wokół prezydenta Lecha Wałęsy, mechanizm tworzenia nowej nomenklatury został uruchomiony i jest niezwykle charakterystyczną cechą obecnej sytuacji w państwie.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“władze publiczne pozostawiają Polaków samych sobie”
+</div>
+<span class="context">instytucji publicznych powołanych do wypełniania ważnych, często wręcz podstawowych zadań wobec obywateli. Władze publiczne pozostawiają Polaków samych sobie z ich potrzebami i problemami albo skazują ich na korzystanie z drogich usług sektora prywatnego, wypełniającego lukę powstającą wskutek wycofywania się instytucji publicznych. Często oznacza to konieczność podwójnego płacenia za świadczenia, które państwo z mocy Konstytucji i obowiązujących ustaw powinno gwarantować z danin publicznych</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“zawłaszczaniu państwa w interesie jednej partii i grup związanych z jej politykami”
+</div>
+<span class="context">…stosowaniu niedemokratycznych metod i praktyk czy <mark>zawłaszczaniu państwa w interesie jednej partii i grup związanych z jej politykami</mark>. Skutkami takiej polityki są: bezprecedensowa w skali histo-rycznej, wymuszona sytuacją emigracja Polaków…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“rząd PO-PSL jest oszukiwana i lekceważona”
+</div>
+<span class="context">Polska wieś doznała w przeszłości wielu krzywd i dyskryminacji, a przez obecny <mark>rząd PO-PSL jest oszukiwana i lekceważona</mark>. Obecna koalicja systematycznie zmniejsza nakłady na rolnictwo.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“Niszczy się w ten sposób podmiotowość, odbiera samodzielność ekonomiczną, ingeruje w autonomię rodziny.”
+</div>
+<span class="context">Odebrany przez podatki dochód z pracy uzupełnia się później przez różnego rodzaju zasiłki i zapomogi (jedna grupa urzędników zabiera rodzinie dochód, a druga rozdaje zasiłki i zapomogi). <mark>Niszczy się w ten sposób podmiotowość, odbiera samodzielność ekonomiczną, ingeruje w autonomię rodziny.</mark> Wymierny wzrost wynagrodzeń pracowniczych</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“nowo-starej elity do podporządkowywania się wpływom zewnętrznym”
+</div>
+<span class="context">Obok odrzucenia zasady pro publico bono duże znaczenie mają też predyspozycje <mark>nowo-starej elity do podporządkowywania się wpływom zewnętrznym</mark> również na poziomie tożsamościowym.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 4</span>
+<div class="quote">
+“unieszkodliwianie” instytucji szeroko rozumianej kontroli”
+</div>
+<span class="context">Do charakterystycznych rysów sprawowania władzy przez ekipę Donalda Tuska należy „<mark>unieszkodliwianie” instytucji szeroko rozumianej kontroli</mark>, które mogą wskazywać na błędy rządzących</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“rząd PO-PSL świadomie wyraził zgodę na rażącą”
+</div>
+<span class="context">Przede wszystkim jednak <mark>rząd PO-PSL świadomie wyraził zgodę na rażącą</mark> i bezprawną dyskryminację polskich rolników</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“Rząd Tuska doprowadziły nie tylko do jej finansowej zapaści”
+</div>
+<span class="context">Obecna kondycja polskiej służby zdrowia jest fatalna. Rządy Tuska doprowadziły nie tylko do jej finansowej zapaści, ale także do całkowitej destrukcji systemu opieki zdrowotnej.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 7</span>
+<div class="quote">
+“prorządową stronniczość głównych mediów”
+</div>
+<span class="context">Niezależne badania socjologiczne jednoznacznie wskazują na <mark>prorządową stronniczość głównych mediów</mark> (w tym telewizji i radia publicznego)</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 8</span>
+<div class="quote">
+“deficyt demokracji, zanik wartości”
+</div>
+<span class="context">Unia cierpi na przeregulowanie, nierównowagę wewnętrzną, nierówność polityczną, <mark>deficyt demokracji, zanik wartości</mark>, tożsamości cywilizacyjnej, utratę zaufania ze strony obywateli</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“demokracja, jak wskazują na to historyczne doświadczenie”
+</div>
+<span class="context">Tylko demokracja zapewnia jednostce podmiotowość, czyli bycie obywatelem, tylko w demokracji można budować równowagę sił społecznych, która umożliwia sprawiedliwą politykę i jest też warunkiem praworządności.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“państwo jest „miękkie”, bezradne bądź nieobecne”
+</div>
+<span class="context">…Państwo jest „miękkie”, bezradne bądź nieobecne, gdy chodzi o słuszne interesy jednostki, rodziny, społeczeństwa i narodu, ale potrafi być agresywne, bezwzględne i brutalne, gdy chodzi o interesy ludzi władzy i wpływowych, nie zawsze legalnie działających, grup interesu.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“rząd utworzony przez Prawo i Sprawiedliwość będzie zorganizowany”
+</div>
+<span class="context">Rząd utworzony przez Prawo i Sprawiedliwość będzie zorganizowany tak, by mógł w sposób optymalny wytyczać cele polityki państwa we wszystkich ważnych dziedzinach oraz egzekwować ich konsekwentną i spójną realizację.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“Dążąc do poprawy dostępu obywateli do wymiaru sprawiedliwości”
+</div>
+<span class="context">…<mark>Dążąc do poprawy dostępu obywateli do wymiaru sprawiedliwości</mark>, przywrócimy sądy rejonowe zlikwidowane rzez rząd PO-PSL. Rozszerzymy zakres ulg w opłatach sądowych oraz możliwości uzyskania pomocy prawnej z urzędu…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 5</span>
+<div class="quote">
+“Polska wieś stanowi ponad 90 procent terytorium Polski”
+</div>
+<span class="context"><mark>Polska wieś stanowi ponad 90 procent terytorium Polski</mark> (wliczając lasy) i prawie 40 procent jej mieszkańców. Polska wieś żywi naszą ojczyznę, ale też chroni jej środowisko naturalne oraz tworzy i rozwija dziedzictwo kulturowe.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“Zasadą polityki rodzinnej jest poszanowanie praw rodziców i autonomii rodziny.”
+</div>
+<span class="context">W obronie praw rodziców Skończymy z nasilającą się praktyką zabierania dzieci z domów z powodu ubóstwa rodziców. Wprowadzimy ograniczenia prawne, by takie działania były wykluczone. Pomoc społeczna będzie zobowiązana do skutecznego wsparcia ubogiej rodziny z dziećmi. <mark>Zasadą polityki rodzinnej jest poszanowanie praw rodziców i autonomii rodziny.</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“lekceważeniem merytorycznych racji społeczeństwa jako całości”
+</div>
+<span class="context">Idzie to w parze z <mark>lekceważeniem merytorycznych racji społeczeństwa jako całości</mark> oraz wielkich grup społecznych, a także z ignorowaniem ich interesów.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“przywrócenia państwa obywatelom”
+</div>
+<span class="context">konsekwentnie domaga się unowocześnienia i usprawnienia instytucji państwowych, zerwania z pozostałościami PRL, <mark>przywrócenia państwa obywatelom</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“rząd praktycznie uchyla się od odpowiedzialności”
+</div>
+<span class="context">Rząd praktycznie uchyla się od odpowiedzialności za bezpieczeństwo obywateli, zwłaszcza mieszkających na wsi i w małych miastach</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“brak szacunku dla demokracji”
+</div>
+<span class="context">w czym wyraża się jej <mark>brak szacunku dla demokracji</mark>. Zwiększymy też znaczenie instytucji wysłuchania publicznego</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Należą nam się równe prawa i równe pieniądze”
+</div>
+<span class="context">Kluczową sprawą jest zakończenie dyskryminacji polskiej wsi i polskich rolników. <mark>Należą nam się równe prawa i równe pieniądze</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“obywatele, a nie państwo powinni decydować”
+</div>
+<span class="context">Uważamy, że to <mark>obywatele, a nie państwo powinni decydować</mark>, w jakim systemie ubezpieczeniowym chcą uczestniczyć.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 7</span>
+<div class="quote">
+“realne zapewnienie wszystkim obywatelom konstytucyjnej wolności słowa”
+</div>
+<span class="context"><mark>realne zapewnienie wszystkim obywatelom konstytucyjnej wolności słowa</mark> i pluralizmu</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 8</span>
+<div class="quote">
+“Proponujemy eurorealistyczną wspólnotę narodów”
+</div>
+<span class="context"><mark>Proponujemy eurorealistyczną wspólnotę narodów</mark> i państw w miejsce europejskich mrzonek lub wizji eurodominacji najsilniejszych</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“nie dla ekonomii wykluczenia i nierówności”
+</div>
+<span class="context">dzisiaj musimy powiedzieć »nie« dla ekonomii wykluczenia i nierówności społecznej. Ta ekonomia</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“skazują ich na korzystanie z drogich usług sektora prywatnego”
+</div>
+<span class="context">Władze publiczne pozostawiają Polaków samych sobie z ich potrzebami i problemami albo <mark>skazują ich na korzystanie z drogich usług sektora prywatnego</mark>, wypełniającego lukę</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“kwestią sprawiedliwości społecznej, po drugie”
+</div>
+<span class="context">Systemowa zmiana podejścia do wzrostu płac jest zatem, po pierwsze <mark>kwestią sprawiedliwości społecznej, po drugie</mark>, bardzo istotnym elementem strategii pobudzania</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“postulaty sprawiedliwości i równości”
+</div>
+<span class="context">Postulaty sprawiedliwości i równości traktujemy jako ważną przesłankę konstruowania ładu społecznego i środowiska międzynarodowego w taki sposób, aby dawały w możliwie wysokim stopniu równość szans w osiąganiu społecznej pozycji oraz dóbr materialnych.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“wspierane są lewackie periodyki”
+</div>
+<span class="context">…Preferencja dla twórczości godzącej w polskie wartości jest wyraźna. Wspierane są lewackie periodyki; w rożnego rodzaju finansowanych przez państwo przekazach kulturowych atakuje się patriotyzm i narodowe wartości.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“pogłębianiem się niesprawiedliwych różnic”
+</div>
+<span class="context">Często oznacza to konieczność podwójnego płacenia za świadczenia, które państwo z mocy Konstytucji i obowiązujących ustaw powinno gwarantować z danin publicznych (podatków i składek) uiszczanych przez obywateli. Skutkuje to <mark>pogłębianiem się niesprawiedliwych różnic</mark> w dostępności do tych świadczeń, która zależy od zamożności jednostek.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“wprowadzeniu bodźców podatkowych mogą się zamienić w inwestycje”
+</div>
+<span class="context">…po usunięciu barier i <mark>wprowadzeniu bodźców podatkowych mogą się zamienić w inwestycje</mark>. Z myślą przede wszystkim o sektorze MŚP wprowadzimy wielorakie ułatwienia dostępu do kapitału…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 5</span>
+<div class="quote">
+“rząd PO-PSL jest oszukiwana i lekceważona”
+</div>
+<span class="context">Polska wieś doznała w przeszłości wielu krzywd i dyskryminacji, a przez obecny <mark>rząd PO-PSL jest oszukiwana i lekceważona</mark>. Obecna koalicja systematycznie zmniejsza nakłady na rolnictwo.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“Wymierny wzrost wynagrodzeń pracowniczych Systemowa zmiana podejścia do wzrostu płac jest zatem, po pierwsze kwestią sprawiedliwości społecznej”
+</div>
+<span class="context"><mark>Wymierny wzrost wynagrodzeń pracowniczych Systemowa zmiana podejścia do wzrostu płac jest zatem, po pierwsze kwestią sprawiedliwości społecznej</mark>, po drugie, bardzo istotnym elementem strategii pobudzania wyższego wzrostu i wychodzenia z pułapki średniego rozwoju, po trzecie, kwestią cywilizacyjną, hamującą rozwarstwienie społeczeństwa i pogłębianie obszarów biedy w Polsce.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“potępieniem i odrzuceniem wykluczenia społecznego oraz nierówności ekonomicznej”
+</div>
+<span class="context">Postulaty sprawiedliwości i równości są równoznaczne z <mark>potępieniem i odrzuceniem wykluczenia społecznego oraz nierówności ekonomicznej</mark>, tych jej form, które są szczególnie dolegliwe dla kobiet.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“zrównoważonego rozwoju definiowanego w sposób solidarystyczny”
+</div>
+<span class="context">mądrze wykorzystać pieniądze krajowe i europejskie dla <mark>zrównoważonego rozwoju definiowanego w sposób solidarystyczny</mark>, z którego będą korzystać obecne i następne pokolenia</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“niesprawiedliwych różnic w dostępności”
+</div>
+<span class="context">Skutkuje to pogłębianiem się <mark>niesprawiedliwych różnic w dostępności</mark> do tych świadczeń, która zależy od zamożności jednostek</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“zasadzie solidarności społecznej”
+</div>
+<span class="context">nowy system podatkowy będzie oparty na <mark>zasadzie solidarności społecznej</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 5</span>
+<div class="quote">
+“Nie dopuścimy do prywatyzacji Poczty Polskiej”
+</div>
+<span class="context"><mark>Nie dopuścimy do prywatyzacji Poczty Polskiej</mark>. Do rozważenia jest najwyżej niezbędne dokapitalizowanie przez giełdę</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“kwestią sprawiedliwości społecznej”
+</div>
+<span class="context">Systemowa zmiana podejścia do wzrostu płac jest zatem, po pierwsze <mark>kwestią sprawiedliwości społecznej</mark>, po drugie, bardzo istotnym elementem strategii pobudzania wyższego wzrostu</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 7</span>
+<div class="quote">
+“Polska nie jest spółką akcyjną”
+</div>
+<span class="context">Nie wszystko jednak można i trzeba mierzyć maksymalizacją zysku. <mark>Polska nie jest spółką akcyjną</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 8</span>
+<div class="quote">
+“zasadę solidarności, współdziałania państw narodowych”
+</div>
+<span class="context">opartej o <mark>zasadę solidarności, współdziałania państw narodowych</mark> na podstawie i w granicach prawa międzynarodowego</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“dekonstruowanie naszej tożsamości”
+</div>
+<span class="context">Te zabiegi składają się na proces wprzęgania oświaty w <mark>dekonstruowanie naszej tożsamości</mark>, na którą wpływa</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“dekonstrukcja świadomości narodowej”
+</div>
+<span class="context">Można bez obawy błędu stwierdzić, że <mark>dekonstrukcja świadomości narodowej</mark> w sposób ostrzejszy</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“skazują ich na korzystanie z drogich usług sektora prywatnego”
+</div>
+<span class="context">Władze publiczne pozostawiają Polaków samych sobie z ich potrzebami i problemami albo <mark>skazują ich na korzystanie z drogich usług sektora prywatnego</mark>, wypełniającego lukę</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“zachowamy naszą narodową walutę – złoty polski”
+</div>
+<span class="context">kierując się polską racją stanu, interesami narodowymi oraz względami ekonomicznymi związanymi z rozwojem, <mark>zachowamy naszą narodową walutę – złoty polski</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“ostoją patriotyzmu, przywiązania do wartości”
+</div>
+<span class="context">Wieś była zawsze <mark>ostoją patriotyzmu, przywiązania do wartości</mark> chrześcijańskich i narodowych, a w czasach komunizmu</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 6</span>
+<div class="quote">
+“kwestią sprawiedliwości społecznej, po drugie”
+</div>
+<span class="context">Systemowa zmiana podejścia do wzrostu płac jest zatem, po pierwsze <mark>kwestią sprawiedliwości społecznej, po drugie</mark>, bardzo istotnym elementem strategii pobudzania</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“wychowanie patriotyczno-obywatelskie powinno także obejmować”
+</div>
+<span class="context">W miarę możliwości finansowych, <mark>wychowanie patriotyczno-obywatelskie powinno także obejmować</mark> wycieczki, specjalnie organizowane pod kątem poznawczym</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“polskiej tożsamości narodowej, tradycji”
+</div>
+<span class="context">skutecznie bronić <mark>polskiej tożsamości narodowej, tradycji</mark>, kultury oraz polskiego</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 1</span>
+<div class="quote">
+“lekceważeniem merytorycznych racji społeczeństwa jako całości”
+</div>
+<span class="context">Idzie to w parze z <mark>lekceważeniem merytorycznych racji społeczeństwa jako całości</mark> oraz wielkich grup społecznych, a także z ignorowaniem ich interesów.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“nowa nomenklatura”
+</div>
+<span class="context">…mechanizm tworzenia nowej nomenklatury został uruchomiony i jest niezwykle charakterystyczną cechą obecnej sytuacji w państwie.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“władze publiczne pozostawiają Polaków samych sobie”
+</div>
+<span class="context">instytucji publicznych powołanych do wypełniania ważnych, często wręcz podstawowych zadań wobec obywateli. Władze publiczne pozostawiają Polaków samych sobie z ich potrzebami i problemami albo skazują ich na korzystanie z drogich usług sektora prywatnego, wypełniającego lukę powstającą wskutek wycofywania się instytucji publicznych.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“zachowamy naszą narodową walutę – złoty polski”
+</div>
+<span class="context">…kierując się polską racją stanu, interesami narodowymi oraz względami ekonomicznymi związanymi z rozwojem, <mark>zachowamy naszą narodową walutę – złoty polski</mark>. Jest to bardzo ważny zasób…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“rząd PO-PSL jest oszukiwana i lekceważona”
+</div>
+<span class="context">Polska wieś doznała w przeszłości wielu krzywd i dyskryminacji, a przez obecny <mark>rząd PO-PSL jest oszukiwana i lekceważona</mark>. Obecna koalicja systematycznie zmniejsza nakłady na rolnictwo.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“Wymierny wzrost wynagrodzeń pracowniczych Systemowa zmiana podejścia do wzrostu płac jest zatem, po pierwsze kwestią sprawiedliwości społecznej”
+</div>
+<span class="context"><mark>Wymierny wzrost wynagrodzeń pracowniczych Systemowa zmiana podejścia do wzrostu płac jest zatem, po pierwsze kwestią sprawiedliwości społecznej</mark>, po drugie, bardzo istotnym elementem strategii pobudzania wyższego wzrostu i wychodzenia z pułapki średniego rozwoju, po trzecie, kwestią cywilizacyjną, hamującą rozwarstwienie społeczeństwa i pogłębianie obszarów biedy w Polsce.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“interes niemiecki okazał się ważniejszy dla rządu RP niż polski”
+</div>
+<span class="context">Jeśli szukać analogii, np. w działaniach Unii zmierzających do praktycznej likwidacji polskiego rybołówstwa… to odpowiedź nasuwa się sama – <mark>interes niemiecki okazał się ważniejszy dla rządu RP niż polski</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“atakuje się patriotyzm i narodowe wartości”
+</div>
+<span class="context">w rożnego rodzaju finansowanych przez państwo przekazach kulturowych <mark>atakuje się patriotyzm i narodowe wartości</mark>. Sztucznie utrzymuje się na rynku zajmujące się tego rodzaju działalnością instytucje</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“ekipa Donalda Tuska ograniczyła”
+</div>
+<span class="context">Ekipa Donalda Tuska ograniczyła przyjęty w 2007 roku przez rząd Prawa i Sprawiedliwości program modernizacji służb mundurowych</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“polską racją stanu, interesami narodowymi”
+</div>
+<span class="context">kierując się <mark>polską racją stanu, interesami narodowymi</mark> oraz względami ekonomicznymi związanymi z rozwojem</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“polska ziemia dla polskich rolników”
+</div>
+<span class="context">Ochrona ziemi – <mark>polska ziemia dla polskich rolników</mark>. Dla funkcjonowania gospodarki rolnej jest niezbędna ziemia</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“hamującą rozwarstwienie społeczeństwa i pogłębianie obszarów biedy”
+</div>
+<span class="context">kwestią cywilizacyjną, <mark>hamującą rozwarstwienie społeczeństwa i pogłębianie obszarów biedy</mark> w Polsce</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 7</span>
+<div class="quote">
+“wychowanie patriotyczno-obywatelskie”
+</div>
+<span class="context"><mark>wychowanie patriotyczno-obywatelskie</mark> powinno także obejmować wycieczki, specjalnie organizowane pod kątem poznawczym, do ważnych miejsc historycznych Rzeczypospolitej</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“ochronę polskiej własności”
+</div>
+<span class="context">zmiany zasad obrotu ziemią w Polsce po 2016 roku poprzez rygorystyczną <mark>ochronę polskiej własności</mark></span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“dekonstruowanie naszej tożsamości”
+</div>
+<span class="context">Te zabiegi składają się na proces wprzęgania oświaty w <mark>dekonstruowanie naszej tożsamości</mark>, na którą wpływa</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“atakuje się patriotyzm i narodowe wartości”
+</div>
+<span class="context">finansowanych przez państwo przekazach kulturowych <mark>atakuje się patriotyzm i narodowe wartości</mark>. Sztucznie</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“zgodnego z naszym interesem narodowym”
+</div>
+<span class="context">członkostwa w Unii Europejskiej, jak i wypracowywanie <mark>zgodnego z naszym interesem narodowym</mark> i naszą polityką stanowiska Polski</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“zachowamy naszą narodową walutę – złoty polski”
+</div>
+<span class="context">kierując się polską racją stanu, interesami narodowymi oraz względami ekonomicznymi związanymi z rozwojem, <mark>zachowamy naszą narodową walutę – złoty polski</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 5</span>
+<div class="quote">
+“ostoją patriotyzmu, przywiązania do wartości”
+</div>
+<span class="context">Wieś była zawsze <mark>ostoją patriotyzmu, przywiązania do wartości</mark> chrześcijańskich i narodowych, a w czasach komunizmu</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“stanowiących o polskiej tożsamości i”
+</div>
+<span class="context">wspólny zasób wiedzy, znajomość wspólnych symboli, odwołań, wyobrażeń, <mark>stanowiących o polskiej tożsamości i</mark> formułujących doświadczenie naszego narodu.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 7</span>
+<div class="quote">
+“wychowanie patriotyczno-obywatelskie powinno także obejmować”
+</div>
+<span class="context">W miarę możliwości finansowych, <mark>wychowanie patriotyczno-obywatelskie powinno także obejmować</mark> wycieczki, specjalnie organizowane pod kątem poznawczym</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“polskiej tożsamości narodowej, tradycji”
+</div>
+<span class="context">skutecznie bronić <mark>polskiej tożsamości narodowej, tradycji</mark>, kultury oraz polskiego</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“przynależność do narodu polskiego traktujemy jako wartość”
+</div>
+<span class="context">Przynależność do narodu polskiego traktujemy jako wartość nie tylko dlatego, że została nam dana przez urodzenie i kulturowe dziedzictwo, a także wynika z cech naszej tradycji.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“atak na tradycję i związaną z nią świadomość narodową jest ostentacyjny”
+</div>
+<span class="context">…oświacie dekonstrukcja następuje w dużej mierze przez zaniechanie i nieuporządkowanie, o tyle w sferze kultury <mark>atak na tradycję i związaną z nią świadomość narodową jest ostentacyjny</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“interesem narodowym”
+</div>
+<span class="context">Ministerstwo Integracji Europejskiej, którego rolą będzie zarówno czuwanie nad stosowaniem standardów i przepisów wynikających z naszego członkostwa w Unii Europejskiej, jak i wypracowywanie zgodnego z naszym <mark>interesem narodowym</mark> i naszą polityką stanowiska Polski na forum wszystkich instytucji unijnych.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“zachowamy naszą narodową walutę – złoty polski”
+</div>
+<span class="context">…kierując się polską racją stanu, interesami narodowymi oraz względami ekonomicznymi związanymi z rozwojem, <mark>zachowamy naszą narodową walutę – złoty polski</mark>. Jest to bardzo ważny zasób…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“Polska ziemia dla polskich rolników”
+</div>
+<span class="context">Ochrona ziemi – polska ziemia dla polskich rolników Dla funkcjonowania gospodarki rolnej jest niezbędna ziemia oraz rolnicy, którzy chcą i potrafią na niej pracować. Ziemi i rolników nam ubywa. W interesie całego społeczeństwa ziemię trzeba chronić, a rolników wspierać.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 6</span>
+<div class="quote">
+“Polska gospodarka nie może być budowana na założeniu jej konkurencyjności wynikającej z niskich kosztów pracy.”
+</div>
+<span class="context"><mark>Polska gospodarka nie może być budowana na założeniu jej konkurencyjności wynikającej z niskich kosztów pracy.</mark> Proponujemy przyjęcie „paktu dla wzrostu wynagrodzeń”. Stronami paktu będą: strona społeczna, pracodawcy oraz rząd.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Naród, który rozumiemy jako wspólnotę kultury, języka”
+</div>
+<span class="context"><mark>Naród, który rozumiemy jako wspólnotę kultury, języka</mark>, doświadczenia historycznego, tradycji politycznej i wartości cywilizacyjnych, przeżywanego losu, jest najszerszą grupą społeczną stanowiącą efektywną podstawę dla demokratycznych wspólnot politycznych.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“atak na tradycję i związaną z nią świadomość narodową”
+</div>
+<span class="context">o tyle w sferze kultury <mark>atak na tradycję i związaną z nią świadomość narodową</mark> jest ostentacyjny. Preferencja dla twórczości godzącej w polskie wartości jest wyraźna</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“zewnętrzną granicę Unii Europejskiej i NATO”
+</div>
+<span class="context">placówki na wschodnich granicach Polski, stanowiących <mark>zewnętrzną granicę Unii Europejskiej i NATO</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“zachowamy naszą narodową walutę – złoty polski”
+</div>
+<span class="context">kierując się polską racją stanu, interesami narodowymi oraz względami ekonomicznymi związanymi z rozwojem, <mark>zachowamy naszą narodową walutę – złoty polski</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“polska ziemia dla polskich rolników”
+</div>
+<span class="context">Ochrona ziemi – <mark>polska ziemia dla polskich rolników</mark>. Dla funkcjonowania gospodarki rolnej jest niezbędna ziemia</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“wolnych i suwerennych Polaków”
+</div>
+<span class="context">Wolna i suwerenna Polska zależy od istnienia <mark>wolnych i suwerennych Polaków</mark>, a więc od takich Polaków, których umysły zostały do wolności i suwerenności odpowiednio przygotowane</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“historii i literatury polskiej”
+</div>
+<span class="context">przywrócenie odpowiedniej rangi nauczania historii i literatury, ze szczególnym uwzględnieniem <mark>historii i literatury polskiej</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 8</span>
+<div class="quote">
+“polskiej tożsamości narodowej, tradycji, kultury”
+</div>
+<span class="context">Będziemy skutecznie bronić <mark>polskiej tożsamości narodowej, tradycji, kultury</mark> oraz polskiego modelu życia i obyczajów przed pojawiającymi się tendencjami</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Wrogowie wolności i nasz opór”
+</div>
+<span class="context">Niezależnie od kryzysu demokracji w II Rzeczypospolitej… <mark>Wrogowie wolności i nasz opór</mark> Po zbrodniczej okupacji</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“atak na tradycję i związaną z nią świadomość”
+</div>
+<span class="context">o tyle w sferze kultury <mark>atak na tradycję i związaną z nią świadomość</mark> narodową jest ostentacyjny.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“lekceważy bezpieczeństwo uczciwych obywateli”
+</div>
+<span class="context">Rząd Donalda Tuska <mark>lekceważy bezpieczeństwo uczciwych obywateli</mark>, ale nie waha się sięgać po Policję</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“dążenie obecnej władzy do fałszowaniu obrazu”
+</div>
+<span class="context">Dążenie obecnej władzy do fałszowaniu obrazu rzeczywistości i ukrywania prawdziwych danych</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“To była faktycznie zdrada interesów”
+</div>
+<span class="context">tymczasem rząd PO-PSL zadowolił się kwotą 28,5 miliarda euro. <mark>To była faktycznie zdrada interesów</mark> polskiej wsi, zwłaszcza ze strony PSL</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“Polacy w 1998 roku zostali oszukani”
+</div>
+<span class="context">realizowanymi dla doraźnych celów oszczędności budżetowych. <mark>Polacy w 1998 roku zostali oszukani</mark> wizją wysokich emerytur kapitałowych, a w</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“przemysł pogardy”
+</div>
+<span class="context">Uruchomiono gigantyczną akcję propagandy oczernia, kłamstwa i obelg, nazwaną trafnie przemysłem pogardy.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“atak na tradycję i związaną z nią świadomość narodową jest ostentacyjny”
+</div>
+<span class="context">…oświacie dekonstrukcja następuje w dużej mierze przez zaniechanie i nieuporządkowanie, o tyle w sferze kultury <mark>atak na tradycję i związaną z nią świadomość narodową jest ostentacyjny</mark>. Preferencja dla twórczości godzącej w polskie wartości jest wyraźna. Wspierane są lewackie periodyki; w rożnego rodzaju finansowanych przez państwo przekazach kulturowych atakuje się patriotyzm i narodowe wartości.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“elementami państwa policyjnego”
+</div>
+<span class="context">Rząd Donalda Tuska lekceważy bezpieczeństwo uczciwych obywateli, ale nie waha się sięgać po Policję i służby specjalne w obronie swojej władzy oraz w interesie osób i grup z nią powiązanych. Mamy coraz wyraźniej do czynienia z <mark>elementami państwa policyjnego</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“lekceważeniem kompetencji głowy państwa, utrudnianiem ich wykonywania”
+</div>
+<span class="context">…Stosunek ten nacechowany był <mark>lekceważeniem kompetencji głowy państwa, utrudnianiem ich wykonywania</mark> lub wręcz ich ostentacyjnym naruszaniem, dyskredytowaniem i zniesławianiem osoby sprawującej najwyższy urząd w państwie…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 5</span>
+<div class="quote">
+“zdrada interesów polskiej wsi, zwłaszcza ze strony PSL”
+</div>
+<span class="context">To była faktycznie <mark>zdrada interesów polskiej wsi, zwłaszcza ze strony PSL</mark>, odpowiedzialnego za sprawy rolnictwa w koalicji rządowej. PSL zgodziło się na zmniejszenie pieniędzy na WPR dla Polski o ponad 4 miliardy euro (ponad 12%), w porównaniu z pieniędzmi z poprzedniego budżetu UE, wynegocjowanymi przez rząd Prawa i Sprawiedliwości.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 6</span>
+<div class="quote">
+“Rząd Tuska pozbawił praw nabytych sporą część opiekunów osób przewlekle chorych.”
+</div>
+<span class="context"><mark>Rząd Tuska pozbawił praw nabytych sporą część opiekunów osób przewlekle chorych.</mark> Po utracie świadczenia pielęgnacyjnego opiekunowie, którzy zrezygnowali z pracy, by opiekować się bliskimi, znaleźli się w bardzo trudnej sytuacji życiowej.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“przemysłem pogardy”
+</div>
+<span class="context">Uruchomiono gigantyczną akcję propagandy oczernia, kłamstwa i obelg, nazwaną trafnie <mark>przemysłem pogardy</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“elementami państwa policyjnego”
+</div>
+<span class="context">Mamy coraz wyraźniej do czynienia z <mark>elementami państwa policyjnego</mark>. Środków inwigilacji, przymusu bezpośredniego i represji używa się przeciwko obywatelom</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“zawłaszczaniu państwa w interesie jednej partii”
+</div>
+<span class="context">stosowaniu niedemokratycznych metod i praktyk czy <mark>zawłaszczaniu państwa w interesie jednej partii</mark> i grup związanych z jej politykami</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“zdrada interesów polskiej wsi”
+</div>
+<span class="context">To była faktycznie <mark>zdrada interesów polskiej wsi</mark>, zwłaszcza ze strony PSL, odpowiedzialnego za sprawy rolnictwa</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“Polacy w 1998 roku zostali oszukani”
+</div>
+<span class="context"><mark>Polacy w 1998 roku zostali oszukani</mark> wizją wysokich emerytur kapitałowych, a w 2012 roku wydłużono im wiek emerytalny do 67 roku życia</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 7</span>
+<div class="quote">
+“polityki samodegradacji i harmonizacji naszych poglądów”
+</div>
+<span class="context">należy odejść od realizowanej dziś polityki wtórnej i peryferyjnej, <mark>polityki samodegradacji i harmonizacji naszych poglądów</mark> ze stanowiskami tych, których się uznaje za silniejszych</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 8</span>
+<div class="quote">
+“eurorealistyczną wspólnotę narodów i państw”
+</div>
+<span class="context">Proponujemy <mark>eurorealistyczną wspólnotę narodów i państw</mark> w miejsce europejskich mrzonek lub wizji eurodominacji najsilniejszych</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“obywatelskość na warstwy plebejskie, czyli lud”
+</div>
+<span class="context">rozszerzający pojęcia naród polski i <mark>obywatelskość na warstwy plebejskie, czyli lud</mark>. Ogromną rolę</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“przywrócenia państwa obywatelom”
+</div>
+<span class="context">zerwania z pozostałościami PRL, <mark>przywrócenia państwa obywatelom</mark>. Złe funkcjonowanie</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Władze publiczne pozostawiają Polaków samych”
+</div>
+<span class="context">zadania wobec obywateli. <mark>Władze publiczne pozostawiają Polaków samych</mark> sobie z ich potrzebami i problemami</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“uwolnić energię Polaków zablokowaną przez system”
+</div>
+<span class="context">Tylko strategia rozwoju może <mark>uwolnić energię Polaków zablokowaną przez system</mark> Tuska i umożliwić realizację</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“Polska wieś żywi naszą ojczyznę”
+</div>
+<span class="context">Polska wieś stanowi ponad 90 procent terytorium Polski (wliczając lasy) i prawie 40 procent jej mieszkańców. <mark>Polska wieś żywi naszą ojczyznę</mark>, ale też chroni jej środowisko naturalne</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“odpowiedzialnego za los całej wspólnoty”
+</div>
+<span class="context">Celem jest budowanie spójnego, solidarnego społeczeństwa, <mark>odpowiedzialnego za los całej wspólnoty</mark> i jej członków. Jedną z barier utrudniających</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 8</span>
+<div class="quote">
+“istnieje realny lud obywatelski”
+</div>
+<span class="context">bow-iem w tych państwach <mark>istnieje realny lud obywatelski</mark>, reszta to utopia</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“wielkie role w tym procesie odegrały najważniejsze polskie ruchy polityczne”
+</div>
+<span class="context">Ogromną też była rola Kościoła powszechnego. Ukoronowaniem dla wspomnianych procesów było powstanie II Rzeczypospolitej, która od początku swego bytu niepodległego wprowadziła do praw zasadniczych równość obywateli, znosząc jednocześnie różnice stanowe, ograniczenia dla kobiet, dyskryminację narodowościową; wprowadzono także prawa pracownicze i inne regulacje chroniące słabe ekonomicznie grupy społeczne.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Polakom i Polsce jest potrzebna nowa polityka, która będzie zbudowana na klarownych wartościach wywiedzionych z naszej tradycji”
+</div>
+<span class="context">…program Prawa i Sprawiedliwości na najbliższe lata nie jest wyrazem ani kontynuacji, ani reformowania dotychczasowego systemu. Jesteśmy zwolennikami głębokich i konsekwentnych zmian. Od swojego powstania stronnictwo Prawo i Sprawiedliwość uważa, że <mark>Polakom i Polsce jest potrzebna nowa polityka, która będzie zbudowana na klarownych wartościach wywiedzionych z naszej tradycji</mark> i służebna wobec dobra wspólnego.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“Polaków samych sobie z ich potrzebami i problemami”
+</div>
+<span class="context">instytucji publicznych powołanych do wypełniania ważnych, często wręcz podstawowych zadań wobec obywateli. Władze publiczne pozostawiają <mark>Polaków samych sobie z ich potrzebami i problemami</mark> albo skazują ich na korzystanie z drogich usług sektora prywatnego, wypełniającego lukę powstającą wskutek wycofywania się instytucji publicznych.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“Dążąc do poprawy dostępu obywateli do wymiaru sprawiedliwości”
+</div>
+<span class="context">…<mark>Dążąc do poprawy dostępu obywateli do wymiaru sprawiedliwości</mark>, przywrócimy sądy rejonowe zlikwidowane rzez rząd PO-PSL. Rozszerzymy zakres ulg w opłatach sądowych oraz możliwości uzyskania pomocy prawnej z urzędu…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“Wieś była zawsze ostoją patriotyzmu, przywiązania do wartości chrześcijańskich i narodowych”
+</div>
+<span class="context">Polska wieś stanowi ponad 90 procent terytorium Polski (wliczając lasy) i prawie 40 procent jej mieszkańców. Polska wieś żywi naszą ojczyznę, ale też chroni jej środowisko naturalne oraz tworzy i rozwija dziedzictwo kulturowe. <mark>Wieś była zawsze ostoją patriotyzmu, przywiązania do wartości chrześcijańskich i narodowych</mark>, a w czasach komunizmu skutecznie oparła się kolektywizacji.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“Celem jest budowanie spójnego, solidarnego społeczeństwa, odpowiedzialnego za los całej wspólnoty i jej członków.”
+</div>
+<span class="context">Zasadą polityki rodzinnej jest poszanowanie praw rodziców i autonomii rodziny. <mark>Celem jest budowanie spójnego, solidarnego społeczeństwa, odpowiedzialnego za los całej wspólnoty i jej członków.</mark> Jedną z barier utrudniających decyzje o założeniu rodziny i posiadaniu dzieci jest brak perspektywy wspólnego zamieszkania w godziwych warunkach.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“wspólnota wolnych Polaków, wspólnota polskich rodzin”
+</div>
+<span class="context">Warto, aby trwały i rozwijały się polskie rodziny. Taki stan jest możliwy, jeśli będziemy się rozwijać jako naród, <mark>wspólnota wolnych Polaków, wspólnota polskich rodzin</mark>, organizm gospodarczy, podmiot polityczny i wzorzec kulturowy.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“przywrócenia państwa obywatelom”
+</div>
+<span class="context">jest jedyną siłą polityczną, która po 1989 roku konsekwentnie domaga się unowocześnienia i usprawnienia instytucji państwowych, zerwania z pozostałościami PRL, <mark>przywrócenia państwa obywatelom</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“ukierunkowanie na służbę obywatelom”
+</div>
+<span class="context">Głównym celem zmian w administracji publicznej – rządowej i samorządowej – będzie jej <mark>ukierunkowanie na służbę obywatelom</mark> w rozwiązywaniu ich problemów</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“brak pieniędzy nikomu nie ograniczał dostępu”
+</div>
+<span class="context">Rozszerzymy zakres ulg w opłatach sądowych oraz możliwości uzyskania pomocy prawnej z urzędu, tak aby <mark>brak pieniędzy nikomu nie ograniczał dostępu</mark> do wymiaru sprawiedliwości</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“polskiej wsi i polskich rolników”
+</div>
+<span class="context">Kluczową sprawą jest zakończenie dyskryminacji <mark>polskiej wsi i polskich rolników</mark>. Należą nam się równe prawa i równe pieniądze.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“Polacy maja prawo do nowoczesnej, sprawnej”
+</div>
+<span class="context">Po wielu latach wyrzeczeń i obciążeń związanych z transformacją, <mark>Polacy maja prawo do nowoczesnej, sprawnej</mark> i niezawodnej opieki zdrowotnej na najwyższym poziomie europejskim</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 7</span>
+<div class="quote">
+“wyzwolenie owych zasobów obywatelskiej kreatywności Polaków”
+</div>
+<span class="context">poprzez <mark>wyzwolenie owych zasobów obywatelskiej kreatywności Polaków</mark> dla realizacji dobra wspólnego</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 8</span>
+<div class="quote">
+“demokracja jest organizowana w państwach członkowskich”
+</div>
+<span class="context">Unia demokracji, a <mark>demokracja jest organizowana w państwach członkowskich</mark>, bowiem w tych państwach istnieje realny lud obywatelski, reszta to utopia i mrzonka</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“rezygnacja znacznej części elity z lojalności”
+</div>
+<span class="context"><mark>rezygnacja znacznej części elity z lojalności</mark> wobec państwa polskiego jest bez wątpienia</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“interesy ludzi władzy i wpływowych”
+</div>
+<span class="context">brutalny, gdy chodzi o <mark>interesy ludzi władzy i wpływowych</mark>, nie zawsze legalnie</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“ekipy Donalda Tuska”
+</div>
+<span class="context">wizerunkowych, odwracających uwagę od realnych problemów i nieskuteczności rządzących, w czym wyspecjalizowały się kolejne <mark>ekipy Donalda Tuska</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“unieszkodliwianie instytucji szeroko rozumianej kontroli”
+</div>
+<span class="context">charakterystycznych rysów sprawowania władzy przez ekipę Donalda Tuska należy „unieszkodliwianie” instytucji szeroko rozumianej kontroli, które mogą wskazywać</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 5</span>
+<div class="quote">
+“To była faktycznie zdrada interesów”
+</div>
+<span class="context">tymczasem rząd PO-PSL zadowolił się kwotą 28,5 miliarda euro. <mark>To była faktycznie zdrada interesów</mark> polskiej wsi, zwłaszcza ze strony PSL</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 6</span>
+<div class="quote">
+“Polacy w 1998 roku zostali oszukani”
+</div>
+<span class="context">realizowanymi dla doraźnych celów oszczędności budżetowych. <mark>Polacy w 1998 roku zostali oszukani</mark> wizją wysokich emerytur kapitałowych, a w</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 7</span>
+<div class="quote">
+“utrata, z winy rządzących, narzędzi”
+</div>
+<span class="context">Podstawowym problemem, jaki dotyka dziś Polskę w zakresie polityki międzynarodowej, jest <mark>utrata, z winy rządzących, narzędzi</mark> do samodzielnej realizacji interesów narodowych.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 8</span>
+<div class="quote">
+“istnieje realny lud obywatelski”
+</div>
+<span class="context">bow-iem w tych państwach <mark>istnieje realny lud obywatelski</mark>, reszta to utopia</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“lekceważeniem merytorycznych racji społeczeństwa jako całości”
+</div>
+<span class="context">Idzie to w parze z <mark>lekceważeniem merytorycznych racji społeczeństwa jako całości</mark> oraz wielkich grup społecznych, a także z ignorowaniem ich interesów.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“nowa nomenklatura”
+</div>
+<span class="context">…mechanizm tworzenia nowej nomenklatury został uruchomiony i jest niezwykle charakterystyczną cechą obecnej sytuacji w państwie.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“władze publiczne pozostawiają Polaków samych sobie”
+</div>
+<span class="context">instytucji publicznych powołanych do wypełniania ważnych, często wręcz podstawowych zadań wobec obywateli. Władze publiczne pozostawiają Polaków samych sobie z ich potrzebami i problemami albo skazują ich na korzystanie z drogich usług sektora prywatnego, wypełniającego lukę powstającą wskutek wycofywania się instytucji publicznych.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“zawłaszczaniu państwa w interesie jednej partii i grup związanych z jej politykami”
+</div>
+<span class="context">…stosowaniu niedemokratycznych metod i praktyk czy <mark>zawłaszczaniu państwa w interesie jednej partii i grup związanych z jej politykami</mark>. Skutkami takiej polityki są: bezprecedensowa w skali histo-rycznej, wymuszona sytuacją emigracja Polaków…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 5</span>
+<div class="quote">
+“rząd PO-PSL jest oszukiwana i lekceważona”
+</div>
+<span class="context">Polska wieś doznała w przeszłości wielu krzywd i dyskryminacji, a przez obecny <mark>rząd PO-PSL jest oszukiwana i lekceważona</mark>. Obecna koalicja systematycznie zmniejsza nakłady na rolnictwo.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 6</span>
+<div class="quote">
+“Niszczy się w ten sposób podmiotowość, odbiera samodzielność ekonomiczną, ingeruje w autonomię rodziny.”
+</div>
+<span class="context">Odebrany przez podatki dochód z pracy uzupełnia się później przez różnego rodzaju zasiłki i zapomogi (jedna grupa urzędników zabiera rodzinie dochód, a druga rozdaje zasiłki i zapomogi). <mark>Niszczy się w ten sposób podmiotowość, odbiera samodzielność ekonomiczną, ingeruje w autonomię rodziny.</mark> Wymierny wzrost wynagrodzeń pracowniczych</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“system Tuska zagraża zarówno demokracji i prawom obywatelskim”
+</div>
+<span class="context">Jest on [system Tuska] bardzo szkodliwy, nie spełnia nawet najbardziej minimalistycznie sformułowanych wymagań stawianych demokratycznej władzy… System ten zagraża zarówno demokracji i prawom obywatelskim jak i wszystkiemu, co decyduje o zdrowym, wszechstronnym i zrównoważonym rozwoju naszej ojczyzny</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“zawłaszczaniu państwa w interesie jednej partii”
+</div>
+<span class="context">przeszkadzać im w korzystaniu z władzy, stosowaniu niedemokratycznych metod i praktyk czy <mark>zawłaszczaniu państwa w interesie jednej partii</mark> i grup związanych z jej politykami</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“ekipę Donalda Tuska należy „unieszkodliwianie”“
+</div>
+<span class="context">Do charakterystycznych rysów sprawowania władzy przez <mark>ekipę Donalda Tuska należy „unieszkodliwianie”</mark> instytucji szeroko rozumianej kontroli</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 5</span>
+<div class="quote">
+“rząd PO-PSL świadomie wyraził zgodę na rażącą”
+</div>
+<span class="context">Przede wszystkim jednak <mark>rząd PO-PSL świadomie wyraził zgodę na rażącą</mark> i bezprawną dyskryminację polskich rolników</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 6</span>
+<div class="quote">
+“Rząd Tuska przez dwie kadencje nie zrobił nic”
+</div>
+<span class="context"><mark>Rząd Tuska przez dwie kadencje nie zrobił nic</mark>, aby zwiększyć dostępność mieszkań dla ludzi młodych, ani też nie działa nic w kierunku obniżania cen mieszkań</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 7</span>
+<div class="quote">
+“prorządową stronniczość głównych mediów”
+</div>
+<span class="context">Niezależne badania socjologiczne jednoznacznie wskazują na <mark>prorządową stronniczość głównych mediów</mark> (w tym telewizji i radia publicznego)</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 8</span>
+<div class="quote">
+“realny lud obywatelski, reszta to utopia”
+</div>
+<span class="context">demokracja jest organizowana w państwach członkowskich, bowiem w tych państwach istnieje <mark>realny lud obywatelski, reszta to utopia</mark> i mrzonka</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="92436_201510_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

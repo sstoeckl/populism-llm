@@ -1,0 +1,1773 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>RF (Croatia, 2020) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/81245_202007_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">RF (Croatia, 2020)</h1>
+<p class="subtitle lead">manifesto_id 81245_202007</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Croatia · <span class="item"><strong>Party</strong></span> RF (Workers’ Front) · <span class="item"><strong>Year</strong></span> 2020 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 20</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">9.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">9.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">4.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">6.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.5</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">0.3</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">0.0</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 1</span>
+<div class="quote">
+“podržavljenje ove strateške industrijske grane”
+</div>
+<span class="context">potrebna su tri radikalna zaokreta - <mark>podržavljenje ove strateške industrijske grane</mark>, stvaranje institucionalnog okvira</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 2</span>
+<div class="quote">
+“Osnovne mjere neoliberalne politike su deregulacija, liberalizacija i privatizacija”
+</div>
+<span class="context">Neoliberalizam se kroz institucije EU promiče i uvlači u sve pore ekonomije i društva. <mark>Osnovne mjere neoliberalne politike su deregulacija, liberalizacija i privatizacija</mark>. Deregulacija označava općenito smanjenje</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“Ekonomija i diktati tržišta ne smiju utjecati na znanost”
+</div>
+<span class="context">neovisne o političkim i prvenstveno o ekonomskim utjecajima. <mark>Ekonomija i diktati tržišta ne smiju utjecati na znanost</mark> i visoko obrazovanje</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“protiv neoliberalnih politika liberalizacije, privatizacije i deregulacije”
+</div>
+<span class="context">EU… provodi neoliberalne politike liberalizacije, privatizacije i deregulacije, kojima su pridodane i mjere štednje.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“deregulacija, liberalizacija i privatizacija”
+</div>
+<span class="context">…Osnovne mjere neoliberalne politike su <mark>deregulacija, liberalizacija i privatizacija</mark>. Deregulacija označava općenito smanjenje poslovnih propisa radi postizanja bolje “poduzetničke klime” (što je ljepše upakirano “pogodovanje kapitalistima”), ukidanja propisâ i ograničenjâ, lakšeg protoka kapitala itd.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · mixed · chunk 3</span>
+<div class="quote">
+“kapitalistički način proizvodnje koji nije usmjeren zadovoljavanju potreba već stvaranju profita”
+</div>
+<span class="context">…Klimatske promjene uzrokovane su načinom proizvodnje — kapitalističkim načinom proizvodnje koji nije usmjeren zadovoljavanju potreba već stvaranju profita…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Liberalizacija vanjske trgovine znači potpuno otvaranje tržišta”
+</div>
+<span class="context"><mark>Liberalizacija vanjske trgovine znači potpuno otvaranje tržišta</mark> perifernih zemalja stranoj konkurenciji</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“Deregulacija, liberalizacija i privatizacija”
+</div>
+<span class="context">Osnovne mjere neoliberalne politike su deregulacija, liberalizacija i privatizacija. Deregulacija označava općenito smanjenje poslovnih propisa</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“tržišne hegemonije”
+</div>
+<span class="context">U svijetu profitnih motiva i <mark>tržišne hegemonije</mark>, danas takvih potrebnih institucija zapravo nemamo.</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 1</span>
+<div class="quote">
+“ukinuti plaćanja kamata na stambene kredite”
+</div>
+<span class="context">ukinuti valutnu klauzulu na kredite te <mark>ukinuti plaćanja kamata na stambene kredite</mark> za prvu nekretninu.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 2</span>
+<div class="quote">
+“vlasništvu stranih zapadnoeuropskih privatnih banaka”
+</div>
+<span class="context">bogaćenja kapitalističke posjedničke elite na račun čitavog društva. Tako je recimo 80 % banaka u novim istočnoevropskim članicama EU, kao i u Hrvatskoj, u <mark>vlasništvu stranih zapadnoeuropskih privatnih banaka</mark> koje na taj način iz tih zemalja</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“banke u stranom vlasništvu… izvlače goleme profite”
+</div>
+<span class="context">80 % banaka u novim istočnoevropskim članicama EU, kao i u Hrvatskoj, u vlasništvu stranih zapadnoeuropskih privatnih banaka koje na taj način iz tih zemalja izvlače goleme profite.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“mirovinski fondovi počeli se izjednačavati s kreditnim portfeljom banaka”
+</div>
+<span class="context">…Ulaganjem u korporativne obveznice vlasnički portfelj obveznih mirovinskih fondova počeo se izjednačavati s kreditnim portfeljom banaka. S obzirom na blisku vlasničku strukturu obveznih mirovinskih fondova i banaka, takvim potezima mirovinski fondovi su osigurali spašavanje ulaganja svojih banaka našim novcem.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“banke, danas u 95%-tnom stranom vlasništvu”
+</div>
+<span class="context">strani kapital je pokupovao ono što mu je isplativo (banke, telekomunikacije, industriju nafte…), <mark>banke, danas u 95%-tnom stranom vlasništvu</mark>, nerijetko povezane s industrijom iz njihovih matičnih zemalja</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“privatizaciju mirovinskog sustava”
+</div>
+<span class="context">Drugi mirovinski stup uveden je 2002. godine na inicijativu Svjetske banke i ustvari predstavlja <mark>privatizaciju mirovinskog sustava</mark> u sklopu neoliberalne ideologije</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“tržišnih mehanizama i poticaja”
+</div>
+<span class="context">uvođenje ‘<mark>tržišnih mehanizama i poticaja</mark>’ koji bi trebali potaknuti kako korporacije tako i potrošače da štede energiju</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“demokratskom planiranju proizvodnje”
+</div>
+<span class="context">suprotstaviti model ekonomskog razvitka usmjerenog prema društvenom i <mark>demokratskom planiranju proizvodnje</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“demokratsku kontrolu kroz masovnu mobilizaciju”
+</div>
+<span class="context">izvore sistemske korupcije – moć elita i nejednakost! Potrebno je oduzimanje moći elitama i državnom aparatu, te građenje demokratske kontrole kroz masovnu mobilizaciju i povećavanje dosega demokracije</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“vijeće učenika na taj način bi dobilo doista demokratsku funkciju”
+</div>
+<span class="context">Nadalje, <mark>vijeće učenika na taj način bi dobilo doista demokratsku funkciju</mark>, s pozitivnim učinkom na dječje shvaćanje</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Radnička fronta se zalaže za internacionalističku progresivnu politiku povezivanja različitih zemalja”
+</div>
+<span class="context"><mark>Radnička fronta se zalaže za internacionalističku progresivnu politiku povezivanja različitih zemalja</mark> na osnovi solidarnosti i zajedničkih interesa.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“demokratska kontrole kroz masovnu mobilizaciju”
+</div>
+<span class="context">…Potrebno je oduzimanje moći elitama i državnom aparatu, te građenje demokratske kontrole kroz masovnu mobilizaciju i povećavanje dosega demokracije i demokratskih praksi odlučivanja.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“vlast proizlazi iz naroda, a narod čine i žene, onda je to i pitanje demokracije”
+</div>
+<span class="context">…Pitanje političke participacije je načelno pitanje u smislu da žena mora imati jednake izborne šanse kao i muškarac unutar određene političke opcije. Ako <mark>vlast proizlazi iz naroda, a narod čine i žene, onda je to i pitanje demokracije</mark>…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Europska unija je još manje demokratična”
+</div>
+<span class="context">Dapače, <mark>Europska unija je još manje demokratična</mark> od Hrvatske i drugih zemalja sastavnica. Jedino tijelo EU koje glasači izravno biraju na izborima je Europski parlament</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“doista demokratsku funkciju”
+</div>
+<span class="context">vijeće učenika na taj način bi dobilo <mark>doista demokratsku funkciju</mark>, s pozitivnim učinkom na dječje shvaćanje demokracije</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“povećanje prava žena te za feminističko-socijalističku”
+</div>
+<span class="context">položaj žena. RF prepoznaje „dvostruko breme“ koje opterećuje radnice u kapitalističkom sistemu, te smo usmjereni na suštinsku promjenu i preoblikovanje postojećih institucija koje generiraju potlačenost žena. Žene u Hrvatskoj čine 51 posto ukupnog stanovništva, a svojim radom, uključujući i neplaćeni reproduktivni rad (npr. kućanske poslove i skrb o članovima obitelji), sudjeluju u cjelokupnom ekonomskom i političkom životu premda su u tim procesima u neravnopravnom i često podređenom položaju. Feminističko-socijalističke politike RF se zalaže za <mark>povećanje prava žena te za feminističko-socijalističku</mark> politiku kao nužan temelj</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“pravo na besplatan i javno dostupan abortus i kontracepciju”
+</div>
+<span class="context">kako bi bilo moguće govoriti o roditeljstvu kao istinski slobodnom izboru. <mark>pravo na besplatan i javno dostupan abortus i kontracepciju</mark> i za zabranu</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“radnici, siromašni, danas obespravljeni i potlačeni, studenti, penzioneri i sitni poljoprivrednici”
+</div>
+<span class="context">Nakon nekoliko godina vlasti RF-a, bila bi zemlja u kojoj bi <mark>radnici, siromašni, danas obespravljeni i potlačeni, studenti, penzioneri i sitni poljoprivrednici</mark> živjeli nešto bolje nego danas.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“povećanje prava žena te za feminističko-socijalističku politiku”
+</div>
+<span class="context">…RF se zalaže za <mark>povećanje prava žena te za feminističko-socijalističku politiku</mark> kao nužan temelj osiguranja i provođenja tih prava, a to uključuje: izjednačavanje plaća te ukidanje fleksibilnih, povremenih, sezonskih i sličnih atipičnih radnih ugovora koji pogađaju najviše žene.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“povećanje prava žena te za feminističko-socijalističku politiku”
+</div>
+<span class="context">…RF se zalaže za <mark>povećanje prava žena te za feminističko-socijalističku politiku</mark> kao nužan temelj osiguranja i provođenja tih prava…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“imigrante i manjine”
+</div>
+<span class="context">umjesto onih najbogatijih i moćnih za sve nedaće krivi one najslabije - <mark>imigrante i manjine</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“rodne razlike u političkoj zastupljenosti”
+</div>
+<span class="context">Pogledamo li raspodjelu bogatstva, <mark>rodne razlike u političkoj zastupljenosti</mark>, jezik, kulturu te predodžbu o ljudskosti</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“jačanjem i formiranjem feminističkih i LGBTIQ organizacija”
+</div>
+<span class="context">političko jačanje feminizma koje se može provesti <mark>jačanjem i formiranjem feminističkih i LGBTIQ organizacija</mark>, kako na državnoj, tako i međunarodnoj razini</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“podržavljenje ove strateške industrijske grane”
+</div>
+<span class="context">potrebna su tri radikalna zaokreta - <mark>podržavljenje ove strateške industrijske grane</mark>, stvaranje institucionalnog okvira</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“Osnovne mjere neoliberalne politike su deregulacija, liberalizacija i privatizacija”
+</div>
+<span class="context">Neoliberalizam se kroz institucije EU promiče i uvlači u sve pore ekonomije i društva. <mark>Osnovne mjere neoliberalne politike su deregulacija, liberalizacija i privatizacija</mark>. Deregulacija označava općenito smanjenje</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“pravo na besplatan i javno dostupan abortus i kontracepciju”
+</div>
+<span class="context">kako bi bilo moguće govoriti o roditeljstvu kao istinski slobodnom izboru. <mark>pravo na besplatan i javno dostupan abortus i kontracepciju</mark> i za zabranu</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“protiv neoliberalnih politika liberalizacije, privatizacije i deregulacije”
+</div>
+<span class="context">EU… provodi neoliberalne politike liberalizacije, privatizacije i deregulacije, kojima su pridodane i mjere štednje.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“deregulacija, liberalizacija i privatizacija”
+</div>
+<span class="context">…Osnovne mjere neoliberalne politike su <mark>deregulacija, liberalizacija i privatizacija</mark>. Deregulacija označava općenito smanjenje poslovnih propisa radi postizanja bolje “poduzetničke klime” (što je ljepše upakirano “pogodovanje kapitalistima”), ukidanja propisâ i ograničenjâ, lakšeg protoka kapitala itd.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“povećanje prava žena te za feminističko-socijalističku politiku”
+</div>
+<span class="context">…RF se zalaže za <mark>povećanje prava žena te za feminističko-socijalističku politiku</mark> kao nužan temelj osiguranja i provođenja tih prava…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“neoliberalne politike liberalizacije, privatizacije i deregulacije”
+</div>
+<span class="context">EU, različitim mjerama, direktivama, institucijama i politikama već desetljećima zagovara i provodi <mark>neoliberalne politike liberalizacije, privatizacije i deregulacije</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Kapitalizam i osobito neoliberalizam”
+</div>
+<span class="context"><mark>Kapitalizam i osobito neoliberalizam</mark> kao njegova zadnja faza, između pojedinih zemalja i regija… uzrokuju nejednakost.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 3</span>
+<div class="quote">
+“slobodno i svima dostupno obrazovanje”
+</div>
+<span class="context"><mark>slobodno i svima dostupno obrazovanje</mark> i neovisna znanost moraju vratiti svoj utjecaj na uređenje i pravac kretanja društva</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“privatizacijsko-tajkunskom krupnom kapitalu i trenutnoj političkoj oligarhiji”
+</div>
+<span class="context">bila bi zemlja u kojoj bi radnici, siromašni, danas obespravljeni i potlačeni… S druge strane, <mark>privatizacijsko-tajkunskom krupnom kapitalu i trenutnoj političkoj oligarhiji</mark> bi bilo puno gore nego danas.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“bogatstvo elita s druge”
+</div>
+<span class="context">onemogućava puni i svestrani razvoj svih ljudi i stvara nepremostive razlike – bijedu podčinjenih s jedne strane i <mark>bogatstvo elita s druge</mark>. Takav način proizvodnje, uostalom, odgovoran je</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“borbu protiv pravih krivaca – nacionalnih i globalnih političko-ekonomskih elita”
+</div>
+<span class="context">borimo protiv pravih krivaca – nacionalnih i globalnih političko-ekonomskih elita i nakaradnog sistema u kojem živimo</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“kapitalistička manjina koncentrira goleme dohotke i bogatstvo”
+</div>
+<span class="context">Sve teža ekonomska i socijalna pozicija za većinu ljudi u Hrvatskoj obilato ide u prilog privilegiranoj kapitalističkoj manjini.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“bogatstvo elita s druge”
+</div>
+<span class="context">…stvara nepremostive razlike – bijedu podčinjenih s jedne strane i <mark>bogatstvo elita s druge</mark>. Takav način proizvodnje, uostalom, odgovoran je i za ogromne migracije s Bliskog istoka i Afrike u Europu; ali i za uništavanje ne samo ljudi već i prirode – u obliku klimatskih promjena i narušavanja dinamičke ravnoteže ekosustava…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“borimo protiv pravih krivaca – nacionalnih i globalnih političko-ekonomskih elita”
+</div>
+<span class="context">…na nama je da se <mark>borimo protiv pravih krivaca – nacionalnih i globalnih političko-ekonomskih elita</mark> i nakaradnog sistema u kojem živimo – a ne da krivicu prebacujemo na nedužne ljude…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“privatizacijsko-tajkunskom krupnom kapitalu i trenutnoj političkoj oligarhiji”
+</div>
+<span class="context">S druge strane, <mark>privatizacijsko-tajkunskom krupnom kapitalu i trenutnoj političkoj oligarhiji</mark> bi bilo puno gore nego danas.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“bogatstvo elita s druge”
+</div>
+<span class="context">uzrokuju nejednakost… bijedu podčinjenih s jedne strane i <mark>bogatstvo elita s druge</mark>. Takav način proizvodnje</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“nacionalnih i globalnih političko-ekonomskih elita i nakaradnog sistema”
+</div>
+<span class="context">borimo protiv pravih krivaca – <mark>nacionalnih i globalnih političko-ekonomskih elita i nakaradnog sistema</mark> u kojem živimo</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“dosljednu neovisnu vanjsku politiku Hrvatske”
+</div>
+<span class="context">Radnička fronta se zalaže za internacionalističku progresivnu politiku… za <mark>dosljednu neovisnu vanjsku politiku Hrvatske</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“tehnokratska „ekspertiza” niti konzervativizam”
+</div>
+<span class="context">…Ni <mark>tehnokratska „ekspertiza” niti konzervativizam</mark> ne zahvaćaju temeljne strukturne uvjete obespravljenosti i ekološke destruktivnosti.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“vlast proizlazi iz naroda, a narod čine i žene”
+</div>
+<span class="context">…Ako <mark>vlast proizlazi iz naroda, a narod čine i žene</mark>, onda je to i pitanje demokracije…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“prazne fraze socijaldemokrata i tehnokratskih populista”
+</div>
+<span class="context">Prazne fraze socijaldemokrata i tehnokratskih populista, čiji se dosezi vide svakim potezom kada se nađu u poziciji vladajućih</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“tehnokratskih populista”
+</div>
+<span class="context">Prazne fraze socijaldemokrata i <mark>tehnokratskih populista</mark>, čiji se dosezi vide svakim potezom kada se nađu u poziciji vladajućih</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“vijeće učenika na taj način bi dobilo doista demokratsku funkciju”
+</div>
+<span class="context"><mark>vijeće učenika na taj način bi dobilo doista demokratsku funkciju</mark>, s pozitivnim učinkom na dječje shvaćanje demokracije</span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 10.0 · verified · chunk 1</span>
+<div class="quote">
+“rušenje kapitalizma”
+</div>
+<span class="context">Znači li osvajanje vlasti radikalno lijeve organizacije ujedno i <mark>rušenje kapitalizma</mark>?</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“bogaćenja kapitalističke posjedničke elite”
+</div>
+<span class="context">efikasnije i ekonomski racionalnije od državnoga, a zapravo kao sredstvo <mark>bogaćenja kapitalističke posjedničke elite</mark> na račun čitavog društva. Tako je recimo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“Feminističko-socijalističke politike RF se zalaže za povećanje prava žena”
+</div>
+<span class="context">u neravnopravnom i često podređenom položaju. <mark>Feminističko-socijalističke politike RF se zalaže za povećanje prava žena</mark> te za feminističko-socijalističku</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“model ekonomskog razvitka usmjerenog prema društvenom i demokratskom planiranju proizvodnje”
+</div>
+<span class="context">Modelu ekonomskog razvitka temeljenog na potrošnji, uvozu… suprotstaviti <mark>model ekonomskog razvitka usmjerenog prema društvenom i demokratskom planiranju proizvodnje</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“Europa demokratskog socijalizma”
+</div>
+<span class="context">…Biti za narodnu većinu, a ne bogatu elitu, ne znači biti za mlake reformističke mjere, već to znači biti za Europu demokratskog socijalizma - Europu čija će se ekonomija temeljiti na društvenom vlasništvu koje jedino garantira da će se gospodarska aktivnost odvijati u interesu zadovoljenja potreba cijelog društva, a ne u interesu elita.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“RF se zalaže za progresivni feminizam koji je usmjeren na borbu protiv svih vidova eksploatacije”
+</div>
+<span class="context">…<mark>RF se zalaže za progresivni feminizam koji je usmjeren na borbu protiv svih vidova eksploatacije</mark> i potiče solidarnost sa svim potlačenima u društvu, bilo da je riječ o klasnim ili rodnim razlikama…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“nacionalizacija brodogradilišta važna je pretpostavka”
+</div>
+<span class="context">Nacionalizacija brodogradilišta važna je pretpostavka za trasiranje takvog puta i oblikovanje institucionalnih uvjeta za progresivnu industrijsku politiku koja će biti u interesu radne većine, a ne kapitala.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 10.0 · verified · chunk 2</span>
+<div class="quote">
+“Europu demokratskog socijalizma”
+</div>
+<span class="context">Biti za narodnu većinu, a ne bogatu elitu, ne znači biti za mlake reformističke mjere, već to znači biti za <mark>Europu demokratskog socijalizma</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“Ekologija znači socijalizam”
+</div>
+<span class="context">Održivo društvo je socijalističko društvo – to je društvo koje proizvodi kako bi zadovoljilo potrebe. <mark>Ekologija znači socijalizam</mark>.</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 10.0 · verified · chunk 1</span>
+<div class="quote">
+“rušenje kapitalizma”
+</div>
+<span class="context">Znači li osvajanje vlasti radikalno lijeve organizacije ujedno i <mark>rušenje kapitalizma</mark>?</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“bogaćenja kapitalističke posjedničke elite”
+</div>
+<span class="context">efikasnije i ekonomski racionalnije od državnoga, a zapravo kao sredstvo <mark>bogaćenja kapitalističke posjedničke elite</mark> na račun čitavog društva. Tako je recimo</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“Feminističko-socijalističke politike RF se zalaže za povećanje prava žena”
+</div>
+<span class="context">u neravnopravnom i često podređenom položaju. <mark>Feminističko-socijalističke politike RF se zalaže za povećanje prava žena</mark> te za feminističko-socijalističku</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“protiv ekstremne desnice… i za dosljednu neovisnu vanjsku politiku Hrvatske”
+</div>
+<span class="context">Protiv ekstremne desnice… i za dosljednu neovisnu vanjsku politiku Hrvatske, koja bi se vodila prema interesima većine ljudi.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Europa demokratskog socijalizma”
+</div>
+<span class="context">…Biti za narodnu većinu, a ne bogatu elitu, ne znači biti za mlake reformističke mjere, već to znači biti za Europu demokratskog socijalizma - Europu čija će se ekonomija temeljiti na društvenom vlasništvu koje jedino garantira da će se gospodarska aktivnost odvijati u interesu zadovoljenja potreba cijelog društva, a ne u interesu elita.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“RF se zalaže za progresivni feminizam koji je usmjeren na borbu protiv svih vidova eksploatacije”
+</div>
+<span class="context">…<mark>RF se zalaže za progresivni feminizam koji je usmjeren na borbu protiv svih vidova eksploatacije</mark> i potiče solidarnost sa svim potlačenima u društvu…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“antikapitalističkim pokretom koji će prvenstveno uzdrmati”
+</div>
+<span class="context">Kapitalizam se urušiti može samo globalnim <mark>antikapitalističkim pokretom koji će prvenstveno uzdrmati</mark> zemlje kapitalističkog centra</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“anti-korporativne elite, redistribucija, društveno vlasništvo”
+</div>
+<span class="context">Biti za narodnu većinu, a ne bogatu elitu… Europu čija će se ekonomija temeljiti na društvenom vlasništvu</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“feminističko-socijalističku politiku kao nužan temelj”
+</div>
+<span class="context">RF se zalaže za povećanje prava žena te za <mark>feminističko-socijalističku politiku kao nužan temelj</mark> osiguranja i provođenja tih prava</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 2</span>
+<div class="quote">
+“daju i zamaha desnici, politikama mržnje”
+</div>
+<span class="context">se nađu u poziciji vladajućih – ne samo da se pokazuju retorički ispraznima već <mark>daju i zamaha desnici, politikama mržnje</mark>, ksenofobije i izolacionizma.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 0.0 · verified · chunk 3</span>
+<div class="quote">
+“Rješenje, nije i ne može biti u napadanju imigranata, rasizmu i ksenofobiji”
+</div>
+<span class="context">tražiti bolji život ili čak spašavati goli život u udaljenim zemljama. <mark>Rješenje, nije i ne može biti u napadanju imigranata, rasizmu i ksenofobiji</mark>, niti krivljenju</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“protiv ekstremne desnice (koja posvuda u Europi raste kao… rezultat ekonomskih politika EU)”
+</div>
+<span class="context">RF nije za održavanje novog referenduma o izlasku iz EU – smatramo da bi takvo što samo odvuklo pozornost od pitanja ekonomske politike EU te premjestilo priču na lažna „vrijednosna“ pitanja, dajući pritom prostor rastu ksenofobije na krilima ekstremne desnice.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“desnici, politikama mržnje, ksenofobije i izolacionizma”
+</div>
+<span class="context">…Prazne fraze socijaldemokrata i tehnokratskih populista, čiji se dosezi vide svakim potezom kada se nađu u poziciji vladajućih – ne samo da se pokazuju retorički ispraznima već daju i zamaha <mark>desnici, politikama mržnje, ksenofobije i izolacionizma</mark>.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“politička scena EU sve više se kreće prema jačanju ksenofobnih pokreta”
+</div>
+<span class="context">…<mark>politička scena EU sve više se kreće prema jačanju ksenofobnih pokreta</mark> čiju retoriku sve više preuzimaju i najveće političke stranke…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“politikama mržnje, ksenofobije i izolacionizma”
+</div>
+<span class="context">Prazne fraze socijaldemokrata i tehnokratskih populista… daju i zamaha desnici, <mark>politikama mržnje, ksenofobije i izolacionizma</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“borbu protiv rasizma i ksenofobije”
+</div>
+<span class="context">Rješenje, nije i ne može biti u napadanju imigranata, rasizmu i ksenofobiji, niti krivljenju njih za sve naše nedaće</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“obespravljeni i potlačeni”
+</div>
+<span class="context">bila bi zemlja u kojoj bi radnici, siromašni, danas <mark>obespravljeni i potlačeni</mark>, studenti, penzioneri</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“u korist gospodarsko-političke elite”
+</div>
+<span class="context">ravnoteže ekosustava (uništavanja bioraznolikosti, acidifikacije oceana, erozije tla itd.). Neoliberalne politike - politike su <mark>u korist gospodarsko-političke elite</mark> i korporacijâ a na štetu većine društva.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“borbu protiv pravih krivaca – nacionalnih i globalnih političko-ekonomskih elita i nakaradnog sistema”
+</div>
+<span class="context">borimo protiv pravih krivaca – nacionalnih i globalnih političko-ekonomskih elita i nakaradnog sistema u kojem živimo – a ne da krivicu</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“oni koji su na vrhu ekonomsko-političkog sistema… neće bez borbe odreći svojih povlastica”
+</div>
+<span class="context">Velike i radikalne promjene koje bi išle u korist većine društva ne bi ostale bez ogromnog otpora – unutar i van zemlje – jer se oni koji su na vrhu ekonomsko-političkog sistema u kojem živimo sigurno neće bez borbe odreći svojih povlastica.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“lažne odgovore na postojeće probleme nejednakosti”
+</div>
+<span class="context">…I neoliberali i desničari daju <mark>lažne odgovore na postojeće probleme nejednakosti</mark>, siromaštva, klimatskih promjena – jedni probleme misle rješavati tehnokratskim rješenjima drugi agresijom i zatvaranjem granica.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“borimo protiv pravih krivaca – nacionalnih i globalnih političko-ekonomskih elita”
+</div>
+<span class="context">…na nama je da se <mark>borimo protiv pravih krivaca – nacionalnih i globalnih političko-ekonomskih elita</mark> i nakaradnog sistema u kojem živimo – a ne da krivicu prebacujemo na nedužne ljude koji su prisiljeni…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“oni koji su na vrhu ekonomsko-političkog sistema”
+</div>
+<span class="context">jer se <mark>oni koji su na vrhu ekonomsko-političkog sistema</mark> u kojem živimo sigurno neće bez borbe odreći svojih povlastica</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“interesi kapitala… na štetu većine društva”
+</div>
+<span class="context">Sistemska korupcija dio je samog neoliberalnog sustava koji EU promiče, a kojemu su u osnovi interesi kapitala (dominantno krupnog kapitala iz zapadnih razvijenih zemalja EU) na štetu većine društva</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“konflikt koji se nazire je samo onaj između kapitala i napretka”
+</div>
+<span class="context">Konflikt koji se nazire je samo onaj između kapitala i napretka - u interesu kapitala je samo kratkoročni profit, a ne opći napredak</span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“u interesu radne većine”
+</div>
+<span class="context">mogu voditi politike <mark>u interesu radne većine</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Biti za narodnu većinu”
+</div>
+<span class="context">ne politiziraju okvir neoliberalizma kojeg čini kapitalistički način proizvodnje. <mark>Biti za narodnu većinu</mark>, a ne bogatu elitu, ne znači biti za mlake</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“Ako vlast proizlazi iz naroda, a narod čine i žene”
+</div>
+<span class="context">ravnopravnoj participaciji žena u politici. <mark>Ako vlast proizlazi iz naroda, a narod čine i žene</mark>, onda je to i pitanje demokracije.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“radnici, siromašni, danas obespravljeni i potlačeni”
+</div>
+<span class="context">Nakon nekoliko godina vlasti RF-a, bila bi zemlja u kojoj bi <mark>radnici, siromašni, danas obespravljeni i potlačeni</mark>, studenti, penzioneri i sitni poljoprivrednici živjeli nešto bolje nego danas.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Biti za narodnu većinu, a ne bogatu elitu”
+</div>
+<span class="context">…<mark>Biti za narodnu većinu, a ne bogatu elitu</mark>, ne znači biti za mlake reformističke mjere, već to znači biti za Europu demokratskog socijalizma - Europu čija će se ekonomija temeljiti na društvenom vlasništvu koje jedino garantira da će se gospodarska aktivnost odvijati u interesu zadovoljenja potreba cijelog društva, a ne u interesu elita.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“vlast proizlazi iz naroda, a narod čine i žene”
+</div>
+<span class="context">…Pitanje političke participacije je načelno pitanje u smislu da žena mora imati jednake izborne šanse kao i muškarac unutar određene političke opcije. Ako <mark>vlast proizlazi iz naroda, a narod čine i žene</mark>, onda je to i pitanje demokracije…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“radnici, siromašni, danas obespravljeni i potlačeni”
+</div>
+<span class="context">bila bi zemlja u kojoj bi <mark>radnici, siromašni, danas obespravljeni i potlačeni</mark>, studenti, penzioneri i sitni poljoprivrednici živjeli nešto bolje</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“Biti za narodnu većinu, a ne bogatu elitu”
+</div>
+<span class="context"><mark>Biti za narodnu većinu, a ne bogatu elitu</mark>, ne znači biti za mlake reformističke mjere, već to znači biti za Europu demokratskog socijalizma</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Ako vlast proizlazi iz naroda”
+</div>
+<span class="context"><mark>Ako vlast proizlazi iz naroda</mark>, a narod čine i žene, onda je to i pitanje demokracije.</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“u interesu radne većine”
+</div>
+<span class="context">mogu voditi politike <mark>u interesu radne većine</mark>.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Biti za narodnu većinu, a ne bogatu elitu”
+</div>
+<span class="context">ne politiziraju okvir neoliberalizma kojeg čini kapitalistički način proizvodnje. <mark>Biti za narodnu većinu, a ne bogatu elitu</mark>, ne znači biti za mlake reformističke mjere</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“borbu protiv pravih krivaca – nacionalnih i globalnih političko-ekonomskih elita”
+</div>
+<span class="context">borimo protiv pravih krivaca – nacionalnih i globalnih političko-ekonomskih elita i nakaradnog sistema u kojem živimo</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“kapitalistička manjina koncentrira goleme dohotke i bogatstvo”
+</div>
+<span class="context">Sve teža ekonomska i socijalna pozicija za većinu ljudi u Hrvatskoj obilato ide u prilog privilegiranoj kapitalističkoj manjini.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“bogatstvo elita s druge”
+</div>
+<span class="context">…stvara nepremostive razlike – bijedu podčinjenih s jedne strane i <mark>bogatstvo elita s druge</mark>. Takav način proizvodnje, uostalom, odgovoran je i za ogromne migracije s Bliskog istoka i Afrike u Europu; ali i za uništavanje ne samo ljudi već i prirode – u obliku klimatskih promjena i narušavanja dinamičke ravnoteže ekosustava…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“borimo protiv pravih krivaca – nacionalnih i globalnih političko-ekonomskih elita”
+</div>
+<span class="context">…na nama je da se <mark>borimo protiv pravih krivaca – nacionalnih i globalnih političko-ekonomskih elita</mark> i nakaradnog sistema u kojem živimo – a ne da krivicu prebacujemo na nedužne ljude…</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“politike u interesu radne većine”
+</div>
+<span class="context">RF donosi svoje prijelazne i kratkoročne mjere koje su tu kako bi osvijestili da se čak i u ovim uskim okvirima mogu voditi <mark>politike u interesu radne većine</mark></span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“Neoliberalne politike - politike su u korist gospodarsko-političke elite”
+</div>
+<span class="context"><mark>Neoliberalne politike - politike su u korist gospodarsko-političke elite</mark> i korporacijâ a na štetu većine društva.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“borimo protiv pravih krivaca – nacionalnih i globalnih političko-ekonomskih elita”
+</div>
+<span class="context">Na nama je da se <mark>borimo protiv pravih krivaca – nacionalnih i globalnih političko-ekonomskih elita</mark> i nakaradnog sistema u kojem živimo</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="81245_202007_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

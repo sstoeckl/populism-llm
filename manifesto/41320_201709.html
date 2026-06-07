@@ -1,0 +1,1878 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>SPD (Germany, 2017) – Populism-LLM</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-0a6b7249c26820e032cb0bd839ff02b1.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-15634bcf2e68342d4ad2dfa704d543f6.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-00dac30d091782bc8296c9a3c277cf33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-32d11662a1bacad51e30663171d173ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../assets/css/site.css">
+<meta property="og:title" content="r params$party (r params$country, r params$year) – Populism-LLM">
+<meta property="og:description" content="manifesto_id r params$doc_id">
+<meta property="og:image" content="https://sstoeckl.github.io/populism-llm/manifesto/41320_201709_files/figure-html/plot-1.png">
+<meta property="og:site_name" content="Populism-LLM">
+<meta property="og:image:height" content="1800">
+<meta property="og:image:width" content="3000">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo light-content">
+    <img src="../assets/logo.svg" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Populism-LLM</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../browse.html"> 
+<span class="menu-text">Browse</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../cross-model.html"> 
+<span class="menu-text">Cross-Model Agreement</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../interactive/regression.html"> 
+<span class="menu-text">Interactive Regressions</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../methodology.html"> 
+<span class="menu-text">Methodology</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../download.html"> 
+<span class="menu-text">Download</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul class="collapse">
+  <li><a href="#headline-scores" id="toc-headline-scores" class="nav-link active" data-scroll-target="#headline-scores">Headline scores</a></li>
+  <li><a href="#evidence-per-dimension" id="toc-evidence-per-dimension" class="nav-link" data-scroll-target="#evidence-per-dimension">Evidence per dimension</a></li>
+  <li><a href="#scores-at-a-glance" id="toc-scores-at-a-glance" class="nav-link" data-scroll-target="#scores-at-a-glance">Scores at a glance</a></li>
+  </ul>
+<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content column-page-left" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">SPD (Germany, 2017)</h1>
+<p class="subtitle lead">manifesto_id 41320_201709</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page-left">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+<div class="draft-banner" role="alert">
+<p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
+</div>
+<div class="manifesto-meta">
+<p><span class="item"><strong>Country</strong></span> Germany · <span class="item"><strong>Party</strong></span> SPD (Social Democratic Party of Germany) · <span class="item"><strong>Year</strong></span> 2017 · <span class="item"><strong>Language</strong></span> · <span class="item"><strong>parfam</strong></span> 30</p>
+</div>
+<div class="callout callout-style-simple callout-note">
+<div class="callout-body d-flex">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-body-container">
+<p><strong>Get full text:</strong> This site shows derived annotations and short verbatim quotes only. The full manifesto text is © Manifesto Project / WZB — obtain it via <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a> using the <code>manifesto_id</code> above.</p>
+</div>
+</div>
+</div>
+<section id="headline-scores" class="level2">
+<h2 class="anchored" data-anchor-id="headline-scores">Headline scores</h2>
+<table class="compact">
+<thead>
+<tr>
+<th>
+Dimension
+</th>
+<th style="text-align:center">
+Sonnet
+</th>
+<th style="text-align:center">
+gpt-4.1-mini
+</th>
+<th style="text-align:center">
+Gemini
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+Populism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.5</span>
+</td>
+</tr>
+<tr>
+<td>
+Anti-Elitism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.5</span>
+</td>
+</tr>
+<tr>
+<td>
+People-Centrism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Manichaean Worldview
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">2.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">1.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Ideology (Right − Left)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.3</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Liberalism (Overall)
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">6.7</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+</tr>
+<tr>
+<td>
+Political Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.8</span>
+</td>
+</tr>
+<tr>
+<td>
+Social Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.5</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">8.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">9.2</span>
+</td>
+</tr>
+<tr>
+<td>
+Economic Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-na">–</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.8</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">5.5</span>
+</td>
+</tr>
+<tr>
+<td>
+Financial-Market Liberalism
+</td>
+<td style="text-align:center">
+<span class="score-badge score-low">3.2</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-high">7.0</span>
+</td>
+<td style="text-align:center">
+<span class="score-badge score-mid">3.8</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="evidence-per-dimension" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-per-dimension">Evidence per dimension</h2>
+<section id="economic-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="economic-liberalism">Economic Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · mixed · chunk 1</span>
+<div class="quote">
+“Unternehmen in einer starken sozialen Marktwirtschaft”
+</div>
+<span class="context">Arbeitnehmerinnen und Arbeitnehmer, ebenso wie selbstbewusste Gewerkschaften und erfolgreiche <mark>Unternehmen in einer starken sozialen Marktwirtschaft</mark> zusammen. Wir sind stolz auf unseren</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“den Wert der Arbeit in unserer sozialen Marktwirtschaft”
+</div>
+<span class="context">Es geht um einen der wichtigsten Werte in unserer sozialen Marktwirtschaft: den Wert der Arbeit. Dass Arbeitsleistung im Alter erkennbar bleibt und sozialer Abstieg</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“faire internationale Handelsbeziehungen und für”
+</div>
+<span class="context">den Ausbau der Entwicklungszusammenarbeit, <mark>faire internationale Handelsbeziehungen und für</mark> die weltweite Achtung der Menschenrechte</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · mixed · chunk 4</span>
+<div class="quote">
+“Offene Märkte sind gut, dort muss”
+</div>
+<span class="context">Nationale Alleingänge und Protektionismus versprechen keinen Erfolg. <mark>Offene Märkte sind gut, dort muss</mark> aber auch frei von Wettbewerbsverzerrungen gehandelt</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Hier arbeiten motivierte Arbeitnehmerinnen und Arbeitnehmer, ebenso wie selbstbewusste Gewerkschaften und erfolgreiche Unternehmen in einer starken sozialen Marktwirtschaft zusammen.”
+</div>
+<span class="context">…Unser Land ist heute demokratischer, offener, moderner und freier als jemals zuvor. Hier leben engagierte Menschen in ihren Familien, mit Freunden und Nachbarn. <mark>Hier arbeiten motivierte Arbeitnehmerinnen und Arbeitnehmer, ebenso wie selbstbewusste Gewerkschaften und erfolgreiche Unternehmen in einer starken sozialen Marktwirtschaft zusammen.</mark> Wir sind stolz auf unseren demokratischen Rechtsstaat…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir wollen die besten Schulen, eine gebührenfreie Kinderbetreuung, moderne Infrastruktur”
+</div>
+<span class="context"><mark>Wir wollen die besten Schulen, eine gebührenfreie Kinderbetreuung, moderne Infrastruktur</mark> in der Stadt und auf dem Land und schnelles Internet für alle.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“wirtschaftliche Wettbewerbsfähigkeit unseres Kontinents verbessern”
+</div>
+<span class="context">Wir wollen Europa aus der Wachstumsschwäche herausführen, indem wir die <mark>wirtschaftliche Wettbewerbsfähigkeit unseres Kontinents verbessern</mark> und die viel zu hohe Arbeitslosigkeit vor allem in Süd- und Westeuropa bekämpfen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Wir setzen uns für fairen Handel ein. Handelspolitik ist nicht nur ein Instrument der Wirtschaftsförderung”
+</div>
+<span class="context">Die SPD setzt sich für fairen Handel ein. Handelspolitik ist nicht nur ein Instrument der Wirtschaftsförderung. Im Kern geht es um die Frage, nach welchen Regeln wir in einer globalisierten Welt leben wollen. Nationale Alleingänge und Protektionismus versprechen keinen Erfolg. Offene Märkte sind gut, dort muss aber auch frei von Wettbewerbsverzerrungen gehandelt werden.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 1</span>
+<div class="quote">
+“soziale Marktwirtschaft ist ein Erfolgsmodell”
+</div>
+<span class="context">Trotz aller Krisen in den vergangenen Jahren zeigt sich: Unsere <mark>soziale Marktwirtschaft ist ein Erfolgsmodell</mark>. Unternehmen sorgen bei der Beschäftigung für ein historisches Rekordniveau.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · mixed · chunk 2</span>
+<div class="quote">
+“nicht nur vom Markt bestimmt werden”
+</div>
+<span class="context">Sie dürfen in einem solidarisch finanzierten System aber <mark>nicht nur vom Markt bestimmt werden</mark>, sondern müssen auch ethisch vertretbar sein. Deshalb soll auch in Zukunft immer wieder neu bestimmt werden, ob neue Medikamente sicher und notwendig sind.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · mixed · chunk 3</span>
+<div class="quote">
+“wirtschaftliche Wettbewerbsfähigkeit unseres Kontinents verbessern”
+</div>
+<span class="context">Wir wollen Europa aus der Wachstumsschwäche herausführen, indem wir die <mark>wirtschaftliche Wettbewerbsfähigkeit unseres Kontinents verbessern</mark> und die viel zu hohe Arbeitslosigkeit bekämpfen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · mixed · chunk 4</span>
+<div class="quote">
+“Offene Märkte sind gut”
+</div>
+<span class="context">Nationale Alleingänge und Protektionismus versprechen keinen Erfolg. <mark>Offene Märkte sind gut</mark>, dort muss aber auch frei von Wettbewerbsverzerrungen gehandelt werden</span>
+</div>
+</section>
+<section id="financial-market-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="financial-market-liberalism">Financial-Market Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Kontrolle und Aufsicht der Finanzmärkte”
+</div>
+<span class="context">Wir wollen international die treibende Kraft bei der <mark>Kontrolle und Aufsicht der Finanzmärkte</mark> werden. Kein Finanzmarkt, kein Finanzprodukt und</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir wollen eine Umsatzsteuer für Finanzprodukte”
+</div>
+<span class="context">Union hat allerdings verhindert, dass wir hier schon zu ausgewogener Gerechtigkeit gekommen sind. Wir konnten nicht alle unsere Vorschläge durchsetzen. Wir werden diese in der neuen Bundesregierung aufgreifen. <mark>Wir wollen eine Umsatzsteuer für Finanzprodukte</mark>, die so genannte Finanztransaktionssteuer.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“wirksame Besteuerung der Finanzmärkte muss”
+</div>
+<span class="context">gemeinsames Finanzbudget schaffen. Es ermöglicht Investitionsimpulse… Eine <mark>wirksame Besteuerung der Finanzmärkte muss</mark> zu dessen Finanzierung beitragen.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“Internationalen Währungsfonds (IWF), der Organisation”
+</div>
+<span class="context">auch in weiteren wichtigen multilateralen Institutionen und Foren wie der Weltbank, dem <mark>Internationalen Währungsfonds (IWF), der Organisation</mark> für wirtschaftliche Zusammenarbeit und Entwicklung</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Wir wollen international die treibende Kraft bei der Kontrolle und Aufsicht der Finanzmärkte werden.”
+</div>
+<span class="context">…Klare Regeln für die Finanzwirtschaft: Die Realwirtschaft, die Bürgerinnen und Bürger und auch der Staat brauchen ein Finanz- und Bankensystem, das sicher und verlässlich ist. <mark>Wir wollen international die treibende Kraft bei der Kontrolle und Aufsicht der Finanzmärkte werden.</mark> Kein Finanzmarkt, kein Finanzprodukt und kein Finanzakteur darf zukünftig ohne Regulierung und ohne Kontrolle sein…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir wollen eine Umsatzsteuer für Finanzprodukte, die so genannte Finanztransaktionssteuer”
+</div>
+<span class="context"><mark>Wir wollen eine Umsatzsteuer für Finanzprodukte, die so genannte Finanztransaktionssteuer</mark>. Diese muss im Rahmen der europäischen Kooperation mit einer breiten Bemessungsgrundlage und mit niedrigen Steuersätzen gestaltet sein.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Wir wollen eine wirksame Besteuerung der Finanzmärkte”
+</div>
+<span class="context">Mehr Wachstum und Investitionen in Europa setzen solide Einnahmen voraus. Deshalb muss Europa endlich Schritte zur Harmonisierung der Unternehmensbesteuerung und des Steuervollzugs in Europa auf den Weg bringen. Europa braucht Instrumente, um Steuervermeidung und Steuerbetrug effektiv zu bekämpfen. Wir wollen durchsetzen, dass Unternehmen dort ihre Steuern bezahlen, wo sie ihre Gewinne erwirtschaften.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Wir wollen mehr Transparenz in Form einer öffentlichen und länderbezogenen Berichtspflicht über Gewinne und darauf gezahlte Steuern für multinational agierende Unternehmen”
+</div>
+<span class="context">Steuerhinterziehung und -vermeidung sowie Finanzverkehr zu illegalen Zwecken müssen international bekämpft werden. <mark>Wir wollen mehr Transparenz in Form einer öffentlichen und länderbezogenen Berichtspflicht über Gewinne und darauf gezahlte Steuern für multinational agierende Unternehmen</mark>. Wir setzen uns für weitreichende internationale Regeln und eine verstärkte Zusammenarbeit auch in internationalen Organisationen wie den Vereinten Nationen, der Weltbank, dem Internationalen Währungsfonds und den G20 ein.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Kein Finanzmarkt, kein Finanzprodukt und kein Finanzakteur darf zukünftig ohne Regulierung”
+</div>
+<span class="context">Wir wollen international die treibende Kraft bei der Kontrolle und Aufsicht der Finanzmärkte werden. <mark>Kein Finanzmarkt, kein Finanzprodukt und kein Finanzakteur darf zukünftig ohne Regulierung</mark> und ohne Kontrolle sein.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Finanztransaktionssteuer”
+</div>
+<span class="context">Wir wollen eine Umsatzsteuer für Finanzprodukte, die so genannte <mark>Finanztransaktionssteuer</mark>. Diese muss im Rahmen der europäischen Kooperation mit einer breiten Bemessungsgrundlage und mit niedrigen Steuersätzen gestaltet sein.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“wirksame Besteuerung der Finanzmärkte”
+</div>
+<span class="context">Eine <mark>wirksame Besteuerung der Finanzmärkte</mark> muss zu dessen Finanzierung beitragen. Sie haben durch ihre Gier und verantwortungslose Spekulationen Europa an den Rand des Abgrunds geführt.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 4</span>
+<div class="quote">
+“Steuerhinterziehung und -vermeidung sowie Finanzverkehr zu illegalen Zwecken”
+</div>
+<span class="context"><mark>Steuerhinterziehung und -vermeidung sowie Finanzverkehr zu illegalen Zwecken</mark> müssen international bekämpft werden</span>
+</div>
+</section>
+<section id="political-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="political-liberalism">Political Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“freie Presse und eine unabhängige Justiz”
+</div>
+<span class="context">Wir kämpfen für die Freiheit, seine Meinung sagen und veröffentlichen zu können. Für eine <mark>freie Presse und eine unabhängige Justiz</mark>. Wenn wir uns umschauen in Europa</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“umfassende parlamentarische Kontrolle”
+</div>
+<span class="context">Wir benötigen rechtsstaatlich legitimierte, leistungsfähige Nachrichtendienste mit <mark>umfassende parlamentarische Kontrolle</mark>. Dabei soll das Bundesamt für Verfassungsschutz als Frühwarnsystem</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“repräsentative Demokratie wieder attraktiver und verteidigen”
+</div>
+<span class="context">Wir machen die <mark>repräsentative Demokratie wieder attraktiver und verteidigen</mark> sie mit Leidenschaft gegen rechte Antidemokratinnen</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“Eintreten für Freiheit und Demokratie”
+</div>
+<span class="context">Interessen- und Wertegemeinschaft verbunden, deren Fundament das <mark>Eintreten für Freiheit und Demokratie</mark> ist. In einer Zeit, in der diese Werte</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Wir sind stolz auf unseren demokratischen Rechtsstaat, der die Würde des Menschen an erste Stelle setzt.”
+</div>
+<span class="context">…Hier arbeiten motivierte Arbeitnehmerinnen und Arbeitnehmer, ebenso wie selbstbewusste Gewerkschaften und erfolgreiche Unternehmen in einer starken sozialen Marktwirtschaft zusammen. <mark>Wir sind stolz auf unseren demokratischen Rechtsstaat, der die Würde des Menschen an erste Stelle setzt.</mark> Unser kulturelles Leben ist einzigartig…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir wollen, dass Straftaten schnell aufgeklärt und konsequent geahndet werden”
+</div>
+<span class="context"><mark>Wir wollen, dass Straftaten schnell aufgeklärt und konsequent geahndet werden</mark> und Bürgerinnen und Bürger ihre zivilrechtlichen Ansprüche zügig durchsetzen können.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“Demokratie und Engagement: Wir machen die repräsentative Demokratie wieder attraktiver”
+</div>
+<span class="context"><mark>Demokratie und Engagement: Wir machen die repräsentative Demokratie wieder attraktiver</mark> und verteidigen sie mit Leidenschaft gegen rechte Antidemokratinnen und Antidemokraten. Deren pauschale Kritik an politischen Repräsentantinnen und Repräsentanten wird immer aggressiver und ihre Verschwörungstheorien immer gefährlicher.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“Europa und die USA sind auf engste Weise in einer Interessen- und Wertegemeinschaft verbunden, deren Fundament das Eintreten für Freiheit und Demokratie ist”
+</div>
+<span class="context">Die USA sind und bleiben der engste Partner Deutschlands außerhalb Europas – dies gilt unabhängig davon, wer in den USA regiert. <mark>Europa und die USA sind auf engste Weise in einer Interessen- und Wertegemeinschaft verbunden, deren Fundament das Eintreten für Freiheit und Demokratie ist</mark>. In einer Zeit, in der diese Werte vielerorts unter Druck stehen und gefährdet sind, ist es umso wichtiger, diese Partnerschaft weiter zu stärken.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Für eine freie Presse und eine unabhängige Justiz”
+</div>
+<span class="context">Wir kämpfen für die Freiheit, seine Meinung sagen und veröffentlichen zu können. <mark>Für eine freie Presse und eine unabhängige Justiz</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Angriff auf die liberale Demokratie”
+</div>
+<span class="context">Die Gegner unserer offenen Gesellschaft haben sich neu formiert – in unterschiedlichen terroristischen und extremistischen Bewegungen. Wir benennen diese als das, was sie sind: eine Bedrohung für die westliche Welt, ein <mark>Angriff auf die liberale Demokratie</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“repräsentative Demokratie wieder attraktiver”
+</div>
+<span class="context">Wir machen die <mark>repräsentative Demokratie wieder attraktiver</mark> und verteidigen sie mit Leidenschaft gegen rechte Antidemokratinnen und Antidemokraten.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Eintreten für Freiheit und Demokratie”
+</div>
+<span class="context">deren Fundament das <mark>Eintreten für Freiheit und Demokratie</mark> ist. In einer Zeit, in der diese Werte vielerorts unter Druck stehen</span>
+</div>
+</section>
+<section id="social-liberalism" class="level3">
+<h3 class="anchored" data-anchor-id="social-liberalism">Social Liberalism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Unabhängig von Geschlecht, Herkunft, sexueller Identität”
+</div>
+<span class="context">Für eine Gesellschaft, die jedem Menschen respektvoll und mit Würde begegnet. <mark>Unabhängig von Geschlecht, Herkunft, sexueller Identität</mark>, Religion. Unabhängig davon, ob jemand</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 2</span>
+<div class="quote">
+“Toleranz und gegen Rassismus, Rechtsextremismus, Diskriminierung”
+</div>
+<span class="context">Sozialdemokratinnen und Sozialdemokraten kämpfen seit über 150 Jahren für <mark>Toleranz und gegen Rassismus, Rechtsextremismus, Diskriminierung</mark> und Menschenfeindlichkeit. Eine wichtige Erkenntnis aus dem NSU-Verfahren</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“Gleichstellung von Frauen und Männern”
+</div>
+<span class="context">Seit mehr als 150 Jahren ist die <mark>Gleichstellung von Frauen und Männern</mark> ein zentrales Ziel unserer Politik.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 10.0 · verified · chunk 4</span>
+<div class="quote">
+“frei von Gewalt und Diskriminierung leben”
+</div>
+<span class="context">Schwule, Bisexuelle, trans- und intergeschlechtliche Menschen überall <mark>frei von Gewalt und Diskriminierung leben</mark> können. Für uns sind die Freiheit der sexuellen</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Unabhängig von Geschlecht, Herkunft, sexueller Identität, Religion.”
+</div>
+<span class="context">…Für eine Gesellschaft, die jedem Menschen respektvoll und mit Würde begegnet. <mark>Unabhängig von Geschlecht, Herkunft, sexueller Identität, Religion.</mark> Unabhängig davon, ob jemand eine Behinderung hat, krank oder pflegebedürftig ist. Unabhängig von Beschäftigung und Lebensgrundlage…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir setzen uns für Toleranz und gegen Rassismus, Rechtsextremismus, Diskriminierung”
+</div>
+<span class="context">Sozialdemokratinnen und Sozialdemokraten kämpfen seit über 150 Jahren für Toleranz und gegen Rassismus, Rechtsextremismus, Diskriminierung und Menschenfeindlichkeit.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“Gleichstellung von Frauen und Männern ist ein zentrales Ziel unserer Politik”
+</div>
+<span class="context">Seit mehr als 150 Jahren ist die Gleichstellung von Frauen und Männern ein zentrales Ziel unserer Politik. Sie ist Voraussetzung für eine zukunftsfähige, moderne und gerechte Gesellschaft. Wir wollen die gleichberechtigte Teilhabe von Frauen und Männern in allen Bereichen und ihnen ermöglichen, ihre Lebensentwürfe zu verwirklichen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“Zu den Menschenrechten gehört auch, dass Lesben, Schwule, Bisexuelle, trans- und intergeschlechtliche Menschen überall frei von Gewalt und Diskriminierung leben können”
+</div>
+<span class="context"><mark>Zu den Menschenrechten gehört auch, dass Lesben, Schwule, Bisexuelle, trans- und intergeschlechtliche Menschen überall frei von Gewalt und Diskriminierung leben können</mark>. Für uns sind die Freiheit der sexuellen Orientierung, die geschlechtliche Selbstbestimmung und der Schutz vor Diskriminierung universelle Menschenrechte, an die wir erinnern und bei deren Einforderung wir unsere Partner in der Entwicklungszusammenarbeit unterstützen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 1</span>
+<div class="quote">
+“Unabhängig von Geschlecht, Herkunft, sexueller Identität”
+</div>
+<span class="context">Für eine Gesellschaft, die jedem Menschen respektvoll und mit Würde begegnet. <mark>Unabhängig von Geschlecht, Herkunft, sexueller Identität</mark>, Religion.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“gegen Rassismus, Rechtsextremismus, Diskriminierung”
+</div>
+<span class="context">Sozialdemokratinnen und Sozialdemokraten kämpfen seit über 150 Jahren für Toleranz und <mark>gegen Rassismus, Rechtsextremismus, Diskriminierung</mark> und Menschenfeindlichkeit.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 3</span>
+<div class="quote">
+“gleiche Rechte und Pflichten”
+</div>
+<span class="context">Menschen sollen unabhängig von ihrer sexuellen Identität frei und sicher leben können – mit gleichen Rechten und Pflichten. Die Gleichheitsrechte in Artikel 3 Abs. 3 Grundgesetz müssen um die sexuelle Identität erweitert werden.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“Lesben, Schwule, Bisexuelle, trans- und intergeschlechtliche Menschen”
+</div>
+<span class="context">Zu den Menschenrechten gehört auch, dass <mark>Lesben, Schwule, Bisexuelle, trans- und intergeschlechtliche Menschen</mark> überall frei von Gewalt und Diskriminierung leben können</span>
+</div>
+</section>
+<section id="liberalism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="liberalism-overall">Liberalism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“freie Presse und eine unabhängige Justiz”
+</div>
+<span class="context">Wir kämpfen für die Freiheit, seine Meinung sagen und veröffentlichen zu können. Für eine <mark>freie Presse und eine unabhängige Justiz</mark>. Wenn wir uns umschauen in Europa</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“den Wert der Arbeit in unserer sozialen Marktwirtschaft”
+</div>
+<span class="context">Es geht um einen der wichtigsten Werte in unserer sozialen Marktwirtschaft: den Wert der Arbeit. Dass Arbeitsleistung im Alter erkennbar bleibt und sozialer Abstieg</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“repräsentative Demokratie wieder attraktiver und verteidigen”
+</div>
+<span class="context">Wir machen die <mark>repräsentative Demokratie wieder attraktiver und verteidigen</mark> sie mit Leidenschaft gegen rechte Antidemokratinnen</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 4</span>
+<div class="quote">
+“Eintreten für Freiheit und Demokratie”
+</div>
+<span class="context">Interessen- und Wertegemeinschaft verbunden, deren Fundament das <mark>Eintreten für Freiheit und Demokratie</mark> ist. In einer Zeit, in der diese Werte</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Wir sind stolz auf unseren demokratischen Rechtsstaat, der die Würde des Menschen an erste Stelle setzt.”
+</div>
+<span class="context">…Hier arbeiten motivierte Arbeitnehmerinnen und Arbeitnehmer, ebenso wie selbstbewusste Gewerkschaften und erfolgreiche Unternehmen in einer starken sozialen Marktwirtschaft zusammen. <mark>Wir sind stolz auf unseren demokratischen Rechtsstaat, der die Würde des Menschen an erste Stelle setzt.</mark> Unser kulturelles Leben ist einzigartig…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir wollen, dass Straftaten schnell aufgeklärt und konsequent geahndet werden”
+</div>
+<span class="context"><mark>Wir wollen, dass Straftaten schnell aufgeklärt und konsequent geahndet werden</mark> und Bürgerinnen und Bürger ihre zivilrechtlichen Ansprüche zügig durchsetzen können.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 3</span>
+<div class="quote">
+“Demokratie und Engagement: Wir machen die repräsentative Demokratie wieder attraktiver”
+</div>
+<span class="context"><mark>Demokratie und Engagement: Wir machen die repräsentative Demokratie wieder attraktiver</mark> und verteidigen sie mit Leidenschaft gegen rechte Antidemokratinnen und Antidemokraten. Deren pauschale Kritik an politischen Repräsentantinnen und Repräsentanten wird immer aggressiver und ihre Verschwörungstheorien immer gefährlicher.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 9.0 · verified · chunk 4</span>
+<div class="quote">
+“Europa und die USA sind auf engste Weise in einer Interessen- und Wertegemeinschaft verbunden, deren Fundament das Eintreten für Freiheit und Demokratie ist”
+</div>
+<span class="context">Die USA sind und bleiben der engste Partner Deutschlands außerhalb Europas – dies gilt unabhängig davon, wer in den USA regiert. <mark>Europa und die USA sind auf engste Weise in einer Interessen- und Wertegemeinschaft verbunden, deren Fundament das Eintreten für Freiheit und Demokratie ist</mark>. In einer Zeit, in der diese Werte vielerorts unter Druck stehen und gefährdet sind, ist es umso wichtiger, diese Partnerschaft weiter zu stärken.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Für eine freie Presse und eine unabhängige Justiz”
+</div>
+<span class="context">Wir kämpfen für die Freiheit, seine Meinung sagen und veröffentlichen zu können. <mark>Für eine freie Presse und eine unabhängige Justiz</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · mixed · chunk 2</span>
+<div class="quote">
+“Angriff auf die liberale Demokratie”
+</div>
+<span class="context">Die Gegner unserer offenen Gesellschaft haben sich neu formiert – in unterschiedlichen terroristischen und extremistischen Bewegungen. Wir benennen diese als das, was sie sind: eine Bedrohung für die westliche Welt, ein <mark>Angriff auf die liberale Demokratie</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“Demokratie, Rechtsstaatlichkeit und Wahrung der Grundrechte”
+</div>
+<span class="context">Die EU ist eine Gemeinschaft unteilbarer und universeller Werte wie <mark>Demokratie, Rechtsstaatlichkeit und Wahrung der Grundrechte</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 7.0 · verified · chunk 4</span>
+<div class="quote">
+“Eintreten für Freiheit und Demokratie”
+</div>
+<span class="context">deren Fundament das <mark>Eintreten für Freiheit und Demokratie</mark> ist. In einer Zeit, in der diese Werte vielerorts unter Druck stehen</span>
+</div>
+</section>
+<section id="anti-elitism" class="level3">
+<h3 class="anchored" data-anchor-id="anti-elitism">Anti-Elitism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Bislang werden Privatpatientinnen und -patienten oftmals bevorzugt”
+</div>
+<span class="context">mit der Bürgerversicherung schaffen wir eine einheitliche Honorarordnung für Ärztinnen und Ärzte. <mark>Bislang werden Privatpatientinnen und -patienten oftmals bevorzugt</mark>, da ihre Behandlung höher vergütet wird. Das werden wir beenden.</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“pauschale Kritik an politischen Repräsentantinnen”
+</div>
+<span class="context">verteidigen sie mit Leidenschaft gegen rechte Antidemokratinnen und Antidemokraten. Deren <mark>pauschale Kritik an politischen Repräsentantinnen</mark> und Repräsentanten wird immer aggressiver</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 1</span>
+<div class="quote">
+“Wir bringen all jenen, die durch ihre Arbeit und ihr Engagement unser Land voranbringen, den Respekt entgegen, den sie verdienen.”
+</div>
+<span class="context">…Erfolg von verantwortungsbewussten und innovativen Unternehmerinnen und Unternehmern, die gemeinsam mit den Beschäftigten unser Land voranbringen. <mark>Wir bringen all jenen, die durch ihre Arbeit und ihr Engagement unser Land voranbringen, den Respekt entgegen, den sie verdienen.</mark> Das sollen die Menschen in ihrem täglichen Leben spüren. Arbeit befindet sich im Wandel…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir als Sozialdemokratie wollen unser Land modernisieren”
+</div>
+<span class="context"><mark>Wir als Sozialdemokratie wollen unser Land modernisieren</mark> und Geld für unsere Kinder, für eine leistungsfähige Infrastruktur und für den sozialen Zusammenhalt in die Hand nehmen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“populistische, anti-europäische Parteien sind auf dem Vormarsch”
+</div>
+<span class="context">Nationale Gegensätze und Egoismen sind zurückgekehrt und <mark>populistische, anti-europäische Parteien sind auf dem Vormarsch</mark>. Wir stellen uns diesen autoritären und nationalistischen Kräften in Europa entschieden entgegen und kämpfen für mehr europäischen Zusammenhalt und Solidarität.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Wachsende Ungleichheit bei Einkommen und Vermögen”
+</div>
+<span class="context">Gerechtigkeit ist die zentrale Voraussetzung für wirtschaftliche Innovationen und Fortschritt. <mark>Wachsende Ungleichheit bei Einkommen und Vermögen</mark> gefährdet hingegen unsere Zukunftschancen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“durch ihre Gier und verantwortungslose Spekulationen”
+</div>
+<span class="context">Sie haben <mark>durch ihre Gier und verantwortungslose Spekulationen</mark> Europa an den Rand des Abgrunds geführt.</span>
+</div>
+</section>
+<section id="ideology-centrist" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-centrist">Ideology — Centrist</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir wollen gemeinsam mit den Bürgerinnen und Bürgern”
+</div>
+<span class="context">Geld für unsere Kinder, für eine leistungsfähige Infrastruktur und für den sozialen Zusammenhalt in die Hand nehmen. <mark>Wir wollen gemeinsam mit den Bürgerinnen und Bürgern</mark> in unserem Land dafür sorgen, dass wir auch in Zukunft erfolgreich sind.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Wir kämpfen für die Freiheit, seine Meinung sagen und veröffentlichen zu können. Für eine freie Presse und eine unabhängige Justiz.”
+</div>
+<span class="context">…<mark>Wir kämpfen für die Freiheit, seine Meinung sagen und veröffentlichen zu können. Für eine freie Presse und eine unabhängige Justiz.</mark> Wenn wir uns umschauen in Europa und der Welt, sehen wir diese Werte in Gefahr. Für diese Werte einzustehen, war der Ursprung der Sozialdemokratie. Dafür stehen wir – damals wie heute…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir wollen gemeinsam mit den Bürgerinnen und Bürgern in unserem Land”
+</div>
+<span class="context"><mark>Wir wollen gemeinsam mit den Bürgerinnen und Bürgern in unserem Land</mark> dafür sorgen, dass wir auch in Zukunft erfolgreich sind.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“gleichberechtigt. Dabei kommt Deutschland mit Frankreich eine besondere gemeinsame Verantwortung”
+</div>
+<span class="context">Europa besteht aus vielen Mitgliedsstaaten. Unabhängig von ihrer Größe gilt: Alle sind <mark>gleichberechtigt. Dabei kommt Deutschland mit Frankreich eine besondere gemeinsame Verantwortung</mark> für den Zusammenhalt der EU und die Einigung Europas zu.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Nur gemeinsam bringen wir unser Land voran”
+</div>
+<span class="context">Wir sind überzeugt: <mark>Nur gemeinsam bringen wir unser Land voran</mark>! Bessere Arbeitsbedingungen nützen allen, nicht nur den Arbeitnehmerinnen und Arbeitnehmern.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“einen neuen Generationenvertrag starten”
+</div>
+<span class="context">Wir werden deswegen umgehend einen Dialog für <mark>einen neuen Generationenvertrag starten</mark> und ein Reformprogramm auf den Weg bringen, das weit über die Rentenpolitik hinaus alle Potenziale für eine Stärkung der gesetzlichen Rente mobilisiert.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“Fortschritt und Gerechtigkeit oder Rückschritt und Ausgrenzung”
+</div>
+<span class="context">Abschottung oder Weltoffenheit? <mark>Fortschritt und Gerechtigkeit oder Rückschritt und Ausgrenzung</mark>? Darum geht es in den nächsten Jahren.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“multilaterale Zusammenarbeit”
+</div>
+<span class="context">Auch jenseits der Vereinten Nationen setzen wir auf <mark>multilaterale Zusammenarbeit</mark></span>
+</div>
+</section>
+<section id="ideology-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-left">Ideology — Left</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Eine Zwei-KlassenMedizin soll es nicht länger geben”
+</div>
+<span class="context">in die alle einzahlen und durch die alle die notwendigen medizinischen Leistungen bekommen. <mark>Eine Zwei-KlassenMedizin soll es nicht länger geben</mark>. In der Alterssicherung gilt für uns der Grundsatz</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 1</span>
+<div class="quote">
+“Wir werden Einkommen und Chancen gerechter gestalten.”
+</div>
+<span class="context">…Gerechtigkeit ist die zentrale Voraussetzung für Zusammenhalt und Wohlstand. <mark>Wir werden Einkommen und Chancen gerechter gestalten.</mark> Gesellschaften, die zusammenhalten und sozial gerecht sind, können Probleme besser meistern. Gerechte Gesellschaften sind wirtschaftlich erfolgreicher und innovativer. In gerechteren Gesellschaften sind die Menschen zufriedener und das gegenseitige Vertrauen ist stärker…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 8.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir wollen die Arbeitnehmerinnen und Arbeitnehmer mit mittleren und kleinen Einkommen bei Steuern und Abgaben entlasten”
+</div>
+<span class="context"><mark>Wir wollen die Arbeitnehmerinnen und Arbeitnehmer mit mittleren und kleinen Einkommen bei Steuern und Abgaben entlasten</mark>. Dabei legen wir einen Schwerpunkt auf Familien und Alleinerziehende.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 3</span>
+<div class="quote">
+“faire Steuern zahlen”
+</div>
+<span class="context">Ein Europa, das massiv in Ausbildung, Arbeit, wirtschaftliches Wachstum und Umweltschutz investiert. Ein Europa, in dem große Konzerne <mark>faire Steuern zahlen</mark>. Ein Europa, das den Nationalismus überwindet, solidarisch handelt und den Menschen Sicherheit gibt.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“starke Wirtschaft und Unternehmen, die gute Arbeitsplätze schaffen”
+</div>
+<span class="context">Wir wollen eine <mark>starke Wirtschaft und Unternehmen, die gute Arbeitsplätze schaffen</mark>. Wir wollen einen funktionierenden Arbeitsmarkt, der den Wert der Arbeit anerkennt.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 6.0 · verified · chunk 2</span>
+<div class="quote">
+“Vermögende tragen Verantwortung”
+</div>
+<span class="context">Besonders hochvermögende Bürgerinnen und Bürger sollen und können einen größeren Beitrag zur Finanzierung öffentlicher Investitionen und zur Entlastung von unteren und mittleren Einkommen leisten. Daher möchten wir die so genannte Reichensteuer in Höhe von drei Prozent auf den Spitzensteuersatz zukünftig ab einem zu versteuernden Einkommen für Ledige von 250.000 Euro fix erheben.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“soziale Mindeststandards sichert und Lohn- und Sozialdumping”
+</div>
+<span class="context">Wir wollen eine europäische Sozialunion, die ihre Politik an den Bedürfnissen der Menschen ausrichtet, <mark>soziale Mindeststandards sichert und Lohn- und Sozialdumping</mark> wirksam unterbindet.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 5.0 · verified · chunk 4</span>
+<div class="quote">
+“fairen Handel”
+</div>
+<span class="context">Die SPD setzt sich für <mark>fairen Handel</mark> ein. Handelspolitik ist nicht nur ein Instrument der Wirtschaftsförderung</span>
+</div>
+</section>
+<section id="ideology-right-left" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right-left">Ideology (Right − Left)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 7.0 · verified · chunk 2</span>
+<div class="quote">
+“Eine Zwei-KlassenMedizin soll es nicht länger geben”
+</div>
+<span class="context">in die alle einzahlen und durch die alle die notwendigen medizinischen Leistungen bekommen. <mark>Eine Zwei-KlassenMedizin soll es nicht länger geben</mark>. In der Alterssicherung gilt für uns der Grundsatz</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 1</span>
+<div class="quote">
+“Wir werden Einkommen und Chancen gerechter gestalten.”
+</div>
+<span class="context">…Gerechtigkeit ist die zentrale Voraussetzung für Zusammenhalt und Wohlstand. <mark>Wir werden Einkommen und Chancen gerechter gestalten.</mark> Gesellschaften, die zusammenhalten und sozial gerecht sind, können Probleme besser meistern. Gerechte Gesellschaften sind wirtschaftlich erfolgreicher und innovativer…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir wollen gemeinsam mit den Bürgerinnen und Bürgern in unserem Land”
+</div>
+<span class="context"><mark>Wir wollen gemeinsam mit den Bürgerinnen und Bürgern in unserem Land</mark> dafür sorgen, dass wir auch in Zukunft erfolgreich sind.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 5.0 · verified · chunk 3</span>
+<div class="quote">
+“populistische, anti-europäische Parteien sind auf dem Vormarsch”
+</div>
+<span class="context">Nationale Gegensätze und Egoismen sind zurückgekehrt und <mark>populistische, anti-europäische Parteien sind auf dem Vormarsch</mark>. Wir stellen uns diesen autoritären und nationalistischen Kräften in Europa entschieden entgegen und kämpfen für mehr europäischen Zusammenhalt und Solidarität.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Gerechtigkeit ist die zentrale Voraussetzung für Zusammenhalt”
+</div>
+<span class="context"><mark>Gerechtigkeit ist die zentrale Voraussetzung für Zusammenhalt</mark> und Wohlstand. Wir werden Einkommen und Chancen gerechter gestalten.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“Vermögende tragen Verantwortung”
+</div>
+<span class="context">Besonders hochvermögende Bürgerinnen und Bürger sollen und können einen größeren Beitrag zur Finanzierung öffentlicher Investitionen und zur Entlastung von unteren und mittleren Einkommen leisten.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“soziale Mindeststandards sichert und Lohn- und Sozialdumping”
+</div>
+<span class="context">Wir wollen eine europäische Sozialunion, die ihre Politik an den Bedürfnissen der Menschen ausrichtet, <mark>soziale Mindeststandards sichert und Lohn- und Sozialdumping</mark> wirksam unterbindet.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 4</span>
+<div class="quote">
+“fairen Handel”
+</div>
+<span class="context">Die SPD setzt sich für <mark>fairen Handel</mark> ein. Handelspolitik ist nicht nur ein Instrument der Wirtschaftsförderung</span>
+</div>
+</section>
+<section id="ideology-right" class="level3">
+<h3 class="anchored" data-anchor-id="ideology-right">Ideology — Right</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“durch ein Zuwanderungsgesetz ankommen”
+</div>
+<span class="context">Integration von Flüchtlingen in den Arbeitsmarkt und eine systematisch gesteuerte Zuwanderung <mark>durch ein Zuwanderungsgesetz ankommen</mark>. Den Rahmen für diese und andere Maßnahmen muss dabei</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Eine offene Gesellschaft braucht eine starke Demokratie, die Zusammenhalt und Solidarität fördert, Regeln durchsetzt und damit Sicherheit gewährleistet.”
+</div>
+<span class="context">…Internationale Krisen und Zuwanderung stellen Deutschland und Europa vor neue Herausforderungen. <mark>Eine offene Gesellschaft braucht eine starke Demokratie, die Zusammenhalt und Solidarität fördert, Regeln durchsetzt und damit Sicherheit gewährleistet.</mark> Ein friedliches Zusammenleben funktioniert nur mit der Anerkennung von Werten und Regeln, die für alle gleichermaßen gelten…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Kriminelle und Terroristen dürfen nicht in die Europäische Union gelangen”
+</div>
+<span class="context"><mark>Kriminelle und Terroristen dürfen nicht in die Europäische Union gelangen</mark>. Das heißt: die Kontrollen an den Außengrenzen des Schengenraums verstärken und das Grenzkontrollsystem der Schengen-Mitgliedstaaten effektiv umsetzen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“nationalistischen Kräften in Europa entschieden entgegen”
+</div>
+<span class="context">Nationale Gegensätze und Egoismen sind zurückgekehrt und populistische, anti-europäische Parteien sind auf dem Vormarsch. Wir stellen uns diesen autoritären und <mark>nationalistischen Kräften in Europa entschieden entgegen</mark> und kämpfen für mehr europäischen Zusammenhalt und Solidarität.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“Internationale Krisen und Zuwanderung stellen Deutschland und Europa vor neue Herausforderungen”
+</div>
+<span class="context"><mark>Internationale Krisen und Zuwanderung stellen Deutschland und Europa vor neue Herausforderungen</mark>. Eine offene Gesellschaft braucht eine starke Demokratie, die Zusammenhalt und Solidarität fördert.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Ausländerinnen und Ausländer, die schwere Straftaten begehen”
+</div>
+<span class="context"><mark>Ausländerinnen und Ausländer, die schwere Straftaten begehen</mark>, sollen nach Verbüßung ihrer Strafe unverzüglich abgeschoben werden.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“geordnete Migrationspolitik”
+</div>
+<span class="context">Es ist Zeit für eine <mark>geordnete Migrationspolitik</mark>. Wir stehen für eine humanitäre Flüchtlingspolitik.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“Nationale Alleingänge und Protektionismus versprechen keinen Erfolg”
+</div>
+<span class="context"><mark>Nationale Alleingänge und Protektionismus versprechen keinen Erfolg</mark>. Offene Märkte sind gut</span>
+</div>
+</section>
+<section id="manichaean-worldview" class="level3">
+<h3 class="anchored" data-anchor-id="manichaean-worldview">Manichaean Worldview</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir machen Politik für die Anständigen”
+</div>
+<span class="context">Das verursacht Schäden in Milliardenhöhe für unsere Gesellschaft. Steuerbetrug, Steuervermeidung und Geldwäsche werden wir daher hart bekämpfen. <mark>Wir machen Politik für die Anständigen</mark>. In Deutschland wollen wir einen gerechten Steuervollzug</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Wenn wir uns umschauen in Europa und der Welt, sehen wir diese Werte in Gefahr.”
+</div>
+<span class="context">…Wir kämpfen für die Freiheit, seine Meinung sagen und veröffentlichen zu können. Für eine freie Presse und eine unabhängige Justiz. <mark>Wenn wir uns umschauen in Europa und der Welt, sehen wir diese Werte in Gefahr.</mark> Für diese Werte einzustehen, war der Ursprung der Sozialdemokratie. Dafür stehen wir – damals wie heute. Unser Land ist heute demokratischer, offener, moderner und freier als jemals zuvor…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Nur Reiche können sich einen schwachen Staat leisten”
+</div>
+<span class="context"><mark>Nur Reiche können sich einen schwachen Staat leisten</mark> und sich etwa private Sicherheitsdienste kaufen, weshalb präventive Maßnahmen und eine aktive Sozialpolitik, die soziale Ungleichheit, bekämpft, fest zu unseren Sicherheitsbegriff dazu gehören.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“autoritären und nationalistischen Kräften in Europa entschieden entgegen”
+</div>
+<span class="context">Nationale Gegensätze und Egoismen sind zurückgekehrt und populistische, anti-europäische Parteien sind auf dem Vormarsch. Wir stellen uns diesen <mark>autoritären und nationalistischen Kräften in Europa entschieden entgegen</mark> und kämpfen für mehr europäischen Zusammenhalt und Solidarität.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 1</span>
+<div class="quote">
+“Werte, die als selbstverständlich galten, stehen auf dem Spiel”
+</div>
+<span class="context">Die Wahlen in diesem Jahr sind grundsätzliche Entscheidungen darüber, in welcher Gesellschaft wir leben wollen. <mark>Werte, die als selbstverständlich galten, stehen auf dem Spiel</mark>.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Steuerhinterziehung ist kriminell”
+</div>
+<span class="context">Steuerbetrug und -vermeidung bekämpfen: <mark>Steuerhinterziehung ist kriminell</mark>. Es kann nicht sein, dass Arbeitnehmerinnen und Arbeitnehmer und die allermeisten Unternehmen ehrlich ihre Steuern zahlen und andere ihre Steuern klein rechnen oder gar hinterziehen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“populistische, anti-europäische Parteien sind auf dem Vormarsch”
+</div>
+<span class="context">Nationale Gegensätze und Egoismen sind zurückgekehrt und <mark>populistische, anti-europäische Parteien sind auf dem Vormarsch</mark>. Wir stellen uns diesen autoritären und nationalistischen Kräften entschieden entgegen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 1.0 · verified · chunk 4</span>
+<div class="quote">
+“Stärke des Rechts, nicht auf das Recht des Stärkeren”
+</div>
+<span class="context">Wir setzen dabei auf die <mark>Stärke des Rechts, nicht auf das Recht des Stärkeren</mark></span>
+</div>
+</section>
+<section id="people-centrism" class="level3">
+<h3 class="anchored" data-anchor-id="people-centrism">People-Centrism</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir wollen alle Bürgerinnen und Bürger auf die gleiche Weise versichern”
+</div>
+<span class="context">Eine Bürgerversicherung für alle in Gesundheit und Pflege: <mark>Wir wollen alle Bürgerinnen und Bürger auf die gleiche Weise versichern</mark>. Ziel ist die paritätische Bürgerversicherung.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 7.0 · verified · chunk 1</span>
+<div class="quote">
+“Es ist der Wunsch nach einem Land, in dem wir füreinander da sind und uns gegenseitig mit Respekt begegnen.”
+</div>
+<span class="context">…Alle eint der Wunsch nach einer gerechten Gesellschaft, die zusammenhält. <mark>Es ist der Wunsch nach einem Land, in dem wir füreinander da sind und uns gegenseitig mit Respekt begegnen.</mark> Mehr Gerechtigkeit und Respekt vor der Lebensleistung aller Menschen stärken unsere Demokratie. Dazu gehört, dass in unserem Land der gesellschaftliche Zusammenhalt wieder stärker wird…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir wollen gemeinsam mit den Bürgerinnen und Bürgern”
+</div>
+<span class="context"><mark>Wir wollen gemeinsam mit den Bürgerinnen und Bürgern</mark> in unserem Land dafür sorgen, dass wir auch in Zukunft erfolgreich sind.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 6.0 · verified · chunk 3</span>
+<div class="quote">
+“die Menschen und ihre Alltagssorgen in den Blick nimmt”
+</div>
+<span class="context">Wir wollen einen mutigen Aufbruch für ein selbstbewusstes Europa. Ein Europa, das <mark>die Menschen und ihre Alltagssorgen in den Blick nimmt</mark>. Ein Europa, das massiv in Ausbildung, Arbeit, wirtschaftliches Wachstum und Umweltschutz investiert.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Alle eint der Wunsch nach einer gerechten Gesellschaft”
+</div>
+<span class="context">Sie berichten von ihren Schwierigkeiten, den Hoffnungen ihrer Eltern und Zielen ihrer Kinder. <mark>Alle eint der Wunsch nach einer gerechten Gesellschaft</mark>, die zusammenhält.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 4.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir machen Politik für die Anständigen”
+</div>
+<span class="context">Steuerbetrug, Steuervermeidung und Geldwäsche werden wir daher hart bekämpfen. <mark>Wir machen Politik für die Anständigen</mark>. In Deutschland wollen wir einen gerechten Steuervollzug – von der Steuererhebung bis zur Steuerprüfung.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 3</span>
+<div class="quote">
+“Ein Europa, das die Menschen und ihre Alltagssorgen”
+</div>
+<span class="context">Wir wollen einen mutigen Aufbruch für ein selbstbewusstes Europa. <mark>Ein Europa, das die Menschen und ihre Alltagssorgen</mark> in den Blick nimmt.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 4</span>
+<div class="quote">
+“Menschen eine Perspektive zu geben”
+</div>
+<span class="context">Es geht dabei darum, <mark>Menschen eine Perspektive zu geben</mark> und so nicht zuletzt auch Fluchtursachen einzudämmen</span>
+</div>
+</section>
+<section id="populism-overall" class="level3">
+<h3 class="anchored" data-anchor-id="populism-overall">Populism (Overall)</h3>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 2.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir machen Politik für die Anständigen”
+</div>
+<span class="context">Das verursacht Schäden in Milliardenhöhe für unsere Gesellschaft. Steuerbetrug, Steuervermeidung und Geldwäsche werden wir daher hart bekämpfen. <mark>Wir machen Politik für die Anständigen</mark>. In Deutschland wollen wir einen gerechten Steuervollzug</span>
+</div>
+<div class="evidence-block gemini">
+<span class="source-tag">Gemini · score 1.0 · verified · chunk 3</span>
+<div class="quote">
+“pauschale Kritik an politischen Repräsentantinnen”
+</div>
+<span class="context">verteidigen sie mit Leidenschaft gegen rechte Antidemokratinnen und Antidemokraten. Deren <mark>pauschale Kritik an politischen Repräsentantinnen</mark> und Repräsentanten wird immer aggressiver</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 1</span>
+<div class="quote">
+“Es ist der Wunsch nach einem Land, in dem wir füreinander da sind und uns gegenseitig mit Respekt begegnen.”
+</div>
+<span class="context">…Alle eint der Wunsch nach einer gerechten Gesellschaft, die zusammenhält. <mark>Es ist der Wunsch nach einem Land, in dem wir füreinander da sind und uns gegenseitig mit Respekt begegnen.</mark> Mehr Gerechtigkeit und Respekt vor der Lebensleistung aller Menschen stärken unsere Demokratie. Dazu gehört, dass in unserem Land der gesellschaftliche Zusammenhalt wieder stärker wird und der anständige Umgang miteinander nicht durch die politische Radikalisierung verloren geht…</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir als Sozialdemokratie wollen unser Land modernisieren”
+</div>
+<span class="context"><mark>Wir als Sozialdemokratie wollen unser Land modernisieren</mark> und Geld für unsere Kinder, für eine leistungsfähige Infrastruktur und für den sozialen Zusammenhalt in die Hand nehmen.</span>
+</div>
+<div class="evidence-block gpt41mini">
+<span class="source-tag">gpt-4.1-mini · score 4.0 · verified · chunk 3</span>
+<div class="quote">
+“populistische, anti-europäische Parteien sind auf dem Vormarsch”
+</div>
+<span class="context">Nationale Gegensätze und Egoismen sind zurückgekehrt und <mark>populistische, anti-europäische Parteien sind auf dem Vormarsch</mark>. Wir stellen uns diesen autoritären und nationalistischen Kräften in Europa entschieden entgegen und kämpfen für mehr europäischen Zusammenhalt und Solidarität.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 1</span>
+<div class="quote">
+“Es ist Zeit für mehr Gerechtigkeit”
+</div>
+<span class="context"><mark>Es ist Zeit für mehr Gerechtigkeit</mark>! 2017 ist ein entscheidendes Jahr. Die SPD tritt an, um mit Martin Schulz als Bundeskanzler die Weichen für die Zukunft Deutschlands und Europas zu stellen.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 3.0 · verified · chunk 2</span>
+<div class="quote">
+“Wir machen Politik für die Anständigen”
+</div>
+<span class="context">Steuerbetrug, Steuervermeidung und Geldwäsche werden wir daher hart bekämpfen. <mark>Wir machen Politik für die Anständigen</mark>. In Deutschland wollen wir einen gerechten Steuervollzug – von der Steuererhebung bis zur Steuerprüfung.</span>
+</div>
+<div class="evidence-block sonnet">
+<span class="source-tag">Sonnet · score 2.0 · verified · chunk 3</span>
+<div class="quote">
+“durch ihre Gier und verantwortungslose Spekulationen”
+</div>
+<span class="context">Sie haben <mark>durch ihre Gier und verantwortungslose Spekulationen</mark> Europa an den Rand des Abgrunds geführt. Nur durch staatliche Hilfen konnte Europa stabilisiert werden.</span>
+</div>
+</section>
+</section>
+<section id="scores-at-a-glance" class="level2">
+<h2 class="anchored" data-anchor-id="scores-at-a-glance">Scores at a glance</h2>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="41320_201709_files/figure-html/plot-1.png" class="img-fluid figure-img" width="1500"></p>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+</div>   
+    <div class="nav-footer-center">
+<p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
