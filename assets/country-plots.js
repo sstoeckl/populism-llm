@@ -77,20 +77,27 @@ window.renderCountryPlots = async function (tsId, scId, plotData, countryName) {
       </div>`;
   }
 
-  // ---------- Filter ----------
+  // ---------- Filter: keep only manifestos from the last N COUNTRY-WIDE elections ----------
   function filterData() {
     if (!state.nLastElections) return plotData;
-    const byParty = new Map();
-    for (const d of plotData) {
-      if (!byParty.has(d.label)) byParty.set(d.label, []);
-      byParty.get(d.label).push(d);
+    // Group election years into "election waves". Different parties may have
+    // off-by-a-month dates around the same election; bucket years within ±1 of
+    // a peak so e.g. 2017+2018 in one country read as one election wave.
+    const years = [...new Set(plotData.map(d => d.year))].sort((a,b) => a - b);
+    const waves = [];
+    for (const y of years) {
+      if (waves.length && y - waves[waves.length-1].max <= 1) {
+        waves[waves.length-1].max = y;
+        waves[waves.length-1].years.add(y);
+      } else {
+        waves.push({ max: y, years: new Set([y]) });
+      }
     }
-    const out = [];
-    for (const [, rows] of byParty) {
-      rows.sort((a, b) => a.year - b.year);
-      out.push(...rows.slice(-state.nLastElections));
-    }
-    return out;
+    // Take the last N waves and collect their years into a Set
+    const lastWaves = waves.slice(-state.nLastElections);
+    const keepYears = new Set();
+    for (const w of lastWaves) for (const y of w.years) keepYears.add(y);
+    return plotData.filter(d => keepYears.has(d.year));
   }
 
   // ---------- Group data by party ----------
