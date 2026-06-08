@@ -1,20 +1,25 @@
 /**
- * Country page — interactive trajectories.
- * Controls (rebuilds plots on change):
- *   - Party checkboxes (toggle on/off; default: all selected)
- *   - X / Y axis dropdowns (any combination of overall dims)
- *   - Time window: how many most-recent elections to include per party (default 4)
+ * Country page — Plotly-based interactive trajectories.
+ * Plotly gives us zoom, pan, hover tooltips, legend click-toggle for free.
  *
- * Time highlight: each trajectory uses per-segment colour gradient
- *   (older = pale, latest = saturated) plus small year labels.
+ * Custom controls (rebuild on change):
+ *   X / Y axis dropdowns  |  ⇄ swap axes  |  last-N elections  |  all-elections
  *
  * Each plot_data row = one party-year manifesto with fields:
  *   doc_id, year, party, partyabbrev, partyname, label,
  *   populism_overall, liberalism_overall, pop_ideology_overall
  */
 window.renderCountryPlots = async function (tsId, scId, plotData, countryName) {
-  const Plot = await import("https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm");
-  const d3   = await import("https://cdn.jsdelivr.net/npm/d3@7/+esm");
+  // Lazy-load Plotly from CDN (one load per browser session, cached after)
+  if (!window.Plotly) {
+    await new Promise((resolve, reject) => {
+      const s = document.createElement("script");
+      s.src = "https://cdn.plot.ly/plotly-2.35.2.min.js";
+      s.onload = resolve; s.onerror = reject;
+      document.head.appendChild(s);
+    });
+  }
+  const Plotly = window.Plotly;
 
   // ---------- Dimension catalogue ----------
   const DIMS = {
@@ -37,18 +42,17 @@ window.renderCountryPlots = async function (tsId, scId, plotData, countryName) {
   ];
   const colourFor = p => palette[allParties.indexOf(p) % palette.length];
 
-  // ---------- State ----------
+  // ---------- State (only x/y and time-window — Plotly's legend handles party toggling) ----------
   const state = {
-    activeParties: new Set(allParties),
     xDim: "populism_overall",
     yDim: "liberalism_overall",
     nLastElections: 4
   };
 
-  // ---------- Build UI controls ----------
+  // ---------- Build top control bar ----------
   function buildControls(host) {
     host.innerHTML = `
-      <div class="ctrls-row" style="display:flex; gap:1.2rem; flex-wrap:wrap; margin-bottom:.6rem; align-items:flex-end">
+      <div style="display:flex; gap:1.2rem; flex-wrap:wrap; margin-bottom:.6rem; align-items:flex-end">
         <label>X-axis
           <select id="x-dim" style="margin-left:.3rem">${
             Object.entries(DIMS).map(([k,v]) =>
@@ -67,171 +71,167 @@ window.renderCountryPlots = async function (tsId, scId, plotData, countryName) {
           elections per party
         </label>
         <button id="all-time" style="padding:.2rem .6rem">All elections</button>
-      </div>
-      <div class="party-toggles" style="display:flex; flex-wrap:wrap; gap:.35rem .8rem; padding:.5rem .8rem; background:#fafafa; border-radius:4px; margin-bottom:.8rem">
-        <strong style="margin-right:.3rem">Parties:</strong>
-        <button id="select-all" style="padding:.05rem .5rem;font-size:.85em">all</button>
-        <button id="select-none" style="padding:.05rem .5rem;font-size:.85em">none</button>
-        ${allParties.map(p =>
-          `<label style="display:flex;align-items:center;gap:.2rem;font-size:.9em">
-             <input type="checkbox" data-party="${p}" checked
-                    style="accent-color:${colourFor(p)};margin:0">
-             <span style="color:${colourFor(p)};font-weight:600">${p}</span>
-           </label>`
-        ).join("")}
+        <span style="font-size:.85em;color:#666;margin-left:auto">
+          Click a party in the legend to toggle.  Double-click to isolate.
+        </span>
       </div>`;
   }
 
-  // ---------- Filter helper ----------
+  // ---------- Filter ----------
   function filterData() {
-    const dataByParty = new Map();
+    if (!state.nLastElections) return plotData;
+    const byParty = new Map();
     for (const d of plotData) {
-      if (!state.activeParties.has(d.label)) continue;
-      if (!dataByParty.has(d.label)) dataByParty.set(d.label, []);
-      dataByParty.get(d.label).push(d);
+      if (!byParty.has(d.label)) byParty.set(d.label, []);
+      byParty.get(d.label).push(d);
     }
-    // Last N elections per party (or all if state.nLastElections is null/0)
     const out = [];
-    for (const [p, rows] of dataByParty) {
+    for (const [, rows] of byParty) {
       rows.sort((a, b) => a.year - b.year);
-      const slice = state.nLastElections > 0 ? rows.slice(-state.nLastElections) : rows;
-      out.push(...slice);
+      out.push(...rows.slice(-state.nLastElections));
     }
     return out;
   }
 
-  // ---------- Make per-segment data for gradient trajectories ----------
-  function makeSegments(data) {
-    // For each party, produce consecutive (year_i → year_{i+1}) segments
-    const segs = [];
+  // ---------- Group data by party ----------
+  function groupByParty(data) {
     const byParty = new Map();
     for (const d of data) {
       if (!byParty.has(d.label)) byParty.set(d.label, []);
       byParty.get(d.label).push(d);
     }
-    for (const [p, rows] of byParty) {
-      rows.sort((a, b) => a.year - b.year);
-      const n = rows.length;
-      for (let i = 0; i < n - 1; i++) {
-        // segment_rank: 0 = oldest, n-1 = latest
-        const rank = (i + 1) / Math.max(n - 1, 1);  // 0..1
-        segs.push({
-          ...rows[i], next_x: rows[i+1], rank,
-          x1: rows[i],          // start point
-          x2: rows[i+1]         // end point
-        });
-      }
-    }
-    return segs;
+    for (const [p, rows] of byParty) rows.sort((a, b) => a.year - b.year);
+    return byParty;
   }
 
-  // ---------- Time-series plot ----------
+  // ---------- Time-series plot (2 stacked panels) ----------
   function renderTS(host, data) {
-    host.innerHTML = "";
-    const partiesIn = [...new Set(data.map(d => d.label))];
-    if (partiesIn.length === 0) {
-      host.innerHTML = '<p style="color:#888"><em>No parties selected.</em></p>';
-      return;
+    const byParty = groupByParty(data);
+    const traces = [];
+    for (const [p, rows] of byParty) {
+      const c = colourFor(p);
+      traces.push({
+        type: "scatter", mode: "lines+markers",
+        name: p, legendgroup: p,
+        x: rows.map(r => r.year),
+        y: rows.map(r => r[state.xDim]),
+        xaxis: "x1", yaxis: "y1",
+        line: { color: c, width: 2 },
+        marker: { color: c, size: 7 },
+        hovertemplate: `<b>${p}</b><br>%{x}<br>${DIMS[state.xDim]}: %{y:.2f}<extra></extra>`,
+        showlegend: true
+      });
+      traces.push({
+        type: "scatter", mode: "lines+markers",
+        name: p, legendgroup: p,
+        x: rows.map(r => r.year),
+        y: rows.map(r => r[state.yDim]),
+        xaxis: "x2", yaxis: "y2",
+        line: { color: c, width: 2 },
+        marker: { color: c, size: 7 },
+        hovertemplate: `<b>${p}</b><br>%{x}<br>${DIMS[state.yDim]}: %{y:.2f}<extra></extra>`,
+        showlegend: false
+      });
     }
-    const panels = [
-      { dim: state.xDim, title: DIMS[state.xDim] },
-      { dim: state.yDim, title: DIMS[state.yDim] }
-    ];
-    for (const p of panels) {
-      const wrap = document.createElement("div");
-      wrap.appendChild(Plot.plot({
-        width: 900, height: 280, marginLeft: 50, marginBottom: 30, marginRight: 12,
-        title: p.title,
-        x: { label: "Election year", tickFormat: "d" },
-        y: { domain: [0, 10], label: null, grid: true },
-        color: { legend: false, domain: partiesIn, range: partiesIn.map(colourFor) },
-        marks: [
-          Plot.line(data, {
-            x: "year", y: p.dim, stroke: "label",
-            strokeWidth: 1.6, strokeOpacity: 0.85
-          }),
-          Plot.dot(data, {
-            x: "year", y: p.dim, fill: "label", stroke: "label",
-            r: 3.5, fillOpacity: 0.95,
-            title: d => `${d.label} ${d.year}\n${DIMS[p.dim]}: ${d[p.dim]?.toFixed(2) ?? "—"}`
-          })
-        ]
-      }));
-      host.appendChild(wrap);
-    }
+    const layout = {
+      grid: { rows: 2, columns: 1, pattern: "independent", roworder: "top to bottom" },
+      xaxis:  { domain: [0, 1], anchor: "y1", title: "" },
+      yaxis:  { domain: [0.55, 1], anchor: "x1", title: DIMS[state.xDim], range: [0, 10] },
+      xaxis2: { domain: [0, 1], anchor: "y2", title: "Election year" },
+      yaxis2: { domain: [0, 0.45], anchor: "x2", title: DIMS[state.yDim], range: [0, 10] },
+      margin: { t: 30, l: 60, r: 20, b: 50 },
+      height: 600,
+      legend: { orientation: "v", x: 1.02, y: 1 },
+      hovermode: "closest"
+    };
+    Plotly.newPlot(host, traces, layout, {
+      responsive: true, displaylogo: false,
+      modeBarButtonsToRemove: ["lasso2d", "select2d"]
+    });
   }
 
   // ---------- Scatter / trajectory plot ----------
   function renderScatter(host, data) {
-    host.innerHTML = "";
-    const partiesIn = [...new Set(data.map(d => d.label))];
-    if (partiesIn.length === 0 || data.length === 0) {
-      host.innerHTML = '<p style="color:#888"><em>No parties selected or no data in window.</em></p>';
-      return;
+    const byParty = groupByParty(data);
+    const traces = [];
+    const annotations = [
+      // Faint quadrant lines via shapes
+    ];
+    const shapes = [
+      { type: "line", x0: 5, x1: 5, y0: 0, y1: 10,
+        line: { color: "#ccc", dash: "dot", width: 1 } },
+      { type: "line", x0: 0, x1: 10, y0: 5, y1: 5,
+        line: { color: "#ccc", dash: "dot", width: 1 } }
+    ];
+
+    for (const [p, rows] of byParty) {
+      const c = colourFor(p);
+      const xs = rows.map(r => r[state.xDim]);
+      const ys = rows.map(r => r[state.yDim]);
+      const yrs = rows.map(r => r.year);
+      const n = rows.length;
+
+      // Main trace: connected line + markers
+      traces.push({
+        type: "scatter", mode: "lines+markers+text",
+        name: p, legendgroup: p,
+        x: xs, y: ys,
+        text: yrs.map(String),
+        textposition: "top center",
+        textfont: { size: 9, color: "#444" },
+        line: { color: c, width: 2 },
+        marker: { color: c, size: 7, line: { color: "white", width: 1 } },
+        hovertemplate: `<b>${p}</b> %{text}<br>` +
+                       `${DIMS[state.xDim]}: %{x:.2f}<br>` +
+                       `${DIMS[state.yDim]}: %{y:.2f}<extra></extra>`,
+        showlegend: true
+      });
+
+      // Big marker on the most-recent point (last in sorted rows)
+      traces.push({
+        type: "scatter", mode: "markers+text",
+        name: p + " (latest)", legendgroup: p,
+        x: [xs[n-1]], y: [ys[n-1]],
+        text: [p],
+        textposition: "middle right",
+        textfont: { size: 11, color: c, weight: "bold" },
+        marker: { color: c, size: 14, line: { color: "black", width: 1.3 } },
+        hovertemplate: `<b>${p}</b> ${yrs[n-1]} (latest)<br>` +
+                       `${DIMS[state.xDim]}: %{x:.2f}<br>` +
+                       `${DIMS[state.yDim]}: %{y:.2f}<extra></extra>`,
+        showlegend: false
+      });
+
+      // Arrow annotations between consecutive points (oldest → newest)
+      for (let i = 0; i < n - 1; i++) {
+        annotations.push({
+          x: xs[i+1], y: ys[i+1],
+          ax: xs[i],  ay: ys[i],
+          xref: "x", yref: "y", axref: "x", ayref: "y",
+          showarrow: true,
+          arrowhead: 3, arrowsize: 1.2, arrowwidth: 1.2,
+          arrowcolor: c,
+          opacity: 0.55,
+          standoff: 6, startstandoff: 6
+        });
+      }
     }
-    const segs = makeSegments(data);
-    // Latest manifesto per party (largest year)
-    const latestByParty = new Map();
-    for (const d of data) {
-      const cur = latestByParty.get(d.label);
-      if (!cur || d.year > cur.year) latestByParty.set(d.label, d);
-    }
-    const latest = [...latestByParty.values()];
 
-    // Per-segment gradient: older segments have lower opacity
-    const segWithOpacity = segs.map(s => ({
-      ...s,
-      // Linear: oldest segment opacity ~0.18, newest ~0.95
-      opacity: 0.18 + 0.77 * s.rank
-    }));
-
-    host.appendChild(Plot.plot({
-      width: 900, height: 580, marginLeft: 60, marginBottom: 50, marginRight: 20,
-      caption: "Each line = one party's chronological path. " +
-               "Faint segments are older; saturated segments are newest. " +
-               "Years labelled on every point. Latest manifesto = bold ring + party label.",
-      x: { domain: [0, 10], label: DIMS[state.xDim] + " →", grid: true },
-      y: { domain: [0, 10], label: "↑ " + DIMS[state.yDim], grid: true },
-      color: { legend: false, domain: partiesIn, range: partiesIn.map(colourFor) },
-      marks: [
-        // Quadrant lines at 5
-        Plot.ruleX([5], { stroke: "#ccc", strokeDasharray: "3 3" }),
-        Plot.ruleY([5], { stroke: "#ccc", strokeDasharray: "3 3" }),
-
-        // Per-segment line with gradient opacity (one mark call per segment)
-        Plot.link(segWithOpacity, {
-          x1: d => d.x1[state.xDim], y1: d => d.x1[state.yDim],
-          x2: d => d.x2[state.xDim], y2: d => d.x2[state.yDim],
-          stroke: "label", strokeWidth: 2,
-          strokeOpacity: "opacity",
-          markerEnd: "arrow"
-        }),
-
-        // All points (small)
-        Plot.dot(data, {
-          x: state.xDim, y: state.yDim,
-          fill: "label", stroke: "white", strokeWidth: 0.8, r: 4,
-          title: d => `${d.label} ${d.year}\n${DIMS[state.xDim]}: ${d[state.xDim]?.toFixed(2)}\n${DIMS[state.yDim]}: ${d[state.yDim]?.toFixed(2)}`
-        }),
-
-        // Year text near each point (chronology cue)
-        Plot.text(data, {
-          x: state.xDim, y: state.yDim, text: "year",
-          dy: -8, fontSize: 9, fill: "#444", stroke: "white", strokeWidth: 2.5
-        }),
-
-        // Latest manifesto: big ring + label
-        Plot.dot(latest, {
-          x: state.xDim, y: state.yDim,
-          fill: "label", stroke: "black", strokeWidth: 1.3, r: 7
-        }),
-        Plot.text(latest, {
-          x: state.xDim, y: state.yDim, text: "label",
-          dx: 12, dy: -6, fontSize: 11, fontWeight: "bold",
-          fill: "label", stroke: "white", strokeWidth: 3
-        })
-      ]
-    }));
+    const layout = {
+      title: { text: "", font: { size: 14 } },
+      xaxis: { title: DIMS[state.xDim] + " →", range: [0, 10], gridcolor: "#eee" },
+      yaxis: { title: "↑ " + DIMS[state.yDim], range: [0, 10], gridcolor: "#eee" },
+      annotations: annotations,
+      shapes: shapes,
+      margin: { t: 30, l: 60, r: 20, b: 50 },
+      height: 620,
+      legend: { orientation: "v", x: 1.02, y: 1 },
+      hovermode: "closest"
+    };
+    Plotly.newPlot(host, traces, layout, {
+      responsive: true, displaylogo: false,
+      modeBarButtonsToRemove: ["lasso2d", "select2d"]
+    });
   }
 
   // ---------- Wire up everything ----------
@@ -241,8 +241,6 @@ window.renderCountryPlots = async function (tsId, scId, plotData, countryName) {
     console.error("Country plots: missing target containers", tsId, scId);
     return;
   }
-
-  // Insert a controls bar before the time-series plot
   const ctrls = document.createElement("div");
   ctrls.id = "country-ctrls";
   tsHost.parentNode.insertBefore(ctrls, tsHost);
@@ -250,17 +248,17 @@ window.renderCountryPlots = async function (tsId, scId, plotData, countryName) {
 
   function refresh() {
     const data = filterData();
+    if (data.length === 0) {
+      tsHost.innerHTML = scHost.innerHTML =
+        '<p style="color:#888"><em>No data in the selected window.</em></p>';
+      return;
+    }
     renderTS(tsHost, data);
     renderScatter(scHost, data);
   }
 
-  // Event handlers
-  ctrls.querySelector("#x-dim").addEventListener("change", e => {
-    state.xDim = e.target.value; refresh();
-  });
-  ctrls.querySelector("#y-dim").addEventListener("change", e => {
-    state.yDim = e.target.value; refresh();
-  });
+  ctrls.querySelector("#x-dim").addEventListener("change", e => { state.xDim = e.target.value; refresh(); });
+  ctrls.querySelector("#y-dim").addEventListener("change", e => { state.yDim = e.target.value; refresh(); });
   ctrls.querySelector("#swap-axes").addEventListener("click", () => {
     [state.xDim, state.yDim] = [state.yDim, state.xDim];
     ctrls.querySelector("#x-dim").value = state.xDim;
@@ -275,24 +273,6 @@ window.renderCountryPlots = async function (tsId, scId, plotData, countryName) {
     state.nLastElections = 0;
     ctrls.querySelector("#n-last").value = "";
     refresh();
-  });
-  ctrls.querySelector("#select-all").addEventListener("click", () => {
-    state.activeParties = new Set(allParties);
-    ctrls.querySelectorAll('input[data-party]').forEach(cb => cb.checked = true);
-    refresh();
-  });
-  ctrls.querySelector("#select-none").addEventListener("click", () => {
-    state.activeParties = new Set();
-    ctrls.querySelectorAll('input[data-party]').forEach(cb => cb.checked = false);
-    refresh();
-  });
-  ctrls.querySelectorAll('input[data-party]').forEach(cb => {
-    cb.addEventListener("change", () => {
-      const p = cb.dataset.party;
-      if (cb.checked) state.activeParties.add(p);
-      else            state.activeParties.delete(p);
-      refresh();
-    });
   });
 
   refresh();
