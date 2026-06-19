@@ -1,42 +1,164 @@
 ---
-title: "Download"
-subtitle: "Bulk data, code, DOI"
+title: "Data & Reproduction"
+subtitle: "Download the scores, rebuild the aggregate, or re-run the whole pipeline"
 ---
 
-## Data
+Everything behind this site and the paper is open. There are **three places**
+things live, and **three levels** of reproduction depending on how deep you
+want to go.
 
-| Resource | Format | Link |
+## Where everything lives
+
+| Resource | What it is | Link |
 |---|---|---|
-| **Annotations** (all 3 LLMs × 3,327 manifestos) | Parquet | [huggingface.co/datasets/sstoeckl/populism-llm](https://huggingface.co/datasets/sstoeckl/populism-llm) |
-| **Replication code** (R pipeline + spec curve) | Git repo | [github.com/sstoeckl/populism-llm-replication](https://github.com/sstoeckl/populism-llm-replication) |
-| **Companion website source** | Git repo | [github.com/sstoeckl/populism-llm](https://github.com/sstoeckl/populism-llm) |
-| **DOI / citable replication archive** | Tar | Dataverse — tba |
-| **Zenodo code archive** | Tar | Zenodo — tba |
+| **Hugging Face dataset** | The scores. One analysis-ready file + the raw per-chunk annotations with verbatim evidence. | [huggingface.co/datasets/sstoeckl/populism-llm](https://huggingface.co/datasets/sstoeckl/populism-llm) |
+| **Replication repo** | The full R pipeline: scoring, span validation, aggregation, regressions, spec curve. | [github.com/sstoeckl/populism-llm-replication](https://github.com/sstoeckl/populism-llm-replication) |
+| **Website repo** | The source of *this* site, incl. the small `data/` build scripts. | [github.com/sstoeckl/populism-llm](https://github.com/sstoeckl/populism-llm) |
+| **DOI archive** | Citable Dataverse / Zenodo snapshot. | tba |
 
-## Load in R
+---
+
+## Level 1 — Use the baseline scores (one file)
+
+`manifesto_scores.parquet` is the analysis-ready table: **one row per manifesto
+(3,327)**, CMP metadata + the cross-model-mean populism/liberalism scores (the
+paper's baseline) + each model's scores. **This one file reproduces every figure
+on this site and the regressions in the paper.**
 
 ```r
-library(arrow)
-df <- read_parquet(
-  "https://huggingface.co/datasets/sstoeckl/populism-llm/resolve/main/data/aggregated.parquet"
+library(arrow); library(dplyr)
+scores <- read_parquet(
+  "https://huggingface.co/datasets/sstoeckl/populism-llm/resolve/main/data/manifesto_scores.parquet"
+)
+glimpse(scores)
+#> populism_overall, liberalism_overall, lib_economic, pop_ideology_overall, ...
+#> + countryname, party, partyabbrev, year, parfam, rile
+#> + per-model columns: populism_overall_sonnet, _gpt41mini, _gemini, ...
+```
+
+```python
+import pandas as pd
+scores = pd.read_parquet(
+  "https://huggingface.co/datasets/sstoeckl/populism-llm/resolve/main/data/manifesto_scores.parquet"
 )
 ```
 
-## Load in Python
+A `.csv` twin sits next to it for non-R/Python users.
 
-```python
-from datasets import load_dataset
-ds = load_dataset("sstoeckl/populism-llm", "aggregated")
-df = ds["train"].to_pandas()
+### Reproduce the paper's headline regression
+
+The baseline specification is liberalism on populism with country and year fixed
+effects and country-clustered standard errors:
+
+```r
+library(fixest)
+feols(liberalism_overall ~ populism_overall | countryname + year,
+      data = scores, cluster = ~countryname)
+#> populism_overall  ≈ -0.3  (negative, significant)
+#> "populism is associated with LOWER liberalism"
 ```
+
+Swap `liberalism_overall` for `lib_economic`, `lib_financial_market`,
+`lib_social`, or `lib_political` to get the sub-dimension effects shown on the
+[Interactive Regressions](interactive/regression.qmd) page. That same page runs
+the full 8,100-specification multiverse — the headline is robust to **all** of
+them (0 % sign-flipped, 97.6 % significant-negative).
+
+---
+
+## Level 2 — Rebuild the aggregate from the raw annotations
+
+If you want to verify how the scores are built — or apply your own aggregation
+rule, or inspect the verbatim evidence — start from the three per-chunk files
+(`raw_sonnet`, `raw_gpt41mini`, `raw_gemini`). The website repo carries the build
+scripts; the bulk parquets are fetched from Hugging Face.
+
+```bash
+git clone https://github.com/sstoeckl/populism-llm.git
+cd populism-llm
+Rscript data/_prepare.R       # download raw_{sonnet,gpt41mini,gemini}.parquet from HF
+Rscript data/_build_agg.R     # -> data/agg_long.parquet  (per manifesto × model × dim)
+Rscript data/_build_baseline.R # -> data/manifesto_scores.parquet (the Level-1 file)
+```
+
+The aggregation is a **verified-only mean** of each model's per-chunk scores,
+then averaged across the three models. `_build_baseline.R` is the exact recipe
+that produced the Level-1 file — re-running it reproduces it byte-for-byte.
+
+To render the whole site locally afterwards: `quarto preview`.
+
+---
+
+## Level 3 — Re-score from scratch
+
+To regenerate the LLM annotations themselves (not just the aggregation), use the
+replication repo. This calls the three LLM APIs, so it needs your own API keys
+and the original manifesto text.
+
+```bash
+git clone https://github.com/sstoeckl/populism-llm-replication.git
+cd populism-llm-replication
+cp .Renviron.example .Renviron     # add OPENAI / ANTHROPIC / GEMINI / MANIFESTO keys
+```
+
+The **manifesto text is not redistributed** here — it is © Manifesto Project /
+WZB. The pipeline pulls it directly from the Manifesto Project API with your
+`MANIFESTO_KEY` (free academic registration at
+[manifesto-project.wzb.eu](https://manifesto-project.wzb.eu/)). Scripts run in
+numbered order; see the repo README for the full sequence.
+
+::: {.callout-note}
+Re-scoring is non-trivial: ~6,500 chunks × 3 models. The scores are
+deterministic (`temperature = 0`, pinned model snapshots), but API costs and
+provider drift apply. For almost all uses, **Level 1 is what you want.**
+:::
+
+---
+
+## Data access command for Claude Code
+
+Paste this into a fresh Claude Code session on your own machine to pull and load
+the baseline measure:
+
+````markdown
+Download the populism/liberalism baseline scores from the Hugging Face dataset
+`sstoeckl/populism-llm` and load them for analysis.
+
+The analysis-ready file is one row per manifesto (3,327 European CMP party
+manifestos), with CMP metadata and cross-model-mean (Claude Sonnet 4.6,
+GPT-4.1-mini, Gemini Flash) populism & liberalism scores on a 0–10 scale:
+
+```r
+library(arrow); library(dplyr); library(fixest)
+scores <- read_parquet(
+  "https://huggingface.co/datasets/sstoeckl/populism-llm/resolve/main/data/manifesto_scores.parquet"
+)
+# Baseline columns: populism_overall, liberalism_overall, lib_political,
+#   lib_social, lib_economic, lib_financial_market, pop_ideology_overall
+# Per-model columns: <dim>_sonnet / _gpt41mini / _gemini
+# Metadata: doc_id, countryname, partyname, partyabbrev, party, parfam, rile,
+#   date, year, token_count
+
+# The paper's headline regression (populism -> lower liberalism):
+feols(liberalism_overall ~ populism_overall | countryname + year,
+      data = scores, cluster = ~countryname)
+```
+
+If you also need the verbatim evidence behind each score, download the raw
+per-chunk files raw_sonnet.parquet / raw_gpt41mini.parquet / raw_gemini.parquet
+from the same dataset (path data/<file>), and see the rebuild scripts in
+github.com/sstoeckl/populism-llm (data/_prepare.R, _build_agg.R, _build_baseline.R).
+````
+
+---
 
 ## License
 
 | Component | License |
 |---|---|
-| Annotations (scores, statuses, metrics) | CC-BY 4.0 |
-| Verbatim quotes (≤ 50 words) | Fair-use for scientific commentary; cite manifesto_id |
-| Code | MIT |
+| Annotations (scores, statuses, derived metrics) | **CC-BY 4.0** |
+| Verbatim quotes (≤ 8 words) + context (≤ 80 words) | Fair use for scientific commentary; cite `manifesto_id` |
+| Pipeline & website code | **MIT** |
 | Original manifesto texts | © Manifesto Project / WZB — obtain via [manifesto-project.wzb.eu](https://manifesto-project.wzb.eu/) |
 
 ## Authors
@@ -63,7 +185,7 @@ df = ds["train"].to_pandas()
 
 @misc{rode_stoeckl_2026_populismllm,
   author    = {Rode, Martin and St{\"o}ckl, Sebastian},
-  title     = {Populism-LLM v1: A Cross-Validated LLM Annotation of
+  title     = {Populism-LLM: A Cross-Validated LLM Annotation of
                European Party Manifestos},
   year      = {2026},
   publisher = {Hugging Face Datasets},
