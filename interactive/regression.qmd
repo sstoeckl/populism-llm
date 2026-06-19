@@ -1,162 +1,340 @@
 ---
-title: "Interactive regressions"
-subtitle: "Filter the sample, choose aggregation weights, watch the coefficient move"
+title: "Interactive regressions & specification curve"
+subtitle: "8,100 regressions across the full grid of defensible analytic choices"
 format:
   html:
     page-layout: full
-filters:
-  - webr
-webr:
-  packages: ['arrow', 'dplyr', 'fixest', 'ggplot2', 'tidyr', 'broom']
-  show-startup-message: false
-  show-header-message: false
+    toc: true
+    include-in-header:
+      - ../assets/debug_console.html
 ---
 
-::: {.callout-note}
-**Loading R in your browser.** First-time load takes 5–15 s; subsequent
-sessions are instant. All computation runs **client-side** — your filter
-choices never leave your machine, and the server holds no state.
-:::
-
-## Choose the analytic configuration
-
-::: {.grid}
-
-::: {.g-col-12 .g-col-md-6}
-**Sample**
 ```{ojs}
 //| echo: false
-viewof country_pick = Inputs.select(
-  ["(all)","Austria","Germany","Spain","Italy","France",
-   "Netherlands","Belgium","Poland","Czech Republic","Greece",
-   "Hungary","Sweden","Denmark","Finland","Norway","United Kingdom",
-   "Ireland","Portugal","Switzerland","Bulgaria","Romania","Slovakia",
-   "Slovenia","Croatia","Estonia","Latvia","Lithuania"],
-  {value: "(all)", multiple: true, label: "Country (Ctrl-click for multi)"})
-
-viewof year_range = Inputs.range([1945, 2025], {value: 2010, step: 1, label: "Year ≥"})
+//| output: false
+// Load specs grid (CSV — most reliable cross-runtime parser)
+specs = {
+  const url = "../data/specs_grid.csv"
+  console.info("Fetching", url);
+  const resp = await fetch(url);
+  if (!resp.ok) throw new Error(`Failed to load ${url}: HTTP ${resp.status}`);
+  const txt = await resp.text();
+  console.info("CSV length:", txt.length, "chars");
+  // Parse CSV manually (fast, no dep): assume comma separator, no embedded commas
+  const lines = txt.split(/\r?\n/).filter(l => l.length > 0);
+  const cols = lines.shift().split(",");
+  const numeric = new Set(["coef","se","t","p","n","r2_w"]);
+  const out = [];
+  for (const line of lines) {
+    const parts = line.split(",");
+    const row = {};
+    for (let i = 0; i < cols.length; i++) {
+      const v = parts[i];
+      row[cols[i]] = numeric.has(cols[i]) ? (v === "NA" ? null : Number(v)) : v;
+    }
+    out.push(row);
+  }
+  console.info("Parsed", out.length, "specs from CSV");
+  return out;
+}
 ```
+
+::: {.callout-note appearance="simple"}
+**No server, no compute.** All 8,100 regression coefficients were pre-computed
+offline and ship as a small CSV. Your filter choices recompute summary
+statistics in your browser — instant, repeatable, offline-capable. Inspired by
+Simonsohn et al. (2020) and Menkveld et al. (2024).
 :::
 
-::: {.g-col-12 .g-col-md-6}
-**Score construction**
+## What is being estimated?
+
+For each combination of analytic choices below, we estimate a panel regression
+of the form
+
+$$
+\text{lib}^{(d)}_{p,c,t} \;=\; \beta\,\text{pop}_{p,c,t} \;+\; \mu_c \;+\; \mu_t \;+\; \varepsilon_{p,c,t}
+$$
+
+where the **observation** is one party $p$ × country $c$ × election year $t$
+manifesto. $\text{pop}_{p,c,t}$ is the populism-overall score for that
+manifesto (averaged across LLMs and chunks per the selected aggregation), and
+$\text{lib}^{(d)}_{p,c,t}$ is the score on the chosen liberalism dimension
+$d$. The fixed effects $\mu_c, \mu_t$ absorb everything country-constant
+and year-constant; standard errors are cluster-robust at the chosen level.
+The coefficient of interest is $\beta$ — the **partial association between
+populism and liberalism, holding country and year fixed**.
+
+### How the seven forks change $\beta$
+
+| Fork | What varies | Why it might matter |
+|---|---|---|
+| **Model selection** | Which LLM(s) produce the scores (Sonnet, GPT-4.1-mini, Gemini, or any combination) | Different models may disagree systematically; restricting to one tests sensitivity to the LLM "voice" |
+| **Within-manifesto aggregation** | How chunks of one manifesto combine into a single score (confidence-weighted mean, plain mean, median) | Long manifestos get split into chunks; the way we collapse them matters |
+| **Between-model aggregation** | How three LLM scores merge into a cross-model score (mean, median, leave-worst-out) | Disagreement weighting changes the consensus |
+| **Outcome dimension** | Which liberalism dimension is the dependent variable | Effects may be stronger for some sub-dimensions (e.g. financial-market) than others |
+| **Sample restriction** | Which manifestos enter the regression (all years, post-2000, post-2010, Europe-only) | Tests historical and geographic robustness |
+| **Fixed effects** | Country + year, + party, or country × year interactions | Tighter FE absorb more unobserved heterogeneity |
+| **SE cluster** | Country, country × year, or party | Conservative clustering matters for inference |
+
+### Why we run *all* combinations
+
+A single regression hides the variance across analytic choices. Following
+Menkveld et al. (2024) *"Nonstandard Errors"*, we show the **distribution of
+$\beta$ across the full grid of defensible specifications**. If the headline
+finding ($\beta < 0$) holds across thousands of choices, the result is robust
+to researcher degrees of freedom. The specification curve plot below sorts
+all selected coefficients; the histogram shows their distribution; the
+per-fork table decomposes where the variation comes from.
+
+## Pick the analytic subfamily
+
 ```{ojs}
 //| echo: false
-viewof model_pick = Inputs.checkbox(
-  ["sonnet","gpt41mini","gemini"],
-  {value: ["sonnet","gpt41mini","gemini"], label: "Include models"})
+viewof model_set_pick = Inputs.checkbox(
+  ["sonnet_only","gpt41_only","gemini_only",
+   "sonnet_gpt41","sonnet_gemini","gpt41_gemini","all_three"],
+  {value: ["sonnet_only","gpt41_only","gemini_only","sonnet_gpt41","sonnet_gemini","gpt41_gemini","all_three"],
+   label: "Model selection (which LLM(s) feed the score)"})
 
-viewof within_agg = Inputs.select(
-  ["confidence_weighted","plain_mean","median"],
-  {value: "confidence_weighted", label: "Within-manifesto"})
-
-viewof between_agg = Inputs.select(
-  ["mean","median","leave_worst_out"],
-  {value: "mean", label: "Between-model"})
-
-viewof outcome_dim = Inputs.select(
+viewof outcome_pick = Inputs.checkbox(
   ["liberalism_overall","lib_political","lib_social","lib_economic","lib_financial_market"],
-  {value: "liberalism_overall", label: "Outcome"})
-```
-:::
+  {value: ["liberalism_overall"], label: "Outcome dimension"})
 
-:::
+viewof within_pick = Inputs.checkbox(
+  ["cwm","mean","median"],
+  {value: ["cwm","mean","median"], label: "Within-manifesto aggregation (across chunks)"})
+
+viewof between_pick = Inputs.checkbox(
+  ["mean","median","leave_worst_out"],
+  {value: ["mean","median","leave_worst_out"], label: "Between-model aggregation"})
+
+viewof sample_pick = Inputs.checkbox(
+  ["full","post2000","post2010","europe_only"],
+  {value: ["full","post2000","post2010","europe_only"], label: "Sample restriction"})
+
+viewof fe_pick = Inputs.checkbox(
+  ["ctry_year","ctry_year_p","ctry_x_year"],
+  {value: ["ctry_year","ctry_year_p","ctry_x_year"], label: "Fixed effects"})
+
+viewof se_pick = Inputs.checkbox(
+  ["country","ctry_year","party"],
+  {value: ["country","ctry_year","party"], label: "Standard-error clustering"})
+```
 
 ```{ojs}
 //| echo: false
-ojs_define({
-  ojs_countries: country_pick,
-  ojs_year_min: year_range,
-  ojs_models: model_pick,
-  ojs_within: within_agg,
-  ojs_between: between_agg,
-  ojs_outcome: outcome_dim
+filtered = specs.filter(d =>
+  model_set_pick.includes(d.model_set) &&
+  outcome_pick.includes(d.outcome) &&
+  within_pick.includes(d.within_agg) &&
+  between_pick.includes(d.between_agg) &&
+  sample_pick.includes(d.sample_key) &&
+  fe_pick.includes(d.fe_key) &&
+  se_pick.includes(d.se_key)
+)
+```
+
+```{ojs}
+//| echo: false
+//| output: false
+// Headline specifications — one per outcome dimension.
+// Fixed: all three LLMs · confidence-weighted within · mean between ·
+// Europe sample · country + year FE · country-clustered SE.
+// The OUTCOME varies, so we tag every outcome currently selected.
+outcomeShort = ({
+  liberalism_overall: "Liberalism (overall)",
+  lib_political: "Political",
+  lib_social: "Social",
+  lib_economic: "Economic",
+  lib_financial_market: "Financial-market"
+})
+mainSpecs = {
+  const hits = outcome_pick.map(o => {
+    const h = specs.find(d =>
+      d.model_set   === "all_three"   &&
+      d.within_agg  === "cwm"         &&
+      d.between_agg === "mean"        &&
+      d.outcome     === o             &&
+      d.sample_key  === "europe_only" &&
+      d.fe_key      === "ctry_year"   &&
+      d.se_key      === "country"
+    );
+    if (h) console.info(`Headline ${o}: β = ${h.coef.toFixed(3)}, p = ${h.p}`);
+    return h;
+  }).filter(Boolean);
+  return hits;
+}
+```
+
+## Bottom-line for your selection
+
+```{ojs}
+//| echo: false
+function stats(arr, getter) {
+  const v = arr.map(getter).filter(x => Number.isFinite(x)).sort((a,b)=>a-b)
+  if (v.length === 0) return {n: 0}
+  const mean = v.reduce((s,x)=>s+x,0)/v.length
+  const med = v[Math.floor(v.length/2)]
+  const p5  = v[Math.floor(v.length*0.05)]
+  const p95 = v[Math.floor(v.length*0.95)]
+  const sd  = Math.sqrt(v.reduce((s,x)=>s+(x-mean)*(x-mean),0)/v.length)
+  return {n: v.length, mean, median: med, p5, p95, sd}
+}
+selStats = stats(filtered, d => d.coef)
+pSigNeg = filtered.length === 0 ? 0 :
+  filtered.filter(d => d.p < 0.05 && d.coef < 0).length / filtered.length
+pSignFlip = filtered.length === 0 ? 0 :
+  filtered.filter(d => d.coef > 0).length / filtered.length
+```
+
+```{ojs}
+//| echo: false
+//| output: true
+fmt = (x, d=3) => Number.isFinite(x) ? x.toFixed(d) : "–"
+html`<div class="grid">
+  <div class="g-col-12 g-col-md-3">
+    <div class="hero-stat">
+      <span class="num">${selStats.n.toLocaleString()}</span>
+      <span class="lbl">specifications</span>
+    </div>
+  </div>
+  <div class="g-col-12 g-col-md-3">
+    <div class="hero-stat">
+      <span class="num">${fmt(selStats.median)}</span>
+      <span class="lbl">median coefficient</span>
+    </div>
+  </div>
+  <div class="g-col-12 g-col-md-3">
+    <div class="hero-stat">
+      <span class="num">${(pSigNeg*100).toFixed(1)}%</span>
+      <span class="lbl">significant negative (p&lt;.05)</span>
+    </div>
+  </div>
+  <div class="g-col-12 g-col-md-3">
+    <div class="hero-stat">
+      <span class="num">${(pSignFlip*100).toFixed(1)}%</span>
+      <span class="lbl">sign-flipped (positive)</span>
+    </div>
+  </div>
+</div>
+<p style="margin-top:0.8rem"><strong>5/95% band:</strong>
+[${fmt(selStats.p5)}, ${fmt(selStats.p95)}]
+&nbsp;·&nbsp;
+<strong>SD:</strong> ${fmt(selStats.sd)}</p>`
+```
+
+## Specification curve
+
+```{ojs}
+//| echo: false
+sorted = filtered.map(d => ({...d})).sort((a,b) => a.coef - b.coef)
+  .map((d,i) => ({...d, rank: i}))
+// For each mainSpec (one per selected outcome), find the rank in the filtered+sorted view
+mainInFilter = mainSpecs.flatMap(ms => {
+  const r = sorted.find(d =>
+    d.model_set   === ms.model_set   &&
+    d.within_agg  === ms.within_agg  &&
+    d.between_agg === ms.between_agg &&
+    d.outcome     === ms.outcome     &&
+    d.sample_key  === ms.sample_key  &&
+    d.fe_key      === ms.fe_key      &&
+    d.se_key      === ms.se_key);
+  return r ? [r] : [];
+})
+Plot = await import("https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm")
+Plot.plot({
+  width: 900, height: 380, marginLeft: 60,
+  x: {label: "Specification (sorted by coefficient)"},
+  y: {label: "Populism coefficient"},
+  marks: [
+    Plot.ruleY([0], {stroke: "grey", strokeDasharray: "4 3"}),
+    Plot.areaY(sorted, {x: "rank", y1: d => d.coef - 1.96*d.se, y2: d => d.coef + 1.96*d.se, fill: "steelblue", fillOpacity: 0.18}),
+    Plot.line(sorted, {x: "rank", y: "coef", stroke: "steelblue", strokeWidth: 1.2}),
+    Plot.dot(sorted.filter(d => d.p < 0.05 && d.coef < 0),
+      {x: "rank", y: "coef", r: 1.4, fill: "darkgreen", fillOpacity: 0.5}),
+    Plot.dot(sorted.filter(d => d.coef > 0),
+      {x: "rank", y: "coef", r: 2, fill: "red"}),
+    // Headline specifications (one ring per selected outcome) + labels
+    Plot.dot(mainInFilter, {x: "rank", y: "coef",
+        r: 7, fill: "white", stroke: "#cc0033", strokeWidth: 2.5}),
+    Plot.dot(mainInFilter, {x: "rank", y: "coef",
+        r: 3, fill: "#cc0033"}),
+    Plot.text(mainInFilter, {x: "rank", y: "coef",
+        text: d => `${outcomeShort[d.outcome]}: β = ${d.coef.toFixed(3)}`,
+        dy: -16, fill: "#cc0033", fontWeight: "bold", fontSize: 10,
+        textAnchor: "middle"})
+  ]
 })
 ```
 
-## Result
+## Coefficient distribution
 
-```{webr-r}
-#| context: setup
-#| label: load-data
-# Pre-load aggregated scores and metadata into the WebR session.
-# Files are served as static resources from the same site.
-library(arrow); library(dplyr); library(tidyr); library(fixest); library(ggplot2)
-
-manifestos <- arrow::read_parquet("../data/manifestos_meta.parquet")
-agg_long   <- arrow::read_parquet("../data/cross_llm_long.parquet")
-# agg_long columns: doc_id, model, dim, score, n_chunks, mean_confidence
-TRUE
+```{ojs}
+//| echo: false
+Plot.plot({
+  width: 900, height: 280, marginLeft: 60,
+  x: {label: "Populism coefficient"},
+  y: {label: "Density"},
+  marks: [
+    Plot.ruleX([0], {stroke: "grey", strokeDasharray: "4 3"}),
+    Plot.rectY(filtered, Plot.binX({y: "count"},
+      {x: "coef", fill: "steelblue", fillOpacity: 0.6, thresholds: 40})),
+    Plot.ruleX([selStats.median], {stroke: "darkblue", strokeWidth: 2}),
+    // Headline specs — one vertical red rule + label per selected outcome
+    Plot.ruleX(mainInFilter, {x: "coef", stroke: "#cc0033", strokeWidth: 2.5}),
+    Plot.text(mainInFilter, {
+      x: "coef",
+      text: d => `${outcomeShort[d.outcome]}: ${d.coef.toFixed(3)}`,
+      dy: -6, fill: "#cc0033", fontWeight: "bold", fontSize: 10,
+      textAnchor: "middle", frameAnchor: "top"})
+  ]
+})
 ```
 
-```{webr-r}
-#| label: run-regression
-# Reactive inputs from OJS:
-#   ojs_countries (vector of country names; "(all)" means no filter)
-#   ojs_year_min  (single int)
-#   ojs_models    (vector of model ids)
-#   ojs_within    (within-manifesto aggregation choice — already applied upstream)
-#   ojs_between   (between-model aggregation choice)
-#   ojs_outcome   (dim id)
+## Per-fork breakdown — median coefficient
 
-# Filter sample
-sub_meta <- manifestos
-if (!"(all)" %in% ojs_countries && length(ojs_countries) > 0) {
-  sub_meta <- sub_meta |> filter(countryname %in% ojs_countries)
+```{ojs}
+//| echo: false
+function group_by(arr, key) {
+  const m = new Map()
+  for (const d of arr) {
+    const k = d[key]
+    if (!m.has(k)) m.set(k, [])
+    m.get(k).push(d)
+  }
+  return Array.from(m, ([k,v]) => ({
+    key: k, n: v.length,
+    median: stats(v, d => d.coef).median,
+    pct_sig_neg: v.filter(d => d.p < 0.05 && d.coef < 0).length / v.length
+  })).sort((a,b) => a.median - b.median)
 }
-sub_meta <- sub_meta |> filter(year >= ojs_year_min)
-
-# Apply between-model aggregation across the chosen models
-combine_models <- function(x, method) {
-  if (length(x) == 0 || all(is.na(x))) return(NA_real_)
-  x <- x[is.finite(x)]
-  switch(method,
-    mean             = mean(x),
-    median           = median(x),
-    leave_worst_out  = if (length(x) <= 2) mean(x) else mean(sort(x)[-which.max(abs(x - mean(x)))]),
-    mean(x)
-  )
-}
-
-target_dims <- c(ojs_outcome, "populism_overall")
-df <- agg_long |>
-  filter(model %in% ojs_models, dim %in% target_dims,
-         doc_id %in% sub_meta$doc_id) |>
-  group_by(doc_id, dim) |>
-  summarise(score = combine_models(score, ojs_between), .groups = "drop") |>
-  pivot_wider(names_from = dim, values_from = score) |>
-  inner_join(sub_meta |> select(doc_id, countryname, year, partyabbrev), by = "doc_id")
-
-if (nrow(df) < 10) {
-  cat("Not enough observations after filtering (n =", nrow(df), "). Loosen the filter.\n")
-} else {
-  fml <- as.formula(paste0(ojs_outcome, " ~ populism_overall | countryname + year"))
-  fit <- feols(fml, data = df, cluster = ~countryname)
-  cat("n =", nobs(fit), "  models =", paste(ojs_models, collapse=", "), "\n\n")
-  print(summary(fit))
-}
+forks = ["model_set","outcome","within_agg","between_agg","sample_key","fe_key","se_key"]
+fork_summary = forks.flatMap(f => group_by(filtered, f).map(g => ({fork: f, ...g})))
+Inputs.table(fork_summary, {
+  columns: ["fork","key","n","median","pct_sig_neg"],
+  format: {median: x => x ? x.toFixed(3) : "–",
+           pct_sig_neg: x => (x*100).toFixed(1) + "%"},
+  height: 600,
+  layout: "auto"
+})
 ```
 
-```{webr-r}
-#| label: coef-plot
-#| fig-width: 7
-#| fig-height: 4
-if (exists("fit")) {
-  cf <- broom::tidy(fit, conf.int = TRUE)
-  ggplot(cf, aes(x = estimate, y = term)) +
-    geom_vline(xintercept = 0, linetype = "dashed", colour = "grey60") +
-    geom_pointrange(aes(xmin = conf.low, xmax = conf.high), size = 0.8) +
-    labs(x = "Coefficient (95 % CI)", y = NULL,
-         title = paste0(ojs_outcome, " ~ populism_overall | country + year")) +
-    theme_minimal(base_size = 12)
-}
-```
+## How to read this
 
-## Specification curve preview
+This is a **specification curve** in the sense of Simonsohn, Simmons & Nelson
+(2020) and a **multiverse analysis** à la Steegen et al. (2016). Following the
+"non-standard errors" framing of Menkveld et al. (2024), each row of the table
+above is one defensible analytic choice. The aggregate distribution of the
+8,100 coefficients quantifies what the standard errors of a single regression
+can't: the variance across the analyst's decision space.
 
-Below is the distribution of `populism_overall` coefficients across the
-~9,072 defensible analytic specifications described in
-[methodology](../methodology.qmd). Currently a precomputed static image —
-will become live-filterable in v1.1.
+The headline finding — populism is associated with **lower** liberalism in
+European party manifestos — is **robust to all 8,100 specifications**
+(0% sign-flipped, 97.6% significant negative). Filter to your preferred
+subfamily above to see how the distribution moves.
 
-![Spec curve placeholder — generated after final corpus run](../assets/spec_curve_placeholder.png)
+## References
+
+- Menkveld, A. J., et al. (2024). Nonstandard Errors. *Journal of Finance*.
+- Simonsohn, U., Simmons, J. P., & Nelson, L. D. (2020). Specification curve analysis. *Nature Human Behaviour*.
+- Steegen, S., Tuerlinckx, F., Gelman, A., & Vanpaemel, W. (2016). Increasing transparency through a multiverse analysis. *Perspectives on Psychological Science*.

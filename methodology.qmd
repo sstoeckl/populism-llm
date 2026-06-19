@@ -1,12 +1,23 @@
 ---
 title: "Methodology"
 subtitle: "Pipeline, prompts, validation, reproducibility"
+include-after-body:
+  - text: |
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          document.querySelectorAll('.pipeline-diagram').forEach(function(el) {
+            el.addEventListener('click', function() { el.classList.toggle('zoomed'); });
+          });
+        });
+      </script>
 ---
 
 ## Overview
 
+::: {.pipeline-diagram}
 ```{mermaid}
-flowchart LR
+%%| fig-width: 7
+flowchart TB
     A[CMP corpus<br/>3,327 manifestos] --> B[Token-chunking<br/>20k tokens, 2k overlap]
     B --> C1[Sonnet 4.6]
     B --> C2[GPT-4.1-mini]
@@ -19,6 +30,11 @@ flowchart LR
     F --> G[Cross-model aggregation<br/>configurable weighting]
     G --> H[Panel regressions<br/>with non-standard errors]
 ```
+:::
+
+<p style="font-size:0.85em; color:#666; text-align:center; margin-top:-0.5rem;">
+↑ Click diagram to enlarge ·  *vertical orientation for readability*
+</p>
 
 ## The corpus
 

@@ -5,19 +5,20 @@ subtitle: "Bulk data, code, DOI"
 
 ## Data
 
-| Resource | Format | DOI / Link |
+| Resource | Format | Link |
 |---|---|---|
-| Annotations (all 3 models, all 3,327 manifestos) | Parquet | [huggingface.co/datasets/sstoeckl/populism-llm-v1](https://huggingface.co/datasets/sstoeckl/populism-llm-v1) |
-| Replication archive (versioned, citable) | Tar | Dataverse — DOI tba |
-| Code | Git repo | [github.com/sstoeckl/3175_populism_llm](https://github.com/sstoeckl/3175_populism_llm) |
-| Code archive | Tar | Zenodo — DOI tba |
+| **Annotations** (all 3 LLMs × 3,327 manifestos) | Parquet | [huggingface.co/datasets/sstoeckl/populism-llm](https://huggingface.co/datasets/sstoeckl/populism-llm) |
+| **Replication code** (R pipeline + spec curve) | Git repo | [github.com/sstoeckl/populism-llm-replication](https://github.com/sstoeckl/populism-llm-replication) |
+| **Companion website source** | Git repo | [github.com/sstoeckl/populism-llm](https://github.com/sstoeckl/populism-llm) |
+| **DOI / citable replication archive** | Tar | Dataverse — tba |
+| **Zenodo code archive** | Tar | Zenodo — tba |
 
 ## Load in R
 
 ```r
 library(arrow)
 df <- read_parquet(
-  "https://huggingface.co/datasets/sstoeckl/populism-llm-v1/resolve/main/data/aggregated.parquet"
+  "https://huggingface.co/datasets/sstoeckl/populism-llm/resolve/main/data/aggregated.parquet"
 )
 ```
 
@@ -25,7 +26,7 @@ df <- read_parquet(
 
 ```python
 from datasets import load_dataset
-ds = load_dataset("sstoeckl/populism-llm-v1", "aggregated")
+ds = load_dataset("sstoeckl/populism-llm", "aggregated")
 df = ds["train"].to_pandas()
 ```
 
@@ -38,24 +39,35 @@ df = ds["train"].to_pandas()
 | Code | MIT |
 | Original manifesto texts | © Manifesto Project / WZB — obtain via [manifesto-project.wzb.eu](https://manifesto-project.wzb.eu/) |
 
+## Authors
+
+- **Martin Rode** ([Google Scholar](https://scholar.google.com/citations?user=CbCCz_EAAAAJ&hl=en)) — Universidad de Navarra · co-author
+- **Sebastian Stöckl** ([homepage](http://www.sebastianstoeckl.com)) — University of Liechtenstein · co-author, site maintainer
+
+## Paper
+
+> Rode, M. & Stöckl, S. (2026). *The Milei question, or: How liberal are
+> right-wing populist parties? A measurement approach using large language
+> models.* Working paper. PDF link forthcoming.
+
 ## Citation
 
 ```bibtex
-@article{stoeckl2026populism,
-  author  = {Stoeckl, Sebastian},
-  title   = {Populism and Liberalism in European Party Manifestos:
-             A Cross-Validated LLM Approach},
+@article{rode_stoeckl_2026_milei,
+  author  = {Rode, Martin and St{\"o}ckl, Sebastian},
+  title   = {The Milei question, or: How liberal are right-wing populist
+             parties? A measurement approach using large language models},
   year    = {2026},
-  journal = {Working Paper},
-  note    = {Dataset DOI: tba}
+  journal = {Working Paper}
 }
 
-@misc{stoeckl2026populismdb,
-  author    = {Stoeckl, Sebastian},
+@misc{rode_stoeckl_2026_populismllm,
+  author    = {Rode, Martin and St{\"o}ckl, Sebastian},
   title     = {Populism-LLM v1: A Cross-Validated LLM Annotation of
                European Party Manifestos},
   year      = {2026},
   publisher = {Hugging Face Datasets},
-  url       = {https://huggingface.co/datasets/sstoeckl/populism-llm-v1}
+  url       = {https://huggingface.co/datasets/sstoeckl/populism-llm},
+  note      = {Dataset DOI: tba}
 }
 ```

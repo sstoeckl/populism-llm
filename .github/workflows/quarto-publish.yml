@@ -1,74 +1,40 @@
-name: Render & deploy site
+name: Deploy site
+
+# Site is pre-rendered locally and pushed to the gh-pages branch.
+# This workflow just makes Pages pick up the latest gh-pages content.
+# Local deploy: bash scripts/deploy.sh
 
 on:
   push:
-    branches: [main]
+    branches: [gh-pages]
   workflow_dispatch:
 
-# Required for GitHub Pages deployment
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Avoid concurrent deploys clobbering each other
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-
-      - name: Set up R
-        uses: r-lib/actions/setup-r@v2
-        with:
-          r-version: '4.4'
-          use-public-rspm: true
-
-      - name: Cache R packages
-        uses: actions/cache@v4
-        with:
-          path: ${{ env.R_LIBS_USER }}
-          key: ${{ runner.os }}-r-pkgs-${{ hashFiles('website/_data.R') }}
-          restore-keys: ${{ runner.os }}-r-pkgs-
-
-      - name: Install R packages
-        run: |
-          install.packages(c(
-            "arrow", "dplyr", "tidyr", "purrr", "stringr", "stringi",
-            "htmltools", "reactable", "ggplot2", "lubridate", "knitr",
-            "scales", "RColorBrewer"
-          ), repos = "https://packagemanager.posit.co/cran/__linux__/jammy/latest")
-        shell: Rscript {0}
-
-      - name: Fetch bulk data from Hugging Face
-        run: Rscript data/_prepare.R
-
-      - name: Render 3,327 per-manifesto pages
-        run: Rscript _render_manifestos.R
-
-      - name: Render full site
-        run: quarto render
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: _site
-
   deploy:
-    needs: build
     runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
+      - name: Checkout gh-pages
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

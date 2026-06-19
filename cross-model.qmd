@@ -63,14 +63,14 @@ mat$rng <- apply(mat[score_cols], 1, function(x) {
   x <- x[is.finite(x)]; if (length(x) < 2) NA else diff(range(x))
 })
 out <- mat |> filter(rng > 3) |>
-  left_join(manifestos |> select(doc_id, countryname, partyabbrev, year, language), by = "doc_id") |>
+  left_join(manifestos |> select(doc_id, countryname, partyabbrev, year), by = "doc_id") |>
   arrange(desc(rng))
 
 if (nrow(out) == 0) {
   cat("*No high-divergence cases detected — the three models broadly agree.*\n")
 } else {
   out |> mutate(across(all_of(score_cols), ~ round(.x, 1))) |>
-    select(doc_id, Country = countryname, Party = partyabbrev, Year = year, Lang = language,
+    select(doc_id, Country = countryname, Party = partyabbrev, Year = year,
            any_of(score_cols), Range = rng) |>
     head(40) |> kable()
 }

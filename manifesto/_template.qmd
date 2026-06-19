@@ -103,25 +103,31 @@ if (nrow(ev) == 0) {
 
 ## Scores at a glance
 
-```{r plot, echo=FALSE, fig.height=6, fig.width=10}
+```{r plot, echo=FALSE, results='asis'}
+# Client-side render via Observable Plot — saves ~50 KB per page vs embedded PNG.
 if (nrow(score_rows) > 0) {
   long <- score_rows |>
     pivot_longer(any_of(V4_DIMS), names_to = "dim", values_to = "score") |>
     filter(is.finite(score)) |>
-    mutate(dim_lbl = factor(DIM_LABELS[dim], levels = rev(DIM_LABELS[V4_DIMS])),
-           model_lbl = factor(model, levels = names(models),
-                              labels = map_chr(models, "short")),
-           group = DIM_GROUP[dim])
-  ggplot(long, aes(x = score, y = dim_lbl, colour = model_lbl, shape = model_lbl)) +
-    geom_point(size = 3.5, alpha = 0.85) +
-    facet_grid(group ~ ., scales = "free_y", space = "free_y") +
-    scale_colour_brewer(palette = "Dark2", name = "Model") +
-    scale_shape_manual(values = c(16, 17, 15), name = "Model") +
-    scale_x_continuous(limits = c(0, 10), breaks = 0:10) +
-    labs(x = "Score (0–10)", y = NULL) +
-    theme_minimal(base_size = 11) +
-    theme(strip.text.y = element_text(angle = 0, face = "bold"),
-          legend.position = "bottom",
-          panel.grid.major.y = element_line(colour = "grey90"))
+    transmute(
+      score = round(score, 2),
+      dim_lbl = unname(DIM_LABELS[dim]),
+      model_lbl = unname(sapply(model, function(m) models[[m]]$short %||% m)),
+      group = unname(DIM_GROUP[dim])
+    )
+  # Stable ordering used by the JS plot
+  long$dim_lbl <- factor(long$dim_lbl, levels = unname(DIM_LABELS[V4_DIMS]))
+  json <- jsonlite::toJSON(long, dataframe = "rows", auto_unbox = TRUE)
+  dim_order <- jsonlite::toJSON(unname(DIM_LABELS[V4_DIMS]), auto_unbox = TRUE)
+  group_order <- jsonlite::toJSON(c("Populism","Ideology","Liberalism"), auto_unbox = TRUE)
+  cat(sprintf('
+<div id="manifesto-plot"></div>
+<script src="../assets/manifesto-plot.js"></script>
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    renderManifestoPlot("manifesto-plot", %s, {dimOrder: %s, groupOrder: %s});
+  });
+</script>
+', json, dim_order, group_order))
 }
 ```

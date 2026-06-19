@@ -18,7 +18,7 @@ m_aggs <- map(names(models), load_model_agg) |> setNames(names(models))
 
 # Wide table: one row per manifesto, one col per (model × headline dim)
 wide <- manifestos |>
-  select(doc_id, countryname, partyabbrev, partyname, year, language)
+  select(doc_id, countryname, partyabbrev, partyname, year)
 for (mid in names(m_aggs)) {
   a <- m_aggs[[mid]]
   if (is.null(a)) next
@@ -37,9 +37,19 @@ if (length(pop_cols) > 0) {
   wide$lib_mean <- rowMeans(wide[lib_cols], na.rm = TRUE)
   wide$lib_mean[is.nan(wide$lib_mean)] <- NA
 }
-# Linkable label column
-wide$linkcol <- sprintf('<a href="manifesto/%s.html">%s</a>',
-                       wide$doc_id, wide$partyabbrev)
+# Linkable columns
+# party_link: takes you to the per-party page (timeline + tabbed model views)
+# doc_link:   takes you to the per-manifesto page (evidence + per-dim scores)
+wide$party_link <- sprintf('<a href="party/%s.html">%s</a>',
+                          manifestos$party[match(wide$doc_id, manifestos$doc_id)],
+                          wide$partyabbrev)
+wide$doc_link <- sprintf('<a href="manifesto/%s.html">→ evidence</a>', wide$doc_id)
+# Make country names clickable (URL-safe encoding)
+wide$country_link <- sprintf('<a href="country/%s.html">%s</a>',
+                             utils::URLencode(wide$countryname, reserved = TRUE),
+                             wide$countryname)
+# Keep the original linkcol name for backward-compat with column defs below
+wide$linkcol <- wide$party_link
 ```
 
 ```{r table, echo=FALSE}
@@ -59,10 +69,12 @@ score_col_def <- function(name) {
 # Build column definitions dynamically: only columns that actually exist in `wide`
 all_cols <- names(wide)
 col_defs <- list(
-  linkcol     = colDef(name = "Party",       html = TRUE, minWidth = 90),
-  countryname = colDef(name = "Country",     minWidth = 130),
+  linkcol      = colDef(name = "Party",   html = TRUE, minWidth = 90),
+  country_link = colDef(name = "Country", html = TRUE, minWidth = 130),
+  countryname  = colDef(show = FALSE),
   partyname   = colDef(name = "Full Name",   minWidth = 250),
   year        = colDef(name = "Year",        align = "center", maxWidth = 70),
+  doc_link    = colDef(name = "Manifesto",   html = TRUE, minWidth = 110, align = "center"),
   language    = colDef(name = "Lang",        align = "center", maxWidth = 70, show = FALSE)
 )
 if ("pop_mean" %in% all_cols) col_defs$pop_mean <- score_col_def("Pop ⌀")
@@ -76,7 +88,7 @@ for (mid in names(model_short)) {
   if (lc %in% all_cols) col_defs[[lc]] <- score_col_def(paste0("Lib·", model_short[mid]))
 }
 
-select_cols <- c("linkcol","countryname","partyname","year")
+select_cols <- c("linkcol","country_link","partyname","year","doc_link")
 if ("language" %in% all_cols) select_cols <- c(select_cols, "language")
 select_cols <- c(select_cols,
                  intersect(c("pop_mean","lib_mean"), all_cols),

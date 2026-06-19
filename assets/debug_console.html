@@ -1,0 +1,87 @@
+<!-- Debug console: enable via ?console=true on any page. Captures
+     console.log/warn/error, unhandled rejections, and OJS errors.
+     Floats at bottom-right; toggle with the [×] button. -->
+<style>
+  #debug-console{
+    position:fixed; right:0; bottom:0; width:min(640px, 100vw);
+    height:280px; max-height:50vh; z-index:9999; display:none;
+    background:#111; color:#eee; font-family:ui-monospace,SFMono-Regular,Menlo,monospace;
+    font-size:11px; line-height:1.35; border-top:2px solid #f7b500;
+    border-left:2px solid #f7b500; box-shadow:0 0 30px rgba(0,0,0,0.5);
+  }
+  #debug-console.visible{ display:flex; flex-direction:column; }
+  #debug-console-header{
+    background:#222; padding:4px 10px; display:flex; justify-content:space-between;
+    align-items:center; border-bottom:1px solid #444;
+  }
+  #debug-console-header strong{ color:#f7b500; }
+  #debug-console-header button{
+    background:transparent; color:#eee; border:1px solid #555; padding:2px 8px;
+    font-size:11px; cursor:pointer; border-radius:3px; margin-left:6px;
+  }
+  #debug-console-body{
+    overflow:auto; padding:6px 10px; flex:1; white-space:pre-wrap; word-break:break-word;
+  }
+  #debug-console-body .log    { color:#bbb; }
+  #debug-console-body .info   { color:#88c0ff; }
+  #debug-console-body .warn   { color:#ffd55a; }
+  #debug-console-body .error  { color:#ff7070; font-weight:600; }
+  #debug-console-body .ok     { color:#7fe57f; }
+  #debug-console-body .ts     { color:#666; }
+</style>
+<script>
+(function(){
+  if (!new URLSearchParams(location.search).has('console')) return;
+  const el = document.createElement('div');
+  el.id = 'debug-console';
+  el.innerHTML = `
+    <div id="debug-console-header">
+      <strong>🐞 DEBUG CONSOLE</strong>
+      <span style="color:#999">URL: <code>${location.pathname}${location.search}</code></span>
+      <div>
+        <button id="dbg-clear">Clear</button>
+        <button id="dbg-close">×</button>
+      </div>
+    </div>
+    <div id="debug-console-body"></div>
+  `;
+  function attach(){ document.body.appendChild(el); el.classList.add('visible'); }
+  if (document.body) attach(); else document.addEventListener('DOMContentLoaded', attach);
+  const body = el.querySelector('#debug-console-body');
+
+  function fmt(v){
+    if (v instanceof Error) return v.stack || (v.name + ': ' + v.message);
+    if (typeof v === 'object'){
+      try { return JSON.stringify(v, null, 2); } catch(e){ return String(v); }
+    }
+    return String(v);
+  }
+  function emit(level, args){
+    const line = document.createElement('div');
+    line.className = level;
+    const t = new Date().toISOString().substr(11, 12);
+    line.innerHTML = `<span class="ts">${t}</span> [${level.toUpperCase()}] ` +
+                     Array.from(args).map(fmt).join(' ');
+    body.appendChild(line);
+    body.scrollTop = body.scrollHeight;
+  }
+  ['log','info','warn','error','debug'].forEach(level => {
+    const orig = console[level].bind(console);
+    console[level] = function(...args){
+      emit(level === 'debug' ? 'log' : level, args);
+      orig(...args);
+    };
+  });
+  window.addEventListener('error', e => {
+    emit('error', ['Uncaught:', e.message, 'at', e.filename + ':' + e.lineno]);
+  });
+  window.addEventListener('unhandledrejection', e => {
+    emit('error', ['Unhandled rejection:', fmt(e.reason)]);
+  });
+  document.addEventListener('click', e => {
+    if (e.target.id === 'dbg-clear') body.innerHTML = '';
+    if (e.target.id === 'dbg-close') el.classList.remove('visible');
+  });
+  console.info('Debug console armed. Append ?console=false or close to hide.');
+})();
+</script>

@@ -1,0 +1,124 @@
+---
+title: "`r params$country_name`"
+subtitle: "Populism × Liberalism — temporal evolution of all scored parties"
+format:
+  html:
+    page-layout: full
+    toc: true
+    toc-depth: 2
+params:
+  country_name: ""
+---
+
+```{r setup, include=FALSE}
+suppressPackageStartupMessages({
+  library(arrow); library(dplyr); library(tidyr); library(purrr); library(jsonlite)
+})
+SITE <- if (file.exists("../_quarto.yml")) ".." else "."
+
+meta <- read_parquet(file.path(SITE, "data/manifestos_meta.parquet")) |>
+  filter(countryname == params$country_name)
+agg <- read_parquet(file.path(SITE, "data/agg_long.parquet")) |>
+  filter(doc_id %in% meta$doc_id) |>
+  left_join(meta |> select(doc_id, year, partyabbrev, partyname, party), by = "doc_id")
+
+# Cross-model mean per (manifesto × dim)
+manifesto_scores <- agg |>
+  group_by(doc_id, dim, year, party, partyabbrev, partyname) |>
+  summarise(score = mean(score, na.rm = TRUE), .groups = "drop")
+
+# Wide per manifesto — keep all dims that the JS dropdown may select
+KEEP_DIMS <- c("populism_overall","pop_ideology_overall",
+               "liberalism_overall","lib_political","lib_social",
+               "lib_economic","lib_financial_market")
+wide <- manifesto_scores |>
+  filter(dim %in% KEEP_DIMS) |>
+  pivot_wider(names_from = dim, values_from = score) |>
+  arrange(party, year)
+
+# Top N parties by number of manifestos (chronological coverage)
+top_parties <- wide |>
+  count(party, partyabbrev, partyname, sort = TRUE) |>
+  filter(n >= 2)  # need ≥2 manifestos for a "trend"
+
+cat("Country:", params$country_name, "  Manifestos:", nrow(wide),
+    "  Parties with ≥2 manifestos:", nrow(top_parties), "\n")
+```
+
+::: {.manifesto-meta}
+[**Country**]{.item} `r params$country_name` ·
+[**Scored manifestos**]{.item} `r nrow(wide)` ·
+[**Parties (≥ 2 manifestos)**]{.item} `r nrow(top_parties)` ·
+[**Time span**]{.item} `r min(wide$year, na.rm=TRUE)` – `r max(wide$year, na.rm=TRUE)`
+:::
+
+## How parties have moved — time series
+
+Each line is one party.  Click a legend item to isolate it.
+
+<div id="ts-plot"></div>
+
+## Populism × Liberalism trajectories
+
+Each dot is one party-year manifesto.  Arrows trace each party's chronological
+path through the populism × liberalism space.
+
+<div id="scatter-plot"></div>
+
+```{r emit, echo=FALSE, results='asis'}
+# Restrict scatter / TS data to parties with ≥2 manifestos so the lines make sense
+plot_data <- wide |>
+  filter(party %in% top_parties$party) |>
+  mutate(label = ifelse(is.na(partyabbrev) | partyabbrev == "",
+                        substr(partyname, 1, 14), partyabbrev)) |>
+  arrange(party, year)
+json <- jsonlite::toJSON(plot_data, dataframe = "rows", auto_unbox = TRUE, na = "null")
+cat(sprintf('
+<script src="../assets/country-plots.js"></script>
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    renderCountryPlots("ts-plot", "scatter-plot", %s, %s);
+  });
+</script>
+', json, jsonlite::toJSON(params$country_name, auto_unbox = TRUE)))
+```
+
+## Parties — sortable table
+
+```{r table, echo=FALSE}
+suppressPackageStartupMessages(library(reactable))
+party_summary <- wide |>
+  group_by(party, partyabbrev, partyname) |>
+  summarise(
+    n_manifestos = n(),
+    first_year = min(year), last_year = max(year),
+    pop_mean = round(mean(populism_overall, na.rm = TRUE), 2),
+    lib_mean = round(mean(liberalism_overall, na.rm = TRUE), 2),
+    pop_trend = {
+      vals <- populism_overall[!is.na(populism_overall)]
+      if (length(vals) >= 2) round(tail(vals, 1) - head(vals, 1), 2) else NA_real_
+    },
+    .groups = "drop") |>
+  mutate(party_link = sprintf('<a href="../party/%s.html">%s</a>',
+                              party, ifelse(is.na(partyabbrev) | partyabbrev == "",
+                                            substr(partyname, 1, 14), partyabbrev))) |>
+  arrange(desc(n_manifestos))
+
+reactable(
+  party_summary |> select(party_link, partyname, n_manifestos,
+                          first_year, last_year, pop_mean, lib_mean, pop_trend),
+  columns = list(
+    party_link   = colDef(name = "Party",  html = TRUE, minWidth = 90),
+    partyname    = colDef(name = "Full name", minWidth = 220),
+    n_manifestos = colDef(name = "Manifestos", align = "center", maxWidth = 100),
+    first_year   = colDef(name = "First",  align = "center", maxWidth = 80),
+    last_year    = colDef(name = "Last",   align = "center", maxWidth = 80),
+    pop_mean     = colDef(name = "Pop ⌀",  align = "center", maxWidth = 80),
+    lib_mean     = colDef(name = "Lib ⌀",  align = "center", maxWidth = 80),
+    pop_trend    = colDef(name = "ΔPop",   align = "center", maxWidth = 80)
+  ),
+  defaultSorted = list(n_manifestos = "desc"),
+  filterable = TRUE, striped = TRUE, bordered = TRUE, compact = TRUE,
+  defaultPageSize = 25
+)
+```

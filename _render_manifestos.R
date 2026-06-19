@@ -24,6 +24,19 @@ if ("--sample" %in% args) {
 }
 
 manifestos <- load_manifestos()
+
+# Restrict to manifestos with at least one scored model
+models <- available_models()
+scored_ids <- character()
+for (mid in names(models)) {
+  raw <- arrow::read_parquet(file.path(SITE, models[[mid]]$raw),
+                              col_select = "doc_id_root")
+  scored_ids <- c(scored_ids, unique(raw$doc_id_root))
+}
+scored_ids <- unique(scored_ids)
+manifestos <- manifestos |> filter(doc_id %in% scored_ids)
+message("Manifestos with at least one model score: ", nrow(manifestos))
+
 if (!is.null(sample_n)) {
   set.seed(42)
   manifestos <- manifestos |> slice_sample(n = sample_n)

@@ -1,0 +1,181 @@
+---
+title: "`r params$party_name`"
+subtitle: "`r params$country` · all available manifestos"
+format:
+  html:
+    page-layout: full
+    toc: true
+    toc-depth: 2
+params:
+  party_id: ""
+  party_abbrev: ""
+  party_name: ""
+  country: ""
+  parfam: ""
+---
+
+```{r setup, include=FALSE}
+suppressPackageStartupMessages({
+  library(arrow); library(dplyr); library(tidyr); library(purrr); library(stringr)
+  library(htmltools); library(knitr); library(ggplot2); library(lubridate)
+})
+# Locate site root and tiny helpers (no full _data.R sourcing — too heavy)
+SITE <- if (file.exists("../_quarto.yml")) ".." else if (file.exists("_quarto.yml")) "." else "../.."
+PARTY <- as.numeric(params$party_id)
+
+V4_DIMS <- c("pop_anti_elitism","pop_people_centrism","pop_manichean","populism_overall",
+             "pop_ideology_left","pop_ideology_right","pop_ideology_centrist","pop_ideology_overall",
+             "lib_political","lib_social","lib_economic","lib_financial_market","liberalism_overall")
+DIM_LABELS <- c(pop_anti_elitism = "Anti-Elitism", pop_people_centrism = "People-Centrism",
+  pop_manichean = "Manichaean Worldview", populism_overall = "Populism (Overall)",
+  pop_ideology_left = "Ideology — Left", pop_ideology_right = "Ideology — Right",
+  pop_ideology_centrist = "Ideology — Centrist", pop_ideology_overall = "Ideology (Right − Left)",
+  lib_political = "Political Liberalism", lib_social = "Social Liberalism",
+  lib_economic = "Economic Liberalism", lib_financial_market = "Financial-Market Liberalism",
+  liberalism_overall = "Liberalism (Overall)")
+DIM_GROUP <- c(pop_anti_elitism = "Populism", pop_people_centrism = "Populism",
+  pop_manichean = "Populism", populism_overall = "Populism",
+  pop_ideology_left = "Ideology", pop_ideology_right = "Ideology",
+  pop_ideology_centrist = "Ideology", pop_ideology_overall = "Ideology",
+  lib_political = "Liberalism", lib_social = "Liberalism",
+  lib_economic = "Liberalism", lib_financial_market = "Liberalism",
+  liberalism_overall = "Liberalism")
+MODEL_SHORT <- c(sonnet = "Sonnet", gpt41mini = "gpt-4.1-mini", gemini = "Gemini")
+
+# Read SMALL meta + agg + baselines files once
+meta <- read_parquet(file.path(SITE, "data/manifestos_meta.parquet")) |>
+  filter(party == PARTY)
+agg <- read_parquet(file.path(SITE, "data/agg_long.parquet")) |>
+  filter(doc_id %in% meta$doc_id) |>
+  left_join(meta |> select(doc_id, year), by = "doc_id")
+baselines <- read_parquet(file.path(SITE, "data/baselines.parquet")) |>
+  filter(scope == "GLOBAL" | country == params$country)
+```
+
+::: {.manifesto-meta}
+[**Party**]{.item} `r params$party_abbrev` · `r params$party_name` ·
+[**Country**]{.item} `r params$country` ·
+[**parfam**]{.item} `r params$parfam` ·
+[**CMP id**]{.item} `r params$party_id`
+:::
+
+```{r meta-counts, echo=FALSE, results='asis'}
+n_man <- nrow(meta)
+n_scored <- length(unique(agg$doc_id))
+if (n_man > 0) {
+  cat(sprintf("**%d manifestos in CMP, %d scored** (years %d–%d).\n\n",
+              n_man, n_scored, min(meta$year, na.rm=TRUE), max(meta$year, na.rm=TRUE)))
+}
+```
+
+## Trend across manifestos
+
+Solid grey line = **global mean** across all manifestos and models.
+Dashed grey line = **country mean** within `r params$country`.
+
+```{r trend, echo=FALSE, fig.height=7, fig.width=11}
+plot_dims <- c("populism_overall","pop_ideology_overall",
+               "lib_political","lib_social","lib_economic","lib_financial_market")
+sub <- agg |> filter(dim %in% plot_dims)
+
+if (nrow(sub) > 0) {
+  pl <- sub |>
+    mutate(dim_lbl = factor(DIM_LABELS[dim], levels = DIM_LABELS[plot_dims]),
+           model_lbl = factor(model, levels = names(MODEL_SHORT), labels = MODEL_SHORT))
+
+  # Per-dim grand means: average across all models for that dim
+  base_long <- baselines |> filter(dim %in% plot_dims) |>
+    group_by(scope, dim) |>
+    summarise(mean = mean(mean, na.rm = TRUE), .groups = "drop") |>
+    mutate(dim_lbl = factor(DIM_LABELS[dim], levels = DIM_LABELS[plot_dims]))
+  base_g <- base_long |> filter(scope == "GLOBAL")
+  base_c <- base_long |> filter(scope == "COUNTRY")
+
+  ggplot(pl, aes(x = year, y = score)) +
+    # Country and global reference lines — mapped to linetype for legend
+    geom_hline(data = base_g, aes(yintercept = mean, linetype = "Global mean"),
+               colour = "grey45", linewidth = 0.45) +
+    geom_hline(data = base_c, aes(yintercept = mean,
+                                  linetype = paste0(params$country, " mean")),
+               colour = "grey45", linewidth = 0.45) +
+    # Per-model lines & points
+    geom_line(aes(colour = model_lbl, group = model_lbl),
+              linewidth = 0.6, alpha = 0.8) +
+    geom_point(aes(colour = model_lbl, shape = model_lbl), size = 2.4) +
+    facet_wrap(~dim_lbl, ncol = 2) +
+    scale_y_continuous(limits = c(0, 10), breaks = seq(0, 10, 2)) +
+    scale_colour_brewer(palette = "Dark2", name = "Model") +
+    scale_shape_manual(values = c(16, 17, 15), name = "Model") +
+    scale_linetype_manual(name = "Reference",
+                          values = setNames(c("solid","dashed"),
+                                            c("Global mean", paste0(params$country, " mean")))) +
+    labs(x = NULL, y = "Score (0–10)") +
+    guides(colour = guide_legend(order = 1),
+           shape  = guide_legend(order = 1),
+           linetype = guide_legend(order = 2,
+                                    override.aes = list(colour = "grey45", linewidth = 0.6))) +
+    theme_minimal(base_size = 11) +
+    theme(legend.position = "bottom",
+          legend.box = "vertical",
+          strip.text = element_text(face = "bold"),
+          panel.spacing.x = unit(1, "lines"))
+} else {
+  cat("*No scored manifestos yet.*\n")
+}
+```
+
+## Manifestos — tabs by year
+
+```{r manifesto-tabs, echo=FALSE, results='asis'}
+docs <- meta |> arrange(year)
+if (nrow(docs) == 0) {
+  cat("*No manifestos for this party.*\n")
+} else {
+  cat("::: {.panel-tabset .nav-pills}\n\n")
+  for (i in seq_len(nrow(docs))) {
+    r <- docs[i, ]
+    tab_title <- as.character(r$year)
+    if (!is.na(r$date)) tab_title <- format(as.Date(r$date), "%b %Y")
+    cat(sprintf("\n### %s\n\n", tab_title))
+    cat(sprintf("**manifesto_id** [`%s`](../manifesto/%s.html) — view full evidence page\n\n",
+                r$doc_id, r$doc_id))
+    sub <- agg |> filter(doc_id == r$doc_id)
+    if (nrow(sub) == 0) { cat("*Not yet scored.*\n\n"); next }
+    cat("::: {.panel-tabset}\n\n")
+    for (mid in unique(sub$model)) {
+      cat(sprintf("\n#### %s\n\n", MODEL_SHORT[mid] %||% mid))
+      ss <- sub |> filter(model == mid, dim %in% V4_DIMS) |>
+        mutate(Dimension = DIM_LABELS[dim], Group = DIM_GROUP[dim],
+               Score = round(score, 1)) |>
+        arrange(factor(Group, levels = c("Populism","Ideology","Liberalism")),
+                factor(dim, levels = V4_DIMS))
+      print(kable(ss |> select(Group, Dimension, Score), format = "html"))
+      cat("\n\n")
+    }
+    cat(":::\n\n")
+  }
+  cat(":::\n")
+}
+`%||%` <- function(a, b) if (is.null(a) || length(a) == 0) b else a
+```
+
+## Populism heatmap (manifesto × model)
+
+```{r heatmap-pop, echo=FALSE, fig.height=3.5, fig.width=10}
+pop_dims <- c("pop_anti_elitism","pop_people_centrism","pop_manichean","populism_overall")
+hm <- agg |> filter(dim %in% pop_dims)
+if (nrow(hm) > 0) {
+  hm <- hm |>
+    mutate(dim_lbl = factor(DIM_LABELS[dim], levels = DIM_LABELS[pop_dims]),
+           cell = paste0(year, "  ·  ", MODEL_SHORT[model]),
+           cell = factor(cell, levels = unique(cell)))
+  ggplot(hm, aes(x = cell, y = dim_lbl, fill = score)) +
+    geom_tile(colour = "white") +
+    geom_text(aes(label = sprintf("%.1f", score)), size = 3) +
+    scale_fill_gradient2(low = "#4682B4", mid = "#FFF8DC", high = "#B22222",
+                          midpoint = 5, limits = c(0, 10), name = "Score") +
+    labs(x = NULL, y = NULL) +
+    theme_minimal(base_size = 10) +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1), panel.grid = element_blank())
+}
+```
