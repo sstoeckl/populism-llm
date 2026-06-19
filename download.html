@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Download – Populism-LLM</title>
+<title>Data &amp; Reproduction – Populism-LLM</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -112,8 +112,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 <link rel="stylesheet" href="assets/css/site.css">
-<meta property="og:title" content="Download – Populism-LLM">
-<meta property="og:description" content="Bulk data, code, DOI">
+<meta property="og:title" content="Data &amp; Reproduction – Populism-LLM">
+<meta property="og:description" content="Download the scores, rebuild the aggregate, or re-run the whole pipeline">
 <meta property="og:site_name" content="Populism-LLM">
 </head>
 
@@ -322,12 +322,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./download.html" aria-current="page"> 
-<span class="menu-text">Download</span></a>
+<span class="menu-text">Data &amp; Reproduction</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm-website"> <i class="bi bi-github" role="img" aria-label="GitHub">
+    <a class="nav-link" href="https://github.com/sstoeckl/populism-llm"> <i class="bi bi-github" role="img" aria-label="GitHub">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
@@ -348,15 +348,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#data" id="toc-data" class="nav-link active" data-scroll-target="#data">Data</a></li>
-  <li><a href="#load-in-r" id="toc-load-in-r" class="nav-link" data-scroll-target="#load-in-r">Load in R</a></li>
-  <li><a href="#load-in-python" id="toc-load-in-python" class="nav-link" data-scroll-target="#load-in-python">Load in Python</a></li>
+  <li><a href="#where-everything-lives" id="toc-where-everything-lives" class="nav-link active" data-scroll-target="#where-everything-lives">Where everything lives</a></li>
+  <li><a href="#level-1-use-the-baseline-scores-one-file" id="toc-level-1-use-the-baseline-scores-one-file" class="nav-link" data-scroll-target="#level-1-use-the-baseline-scores-one-file">Level 1 — Use the baseline scores (one file)</a>
+  <ul class="collapse">
+  <li><a href="#reproduce-the-papers-headline-regression" id="toc-reproduce-the-papers-headline-regression" class="nav-link" data-scroll-target="#reproduce-the-papers-headline-regression">Reproduce the paper’s headline regression</a></li>
+  </ul></li>
+  <li><a href="#level-2-rebuild-the-aggregate-from-the-raw-annotations" id="toc-level-2-rebuild-the-aggregate-from-the-raw-annotations" class="nav-link" data-scroll-target="#level-2-rebuild-the-aggregate-from-the-raw-annotations">Level 2 — Rebuild the aggregate from the raw annotations</a></li>
+  <li><a href="#level-3-re-score-from-scratch" id="toc-level-3-re-score-from-scratch" class="nav-link" data-scroll-target="#level-3-re-score-from-scratch">Level 3 — Re-score from scratch</a></li>
+  <li><a href="#data-access-command-for-claude-code" id="toc-data-access-command-for-claude-code" class="nav-link" data-scroll-target="#data-access-command-for-claude-code">Data access command for Claude Code</a></li>
   <li><a href="#license" id="toc-license" class="nav-link" data-scroll-target="#license">License</a></li>
   <li><a href="#authors" id="toc-authors" class="nav-link" data-scroll-target="#authors">Authors</a></li>
   <li><a href="#paper" id="toc-paper" class="nav-link" data-scroll-target="#paper">Paper</a></li>
   <li><a href="#citation" id="toc-citation" class="nav-link" data-scroll-target="#citation">Citation</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/sstoeckl/populism-llm/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -364,8 +369,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Download</h1>
-<p class="subtitle lead">Bulk data, code, DOI</p>
+<h1 class="title">Data &amp; Reproduction</h1>
+<p class="subtitle lead">Download the scores, rebuild the aggregate, or re-run the whole pipeline</p>
 </div>
 
 
@@ -384,57 +389,135 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="draft-banner" role="alert">
 <p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
 </div>
-<section id="data" class="level2">
-<h2 class="anchored" data-anchor-id="data">Data</h2>
+<p>Everything behind this site and the paper is open. There are <strong>three places</strong> things live, and <strong>three levels</strong> of reproduction depending on how deep you want to go.</p>
+<section id="where-everything-lives" class="level2">
+<h2 class="anchored" data-anchor-id="where-everything-lives">Where everything lives</h2>
 <table class="caption-top table">
 <thead>
 <tr class="header">
 <th>Resource</th>
-<th>Format</th>
+<th>What it is</th>
 <th>Link</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td><strong>Annotations</strong> (all 3 LLMs × 3,327 manifestos)</td>
-<td>Parquet</td>
+<td><strong>Hugging Face dataset</strong></td>
+<td>The scores. One analysis-ready file + the raw per-chunk annotations with verbatim evidence.</td>
 <td><a href="https://huggingface.co/datasets/sstoeckl/populism-llm">huggingface.co/datasets/sstoeckl/populism-llm</a></td>
 </tr>
 <tr class="even">
-<td><strong>Replication code</strong> (R pipeline + spec curve)</td>
-<td>Git repo</td>
+<td><strong>Replication repo</strong></td>
+<td>The full R pipeline: scoring, span validation, aggregation, regressions, spec curve.</td>
 <td><a href="https://github.com/sstoeckl/populism-llm-replication">github.com/sstoeckl/populism-llm-replication</a></td>
 </tr>
 <tr class="odd">
-<td><strong>Companion website source</strong></td>
-<td>Git repo</td>
+<td><strong>Website repo</strong></td>
+<td>The source of <em>this</em> site, incl.&nbsp;the small <code>data/</code> build scripts.</td>
 <td><a href="https://github.com/sstoeckl/populism-llm">github.com/sstoeckl/populism-llm</a></td>
 </tr>
 <tr class="even">
-<td><strong>DOI / citable replication archive</strong></td>
-<td>Tar</td>
-<td>Dataverse — tba</td>
-</tr>
-<tr class="odd">
-<td><strong>Zenodo code archive</strong></td>
-<td>Tar</td>
-<td>Zenodo — tba</td>
+<td><strong>DOI archive</strong></td>
+<td>Citable Dataverse / Zenodo snapshot.</td>
+<td>tba</td>
 </tr>
 </tbody>
 </table>
+<hr>
 </section>
-<section id="load-in-r" class="level2">
-<h2 class="anchored" data-anchor-id="load-in-r">Load in R</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arrow)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read_parquet</span>(</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://huggingface.co/datasets/sstoeckl/populism-llm/resolve/main/data/aggregated.parquet"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="level-1-use-the-baseline-scores-one-file" class="level2">
+<h2 class="anchored" data-anchor-id="level-1-use-the-baseline-scores-one-file">Level 1 — Use the baseline scores (one file)</h2>
+<p><code>manifesto_scores.parquet</code> is the analysis-ready table: <strong>one row per manifesto (3,327)</strong>, CMP metadata + the cross-model-mean populism/liberalism scores (the paper’s baseline) + each model’s scores. <strong>This one file reproduces every figure on this site and the regressions in the paper.</strong></p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arrow); <span class="fu">library</span>(dplyr)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">read_parquet</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://huggingface.co/datasets/sstoeckl/populism-llm/resolve/main/data/manifesto_scores.parquet"</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(scores)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; populism_overall, liberalism_overall, lib_economic, pop_ideology_overall, ...</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; + countryname, party, partyabbrev, year, parfam, rile</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; + per-model columns: populism_overall_sonnet, _gpt41mini, _gemini, ...</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>scores <span class="op">=</span> pd.read_parquet(</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://huggingface.co/datasets/sstoeckl/populism-llm/resolve/main/data/manifesto_scores.parquet"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>A <code>.csv</code> twin sits next to it for non-R/Python users.</p>
+<section id="reproduce-the-papers-headline-regression" class="level3">
+<h3 class="anchored" data-anchor-id="reproduce-the-papers-headline-regression">Reproduce the paper’s headline regression</h3>
+<p>The baseline specification is liberalism on populism with country and year fixed effects and country-clustered standard errors:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(fixest)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">feols</span>(liberalism_overall <span class="sc">~</span> populism_overall <span class="sc">|</span> countryname <span class="sc">+</span> year,</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> scores, <span class="at">cluster =</span> <span class="sc">~</span>countryname)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; populism_overall  ≈ -0.3  (negative, significant)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; "populism is associated with LOWER liberalism"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Swap <code>liberalism_overall</code> for <code>lib_economic</code>, <code>lib_financial_market</code>, <code>lib_social</code>, or <code>lib_political</code> to get the sub-dimension effects shown on the <a href="./interactive/regression.html">Interactive Regressions</a> page. That same page runs the full 8,100-specification multiverse — the headline is robust to <strong>all</strong> of them (0 % sign-flipped, 97.6 % significant-negative).</p>
+<hr>
 </section>
-<section id="load-in-python" class="level2">
-<h2 class="anchored" data-anchor-id="load-in-python">Load in Python</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> datasets <span class="im">import</span> load_dataset</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>ds <span class="op">=</span> load_dataset(<span class="st">"sstoeckl/populism-llm"</span>, <span class="st">"aggregated"</span>)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> ds[<span class="st">"train"</span>].to_pandas()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="level-2-rebuild-the-aggregate-from-the-raw-annotations" class="level2">
+<h2 class="anchored" data-anchor-id="level-2-rebuild-the-aggregate-from-the-raw-annotations">Level 2 — Rebuild the aggregate from the raw annotations</h2>
+<p>If you want to verify how the scores are built — or apply your own aggregation rule, or inspect the verbatim evidence — start from the three per-chunk files (<code>raw_sonnet</code>, <code>raw_gpt41mini</code>, <code>raw_gemini</code>). The website repo carries the build scripts; the bulk parquets are fetched from Hugging Face.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/sstoeckl/populism-llm.git</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> populism-llm</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> data/_prepare.R       <span class="co"># download raw_{sonnet,gpt41mini,gemini}.parquet from HF</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> data/_build_agg.R     <span class="co"># -&gt; data/agg_long.parquet  (per manifesto × model × dim)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Rscript</span> data/_build_baseline.R <span class="co"># -&gt; data/manifesto_scores.parquet (the Level-1 file)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The aggregation is a <strong>verified-only mean</strong> of each model’s per-chunk scores, then averaged across the three models. <code>_build_baseline.R</code> is the exact recipe that produced the Level-1 file — re-running it reproduces it byte-for-byte.</p>
+<p>To render the whole site locally afterwards: <code>quarto preview</code>.</p>
+<hr>
+</section>
+<section id="level-3-re-score-from-scratch" class="level2">
+<h2 class="anchored" data-anchor-id="level-3-re-score-from-scratch">Level 3 — Re-score from scratch</h2>
+<p>To regenerate the LLM annotations themselves (not just the aggregation), use the replication repo. This calls the three LLM APIs, so it needs your own API keys and the original manifesto text.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/sstoeckl/populism-llm-replication.git</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> populism-llm-replication</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> .Renviron.example .Renviron     <span class="co"># add OPENAI / ANTHROPIC / GEMINI / MANIFESTO keys</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <strong>manifesto text is not redistributed</strong> here — it is © Manifesto Project / WZB. The pipeline pulls it directly from the Manifesto Project API with your <code>MANIFESTO_KEY</code> (free academic registration at <a href="https://manifesto-project.wzb.eu/">manifesto-project.wzb.eu</a>). Scripts run in numbered order; see the repo README for the full sequence.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Re-scoring is non-trivial: ~6,500 chunks × 3 models. The scores are deterministic (<code>temperature = 0</code>, pinned model snapshots), but API costs and provider drift apply. For almost all uses, <strong>Level 1 is what you want.</strong></p>
+</div>
+</div>
+<hr>
+</section>
+<section id="data-access-command-for-claude-code" class="level2">
+<h2 class="anchored" data-anchor-id="data-access-command-for-claude-code">Data access command for Claude Code</h2>
+<p>Paste this into a fresh Claude Code session on your own machine to pull and load the baseline measure:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>Download the populism/liberalism baseline scores from the Hugging Face dataset</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="in">`sstoeckl/populism-llm`</span> and load them for analysis.</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>The analysis-ready file is one row per manifesto (3,327 European CMP party</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>manifestos), with CMP metadata and cross-model-mean (Claude Sonnet 4.6,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>GPT-4.1-mini, Gemini Flash) populism &amp; liberalism scores on a 0–10 scale:</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="in">```r</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arrow); <span class="fu">library</span>(dplyr); <span class="fu">library</span>(fixest)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">read_parquet</span>(</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="st">"https://huggingface.co/datasets/sstoeckl/populism-llm/resolve/main/data/manifesto_scores.parquet"</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Baseline columns: populism_overall, liberalism_overall, lib_political,</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co">#   lib_social, lib_economic, lib_financial_market, pop_ideology_overall</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Per-model columns: &lt;dim&gt;_sonnet / _gpt41mini / _gemini</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Metadata: doc_id, countryname, partyname, partyabbrev, party, parfam, rile,</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="co">#   date, year, token_count</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co"># The paper's headline regression (populism -&gt; lower liberalism):</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a><span class="fu">feols</span>(liberalism_overall <span class="sc">~</span> populism_overall <span class="sc">|</span> countryname <span class="sc">+</span> year,</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>      <span class="at">data =</span> scores, <span class="at">cluster =</span> <span class="sc">~</span>countryname)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>If you also need the verbatim evidence behind each score, download the raw</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>per-chunk files raw_sonnet.parquet / raw_gpt41mini.parquet / raw_gemini.parquet</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>from the same dataset (path data/<span class="dt">&lt;</span><span class="kw">file</span><span class="dt">&gt;</span>), and see the rebuild scripts in</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>github.com/sstoeckl/populism-llm (data/_prepare.R, _build_agg.R, _build_baseline.R).</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
 </section>
 <section id="license" class="level2">
 <h2 class="anchored" data-anchor-id="license">License</h2>
@@ -447,16 +530,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </thead>
 <tbody>
 <tr class="odd">
-<td>Annotations (scores, statuses, metrics)</td>
-<td>CC-BY 4.0</td>
+<td>Annotations (scores, statuses, derived metrics)</td>
+<td><strong>CC-BY 4.0</strong></td>
 </tr>
 <tr class="even">
-<td>Verbatim quotes (≤ 50 words)</td>
-<td>Fair-use for scientific commentary; cite manifesto_id</td>
+<td>Verbatim quotes (≤ 8 words) + context (≤ 80 words)</td>
+<td>Fair use for scientific commentary; cite <code>manifesto_id</code></td>
 </tr>
 <tr class="odd">
-<td>Code</td>
-<td>MIT</td>
+<td>Pipeline &amp; website code</td>
+<td><strong>MIT</strong></td>
 </tr>
 <tr class="even">
 <td>Original manifesto texts</td>
@@ -480,23 +563,23 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="citation" class="level2">
 <h2 class="anchored" data-anchor-id="citation">Citation</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">rode_stoeckl_2026_milei</span>,</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>  = {Rode, Martin and St{<span class="ch">\"</span>o}ckl, Sebastian},</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>   = {The Milei question, or: How liberal are right-wing populist</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>             parties? A measurement approach using large language models},</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>    = {2026},</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span> = {Working Paper}</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">rode_stoeckl_2026_populismllm</span>,</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>    = {Rode, Martin and St{<span class="ch">\"</span>o}ckl, Sebastian},</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>     = {Populism-LLM v1: A Cross-Validated LLM Annotation of</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>               European Party Manifestos},</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>      = {2026},</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">publisher</span> = {Hugging Face Datasets},</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>  <span class="dt">url</span>       = {https://huggingface.co/datasets/sstoeckl/populism-llm},</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">note</span>      = {Dataset DOI: tba}</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">rode_stoeckl_2026_milei</span>,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>  = {Rode, Martin and St{<span class="ch">\"</span>o}ckl, Sebastian},</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>   = {The Milei question, or: How liberal are right-wing populist</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>             parties? A measurement approach using large language models},</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>    = {2026},</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span> = {Working Paper}</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">rode_stoeckl_2026_populismllm</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>    = {Rode, Martin and St{<span class="ch">\"</span>o}ckl, Sebastian},</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>     = {Populism-LLM: A Cross-Validated LLM Annotation of</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>               European Party Manifestos},</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>      = {2026},</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>  <span class="dt">publisher</span> = {Hugging Face Datasets},</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>  <span class="dt">url</span>       = {https://huggingface.co/datasets/sstoeckl/populism-llm},</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">note</span>      = {Dataset DOI: tba}</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>
@@ -923,7 +1006,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>   
     <div class="nav-footer-center">
 <p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
-<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm-website/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+<div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
 </div>
