@@ -21,9 +21,18 @@ want to go.
 ## Level 1 — Use the baseline scores (one file)
 
 `manifesto_scores.parquet` is the analysis-ready table: **one row per manifesto
-(3,327)**, CMP metadata + the cross-model-mean populism/liberalism scores (the
-paper's baseline) + each model's scores. **This one file reproduces every figure
-on this site and the regressions in the paper.**
+(3,327)**, CMP metadata + the populism/liberalism scores (the paper's baseline) +
+each model's scores. **This one file reproduces the regressions in the paper.**
+
+The baseline columns use the paper's headline aggregation — a
+**confidence-weighted mean** over each model's verified chunks
+(`w = pmax(populism_confidence, 0.1)`), then a plain mean across the three models
+— i.e. the baseline cell of the specification curve in Appendix C. (The *Browse*
+visualisations on this site use a plain-mean variant — one of the multiverse
+forks — so an individual manifesto's number there can differ from this file by a
+fraction of a point; the qualitative results are identical, per Appendix C.)
+`pop_ideology_direction` is the rescaled `(right − left) / (right + left +
+centrist)` ideology variable used in the paper's interaction models.
 
 ```r
 library(arrow); library(dplyr)
