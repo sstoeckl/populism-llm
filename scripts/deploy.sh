@@ -1,29 +1,23 @@
 #!/usr/bin/env bash
-# Local pre-render and deploy to GitHub Pages via the gh-pages branch.
+# Build the site from the replication chain and deploy it to GitHub Pages (gh-pages branch).
 #
-# What it does:
-#   1. Fetches bulk data from Hugging Face (if not already present)
-#   2. Materialises 3,327 per-manifesto .qmd files
-#   3. Renders the entire site to _site/
-#   4. Pushes _site/ to the gh-pages branch
-#   5. GitHub Pages serves the new content
+#   1. _build_site_data.R      public model output + chain scores -> data/ (checks: site == chain)
+#   2. _build_analysis_assets.R chain tables/figures for the analysis pages -> analysis/assets/
+#   3. _build_pages.R          static manifesto / party / country pages from data/registry.json
+#   4. quarto render           -> _site/
+#   5. quarto publish gh-pages
 #
-# Usage:  bash scripts/deploy.sh
-
+# Needs the workbench (3175_populism_llm) as a parent folder or POPLLM_WORKBENCH set.
+# Quarto renders nothing when the site folder sits below a hidden directory (e.g. a git worktree
+# in .claude/worktrees/): build there, then rsync to a normal folder and render from it.
+# Usage:  bash scripts/deploy.sh [--no-publish]
 set -euo pipefail
-
-cd "$(dirname "$0")/.."  # → site root
-
-echo "▶ 1/4  Fetching bulk data from Hugging Face..."
-Rscript data/_prepare.R
-
-echo "▶ 2/4  Materialising 3,327 per-manifesto qmd files..."
-Rscript _render_manifestos.R
-
-echo "▶ 3/4  Rendering site (this takes ~10-30 min for full corpus)..."
+cd "$(dirname "$0")/.."
+Rscript _build_site_data.R
+Rscript _build_analysis_assets.R
+Rscript _build_pages.R
 quarto render
-
-echo "▶ 4/4  Pushing _site/ to gh-pages branch..."
-quarto publish gh-pages --no-render --no-prompt
-
-echo "✓ Deployed. Site live at https://sstoeckl.github.io/populism-llm/"
+du -sh _site
+if [[ "${1:-}" != "--no-publish" ]]; then
+  quarto publish gh-pages --no-render --no-prompt
+fi

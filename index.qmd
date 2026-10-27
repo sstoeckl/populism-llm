@@ -1,6 +1,6 @@
 ---
 title: "Populism-LLM"
-subtitle: "Cross-Validated LLM Annotations of European Party Manifestos"
+subtitle: "Party manifestos scored by three language model families, every score with its evidence"
 format:
   html:
     toc: false
@@ -9,88 +9,77 @@ format:
 
 ```{r setup, include=FALSE}
 source("_data.R")
-manifestos <- load_manifestos()
-models <- available_models()
+man <- load_manifestos()
+nb  <- length(REG$blocks)
+nd  <- sum(map_int(REG$blocks, ~ length(.x$dims)))
 ```
 
 ::: {.hero}
-# A cross-validated populism corpus for political-economic research
+# Populism, ideology and liberalism in `r format(nrow(man), big.mark = ",")` party manifestos
 
-Three independent large language models — Anthropic Claude Sonnet 4.6, OpenAI
-GPT-4.1-mini, and Google Gemini Flash — score every CMP party manifesto from
-`r min(manifestos$year, na.rm=TRUE)` to `r max(manifestos$year, na.rm=TRUE)`
-on twelve dimensions of populism and liberalism. Each score comes with a
-verbatim quote, contextual snippet, and machine-readable evidence status.
+Three model families (Anthropic Claude Sonnet, OpenAI GPT-4.1-mini, Google Gemini Flash) score
+every manifesto of the Manifesto Project corpus with full text, `r min(man$year)`–`r max(man$year)`.
+Each score comes with the quote the model cited, and every page shows which evidence counted.
 
 ::: {.hero-stats}
 ::: {.hero-stat}
-[`r format(nrow(manifestos), big.mark=",")`]{.num}
+[`r format(nrow(man), big.mark = ",")`]{.num}
 [manifestos]{.lbl}
 :::
 ::: {.hero-stat}
-[`r length(unique(manifestos$countryname))`]{.num}
+[`r format(length(unique(man$party)), big.mark = ",")`]{.num}
+[parties]{.lbl}
+:::
+::: {.hero-stat}
+[`r length(unique(man$countryname))`]{.num}
 [countries]{.lbl}
 :::
 ::: {.hero-stat}
-[`r length(models)`]{.num}
-[LLM families]{.lbl}
-:::
-::: {.hero-stat}
-[12]{.num}
+[`r nd`]{.num}
 [scored dimensions]{.lbl}
 :::
 :::
 :::
 
-## What you get
-
 ::: {.grid}
 
 ::: {.g-col-12 .g-col-md-6}
-### 📂 Browse 3,327 manifestos
-[Open browser →](browse.qmd)
-Country, party, year filters. Click a manifesto to see every score from every
-model, with the verbatim evidence each model relied on.
+### Browse the manifestos
+[Open the table →](browse.qmd)
+Filter by country, party, family and year. Each manifesto page shows the scores of every model,
+the country and corpus means, and the evidence behind each score.
 :::
 
 ::: {.g-col-12 .g-col-md-6}
-### 🔀 Cross-model agreement
-[Open agreement view →](cross-model.qmd)
-Where do the three LLMs agree? Where do they diverge? Per-dimension Pearson
-and Spearman correlations, full disagreement-flagged outlier list.
+### The Milei question
+[Read the results →](analysis/milei-question.qmd)
+How liberal are right-wing populist parties? The results of Rode & Stöckl (2026), every number
+straight from the replication chain.
 :::
 
 ::: {.g-col-12 .g-col-md-6}
-### 📈 Interactive regressions
-[Open regression tool →](interactive/regression.qmd)
-Filter by country, year, choose which models to include, pick within-manifesto
-and between-model aggregation weights — run the panel regression in your
-browser. Powered by WebR.
+### Specification curve
+[Explore →](interactive/regression.qmd)
+The populism coefficient under every defensible analytic choice; filter the forks in your
+browser.
 :::
 
 ::: {.g-col-12 .g-col-md-6}
-### ⬇️ Download & replicate
-[Get the data and code →](download.qmd)
-Bulk parquet on [Hugging Face](https://huggingface.co/datasets/sstoeckl/populism-llm),
-full R replication pipeline on [GitHub](https://github.com/sstoeckl/populism-llm-replication).
+### Download
+[Get the data →](download.qmd)
+One row per manifesto with all scores (CSV or Parquet), plus the evidence file.
 :::
 
 :::
 
-## Methodology in one paragraph
+## Attribute blocks
 
-Each manifesto is split into ≤20,000-token chunks. Each chunk is scored by all
-three LLMs using an identical strict JSON schema. Models must back every
-non-null score with a 3–8-word verbatim quote and a surrounding context
-snippet. Evidence spans are revalidated post-hoc against the input text with a
-6-tier fuzzy matcher plus an LLM-as-judge backstop. Final scores are
-confidence-weighted means across chunks, computed independently per model;
-the cross-model aggregate is a configurable choice (default: simple mean of
-the three families). All choices can be inspected and changed in the
-[interactive regression module](interactive/regression.qmd) and visualised as
-a *specification curve*.
+```{r blocks, echo=FALSE, results='asis'}
+for (b in REG$blocks) cat(sprintf("- **%s** (%s): %d dimensions. %s\n", b$label, b$status, length(b$dims), b$description))
+```
 
-→ Full pipeline: [methodology](methodology.qmd).
+Further blocks, such as a party's environmental profile or its stance towards democratic
+institutions, will be added to the same pages as they are scored.
 
 ## Authors
 
@@ -98,43 +87,14 @@ a *specification curve*.
 
 ::: {.g-col-12 .g-col-md-6}
 ### [Martin Rode](https://scholar.google.com/citations?user=CbCCz_EAAAAJ&hl=en)
-*Department of Economics, Universidad de Navarra* · co-author
+*Department of Economics, Universidad de Navarra*
 :::
 
 ::: {.g-col-12 .g-col-md-6}
 ### [Sebastian Stöckl](http://www.sebastianstoeckl.com)
-*Liechtenstein Business School, University of Liechtenstein* · co-author, **site maintainer & creator**
+*Liechtenstein Business School, University of Liechtenstein* · site maintainer
 :::
 
 :::
 
-## Paper
-
-The methodology, headline regressions, robustness checks, and the
-specification-curve appendix are described in the working paper:
-
-> Rode, M. & Stöckl, S. (2026). *The Milei question, or: How liberal are
-> right-wing populist parties? A measurement approach using large language
-> models.* Working paper. [PDF link forthcoming]
-
-## Cite the dataset
-
-```bibtex
-@misc{rode_stoeckl_2026_populismllm,
-  author    = {Rode, Martin and St{\"o}ckl, Sebastian},
-  title     = {Populism-LLM v1: A Cross-Validated LLM Annotation of
-               European Party Manifestos},
-  year      = {2026},
-  publisher = {Hugging Face Datasets},
-  url       = {https://huggingface.co/datasets/sstoeckl/populism-llm},
-  note      = {Dataset DOI: tba}
-}
-
-@article{rode_stoeckl_2026_milei,
-  author  = {Rode, Martin and St{\"o}ckl, Sebastian},
-  title   = {The Milei question, or: How liberal are right-wing populist
-             parties? A measurement approach using large language models},
-  year    = {2026},
-  journal = {Working paper}
-}
-```
+<small>Data version `r VERSION$baseline_version` · `r VERSION$corpus` · [how to cite](download.qmd#cite)</small>

@@ -7,9 +7,9 @@
  *
  * Each plot_data row = one party-year manifesto with fields:
  *   doc_id, year, party, partyabbrev, partyname, label,
- *   populism_overall, liberalism_overall, pop_ideology_overall
+ *   one column per dimension in dimSpec (block registry)
  */
-window.renderCountryPlots = async function (tsId, scId, plotData, countryName) {
+window.renderCountryPlots = async function (tsId, scId, plotData, countryName, dimSpec) {
   // Lazy-load Plotly from CDN (one load per browser session, cached after)
   if (!window.Plotly) {
     await new Promise((resolve, reject) => {
@@ -22,15 +22,13 @@ window.renderCountryPlots = async function (tsId, scId, plotData, countryName) {
   const Plotly = window.Plotly;
 
   // ---------- Dimension catalogue ----------
-  const DIMS = {
-    populism_overall:     "Populism (overall)",
-    pop_ideology_overall: "Ideology (Right − Left)",
-    liberalism_overall:   "Liberalism (overall)",
-    lib_political:        "Liberalism — Political",
-    lib_social:           "Liberalism — Social",
-    lib_economic:         "Liberalism — Economic",
-    lib_financial_market: "Liberalism — Financial-market"
+  // Dimensions come from the block registry (id -> {label, min, max}); fallback: 0-10 scores.
+  const SPEC = dimSpec || {
+    populism_overall: {label: "Populism (overall)", min: 0, max: 10},
+    liberalism_overall: {label: "Liberalism (overall)", min: 0, max: 10}
   };
+  const DIMS = Object.fromEntries(Object.entries(SPEC).map(([k, v]) => [k, v.label]));
+  const rng = k => { const v = SPEC[k] || {min: 0, max: 10}; const pad = (v.max - v.min) * 0.02; return [v.min - pad, v.max + pad]; };
 
   // ---------- Party colour map ----------
   const allParties = [...new Set(plotData.map(d => d.label))].sort();
@@ -143,9 +141,9 @@ window.renderCountryPlots = async function (tsId, scId, plotData, countryName) {
     const layout = {
       grid: { rows: 2, columns: 1, pattern: "independent", roworder: "top to bottom" },
       xaxis:  { domain: [0, 1], anchor: "y1", title: "" },
-      yaxis:  { domain: [0.55, 1], anchor: "x1", title: DIMS[state.xDim], range: [0, 10] },
+      yaxis:  { domain: [0.55, 1], anchor: "x1", title: DIMS[state.xDim], range: rng(state.xDim) },
       xaxis2: { domain: [0, 1], anchor: "y2", title: "Election year" },
-      yaxis2: { domain: [0, 0.45], anchor: "x2", title: DIMS[state.yDim], range: [0, 10] },
+      yaxis2: { domain: [0, 0.45], anchor: "x2", title: DIMS[state.yDim], range: rng(state.yDim) },
       margin: { t: 30, l: 60, r: 20, b: 50 },
       height: 600,
       legend: { orientation: "v", x: 1.02, y: 1 },
@@ -226,8 +224,8 @@ window.renderCountryPlots = async function (tsId, scId, plotData, countryName) {
 
     const layout = {
       title: { text: "", font: { size: 14 } },
-      xaxis: { title: DIMS[state.xDim] + " →", range: [0, 10], gridcolor: "#eee" },
-      yaxis: { title: "↑ " + DIMS[state.yDim], range: [0, 10], gridcolor: "#eee" },
+      xaxis: { title: DIMS[state.xDim] + " →", range: rng(state.xDim), gridcolor: "#eee" },
+      yaxis: { title: "↑ " + DIMS[state.yDim], range: rng(state.yDim), gridcolor: "#eee" },
       annotations: annotations,
       shapes: shapes,
       margin: { t: 30, l: 60, r: 20, b: 50 },

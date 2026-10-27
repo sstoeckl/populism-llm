@@ -1,6 +1,6 @@
 ---
 title: "Interactive regressions & specification curve"
-subtitle: "8,100 regressions across the full grid of defensible analytic choices"
+subtitle: "Every defensible specification of the populism–liberalism regression (data version v2026a)"
 format:
   html:
     page-layout: full
@@ -14,7 +14,7 @@ format:
 //| output: false
 // Load specs grid (CSV — most reliable cross-runtime parser)
 specs = {
-  const url = "../data/specs_grid.csv"
+  const url = "../data/specs_distinct_pop.csv"
   console.info("Fetching", url);
   const resp = await fetch(url);
   if (!resp.ok) throw new Error(`Failed to load ${url}: HTTP ${resp.status}`);
@@ -23,14 +23,15 @@ specs = {
   // Parse CSV manually (fast, no dep): assume comma separator, no embedded commas
   const lines = txt.split(/\r?\n/).filter(l => l.length > 0);
   const cols = lines.shift().split(",");
-  const numeric = new Set(["coef","se","t","p","n","r2_w"]);
+  const numeric = new Set(["coef","se","t","p","n"]);
   const out = [];
   for (const line of lines) {
     const parts = line.split(",");
     const row = {};
     for (let i = 0; i < cols.length; i++) {
       const v = parts[i];
-      row[cols[i]] = numeric.has(cols[i]) ? (v === "NA" ? null : Number(v)) : v;
+      const k = cols[i].replace(/"/g, ""); const w = v.replace(/"/g, "");
+      row[k] = numeric.has(k) ? (w === "NA" ? null : Number(w)) : (k === "is_baseline" ? w === "TRUE" : w);
     }
     out.push(row);
   }
@@ -40,8 +41,9 @@ specs = {
 ```
 
 ::: {.callout-note appearance="simple"}
-**No server, no compute.** All 8,100 regression coefficients were pre-computed
-offline and ship as a small CSV. Your filter choices recompute summary
+**No server, no compute.** All 20,592 distinct regression coefficients were
+pre-computed by the replication chain and ship as a CSV; standard errors are clustered by
+party (CMP party code). Your filter choices recompute summary
 statistics in your browser — instant, repeatable, offline-capable. Inspired by
 Simonsohn et al. (2020) and Menkveld et al. (2024).
 :::
@@ -60,11 +62,11 @@ manifesto. $\text{pop}_{p,c,t}$ is the populism-overall score for that
 manifesto (averaged across LLMs and chunks per the selected aggregation), and
 $\text{lib}^{(d)}_{p,c,t}$ is the score on the chosen liberalism dimension
 $d$. The fixed effects $\mu_c, \mu_t$ absorb everything country-constant
-and year-constant; standard errors are cluster-robust at the chosen level.
+and year-constant; standard errors are clustered by party.
 The coefficient of interest is $\beta$ — the **partial association between
 populism and liberalism, holding country and year fixed**.
 
-### How the seven forks change $\beta$
+### How the forks change $\beta$
 
 | Fork | What varies | Why it might matter |
 |---|---|---|
@@ -74,7 +76,10 @@ populism and liberalism, holding country and year fixed**.
 | **Outcome dimension** | Which liberalism dimension is the dependent variable | Effects may be stronger for some sub-dimensions (e.g. financial-market) than others |
 | **Sample restriction** | Which manifestos enter the regression (all years, post-2000, post-2010, Europe-only) | Tests historical and geographic robustness |
 | **Fixed effects** | Country + year, + party, or country × year interactions | Tighter FE absorb more unobserved heterogeneity |
-| **SE cluster** | Country, country × year, or party | Conservative clustering matters for inference |
+| **Evidence rule** | Which chunk scores count: quote check (`quote`, baseline); plus a topic check for the ideology and overall dimensions (`r12`); quote and topic checks for all dimensions (`full`); no span filter (`none`) | Tests how much the evidence filter matters |
+| **Gemini source** | Re-scored on Vertex (baseline) or the June rows for 131 re-normalised texts | Provider and text-version sensitivity |
+| **Gap legs** | Missing model legs left empty (baseline) or filled from June rows | Coverage sensitivity |
+| **Parse repair** | Keep (baseline) or drop the 363 Claude chunks re-scored after a parser defect | Sensitivity to a repaired defect |
 
 ### Why we run *all* combinations
 
@@ -101,8 +106,16 @@ viewof outcome_pick = Inputs.checkbox(
   {value: ["liberalism_overall"], label: "Outcome dimension"})
 
 viewof within_pick = Inputs.checkbox(
-  ["cwm","mean","median"],
-  {value: ["cwm","mean","median"], label: "Within-manifesto aggregation (across chunks)"})
+  ["cwm","cwm_pop","mean","median"],
+  {value: ["cwm","cwm_pop","mean","median"], label: "Within-manifesto aggregation (cwm = own-block confidence weights, baseline)"})
+
+viewof validation_pick = Inputs.checkbox(
+  ["quote","r12","full","none"],
+  {value: ["quote","r12","full","none"], label: "Evidence rule (quote = baseline)"})
+
+viewof gemini_pick = Inputs.checkbox(["vertex","june"], {value: ["vertex","june"], label: "Gemini source"})
+viewof gap_pick = Inputs.checkbox(["na","june_fallback"], {value: ["na","june_fallback"], label: "Gap legs"})
+viewof repair_pick = Inputs.checkbox(["keep","exclude"], {value: ["keep","exclude"], label: "Parse-repaired chunks"})
 
 viewof between_pick = Inputs.checkbox(
   ["mean","median","leave_worst_out"],
@@ -116,9 +129,6 @@ viewof fe_pick = Inputs.checkbox(
   ["ctry_year","ctry_year_p","ctry_x_year"],
   {value: ["ctry_year","ctry_year_p","ctry_x_year"], label: "Fixed effects"})
 
-viewof se_pick = Inputs.checkbox(
-  ["country","ctry_year","party"],
-  {value: ["country","ctry_year","party"], label: "Standard-error clustering"})
 ```
 
 ```{ojs}
@@ -130,16 +140,19 @@ filtered = specs.filter(d =>
   between_pick.includes(d.between_agg) &&
   sample_pick.includes(d.sample_key) &&
   fe_pick.includes(d.fe_key) &&
-  se_pick.includes(d.se_key)
+  validation_pick.includes(d.validation) &&
+  gemini_pick.includes(d.gemini_norm) &&
+  gap_pick.includes(d.gap_legs) &&
+  repair_pick.includes(d.parse_repaired)
 )
 ```
 
 ```{ojs}
 //| echo: false
 //| output: false
-// Headline specifications — one per outcome dimension.
-// Fixed: all three LLMs · confidence-weighted within · mean between ·
-// Europe sample · country + year FE · country-clustered SE.
+// Baseline specifications (the paper's column 1), one per outcome dimension:
+// all three models · own-block confidence weights · mean between · quote check ·
+// Vertex Gemini · gaps empty · repaired chunks kept · full sample · country + year FE.
 // The OUTCOME varies, so we tag every outcome currently selected.
 outcomeShort = ({
   liberalism_overall: "Liberalism (overall)",
@@ -155,9 +168,12 @@ mainSpecs = {
       d.within_agg  === "cwm"         &&
       d.between_agg === "mean"        &&
       d.outcome     === o             &&
-      d.sample_key  === "europe_only" &&
+      d.sample_key  === "full"        &&
       d.fe_key      === "ctry_year"   &&
-      d.se_key      === "country"
+      d.validation  === "quote"       &&
+      d.gemini_norm === "vertex"      &&
+      d.gap_legs    === "na"          &&
+      d.parse_repaired === "keep"
     );
     if (h) console.info(`Headline ${o}: β = ${h.coef.toFixed(3)}, p = ${h.p}`);
     return h;
@@ -238,7 +254,10 @@ mainInFilter = mainSpecs.flatMap(ms => {
     d.outcome     === ms.outcome     &&
     d.sample_key  === ms.sample_key  &&
     d.fe_key      === ms.fe_key      &&
-    d.se_key      === ms.se_key);
+    d.validation  === ms.validation  &&
+    d.gemini_norm === ms.gemini_norm &&
+    d.gap_legs    === ms.gap_legs    &&
+    d.parse_repaired === ms.parse_repaired);
   return r ? [r] : [];
 })
 Plot = await import("https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6/+esm")
@@ -308,7 +327,7 @@ function group_by(arr, key) {
     pct_sig_neg: v.filter(d => d.p < 0.05 && d.coef < 0).length / v.length
   })).sort((a,b) => a.median - b.median)
 }
-forks = ["model_set","outcome","within_agg","between_agg","sample_key","fe_key","se_key"]
+forks = ["model_set","outcome","validation","within_agg","between_agg","sample_key","fe_key","gemini_norm","gap_legs","parse_repaired"]
 fork_summary = forks.flatMap(f => group_by(filtered, f).map(g => ({fork: f, ...g})))
 Inputs.table(fork_summary, {
   columns: ["fork","key","n","median","pct_sig_neg"],
@@ -321,17 +340,17 @@ Inputs.table(fork_summary, {
 
 ## How to read this
 
-This is a **specification curve** in the sense of Simonsohn, Simmons & Nelson
-(2020) and a **multiverse analysis** à la Steegen et al. (2016). Following the
-"non-standard errors" framing of Menkveld et al. (2024), each row of the table
-above is one defensible analytic choice. The aggregate distribution of the
-8,100 coefficients quantifies what the standard errors of a single regression
-can't: the variance across the analyst's decision space.
+This is a **specification curve** in the sense of Simonsohn, Simmons & Nelson (2020) and a
+**multiverse analysis** in the sense of Steegen et al. (2016). Following the "non-standard
+errors" framing of Menkveld et al. (2024), each row of the table above is one defensible
+analytic choice, and the spread of the coefficients across them measures what the standard
+error of a single regression cannot: the variance across the analyst's decision space.
 
-The headline finding — populism is associated with **lower** liberalism in
-European party manifestos — is **robust to all 8,100 specifications**
-(0% sign-flipped, 97.6% significant negative). Filter to your preferred
-subfamily above to see how the distribution moves.
+```{ojs}
+//| echo: false
+allStats = stats(specs, d => d.coef)
+md`Over all **${specs.length.toLocaleString()}** specifications, ${(100*specs.filter(d => d.p < 0.05 && d.coef < 0).length/specs.length).toFixed(1)}% of the populism coefficients are significantly negative and ${specs.filter(d => d.p < 0.05 && d.coef > 0).length} are significantly positive (median ${allStats.median.toFixed(3)}). Filter to your preferred subfamily above to see how the distribution moves; the [results page](../analysis/milei-question.qmd) reports the non-standard errors.`
+```
 
 ## References
 

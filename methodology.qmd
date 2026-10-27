@@ -1,143 +1,91 @@
 ---
 title: "Methodology"
-subtitle: "Pipeline, prompts, validation, reproducibility"
-include-after-body:
-  - text: |
-      <script>
-        document.addEventListener('DOMContentLoaded', function() {
-          document.querySelectorAll('.pipeline-diagram').forEach(function(el) {
-            el.addEventListener('click', function() { el.classList.toggle('zoomed'); });
-          });
-        });
-      </script>
+subtitle: "How the scores are built (data version v2026a)"
 ---
+
+```{r setup, include=FALSE}
+source("_data.R"); library(knitr)
+man <- load_manifestos()
+prov <- read.csv(file.path(SITE, "data/model_provenance.csv"))
+```
 
 ## Overview
 
-::: {.pipeline-diagram}
 ```{mermaid}
 %%| fig-width: 7
 flowchart TB
-    A[CMP corpus<br/>3,327 manifestos] --> B[Token-chunking<br/>20k tokens, 2k overlap]
-    B --> C1[Sonnet 4.6]
-    B --> C2[GPT-4.1-mini]
-    B --> C3[Gemini Flash]
-    C1 --> D[Per-chunk JSON<br/>strict schema]
+    A[Manifesto Project corpus 2026-1<br/>full texts] --> B[Chunks of at most 20,000 tokens<br/>2,000-token overlap]
+    B --> C1[claude-sonnet-4-6]
+    B --> C2[gpt-4.1-mini-2025-04-14]
+    B --> C3[gemini-3.5-flash]
+    C1 --> D[13 scores per chunk, each with<br/>evidence status and verbatim quote]
     C2 --> D
     C3 --> D
-    D --> E[Span validation<br/>regex + LLM-judge]
-    E --> F[Confidence-weighted<br/>per-manifesto aggregation]
-    F --> G[Cross-model aggregation<br/>configurable weighting]
-    G --> H[Panel regressions<br/>with non-standard errors]
-```
-:::
-
-<p style="font-size:0.85em; color:#666; text-align:center; margin-top:-0.5rem;">
-↑ Click diagram to enlarge ·  *vertical orientation for readability*
-</p>
-
-## The corpus
-
-We score every party manifesto in the Manifesto Project Database (CMP / WZB)
-that has a machine-readable full text and falls within our analysis window
-(`r 1945`–`r 2025`). The text is loaded via the `manifestoR` package using
-the WZB API. We do not redistribute the manifesto texts themselves
-(see [download page](download.qmd) for licensing).
-
-| Selection | Count |
-|---|---:|
-| Manifestos with full text | 3,327 |
-| Countries | 50+ |
-| Languages | EN, DE, ES, FR, IT, PL, CZ, EL, NL, … |
-
-## Scoring schema
-
-Each manifesto chunk is sent to each LLM under an **identical strict JSON
-schema** that requires, per scored dimension:
-
-```json
-{
-  "score": <integer 0–10 or null>,
-  "evidence_status": "verified" | "mixed" | "no_evidence",
-  "span": {
-    "quote":   "<3–8 word verbatim quote from the chunk>",
-    "context": "<surrounding ~3 sentences>"
-  }
-}
+    D --> E[Quote check: quote found verbatim<br/>in the chunk, not copied from the prompt]
+    E --> F[Within model: confidence-weighted<br/>mean of the counted chunks]
+    F --> G[Across models: plain mean]
+    G --> H[Panel regressions, specification curve,<br/>non-standard errors]
 ```
 
-Twelve dimensions are scored:
+## Corpus and chunks
 
-```{r dim-table, echo=FALSE}
-source("_data.R")
-library(knitr)
-data.frame(
-  Group = DIM_GROUP[V4_DIMS],
-  Code = V4_DIMS,
-  Label = DIM_LABELS[V4_DIMS]
-) |> kable()
+The corpus is the Manifesto Project Dataset version 2026a with corpus release 2026-1:
+**`r format(nrow(man), big.mark = ",")` manifestos** with machine-readable text from
+`r length(unique(man$countryname))` countries, `r min(man$year)`–`r max(man$year)`.
+A manifesto of at most 18,000 tokens is sent whole; longer ones are split into chunks of 20,000
+tokens with a 2,000-token overlap. The texts are © their authors and distributed by the
+[Manifesto Project (WZB)](https://manifesto-project.wzb.eu/); this site does not redistribute
+them.
+
+## Models
+
+Every chunk is scored by three model families with the same prompt and schema at temperature 0.
+The version actually served is logged for every call since October 2026; for the June 2026 calls
+it was not logged. The Gemini June rows used the floating alias `gemini-flash-latest`, which an
+anchor test identifies as `gemini-3.5-flash`.
+
+```{r prov, echo=FALSE}
+prov |> transmute(Model = MSHORT[model], Requested = model_requested, Endpoint = endpoint,
+                  `Served version` = resolved_status, Chunks = format(chunks, big.mark = ","),
+                  Share = sprintf("%.1f%%", 100 * share_chunks)) |> kable(align = "lllllrr")
 ```
 
-## Key technical decisions
+## What is scored
 
-| Decision | Choice | Rationale |
-|---|---|---|
-| **Chunking** | 20k-token chunks, 2k overlap, 18k full-text cap | Fits all three models' context with margin |
-| **Reproducibility knobs** | `temperature=0`, `top_p=1`, pinned model snapshots | Deterministic where the APIs allow |
-| **NA propagation** | `score=null` for `no_evidence` rather than `score=0` | "Topic absent" ≠ "topic present at zero intensity" |
-| **Anti-hallucination** | Per-dimension verbatim quote required; status enum forces explicit reasoning | Eliminates "make up a score" failure mode |
-| **Span validation** | Post-hoc 6-tier fuzzy match + LLM-as-judge backstop | Catches paraphrased / fabricated quotes that the schema can't enforce |
-| **Within-manifesto aggregation** | Confidence-weighted mean across chunks (default; configurable) | Down-weights low-confidence chunk scores |
-| **Between-model aggregation** | Simple mean (default; configurable) | No model is privileged a priori; specification curve reports robustness |
+Per chunk, each model returns for each of thirteen dimensions a score from 0 to 10 (or none), an
+evidence status (*verified*, *mixed* or *no evidence*) and a verbatim quote of 3 to 8 words with
+its surrounding passage.
 
-## Cross-model calibration
-
-A 50-manifesto matched-pair pilot against Claude Sonnet 4.6 (the most-trusted
-baseline because of its 285-manifesto reference run) measured:
-
-| Model | mean |gap| vs Sonnet | mean ρ vs Sonnet |
-|---|---:|---:|
-| GPT-4.1-mini | 0.73 | 0.73 |
-| Gemini Flash (latest) | 0.32 | 0.81 |
-| Gemini 2.5 Flash + thinking | 1.91 | 0.72 |
-
-`gemini-2.5-flash` with explicit thinking budget produced systematically
-**inflated populism scores** — possibly because more reasoning leads the
-model to over-attribute populist rhetoric. We use `gemini-flash-latest`
-in the final corpus.
-
-## Reproducibility guarantees
-
-- Code: [github.com/sstoeckl/3175_populism_llm](https://github.com/sstoeckl/3175_populism_llm)
-- All prompts version-pinned in `R/3c_Populism_v4_safe.R`
-- Model snapshots pinned: `claude-sonnet-4-6`, `gpt-4.1-mini-2025-04-14`,
-  `gemini-flash-latest` (see `R/16` / `R/15b` / `R/18`)
-- Raw chunk-level outputs preserved in parquet, span-validation logs versioned
-
-## Non-standard errors
-
-Following Menkveld et al. (2024), we report the distribution of regression
-coefficients across the full grid of defensible analytic choices:
-
-| Fork | Options |
-|---|---|
-| Model selection | Sonnet alone, GPT-4.1-mini alone, Gemini alone, all pairs, all three |
-| Within-manifesto aggregation | confidence-weighted mean (default), plain mean, median |
-| Between-model aggregation | mean (default), median, leave-worst-out |
-| Outcome normalisation | raw 0–10, z-scored within country, z-scored within year |
-| Sample | full (1945–), post-2000, post-2010, drop low-agreement |
-| Fixed effects | country + year, + party, country × year |
-| SE cluster | country, country × year, party |
-
-Coefficients across ~9,000 specifications are visualised in the
-[interactive regression tool](interactive/regression.qmd) and as a
-specification curve in the paper appendix.
-
-## References
-
-```{r refs, echo=FALSE, results='asis'}
-cat("- Menkveld, A. J., et al. (2024). Nonstandard Errors. *Journal of Finance*.
-- Simonsohn, U., Simmons, J. P., & Nelson, L. D. (2020). Specification curve analysis. *Nature Human Behaviour*.
-- Steegen, S., Tuerlinckx, F., Gelman, A., & Vanpaemel, W. (2016). Increasing transparency through a multiverse analysis. *Perspectives on Psychological Science*.
-- Lehmann, P., et al. (2024). The Manifesto Project Dataset. *WZB*.\n")
+```{r dims, echo=FALSE}
+b <- REG$blocks[[1]]
+map_dfr(c(b$dims, b$derived), ~ tibble(Group = setNames(map_chr(b$groups, "label"), map_chr(b$groups, "id"))[[.x$group]],
+  Dimension = .x$label, Range = sprintf("%g to %g", .x$min, .x$max), Definition = .x$description)) |> kable()
 ```
+
+## From chunk scores to manifesto scores
+
+1. **Which chunks count.** A chunk's score enters if the model rates its evidence as
+   *verified* and the quote passes the quote check: it is found verbatim in the chunk and is
+   not copied from the prompt. Every manifesto page shows each quote and whether it counted.
+2. **Within a model:** the mean of the counted chunk scores, weighted by the model's
+   confidence for that block of dimensions (populism, ideology or liberalism).
+3. **Across models:** the plain mean of the available models. This is the score shown as
+   *combined* and used in the paper.
+4. **Ideology direction:** (right − left) / (right + left + centrist) on the combined scores,
+   from −1 (left) to +1 (right).
+
+The site recomputes these scores from the public files and checks that they equal the
+replication chain's values exactly before any page is written.
+
+## Robustness
+
+Every defensible alternative (model subsets, within- and between-model aggregation, evidence
+rules, samples, fixed effects, standard errors) is estimated; the distribution of the populism
+coefficient over all specifications is the [specification curve](interactive/regression.qmd).
+Results: [the Milei question](analysis/milei-question.qmd).
+
+## Evidence on this site
+
+Quotes are shown with their first 8 words and without the surrounding passage, to respect the
+Manifesto Project's terms of use. The full model output, including longer quotes and passages, is
+archived with the replication package and is not public.

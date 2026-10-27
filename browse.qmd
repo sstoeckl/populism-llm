@@ -1,6 +1,6 @@
 ---
 title: "Browse manifestos"
-subtitle: "Click any row to open its full evidence page"
+subtitle: "Every scored manifesto; open one to see the scores of each model and the evidence"
 format:
   html:
     page-layout: full
@@ -9,104 +9,46 @@ format:
 ```{r setup, include=FALSE}
 source("_data.R")
 library(reactable); library(htmltools)
-
-manifestos <- load_manifestos()
-models <- available_models()
-
-# Per-model aggregated scores merged onto manifestos
-m_aggs <- map(names(models), load_model_agg) |> setNames(names(models))
-
-# Wide table: one row per manifesto, one col per (model × headline dim)
-wide <- manifestos |>
-  select(doc_id, countryname, partyabbrev, partyname, year)
-for (mid in names(m_aggs)) {
-  a <- m_aggs[[mid]]
-  if (is.null(a)) next
-  for (d in c("populism_overall","liberalism_overall")) {
-    if (!d %in% names(a)) next
-    wide[[paste0(d, "_", mid)]] <- a[[d]][match(wide$doc_id, a$doc_id)]
-  }
-}
-
-# Cross-model mean of populism_overall (where ≥2 models present)
-pop_cols <- grep("^populism_overall_", names(wide), value = TRUE)
-lib_cols <- grep("^liberalism_overall_", names(wide), value = TRUE)
-if (length(pop_cols) > 0) {
-  wide$pop_mean <- rowMeans(wide[pop_cols], na.rm = TRUE)
-  wide$pop_mean[is.nan(wide$pop_mean)] <- NA
-  wide$lib_mean <- rowMeans(wide[lib_cols], na.rm = TRUE)
-  wide$lib_mean[is.nan(wide$lib_mean)] <- NA
-}
-# Linkable columns
-# party_link: takes you to the per-party page (timeline + tabbed model views)
-# doc_link:   takes you to the per-manifesto page (evidence + per-dim scores)
-wide$party_link <- sprintf('<a href="party/%s.html">%s</a>',
-                          manifestos$party[match(wide$doc_id, manifestos$doc_id)],
-                          wide$partyabbrev)
-wide$doc_link <- sprintf('<a href="manifesto/%s.html">→ evidence</a>', wide$doc_id)
-# Make country names clickable (URL-safe encoding)
-wide$country_link <- sprintf('<a href="country/%s.html">%s</a>',
-                             utils::URLencode(wide$countryname, reserved = TRUE),
-                             wide$countryname)
-# Keep the original linkcol name for backward-compat with column defs below
-wide$linkcol <- wide$party_link
+man <- load_manifestos()
+sc  <- load_scores("poplib_v4")
+dims <- block_dims("poplib_v4")
+show <- c("populism_overall", "pop_ideology_direction", "liberalism_overall",
+          "lib_political", "lib_social", "lib_economic", "lib_financial_market")
+wide <- sc |> filter(model == "combined", dim %in% show) |> select(doc_id, dim, score) |>
+  pivot_wider(names_from = dim, values_from = score)
+tab <- man |> left_join(wide, by = "doc_id") |>
+  transmute(party_link = sprintf('<a href="party/%s.html">%s</a>', party, htmlEscape(coalesce(partyabbrev, str_trunc(partyname, 20)))),
+            country_link = sprintf('<a href="country/%s.html">%s</a>', URLencode(countryname, reserved = TRUE), countryname),
+            countryname, partyname, parfam, year,
+            doc_link = sprintf('<a href="manifesto/%s.html">%s</a>', doc_id, doc_id),
+            across(all_of(show)))
 ```
+
+The scores are the cross-model values used in the paper (Rode & Stöckl 2026). Filter with the
+boxes under the column names; click a manifesto id for the scores of each model and the evidence
+quotes, a party for its scores over time, a country for its party system.
 
 ```{r table, echo=FALSE}
-score_col_def <- function(name) {
-  reactable::colDef(
-    name = name, align = "center", maxWidth = 90,
-    style = function(value) {
-      if (is.na(value)) return(list(color = "#bbb"))
-      band <- score_band(value)
-      bg <- switch(band, low = "#d6e4f0", mid = "#faf4d4", high = "#f0c7c7", "na" = "#eee")
-      list(background = bg, fontWeight = 600)
-    },
-    cell = function(value) if (is.na(value)) "–" else sprintf("%.1f", value)
-  )
+col_score <- function(id) {
+  d <- dims[dims$id == id, ]
+  colDef(name = d$label, align = "center", minWidth = 95, filterable = FALSE,
+         style = function(value) {
+           if (is.na(value)) return(list(color = "#bbb"))
+           bg <- switch(score_band(value, d$min, d$max), low = "#d6e4f0", mid = "#faf4d4", high = "#f0c7c7", "#eee")
+           list(background = bg, color = "#222", fontWeight = 600)
+         },
+         cell = function(value) if (is.na(value)) "–" else formatC(value, format = "f", digits = if (d$max - d$min <= 2) 2 else 1))
 }
-
-# Build column definitions dynamically: only columns that actually exist in `wide`
-all_cols <- names(wide)
-col_defs <- list(
-  linkcol      = colDef(name = "Party",   html = TRUE, minWidth = 90),
-  country_link = colDef(name = "Country", html = TRUE, minWidth = 130),
-  countryname  = colDef(show = FALSE),
-  partyname   = colDef(name = "Full Name",   minWidth = 250),
-  year        = colDef(name = "Year",        align = "center", maxWidth = 70),
-  doc_link    = colDef(name = "Manifesto",   html = TRUE, minWidth = 110, align = "center"),
-  language    = colDef(name = "Lang",        align = "center", maxWidth = 70, show = FALSE)
-)
-if ("pop_mean" %in% all_cols) col_defs$pop_mean <- score_col_def("Pop ⌀")
-if ("lib_mean" %in% all_cols) col_defs$lib_mean <- score_col_def("Lib ⌀")
-
-model_short <- c(sonnet = "Sonnet", gpt41mini = "GPT", gemini = "Gemini")
-for (mid in names(model_short)) {
-  pc <- paste0("populism_overall_", mid)
-  lc <- paste0("liberalism_overall_", mid)
-  if (pc %in% all_cols) col_defs[[pc]] <- score_col_def(paste0("Pop·", model_short[mid]))
-  if (lc %in% all_cols) col_defs[[lc]] <- score_col_def(paste0("Lib·", model_short[mid]))
-}
-
-select_cols <- c("linkcol","country_link","partyname","year","doc_link")
-if ("language" %in% all_cols) select_cols <- c(select_cols, "language")
-select_cols <- c(select_cols,
-                 intersect(c("pop_mean","lib_mean"), all_cols),
-                 grep("^populism_overall_", all_cols, value = TRUE),
-                 grep("^liberalism_overall_", all_cols, value = TRUE))
-
-reactable(
-  wide |> select(all_of(select_cols)),
-  filterable = TRUE, searchable = TRUE, defaultPageSize = 25,
-  showPageSizeOptions = TRUE, pageSizeOptions = c(25, 50, 100, 250),
-  highlight = TRUE,
-  columns = col_defs[intersect(names(col_defs), select_cols)],
-  defaultSorted = list(year = "desc"),
-  striped = TRUE, bordered = TRUE, compact = TRUE
-)
+cols <- c(list(
+  party_link   = colDef(name = "Party", html = TRUE, minWidth = 90),
+  country_link = colDef(name = "Country", html = TRUE, minWidth = 120, filterable = FALSE),
+  countryname  = colDef(name = "Country (filter)", minWidth = 110),
+  partyname    = colDef(name = "Party name", minWidth = 220),
+  parfam       = colDef(name = "Family", minWidth = 110),
+  year         = colDef(name = "Year", align = "center", maxWidth = 75),
+  doc_link     = colDef(name = "Manifesto", html = TRUE, minWidth = 120)),
+  setNames(map(show, col_score), show))
+reactable(tab, columns = cols, filterable = TRUE, searchable = TRUE, defaultPageSize = 25,
+          showPageSizeOptions = TRUE, pageSizeOptions = c(25, 50, 100, 250), highlight = TRUE,
+          defaultSorted = list(year = "desc"), striped = TRUE, compact = TRUE)
 ```
-
-::: {.callout-tip}
-**Tip:** click a party abbreviation to open the per-manifesto page with every
-score, every model, every verbatim quote.
-:::

@@ -1,0 +1,19 @@
+---
+title: "Analyses"
+subtitle: "Research that uses the scores on this site"
+page-layout: article
+---
+
+Each analysis uses one or more attribute blocks of the data (the scores you see on every
+manifesto page) and reports its numbers straight from its replication chain.
+
+```{r list, echo=FALSE, results='asis'}
+an <- yaml::read_yaml("_analyses.yml")$analyses
+for (a in an) cat(sprintf(
+  '::: {.callout-note appearance="simple" icon=false}\n### [%s](%s.qmd)\n%s · %s · data: %s\n:::\n\n',
+  a$title, a$id, a$authors, a$status, paste(a$blocks, collapse = ", ")))
+```
+
+More attribute blocks, for example a party's environmental profile or its stance towards
+democratic institutions, will appear on the manifesto pages as they are scored, each with its
+own analysis page.
