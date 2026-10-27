@@ -15,6 +15,7 @@ suppressPackageStartupMessages({
 stopifnot(file.exists("_quarto.yml"), file.exists("data/registry.json"))
 args <- commandArgs(trailingOnly = TRUE)
 SAMPLE <- if ("--sample" %in% args) as.integer(args[which(args == "--sample") + 1]) else NA_integer_
+ONLY   <- if ("--only" %in% args) str_split(args[which(args == "--only") + 1], ",")[[1]] else character()   # manifesto ids; writes only those pages
 
 REG    <- fromJSON("data/registry.json", simplifyVector = FALSE)
 MODELS <- REG$models
@@ -34,8 +35,9 @@ blk <- map(REG$blocks, function(b) {
   dir <- file.path("data/blocks", b$id)
   sc <- read_parquet(file.path(dir, "scores.parquet"))
   ev <- if (file.exists(file.path(dir, "evidence.parquet"))) read_parquet(file.path(dir, "evidence.parquet")) else NULL
+  js <- if (file.exists(file.path(dir, "justifications.parquet"))) read_parquet(file.path(dir, "justifications.parquet")) else NULL
   list(b = b, dims = dims, scores = sc, ev_split = if (!is.null(ev)) split(ev, ev$doc_id) else list(),
-       sc_split = split(sc, sc$doc_id))
+       js_split = if (!is.null(js)) split(js, js$doc_id) else list(), sc_split = split(sc, sc$doc_id))
 })
 names(blk) <- map_chr(REG$blocks, "id")
 scored_ids <- sort(unique(c(unlist(map(blk, ~ unique(.x$scores$doc_id))), meta$doc_id[meta$scored])))
@@ -44,6 +46,7 @@ if (!is.na(SAMPLE)) {
   # dev: a sample of whole parties (so party pages are complete) plus their countries
   set.seed(42); keep_p <- sample(unique(docs$party), SAMPLE); docs <- docs |> filter(party %in% keep_p)
 }
+if (length(ONLY)) docs <- docs |> filter(doc_id %in% ONLY)
 message(sprintf("pages: %d manifestos, %d parties, %d countries", nrow(docs), n_distinct(docs$party), n_distinct(docs$countryname)))
 
 # reference means of the combined score (all scored manifestos, and per country)
@@ -76,6 +79,15 @@ write_page <- function(path, txt) {
   tmp <- paste0(path, ".tmp"); writeLines(txt, tmp, useBytes = TRUE); file.rename(tmp, path)
 }
 CTX <- identical(REG$evidence_text, "context")
+holistic_note <- paste0(
+  '::: {.callout-warning}\n',
+  "## How to read this page\n\n",
+  "**The scores are holistic judgements.** Each model read the whole manifesto text (in chunks of up to ",
+  "20,000 tokens) and rated every dimension from the text as a whole. The passages quoted further down are ",
+  "**examples the model cited**, not the basis of the score: a score that rests on two paragraphs cannot be ",
+  "reduced to a few words, and a quoted passage alone will often look too weak, or too strong, for the number ",
+  "next to it. Read the models' own explanations first; they state the reasoning behind each block of scores. ",
+  "The quotes then show where in the text the models looked.\n:::\n")
 text_note <- paste0(
   '::: {.callout-note appearance="simple"}\n',
   if (CTX) sprintf("**Evidence shown here:** the quote each model cited (highlighted) with a few words of its surrounding passage, at most %d words in all, and where in the manifesto it appears. ", as.integer(REG$context_words))
@@ -86,6 +98,24 @@ text_note <- paste0(
   "verbatim in the manifesto.\n:::\n")
 
 # ---- manifesto pages ---------------------------------------------------------------------------
+BLOCK_LBL <- c(populism = "Populism", ideology = "Populist ideology", liberalism = "Liberalism")
+justification_html <- function(x, d) {
+  js <- x$js_split[[d]]; if (is.null(js) || !nrow(js)) return("<p><em>No explanations recorded.</em></p>")
+  mods <- intersect(unlist(x$b$models), unique(js$model)); multi <- n_distinct(js$chunk_id) > 1
+  out <- character()
+  for (bk in names(BLOCK_LBL)) {
+    jb <- js |> filter(block == bk); if (!nrow(jb)) next
+    items <- map_chr(mods, function(m) {
+      jm <- jb |> filter(model == m) |> arrange(chunk_id); if (!nrow(jm)) return("")
+      paras <- map_chr(seq_len(nrow(jm)), function(i) sprintf("<p>%s%s</p>",
+        if (multi) sprintf("<span class='ev-meta'>chunk %d · </span>", jm$chunk_id[i]) else "", esc(jm$text[i])))
+      sprintf("<div class='just-model'><div class='just-head' style='border-color:%s'><span class='ev-tag' style='border-color:%s'>%s</span></div>%s</div>",
+              MCOL[m], MCOL[m], esc(MSHORT[m]), paste(paras, collapse = ""))
+    })
+    out <- c(out, sprintf("<h4>%s</h4><div class='just-grid'>%s</div>", esc(BLOCK_LBL[[bk]]), paste(items, collapse = "")))
+  }
+  paste(out, collapse = "\n")
+}
 score_table <- function(x, d, cn) {
   sc <- x$sc_split[[d]]; if (is.null(sc)) return("<p><em>Not scored in this block.</em></p>")
   mods <- intersect(c("combined", unlist(x$b$models)), unique(sc$model))
@@ -157,18 +187,20 @@ write_manifesto <- function(r) {
                      "(free registration), e.g. in R: <code>manifestoR::mp_corpus(data.frame(party = %s, date = %s))</code>. ",
                      "The position given with each quote (&ldquo;at about N%% of the text&rdquo;) refers to that text."),
               "2026-1", d, r$party, sub("^[0-9]+_", "", d)))),
-    text_note)
+    holistic_note)
   for (x in blk) {
     if (is.null(x$sc_split[[d]]) && is.null(x$ev_split[[d]])) next
     pj <- plot_json(x, d)
     body <- c(body, sprintf("\n## %s\n\n%s\n", x$b$label, x$b$description %||% ""),
+      "\n### What the models say about this manifesto\n\nEach model's own explanation of its scores, one per block of dimensions, written together with the scores.\n",
+      html_block(justification_html(x, d)),
       "\n### Scores\n", html_block(score_table(x, d, r$countryname)),
       if (!is.null(pj) && nrow(pj)) html_block(sprintf(
         "<div id='plot-%s'></div><script src='../assets/manifesto-plot.js'></script><script>window.addEventListener('DOMContentLoaded',()=>renderManifestoPlot('plot-%s',%s,{dimOrder:%s}));</script>",
         x$b$id, x$b$id, toJSON(pj, dataframe = "rows", auto_unbox = TRUE),
         toJSON(x$dims$label[!x$dims$derived], auto_unbox = TRUE))),
-      "\n### Evidence by dimension\n\nClick a dimension to see the quotes each model cited; counts are counted chunks / chunks with a record.\n",
-      html_block(evidence_html(x, d)))
+      "\n### Passages the models cited\n\nClick a dimension to see the passage each model cited for it; counts are counted chunks / chunks with a record.\n",
+      text_note, html_block(evidence_html(x, d)))
   }
   body <- c(body, sprintf("\n---\n\n<small>Data version %s · %s · scores as in Rode & Stöckl (2026). [How the scores are built](../methodology.qmd) · [Download](../download.qmd)</small>\n",
                           VERSION$baseline_version, VERSION$corpus))
@@ -249,14 +281,17 @@ write_country <- function(cn, dd) {
 # ---- write -------------------------------------------------------------------------------------
 for (dir in c("manifesto", "party", "country")) {
   dir.create(dir, showWarnings = FALSE)
+  if (length(ONLY)) next                      # --only: rewrite the named manifesto pages, delete nothing
   old <- setdiff(list.files(dir, "\\.qmd$", full.names = TRUE), file.path(dir, "_template.qmd"))
   unlink(old)
 }
 t0 <- Sys.time()
 walk(seq_len(nrow(docs)), function(i) { write_manifesto(docs[i, ]); if (i %% 500 == 0) message("  manifestos ", i) })
 pp <- split(docs |> arrange(date), docs |> arrange(date) |> pull(party))
-iwalk(pp, function(dd, p) write_party(p, dd))
 cc <- split(docs, docs$countryname)
-iwalk(cc, function(dd, cn) write_country(cn, dd))
+if (!length(ONLY)) {                          # party and country pages need all manifestos of a party / country
+  iwalk(pp, function(dd, p) write_party(p, dd))
+  iwalk(cc, function(dd, cn) write_country(cn, dd))
+}
 message(sprintf("written: %d manifesto, %d party, %d country pages in %.0f s", nrow(docs), length(pp), length(cc),
                 as.numeric(difftime(Sys.time(), t0, units = "secs"))))
