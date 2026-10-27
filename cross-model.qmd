@@ -8,7 +8,7 @@ format:
 
 ```{r setup, include=FALSE}
 source("_data.R")
-library(knitr); library(ggplot2)
+library(knitr); library(ggplot2); library(reactable)
 man  <- load_manifestos()
 dims <- block_dims("poplib_v4") |> filter(min == 0, max == 10)
 sc   <- load_scores("poplib_v4") |> filter(model %in% c("sonnet", "gpt41mini", "gemini"), dim %in% dims$id)
@@ -34,7 +34,13 @@ tab <- map_dfr(seq_len(nrow(dims)), function(i) {
            `Mean abs. gap` = round(mean(abs(s[[p[1]]][ok] - s[[p[2]]][ok])), 2))
   })
 })
-kable(tab)
+reactable(tab, defaultPageSize = 10, showPageSizeOptions = TRUE, pageSizeOptions = c(10, 20, 50),
+          filterable = TRUE, striped = TRUE, compact = TRUE, highlight = TRUE,
+          columns = list(Dimension = colDef(minWidth = 180), Pair = colDef(minWidth = 160),
+                         N = colDef(align = "center", filterable = FALSE),
+                         Pearson = colDef(align = "center", filterable = FALSE),
+                         Spearman = colDef(align = "center", filterable = FALSE),
+                         `Mean abs. gap` = colDef(align = "center", filterable = FALSE)))
 ```
 
 ## Largest disagreements on populism
@@ -48,13 +54,20 @@ m$range <- apply(m[mods], 1, function(x) { x <- x[is.finite(x)]; if (length(x) <
 out <- m |> filter(range > 3) |> left_join(man |> select(doc_id, countryname, partyabbrev, partyname, year), by = "doc_id") |>
   arrange(desc(range))
 if (!nrow(out)) cat("*No manifesto with a gap above three points.*") else
-  out |> head(60) |> transmute(Manifesto = sprintf("[%s](manifesto/%s.html)", doc_id, doc_id), Country = countryname,
-                    Party = coalesce(partyabbrev, partyname), Year = year,
-                    Sonnet = round(sonnet, 1), `GPT-4.1-mini` = round(gpt41mini, 1), Gemini = round(gemini, 1),
-                    Range = round(range, 1)) |> kable()
+  out |> transmute(Manifesto = sprintf('<a href="manifesto/%s.html">%s</a>', doc_id, doc_id), Country = countryname,
+                   Party = coalesce(partyabbrev, partyname), Year = year,
+                   Sonnet = round(sonnet, 1), `GPT-4.1-mini` = round(gpt41mini, 1), Gemini = round(gemini, 1),
+                   Range = round(range, 1)) |>
+  reactable(defaultPageSize = 10, showPageSizeOptions = TRUE, pageSizeOptions = c(10, 25, 100),
+            filterable = TRUE, striped = TRUE, compact = TRUE, highlight = TRUE,
+            defaultSorted = list(Range = "desc"),
+            columns = list(Manifesto = colDef(html = TRUE, minWidth = 130), Country = colDef(minWidth = 120),
+                           Party = colDef(minWidth = 110), Year = colDef(align = "center", maxWidth = 70),
+                           Sonnet = colDef(align = "center", filterable = FALSE), `GPT-4.1-mini` = colDef(align = "center", filterable = FALSE),
+                           Gemini = colDef(align = "center", filterable = FALSE), Range = colDef(align = "center", filterable = FALSE)))
 ```
 
-`r nrow(out)` manifestos in total; the 60 largest gaps are listed.
+`r nrow(out)` manifestos in total; sort or filter the table, 10 per page.
 
 ## Score distributions
 
