@@ -11,14 +11,16 @@ window.renderManifestoPlot = async function (containerId, data, opts) {
     container.innerHTML = '<p style="color:#888"><em>No score data available.</em></p>';
     return;
   }
-  const groupOrder = (opts && opts.groupOrder) || ["Populism", "Ideology", "Liberalism"];
+  const groupOrder = (opts && opts.groupOrder) || [...new Set(data.map(d => d.group))];
   const dimOrder  = (opts && opts.dimOrder)  || [...new Set(data.map(d => d.dim_lbl))];
   const colourMap = {
+    "Combined":     "#333333",
     "Sonnet":       "#1b9e77",
     "gpt-4.1-mini": "#d95f02",
     "Gemini":       "#7570b3"
   };
   const symbolMap = {
+    "Combined":     "diamond",
     "Sonnet":       "circle",
     "gpt-4.1-mini": "triangle",
     "Gemini":       "square"

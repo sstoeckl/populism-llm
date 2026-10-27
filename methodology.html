@@ -23,41 +23,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -116,7 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <link rel="stylesheet" href="assets/css/site.css">
 <meta property="og:title" content="Methodology – Populism-LLM">
-<meta property="og:description" content="Pipeline, prompts, validation, reproducibility">
+<meta property="og:description" content="How the scores are built (data version v2026a)">
 <meta property="og:site_name" content="Populism-LLM">
 </head>
 
@@ -311,13 +276,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="./browse.html"> 
 <span class="menu-text">Browse</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-analyses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Analyses</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-analyses">    
+        <li>
+    <a class="dropdown-item" href="./analysis/milei-question.html">
+ <span class="dropdown-text">The Milei question (Rode &amp; Stöckl 2026)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./interactive/regression.html">
+ <span class="dropdown-text">Specification curve</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./analysis/index.html">
+ <span class="dropdown-text">All analyses</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="./cross-model.html"> 
-<span class="menu-text">Cross-Model Agreement</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./interactive/regression.html"> 
-<span class="menu-text">Interactive Regressions</span></a>
+<span class="menu-text">Model Agreement</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./methodology.html" aria-current="page"> 
@@ -352,13 +332,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview">Overview</a></li>
-  <li><a href="#the-corpus" id="toc-the-corpus" class="nav-link" data-scroll-target="#the-corpus">The corpus</a></li>
-  <li><a href="#scoring-schema" id="toc-scoring-schema" class="nav-link" data-scroll-target="#scoring-schema">Scoring schema</a></li>
-  <li><a href="#key-technical-decisions" id="toc-key-technical-decisions" class="nav-link" data-scroll-target="#key-technical-decisions">Key technical decisions</a></li>
-  <li><a href="#cross-model-calibration" id="toc-cross-model-calibration" class="nav-link" data-scroll-target="#cross-model-calibration">Cross-model calibration</a></li>
-  <li><a href="#reproducibility-guarantees" id="toc-reproducibility-guarantees" class="nav-link" data-scroll-target="#reproducibility-guarantees">Reproducibility guarantees</a></li>
-  <li><a href="#non-standard-errors" id="toc-non-standard-errors" class="nav-link" data-scroll-target="#non-standard-errors">Non-standard errors</a></li>
-  <li><a href="#references" id="toc-references" class="nav-link" data-scroll-target="#references">References</a></li>
+  <li><a href="#corpus-and-chunks" id="toc-corpus-and-chunks" class="nav-link" data-scroll-target="#corpus-and-chunks">Corpus and chunks</a></li>
+  <li><a href="#models" id="toc-models" class="nav-link" data-scroll-target="#models">Models</a></li>
+  <li><a href="#what-is-scored" id="toc-what-is-scored" class="nav-link" data-scroll-target="#what-is-scored">What is scored</a></li>
+  <li><a href="#from-chunk-scores-to-manifesto-scores" id="toc-from-chunk-scores-to-manifesto-scores" class="nav-link" data-scroll-target="#from-chunk-scores-to-manifesto-scores">From chunk scores to manifesto scores</a></li>
+  <li><a href="#robustness" id="toc-robustness" class="nav-link" data-scroll-target="#robustness">Robustness</a></li>
+  <li><a href="#evidence-on-this-site" id="toc-evidence-on-this-site" class="nav-link" data-scroll-target="#evidence-on-this-site">Evidence on this site</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/sstoeckl/populism-llm/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -369,7 +348,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Methodology</h1>
-<p class="subtitle lead">Pipeline, prompts, validation, reproducibility</p>
+<p class="subtitle lead">How the scores are built (data version v2026a)</p>
 </div>
 
 
@@ -390,323 +369,247 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="overview" class="level2">
 <h2 class="anchored" data-anchor-id="overview">Overview</h2>
-<div class="pipeline-diagram">
 <div class="cell" data-fig-width="7" data-layout-align="default">
 <div class="cell-output-display">
 <div>
 <p></p><figure class="figure"><p></p>
 <div>
 <pre class="mermaid mermaid-js">flowchart TB
-    A[CMP corpus&lt;br/&gt;3,327 manifestos] --&gt; B[Token-chunking&lt;br/&gt;20k tokens, 2k overlap]
-    B --&gt; C1[Sonnet 4.6]
-    B --&gt; C2[GPT-4.1-mini]
-    B --&gt; C3[Gemini Flash]
-    C1 --&gt; D[Per-chunk JSON&lt;br/&gt;strict schema]
+    A[Manifesto Project corpus 2026-1&lt;br/&gt;full texts] --&gt; B[Chunks of at most 20,000 tokens&lt;br/&gt;2,000-token overlap]
+    B --&gt; C1[claude-sonnet-4-6]
+    B --&gt; C2[gpt-4.1-mini-2025-04-14]
+    B --&gt; C3[gemini-3.5-flash]
+    C1 --&gt; D[13 scores per chunk, each with&lt;br/&gt;evidence status and verbatim quote]
     C2 --&gt; D
     C3 --&gt; D
-    D --&gt; E[Span validation&lt;br/&gt;regex + LLM-judge]
-    E --&gt; F[Confidence-weighted&lt;br/&gt;per-manifesto aggregation]
-    F --&gt; G[Cross-model aggregation&lt;br/&gt;configurable weighting]
-    G --&gt; H[Panel regressions&lt;br/&gt;with non-standard errors]
+    D --&gt; E[Quote check: quote found verbatim&lt;br/&gt;in the chunk, not copied from the prompt]
+    E --&gt; F[Within model: confidence-weighted&lt;br/&gt;mean of the counted chunks]
+    F --&gt; G[Across models: plain mean]
+    G --&gt; H[Panel regressions, specification curve,&lt;br/&gt;non-standard errors]
 </pre>
 </div>
 <p></p></figure><p></p>
 </div>
 </div>
 </div>
-</div>
-<p style="font-size:0.85em; color:#666; text-align:center; margin-top:-0.5rem;">
-↑ Click diagram to enlarge · <em>vertical orientation for readability</em>
-</p>
 </section>
-<section id="the-corpus" class="level2">
-<h2 class="anchored" data-anchor-id="the-corpus">The corpus</h2>
-<p>We score every party manifesto in the Manifesto Project Database (CMP / WZB) that has a machine-readable full text and falls within our analysis window (1945–2025). The text is loaded via the <code>manifestoR</code> package using the WZB API. We do not redistribute the manifesto texts themselves (see <a href="./download.html">download page</a> for licensing).</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Selection</th>
-<th style="text-align: right;">Count</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Manifestos with full text</td>
-<td style="text-align: right;">3,327</td>
-</tr>
-<tr class="even">
-<td>Countries</td>
-<td style="text-align: right;">50+</td>
-</tr>
-<tr class="odd">
-<td>Languages</td>
-<td style="text-align: right;">EN, DE, ES, FR, IT, PL, CZ, EL, NL, …</td>
-</tr>
-</tbody>
-</table>
+<section id="corpus-and-chunks" class="level2">
+<h2 class="anchored" data-anchor-id="corpus-and-chunks">Corpus and chunks</h2>
+<p>The corpus is the Manifesto Project Dataset version 2026a with corpus release 2026-1: <strong>3,371 manifestos</strong> with machine-readable text from 62 countries, 1945–2025. A manifesto of at most 18,000 tokens is sent whole; longer ones are split into chunks of 20,000 tokens with a 2,000-token overlap. The texts are © their authors and distributed by the <a href="https://manifesto-project.wzb.eu/">Manifesto Project (WZB)</a>; this site does not redistribute them.</p>
 </section>
-<section id="scoring-schema" class="level2">
-<h2 class="anchored" data-anchor-id="scoring-schema">Scoring schema</h2>
-<p>Each manifesto chunk is sent to each LLM under an <strong>identical strict JSON schema</strong> that requires, per scored dimension:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"score"</span><span class="fu">:</span> <span class="er">&lt;integer</span> <span class="dv">0</span><span class="er">–</span><span class="dv">10</span> <span class="er">or</span> <span class="kw">null</span><span class="er">&gt;</span><span class="fu">,</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"evidence_status"</span><span class="fu">:</span> <span class="st">"verified"</span> <span class="er">|</span> <span class="st">"mixed"</span> <span class="er">|</span> <span class="st">"no_evidence"</span><span class="fu">,</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"span"</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"quote"</span><span class="fu">:</span>   <span class="st">"&lt;3–8 word verbatim quote from the chunk&gt;"</span><span class="fu">,</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"context"</span><span class="fu">:</span> <span class="st">"&lt;surrounding ~3 sentences&gt;"</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Twelve dimensions are scored:</p>
+<section id="models" class="level2">
+<h2 class="anchored" data-anchor-id="models">Models</h2>
+<p>Every chunk is scored by three model families with the same prompt and schema at temperature 0. The version actually served is logged for every call since October 2026; for the June 2026 calls it was not logged. The Gemini June rows used the floating alias <code>gemini-flash-latest</code>, which an anchor test identifies as <code>gemini-3.5-flash</code>.</p>
 <div class="cell">
 <div class="cell-output-display">
 <table class="caption-top table table-sm table-striped small">
 <colgroup>
-<col style="width: 26%">
-<col style="width: 13%">
-<col style="width: 26%">
-<col style="width: 33%">
+<col style="width: 16%">
+<col style="width: 30%">
+<col style="width: 17%">
+<col style="width: 18%">
+<col style="width: 8%">
+<col style="width: 7%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;"></th>
+<th style="text-align: left;">Model</th>
+<th style="text-align: left;">Requested</th>
+<th style="text-align: left;">Endpoint</th>
+<th style="text-align: left;">Served version</th>
+<th style="text-align: left;">Chunks</th>
+<th style="text-align: right;">Share</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Gemini</td>
+<td style="text-align: left;">gemini-3.5-flash</td>
+<td style="text-align: left;">aistudio</td>
+<td style="text-align: left;">logged</td>
+<td style="text-align: left;">273</td>
+<td style="text-align: right;">4.1%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Gemini</td>
+<td style="text-align: left;">gemini-3.5-flash</td>
+<td style="text-align: left;">vertex-global</td>
+<td style="text-align: left;">logged</td>
+<td style="text-align: left;">446</td>
+<td style="text-align: right;">6.7%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gemini</td>
+<td style="text-align: left;">gemini-flash-latest</td>
+<td style="text-align: left;">aistudio</td>
+<td style="text-align: left;">inferred</td>
+<td style="text-align: left;">5,940</td>
+<td style="text-align: right;">89.2%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">GPT-4.1-mini</td>
+<td style="text-align: left;">gpt-4.1-mini-2025-04-14</td>
+<td style="text-align: left;">openai-api</td>
+<td style="text-align: left;">logged</td>
+<td style="text-align: left;">759</td>
+<td style="text-align: right;">11.3%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">GPT-4.1-mini</td>
+<td style="text-align: left;">gpt-4.1-mini-2025-04-14</td>
+<td style="text-align: left;">openai-api</td>
+<td style="text-align: left;">not logged</td>
+<td style="text-align: left;">5,936</td>
+<td style="text-align: right;">88.7%</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sonnet</td>
+<td style="text-align: left;">claude-sonnet-4-6</td>
+<td style="text-align: left;">anthropic-api</td>
+<td style="text-align: left;">logged</td>
+<td style="text-align: left;">1,076</td>
+<td style="text-align: right;">16.1%</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sonnet</td>
+<td style="text-align: left;">claude-sonnet-4-6</td>
+<td style="text-align: left;">anthropic-api</td>
+<td style="text-align: left;">not logged</td>
+<td style="text-align: left;">5,623</td>
+<td style="text-align: right;">83.9%</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section id="what-is-scored" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-scored">What is scored</h2>
+<p>Per chunk, each model returns for each of thirteen dimensions a score from 0 to 10 (or none), an evidence status (<em>verified</em>, <em>mixed</em> or <em>no evidence</em>) and a verbatim quote of 3 to 8 words with its surrounding passage.</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 20%">
+<col style="width: 4%">
+<col style="width: 63%">
+</colgroup>
+<thead>
+<tr class="header">
 <th style="text-align: left;">Group</th>
-<th style="text-align: left;">Code</th>
-<th style="text-align: left;">Label</th>
+<th style="text-align: left;">Dimension</th>
+<th style="text-align: left;">Range</th>
+<th style="text-align: left;">Definition</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: left;">pop_anti_elitism</td>
 <td style="text-align: left;">Populism</td>
-<td style="text-align: left;">pop_anti_elitism</td>
-<td style="text-align: left;">Anti-Elitism</td>
+<td style="text-align: left;">Populism (overall)</td>
+<td style="text-align: left;">0 to 10</td>
+<td style="text-align: left;">Rounded mean of the three populism sub-dimensions, adjusted by one point for breadth.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">pop_people_centrism</td>
 <td style="text-align: left;">Populism</td>
-<td style="text-align: left;">pop_people_centrism</td>
-<td style="text-align: left;">People-Centrism</td>
+<td style="text-align: left;">Anti-elitism</td>
+<td style="text-align: left;">0 to 10</td>
+<td style="text-align: left;">Elites or the establishment framed as corrupt or out of touch.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">pop_manichean</td>
 <td style="text-align: left;">Populism</td>
-<td style="text-align: left;">pop_manichean</td>
-<td style="text-align: left;">Manichaean Worldview</td>
+<td style="text-align: left;">People-centrism</td>
+<td style="text-align: left;">0 to 10</td>
+<td style="text-align: left;">‘The people’ invoked as a unified, virtuous group.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">populism_overall</td>
 <td style="text-align: left;">Populism</td>
-<td style="text-align: left;">populism_overall</td>
-<td style="text-align: left;">Populism (Overall)</td>
+<td style="text-align: left;">Manichaean outlook</td>
+<td style="text-align: left;">0 to 10</td>
+<td style="text-align: left;">Moralised good-versus-evil struggle; betrayal, conspiracy.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">pop_ideology_left</td>
-<td style="text-align: left;">Ideology</td>
-<td style="text-align: left;">pop_ideology_left</td>
-<td style="text-align: left;">Ideology — Left</td>
+<td style="text-align: left;">Populist ideology</td>
+<td style="text-align: left;">Populist ideology (strength)</td>
+<td style="text-align: left;">0 to 10</td>
+<td style="text-align: left;">Overall strength of the populist ideological flavour (not its direction).</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">pop_ideology_right</td>
-<td style="text-align: left;">Ideology</td>
-<td style="text-align: left;">pop_ideology_right</td>
-<td style="text-align: left;">Ideology — Right</td>
+<td style="text-align: left;">Populist ideology</td>
+<td style="text-align: left;">Ideology: left</td>
+<td style="text-align: left;">0 to 10</td>
+<td style="text-align: left;">Anti-corporate elite, redistribution, social equality.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">pop_ideology_centrist</td>
-<td style="text-align: left;">Ideology</td>
-<td style="text-align: left;">pop_ideology_centrist</td>
-<td style="text-align: left;">Ideology — Centrist</td>
+<td style="text-align: left;">Populist ideology</td>
+<td style="text-align: left;">Ideology: right</td>
+<td style="text-align: left;">0 to 10</td>
+<td style="text-align: left;">National or identity protectionism, anti-immigration.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">pop_ideology_overall</td>
-<td style="text-align: left;">Ideology</td>
-<td style="text-align: left;">pop_ideology_overall</td>
-<td style="text-align: left;">Ideology (Right − Left)</td>
+<td style="text-align: left;">Populist ideology</td>
+<td style="text-align: left;">Ideology: centrist</td>
+<td style="text-align: left;">0 to 10</td>
+<td style="text-align: left;">Generic people–elite appeals without a clear programmatic stance.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">lib_political</td>
 <td style="text-align: left;">Liberalism</td>
-<td style="text-align: left;">lib_political</td>
-<td style="text-align: left;">Political Liberalism</td>
+<td style="text-align: left;">Liberalism (overall)</td>
+<td style="text-align: left;">0 to 10</td>
+<td style="text-align: left;">Rounded mean of the four liberalism sub-dimensions with evidence.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">lib_social</td>
 <td style="text-align: left;">Liberalism</td>
-<td style="text-align: left;">lib_social</td>
-<td style="text-align: left;">Social Liberalism</td>
+<td style="text-align: left;">Political liberalism</td>
+<td style="text-align: left;">0 to 10</td>
+<td style="text-align: left;">Democracy, rule of law, checks and balances, media freedom, due process.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">lib_economic</td>
 <td style="text-align: left;">Liberalism</td>
-<td style="text-align: left;">lib_economic</td>
-<td style="text-align: left;">Economic Liberalism</td>
+<td style="text-align: left;">Social liberalism</td>
+<td style="text-align: left;">0 to 10</td>
+<td style="text-align: left;">Civil rights, minority protection, gender and LGBTQ+ equality, pluralism.</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">lib_financial_market</td>
 <td style="text-align: left;">Liberalism</td>
-<td style="text-align: left;">lib_financial_market</td>
-<td style="text-align: left;">Financial-Market Liberalism</td>
+<td style="text-align: left;">Economic liberalism</td>
+<td style="text-align: left;">0 to 10</td>
+<td style="text-align: left;">Free markets, competition, enterprise, deregulation, tax efficiency, trade openness.</td>
 </tr>
 <tr class="odd">
-<td style="text-align: left;">liberalism_overall</td>
 <td style="text-align: left;">Liberalism</td>
-<td style="text-align: left;">liberalism_overall</td>
-<td style="text-align: left;">Liberalism (Overall)</td>
+<td style="text-align: left;">Financial-market liberalism</td>
+<td style="text-align: left;">0 to 10</td>
+<td style="text-align: left;">Market pricing of assets and credit, open banking and capital markets, enabling prudential rules.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Populist ideology</td>
+<td style="text-align: left;">Ideology direction (right − left)</td>
+<td style="text-align: left;">-1 to 1</td>
+<td style="text-align: left;">(R − L) / (R + L + C) on the cross-model means of the right, left and centrist scores; −1 left, +1 right.</td>
 </tr>
 </tbody>
 </table>
 </div>
 </div>
 </section>
-<section id="key-technical-decisions" class="level2">
-<h2 class="anchored" data-anchor-id="key-technical-decisions">Key technical decisions</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 33%">
-<col style="width: 33%">
-<col style="width: 33%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Decision</th>
-<th>Choice</th>
-<th>Rationale</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Chunking</strong></td>
-<td>20k-token chunks, 2k overlap, 18k full-text cap</td>
-<td>Fits all three models’ context with margin</td>
-</tr>
-<tr class="even">
-<td><strong>Reproducibility knobs</strong></td>
-<td><code>temperature=0</code>, <code>top_p=1</code>, pinned model snapshots</td>
-<td>Deterministic where the APIs allow</td>
-</tr>
-<tr class="odd">
-<td><strong>NA propagation</strong></td>
-<td><code>score=null</code> for <code>no_evidence</code> rather than <code>score=0</code></td>
-<td>“Topic absent” ≠ “topic present at zero intensity”</td>
-</tr>
-<tr class="even">
-<td><strong>Anti-hallucination</strong></td>
-<td>Per-dimension verbatim quote required; status enum forces explicit reasoning</td>
-<td>Eliminates “make up a score” failure mode</td>
-</tr>
-<tr class="odd">
-<td><strong>Span validation</strong></td>
-<td>Post-hoc 6-tier fuzzy match + LLM-as-judge backstop</td>
-<td>Catches paraphrased / fabricated quotes that the schema can’t enforce</td>
-</tr>
-<tr class="even">
-<td><strong>Within-manifesto aggregation</strong></td>
-<td>Confidence-weighted mean across chunks (default; configurable)</td>
-<td>Down-weights low-confidence chunk scores</td>
-</tr>
-<tr class="odd">
-<td><strong>Between-model aggregation</strong></td>
-<td>Simple mean (default; configurable)</td>
-<td>No model is privileged a priori; specification curve reports robustness</td>
-</tr>
-</tbody>
-</table>
+<section id="from-chunk-scores-to-manifesto-scores" class="level2">
+<h2 class="anchored" data-anchor-id="from-chunk-scores-to-manifesto-scores">From chunk scores to manifesto scores</h2>
+<ol type="1">
+<li><strong>Which chunks count.</strong> A chunk’s score enters if the model rates its evidence as <em>verified</em> and the quote passes the quote check: it is found verbatim in the chunk and is not copied from the prompt. Every manifesto page shows each quote and whether it counted.</li>
+<li><strong>Within a model:</strong> the mean of the counted chunk scores, weighted by the model’s confidence for that block of dimensions (populism, ideology or liberalism).</li>
+<li><strong>Across models:</strong> the plain mean of the available models. This is the score shown as <em>combined</em> and used in the paper.</li>
+<li><strong>Ideology direction:</strong> (right − left) / (right + left + centrist) on the combined scores, from −1 (left) to +1 (right).</li>
+</ol>
+<p>The site recomputes these scores from the public files and checks that they equal the replication chain’s values exactly before any page is written.</p>
 </section>
-<section id="cross-model-calibration" class="level2">
-<h2 class="anchored" data-anchor-id="cross-model-calibration">Cross-model calibration</h2>
-<p>A 50-manifesto matched-pair pilot against Claude Sonnet 4.6 (the most-trusted baseline because of its 285-manifesto reference run) measured:</p>
-<table class="caption-top table">
-<thead>
-<tr class="header">
-<th>Model</th>
-<th style="text-align: right;">mean</th>
-<th style="text-align: right;">gap</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>GPT-4.1-mini</td>
-<td style="text-align: right;">0.73</td>
-<td style="text-align: right;">0.73</td>
-</tr>
-<tr class="even">
-<td>Gemini Flash (latest)</td>
-<td style="text-align: right;">0.32</td>
-<td style="text-align: right;">0.81</td>
-</tr>
-<tr class="odd">
-<td>Gemini 2.5 Flash + thinking</td>
-<td style="text-align: right;">1.91</td>
-<td style="text-align: right;">0.72</td>
-</tr>
-</tbody>
-</table>
-<p><code>gemini-2.5-flash</code> with explicit thinking budget produced systematically <strong>inflated populism scores</strong> — possibly because more reasoning leads the model to over-attribute populist rhetoric. We use <code>gemini-flash-latest</code> in the final corpus.</p>
+<section id="robustness" class="level2">
+<h2 class="anchored" data-anchor-id="robustness">Robustness</h2>
+<p>Every defensible alternative (model subsets, within- and between-model aggregation, evidence rules, samples, fixed effects, standard errors) is estimated; the distribution of the populism coefficient over all specifications is the <a href="./interactive/regression.html">specification curve</a>. Results: <a href="./analysis/milei-question.html">the Milei question</a>.</p>
 </section>
-<section id="reproducibility-guarantees" class="level2">
-<h2 class="anchored" data-anchor-id="reproducibility-guarantees">Reproducibility guarantees</h2>
-<ul>
-<li>Code: <a href="https://github.com/sstoeckl/3175_populism_llm">github.com/sstoeckl/3175_populism_llm</a></li>
-<li>All prompts version-pinned in <code>R/3c_Populism_v4_safe.R</code></li>
-<li>Model snapshots pinned: <code>claude-sonnet-4-6</code>, <code>gpt-4.1-mini-2025-04-14</code>, <code>gemini-flash-latest</code> (see <code>R/16</code> / <code>R/15b</code> / <code>R/18</code>)</li>
-<li>Raw chunk-level outputs preserved in parquet, span-validation logs versioned</li>
-</ul>
-</section>
-<section id="non-standard-errors" class="level2">
-<h2 class="anchored" data-anchor-id="non-standard-errors">Non-standard errors</h2>
-<p>Following Menkveld et al.&nbsp;(2024), we report the distribution of regression coefficients across the full grid of defensible analytic choices:</p>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 50%">
-<col style="width: 50%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Fork</th>
-<th>Options</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Model selection</td>
-<td>Sonnet alone, GPT-4.1-mini alone, Gemini alone, all pairs, all three</td>
-</tr>
-<tr class="even">
-<td>Within-manifesto aggregation</td>
-<td>confidence-weighted mean (default), plain mean, median</td>
-</tr>
-<tr class="odd">
-<td>Between-model aggregation</td>
-<td>mean (default), median, leave-worst-out</td>
-</tr>
-<tr class="even">
-<td>Outcome normalisation</td>
-<td>raw 0–10, z-scored within country, z-scored within year</td>
-</tr>
-<tr class="odd">
-<td>Sample</td>
-<td>full (1945–), post-2000, post-2010, drop low-agreement</td>
-</tr>
-<tr class="even">
-<td>Fixed effects</td>
-<td>country + year, + party, country × year</td>
-</tr>
-<tr class="odd">
-<td>SE cluster</td>
-<td>country, country × year, party</td>
-</tr>
-</tbody>
-</table>
-<p>Coefficients across ~9,000 specifications are visualised in the <a href="./interactive/regression.html">interactive regression tool</a> and as a specification curve in the paper appendix.</p>
-</section>
-<section id="references" class="level2">
-<h2 class="anchored" data-anchor-id="references">References</h2>
-<ul>
-<li>Menkveld, A. J., et al.&nbsp;(2024). Nonstandard Errors. <em>Journal of Finance</em>.</li>
-<li>Simonsohn, U., Simmons, J. P., &amp; Nelson, L. D. (2020). Specification curve analysis. <em>Nature Human Behaviour</em>.</li>
-<li>Steegen, S., Tuerlinckx, F., Gelman, A., &amp; Vanpaemel, W. (2016). Increasing transparency through a multiverse analysis. <em>Perspectives on Psychological Science</em>.</li>
-<li>Lehmann, P., et al.&nbsp;(2024). The Manifesto Project Dataset. <em>WZB</em>.</li>
-</ul>
+<section id="evidence-on-this-site" class="level2">
+<h2 class="anchored" data-anchor-id="evidence-on-this-site">Evidence on this site</h2>
+<p>Quotes are shown with their first 8 words and without the surrounding passage, to respect the Manifesto Project’s terms of use. The full model output, including longer quotes and passages, is archived with the replication package and is not public.</p>
 
 
 </section>
@@ -1129,23 +1032,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein). Data version v2026a.</p>
 </div>   
     <div class="nav-footer-center">
 <p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
 <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/sstoeckl/populism-llm/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+<p>Manifesto texts © their authors, via the <a href="https://manifesto-project.wzb.eu/">Manifesto Project</a>.</p>
 </div>
   </div>
 </footer>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.pipeline-diagram').forEach(function(el) {
-      el.addEventListener('click', function() { el.classList.toggle('zoomed'); });
-    });
-  });
-</script>
 
 
 

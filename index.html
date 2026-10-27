@@ -23,41 +23,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -113,7 +78,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <link rel="stylesheet" href="assets/css/site.css">
 <meta property="og:title" content="Populism-LLM">
-<meta property="og:description" content="Cross-Validated LLM Annotations of European Party Manifestos">
+<meta property="og:description" content="Party manifestos scored by three language model families, every score with its evidence">
 <meta property="og:site_name" content="Populism-LLM">
 </head>
 
@@ -308,13 +273,28 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="./browse.html"> 
 <span class="menu-text">Browse</span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-analyses" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Analyses</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-analyses">    
+        <li>
+    <a class="dropdown-item" href="./analysis/milei-question.html">
+ <span class="dropdown-text">The Milei question (Rode &amp; Stöckl 2026)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./interactive/regression.html">
+ <span class="dropdown-text">Specification curve</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./analysis/index.html">
+ <span class="dropdown-text">All analyses</span></a>
+  </li>  
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link" href="./cross-model.html"> 
-<span class="menu-text">Cross-Model Agreement</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="./interactive/regression.html"> 
-<span class="menu-text">Interactive Regressions</span></a>
+<span class="menu-text">Model Agreement</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./methodology.html"> 
@@ -351,7 +331,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
 <h1 class="title">Populism-LLM</h1>
-<p class="subtitle lead">Cross-Validated LLM Annotations of European Party Manifestos</p>
+<p class="subtitle lead">Party manifestos scored by three language model families, every score with its evidence</p>
 </div>
 
 
@@ -370,89 +350,62 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="draft-banner" role="alert">
 <p><strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed. Numbers and methodology may change. Do not cite — <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.</p>
-</div><section id="a-cross-validated-populism-corpus-for-political-economic-research" class="level1 hero">
-<h1>A cross-validated populism corpus for political-economic research</h1>
-<p>Three independent large language models — Anthropic Claude Sonnet 4.6, OpenAI GPT-4.1-mini, and Google Gemini Flash — score every CMP party manifesto from 1920 to 2025 on twelve dimensions of populism and liberalism. Each score comes with a verbatim quote, contextual snippet, and machine-readable evidence status.</p>
+</div><section id="populism-ideology-and-liberalism-in-3371-party-manifestos" class="level1 hero">
+<h1>Populism, ideology and liberalism in 3,371 party manifestos</h1>
+<p>Three model families (Anthropic Claude Sonnet, OpenAI GPT-4.1-mini, Google Gemini Flash) score every manifesto of the Manifesto Project corpus with full text, 1945–2025. Each score comes with the quote the model cited, and every page shows which evidence counted.</p>
 <div class="hero-stats">
 <div class="hero-stat">
-<p><span class="num">5,285</span> <span class="lbl">manifestos</span></p>
+<p><span class="num">3,371</span> <span class="lbl">manifestos</span></p>
 </div>
 <div class="hero-stat">
-<p><span class="num">67</span> <span class="lbl">countries</span></p>
+<p><span class="num">995</span> <span class="lbl">parties</span></p>
 </div>
 <div class="hero-stat">
-<p><span class="num">3</span> <span class="lbl">LLM families</span></p>
+<p><span class="num">62</span> <span class="lbl">countries</span></p>
 </div>
 <div class="hero-stat">
-<p><span class="num">12</span> <span class="lbl">scored dimensions</span></p>
+<p><span class="num">13</span> <span class="lbl">scored dimensions</span></p>
 </div>
 </div>
 </section>
-<section id="what-you-get" class="level2">
-<h2 class="anchored" data-anchor-id="what-you-get">What you get</h2>
 <div class="grid">
-<section id="browse-3327-manifestos" class="level3 g-col-12 g-col-md-6">
-<h3 class="anchored" data-anchor-id="browse-3327-manifestos">📂 Browse 3,327 manifestos</h3>
-<p><a href="./browse.html">Open browser →</a> Country, party, year filters. Click a manifesto to see every score from every model, with the verbatim evidence each model relied on.</p>
+<section id="browse-the-manifestos" class="level3 g-col-12 g-col-md-6">
+<h3 class="anchored" data-anchor-id="browse-the-manifestos">Browse the manifestos</h3>
+<p><a href="./browse.html">Open the table →</a> Filter by country, party, family and year. Each manifesto page shows the scores of every model, the country and corpus means, and the evidence behind each score.</p>
 </section>
-<section id="cross-model-agreement" class="level3 g-col-12 g-col-md-6">
-<h3 class="anchored" data-anchor-id="cross-model-agreement">🔀 Cross-model agreement</h3>
-<p><a href="./cross-model.html">Open agreement view →</a> Where do the three LLMs agree? Where do they diverge? Per-dimension Pearson and Spearman correlations, full disagreement-flagged outlier list.</p>
+<section id="the-milei-question" class="level3 g-col-12 g-col-md-6">
+<h3 class="anchored" data-anchor-id="the-milei-question">The Milei question</h3>
+<p><a href="./analysis/milei-question.html">Read the results →</a> How liberal are right-wing populist parties? The results of Rode &amp; Stöckl (2026), every number straight from the replication chain.</p>
 </section>
-<section id="interactive-regressions" class="level3 g-col-12 g-col-md-6">
-<h3 class="anchored" data-anchor-id="interactive-regressions">📈 Interactive regressions</h3>
-<p><a href="./interactive/regression.html">Open regression tool →</a> Filter by country, year, choose which models to include, pick within-manifesto and between-model aggregation weights — run the panel regression in your browser. Powered by WebR.</p>
+<section id="specification-curve" class="level3 g-col-12 g-col-md-6">
+<h3 class="anchored" data-anchor-id="specification-curve">Specification curve</h3>
+<p><a href="./interactive/regression.html">Explore →</a> The populism coefficient under every defensible analytic choice; filter the forks in your browser.</p>
 </section>
-<section id="download-replicate" class="level3 g-col-12 g-col-md-6">
-<h3 class="anchored" data-anchor-id="download-replicate">⬇️ Download &amp; replicate</h3>
-<p><a href="./download.html">Get the data and code →</a> Bulk parquet on <a href="https://huggingface.co/datasets/sstoeckl/populism-llm">Hugging Face</a>, full R replication pipeline on <a href="https://github.com/sstoeckl/populism-llm-replication">GitHub</a>.</p>
+<section id="download" class="level3 g-col-12 g-col-md-6">
+<h3 class="anchored" data-anchor-id="download">Download</h3>
+<p><a href="./download.html">Get the data →</a> One row per manifesto with all scores (CSV or Parquet), plus the evidence file.</p>
 </section>
 </div>
-</section>
-<section id="methodology-in-one-paragraph" class="level2">
-<h2 class="anchored" data-anchor-id="methodology-in-one-paragraph">Methodology in one paragraph</h2>
-<p>Each manifesto is split into ≤20,000-token chunks. Each chunk is scored by all three LLMs using an identical strict JSON schema. Models must back every non-null score with a 3–8-word verbatim quote and a surrounding context snippet. Evidence spans are revalidated post-hoc against the input text with a 6-tier fuzzy matcher plus an LLM-as-judge backstop. Final scores are confidence-weighted means across chunks, computed independently per model; the cross-model aggregate is a configurable choice (default: simple mean of the three families). All choices can be inspected and changed in the <a href="./interactive/regression.html">interactive regression module</a> and visualised as a <em>specification curve</em>.</p>
-<p>→ Full pipeline: <a href="./methodology.html">methodology</a>.</p>
+<section id="attribute-blocks" class="level2">
+<h2 class="anchored" data-anchor-id="attribute-blocks">Attribute blocks</h2>
+<ul>
+<li><strong>Populism, populist ideology and liberalism</strong> (v2026a (paper baseline)): 13 dimensions. Thirteen dimensions scored on 0–10 by three model families from the full manifesto text, each with a verbatim evidence quote. Scores are aggregated as in Rode &amp; Stöckl (2026): a chunk counts if the model marks its evidence as verified and the quote is found verbatim in the manifesto chunk (and is not copied from the prompt); confidence-weighted mean within model, plain mean across models.</li>
+</ul>
+<p>Further blocks, such as a party’s environmental profile or its stance towards democratic institutions, will be added to the same pages as they are scored.</p>
 </section>
 <section id="authors" class="level2">
 <h2 class="anchored" data-anchor-id="authors">Authors</h2>
 <div class="grid">
 <section id="martin-rode" class="level3 g-col-12 g-col-md-6">
 <h3 class="anchored" data-anchor-id="martin-rode"><a href="https://scholar.google.com/citations?user=CbCCz_EAAAAJ&amp;hl=en">Martin Rode</a></h3>
-<p><em>Department of Economics, Universidad de Navarra</em> · co-author</p>
+<p><em>Department of Economics, Universidad de Navarra</em></p>
 </section>
 <section id="sebastian-stöckl" class="level3 g-col-12 g-col-md-6">
 <h3 class="anchored" data-anchor-id="sebastian-stöckl"><a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a></h3>
-<p><em>Liechtenstein Business School, University of Liechtenstein</em> · co-author, <strong>site maintainer &amp; creator</strong></p>
+<p><em>Liechtenstein Business School, University of Liechtenstein</em> · site maintainer</p>
 </section>
 </div>
-</section>
-<section id="paper" class="level2">
-<h2 class="anchored" data-anchor-id="paper">Paper</h2>
-<p>The methodology, headline regressions, robustness checks, and the specification-curve appendix are described in the working paper:</p>
-<blockquote class="blockquote">
-<p>Rode, M. &amp; Stöckl, S. (2026). <em>The Milei question, or: How liberal are right-wing populist parties? A measurement approach using large language models.</em> Working paper. [PDF link forthcoming]</p>
-</blockquote>
-</section>
-<section id="cite-the-dataset" class="level2">
-<h2 class="anchored" data-anchor-id="cite-the-dataset">Cite the dataset</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bibtex code-with-copy"><code class="sourceCode bibtex"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">@misc</span>{<span class="ot">rode_stoeckl_2026_populismllm</span>,</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>    = {Rode, Martin and St{<span class="ch">\"</span>o}ckl, Sebastian},</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>     = {Populism-LLM v1: A Cross-Validated LLM Annotation of</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>               European Party Manifestos},</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>      = {2026},</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">publisher</span> = {Hugging Face Datasets},</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">url</span>       = {https://huggingface.co/datasets/sstoeckl/populism-llm},</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">note</span>      = {Dataset DOI: tba}</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="va">@article</span>{<span class="ot">rode_stoeckl_2026_milei</span>,</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="dt">author</span>  = {Rode, Martin and St{<span class="ch">\"</span>o}ckl, Sebastian},</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="dt">title</span>   = {The Milei question, or: How liberal are right-wing populist</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>             parties? A measurement approach using large language models},</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  <span class="dt">year</span>    = {2026},</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="dt">journal</span> = {Working paper}</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p><small>Data version v2026a · MPDS2026a / corpus 2026-1 (20260904101355) · <a href="./download.html#cite">how to cite</a></small></p>
 
 
 </section>
@@ -875,13 +828,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein) — <em>The Milei question, or: How liberal are right-wing populist parties?</em> (working paper).</p>
+<p><strong>Research:</strong> Martin Rode (Universidad de Navarra) · Sebastian Stöckl (University of Liechtenstein). Data version v2026a.</p>
 </div>   
     <div class="nav-footer-center">
 <p><strong>Site maintainer:</strong> <a href="http://www.sebastianstoeckl.com">Sebastian Stöckl</a> · code <a href="https://opensource.org/licenses/MIT">MIT</a> · data <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a></p>
 <div class="toc-actions"><ul><li><a href="https://github.com/sstoeckl/populism-llm/issues/new" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
-<p>Built with <a href="https://quarto.org">Quarto</a>. DOI &nbsp;tba</p>
+<p>Manifesto texts © their authors, via the <a href="https://manifesto-project.wzb.eu/">Manifesto Project</a>.</p>
 </div>
   </div>
 </footer>
