@@ -88,7 +88,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 50,
+  "limit": 20,
   "keyboard-shortcut": [
     "f",
     "/",
@@ -421,11 +421,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </table>
 <p>Scores and evidence flags: <a href="https://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</a>; please cite the paper and the data (below). The manifesto texts are © their authors and distributed by the <a href="https://manifesto-project.wzb.eu/">Manifesto Project (WZB)</a>; obtain them there with the manifesto id (<code>doc_id</code> = CMP party code _ election year and month). This site does not redistribute them, and quotes are cut to 8 words.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arrow)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">read_parquet</span>(<span class="st">"https://sstoeckl.github.io/populism-llm/data/download/manifesto_scores_v2026a.parquet"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>scores <span class="ot">&lt;-</span> <span class="fu">read_parquet</span>(<span class="st">"https://populism-llm.org/data/download/manifesto_scores_v2026a.parquet"</span>)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># populism_overall, liberalism_overall, lib_political, lib_social, lib_economic,</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># lib_financial_market, pop_ideology_direction (-1 left .. +1 right), ...</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>fixest<span class="sc">::</span><span class="fu">feols</span>(liberalism_overall <span class="sc">~</span> populism_overall <span class="sc">|</span> countryname <span class="sc">+</span> year, scores, <span class="at">cluster =</span> <span class="sc">~</span>party)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <p>The last line is the paper’s headline regression (column 1 of Table 4).</p>
+<p>The exact system prompt, user message and output schema sent to the models are exported from the scoring code with every build: <a href="data/prompt/system_prompt_poplib_v4_elements.txt">system prompt</a>, <a href="data/prompt/user_prompt_poplib_v4.txt">user message</a>, <a href="data/prompt/schema_poplib_v4.json">schema</a> (see <a href="./methodology.html#the-exact-prompt">methodology</a>).</p>
 </section>
 <section id="columns" class="level2">
 <h2 class="anchored" data-anchor-id="columns">Columns</h2>
@@ -548,7 +549,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp("https:\/\/sstoeckl\.github\.io\/populism-llm\/");
+        var filterRegex = new RegExp("https:\/\/populism-llm\.org\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

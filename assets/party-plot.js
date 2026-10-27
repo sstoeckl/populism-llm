@@ -54,9 +54,29 @@ window.renderPartyPlot = async function (containerId, rows, dims, models, refs, 
   draw();
 };
 
-/* Click-to-sort for tables with class "sortable" (numbers sort numerically, blanks last). */
+/* Click-to-sort for tables with class "sortable" (numbers sort numerically, blanks last),
+   and paging (10 rows per page, prev/next, page size) for tables with more than 10 rows. */
 window.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("table.sortable").forEach(tbl => {
+    const body = tbl.tBodies[0]; const rows = () => [...body.rows];
+    const pg = {size: 10, page: 0};
+    const bar = document.createElement("div"); bar.className = "table-pager";
+    const show = () => {
+      const r = rows(); const n = r.length; const pages = Math.max(1, Math.ceil(n / pg.size));
+      pg.page = Math.min(pg.page, pages - 1);
+      r.forEach((tr, i) => { tr.style.display = (pg.size >= n || (i >= pg.page * pg.size && i < (pg.page + 1) * pg.size)) ? "" : "none"; });
+      if (n <= 10) { bar.style.display = "none"; return; }
+      const first = pg.page * pg.size + 1, last = Math.min(n, (pg.page + 1) * pg.size);
+      bar.innerHTML = `<button ${pg.page === 0 ? "disabled" : ""} data-go="-1">&#8249; previous</button>
+        <span>${first}–${last} of ${n}</span>
+        <button ${pg.page >= pages - 1 ? "disabled" : ""} data-go="1">next &#8250;</button>
+        <label>rows per page <select>${[10, 25, 50, 1e9].map(s => `<option value="${s}" ${s === pg.size ? "selected" : ""}>${s > 1e8 ? "all" : s}</option>`).join("")}</select></label>`;
+      bar.querySelectorAll("button").forEach(b => b.addEventListener("click", () => { pg.page += +b.dataset.go; show(); }));
+      bar.querySelector("select").addEventListener("change", e => { pg.size = +e.target.value; pg.page = 0; show(); });
+    };
+    tbl.insertAdjacentElement("afterend", bar);
+    tbl.addEventListener("sorted", () => { pg.page = 0; show(); });
+    show();
     tbl.querySelectorAll("thead th").forEach((th, i) => {
       th.style.cursor = "pointer"; th.title = "Sort";
       th.addEventListener("click", () => {
@@ -65,6 +85,7 @@ window.addEventListener("DOMContentLoaded", () => {
         [...body.rows].sort((a, b) => { const x = val(a), y = val(b);
           if (x === null) return 1; if (y === null) return -1;
           return (x < y ? -1 : x > y ? 1 : 0) * (asc ? 1 : -1); }).forEach(r => body.appendChild(r));
+        tbl.dispatchEvent(new Event("sorted"));
       });
     });
   });
