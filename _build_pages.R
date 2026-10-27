@@ -177,7 +177,7 @@ write_manifesto <- function(r) {
   d <- r$doc_id; pl <- party_label(r$partyabbrev, r$partyname)
   body <- c(front(sprintf("%s · %s %s", pl, r$countryname, yr(r$date)),
                   sprintf("%s · manifesto %s", r$partyname, d),
-                  list(`page-layout` = "full", toc = TRUE, `toc-depth` = 2)),
+                  list(`page-layout` = "full", toc = TRUE, `toc-depth` = 2, search = FALSE)),   # keep the search index small
     html_block(sprintf(
       "<div class='manifesto-meta'><span class='item'><b>Country</b> <a href='%s'>%s</a></span> · <span class='item'><b>Party</b> <a href='../party/%s.html'>%s</a> (%s)</span> · <span class='item'><b>Date</b> %s</span> · <span class='item'><b>Party family</b> %s</span> · <span class='item'><b>Tokens</b> %s</span> · <span class='item'><b>Manifesto id</b> <code>%s</code></span></div><p class='cmp-link'>%s</p>",
       country_href(r$countryname), esc(r$countryname), r$party, esc(pl), esc(r$partyname),
