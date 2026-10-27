@@ -50,6 +50,47 @@ prov |> transmute(Model = MSHORT[model], Requested = model_requested, Endpoint =
                   Share = sprintf("%.1f%%", 100 * share_chunks)) |> kable(align = "lllllrr")
 ```
 
+## The exact prompt
+
+```{r prompt, include=FALSE}
+PS <- jsonlite::fromJSON(file.path(SITE, "data/prompt/PROMPT_SOURCE.json"))
+elems <- readLines(file.path(SITE, "data/prompt/system_prompt_poplib_v4_elements.txt"), warn = FALSE)
+usr <- readLines(file.path(SITE, "data/prompt/user_prompt_poplib_v4.txt"), warn = FALSE)
+schema <- readLines(file.path(SITE, "data/prompt/schema_poplib_v4.json"), warn = FALSE)
+```
+
+What follows is the system prompt exactly as the scoring code builds it, exported from the
+function that sent it (`r PS$n_elements` text elements; `{country}` and `{year}` are filled per
+manifesto from the Manifesto Project metadata). The models receive these elements joined by single
+spaces as one line of `r format(PS$n_chars_as_sent, big.mark = ",")` characters; for Germany 2025 its
+md5 is `` `r PS$md5_as_sent_Germany_2025` ``, which the site build checks against the project codebook.
+
+<details><summary><b>System prompt</b> (click to expand)</summary>
+
+```{r prompt-text, echo=FALSE, results='asis'}
+cat("```text\n", paste(elems, collapse = "\n"), "\n```\n", sep = "")
+```
+
+</details>
+
+The user message carries the chunk:
+
+```{r user-text, echo=FALSE, results='asis'}
+cat("```text\n", paste(usr, collapse = "\n"), "\n```\n", sep = "")
+```
+
+Every model must answer in the JSON schema below (`poplib_v4`). Claude receives it with the
+`["integer","null"]` unions replaced by `"integer"` (its tool schemas do not accept unions); Gemini
+receives it converted to its own schema format.
+
+<details><summary><b>Output schema</b> (click to expand)</summary>
+
+```{r schema-text, echo=FALSE, results='asis'}
+cat("```json\n", paste(schema, collapse = "\n"), "\n```\n", sep = "")
+```
+
+</details>
+
 ## What is scored
 
 Per chunk, each model returns for each of thirteen dimensions a score from 0 to 10 (or none), an

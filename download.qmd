@@ -23,13 +23,18 @@ redistribute them, and quotes are cut to 8 words.
 
 ```r
 library(arrow)
-scores <- read_parquet("https://sstoeckl.github.io/populism-llm/data/download/manifesto_scores_v2026a.parquet")
+scores <- read_parquet("https://populism-llm.org/data/download/manifesto_scores_v2026a.parquet")
 # populism_overall, liberalism_overall, lib_political, lib_social, lib_economic,
 # lib_financial_market, pop_ideology_direction (-1 left .. +1 right), ...
 fixest::feols(liberalism_overall ~ populism_overall | countryname + year, scores, cluster = ~party)
 ```
 
 The last line is the paper's headline regression (column 1 of Table 4).
+
+The exact system prompt, user message and output schema sent to the models are exported from the
+scoring code with every build: [system prompt](data/prompt/system_prompt_poplib_v4_elements.txt),
+[user message](data/prompt/user_prompt_poplib_v4.txt),
+[schema](data/prompt/schema_poplib_v4.json) (see [methodology](methodology.qmd#the-exact-prompt)).
 
 ## Columns
 

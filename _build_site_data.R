@@ -189,3 +189,26 @@ write.csv(sd |> mutate(across(c(coef, se, t), ~ signif(.x, 6)), p = signif(p, 4)
 file.copy(file.path(WEB, "version.json"), "data/version.json", overwrite = TRUE)
 file.copy(file.path(OUT, "csv", "40_model_provenance.csv"), "data/model_provenance.csv", overwrite = TRUE)
 message("done: data/registry.json, data/blocks/, data/manifestos.parquet, data/download/, data/specs_distinct_pop.csv")
+
+# ---- the exact prompt and schema, straight from the scoring code ----------------------------
+# R/3c_Populism_v4_safe.R only defines the schema and the prompt builders (no scoring). It is
+# sourced in its own environment from the workbench root. The one-line prompt actually sent is
+# compared with the md5 recorded in CODEBOOK.md section 3.
+P <- "data/prompt"; dir.create(P, showWarnings = FALSE)
+penv <- new.env()
+withr::with_dir(WB, suppressMessages(source("R/3c_Populism_v4_safe.R", local = penv)))
+sent <- penv$system_prompt_v4_safe("Germany", 2025)
+md5_sent <- digest::digest(sent, algo = "md5", serialize = FALSE)
+cb <- readLines(file.path(WB, "CODEBOOK.md"), warn = FALSE)
+md5_cb <- regmatches(cb, regexpr("`[0-9a-f]{32}`", cb))[1] |> gsub(pattern = "`", replacement = "")
+if (!identical(md5_sent, md5_cb)) stop("prompt md5 differs from CODEBOOK.md: ", md5_sent, " vs ", md5_cb)
+elems <- vapply(as.list(body(penv$system_prompt_v4_safe))[-1],
+                function(e) eval(e, list(country = "{country}", year = "{year}"), penv), "")
+writeLines(elems, file.path(P, "system_prompt_poplib_v4_elements.txt"))
+writeLines(sent, file.path(P, "system_prompt_poplib_v4_as_sent_Germany_2025.txt"))
+writeLines(penv$user_prompt_v4("{chunk text}", "{doc_id}"), file.path(P, "user_prompt_poplib_v4.txt"))
+write_json(penv$poplib_v4_schema, file.path(P, "schema_poplib_v4.json"), auto_unbox = TRUE, pretty = TRUE)
+write_json(list(md5_as_sent_Germany_2025 = md5_sent, n_elements = length(elems), n_chars_as_sent = nchar(sent),
+                source = "R/3c_Populism_v4_safe.R (system_prompt_v4_safe, user_prompt_v4, poplib_v4_schema)"),
+           file.path(P, "PROMPT_SOURCE.json"), auto_unbox = TRUE, pretty = TRUE)
+message(sprintf("prompt: %d elements, %d chars as sent, md5 %s (matches CODEBOOK.md)", length(elems), nchar(sent), md5_sent))
