@@ -1,0 +1,188 @@
+{
+  "blocks": [
+    {
+      "id": "poplib_v4",
+      "order": 1,
+      "label": "Populism, populist ideology and liberalism",
+      "short": "Populism & liberalism",
+      "status": "v2026a (paper baseline)",
+      "description": "Thirteen dimensions scored on 0–10 by three model families from the full manifesto text, each with a verbatim evidence quote. Scores are aggregated as in Rode & Stöckl (2026): a chunk counts if the model marks its evidence as verified and the quote is found verbatim in the manifesto chunk (and is not copied from the prompt); confidence-weighted mean within model, plain mean across models.\n",
+      "prompt_version": "poplib_v4",
+      "analysis": "analysis/milei-question.qmd",
+      "models": ["sonnet", "gpt41mini", "gemini"],
+      "groups": [
+        {
+          "id": "populism",
+          "label": "Populism"
+        },
+        {
+          "id": "ideology",
+          "label": "Populist ideology"
+        },
+        {
+          "id": "liberalism",
+          "label": "Liberalism"
+        }
+      ],
+      "headline": ["populism_overall", "liberalism_overall", "pop_ideology_direction"],
+      "dims": [
+        {
+          "id": "populism_overall",
+          "group": "populism",
+          "label": "Populism (overall)",
+          "min": 0,
+          "max": 10,
+          "description": "Rounded mean of the three populism sub-dimensions, adjusted by one point for breadth."
+        },
+        {
+          "id": "pop_anti_elitism",
+          "group": "populism",
+          "label": "Anti-elitism",
+          "min": 0,
+          "max": 10,
+          "description": "Elites or the establishment framed as corrupt or out of touch."
+        },
+        {
+          "id": "pop_people_centrism",
+          "group": "populism",
+          "label": "People-centrism",
+          "min": 0,
+          "max": 10,
+          "description": "'The people' invoked as a unified, virtuous group."
+        },
+        {
+          "id": "pop_manichean",
+          "group": "populism",
+          "label": "Manichaean outlook",
+          "min": 0,
+          "max": 10,
+          "description": "Moralised good-versus-evil struggle; betrayal, conspiracy."
+        },
+        {
+          "id": "pop_ideology_overall",
+          "group": "ideology",
+          "label": "Populist ideology (strength)",
+          "min": 0,
+          "max": 10,
+          "description": "Overall strength of the populist ideological flavour (not its direction)."
+        },
+        {
+          "id": "pop_ideology_left",
+          "group": "ideology",
+          "label": "Ideology: left",
+          "min": 0,
+          "max": 10,
+          "description": "Anti-corporate elite, redistribution, social equality."
+        },
+        {
+          "id": "pop_ideology_right",
+          "group": "ideology",
+          "label": "Ideology: right",
+          "min": 0,
+          "max": 10,
+          "description": "National or identity protectionism, anti-immigration."
+        },
+        {
+          "id": "pop_ideology_centrist",
+          "group": "ideology",
+          "label": "Ideology: centrist",
+          "min": 0,
+          "max": 10,
+          "description": "Generic people–elite appeals without a clear programmatic stance."
+        },
+        {
+          "id": "liberalism_overall",
+          "group": "liberalism",
+          "label": "Liberalism (overall)",
+          "min": 0,
+          "max": 10,
+          "description": "Rounded mean of the four liberalism sub-dimensions with evidence."
+        },
+        {
+          "id": "lib_political",
+          "group": "liberalism",
+          "label": "Political liberalism",
+          "min": 0,
+          "max": 10,
+          "description": "Democracy, rule of law, checks and balances, media freedom, due process."
+        },
+        {
+          "id": "lib_social",
+          "group": "liberalism",
+          "label": "Social liberalism",
+          "min": 0,
+          "max": 10,
+          "description": "Civil rights, minority protection, gender and LGBTQ+ equality, pluralism."
+        },
+        {
+          "id": "lib_economic",
+          "group": "liberalism",
+          "label": "Economic liberalism",
+          "min": 0,
+          "max": 10,
+          "description": "Free markets, competition, enterprise, deregulation, tax efficiency, trade openness."
+        },
+        {
+          "id": "lib_financial_market",
+          "group": "liberalism",
+          "label": "Financial-market liberalism",
+          "min": 0,
+          "max": 10,
+          "description": "Market pricing of assets and credit, open banking and capital markets, enabling prudential rules."
+        }
+      ],
+      "derived": [
+        {
+          "id": "pop_ideology_direction",
+          "group": "ideology",
+          "label": "Ideology direction (right − left)",
+          "min": -1,
+          "max": 1,
+          "description": "(R − L) / (R + L + C) on the cross-model means of the right, left and centrist scores; −1 left, +1 right."
+        }
+      ]
+    }
+  ],
+  "models": [
+    {
+      "id": "combined",
+      "short": "Combined",
+      "label": "Cross-model mean",
+      "family": "",
+      "colour": "#333333"
+    },
+    {
+      "id": "sonnet",
+      "short": "Sonnet",
+      "label": "claude-sonnet-4-6",
+      "family": "Anthropic",
+      "colour": "#1b9e77"
+    },
+    {
+      "id": "gpt41mini",
+      "short": "GPT-4.1-mini",
+      "label": "gpt-4.1-mini-2025-04-14",
+      "family": "OpenAI",
+      "colour": "#d95f02"
+    },
+    {
+      "id": "gemini",
+      "short": "Gemini",
+      "label": "gemini-3.5-flash",
+      "family": "Google",
+      "colour": "#7570b3"
+    }
+  ],
+  "evidence_text": "context",
+  "context_words": 40,
+  "corpus": "MPDS2026a / corpus 2026-1",
+  "version": {
+    "baseline_version": "v2026a",
+    "corpus": "MPDS2026a / corpus 2026-1 (20260904101355)",
+    "models": "claude-sonnet-4-6 (undated alias); gpt-4.1-mini-2025-04-14; Gemini: gemini-flash-latest in June (inferred gemini-3.5-flash), gemini-3.5-flash in 2026-10 (logged)",
+    "judge": "gpt-4o-mini-2024-07-18",
+    "span_validation_rule": "quote",
+    "baseline_md5": "cb50629c6572f9f2aee571b41c81d8d3",
+    "n_manifestos": 3371
+  }
+}
