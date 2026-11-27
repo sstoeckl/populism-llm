@@ -26,6 +26,12 @@ bash scripts/deploy.sh                # ... and publish to the gh-pages branch
 
 The workbench is found as a parent folder or via `POPLLM_WORKBENCH`.
 
+## Paper status
+
+The banner and the results page show the paper's status (for example "R&R at APSR") from
+`data/status.json`, read in the browser. Change it without re-rendering:
+`bash scripts/set_status.sh "R&R at APSR"` (pushes only that file to `gh-pages`; `""` clears it).
+
 ## Extending the site
 
 - **New attributes** (for example a party's environmental profile or its stance towards
