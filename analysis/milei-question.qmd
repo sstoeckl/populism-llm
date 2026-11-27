@@ -29,11 +29,15 @@ ev  <- rd("44_external_validity.csv") |> filter(llm_measure == "IDEO", external 
 rob <- rd("44_interaction_robustness.csv")
 src <- fromJSON(file.path(A, "SOURCES.json"))
 h1 <- co("liberalism_overall", "m1", "populism_overall")
+lla <- rd("53_lla_table.csv")
+gm  <- rd("53_group_means.csv")
+pin <- rd("53_prediction_intervals.csv") |> filter(doc_id %in% lla$doc_id)
+gmv <- function(reg, sub, out) gm$mean[gm$region == reg & gm$subgroup == sub & gm$outcome == out]
 ```
 
 ::: {.callout-warning appearance="simple"}
-**Working paper.** These are the results of the current data version (v2026a); the paper is
-being revised and has not been peer-reviewed. Every number on this page is read from the output
+**Working paper**<span class="paper-status"></span>. These are the results of the current data
+version (v2026a). Every number on this page is read from the output
 files of the replication chain (`r length(src$files)` files, md5 in `SOURCES.json`); nothing is
 typed by hand.
 :::
@@ -85,7 +89,7 @@ points per decade over all years and
 ## Right and left: levels differ, the populism effect mostly does not
 
 The ideology measure is the direction of a party's populist ideology,
-(right − left) / (right + left + centrist), from −1 (left) to +1 (right). It tracks established
+(right − left) / (right + left), from −1 (left) to +1 (right). It tracks established
 left–right scales closely:
 
 ```{r tab-valid, echo=FALSE}
@@ -130,6 +134,58 @@ The answer to the Milei question: right-leaning populists start from a more pro-
 position, but the more populist a manifesto, the less economically liberal it is, on the right
 as on the left.
 
+## La Libertad Avanza: the outlier, but only in economics
+
+Milei's party entered national politics in 2021, after the last Argentine election in the
+Manifesto Project corpus. We therefore scored the platforms that Argentine parties filed with the
+Cámara Nacional Electoral for the 2021, 2023 and 2025 elections, `r nrow(lla)` of them by
+*La Libertad Avanza*, out of sample with the identical pipeline and aggregation rule. They are not
+part of the corpus above.
+
+```{r tab-lla, echo=FALSE}
+lab <- c(AR2021G_CF_LLA = "LLA 2021, Capital Federal", AR2023P_ON_LLA = "LLA 2023, national (primaries)",
+         AR2023G_ON_LLA = "LLA 2023, national (general)", AR2025G_BA_LLA = "LLA 2025, Buenos Aires",
+         AR2025G_CF_LLA = "LLA 2025, Capital Federal")
+cols <- c("populism_overall", "ideology", "lib_political", "lib_social", "lib_economic", "lib_financial_market", "liberalism_overall")
+t4 <- lla |> transmute(Platform = unname(lab[doc_id]), Populism = f2(populism_overall), Ideology = f2(ideology),
+  Political = f2(lib_political), Social = f2(lib_social), Economic = f2(lib_economic),
+  Financial = f2(lib_financial_market), Overall = f2(liberalism_overall))
+refs <- list(c("World", "all", "World: all parties"), c("World", "right_populist", "World: right-wing populist"),
+             c("Latin America", "right_populist", "Latin America: right-wing populist"))
+o2 <- c("populism_overall", "IDEO", "lib_political", "lib_social", "lib_economic", "lib_financial_market", "liberalism_overall")
+t4r <- do.call(rbind, lapply(refs, function(r) { v <- vapply(o2, function(o) gmv(r[1], r[2], o), 0)
+  data.frame(Platform = r[3], Populism = f2(v[1]), Ideology = f2(v[2]), Political = f2(v[3]), Social = f2(v[4]),
+             Economic = f2(v[5]), Financial = f2(v[6]), Overall = f2(v[7])) }))
+kable(rbind(t4, t4r), align = "lrrrrrrr", row.names = FALSE,
+      caption = "Scores of the five La Libertad Avanza platforms (0–10; ideology −1 left to +1 right) and the means of the corpus manifestos. Right-wing populist = ideology above zero and populism above the corpus median.")
+```
+
+Three patterns stand out. First, by our measures *La Libertad Avanza* is a right-wing populist
+party, and increasingly so: its populism score rises from `r f2(min(lla$populism_overall))` in
+2021 to `r f2(max(lla$populism_overall))` in 2025, against `r f2(gmv("World", "right_populist", "populism_overall"))`
+for right-wing populist manifestos worldwide. Second, its economic liberalism is close to the
+ceiling at every election (`r f2(min(lla$lib_economic))` to `r f2(max(lla$lib_economic))`, against
+`r f2(gmv("World", "right_populist", "lib_economic"))` for right-wing populists worldwide);
+`r sum(pin$outcome == "lib_economic" & pin$outside_pi95)` of the five platforms lie above the 95%
+prediction interval of the model on economic liberalism. Third, in the social dimension it is a
+typical right-wing populist: its score falls from `r f2(lla$lib_social[lla$doc_id == "AR2021G_CF_LLA"])`
+in 2021 to `r f2(lla$lib_social[lla$doc_id == "AR2023G_ON_LLA"])` in 2023 and stays there. Milei's
+movement is the outlier the title alludes to, but only on economic and financial-market liberalism.
+
+::: {.panel-tabset}
+### Against the averages
+![](assets/milei-question/fig/Milei_vs_Averages.svg){width=100%}
+
+### Scored vs. predicted
+![](assets/milei-question/fig/Milei_Predicted.svg){width=100%}
+
+### Populism and liberalism
+![](assets/milei-question/fig/Milei_Scatter.svg){width=100%}
+
+### Over time
+![](assets/milei-question/fig/Milei_Trajectory.svg){width=100%}
+:::
+
 ## How much do the analytic choices matter?
 
 Measuring populism with language models involves many defensible choices: which models, how
@@ -162,5 +218,9 @@ kable(t3, align = "lrrrrr", caption = paste0("Non-standard errors of the headlin
   the evidence quotes that entered them.
 - **Download:** [analysis-ready scores](../download.qmd) (one row per manifesto, CC-BY 4.0).
 - **Method:** [how the scores are built](../methodology.qmd).
-- **Paper:** [Martin Rode](https://sites.google.com/unav.es/martin-rode/home) and [Sebastian Stöckl](http://www.sebastianstoeckl.com) (2026), *The Milei question, or: How
-  liberal are right-wing populist parties?*, working paper.
+- **Replication:** the [replication package](https://github.com/sstoeckl/populism-llm-replication) regenerates every table, figure and number
+  of the paper, including those on this page, with one command; its public inputs are also on
+  [Hugging Face](https://huggingface.co/datasets/sstoeckl/populism-llm-replication).
+- **Paper:** [Martin Rode](https://sites.google.com/unav.es/martin-rode/home) and [Sebastian Stöckl](http://www.sebastianstoeckl.com) (2026), [*The Milei question, or: How
+  liberal are right-wing populist parties? A measurement approach using large language models*](https://ssrn.com/abstract=7758858),
+  working paper, SSRN.

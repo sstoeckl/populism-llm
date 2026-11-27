@@ -8,6 +8,7 @@ project:
     - "data/specs_distinct_pop.csv"
     - "data/registry.json"
     - "data/version.json"
+    - "data/status.json"
 
 website:
   title: "Populism-LLM"
@@ -43,24 +44,30 @@ website:
       - href: download.qmd
         text: Data & Reproduction
     right:
-      - icon: github
-        href: https://github.com/sstoeckl/populism-llm
-        aria-label: GitHub
+      - text: Replication package
+        icon: github
+        href: https://github.com/sstoeckl/populism-llm-replication
+        aria-label: Replication package on GitHub
   page-footer:
     left: |
       **Research:** [Martin Rode](https://sites.google.com/unav.es/martin-rode/home) (Universidad de Navarra) · [Sebastian Stöckl](http://www.sebastianstoeckl.com) (University of Liechtenstein). Data version v2026a.
     center: |
-      **Site maintainer:** [Sebastian Stöckl](http://www.sebastianstoeckl.com) · code [MIT](https://opensource.org/licenses/MIT) · data [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+      **Site maintainer:** [Sebastian Stöckl](http://www.sebastianstoeckl.com) · [replication package](https://github.com/sstoeckl/populism-llm-replication) · [data on Hugging Face](https://huggingface.co/datasets/sstoeckl/populism-llm-replication) · [site code](https://github.com/sstoeckl/populism-llm) ([MIT](https://opensource.org/licenses/MIT)) · data [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/)
     right: |
       Manifesto texts © their authors, via the [Manifesto Project](https://manifesto-project.wzb.eu/).
   open-graph: true
   twitter-card: false
   body-header: |
-    <div class="draft-banner" role="alert">
-      <strong>🚧 PREVIEW / DRAFT</strong> · Working paper, not peer-reviewed.
-      Numbers and methodology may change. Do not cite —
-      <a href="mailto:sebastian.stoeckl@uni.li">sebastian.stoeckl@uni.li</a>.
+    <div class="draft-banner" role="note">
+      Companion to the working paper <a href="https://ssrn.com/abstract=7758858"><em>The Milei question</em></a> (Rode &amp; Stöckl 2026)<span class="paper-status"></span> · <a href="https://ssrn.com/abstract=7758858">paper (SSRN)</a> · <a href="/analysis/milei-question.html">results</a> ·
+      <a href="https://github.com/sstoeckl/populism-llm-replication">replication package</a> ·
+      <a href="/download.html#cite">how to cite</a>
     </div>
+    <script>
+      fetch("/data/status.json", {cache: "no-store"}).then(r => r.ok ? r.json() : {}).then(j => {
+        if (j && j.status) document.querySelectorAll(".paper-status").forEach(e => { e.textContent = " · " + j.status; });
+      }).catch(() => {});
+    </script>
 
 format:
   html:

@@ -45,8 +45,9 @@ scoring code with every build: [system prompt](data/prompt/system_prompt_poplib_
   `pop_ideology_centrist`, `pop_ideology_overall`, `lib_political`, `lib_social`, `lib_economic`,
   `lib_financial_market`, `liberalism_overall`. The same with suffix `_sonnet`, `_gpt41mini`,
   `_gemini` for each model, and `n_models_<dim>`.
-- `pop_ideology_direction` = (right − left) / (right + left + centrist); the variants `_zero`,
-  `_ge2`, `_all3` handle missing components differently (robustness).
+- `pop_ideology_direction` = (right − left) / (right + left), as in the paper; the variants `_zero`,
+  `_ge2`, `_all3` handle missing components differently (robustness), and `_c` is the
+  alternative (right − left) / (right + left + centrist).
 - Provenance: `endpoint_<model>`, `resolved_<model>`, `share_logged_<model>`, `aggregation`,
   `validation_rule`, `baseline_version`, `corpus_version`.
 
@@ -56,9 +57,10 @@ Project.
 ## Reproduction
 
 The paper's numbers come from one replication chain. It reruns every table and figure from the
-model output and checks each output file against a recorded checksum. The replication package
-(code, redacted model output, documentation) will be published with the paper; until then,
-please contact [Sebastian Stöckl](mailto:sebastian.stoeckl@uni.li).
+model output and checks each output file against a recorded checksum. The [replication package](https://github.com/sstoeckl/populism-llm-replication)
+(code, redacted model output, documentation) regenerates every table, figure and number of the
+paper with one command, `Rscript run_all.R`, and verifies them against the recorded checksums.
+Its public inputs are also on [Hugging Face](https://huggingface.co/datasets/sstoeckl/populism-llm-replication).
 
 This site is built from the same chain: it recomputes all scores from the public model output and
 refuses to build if any score differs from the chain's value.
@@ -71,12 +73,13 @@ refuses to build if any score differs from the chain's value.
   title  = {Populism, populist ideology and liberalism in party manifestos:
             LLM scores with evidence, data version v2026a},
   year   = {2026},
-  url    = {https://sstoeckl.github.io/populism-llm/}
+  url    = {https://populism-llm.org}
 }
 @unpublished{rode_stoeckl_2026_milei,
   author = {Rode, Martin and St{\"o}ckl, Sebastian},
   title  = {The Milei question, or: How liberal are right-wing populist parties?},
   year   = {2026},
-  note   = {Working paper}
+  note   = {Working paper, SSRN},
+  url    = {https://ssrn.com/abstract=7758858}
 }
 ```

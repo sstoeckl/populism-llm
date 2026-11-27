@@ -1,7 +1,9 @@
 # Populism-LLM website
 
 Static Quarto site: party manifestos scored by three language model families, every score with
-its evidence. Live at <https://sstoeckl.github.io/populism-llm/> (preview; not peer-reviewed).
+its evidence. Live at <https://populism-llm.org>. Companion to the working paper Rode & Stöckl (2026), [*The Milei
+question*](https://ssrn.com/abstract=7758858); the replication package that produces every table and figure of the paper is
+<https://github.com/sstoeckl/populism-llm-replication> (public inputs also on [Hugging Face](https://huggingface.co/datasets/sstoeckl/populism-llm-replication)).
 
 ## Build
 
